@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A58A527B1C7F0A2900443C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A527A1C7F0A2900443C06 /* AppDelegate.swift */; };
-		A58A527D1C7F0A2900443C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A527C1C7F0A2900443C06 /* ViewController.swift */; };
 		A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Main.storyboard */; };
 		A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A52811C7F0A2900443C06 /* Assets.xcassets */; };
 		A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
 		A58A52901C7F0A2900443C06 /* MaplifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A528F1C7F0A2900443C06 /* MaplifyTests.swift */; };
+		A58A52A21C7F103000443C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A41C7F103500443C06 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +27,6 @@
 
 /* Begin PBXFileReference section */
 		A58A52771C7F0A2800443C06 /* Maplify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maplify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A58A527A1C7F0A2900443C06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A58A527C1C7F0A2900443C06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A58A527F1C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58A52811C7F0A2900443C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A58A52841C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +34,8 @@
 		A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaplifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A528F1C7F0A2900443C06 /* MaplifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaplifyTests.swift; sourceTree = "<group>"; };
 		A58A52911C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A58A52A11C7F103000443C06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A58A52A41C7F103500443C06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +77,10 @@
 		A58A52791C7F0A2900443C06 /* Maplify */ = {
 			isa = PBXGroup;
 			children = (
-				A58A527A1C7F0A2900443C06 /* AppDelegate.swift */,
-				A58A527C1C7F0A2900443C06 /* ViewController.swift */,
-				A58A527E1C7F0A2900443C06 /* Main.storyboard */,
-				A58A52811C7F0A2900443C06 /* Assets.xcassets */,
-				A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */,
-				A58A52861C7F0A2900443C06 /* Info.plist */,
+				A58A52A31C7F103500443C06 /* AppDelegate */,
+				A58A52A01C7F103000443C06 /* ViewControllers */,
+				A58A52A61C7F10F100443C06 /* Storyboards */,
+				A58A52A71C7F118F00443C06 /* Supporting Files */,
 			);
 			path = Maplify;
 			sourceTree = "<group>";
@@ -94,6 +92,40 @@
 				A58A52911C7F0A2900443C06 /* Info.plist */,
 			);
 			path = MaplifyTests;
+			sourceTree = "<group>";
+		};
+		A58A52A01C7F103000443C06 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A58A52A11C7F103000443C06 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A58A52A31C7F103500443C06 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A58A52A41C7F103500443C06 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A58A52A61C7F10F100443C06 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A58A527E1C7F0A2900443C06 /* Main.storyboard */,
+				A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		A58A52A71C7F118F00443C06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A58A52811C7F0A2900443C06 /* Assets.xcassets */,
+				A58A52861C7F0A2900443C06 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A58A527D1C7F0A2900443C06 /* ViewController.swift in Sources */,
-				A58A527B1C7F0A2900443C06 /* AppDelegate.swift in Sources */,
+				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
+				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +420,7 @@
 				A58A52961C7F0A2900443C06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A58A52971C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "MaplifyTests" */ = {
 			isa = XCConfigurationList;
@@ -396,6 +429,7 @@
 				A58A52991C7F0A2900443C06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

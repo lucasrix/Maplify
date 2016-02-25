@@ -1,0 +1,11 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'Maplify' do
+  pod 'Alamofire', '~> 3.2'
+  pod 'RealmSwift', '~> 0.98'
+  pod 'SwiftyJSON', '~> 2.3'
+  pod 'HanekeSwift', '~> 0.10'
+  pod 'TTTAttributedLabel', '~> 1.13'
+  pod 'ALThreeCircleSpinner', '~> 1.0'
+end

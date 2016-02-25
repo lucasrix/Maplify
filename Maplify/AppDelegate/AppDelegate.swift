@@ -15,8 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Fabric.with([Crashlytics.self])
+        self.setupFabric()
         return true
+    }
+    
+    func setupFabric() {
+        Fabric.with([Crashlytics.self])
+        Fabric.sharedSDK().debug = ConfigHepler.isProduction()
     }
 }
 

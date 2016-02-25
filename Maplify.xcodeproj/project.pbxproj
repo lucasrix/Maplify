@@ -29,6 +29,7 @@
 		A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D91C7F192100443C06 /* AlertController.swift */; };
 		A58A52DD1C7F192100443C06 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DB1C7F192100443C06 /* StringUtils.swift */; };
+		A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		A58A52D91C7F192100443C06 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		A58A52DA1C7F192100443C06 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		A58A52DB1C7F192100443C06 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		A58A53191C7F345300443C06 /* ConfigHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHepler.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,8 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				A58A52A31C7F103500443C06 /* AppDelegate */,
-				A58A52C21C7F132A00443C06 /* CollectionClasses */,
 				A58A52D81C7F192100443C06 /* Extensions */,
+				A58A52C21C7F132A00443C06 /* CollectionClasses */,
+				A58A53181C7F341500443C06 /* Helpers */,
 				A58A52A01C7F103000443C06 /* ViewControllers */,
 				A58A52A61C7F10F100443C06 /* Storyboards */,
 				A58A52A71C7F118F00443C06 /* Supporting Files */,
@@ -199,6 +202,14 @@
 				A58A52DB1C7F192100443C06 /* StringUtils.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A58A53181C7F341500443C06 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A58A53191C7F345300443C06 /* ConfigHepler.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C60D303F351EBEB7C2F52374 /* Frameworks */ = {
@@ -378,6 +389,7 @@
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DD1C7F192100443C06 /* ColorUtils.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
+				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,

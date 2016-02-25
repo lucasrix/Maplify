@@ -222,6 +222,7 @@
 				A58A52751C7F0A2800443C06 /* Resources */,
 				DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */,
 				9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */,
+				A58A52DF1C7F1DD200443C06 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -338,6 +339,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A58A52DF1C7F1DD200443C06 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1be821fed07b6c7a86373f911acbc3c03d375f60 d0ef49d435d745ce847f8957558f8fcf56b27a284f9f95784d0fd9c8901a0fc1";
 		};
 		DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

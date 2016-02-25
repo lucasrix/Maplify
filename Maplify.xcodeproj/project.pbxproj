@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Main.storyboard */; };
 		A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A52811C7F0A2900443C06 /* Assets.xcassets */; };
 		A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		A58A52771C7F0A2800443C06 /* Maplify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maplify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A527F1C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58A52811C7F0A2900443C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSCollectionViewCell.swift; sourceTree = "<group>"; };
 		A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewCell.swift; sourceTree = "<group>"; };
 		A58A52D61C7F135700443C06 /* CSActiveModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSActiveModelTest.swift; sourceTree = "<group>"; };
+		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4069C54AB44294CF30EEEA95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */,
+				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A58A526E1C7F0A2800443C06 = {
 			isa = PBXGroup;
 			children = (
 				A58A52791C7F0A2900443C06 /* Maplify */,
 				A58A528E1C7F0A2900443C06 /* MaplifyTests */,
 				A58A52781C7F0A2800443C06 /* Products */,
+				4069C54AB44294CF30EEEA95 /* Pods */,
+				C60D303F351EBEB7C2F52374 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +184,14 @@
 			path = CollectionClasses;
 			sourceTree = "<group>";
 		};
+		C60D303F351EBEB7C2F52374 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,9 +199,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "Maplify" */;
 			buildPhases = (
+				369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */,
 				A58A52731C7F0A2800443C06 /* Sources */,
 				A58A52741C7F0A2800443C06 /* Frameworks */,
 				A58A52751C7F0A2800443C06 /* Resources */,
+				DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */,
+				9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,6 +290,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A58A52731C7F0A2800443C06 /* Sources */ = {
@@ -407,6 +482,7 @@
 		};
 		A58A52951C7F0A2900443C06 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Maplify/Info.plist;
@@ -419,6 +495,7 @@
 		};
 		A58A52961C7F0A2900443C06 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Maplify/Info.plist;

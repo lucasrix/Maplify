@@ -10,9 +10,21 @@
 		A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Main.storyboard */; };
 		A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A52811C7F0A2900443C06 /* Assets.xcassets */; };
 		A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
-		A58A52901C7F0A2900443C06 /* MaplifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A528F1C7F0A2900443C06 /* MaplifyTests.swift */; };
 		A58A52A21C7F103000443C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
 		A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A41C7F103500443C06 /* AppDelegate.swift */; };
+		A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C31C7F132A00443C06 /* CSActiveModel.swift */; };
+		A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C41C7F132A00443C06 /* CSBaseCollectionDataSource.swift */; };
+		A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C51C7F132A00443C06 /* CSBaseTableDataSource.swift */; };
+		A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C61C7F132A00443C06 /* CSCellData.swift */; };
+		A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */; };
+		A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */; };
+		A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C31C7F132A00443C06 /* CSActiveModel.swift */; };
+		A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C41C7F132A00443C06 /* CSBaseCollectionDataSource.swift */; };
+		A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C51C7F132A00443C06 /* CSBaseTableDataSource.swift */; };
+		A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C61C7F132A00443C06 /* CSCellData.swift */; };
+		A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */; };
+		A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */; };
+		A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D61C7F135700443C06 /* CSActiveModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +44,16 @@
 		A58A52841C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A58A52861C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaplifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A58A528F1C7F0A2900443C06 /* MaplifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaplifyTests.swift; sourceTree = "<group>"; };
 		A58A52911C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58A52A11C7F103000443C06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A58A52A41C7F103500443C06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A58A52C31C7F132A00443C06 /* CSActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSActiveModel.swift; sourceTree = "<group>"; };
+		A58A52C41C7F132A00443C06 /* CSBaseCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSBaseCollectionDataSource.swift; sourceTree = "<group>"; };
+		A58A52C51C7F132A00443C06 /* CSBaseTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSBaseTableDataSource.swift; sourceTree = "<group>"; };
+		A58A52C61C7F132A00443C06 /* CSCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSCellData.swift; sourceTree = "<group>"; };
+		A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSCollectionViewCell.swift; sourceTree = "<group>"; };
+		A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewCell.swift; sourceTree = "<group>"; };
+		A58A52D61C7F135700443C06 /* CSActiveModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSActiveModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A58A52A31C7F103500443C06 /* AppDelegate */,
+				A58A52C21C7F132A00443C06 /* CollectionClasses */,
 				A58A52A01C7F103000443C06 /* ViewControllers */,
 				A58A52A61C7F10F100443C06 /* Storyboards */,
 				A58A52A71C7F118F00443C06 /* Supporting Files */,
@@ -88,7 +107,7 @@
 		A58A528E1C7F0A2900443C06 /* MaplifyTests */ = {
 			isa = PBXGroup;
 			children = (
-				A58A528F1C7F0A2900443C06 /* MaplifyTests.swift */,
+				A58A52D51C7F135700443C06 /* CollectionClasses */,
 				A58A52911C7F0A2900443C06 /* Info.plist */,
 			);
 			path = MaplifyTests;
@@ -126,6 +145,27 @@
 				A58A52861C7F0A2900443C06 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A58A52C21C7F132A00443C06 /* CollectionClasses */ = {
+			isa = PBXGroup;
+			children = (
+				A58A52C31C7F132A00443C06 /* CSActiveModel.swift */,
+				A58A52C41C7F132A00443C06 /* CSBaseCollectionDataSource.swift */,
+				A58A52C51C7F132A00443C06 /* CSBaseTableDataSource.swift */,
+				A58A52C61C7F132A00443C06 /* CSCellData.swift */,
+				A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */,
+				A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */,
+			);
+			path = CollectionClasses;
+			sourceTree = "<group>";
+		};
+		A58A52D51C7F135700443C06 /* CollectionClasses */ = {
+			isa = PBXGroup;
+			children = (
+				A58A52D61C7F135700443C06 /* CSActiveModelTest.swift */,
+			);
+			path = CollectionClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +269,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
+				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
+				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
+				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
+				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
+				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A58A52901C7F0A2900443C06 /* MaplifyTests.swift in Sources */,
+				A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */,
+				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
+				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
+				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
+				A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */,
+				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
+				A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

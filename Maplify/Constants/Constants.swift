@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Constants
+// MARK: - Base constants
 struct Config {
     static let production = "PRODUCTION"
     static let configFile = "config"

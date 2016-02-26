@@ -15,6 +15,7 @@ typealias failureClosure = (statusCode: Int, errors: [ApiError], localDescriptio
 class ApiClient {
     static let sharedClient = ApiClient()
     
+    // MARK: - request management
     func request(type: Alamofire.Method, uri: String, params: [String: AnyObject]?, acceptCodes: [String]!, success: successClosure!, failure: failureClosure!) {
         Alamofire.request(type, uri.byAddingHost(), parameters: params)
             .response { request, response, data, error in
@@ -24,8 +25,25 @@ class ApiClient {
         }
     }
     
+    func postRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
+        self.request(.POST, uri: uri, params: params, acceptCodes: nil, success: success, failure: failure)
+    }
+    
     func getRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
-        self.request(.POST, uri: "auth", params: ["email":"test8@test.test", "password":"12345678", "password_confirmation":"12345678"], acceptCodes: nil, success: nil, failure: nil)
+        self.request(.GET, uri: uri, params: params, acceptCodes: nil, success: success, failure: failure)
+    }
+    
+    func putRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
+        self.request(.PUT, uri: uri, params: params, acceptCodes: nil, success: success, failure: failure)
+    }
+    
+    func deleteRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
+        self.request(.DELETE, uri: uri, params: params, acceptCodes: nil, success: success, failure: failure)
+    }
+    
+    // MARK: - user methods
+    func signUp(email: String, password: String, passwordConfirmation: String, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("auth", params:  ["email":email, "password":password, "password_confirmation":passwordConfirmation], success: success, failure: failure)
     }
 }
 

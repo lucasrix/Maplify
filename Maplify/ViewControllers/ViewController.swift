@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ApiClient.sharedClient.signUp("test13@test.test", password: "12345678", passwordConfirmation: "12345678", success: nil, failure: nil)
+    }
 }
 

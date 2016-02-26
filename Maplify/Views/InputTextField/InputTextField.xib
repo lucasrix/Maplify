@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="441" height="56"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="200-cW-2dz">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="200-cW-2dz">
                     <rect key="frame" x="20" y="41" width="401" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="LkG-Y6-aln"/>
@@ -29,7 +29,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybd-5P-2BZ">
                     <rect key="frame" x="0.0" y="37" width="441" height="1"/>
-                    <color key="backgroundColor" red="1" green="0.21568627450980393" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="o8J-tz-8fO"/>
                     </constraints>
@@ -41,7 +41,7 @@
                         <constraint firstAttribute="height" constant="37" id="fzx-nY-UHN"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y2O-dh-5dV" userLabel="Icon Highlited Image View">
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y2O-dh-5dV" userLabel="Icon Highlited Image View">
                     <rect key="frame" x="27" y="0.0" width="31" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="31" id="SN4-o2-URK"/>
@@ -57,6 +57,7 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                     <connections>
+                        <action selector="editingChanged:" destination="-1" eventType="editingChanged" id="XqL-S9-PeZ"/>
                         <action selector="editingDidBegin:" destination="-1" eventType="editingDidBegin" id="1Sh-vd-KyQ"/>
                         <action selector="editingDidEnd:" destination="-1" eventType="editingDidEnd" id="epz-Eu-2qt"/>
                     </connections>

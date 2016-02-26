@@ -13,7 +13,7 @@ private let kSeparatorViewAnimationDuration: NSTimeInterval = 0.3
 private let kInputTextFieldAlphaMin: CGFloat = 0.0
 private let kInputTextFieldAlphaMax: CGFloat = 1.0
 
-class InputTextField : UIView {
+class InputTextField : UIView, UITextFieldDelegate {
     var view: UIView! = nil
     var delegate: InputTextFieldDelegate! = nil
     
@@ -38,6 +38,7 @@ class InputTextField : UIView {
         if (self.view != nil) {
             self.view.frame = bounds
             self.addSubview(self.view)
+            self.textField.delegate = self
         }
     }
     
@@ -53,17 +54,14 @@ class InputTextField : UIView {
     
     func setDefaultState() {
         self.updateViewWithAnimation(false, errorShow: false, separatrorColor: UIColor.warmGrey())
-        self.errorLabel.hidden = true
     }
     
     func setHiglitedState() {
         self.updateViewWithAnimation(true, errorShow: false, separatrorColor: UIColor.dodgerBlue())
-        self.errorLabel.hidden = true
     }
     
     func setErrorState(errorMessage: String) {
         self.updateViewWithAnimation(false, errorShow: true, separatrorColor: UIColor.lightishRed())
-        self.errorLabel.hidden = false
         self.errorLabel.text = errorMessage
     }
     
@@ -92,10 +90,21 @@ class InputTextField : UIView {
         self.setDefaultState()
         self.delegate?.editingEnd?(self)
     }
+    
+    @IBAction func editingChanged(sender: UITextField) {
+        self.setHiglitedState()
+        self.delegate?.editingChanged?(self)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.delegate?.didPressReturnKey?(self)
+        return true
+    }
 }
 
 @objc protocol InputTextFieldDelegate {
     optional func editingBegin(inputTextField: InputTextField)
     optional func editingEnd(inputTextField: InputTextField)
+    optional func editingChanged(inputTextField: InputTextField)
     optional func didPressReturnKey(inputTextField: InputTextField)
 }

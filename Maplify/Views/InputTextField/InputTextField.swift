@@ -9,14 +9,16 @@
 import UIKit
 
 private let kDefaultOpacity: CGFloat = 0.55
+private let kSeparatorViewAnimationDuration: NSTimeInterval = 0.3
+private let kInputTextFieldAlphaMin: CGFloat = 0.0
+private let kInputTextFieldAlphaMax: CGFloat = 1.0
 
 class InputTextField : UIView {
     var view: UIView! = nil
-    var defaultIconName: String! = nil
-    var highlitedIconName: String! = nil
     var delegate: InputTextFieldDelegate! = nil
     
     @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconHighlitedImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
@@ -43,29 +45,40 @@ class InputTextField : UIView {
         self.textField.textColor = UIColor.whiteColor()
         self.textField.attributedPlaceholder = NSAttributedString(string:placeholder,
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(kDefaultOpacity)])
-        self.defaultIconName = defaultIconName
-        self.highlitedIconName = highlitedIconName
+        self.iconImageView.image = UIImage(named: defaultIconName)
+        self.iconHighlitedImageView.image = UIImage(named: highlitedIconName)
         
         self.setDefaultState()
     }
     
     func setDefaultState() {
-        self.iconImageView.image = UIImage(named: self.defaultIconName)
-        self.separatorView.backgroundColor = UIColor.warmGrey()
+        self.updateViewWithAnimation(false, errorShow: false, separatrorColor: UIColor.warmGrey())
         self.errorLabel.hidden = true
     }
     
     func setHiglitedState() {
-        self.iconImageView.image = UIImage(named: self.highlitedIconName)
-        self.separatorView.backgroundColor = UIColor.dodgerBlue()
+        self.updateViewWithAnimation(true, errorShow: false, separatrorColor: UIColor.dodgerBlue())
         self.errorLabel.hidden = true
     }
     
     func setErrorState(errorMessage: String) {
-        self.iconImageView.image = UIImage(named: self.defaultIconName)
-        self.separatorView.backgroundColor = UIColor.lightishRed()
+        self.updateViewWithAnimation(false, errorShow: true, separatrorColor: UIColor.lightishRed())
         self.errorLabel.hidden = false
         self.errorLabel.text = errorMessage
+    }
+    
+    private func updateViewWithAnimation(highlitedImageShow: Bool, errorShow: Bool, separatrorColor: UIColor) {
+        UIView.animateWithDuration(kSeparatorViewAnimationDuration) { () -> Void in
+            self.separatorView.backgroundColor = separatrorColor
+            
+            let iconAlpha: CGFloat = highlitedImageShow == true ? kInputTextFieldAlphaMax : kInputTextFieldAlphaMin
+            let iconAlphaAnother: CGFloat = highlitedImageShow == false ? kInputTextFieldAlphaMax : kInputTextFieldAlphaMin
+            self.iconImageView.alpha = iconAlphaAnother
+            self.iconHighlitedImageView.alpha = iconAlpha
+            
+            let errorAlpha: CGFloat = errorShow == true ? kInputTextFieldAlphaMax : kInputTextFieldAlphaMin
+            self.errorLabel.alpha = errorAlpha
+        }
     }
     
     // MARK: UITextFieldDelegate

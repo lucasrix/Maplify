@@ -8,6 +8,7 @@ target 'Maplify' do
   pod 'HanekeSwift', '~> 0.10'
   pod 'TTTAttributedLabel', '~> 1.13'
   pod 'ALThreeCircleSpinner', '~> 1.0'
+  pod 'Locksmith', '~> 2.0'
   pod 'Fabric'
   pod 'Crashlytics'
 end

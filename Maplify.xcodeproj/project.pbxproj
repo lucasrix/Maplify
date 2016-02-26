@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
+		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
+		A5081E561C806D35006FBA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
+		A5081E591C807561006FBA52 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E581C807561006FBA52 /* SessionManager.swift */; };
+		A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E5A1C807AD2006FBA52 /* ApiError.swift */; };
 		A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Main.storyboard */; };
 		A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A52811C7F0A2900443C06 /* Assets.xcassets */; };
 		A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
@@ -45,6 +49,10 @@
 /* Begin PBXFileReference section */
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		A5081E551C806D35006FBA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A5081E581C807561006FBA52 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		A5081E5A1C807AD2006FBA52 /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		A58A52771C7F0A2800443C06 /* Maplify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maplify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A527F1C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58A52811C7F0A2900443C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +104,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A5081E4F1C805845006FBA52 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A5081E501C805857006FBA52 /* ApiClient.swift */,
+				A5081E5A1C807AD2006FBA52 /* ApiError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A5081E541C806D2A006FBA52 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A5081E551C806D35006FBA52 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A5081E571C807550006FBA52 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A5081E581C807561006FBA52 /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		A58A526E1C7F0A2800443C06 = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +156,10 @@
 				A58A52D81C7F192100443C06 /* Extensions */,
 				A58A52C21C7F132A00443C06 /* CollectionClasses */,
 				A58A53181C7F341500443C06 /* Helpers */,
+				A5081E4F1C805845006FBA52 /* Network */,
+				A5081E571C807550006FBA52 /* Managers */,
 				A58A52A01C7F103000443C06 /* ViewControllers */,
+				A5081E541C806D2A006FBA52 /* Constants */,
 				A58A52A61C7F10F100443C06 /* Storyboards */,
 				A58A52A71C7F118F00443C06 /* Supporting Files */,
 			);
@@ -394,8 +430,12 @@
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
+				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
+				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
+				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
+				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 			);

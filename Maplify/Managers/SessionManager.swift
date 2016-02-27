@@ -11,6 +11,7 @@ import Locksmith
 class SessionManager {
     static let sharedManager = SessionManager()
     
+    // MARK: - app launch management
     func trackUserAppLaunch() {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: Config.userAppLaunch)
     }
@@ -19,6 +20,11 @@ class SessionManager {
         return NSUserDefaults.standardUserDefaults().boolForKey(Config.userAppLaunch)
     }
     
+    func removeAppLaunchTrackingData() {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(Config.userAppLaunch)
+    }
+    
+    // MARK: - network session data management
     func setSessionData(dictionary: [NSObject : AnyObject]!) {
         if dictionary != nil {
             do {
@@ -32,6 +38,14 @@ class SessionManager {
     
     func sessionData() -> [NSObject : AnyObject]! {
         return Locksmith.loadDataForUserAccount(Config.localUserAccount)
+    }
+    
+    func removeSessionData() {
+        do {
+            try Locksmith.deleteDataForUserAccount(Config.localUserAccount)
+        } catch let error {
+            print(error)
+        }
     }
     
     private func buildDictionary(headers: [NSObject : AnyObject]!) -> [String : String] {

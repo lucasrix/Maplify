@@ -11,6 +11,14 @@ import Locksmith
 class SessionManager {
     static let sharedManager = SessionManager()
     
+    func trackUserAppLaunch() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Config.userAppLaunch)
+    }
+    
+    func appHasAlreadyBeenLaunched() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(Config.userAppLaunch)
+    }
+    
     func setSessionData(dictionary: [NSObject : AnyObject]!) {
         if dictionary != nil {
             do {
@@ -26,7 +34,7 @@ class SessionManager {
         return Locksmith.loadDataForUserAccount(Config.localUserAccount)
     }
     
-    func buildDictionary(headers: [NSObject : AnyObject]!) -> [String : String] {
+    private func buildDictionary(headers: [NSObject : AnyObject]!) -> [String : String] {
         var sessionDictionary = [String : String]()
        
         let client = headers["client"] as! String

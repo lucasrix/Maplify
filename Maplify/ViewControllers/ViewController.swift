@@ -12,7 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ApiClient.sharedClient.signUp("test13@test.test", password: "12345678", passwordConfirmation: "12345678", success: nil, failure: nil)
+//        ApiClient.sharedClient.signUp("test12@test.test", password: "12345678", passwordConfirmation: "12345678",
+//            success: { (response) -> () in
+//                print(response)
+//            },
+//            failure: { (statusCode, errors, localDescription) -> () in
+//                print(statusCode)
+//            }
+//        )
+        
     }
 }
 

@@ -16,11 +16,10 @@ class ViewController: UIViewController {
             success: { (response) -> () in
                 print(response)
             },
-            failure: { (statusCode, errors, localDescription) -> () in
+            failure: { (statusCode, errors, localDescription, messages) -> () in
                 print(statusCode)
             }
         )
-        
     }
 }
 

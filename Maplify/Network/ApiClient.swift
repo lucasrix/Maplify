@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 typealias successClosure = (response: [String: AnyObject]!) -> ()
-typealias failureClosure = (statusCode: Int, errors: [ApiError]!, localDescription: String!) -> ()
+typealias failureClosure = (statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) -> ()
 
 class ApiClient {
     static let sharedClient = ApiClient()
@@ -45,7 +45,7 @@ class ApiClient {
         let errors = ApiError.parseErrors(details, messages: messages)
         
         dispatch_async(dispatch_get_main_queue()) {
-            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription)
+            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }
     }
     

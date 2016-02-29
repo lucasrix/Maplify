@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class ApiError {
     var errorMessage: String! = nil
@@ -23,8 +23,8 @@ class ApiError {
         var index = 0
         for key in details {
             let field = key.0
-            let message = messages[index]
-            let error = ApiError(message: message, field: field)
+            let message = key.1[0]
+            let error = ApiError(message: message as! String, field: field)
             errors.append(error)
             index++
         }

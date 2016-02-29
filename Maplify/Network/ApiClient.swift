@@ -16,7 +16,7 @@ class ApiClient {
     static let sharedClient = ApiClient()
     
     // MARK: - request management
-    func request(type: Alamofire.Method, uri: String, params: [String: AnyObject]?, acceptCodes: [Int]!, success: successClosure!, failure: failureClosure!) {
+    private func request(type: Alamofire.Method, uri: String, params: [String: AnyObject]?, acceptCodes: [Int]!, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String : String]
         Alamofire.request(type, uri.byAddingHost(), parameters: params, encoding: .JSON, headers: headers)
             .response {[weak self] request, response, data, error  in
@@ -39,9 +39,22 @@ class ApiClient {
         }
     }
     
-    func handleError(payload: [String : AnyObject], statusCode: Int , error: NSError!, failure: failureClosure!) {
+    private func handleError(payload: [String : AnyObject], statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let details = payload["error"]!["details"] as! [String : AnyObject]
+        let messages = payload["error"]!["error_messages"] as! [String]
+        var errors = [ApiError]()
+        
+        var index = 0
+        for key in details {
+            let field = key.0
+            let message = messages[index]
+            let error = ApiError(message: message, field: field)
+            errors.append(error)
+            index++
+        }
+        
         dispatch_async(dispatch_get_main_queue()) {
-            failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription)
+            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription)
         }
     }
     

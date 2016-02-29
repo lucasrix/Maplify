@@ -41,7 +41,7 @@ extension UIViewController {
                 alertController.addAction(alertAction)
             }
             
-            if destructive?.characters.count > 0 {
+            if destructive?.length > 0 {
                 let alertAction = UIAlertAction(title: destructive, style: .Destructive,
                     handler: { (action: UIAlertAction) -> Void in
                         handle(buttonIndex: buttons.count)
@@ -49,7 +49,7 @@ extension UIViewController {
                 alertController.addAction(alertAction)
             }
             
-            if cancel.characters.count > 0 {
+            if cancel.length > 0 {
                 let alertAction = UIAlertAction(title: cancel, style: .Cancel,
                     handler: { (action: UIAlertAction) -> Void in
                         let index = (style == .Alert || destructive == nil) ? buttons.count : buttons.count + 1

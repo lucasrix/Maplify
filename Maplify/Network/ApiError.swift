@@ -9,5 +9,11 @@
 import Foundation
 
 class ApiError {
+    var errorMessage: String! = nil
+    var errorField: String! = nil
     
+    init(message: String, field: String) {
+        self.errorMessage = message
+        self.errorField = field
+    }
 }

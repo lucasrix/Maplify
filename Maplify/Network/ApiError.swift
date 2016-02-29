@@ -16,4 +16,19 @@ class ApiError {
         self.errorMessage = message
         self.errorField = field
     }
+    
+    class func parseErrors(details: [String : AnyObject], messages: [String]) -> [ApiError] {
+        var errors = [ApiError]()
+
+        var index = 0
+        for key in details {
+            let field = key.0
+            let message = messages[index]
+            let error = ApiError(message: message, field: field)
+            errors.append(error)
+            index++
+        }
+        
+        return errors
+    }
 }

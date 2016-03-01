@@ -23,9 +23,9 @@ extension String {
     }
     
     func substr(start: Int, end: Int) -> String {
-        if (start < 0 || start > self.characters.count) {
+        if (start < 0 || start > self.length) {
             return ""
-        } else if end < 0 || end > self.characters.count {
+        } else if end < 0 || end > self.length {
             return ""
         }
         let range = Range(start: self.startIndex.advancedBy(start), end: self.startIndex.advancedBy(end))
@@ -35,7 +35,7 @@ extension String {
     var isEmail: Bool {
         do {
             let regex = try NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .CaseInsensitive)
-            return regex.firstMatchInString(self, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, self.characters.count)) != nil
+            return regex.firstMatchInString(self, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, self.length)) != nil
         } catch {
             return false
         }

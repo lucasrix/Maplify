@@ -9,7 +9,21 @@
 import Foundation
 
 class ConfigHepler {
+    
+    // MARK: - Production mode
     class func isProduction() -> Bool {
-        return NSProcessInfo.processInfo().environment["PRODUCTION"] == "true"
+        return NSProcessInfo.processInfo().environment[Config.production] == "true"
+    }
+    
+    class func baseHostUrl() -> String {
+        return (self.isProduction()) ? URL.productionHost : URL.stagingHost
+    }
+    
+    // MARK: - config parameters
+    class func configPlist() -> NSDictionary! {
+        if let plistPath = NSBundle.mainBundle().pathForResource(Config.configFile, ofType: FileType.plist) {
+            return NSDictionary(contentsOfFile: plistPath)
+        }
+        return nil
     }
 }

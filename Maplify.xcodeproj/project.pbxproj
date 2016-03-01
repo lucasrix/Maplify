@@ -13,9 +13,8 @@
 		1F2E337E1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		1F2E33831C80895400D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
-		1F2E33861C8098F200D3B446 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33851C8098F200D3B446 /* ImageConstants.swift */; };
 		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
-		1F2E33891C809A7A00D3B446 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33851C8098F200D3B446 /* ImageConstants.swift */; };
+		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
 		A5081E561C806D35006FBA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
@@ -57,7 +56,7 @@
 /* Begin PBXFileReference section */
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
-		1F2E33851C8098F200D3B446 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
+		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -123,14 +122,6 @@
 			path = InputTextField;
 			sourceTree = "<group>";
 		};
-		1F2E33841C8098DC00D3B446 /* ImageConstants */ = {
-			isa = PBXGroup;
-			children = (
-				1F2E33851C8098F200D3B446 /* ImageConstants.swift */,
-			);
-			path = ImageConstants;
-			sourceTree = "<group>";
-		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +143,7 @@
 		A5081E541C806D2A006FBA52 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */,
 				A5081E551C806D35006FBA52 /* Constants.swift */,
 			);
 			path = Constants;
@@ -191,7 +183,6 @@
 				A58A52A31C7F103500443C06 /* AppDelegate */,
 				A58A52D81C7F192100443C06 /* Extensions */,
 				A58A52C21C7F132A00443C06 /* CollectionClasses */,
-				1F2E33841C8098DC00D3B446 /* ImageConstants */,
 				A58A53181C7F341500443C06 /* Helpers */,
 				A5081E4F1C805845006FBA52 /* Network */,
 				A5081E571C807550006FBA52 /* Managers */,
@@ -463,13 +454,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
+				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
-				1F2E33861C8098F200D3B446 /* ImageConstants.swift in Sources */,
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
@@ -491,7 +482,6 @@
 				1F2E337C1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
-				1F2E33891C809A7A00D3B446 /* ImageConstants.swift in Sources */,
 				1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */,
 				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
 				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,

@@ -29,4 +29,16 @@ extension UIColor {
     class func defaultRedColor() -> UIColor {
         return UIColor(red: 108, green: 28, blue: 38)
     }
+    
+    class func warmGrey() -> UIColor {
+        return UIColor(red: 155, green: 155, blue: 155)
+    }
+    
+    class func dodgerBlue() -> UIColor {
+        return UIColor(red: 53, green: 175, blue: 255)
+    }
+    
+    class func lightishRed() -> UIColor {
+        return UIColor(red: 255, green: 55, blue: 79)
+    }
 }

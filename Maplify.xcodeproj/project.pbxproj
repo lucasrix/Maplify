@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33791C80652E00D3B446 /* InputTextField.swift */; };
+		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
+		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
+		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
 		A5081E561C806D35006FBA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
@@ -31,7 +36,6 @@
 		A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */; };
 		A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D61C7F135700443C06 /* CSActiveModelTest.swift */; };
 		A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D91C7F192100443C06 /* AlertController.swift */; };
-		A58A52DD1C7F192100443C06 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DB1C7F192100443C06 /* StringUtils.swift */; };
 		A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
+		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -95,6 +102,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2E33711C8055FC00D3B446 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F2E33781C80651500D3B446 /* InputTextField */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1F2E33781C80651500D3B446 /* InputTextField */ = {
+			isa = PBXGroup;
+			children = (
+				1F2E337A1C80652E00D3B446 /* InputTextField.xib */,
+				1F2E33791C80652E00D3B446 /* InputTextField.swift */,
+			);
+			path = InputTextField;
+			sourceTree = "<group>";
+		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +140,7 @@
 		A5081E541C806D2A006FBA52 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */,
 				A5081E551C806D35006FBA52 /* Constants.swift */,
 			);
 			path = Constants;
@@ -158,6 +183,7 @@
 				A58A53181C7F341500443C06 /* Helpers */,
 				A5081E4F1C805845006FBA52 /* Network */,
 				A5081E571C807550006FBA52 /* Managers */,
+				1F2E33711C8055FC00D3B446 /* Views */,
 				A58A52A01C7F103000443C06 /* ViewControllers */,
 				A5081E541C806D2A006FBA52 /* Constants */,
 				A58A52A61C7F10F100443C06 /* Storyboards */,
@@ -341,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
 				A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */,
@@ -351,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2E337E1C80652E00D3B446 /* InputTextField.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +450,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
+				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
-				A58A52DD1C7F192100443C06 /* ColorUtils.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
@@ -433,6 +462,7 @@
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
+				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
@@ -445,8 +475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2E33831C80895400D3B446 /* ColorUtils.swift in Sources */,
+				1F2E337C1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
+				1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */,
 				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
 				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */,

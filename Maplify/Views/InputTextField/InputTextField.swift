@@ -80,14 +80,12 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     // MARK: UITextFieldDelegate
-    
     @IBAction func editingDidBegin(sender: UITextField) {
         self.setHiglitedState()
         self.delegate?.editingBegin?(self)
     }
     
     @IBAction func editingDidEnd(sender: UITextField) {
-        self.setDefaultState()
         self.delegate?.editingEnd?(self)
     }
     

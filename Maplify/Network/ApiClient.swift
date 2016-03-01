@@ -17,7 +17,7 @@ class ApiClient {
     
     // MARK: - request management
     private func request(type: Alamofire.Method, uri: String, params: [String: AnyObject]?, acceptCodes: [Int]!, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionManager.sharedManager.sessionData() as! [String : String]
+        let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         Alamofire.request(type, uri.byAddingHost(), parameters: params, encoding: .JSON, headers: headers)
             .response {[weak self] request, response, data, error  in
                 let headersDictionary = (response! as NSHTTPURLResponse).allHeaderFields
@@ -30,7 +30,7 @@ class ApiClient {
                 if acceptCodes.contains(statusCode) {
                     if let dataDictionary = payload!["data"] {
                         dispatch_async(dispatch_get_main_queue()) {
-                            success?(response: dataDictionary as! [String : AnyObject])
+                            success?(response: dataDictionary as! [String: AnyObject])
                         }
                     }
                 } else {
@@ -39,8 +39,8 @@ class ApiClient {
         }
     }
     
-    private func handleError(payload: [String : AnyObject], statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let details = payload["error"]!["details"] as! [String : AnyObject]
+    private func handleError(payload: [String: AnyObject], statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let details = payload["error"]!["details"] as! [String: AnyObject]
         let messages = payload["error"]!["error_messages"] as! [String]
         let errors = ApiError.parseErrors(details, messages: messages)
         

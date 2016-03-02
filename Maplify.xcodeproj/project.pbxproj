@@ -41,6 +41,7 @@
 		A5A0E98F1C86FA410094FC04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E98E1C86FA410094FC04 /* User.swift */; };
 		A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9901C86FC9B0094FC04 /* Model.swift */; };
 		A5A0E9931C86FF780094FC04 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9921C86FF780094FC04 /* Account.swift */; };
+		A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9941C8738F90094FC04 /* RequestConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		A5A0E98E1C86FA410094FC04 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5A0E9901C86FC9B0094FC04 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5A0E9921C86FF780094FC04 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		A5A0E9941C8738F90094FC04 /* RequestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 			children = (
 				A5081E501C805857006FBA52 /* ApiClient.swift */,
 				A5081E5A1C807AD2006FBA52 /* ApiError.swift */,
+				A5A0E9941C8738F90094FC04 /* RequestConfig.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -146,8 +149,8 @@
 		A5081E541C806D2A006FBA52 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */,
 				A5081E551C806D35006FBA52 /* Constants.swift */,
+				1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				A5A0E98F1C86FA410094FC04 /* User.swift in Sources */,
+				A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */,
 				A5A0E9931C86FF780094FC04 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@ target 'Maplify' do
   pod 'TTTAttributedLabel', '~> 1.13'
   pod 'ALThreeCircleSpinner', '~> 1.0'
   pod 'Locksmith', '~> 2.0'
-  pod 'AlamofireObjectMapper', '~> 2.1'
+  pod 'Tailor', '~> 0.4'
   pod 'Fabric'
   pod 'Crashlytics'
 end

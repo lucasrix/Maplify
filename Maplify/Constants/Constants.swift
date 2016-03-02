@@ -26,5 +26,5 @@ struct URL {
 }
 
 struct Network {
-    static let successStatusCode = 200
+    static let successStatusCodes = [200, 201]
 }

@@ -11,8 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        let a = User.self
         
-        ApiClient.sharedClient.signUp("test11@test.test", password: "12345678", passwordConfirmation: "12345678",
+        ApiClient.sharedClient.signUp("test30@test.test", password: "12345678", passwordConfirmation: "12345678",
             success: { (response) -> () in
                 print(response)
             },

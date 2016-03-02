@@ -7,7 +7,6 @@
 //
 
 import RealmSwift
-import AlamofireObjectMapper
 
 class Model : RealmSwift.Object {
     dynamic var created_at: NSData! = nil

@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-typealias successClosure = (response: [String: AnyObject]!) -> ()
+typealias successClosure = (response: AnyObject!) -> ()
 typealias failureClosure = (statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) -> ()
 
 class ApiClient {
@@ -30,7 +30,7 @@ class ApiClient {
                 if acceptCodes.contains(statusCode) {
                     if let dataDictionary = payload!["data"] {
                         dispatch_async(dispatch_get_main_queue()) {
-                            success?(response: dataDictionary as! [String: AnyObject])
+                            success?(response: User(dataDictionary as! [String : AnyObject]))
                         }
                     }
                 } else {
@@ -52,19 +52,19 @@ class ApiClient {
     }
     
     func postRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
-        self.request(.POST, uri: uri, params: params, acceptCodes: [Network.successStatusCode], success: success, failure: failure)
+        self.request(.POST, uri: uri, params: params, acceptCodes: Network.successStatusCodes, success: success, failure: failure)
     }
     
     func getRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
-        self.request(.GET, uri: uri, params: params, acceptCodes: [Network.successStatusCode], success: success, failure: failure)
+        self.request(.GET, uri: uri, params: params, acceptCodes: Network.successStatusCodes, success: success, failure: failure)
     }
     
     func putRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
-        self.request(.PUT, uri: uri, params: params, acceptCodes: [Network.successStatusCode], success: success, failure: failure)
+        self.request(.PUT, uri: uri, params: params, acceptCodes: Network.successStatusCodes, success: success, failure: failure)
     }
     
     func deleteRequest(uri: String, params: [String: AnyObject]?, success: successClosure!, failure: failureClosure!) {
-        self.request(.DELETE, uri: uri, params: params, acceptCodes: [Network.successStatusCode], success: success, failure: failure)
+        self.request(.DELETE, uri: uri, params: params, acceptCodes: Network.successStatusCodes, success: success, failure: failure)
     }
     
     // MARK: - user methods

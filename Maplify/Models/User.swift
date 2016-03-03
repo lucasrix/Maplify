@@ -8,7 +8,7 @@
 
 import Tailor
 
-class User: Model, Mappable {
+class User: Model {
     dynamic var id = Int()
     dynamic var uid = ""
     dynamic var provider = ""
@@ -26,6 +26,7 @@ class User: Model, Mappable {
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
+        
         let userDict = map["user"] as! [String : AnyObject]
         let profileDict = userDict["profile"] as! [String : AnyObject]
         

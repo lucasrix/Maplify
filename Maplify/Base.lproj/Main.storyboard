@@ -1,27 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4WW-e0-Lwt">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sign Up-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SignupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAddPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dD-1x-XlR">
+                                <rect key="frame" x="140" y="140" width="94" height="94"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="94" id="0yC-GE-tJb"/>
+                                    <constraint firstAttribute="width" constant="94" id="x9o-16-gHp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, what's your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVU-CR-5oU">
+                                <rect key="frame" x="86" y="265" width="202" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="dzX-1I-f0b"/>
+                                    <constraint firstAttribute="width" constant="202" id="yfU-fT-8gZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-ew-vSU" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="20" y="335" width="153" height="42"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="fXQ-Hd-Zoh"/>
+                                    <constraint firstAttribute="width" constant="153" id="ffa-GH-YNb"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gt0-AQ-HVu" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="202" y="335" width="153" height="42"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="ECO-Na-WWe"/>
+                                    <constraint firstAttribute="width" constant="153" id="Lbp-Ip-lu3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LVU-CR-5oU" firstAttribute="top" secondItem="5dD-1x-XlR" secondAttribute="bottom" constant="31" id="1S7-OQ-TWA"/>
+                            <constraint firstItem="5dD-1x-XlR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OWH-V5-J97"/>
+                            <constraint firstItem="Gt0-AQ-HVu" firstAttribute="top" secondItem="LVU-CR-5oU" secondAttribute="bottom" constant="43" id="c6U-FX-Add"/>
+                            <constraint firstItem="8tp-ew-vSU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="gfx-rh-gY8"/>
+                            <constraint firstItem="8tp-ew-vSU" firstAttribute="top" secondItem="LVU-CR-5oU" secondAttribute="bottom" constant="43" id="k1E-4Z-zQy"/>
+                            <constraint firstItem="LVU-CR-5oU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kyD-nZ-LUm"/>
+                            <constraint firstItem="5dD-1x-XlR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="76" id="qKy-iW-h9b"/>
+                            <constraint firstAttribute="trailing" secondItem="Gt0-AQ-HVu" secondAttribute="trailing" constant="20" id="wrZ-ts-DB5"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Sign Up" id="Mhh-h8-BD4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="firstNameField" destination="8tp-ew-vSU" id="Fi2-rl-g1E"/>
+                        <outlet property="lastNameField" destination="Gt0-AQ-HVu" id="GMO-9A-hxx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="375"/>
+            <point key="canvasLocation" x="719.5" y="391.5"/>
+        </scene>
+        <!--Navigation View Controller-->
+        <scene sceneID="VJB-tU-PSc">
+            <objects>
+                <navigationController id="4WW-e0-Lwt" customClass="NavigationViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cuu-vl-j0q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gVW-WF-kEA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pPT-fp-zzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="236.5" y="391.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photoAddPlaceholder" width="90" height="90"/>
+    </resources>
 </document>

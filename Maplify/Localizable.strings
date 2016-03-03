@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Maplify
+
+  Created by Sergey on 3/3/16.
+  Copyright © 2016 rubygarage. All rights reserved.
+*/
+
+// Text placeholders
+"Text.Placeholder.FirstName" = "First Name";
+"Text.Placeholder.LastName" = "Last Name";

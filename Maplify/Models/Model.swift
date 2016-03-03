@@ -9,7 +9,7 @@
 import RealmSwift
 import Tailor
 
-class Model : RealmSwift.Object, Mappable {
+class Model: RealmSwift.Object, Mappable {
     dynamic var created_at = ""
     dynamic var updated_at = ""
     

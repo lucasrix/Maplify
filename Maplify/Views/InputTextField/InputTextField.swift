@@ -94,6 +94,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     @IBAction func editingDidEnd(sender: UITextField) {
+        self.setDefaultState()
         self.delegate?.editingEnd?(self)
     }
     

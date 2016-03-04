@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import AFImageHelper
 
-let kLabelCornerRadius: CGFloat = 5
-
-class SignupViewController: ViewController {
+class SignupViewController: ViewController, InputTextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var firstNameField: InputTextField!
     @IBOutlet weak var lastNameField: InputTextField!
     @IBOutlet weak var setPhotoLabelView: UIView!
@@ -18,6 +17,8 @@ class SignupViewController: ViewController {
     @IBOutlet weak var setPhotoImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    var account: Account! = nil
+    var imagePicker: UIImagePickerController! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -32,6 +33,7 @@ class SignupViewController: ViewController {
         self.setupTextFields()
         self.setupPhotoLabelView()
         self.setupImageView()
+        self.setupNextButton()
     }
     
     func setupLabels() {
@@ -48,7 +50,7 @@ class SignupViewController: ViewController {
     }
     
     func setupPhotoLabelView() {
-        self.setPhotoLabelView.layer.cornerRadius = kLabelCornerRadius
+        self.setPhotoLabelView.layer.cornerRadius = CornerRadius.defaultRadius
         self.setPhotoLabelView.clipsToBounds = true
     }
     
@@ -57,8 +59,38 @@ class SignupViewController: ViewController {
         self.setPhotoImage.addGestureRecognizer(tapGesture)
     }
     
+    func setupNextButton() {
+        let nextButton = DoneButton(frame: Frame.doneButtonFrame)
+        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
+        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
+        let rightBarItem = UIBarButtonItem(customView: nextButton)
+        self.navigationItem.rightBarButtonItem = rightBarItem
+    }
+    
     // MARK: - actions
     func imageViewDidTap() {
-        print("user did tap")
+        self.firstNameField.textField.endEditing(true)
+        self.lastNameField.textField.endEditing(true)
+        if (self.imagePicker == nil) {
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .PhotoLibrary
+        }
+        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+    }
+    
+    func nextButtonDidTap() {
+        //TODO:
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
+            self.setPhotoImage.contentMode = .ScaleAspectFit
+            self.setPhotoImage.image = pickedImage.roundCornersToCircle()
+        }
+        self.setPhotoLabelView.hidden = true
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

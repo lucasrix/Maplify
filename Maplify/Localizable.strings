@@ -14,3 +14,6 @@
 "Controller.Signup.Title" = "Sign Up";
 "Controller.Signup.setPhoto" = "Set your photo";
 "Controller.Signup.description" = "Hi, what's your name?";
+
+//Buttons
+"Button.Next" = "Next";

@@ -1,0 +1,71 @@
+//
+//  LandingViewController.swift
+//  Maplify
+//
+//  Created by Sergey on 3/4/16.
+//  Copyright © 2016 rubygarage. All rights reserved.
+//
+
+import UIKit
+import TTTAttributedLabel
+
+let kFacebookButtonImageInset: CGFloat = 20
+let kEmailButtonImageInset: CGFloat = 68
+let kLabelFontSize: CGFloat = 15
+
+class LandingViewController: ViewController, TTTAttributedLabelDelegate {
+    @IBOutlet weak var emailButton: RoundedButton!
+    @IBOutlet weak var facebookButton: RoundedButton!
+    @IBOutlet weak var loginLabel: TTTAttributedLabel!
+    @IBOutlet weak var termsLabel: TTTAttributedLabel!
+   
+    // MARK: - view controller life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setup()
+    }
+    
+    // MARK: - setup
+    func setup() {
+        self.setupButtons()
+        self.setupLabels()
+    }
+    
+    func setupButtons() {
+        self.facebookButton.setTitle(NSLocalizedString("Button.FacebookLogin", comment: String()), forState: .Normal)
+        self.emailButton.setTitle(NSLocalizedString("Button.EmailSignup", comment: String()), forState: .Normal)
+        if ConfigHepler.screenSmallerThanIPhoneSixSize() {
+            self.facebookButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kFacebookButtonImageInset)
+            self.emailButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kEmailButtonImageInset)
+        }
+    }
+    
+    func setupLabels() {
+        self.setupLoginLabel()
+        self.setupTermsLabel()
+    }
+    
+    func setupLoginLabel() {
+        let loginStr = NSLocalizedString("Controller.Landing.Login", comment: String())
+        let loginRangeStr = NSLocalizedString("Controller.Landing.RangeLogin", comment: String())
+        let font = UIFont.fontHelveticaRegular(kLabelFontSize)
+        self.loginLabel.setupDefaultAttributes(loginStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
+        self.loginLabel.addURLLink("link", str: loginStr, rangeStr: loginRangeStr, linkColor: UIColor.whiteColor())
+    }
+    
+    func setupTermsLabel() {
+        let termsStr = NSLocalizedString("Controller.Landing.Terms", comment: String())
+        let termsRangeStr = NSLocalizedString("Controller.Landing.RangeTerms", comment: String())
+        let policyRangeStr = NSLocalizedString("Controller.Landing.RangePolicy", comment: String())
+        let font = UIFont.fontHelveticaRegular(kLabelFontSize)
+        self.termsLabel.setupDefaultAttributes(termsStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
+        self.termsLabel.addURLLink("terms", str: termsStr, rangeStr: termsRangeStr, linkColor: UIColor.whiteColor())
+//        self.loginLabel.addURLLink("policy", str: termsStr, rangeStr: policyRangeStr, linkColor: UIColor.whiteColor())
+    }
+    
+    // MARK: - TTTAttributedLabelDelegate
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print(self)
+    }
+}

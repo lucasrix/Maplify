@@ -10,7 +10,7 @@ import UIKit
 
 let kDoneButtonFontSize: CGFloat = 14
 
-class DoneButton: UIButton {
+class DoneButton: RoundedButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -21,9 +21,9 @@ class DoneButton: UIButton {
         self.setup()
     }
     
-    func setup() {
+    override func setup() {
+        super.setup()
         self.backgroundColor = UIColor.dodgerBlue()
-        self.layer.cornerRadius = CornerRadius.defaultRadius
         self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.titleLabel?.font = UIFont.fontHelveticaBold(kDoneButtonFontSize)
     }

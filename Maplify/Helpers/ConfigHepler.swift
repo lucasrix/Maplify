@@ -26,4 +26,10 @@ class ConfigHepler {
         }
         return nil
     }
+    
+    // MARK: - screen settings
+    class func screenSmallerThanIPhoneSixSize() -> Bool {
+        return UIScreen.mainScreen().bounds.size.height < ScreenSize.iPhoneSixScreenPointsHeight
+    }
+
 }

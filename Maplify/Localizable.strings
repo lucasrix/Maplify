@@ -14,6 +14,13 @@
 "Controller.Signup.Title" = "Sign Up";
 "Controller.Signup.setPhoto" = "Set your photo";
 "Controller.Signup.description" = "Hi, what's your name?";
+"Controller.Landing.Login" = "Already have an account? Log in";
+"Controller.Landing.RangeLogin" = "Log in";
+"Controller.Landing.Terms" = "By continuing, you agree to our Terms & Privacy Policy.";
+"Controller.Landing.RangeTerms" = "Terms";
+"Controller.Landing.RangePolicy" = "Privacy";
 
 //Buttons
 "Button.Next" = "Next";
+"Button.FacebookLogin" = "Continue with Facebook";
+"Button.EmailSignup" = "Sign up with email";

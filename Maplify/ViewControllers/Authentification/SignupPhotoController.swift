@@ -9,7 +9,7 @@
 import UIKit
 import AFImageHelper
 
-class SignupViewController: ViewController, InputTextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var firstNameField: InputTextField!
     @IBOutlet weak var lastNameField: InputTextField!
     @IBOutlet weak var setPhotoLabelView: UIView!

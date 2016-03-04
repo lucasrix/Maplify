@@ -15,3 +15,7 @@ struct CornerRadius {
 struct Frame {
     static let doneButtonFrame = CGRectMake(0, 0, 62, 28)
 }
+
+struct ScreenSize {
+    static let iPhoneSixScreenPointsHeight: CGFloat = 667
+}

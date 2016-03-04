@@ -9,3 +9,8 @@
 // Text placeholders
 "Text.Placeholder.FirstName" = "First Name";
 "Text.Placeholder.LastName" = "Last Name";
+
+// Labels
+"Controller.Signup.Title" = "Sign Up";
+"Controller.Signup.setPhoto" = "Set your photo";
+"Controller.Signup.description" = "Hi, what's your name?";

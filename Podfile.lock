@@ -1,4 +1,5 @@
 PODS:
+  - AFImageHelper (3.0.2)
   - Alamofire (3.2.1)
   - ALThreeCircleSpinner (1.0.2)
   - Crashlytics (3.7.0):
@@ -15,10 +16,11 @@ PODS:
   - SwiftyJSON (2.3.2)
   - Tailor (0.4.5):
     - Sugar
+  - TPKeyboardAvoiding (1.2.11)
   - TTTAttributedLabel (1.13.4)
-  - UIImage+Additions (2.1.0)
 
 DEPENDENCIES:
+  - AFImageHelper (~> 3.0)
   - Alamofire (~> 3.2)
   - ALThreeCircleSpinner (~> 1.0)
   - Crashlytics
@@ -28,10 +30,11 @@ DEPENDENCIES:
   - RealmSwift (~> 0.98)
   - SwiftyJSON (~> 2.3)
   - Tailor (~> 0.4)
+  - TPKeyboardAvoiding (~> 1.2)
   - TTTAttributedLabel (~> 1.13)
-  - UIImage+Additions (~> 2.1)
 
 SPEC CHECKSUMS:
+  AFImageHelper: 77a89f76b410655928b757a36627a66c1eb67fc2
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
@@ -43,7 +46,7 @@ SPEC CHECKSUMS:
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5
+  TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  UIImage+Additions: 6181430b139099649e56171d58a52d6c37d57e42
 
 COCOAPODS: 0.39.0

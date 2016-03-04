@@ -23,4 +23,8 @@ class NavigationViewController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }

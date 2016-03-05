@@ -9,6 +9,10 @@
 import UIKit
 import TTTAttributedLabel
 
+let kLoginActiveLink = "login"
+let kTermsActiveLink = "terms"
+let kPolicyActiveLink = "policy"
+
 let kFacebookButtonImageInset: CGFloat = 20
 let kEmailButtonImageInset: CGFloat = 68
 let kLabelFontSize: CGFloat = 15
@@ -51,7 +55,8 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         let loginRangeStr = NSLocalizedString("Controller.Landing.RangeLogin", comment: String())
         let font = UIFont.fontHelveticaRegular(kLabelFontSize)
         self.loginLabel.setupDefaultAttributes(loginStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
-        self.loginLabel.addURLLink("link", str: loginStr, rangeStr: loginRangeStr, linkColor: UIColor.whiteColor())
+        self.loginLabel.setupLinkAttributes(UIColor.whiteColor())
+        self.loginLabel.addURLLink("link", str: loginStr, rangeStr: loginRangeStr)
     }
     
     func setupTermsLabel() {
@@ -60,12 +65,19 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         let policyRangeStr = NSLocalizedString("Controller.Landing.RangePolicy", comment: String())
         let font = UIFont.fontHelveticaRegular(kLabelFontSize)
         self.termsLabel.setupDefaultAttributes(termsStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
-        self.termsLabel.addURLLink("terms", str: termsStr, rangeStr: termsRangeStr, linkColor: UIColor.whiteColor())
-//        self.loginLabel.addURLLink("policy", str: termsStr, rangeStr: policyRangeStr, linkColor: UIColor.whiteColor())
+        self.termsLabel.setupLinkAttributes(UIColor.whiteColor())
+        self.termsLabel.addURLLink("terms", str: termsStr, rangeStr: termsRangeStr)
+        self.termsLabel.addURLLink("policy", str: termsStr, rangeStr: policyRangeStr)
     }
     
     // MARK: - TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        print(self)
+        if url.absoluteString == kLoginActiveLink {
+            
+        } else if url.absoluteString == kTermsActiveLink {
+    // TODO:
+        } else if url.absoluteString == kPolicyActiveLink {
+    // TODO:
+        }
     }
 }

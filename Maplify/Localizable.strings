@@ -18,7 +18,7 @@
 "Controller.Landing.RangeLogin" = "Log in";
 "Controller.Landing.Terms" = "By continuing, you agree to our Terms & Privacy Policy.";
 "Controller.Landing.RangeTerms" = "Terms";
-"Controller.Landing.RangePolicy" = "Privacy";
+"Controller.Landing.RangePolicy" = "Privacy Policy";
 
 //Buttons
 "Button.Next" = "Next";

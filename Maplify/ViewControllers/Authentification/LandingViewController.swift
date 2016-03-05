@@ -56,7 +56,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         let font = UIFont.fontHelveticaRegular(kLabelFontSize)
         self.loginLabel.setupDefaultAttributes(loginStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
         self.loginLabel.setupLinkAttributes(UIColor.whiteColor())
-        self.loginLabel.addURLLink("link", str: loginStr, rangeStr: loginRangeStr)
+        self.loginLabel.addURLLink(kLoginActiveLink, str: loginStr, rangeStr: loginRangeStr)
     }
     
     func setupTermsLabel() {
@@ -66,8 +66,8 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         let font = UIFont.fontHelveticaRegular(kLabelFontSize)
         self.termsLabel.setupDefaultAttributes(termsStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
         self.termsLabel.setupLinkAttributes(UIColor.whiteColor())
-        self.termsLabel.addURLLink("terms", str: termsStr, rangeStr: termsRangeStr)
-        self.termsLabel.addURLLink("policy", str: termsStr, rangeStr: policyRangeStr)
+        self.termsLabel.addURLLink(kTermsActiveLink, str: termsStr, rangeStr: termsRangeStr)
+        self.termsLabel.addURLLink(kPolicyActiveLink, str: termsStr, rangeStr: policyRangeStr)
     }
     
     // MARK: - TTTAttributedLabelDelegate

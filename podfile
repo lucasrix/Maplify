@@ -12,6 +12,8 @@ target 'Maplify' do
   pod 'Tailor', '~> 0.4'
   pod 'AFImageHelper', '~> 3.0'
   pod 'TPKeyboardAvoiding', '~> 1.2'
+  pod 'SimpleAuth', '~> 0.3'
+  pod 'SimpleAuth/Facebook'
   pod 'Fabric'
   pod 'Crashlytics'
 end

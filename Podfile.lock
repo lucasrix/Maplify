@@ -2,16 +2,94 @@ PODS:
   - AFImageHelper (3.0.2)
   - Alamofire (3.2.1)
   - ALThreeCircleSpinner (1.0.2)
+  - CMDQueryStringSerialization (0.4.1):
+    - ISO8601
+  - cocoa-oauth (0.0.1):
+    - NSData+Base64 (~> 1.0)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.6)
   - HanekeSwift (0.10.1)
+  - ISO8601 (0.5.0)
   - Locksmith (2.0.8)
+  - NSData+Base64 (1.0.0)
+  - ReactiveCocoa (4.0.1):
+    - ReactiveCocoa/UI (= 4.0.1)
+    - Result (~> 1.0.2)
+  - ReactiveCocoa/Core (4.0.1):
+    - ReactiveCocoa/no-arc
+    - Result (~> 1.0.2)
+  - ReactiveCocoa/no-arc (4.0.1):
+    - Result (~> 1.0.2)
+  - ReactiveCocoa/UI (4.0.1):
+    - ReactiveCocoa/Core
+    - Result (~> 1.0.2)
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
   - RealmSwift (0.98.2):
     - Realm (= 0.98.2)
+  - Result (1.0.2)
+  - SimpleAuth (0.3.9):
+    - SimpleAuth/BoxWeb (= 0.3.9)
+    - SimpleAuth/Core (= 0.3.9)
+    - SimpleAuth/DropboxWeb (= 0.3.9)
+    - SimpleAuth/Facebook (= 0.3.9)
+    - SimpleAuth/FacebookWeb (= 0.3.9)
+    - SimpleAuth/FoursquareWeb (= 0.3.9)
+    - SimpleAuth/GoogleWeb (= 0.3.9)
+    - SimpleAuth/Instagram (= 0.3.9)
+    - SimpleAuth/LinkedInWeb (= 0.3.9)
+    - SimpleAuth/Meetup (= 0.3.9)
+    - SimpleAuth/OneDriveWeb (= 0.3.9)
+    - SimpleAuth/SinaWeiboWeb (= 0.3.9)
+    - SimpleAuth/Strava (= 0.3.9)
+    - SimpleAuth/Trello (= 0.3.9)
+    - SimpleAuth/TripIt (= 0.3.9)
+    - SimpleAuth/Tumblr (= 0.3.9)
+    - SimpleAuth/Twitter (= 0.3.9)
+    - SimpleAuth/TwitterWeb (= 0.3.9)
+  - SimpleAuth/BoxWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Core (0.3.9):
+    - CMDQueryStringSerialization
+    - ReactiveCocoa
+  - SimpleAuth/DropboxWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Facebook (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/FacebookWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/FoursquareWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/GoogleWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Instagram (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/LinkedInWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Meetup (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/OneDriveWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/SinaWeiboWeb (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Strava (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/Trello (0.3.9):
+    - SimpleAuth/Core
+  - SimpleAuth/TripIt (0.3.9):
+    - cocoa-oauth
+    - SimpleAuth/Core
+  - SimpleAuth/Tumblr (0.3.9):
+    - cocoa-oauth
+    - SimpleAuth/Core
+  - SimpleAuth/Twitter (0.3.9):
+    - cocoa-oauth
+    - SimpleAuth/Core
+  - SimpleAuth/TwitterWeb (0.3.9):
+    - cocoa-oauth
+    - SimpleAuth/Core
   - Sugar (1.0.5)
   - SwiftyJSON (2.3.2)
   - Tailor (0.4.5):
@@ -28,6 +106,8 @@ DEPENDENCIES:
   - HanekeSwift (~> 0.10)
   - Locksmith (~> 2.0)
   - RealmSwift (~> 0.98)
+  - SimpleAuth (~> 0.3)
+  - SimpleAuth/Facebook
   - SwiftyJSON (~> 2.3)
   - Tailor (~> 0.4)
   - TPKeyboardAvoiding (~> 1.2)
@@ -37,12 +117,19 @@ SPEC CHECKSUMS:
   AFImageHelper: 77a89f76b410655928b757a36627a66c1eb67fc2
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
+  CMDQueryStringSerialization: 4bb0a2f5e7d8d8678d911d88072274952cbef4e5
+  cocoa-oauth: 1200a2170276a62a975f2786d505dab6e2db1fa8
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  ISO8601: 25d7a973fa8daf31a50bbd0401d2e7b98e8a7df3
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
+  NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
+  ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5

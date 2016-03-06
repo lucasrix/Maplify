@@ -9,7 +9,7 @@
 import Foundation
 
 struct CornerRadius {
-    static let defaultRadius: CGFloat = 7
+    static let defaultRadius: CGFloat = 5
 }
 
 struct Frame {

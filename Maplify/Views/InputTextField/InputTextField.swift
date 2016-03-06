@@ -20,6 +20,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     @IBOutlet weak var defaultImageWidth: NSLayoutConstraint!
     @IBOutlet weak var highlightedImageWidth: NSLayoutConstraint!
     @IBOutlet weak var imageTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var iconHighlitedImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
@@ -56,6 +57,7 @@ class InputTextField : UIView, UITextFieldDelegate {
             self.defaultImageWidth.constant = 0
             self.highlightedImageWidth.constant = 0
             self.imageTrailingConstraint.constant = 0
+            self.textLeadingConstraint.constant = 0
         }
         self.setDefaultState()
     }

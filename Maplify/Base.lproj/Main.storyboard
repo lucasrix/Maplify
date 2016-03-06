@@ -120,63 +120,63 @@ Terms &amp; Privacy Policy.</string>
             <point key="canvasLocation" x="528.5" y="391.5"/>
         </scene>
         <!--Login View Controller-->
-        <scene sceneID="jR7-vn-Mug">
+        <scene sceneID="YPt-9Z-g3A">
             <objects>
-                <viewController storyboardIdentifier="LoginController" id="KfK-6R-67z" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="hqI-qj-OMB" customClass="LoginViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="27J-zS-9X0"/>
-                        <viewControllerLayoutGuide type="bottom" id="xmT-om-f6d"/>
+                        <viewControllerLayoutGuide type="top" id="T0R-r5-0P5"/>
+                        <viewControllerLayoutGuide type="bottom" id="mkU-4p-046"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ong-2p-rbq">
+                    <view key="view" contentMode="scaleToFill" id="Ws0-yo-d6D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drC-i8-nww" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="80" width="375" height="51"/>
-                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="pVe-W1-HIb"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-4V-Wuy" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="139" width="375" height="51"/>
-                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="Hit-Qb-eXb"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-fu-0aT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZa-0x-Br5">
                                 <rect key="frame" x="101" y="198" width="173" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ebw-Nn-3au"/>
-                                    <constraint firstAttribute="width" constant="173" id="cAN-ji-Fls"/>
+                                    <constraint firstAttribute="height" constant="30" id="0hx-ND-5Dq"/>
+                                    <constraint firstAttribute="width" constant="173" id="bTf-ZI-bxf"/>
                                 </constraints>
                                 <state key="normal" title="Reset your password">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-IS-PB8" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="139" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="ZTY-yt-gJr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2o0-1q-vkB" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="n7y-Ej-WCD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Hlo-fu-0aT" firstAttribute="centerX" secondItem="ong-2p-rbq" secondAttribute="centerX" id="08w-97-XYv"/>
-                            <constraint firstItem="Hlo-fu-0aT" firstAttribute="top" secondItem="VVt-4V-Wuy" secondAttribute="bottom" constant="8" id="Ebc-iF-i39"/>
-                            <constraint firstAttribute="trailing" secondItem="VVt-4V-Wuy" secondAttribute="trailing" id="FvF-ij-6Rw"/>
-                            <constraint firstItem="drC-i8-nww" firstAttribute="leading" secondItem="ong-2p-rbq" secondAttribute="leading" id="QSh-hJ-R5p"/>
-                            <constraint firstItem="VVt-4V-Wuy" firstAttribute="leading" secondItem="ong-2p-rbq" secondAttribute="leading" id="UJ0-Yo-VQX"/>
-                            <constraint firstItem="VVt-4V-Wuy" firstAttribute="top" secondItem="drC-i8-nww" secondAttribute="bottom" constant="8" id="apr-tb-F4J"/>
-                            <constraint firstItem="drC-i8-nww" firstAttribute="top" secondItem="27J-zS-9X0" secondAttribute="bottom" constant="60" id="byS-UB-UTE"/>
-                            <constraint firstAttribute="trailing" secondItem="drC-i8-nww" secondAttribute="trailing" id="rkU-1z-lB0"/>
+                            <constraint firstItem="wZa-0x-Br5" firstAttribute="centerX" secondItem="Ws0-yo-d6D" secondAttribute="centerX" id="2PI-qT-v5u"/>
+                            <constraint firstAttribute="trailing" secondItem="9Uo-IS-PB8" secondAttribute="trailing" id="78X-bM-RFR"/>
+                            <constraint firstItem="wZa-0x-Br5" firstAttribute="top" secondItem="9Uo-IS-PB8" secondAttribute="bottom" constant="8" id="g38-YW-8Pv"/>
+                            <constraint firstItem="2o0-1q-vkB" firstAttribute="top" secondItem="T0R-r5-0P5" secondAttribute="bottom" constant="60" id="iDE-y7-azR"/>
+                            <constraint firstItem="2o0-1q-vkB" firstAttribute="leading" secondItem="Ws0-yo-d6D" secondAttribute="leading" id="jkc-IU-HJ6"/>
+                            <constraint firstAttribute="trailing" secondItem="2o0-1q-vkB" secondAttribute="trailing" id="jy6-4A-7v9"/>
+                            <constraint firstItem="9Uo-IS-PB8" firstAttribute="top" secondItem="2o0-1q-vkB" secondAttribute="bottom" constant="8" id="nDS-Ir-rn3"/>
+                            <constraint firstItem="9Uo-IS-PB8" firstAttribute="leading" secondItem="Ws0-yo-d6D" secondAttribute="leading" id="z7c-zR-leY"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="emailTextField" destination="drC-i8-nww" id="3Rx-M3-RDC"/>
-                        <outlet property="passwordTextField" destination="VVt-4V-Wuy" id="ZgD-tX-wl0"/>
+                        <outlet property="emailInputField" destination="2o0-1q-vkB" id="Dp7-0q-wJ5"/>
+                        <outlet property="passwordInputField" destination="9Uo-IS-PB8" id="nnm-VA-g26"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D4C-a3-qoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQQ-8c-fav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528.5" y="1151.5"/>
+            <point key="canvasLocation" x="528.5" y="1135.5"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="tne-QT-ifu">
@@ -196,7 +196,7 @@ Terms &amp; Privacy Policy.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZp-T4-Sts" userLabel="MainView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
-                                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAddPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dD-1x-XlR">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAddPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dD-1x-XlR">
                                                 <rect key="frame" x="140" y="76" width="94" height="94"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="94" id="Ecq-zm-2Vm"/>
@@ -328,6 +328,88 @@ Terms &amp; Privacy Policy.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="971.5" y="391.5"/>
+        </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="7BG-c4-P1d">
+            <objects>
+                <viewController storyboardIdentifier="SignupController" automaticallyAdjustsScrollViewInsets="NO" id="9iM-P5-uCc" customClass="SignupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mhK-Qi-7lD"/>
+                        <viewControllerLayoutGuide type="bottom" id="E60-4S-pi9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VAF-hd-vDr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1f-xF-y3j" customClass="TPKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUp-V4-P63">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAddPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ekg-Vm-btB">
+                                                <rect key="frame" x="141" y="76" width="94" height="94"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="94" id="F6J-AQ-bBp"/>
+                                                    <constraint firstAttribute="height" constant="94" id="m1V-Nk-GJe"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tts-oW-0Oq" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="249" width="375" height="51"/>
+                                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="51" id="YOa-nT-U2p"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9W-bi-ZGK" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="190" width="375" height="51"/>
+                                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="51" id="LZa-Ak-VcH"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Ekg-Vm-btB" firstAttribute="centerX" secondItem="PUp-V4-P63" secondAttribute="centerX" id="9Po-OZ-qHj"/>
+                                            <constraint firstItem="tts-oW-0Oq" firstAttribute="leading" secondItem="PUp-V4-P63" secondAttribute="leading" id="EL4-ba-n4Y"/>
+                                            <constraint firstItem="g9W-bi-ZGK" firstAttribute="top" secondItem="Ekg-Vm-btB" secondAttribute="bottom" constant="20" id="OKK-ct-dEI"/>
+                                            <constraint firstItem="Ekg-Vm-btB" firstAttribute="top" secondItem="PUp-V4-P63" secondAttribute="top" constant="76" id="cf4-Ah-G4O"/>
+                                            <constraint firstAttribute="trailing" secondItem="g9W-bi-ZGK" secondAttribute="trailing" id="kcf-fa-p1X"/>
+                                            <constraint firstItem="tts-oW-0Oq" firstAttribute="top" secondItem="g9W-bi-ZGK" secondAttribute="bottom" constant="8" id="nvb-Et-20U"/>
+                                            <constraint firstAttribute="trailing" secondItem="tts-oW-0Oq" secondAttribute="trailing" id="qq2-tT-2Dh"/>
+                                            <constraint firstItem="g9W-bi-ZGK" firstAttribute="leading" secondItem="PUp-V4-P63" secondAttribute="leading" id="zg2-yD-1Dg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PUp-V4-P63" firstAttribute="leading" secondItem="r1f-xF-y3j" secondAttribute="leading" id="1Yy-5H-2wZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="PUp-V4-P63" secondAttribute="trailing" id="BdZ-nO-leP"/>
+                                    <constraint firstAttribute="bottom" secondItem="PUp-V4-P63" secondAttribute="bottom" id="GbO-3I-aJf"/>
+                                    <constraint firstItem="PUp-V4-P63" firstAttribute="height" secondItem="r1f-xF-y3j" secondAttribute="height" id="IbD-ua-XHn"/>
+                                    <constraint firstItem="PUp-V4-P63" firstAttribute="top" secondItem="r1f-xF-y3j" secondAttribute="top" id="KFZ-T0-A79"/>
+                                    <constraint firstItem="PUp-V4-P63" firstAttribute="width" secondItem="r1f-xF-y3j" secondAttribute="width" id="VPb-JD-Lnz"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="r1f-xF-y3j" firstAttribute="top" secondItem="mhK-Qi-7lD" secondAttribute="bottom" id="JYW-w8-rtw"/>
+                            <constraint firstAttribute="trailing" secondItem="r1f-xF-y3j" secondAttribute="trailing" id="Uwq-VT-hlu"/>
+                            <constraint firstItem="r1f-xF-y3j" firstAttribute="leading" secondItem="VAF-hd-vDr" secondAttribute="leading" id="dul-xy-W54"/>
+                            <constraint firstItem="E60-4S-pi9" firstAttribute="top" secondItem="r1f-xF-y3j" secondAttribute="bottom" id="y6f-a2-wfK"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailInputField" destination="g9W-bi-ZGK" id="YWR-CX-NZ8"/>
+                        <outlet property="imageView" destination="Ekg-Vm-btB" id="19n-yU-ara"/>
+                        <outlet property="passwordInputField" destination="tts-oW-0Oq" id="AjV-uJ-xOb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nt3-vf-V8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1417.5" y="391.5"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="VJB-tU-PSc">

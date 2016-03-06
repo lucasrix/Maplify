@@ -25,5 +25,6 @@
 
 //Buttons
 "Button.Next" = "Next";
+"Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
 "Button.EmailSignup" = "Sign up with email";

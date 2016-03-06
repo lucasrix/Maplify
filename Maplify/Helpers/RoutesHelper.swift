@@ -10,12 +10,18 @@ import Foundation
 
 extension UIViewController {
     func routesOpenLoginViewController() {
-        let loginViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.kLoginControllerId)
+        let loginViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.loginControllerId)
         self.navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     func routesOpenSignUpPhotoViewController() {
-         let signupPhotoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.kSignupPhotoController)
+         let signupPhotoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupPhotoController)
         self.navigationController?.pushViewController(signupPhotoViewController, animated: true)
+    }
+    
+    func routesOpenSignUpViewController(photoImage: UIImage!) {
+        let signupViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupController) as! SignupViewController
+        signupViewController.photoImage = photoImage
+        self.navigationController?.pushViewController(signupViewController, animated: true)
     }
 }

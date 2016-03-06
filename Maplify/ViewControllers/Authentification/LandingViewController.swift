@@ -70,9 +70,13 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         self.termsLabel.addURLLink(kPolicyActiveLink, str: termsStr, rangeStr: policyRangeStr)
     }
     
+    override func backButtonHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        
+    // TODO:
     }
 
     @IBAction func emailButtonDidTap(sender: AnyObject) {

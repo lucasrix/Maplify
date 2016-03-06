@@ -1,16 +1,17 @@
 //
-//  LoginViewController.swift
+//  SignupViewController.swift
 //  Maplify
 //
 //  Created by jowkame on 06.03.16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import UIKit
-
-class LoginViewController: ViewController {
+class SignupViewController: ViewController {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var photoImage: UIImage! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -23,11 +24,12 @@ class LoginViewController: ViewController {
     func setup() {
         self.setupLabels()
         self.setupTextFields()
-        self.setupDoneButton()
+        self.setupNextButton()
+        self.setupImageView()
     }
     
     func setupLabels() {
-        self.title = NSLocalizedString("Controller.Login.Title", comment: String())
+        self.title = NSLocalizedString("Controller.Signup.Title", comment: String())
     }
     
     func setupTextFields() {
@@ -38,17 +40,21 @@ class LoginViewController: ViewController {
         self.passwordInputField.setupTextField(passwordPlaceholder, defaultIconName: InputTextFieldImages.passwordIconDefault, highlitedIconName: InputTextFieldImages.passwordIconHighlited)
     }
     
-    func setupDoneButton() {
-        let doneButton = DoneButton(frame: Frame.doneButtonFrame)
-        doneButton.setTitle(NSLocalizedString("Button.Done", comment: String()), forState: .Normal)
-        doneButton.addTarget(self, action: "doneButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: doneButton)
+    func setupNextButton() {
+        let nextButton = DoneButton(frame: Frame.doneButtonFrame)
+        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
+        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
+        let rightBarItem = UIBarButtonItem(customView: nextButton)
         self.navigationItem.rightBarButtonItem = rightBarItem
     }
     
-    // MARK: - Actions
-    func doneButtonDidTap() {
-        
+    func setupImageView() {
+        self.imageView.image = self.photoImage.roundCornersToCircle()
     }
     
+    // MARK: - actions
+    func nextButtonDidTap() {
+    // TODO:
+    }
+
 }

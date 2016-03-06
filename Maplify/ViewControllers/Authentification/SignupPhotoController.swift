@@ -81,13 +81,12 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     func nextButtonDidTap() {
-        //TODO:
+        self.routesOpenSignUpViewController(self.setPhotoImage.image)
     }
     
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
-            self.setPhotoImage.contentMode = .ScaleAspectFit
             self.setPhotoImage.image = pickedImage.roundCornersToCircle()
         }
         self.setPhotoLabelView.hidden = true

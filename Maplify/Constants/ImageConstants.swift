@@ -11,4 +11,12 @@ import Foundation
 struct InputTextFieldImages {
     static let loginIconDefault = "TextInputLoginIconDefault"
     static let loginIconHighlited = "TextInputLoginIconHighlited"
+    static let emailIconDefault = "icoEmail"
+    static let emailIconHighlited = "icoEmailActive"
+    static let passwordIconDefault = "icoPass"
+    static let passwordIconHighlited = "icoPassActive"
+}
+
+struct BarButtonImages {
+    static let backArrow = "icoBack"
 }

@@ -28,3 +28,8 @@ struct URL {
 struct Network {
     static let successStatusCodes = [200, 201]
 }
+
+struct Controllers {
+    static let kLoginControllerId = "LoginController"
+    static let kSignupPhotoController = "SignupPhotoController"
+}

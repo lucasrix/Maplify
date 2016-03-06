@@ -9,6 +9,8 @@
 // Text placeholders
 "Text.Placeholder.FirstName" = "First Name";
 "Text.Placeholder.LastName" = "Last Name";
+"Text.Placeholder.Email" = "Email";
+"Text.Placeholder.Password" = "Password";
 
 // Labels
 "Controller.Signup.Title" = "Sign Up";
@@ -19,6 +21,7 @@
 "Controller.Landing.Terms" = "By continuing, you agree to our Terms & Privacy Policy.";
 "Controller.Landing.RangeTerms" = "Terms";
 "Controller.Landing.RangePolicy" = "Privacy Policy";
+"Controller.Login.Title" = "Log In";
 
 //Buttons
 "Button.Next" = "Next";

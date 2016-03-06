@@ -35,6 +35,9 @@
                                 <state key="normal" title="Continue with Facebook" image="icoFb">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="facebookButtonDidTap:" destination="2ts-iS-H47" eventType="touchUpInside" id="fQu-8m-MGZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-Tg-vSa" customClass="RoundedButton" customModule="Maplify" customModuleProvider="target">
                                 <rect key="frame" x="20" y="461" width="335" height="57"/>
@@ -47,6 +50,9 @@
                                 <state key="normal" title="Sign up with email" image="icoEnvelope">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="emailButtonDidTap:" destination="2ts-iS-H47" eventType="touchUpInside" id="eeb-RG-yAT"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? Log in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chO-PQ-SZW" customClass="TTTAttributedLabel">
                                 <rect key="frame" x="64" y="533" width="247" height="21"/>
@@ -104,7 +110,7 @@ Terms &amp; Privacy Policy.</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="emailButton" destination="G2B-Tg-vSa" id="moU-z4-sm0"/>
-                        <outlet property="facebookButton" destination="YzC-9h-bIu" id="Ec4-4I-42N"/>
+                        <outlet property="facebookButton" destination="YzC-9h-bIu" id="agr-ru-WOb"/>
                         <outlet property="loginLabel" destination="chO-PQ-SZW" id="7R0-S6-c98"/>
                         <outlet property="termsLabel" destination="AhX-ET-2Sx" id="NYZ-jv-6v2"/>
                     </connections>
@@ -113,10 +119,69 @@ Terms &amp; Privacy Policy.</string>
             </objects>
             <point key="canvasLocation" x="528.5" y="391.5"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="jR7-vn-Mug">
+            <objects>
+                <viewController storyboardIdentifier="LoginController" id="KfK-6R-67z" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="27J-zS-9X0"/>
+                        <viewControllerLayoutGuide type="bottom" id="xmT-om-f6d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ong-2p-rbq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drC-i8-nww" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="pVe-W1-HIb"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-4V-Wuy" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="139" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="Hit-Qb-eXb"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-fu-0aT">
+                                <rect key="frame" x="101" y="198" width="173" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ebw-Nn-3au"/>
+                                    <constraint firstAttribute="width" constant="173" id="cAN-ji-Fls"/>
+                                </constraints>
+                                <state key="normal" title="Reset your password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Hlo-fu-0aT" firstAttribute="centerX" secondItem="ong-2p-rbq" secondAttribute="centerX" id="08w-97-XYv"/>
+                            <constraint firstItem="Hlo-fu-0aT" firstAttribute="top" secondItem="VVt-4V-Wuy" secondAttribute="bottom" constant="8" id="Ebc-iF-i39"/>
+                            <constraint firstAttribute="trailing" secondItem="VVt-4V-Wuy" secondAttribute="trailing" id="FvF-ij-6Rw"/>
+                            <constraint firstItem="drC-i8-nww" firstAttribute="leading" secondItem="ong-2p-rbq" secondAttribute="leading" id="QSh-hJ-R5p"/>
+                            <constraint firstItem="VVt-4V-Wuy" firstAttribute="leading" secondItem="ong-2p-rbq" secondAttribute="leading" id="UJ0-Yo-VQX"/>
+                            <constraint firstItem="VVt-4V-Wuy" firstAttribute="top" secondItem="drC-i8-nww" secondAttribute="bottom" constant="8" id="apr-tb-F4J"/>
+                            <constraint firstItem="drC-i8-nww" firstAttribute="top" secondItem="27J-zS-9X0" secondAttribute="bottom" constant="60" id="byS-UB-UTE"/>
+                            <constraint firstAttribute="trailing" secondItem="drC-i8-nww" secondAttribute="trailing" id="rkU-1z-lB0"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="drC-i8-nww" id="3Rx-M3-RDC"/>
+                        <outlet property="passwordTextField" destination="VVt-4V-Wuy" id="ZgD-tX-wl0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4C-a3-qoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528.5" y="1151.5"/>
+        </scene>
         <!--Sign Up-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="SignupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupPhotoController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="SignupPhotoController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -125,11 +190,11 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c8-2Q-K42" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c8-2Q-K42" customClass="TPKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZp-T4-Sts" userLabel="MainView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZp-T4-Sts" userLabel="MainView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAddPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dD-1x-XlR">
                                                 <rect key="frame" x="140" y="76" width="94" height="94"/>
@@ -262,7 +327,7 @@ Terms &amp; Privacy Policy.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027.5" y="391.5"/>
+            <point key="canvasLocation" x="971.5" y="391.5"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="VJB-tU-PSc">

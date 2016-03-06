@@ -23,8 +23,15 @@ class DoneButton: RoundedButton {
     
     override func setup() {
         super.setup()
-        self.backgroundColor = UIColor.dodgerBlue()
-        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        let size = CGSizeMake(Frame.doneButtonFrame.width, Frame.doneButtonFrame.height)
+        let defaultImage = UIImage(color: UIColor.dodgerBlue(), size: size)?.roundCorners(CornerRadius.defaultRadius)
+        let selectedImage = UIImage(color: UIColor.waterBlue(), size: size)?.roundCorners(CornerRadius.defaultRadius)
+        
+        self.setBackgroundImage(defaultImage, forState: .Normal)
+        self.setBackgroundImage(selectedImage, forState: .Highlighted)
+        self.setBackgroundImage(selectedImage, forState: .Selected)
+        
         self.titleLabel?.font = UIFont.fontHelveticaBold(kDoneButtonFontSize)
     }
 }

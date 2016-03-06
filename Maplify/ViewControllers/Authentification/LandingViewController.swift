@@ -70,10 +70,19 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         self.termsLabel.addURLLink(kPolicyActiveLink, str: termsStr, rangeStr: policyRangeStr)
     }
     
+    // MARK: - Actions
+    @IBAction func facebookButtonDidTap(sender: AnyObject) {
+        
+    }
+
+    @IBAction func emailButtonDidTap(sender: AnyObject) {
+        self.routesOpenSignUpPhotoViewController()
+    }
+    
     // MARK: - TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if url.absoluteString == kLoginActiveLink {
-            
+            self.routesOpenLoginViewController()
         } else if url.absoluteString == kTermsActiveLink {
     // TODO:
         } else if url.absoluteString == kPolicyActiveLink {

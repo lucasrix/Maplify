@@ -81,8 +81,6 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
             if (error != nil) {
                 self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
             } else {
-                print(response)
-
                 let credentials = (response as! [String: AnyObject])["credentials"]
                 let token = (credentials as! [String: AnyObject])["token"] as! String
                 ApiClient.sharedClient.facebookAuth(token,

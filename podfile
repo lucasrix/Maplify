@@ -12,8 +12,8 @@ target 'Maplify' do
   pod 'Tailor', '~> 0.4'
   pod 'AFImageHelper', '~> 3.0'
   pod 'TPKeyboardAvoiding', '~> 1.2'
-  pod 'SimpleAuth', '~> 0.3'
-  pod 'SimpleAuth/Facebook'
+  pod 'SimpleAuth/Facebook', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
+  pod 'SimpleAuth/FacebookWeb', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
   pod 'Fabric'
   pod 'Crashlytics'
 end

@@ -34,3 +34,7 @@ struct Controllers {
     static let signupPhotoController = "SignupPhotoController"
     static let signupController = "SignupController"
 }
+
+struct AppIDs {
+    static let facebookAppID = "1569818663334609"
+}

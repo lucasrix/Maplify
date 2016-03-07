@@ -12,6 +12,7 @@ class SignupViewController: ViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var photoImage: UIImage! = nil
+    var account: Account! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -38,6 +39,7 @@ class SignupViewController: ViewController {
         
         self.emailInputField.setupTextField(emailPlaceholder, defaultIconName: InputTextFieldImages.emailIconDefault, highlitedIconName: InputTextFieldImages.emailIconHighlited)
         self.passwordInputField.setupTextField(passwordPlaceholder, defaultIconName: InputTextFieldImages.passwordIconDefault, highlitedIconName: InputTextFieldImages.passwordIconHighlited)
+        self.passwordInputField.textField.secureTextEntry = true
     }
     
     func setupNextButton() {
@@ -54,7 +56,18 @@ class SignupViewController: ViewController {
     
     // MARK: - actions
     func nextButtonDidTap() {
-    // TODO:
+        self.account.email = self.emailInputField.textField.text!
+        let password = self.passwordInputField.textField.text
+        let photo =  UIImagePNGRepresentation(self.imageView.image!)
+        
+        ApiClient.sharedClient.signUp(self.account, password: password!, passwordConfirmation: password!, photo: photo,
+            success: { (response) -> () in
+                print(response)
+            },
+            failure: { (statusCode, errors, localDescription, messages) -> () in
+                print(statusCode)
+            }
+        )
     }
 
 }

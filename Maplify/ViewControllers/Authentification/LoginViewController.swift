@@ -36,6 +36,7 @@ class LoginViewController: ViewController {
         
         self.emailInputField.setupTextField(emailPlaceholder, defaultIconName: InputTextFieldImages.emailIconDefault, highlitedIconName: InputTextFieldImages.emailIconHighlited)
         self.passwordInputField.setupTextField(passwordPlaceholder, defaultIconName: InputTextFieldImages.passwordIconDefault, highlitedIconName: InputTextFieldImages.passwordIconHighlited)
+        self.passwordInputField.textField.secureTextEntry = true
     }
     
     func setupDoneButton() {
@@ -48,7 +49,14 @@ class LoginViewController: ViewController {
     
     // MARK: - Actions
     func doneButtonDidTap() {
-        
+        ApiClient.sharedClient.signIn(self.emailInputField.textField.text!, password: self.passwordInputField.textField.text!,
+            success: { (response) -> () in
+                print(response)
+            },
+            failure: { (statusCode, errors, localDescription, messages) -> () in
+                print(statusCode)
+            }
+        )
     }
     
 }

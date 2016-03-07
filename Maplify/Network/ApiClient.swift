@@ -87,7 +87,7 @@ class ApiClient {
     }
     
     private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let errorDict = payload["error"] as! [String: AnyObject]
+        let errorDict = payload["errors"] as! [String: AnyObject]
         let details = errorDict["details"] as! [String: AnyObject]
         let messages = errorDict["error_messages"] as! [AnyObject]
         
@@ -119,13 +119,23 @@ class ApiClient {
     }
     
     // MARK: - user methods
-    func signUp(email: String, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
-        let params = ["email": email, "password": password, "password_confirmation": passwordConfirmation, "mimeType": "image/png", "fileName": "photo.png"]
+    func signUp(account: Account, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": account.email, "first_name": account.firstName, "last_name": account.lastName, "password": password, "password_confirmation": passwordConfirmation, "mimeType": "image/png", "fileName": "photo.png"]
         var data: [String: AnyObject]! = nil
         if (photo != nil) {
             data = ["photo": photo]
         }
         self.postRequest("auth", params: params, data: data, map: User.self, progress: nil, success: success, failure: failure)
+    }
+    
+    func signIn(email: String, password: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email, "password": password]
+        self.postRequest("auth/sign_in", params: params, data: nil, map: Account.self, progress: nil, success: success, failure: failure)
+    }
+    
+    func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["facebook_access_token": token]
+        self.postRequest("auth/provider_sessions", params:params , data: nil, map: User.self, progress: nil, success: success, failure: failure)
     }
 }
 

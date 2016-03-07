@@ -8,6 +8,7 @@
 
 import UIKit
 import TTTAttributedLabel
+import SimpleAuth
 
 let kLoginActiveLink = "login"
 let kTermsActiveLink = "terms"
@@ -76,7 +77,25 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-    // TODO:
+        SimpleAuth.facebookAuthorize {[weak self] (response, error) -> Void in
+            if (error != nil) {
+                self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
+            } else {
+                print(response)
+
+                let credentials = (response as! [String: AnyObject])["credentials"]
+                let token = (credentials as! [String: AnyObject])["token"] as! String
+                ApiClient.sharedClient.facebookAuth(token,
+                    success: {(response) -> () in
+                        print(response)
+                    },
+                    failure: { (statusCode, errors, localDescription, messages) -> () in
+                        print(errors)
+                    }
+                )
+
+            }
+        }
     }
 
     @IBAction func emailButtonDidTap(sender: AnyObject) {

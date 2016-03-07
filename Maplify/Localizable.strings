@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  Maplify
+
+  Created by Sergey on 3/3/16.
+  Copyright © 2016 rubygarage. All rights reserved.
+*/
+
+// Text placeholders
+"Text.Placeholder.FirstName" = "First Name";
+"Text.Placeholder.LastName" = "Last Name";
+"Text.Placeholder.Email" = "Email";
+"Text.Placeholder.Password" = "Password";
+
+// Labels
+"Controller.Signup.Title" = "Sign Up";
+"Controller.Signup.setPhoto" = "Set your photo";
+"Controller.Signup.description" = "Hi, what's your name?";
+"Controller.Landing.Login" = "Already have an account? Log in";
+"Controller.Landing.RangeLogin" = "Log in";
+"Controller.Landing.Terms" = "By continuing, you agree to our Terms & Privacy Policy.";
+"Controller.Landing.RangeTerms" = "Terms";
+"Controller.Landing.RangePolicy" = "Privacy Policy";
+"Controller.Login.Title" = "Log In";
+
+//Buttons
+"Button.Ok" = "Ok";
+"Button.Next" = "Next";
+"Button.Done" = "Done";
+"Button.FacebookLogin" = "Continue with Facebook";
+"Button.EmailSignup" = "Sign up with email";
+"Button.Cancel" = "Cancel";
+"Button.ExistingPhoto" = "Choose existing photo";
+"Button.TakePhoto" = "Take new photo";
+
+//Alerts
+"Alert.SetPhoto" = "Set your profile photo";
+"Alert.Error" = "Error";

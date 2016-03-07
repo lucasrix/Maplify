@@ -17,6 +17,10 @@ class InputTextField : UIView, UITextFieldDelegate {
     var view: UIView! = nil
     var delegate: InputTextFieldDelegate! = nil
     
+    @IBOutlet weak var defaultImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var highlightedImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var imageTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var iconHighlitedImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
@@ -42,13 +46,19 @@ class InputTextField : UIView, UITextFieldDelegate {
         }
     }
     
-    func setupTextField(placeholder: String, defaultIconName: String, highlitedIconName: String) {
+    func setupTextField(placeholder: String, defaultIconName: String!, highlitedIconName: String!) {
         self.textField.textColor = UIColor.whiteColor()
         self.textField.attributedPlaceholder = NSAttributedString(string:placeholder,
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(kDefaultOpacity)])
-        self.iconImageView.image = UIImage(named: defaultIconName)
-        self.iconHighlitedImageView.image = UIImage(named: highlitedIconName)
-        
+        if (defaultIconName?.length > 0 && highlitedIconName?.length > 0) {
+            self.iconImageView.image = UIImage(named: defaultIconName)
+            self.iconHighlitedImageView.image = UIImage(named: highlitedIconName)
+        } else {
+            self.defaultImageWidth.constant = 0
+            self.highlightedImageWidth.constant = 0
+            self.imageTrailingConstraint.constant = 0
+            self.textLeadingConstraint.constant = 0
+        }
         self.setDefaultState()
     }
     
@@ -86,6 +96,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     @IBAction func editingDidEnd(sender: UITextField) {
+        self.setDefaultState()
         self.delegate?.editingEnd?(self)
     }
     

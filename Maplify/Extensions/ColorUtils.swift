@@ -38,6 +38,10 @@ extension UIColor {
         return UIColor(red: 53, green: 175, blue: 255)
     }
     
+    class func waterBlue() -> UIColor {
+        return UIColor(red: 16, green: 146, blue: 223)
+    }
+    
     class func lightishRed() -> UIColor {
         return UIColor(red: 255, green: 55, blue: 79)
     }

@@ -26,5 +26,15 @@ struct URL {
 }
 
 struct Network {
-    static let successStatusCode = 200
+    static let successStatusCodes = [200, 201]
+}
+
+struct Controllers {
+    static let loginControllerId = "LoginController"
+    static let signupPhotoController = "SignupPhotoController"
+    static let signupController = "SignupController"
+}
+
+struct AppIDs {
+    static let facebookAppID = "1569818663334609"
 }

@@ -9,7 +9,11 @@ target 'Maplify' do
   pod 'TTTAttributedLabel', '~> 1.13'
   pod 'ALThreeCircleSpinner', '~> 1.0'
   pod 'Locksmith', '~> 2.0'
-  pod 'AlamofireObjectMapper', '~> 2.1'
+  pod 'Tailor', '~> 0.4'
+  pod 'AFImageHelper', '~> 3.0'
+  pod 'TPKeyboardAvoiding', '~> 1.2'
+  pod 'SimpleAuth/Facebook', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
+  pod 'SimpleAuth/FacebookWeb', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
   pod 'Fabric'
   pod 'Crashlytics'
 end

@@ -28,3 +28,9 @@
 "Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
 "Button.EmailSignup" = "Sign up with email";
+"Button.Cancel" = "Cancel";
+"Button.ExistingPhoto" = "Choose existing photo";
+"Button.TakePhoto" = "Take new photo";
+
+//Alerts
+"Alert.SetPhoto" = "Set your profile photo";

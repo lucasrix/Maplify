@@ -9,6 +9,11 @@
 import UIKit
 import AFImageHelper
 
+enum ActionSheetButtonType: Int {
+    case ExistingPhotoType = 0
+    case TakeNewPhotoType = 1
+}
+
 class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var firstNameField: InputTextField!
     @IBOutlet weak var lastNameField: InputTextField!
@@ -71,17 +76,34 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     func imageViewDidTap() {
         self.firstNameField.textField.endEditing(true)
         self.lastNameField.textField.endEditing(true)
-        if (self.imagePicker == nil) {
-            self.imagePicker = UIImagePickerController()
-            self.imagePicker.delegate = self
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .PhotoLibrary
-        }
-        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let message = NSLocalizedString("Alert.SetPhoto", comment: String())
+        let existingPhoto = NSLocalizedString("Button.ExistingPhoto", comment: String())
+        let takePhoto = NSLocalizedString("Button.TakePhoto", comment: String())
+        
+        self.showActionSheet(nil, message: message, cancel: cancel, destructive: nil, buttons: [existingPhoto, takePhoto],
+            handle: {[weak self] (buttonIndex) -> () in
+                if ActionSheetButtonType(rawValue: buttonIndex) == .ExistingPhotoType {
+                    self?.showImagePicker(.PhotoLibrary)
+                } else if ActionSheetButtonType(rawValue: buttonIndex) == .TakeNewPhotoType {
+                    self?.showImagePicker(.Camera)
+                }
+        })
     }
     
     func nextButtonDidTap() {
         self.routesOpenSignUpViewController(self.setPhotoImage.image)
+    }
+    
+    func showImagePicker(sourceType: UIImagePickerControllerSourceType) {
+        if (self.imagePicker == nil) {
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = sourceType
+        }
+        self.presentViewController(self.imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - UIImagePickerControllerDelegate

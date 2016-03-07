@@ -77,14 +77,14 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        SimpleAuth.facebookAuthorize {[weak self] (response, error) -> Void in
+        SimpleAuth.facebookAuthorize { [weak self] (response, error) -> Void in
             if (error != nil) {
                 self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
             } else {
                 let credentials = (response as! [String: AnyObject])["credentials"]
                 let token = (credentials as! [String: AnyObject])["token"] as! String
                 ApiClient.sharedClient.facebookAuth(token,
-                    success: {(response) -> () in
+                    success: { (response) -> () in
                         print(response)
                     },
                     failure: { (statusCode, errors, localDescription, messages) -> () in

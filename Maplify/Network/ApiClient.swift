@@ -57,7 +57,7 @@ class ApiClient {
                             config.progress?(bytesWritten, totalBytesWritten, totalBytesExpectedToWrite)
                         }
                     }
-                    upload.response(completionHandler: {[weak self] (request, response, data, error) -> Void in
+                    upload.response(completionHandler: { [weak self] (request, response, data, error) -> Void in
                         self?.manageResponse(response!, data: data!, map: map, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
                     })
                 case .Failure(let encodingError):

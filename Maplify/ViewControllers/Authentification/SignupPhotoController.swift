@@ -83,7 +83,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
         let takePhoto = NSLocalizedString("Button.TakePhoto", comment: String())
         
         self.showActionSheet(nil, message: message, cancel: cancel, destructive: nil, buttons: [existingPhoto, takePhoto],
-            handle: {[weak self] (buttonIndex) -> () in
+            handle: { [weak self] (buttonIndex) -> () in
                 if ActionSheetButtonType(rawValue: buttonIndex) == .ExistingPhotoType {
                     self?.showImagePicker(.PhotoLibrary)
                 } else if ActionSheetButtonType(rawValue: buttonIndex) == .TakeNewPhotoType {

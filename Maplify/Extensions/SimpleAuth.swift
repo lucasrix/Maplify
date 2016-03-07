@@ -21,7 +21,7 @@ extension SimpleAuth {
         let permissions = ["email"]
         let accountOptions = ["ACFacebookAppIdKey": AppIDs.facebookAppID, ACFacebookPermissionsKey: permissions, ACFacebookAudienceKey: ACFacebookAudienceEveryone]
         self.checkSocialAccount(ACAccountTypeIdentifierFacebook, options: accountOptions as! [String : AnyObject],
-            success: {(granted, accountsExist) -> () in
+            success: { (granted, accountsExist) -> () in
                 self.login(kFacebookProvider, options: options, completion: completion)
             },
             failure:  {(error) -> () in

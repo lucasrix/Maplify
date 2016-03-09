@@ -17,6 +17,7 @@ let kPolicyActiveLink = "policy"
 let kFacebookButtonImageInset: CGFloat = 20
 let kEmailButtonImageInset: CGFloat = 68
 let kLabelFontSize: CGFloat = 15
+let kLoginButtonsFontSize: CGFloat = 18
 
 class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var emailButton: RoundedButton!
@@ -38,8 +39,12 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     }
     
     func setupButtons() {
+        self.facebookButton.setup(UIColor.windowsBlue(), selectedColor: UIColor.cornflowerBlue(), font: UIFont.fontHelveticaRegular(kLoginButtonsFontSize))
         self.facebookButton.setTitle(NSLocalizedString("Button.FacebookLogin", comment: String()), forState: .Normal)
+        
+        self.emailButton.setup(UIColor.inactiveWhite(), selectedColor: UIColor.activeWhite(), font: UIFont.fontHelveticaRegular(kLoginButtonsFontSize))
         self.emailButton.setTitle(NSLocalizedString("Button.EmailSignup", comment: String()), forState: .Normal)
+        
         if ConfigHepler.screenSmallerThanIPhoneSixSize() {
             self.facebookButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kFacebookButtonImageInset)
             self.emailButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kEmailButtonImageInset)
@@ -81,13 +86,18 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
             if (error != nil) {
                 self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
             } else {
+                self?.showProgressHUD()
+
                 let credentials = (response as! [String: AnyObject])["credentials"]
                 let token = (credentials as! [String: AnyObject])["token"] as! String
+                
                 ApiClient.sharedClient.facebookAuth(token,
                     success: { (response) -> () in
+                        self?.hideProgressHUD()
                         print(response)
                     },
                     failure: { (statusCode, errors, localDescription, messages) -> () in
+                        self?.hideProgressHUD()
                         print(errors)
                     }
                 )

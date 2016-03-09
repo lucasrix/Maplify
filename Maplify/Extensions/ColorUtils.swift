@@ -38,11 +38,27 @@ extension UIColor {
         return UIColor(red: 53, green: 175, blue: 255)
     }
     
+    class func windowsBlue() -> UIColor {
+        return UIColor(red: 55, green: 97, blue: 183)
+    }
+    
+    class func cornflowerBlue() -> UIColor {
+        return UIColor(red: 69, green: 115, blue: 210)
+    }
+    
     class func waterBlue() -> UIColor {
         return UIColor(red: 16, green: 146, blue: 223)
     }
     
     class func lightishRed() -> UIColor {
         return UIColor(red: 255, green: 55, blue: 79)
+    }
+    
+    class func inactiveWhite() -> UIColor {
+        return UIColor(red: 255, green: 255, blue: 255).colorWithAlphaComponent(0.15)
+    }
+    
+    class func activeWhite() -> UIColor {
+        return UIColor(red: 255, green: 255, blue: 255).colorWithAlphaComponent(0.35)
     }
 }

@@ -23,7 +23,7 @@ class LoginViewController: ViewController {
     func setup() {
         self.setupLabels()
         self.setupTextFields()
-        self.setupDoneButton()
+        self.setupDoneButton()        
     }
     
     func setupLabels() {
@@ -40,7 +40,7 @@ class LoginViewController: ViewController {
     }
     
     func setupDoneButton() {
-        let doneButton = DoneButton(frame: Frame.doneButtonFrame)
+        let doneButton = RoundedButton(frame: Frame.doneButtonFrame)
         doneButton.setTitle(NSLocalizedString("Button.Done", comment: String()), forState: .Normal)
         doneButton.addTarget(self, action: "doneButtonDidTap", forControlEvents: .TouchUpInside)
         let rightBarItem = UIBarButtonItem(customView: doneButton)
@@ -49,11 +49,15 @@ class LoginViewController: ViewController {
     
     // MARK: - Actions
     func doneButtonDidTap() {
+        self.showProgressHUD()
+        
         ApiClient.sharedClient.signIn(self.emailInputField.textField.text!, password: self.passwordInputField.textField.text!,
-            success: { (response) -> () in
+            success: { [weak self] (response) -> () in
+                self?.hideProgressHUD()
                 print(response)
             },
-            failure: { (statusCode, errors, localDescription, messages) -> () in
+            failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.hideProgressHUD()
                 print(statusCode)
             }
         )

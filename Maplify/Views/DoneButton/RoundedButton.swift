@@ -6,11 +6,25 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
+let kDoneButtonFontSize: CGFloat = 14
+
 class RoundedButton: UIButton {
+    var defaultColor: UIColor! = nil
+    var highlightedColor: UIColor! = nil
+    
+    override var highlighted: Bool {
+        didSet {
+            if (highlighted) {
+                self.backgroundColor = self.highlightedColor
+            }
+            else {
+                self.backgroundColor = self.defaultColor
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -21,7 +35,11 @@ class RoundedButton: UIButton {
         self.setup()
     }
     
-    func setup() {
+    func setup(defaultColor: UIColor = UIColor.dodgerBlue(), selectedColor: UIColor = UIColor.waterBlue(), font: UIFont = UIFont.fontHelveticaBold(kDoneButtonFontSize)) {
         self.layer.cornerRadius = CornerRadius.defaultRadius
+        self.backgroundColor = defaultColor
+        self.defaultColor = defaultColor
+        self.highlightedColor = selectedColor
+        self.titleLabel?.font = font
     }
 }

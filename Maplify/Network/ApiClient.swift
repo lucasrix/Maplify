@@ -130,7 +130,7 @@ class ApiClient {
     
     func signIn(email: String, password: String, success: successClosure!, failure: failureClosure!) {
         let params = ["email": email, "password": password]
-        self.postRequest("auth/sign_in", params: params, data: nil, map: Account.self, progress: nil, success: success, failure: failure)
+        self.postRequest("auth/sign_in", params: params, data: nil, map: User.self, progress: nil, success: success, failure: failure)
     }
     
     func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {

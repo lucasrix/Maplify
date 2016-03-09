@@ -15,16 +15,23 @@ class ConfigHepler {
         return NSProcessInfo.processInfo().environment[Config.production] == "true"
     }
     
-    class func baseHostUrl() -> String {
-        return (self.isProduction()) ? URL.productionHost : URL.stagingHost
-    }
-    
     // MARK: - config parameters
     class func configPlist() -> NSDictionary! {
-        if let plistPath = NSBundle.mainBundle().pathForResource(Config.configFile, ofType: FileType.plist) {
+        let file = (self.isProduction()) ? Config.productionConfigFile : Config.stagingConfigFile
+        if let plistPath = NSBundle.mainBundle().pathForResource(file, ofType: FileType.plist) {
             return NSDictionary(contentsOfFile: plistPath)
         }
         return nil
+    }
+    
+    class func baseHostUrl() -> String {
+        let configDictionary = self.configPlist()
+        return configDictionary.valueForKey("base_host_url") as! String
+    }
+    
+    class func googleProjectKey() -> String {
+        let configDictionary = self.configPlist()
+        return configDictionary.valueForKey("maplify_google_key") as! String
     }
     
     // MARK: - screen settings

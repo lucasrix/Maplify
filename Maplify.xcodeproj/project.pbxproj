@@ -58,6 +58,8 @@
 		A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */; };
 		A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */; };
 		A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584BC1C905A720036064A /* RoundedButton.swift */; };
+		A5C584BF1C90770E0036064A /* config_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584BE1C90770E0036064A /* config_staging.plist */; };
+		A5C584C11C90787D0036064A /* config_production.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C01C90787D0036064A /* config_production.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabelUtils.swift; sourceTree = "<group>"; };
 		A5C584BC1C905A720036064A /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A5C584BE1C90770E0036064A /* config_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_staging.plist; sourceTree = "<group>"; };
+		A5C584C01C90787D0036064A /* config_production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_production.plist; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,6 +301,8 @@
 		A58A52A71C7F118F00443C06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5C584BE1C90770E0036064A /* config_staging.plist */,
+				A5C584C01C90787D0036064A /* config_production.plist */,
 				A58A52811C7F0A2900443C06 /* Assets.xcassets */,
 				A58A52861C7F0A2900443C06 /* Info.plist */,
 				A5728A1D1C88945A00C6DA7E /* Localizable.strings */,
@@ -458,6 +464,8 @@
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
+				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
+				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				A58A52801C7F0A2900443C06 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,18 +11,14 @@ import Foundation
 // MARK: - Base constants
 struct Config {
     static let production = "PRODUCTION"
-    static let configFile = "config"
+    static let stagingConfigFile = "config_staging"
+    static let productionConfigFile = "config_production"
     static let localUserAccount = "localUserAccount"
     static let userAppLaunch = "userAppLaunch"
 }
 
 struct FileType {
     static let plist = "plist"
-}
-
-struct URL {
-    static let stagingHost = "http://maplify.herokuapp.com"
-    static let productionHost = "http://maplify.herokuapp.com"
 }
 
 struct Network {

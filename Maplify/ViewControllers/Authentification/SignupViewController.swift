@@ -60,11 +60,15 @@ class SignupViewController: ViewController {
         let password = self.passwordInputField.textField.text
         let photo =  UIImagePNGRepresentation(self.imageView.image!)
         
+        self.showProgressHUD()
+        
         ApiClient.sharedClient.signUp(self.account, password: password!, passwordConfirmation: password!, photo: photo,
-            success: { (response) -> () in
+            success: { [weak self] (response) -> () in
+                self?.hideProgressHUD()
                 print(response)
             },
-            failure: { (statusCode, errors, localDescription, messages) -> () in
+            failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.hideProgressHUD()
                 print(statusCode)
             }
         )

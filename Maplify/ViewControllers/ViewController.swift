@@ -10,13 +10,23 @@ import UIKit
 import AFImageHelper
 
 class ViewController: UIViewController {
-
+    private let progressHud = ProgressHUD()
+    
     // MARK: - view controller life cycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.setupTopBar()
         self.populateNavigationBarItems()
+    }
+    
+    // MARK: - progress hud
+    func showProgressHUD() {
+        self.progressHud.showProgressHUD()
+    }
+    
+    func hideProgressHUD() {
+        self.progressHud.hideProgressHUD()
     }
     
     // MARK: - setup

@@ -21,6 +21,7 @@
 		A5081E561C806D35006FBA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
 		A5081E591C807561006FBA52 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E581C807561006FBA52 /* SessionManager.swift */; };
 		A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E5A1C807AD2006FBA52 /* ApiError.swift */; };
+		A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508F4301C902634007131C9 /* ProgressHUD.swift */; };
 		A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52E09951C8D89BF00706F9C /* SimpleAuth.swift */; };
 		A52E09981C8D8C2E00706F9C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52E09971C8D8C2E00706F9C /* Accounts.framework */; };
 		A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52E09991C8D8D6000706F9C /* Integer.swift */; };
@@ -84,6 +85,7 @@
 		A5081E551C806D35006FBA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5081E581C807561006FBA52 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		A5081E5A1C807AD2006FBA52 /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		A508F4301C902634007131C9 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		A52E09951C8D89BF00706F9C /* SimpleAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAuth.swift; sourceTree = "<group>"; };
 		A52E09971C8D8C2E00706F9C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		A52E09991C8D8D6000706F9C /* Integer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */,
 				A52E09951C8D89BF00706F9C /* SimpleAuth.swift */,
 				A52E09991C8D8D6000706F9C /* Integer.swift */,
+				A508F4301C902634007131C9 /* ProgressHUD.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A5728A321C89C20E00C6DA7E /* DoneButton.swift in Sources */,
+				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */,
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,

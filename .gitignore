@@ -26,3 +26,5 @@ DerivedData
 #
 Pods/
 config.plist
+Maplify/config_production.plist
+Maplify/config_staging.plist

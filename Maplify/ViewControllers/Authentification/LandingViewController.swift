@@ -82,7 +82,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        SimpleAuth.facebookAuthorize { [weak self] (response, error) -> Void in
+        SimpleAuth.facebookAuthorize { [weak self] (response, error) -> () in
             if (error != nil) {
                 self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
             } else {

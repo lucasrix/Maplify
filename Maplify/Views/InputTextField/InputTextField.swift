@@ -76,7 +76,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     private func updateViewWithAnimation(highlitedImageShow: Bool, errorShow: Bool, separatrorColor: UIColor) {
-        UIView.animateWithDuration(kSeparatorViewAnimationDuration) { () -> Void in
+        UIView.animateWithDuration(kSeparatorViewAnimationDuration) { () -> () in
             self.separatorView.backgroundColor = separatrorColor
             
             let iconAlpha: CGFloat = highlitedImageShow == true ? kInputTextFieldAlphaMax : kInputTextFieldAlphaMin

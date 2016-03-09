@@ -12,7 +12,7 @@ import Tailor
 
 typealias successClosure = (response: AnyObject!) -> ()
 typealias failureClosure = (statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) -> ()
-typealias progressClosure = (Int64, Int64, Int64) -> Void
+typealias progressClosure = (Int64, Int64, Int64) -> ()
 
 class ApiClient {
     static let sharedClient = ApiClient()
@@ -38,7 +38,7 @@ class ApiClient {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
-            multipartFormData: { (multipartFormData) -> Void in
+            multipartFormData: { (multipartFormData) -> () in
                 let data = config.data[0].value as! NSData
                 let name = config.data[0].key
                 let fileName = config.params["fileName"]
@@ -49,7 +49,7 @@ class ApiClient {
                     multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
                 }
             },
-            encodingCompletion: { (multipartFormDataEncodingResult) -> Void in
+            encodingCompletion: { (multipartFormDataEncodingResult) -> () in
                 switch multipartFormDataEncodingResult {
                 case .Success(let upload, _, _):
                     upload.progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
@@ -57,7 +57,7 @@ class ApiClient {
                             config.progress?(bytesWritten, totalBytesWritten, totalBytesExpectedToWrite)
                         }
                     }
-                    upload.response(completionHandler: { [weak self] (request, response, data, error) -> Void in
+                    upload.response(completionHandler: { [weak self] (request, response, data, error) -> () in
                         self?.manageResponse(response!, data: data!, map: map, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
                     })
                 case .Failure(let encodingError):

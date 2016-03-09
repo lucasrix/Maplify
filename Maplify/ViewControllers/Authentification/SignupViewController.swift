@@ -43,7 +43,7 @@ class SignupViewController: ViewController {
     }
     
     func setupNextButton() {
-        let nextButton = DoneButton(frame: Frame.doneButtonFrame)
+        let nextButton = RoundedButton(frame: Frame.doneButtonFrame)
         nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
         nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
         let rightBarItem = UIBarButtonItem(customView: nextButton)

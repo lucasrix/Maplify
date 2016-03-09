@@ -40,7 +40,7 @@ class LoginViewController: ViewController {
     }
     
     func setupDoneButton() {
-        let doneButton = DoneButton(frame: Frame.doneButtonFrame)
+        let doneButton = RoundedButton(frame: Frame.doneButtonFrame)
         doneButton.setTitle(NSLocalizedString("Button.Done", comment: String()), forState: .Normal)
         doneButton.addTarget(self, action: "doneButtonDidTap", forControlEvents: .TouchUpInside)
         let rightBarItem = UIBarButtonItem(customView: doneButton)

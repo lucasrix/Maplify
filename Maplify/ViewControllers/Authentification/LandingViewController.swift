@@ -39,10 +39,10 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     }
     
     func setupButtons() {
-        self.facebookButton.setup(UIColor.windowsBlue(), selectedColor: UIColor.cornflowerBlue(), font: UIFont.fontHelveticaRegular(kLoginButtonsFontSize))
+        self.facebookButton.setup(UIColor.windowsBlue(), selectedColor: UIColor.cornflowerBlue(), font: UIFont.systemFontOfSize(kLoginButtonsFontSize))
         self.facebookButton.setTitle(NSLocalizedString("Button.FacebookLogin", comment: String()), forState: .Normal)
         
-        self.emailButton.setup(UIColor.inactiveWhite(), selectedColor: UIColor.activeWhite(), font: UIFont.fontHelveticaRegular(kLoginButtonsFontSize))
+        self.emailButton.setup(UIColor.inactiveWhite(), selectedColor: UIColor.activeWhite(), font: UIFont.systemFontOfSize(kLoginButtonsFontSize))
         self.emailButton.setTitle(NSLocalizedString("Button.EmailSignup", comment: String()), forState: .Normal)
         
         if ConfigHepler.screenSmallerThanIPhoneSixSize() {
@@ -59,7 +59,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     func setupLoginLabel() {
         let loginStr = NSLocalizedString("Controller.Landing.Login", comment: String())
         let loginRangeStr = NSLocalizedString("Controller.Landing.RangeLogin", comment: String())
-        let font = UIFont.fontHelveticaRegular(kLabelFontSize)
+        let font = UIFont.systemFontOfSize(kLabelFontSize)
         self.loginLabel.setupDefaultAttributes(loginStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
         self.loginLabel.setupLinkAttributes(UIColor.whiteColor())
         self.loginLabel.addURLLink(kLoginActiveLink, str: loginStr, rangeStr: loginRangeStr)
@@ -69,7 +69,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         let termsStr = NSLocalizedString("Controller.Landing.Terms", comment: String())
         let termsRangeStr = NSLocalizedString("Controller.Landing.RangeTerms", comment: String())
         let policyRangeStr = NSLocalizedString("Controller.Landing.RangePolicy", comment: String())
-        let font = UIFont.fontHelveticaRegular(kLabelFontSize)
+        let font = UIFont.systemFontOfSize(kLabelFontSize)
         self.termsLabel.setupDefaultAttributes(termsStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
         self.termsLabel.setupLinkAttributes(UIColor.whiteColor())
         self.termsLabel.addURLLink(kTermsActiveLink, str: termsStr, rangeStr: termsRangeStr)

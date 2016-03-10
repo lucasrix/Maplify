@@ -35,7 +35,7 @@ class RoundedButton: UIButton {
         self.setup()
     }
     
-    func setup(defaultColor: UIColor = UIColor.dodgerBlue(), selectedColor: UIColor = UIColor.waterBlue(), font: UIFont = UIFont.fontHelveticaBold(kDoneButtonFontSize)) {
+    func setup(defaultColor: UIColor = UIColor.dodgerBlue(), selectedColor: UIColor = UIColor.waterBlue(), font: UIFont = UIFont.systemFontOfSize(kDoneButtonFontSize)) {
         self.layer.cornerRadius = CornerRadius.defaultRadius
         self.backgroundColor = defaultColor
         self.defaultColor = defaultColor

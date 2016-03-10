@@ -59,6 +59,7 @@
 		A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584BC1C905A720036064A /* RoundedButton.swift */; };
 		A5C584BF1C90770E0036064A /* config_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584BE1C90770E0036064A /* config_staging.plist */; };
 		A5C584C11C90787D0036064A /* config_production.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C01C90787D0036064A /* config_production.plist */; };
+		A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		A5C584BC1C905A720036064A /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A5C584BE1C90770E0036064A /* config_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_staging.plist; sourceTree = "<group>"; };
 		A5C584C01C90787D0036064A /* config_production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_production.plist; sourceTree = "<group>"; };
+		A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupUpdateProfileController.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,7 @@
 				A5728A191C88860100C6DA7E /* SignupPhotoController.swift */,
 				A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */,
 				8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */,
+				A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,

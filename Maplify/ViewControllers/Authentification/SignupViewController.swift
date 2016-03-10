@@ -12,7 +12,7 @@ class SignupViewController: ViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var photoImage: UIImage! = nil
-    var account: Account! = nil
+    var user: User! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -56,16 +56,16 @@ class SignupViewController: ViewController {
     
     // MARK: - actions
     func nextButtonDidTap() {
-        self.account.email = self.emailInputField.textField.text!
+        self.user.email = self.emailInputField.textField.text!
         let password = self.passwordInputField.textField.text
         let photo =  UIImagePNGRepresentation(self.imageView.image!)
         
         self.showProgressHUD()
         
-        ApiClient.sharedClient.signUp(self.account, password: password!, passwordConfirmation: password!, photo: photo,
+        ApiClient.sharedClient.signUp(self.user, password: password!, passwordConfirmation: password!, photo: photo,
             success: { [weak self] (response) -> () in
                 self?.hideProgressHUD()
-                print(response)
+                self?.routesOpneSignUpUpdateProfileViewController(response as! User)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

@@ -119,7 +119,7 @@ class ApiClient {
     }
     
     // MARK: - user methods
-    func signUp(account: Account, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
+    func signUp(account: User, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
         let params = ["email": account.email, "first_name": account.firstName, "last_name": account.lastName, "password": password, "password_confirmation": passwordConfirmation, "mimeType": "image/png", "fileName": "photo.png"]
         var data: [String: AnyObject]! = nil
         if (photo != nil) {

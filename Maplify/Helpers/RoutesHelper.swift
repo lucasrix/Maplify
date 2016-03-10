@@ -19,10 +19,16 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupPhotoViewController, animated: true)
     }
     
-    func routesOpenSignUpViewController(photoImage: UIImage!, account: Account) {
+    func routesOpenSignUpViewController(photoImage: UIImage!, user: User) {
         let signupViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupController) as! SignupViewController
         signupViewController.photoImage = photoImage
-        signupViewController.account = account
+        signupViewController.user = user
         self.navigationController?.pushViewController(signupViewController, animated: true)
+    }
+    
+    func routesOpneSignUpUpdateProfileViewController(user: User) {
+        let signupUpdateProfileController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupUpdateProfileController) as! SignupUpdateProfileController
+        signupUpdateProfileController.user = user
+        self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
 }

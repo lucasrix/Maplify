@@ -22,7 +22,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     @IBOutlet weak var setPhotoImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var account: Account! = nil
+    var user: User! = nil
     var imagePicker: UIImagePickerController! = nil
     
     // MARK: - view controller life cycle
@@ -93,10 +93,10 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     func nextButtonDidTap() {
-        self.account = Account()
-        self.account.firstName = self.firstNameField.textField.text!
-        self.account.lastName = self.lastNameField.textField.text!
-        self.routesOpenSignUpViewController(self.setPhotoImage.image, account: self.account)
+        self.user = User()
+        self.user.firstName = self.firstNameField.textField.text!
+        self.user.lastName = self.lastNameField.textField.text!
+        self.routesOpenSignUpViewController(self.setPhotoImage.image, user: self.user)
     }
     
     func showImagePicker(sourceType: UIImagePickerControllerSourceType) {

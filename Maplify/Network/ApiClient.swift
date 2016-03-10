@@ -114,7 +114,7 @@ class ApiClient {
     }
     
     func deleteRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, map: T.Type, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, map: map, success: success, failure: failure)
     }
     
@@ -136,6 +136,11 @@ class ApiClient {
     func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {
         let params = ["facebook_access_token": token]
         self.postRequest("auth/provider_sessions", params:params , data: nil, map: User.self, progress: nil, success: success, failure: failure)
+    }
+    
+    func updateProfile(location: String, personalUrl: String, about: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["city": location, "url": personalUrl, "about": about]
+        self.putRequest("profile", params: params, map: User.self, success: success, failure: failure)
     }
 }
 

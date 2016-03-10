@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import GooglePlaces
+import GoogleMaps
 
 class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
     @IBOutlet weak var locationInputField: InputTextField!
@@ -15,7 +15,8 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
     @IBOutlet weak var aboutFieldHeightConstraint: NSLayoutConstraint!
     
     var user: User! = nil
-
+    var placesClient: GMSPlacesClient! = nil
+    
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         self.setupLabels()
         self.setupTextFields()
         self.setupNextButton()
+        self.retrieveCurrentPlace()
     }
     
     func setupLabels() {
@@ -65,6 +67,22 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         self.navigationItem.rightBarButtonItem = rightBarItem
     }
     
+    func retrieveCurrentPlace() {
+        self.placesClient = GMSPlacesClient()
+        self.placesClient.currentPlaceWithCallback { [weak self] (placesList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+            if (error != nil) {
+                print(error)
+            } else {
+                if let placeLikelihoodList = placesList {
+                    let place = placeLikelihoodList.likelihoods.first?.place
+                    if let place = place {
+                        self?.locationInputField.textField.text = place.name
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - InputTextViewDelegate
     func editingChanged(inputTextView: InputTextView) {
         let height = inputTextView.textView.frame.height
@@ -73,6 +91,24 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
     
     // MARK: - actions
     func nextButtonDidTap() {
-    // TODO:
+        self.locationInputField.textField.endEditing(true)
+        self.urlInputField.textField.endEditing(true)
+        self.aboutInputField.textView.endEditing(true)
+        
+        let location = self.locationInputField.textField.text
+        let url = self.urlInputField.textField.text
+        let about = self.aboutInputField.textView.text
+        
+        self.showProgressHUD()
+        ApiClient.sharedClient.updateProfile(location!, personalUrl: url!, about: about,
+            success: { [weak self] (response) -> () in
+                self?.hideProgressHUD()
+                print(response)
+            },
+            failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.hideProgressHUD()
+                print(statusCode)
+            }
+        )
     }
 }

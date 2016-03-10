@@ -443,8 +443,8 @@ Terms &amp; Privacy Policy.</string>
                                                     <constraint firstAttribute="height" constant="51" id="L4q-DY-0zR"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzt-gF-De0" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="166" width="375" height="51"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzt-gF-De0" customClass="InputTextView" customModule="Maplify" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="154" width="375" height="51"/>
                                                 <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="3i8-IV-ydF"/>
@@ -459,7 +459,7 @@ Terms &amp; Privacy Policy.</string>
                                             <constraint firstAttribute="trailing" secondItem="yzt-gF-De0" secondAttribute="trailing" id="SeE-nu-jM4"/>
                                             <constraint firstItem="Q1T-Kp-Fwj" firstAttribute="leading" secondItem="wkv-xw-lrN" secondAttribute="leading" id="Xy9-CH-QZ5"/>
                                             <constraint firstAttribute="trailing" secondItem="Q1T-Kp-Fwj" secondAttribute="trailing" id="Yuz-kn-zl7"/>
-                                            <constraint firstItem="yzt-gF-De0" firstAttribute="top" secondItem="uDK-0y-r7D" secondAttribute="bottom" constant="12" id="jCs-lB-e4V"/>
+                                            <constraint firstItem="yzt-gF-De0" firstAttribute="top" secondItem="uDK-0y-r7D" secondAttribute="bottom" id="jCs-lB-e4V"/>
                                             <constraint firstItem="Q1T-Kp-Fwj" firstAttribute="top" secondItem="wkv-xw-lrN" secondAttribute="top" constant="40" id="tOl-Gk-8g6"/>
                                             <constraint firstItem="uDK-0y-r7D" firstAttribute="leading" secondItem="wkv-xw-lrN" secondAttribute="leading" id="udc-uv-vqP"/>
                                         </constraints>
@@ -485,7 +485,8 @@ Terms &amp; Privacy Policy.</string>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="aboutInputField" destination="yzt-gF-De0" id="7Nr-0w-TUy"/>
+                        <outlet property="aboutFieldHeightConstraint" destination="3i8-IV-ydF" id="f12-HD-fAD"/>
+                        <outlet property="aboutInputField" destination="yzt-gF-De0" id="O0y-FX-IWd"/>
                         <outlet property="locationInputField" destination="Q1T-Kp-Fwj" id="IFL-ME-niY"/>
                         <outlet property="urlInputField" destination="uDK-0y-r7D" id="kDj-BG-bov"/>
                     </connections>

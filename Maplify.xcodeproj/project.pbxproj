@@ -60,6 +60,8 @@
 		A5C584BF1C90770E0036064A /* config_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584BE1C90770E0036064A /* config_staging.plist */; };
 		A5C584C11C90787D0036064A /* config_production.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C01C90787D0036064A /* config_production.plist */; };
 		A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */; };
+		A5C584C61C91957D0036064A /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C51C91957D0036064A /* InputTextView.swift */; };
+		A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C71C919DCB0036064A /* InputTextView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		A5C584BE1C90770E0036064A /* config_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_staging.plist; sourceTree = "<group>"; };
 		A5C584C01C90787D0036064A /* config_production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_production.plist; sourceTree = "<group>"; };
 		A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupUpdateProfileController.swift; sourceTree = "<group>"; };
+		A5C584C51C91957D0036064A /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		A5C584C71C919DCB0036064A /* InputTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextView.xib; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,7 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,
 			);
@@ -366,6 +371,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A5C584C41C9195710036064A /* InputTextView */ = {
+			isa = PBXGroup;
+			children = (
+				A5C584C51C91957D0036064A /* InputTextView.swift */,
+				A5C584C71C919DCB0036064A /* InputTextView.xib */,
+			);
+			path = InputTextView;
+			sourceTree = "<group>";
+		};
 		C60D303F351EBEB7C2F52374 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +476,7 @@
 			files = (
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
+				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
@@ -569,6 +584,7 @@
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,

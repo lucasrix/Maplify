@@ -283,7 +283,6 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A5CE2EF31C92F9BD00DCA2A7 /* Launch */,
 				A5728A181C8885E300C6DA7E /* Authentification */,
 				A5728A1B1C88887400C6DA7E /* NavigationViewController.swift */,
 				A58A52A11C7F103000443C06 /* ViewController.swift */,
@@ -390,13 +389,6 @@
 				A5CE2EF11C92F54900DCA2A7 /* ErrorHandlingProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		A5CE2EF31C92F9BD00DCA2A7 /* Launch */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Launch;
 			sourceTree = "<group>";
 		};
 		C60D303F351EBEB7C2F52374 /* Frameworks */ = {

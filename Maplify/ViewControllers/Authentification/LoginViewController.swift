@@ -49,6 +49,9 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - Actions
     func doneButtonDidTap() {
+        self.emailInputField.textField.endEditing(true)
+        self.passwordInputField.textField.endEditing(true)
+        
         self.showProgressHUD()
         
         ApiClient.sharedClient.signIn(self.emailInputField.textField.text!, password: self.passwordInputField.textField.text!,
@@ -65,7 +68,10 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - ErrorHandlingProtocol 
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
-        print(messages)
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
+        self.emailInputField.setErrorState(NSLocalizedString("Error.InvalidEmail", comment: String()))
+        self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
     }
-    
 }

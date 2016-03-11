@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class SignupViewController: ViewController {
+class SignupViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
     @IBOutlet weak var imageView: UIImageView!
@@ -56,6 +56,9 @@ class SignupViewController: ViewController {
     
     // MARK: - actions
     func nextButtonDidTap() {
+        self.emailInputField.textField.endEditing(true)
+        self.passwordInputField.textField.endEditing(true)
+        
         self.user.email = self.emailInputField.textField.text!
         let password = self.passwordInputField.textField.text
         let photo =  UIImagePNGRepresentation(self.imageView.image!)
@@ -72,11 +75,14 @@ class SignupViewController: ViewController {
                 self?.routesOpenSignUpUpdateProfileViewController(user)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
-                print(errors)
                 self?.hideProgressHUD()
-                print(statusCode)
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
     }
-
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        print(messages)
+    }
 }

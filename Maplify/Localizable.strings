@@ -27,7 +27,7 @@
 "Controller.Login.Title" = "Log In";
 
 //Buttons
-"Button.Ok" = "Ok";
+"Button.Ok" = "OK";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
@@ -39,3 +39,7 @@
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
 "Alert.Error" = "Error";
+
+//Errors
+"Error.InvalidEmail" = "Please enter valid email";
+"Error.InvalidPassword" = "Please enter password";

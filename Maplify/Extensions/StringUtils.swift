@@ -51,4 +51,12 @@ extension String {
         dateFormatter.dateFormat = format
         return dateFormatter.dateFromString(self)
     }
+    
+    static func formattedErrorMessage(lines: [String]) -> String {
+        var message = String()
+        for str in lines {
+            message += str + "\n"
+        }
+        return message
+    }
 }

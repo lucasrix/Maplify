@@ -89,12 +89,12 @@ class ApiClient {
     private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
         let errorDict = payload["error"] as! [String: AnyObject]
         let details = errorDict["details"] as! [String: AnyObject]
-        let messages = errorDict["error_messages"] as! [AnyObject]
+        let messages = errorDict["error_messages"] as! [String]
         
         let errors = ApiError.parseErrors(details, messages: messages)
         
         dispatch_async(dispatch_get_main_queue()) {
-            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages.first as! [String])
+            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }
     }
     

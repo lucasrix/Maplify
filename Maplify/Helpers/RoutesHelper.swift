@@ -26,7 +26,7 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupViewController, animated: true)
     }
     
-    func routesOpneSignUpUpdateProfileViewController(user: User) {
+    func routesOpenSignUpUpdateProfileViewController(user: User) {
         let signupUpdateProfileController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupUpdateProfileController) as! SignupUpdateProfileController
         signupUpdateProfileController.user = user
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)

@@ -94,7 +94,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
                 ApiClient.sharedClient.facebookAuth(token,
                     success: { (response) -> () in
                         self?.hideProgressHUD()
-                        self?.routesOpneSignUpUpdateProfileViewController(response as! User)
+                        self?.routesOpenSignUpUpdateProfileViewController(response as! User)
                     },
                     failure: { (statusCode, errors, localDescription, messages) -> () in
                         self?.hideProgressHUD()

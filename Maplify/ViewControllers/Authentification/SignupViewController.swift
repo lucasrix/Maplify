@@ -65,7 +65,7 @@ class SignupViewController: ViewController {
         ApiClient.sharedClient.signUp(self.user, password: password!, passwordConfirmation: password!, photo: photo,
             success: { [weak self] (response) -> () in
                 self?.hideProgressHUD()
-                self?.routesOpneSignUpUpdateProfileViewController(response as! User)
+                self?.routesOpenSignUpUpdateProfileViewController(response as! User)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

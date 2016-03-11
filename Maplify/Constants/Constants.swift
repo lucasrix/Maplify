@@ -29,6 +29,7 @@ struct Controllers {
     static let loginControllerId = "LoginController"
     static let signupPhotoController = "SignupPhotoController"
     static let signupController = "SignupController"
+    static let signupUpdateProfileController = "SignupUpdateProfileController"
 }
 
 struct AppIDs {

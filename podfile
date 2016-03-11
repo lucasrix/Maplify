@@ -17,6 +17,8 @@ target 'Maplify' do
   pod 'INTULocationManager', '~> 4.1'
   pod 'GoogleMaps', '~> 1.12'
   pod 'GooglePlaces', '~> 1.0'
+  pod 'RSKGrowingTextView', '~> 1.0'
+  pod 'RSKKeyboardAnimationObserver', '~> 1.0'
   pod 'Fabric'
   pod 'Crashlytics'
 end

@@ -33,6 +33,10 @@ PODS:
   - RealmSwift (0.98.2):
     - Realm (= 0.98.2)
   - Result (1.0.2)
+  - RSKGrowingTextView (1.0.1):
+    - RSKPlaceholderTextView (= 1.0.0)
+  - RSKKeyboardAnimationObserver (1.0.0)
+  - RSKPlaceholderTextView (1.0.0)
   - SimpleAuth/Core (0.3.9):
     - CMDQueryStringSerialization
     - ReactiveCocoa
@@ -59,6 +63,8 @@ DEPENDENCIES:
   - INTULocationManager (~> 4.1)
   - Locksmith (~> 2.0)
   - RealmSwift (~> 0.98)
+  - RSKGrowingTextView (~> 1.0)
+  - RSKKeyboardAnimationObserver (~> 1.0)
   - SimpleAuth/Facebook (from `https://github.com/adamjmcgrath/SimpleAuth-1.git`,
     branch `facebook-2.4-breaking-changes`)
   - SimpleAuth/FacebookWeb (from `https://github.com/adamjmcgrath/SimpleAuth-1.git`,
@@ -96,6 +102,9 @@ SPEC CHECKSUMS:
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  RSKGrowingTextView: 585888654fb5007e13089a71923ce78e53a6f0d4
+  RSKKeyboardAnimationObserver: 0bdbc5235a96ce6d1e6143998214160c7f7c9b37
+  RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7
   SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

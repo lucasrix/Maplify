@@ -11,6 +11,9 @@
 "Text.Placeholder.LastName" = "Last Name";
 "Text.Placeholder.Email" = "Email";
 "Text.Placeholder.Password" = "Password";
+"Text.Placeholder.Location" = "Home City";
+"Text.Placeholder.PersonalURL" = "Personal URL";
+"Text.Placeholder.AboutYou" = "About You";
 
 // Labels
 "Controller.Signup.Title" = "Sign Up";

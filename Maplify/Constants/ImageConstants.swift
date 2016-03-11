@@ -15,6 +15,12 @@ struct InputTextFieldImages {
     static let emailIconHighlited = "icoEmailActive"
     static let passwordIconDefault = "icoPass"
     static let passwordIconHighlited = "icoPassActive"
+    static let locationIconDefault = "icoHome"
+    static let locationIconActive = "icoHomeActive"
+    static let iconUrlDefault = "icoUrl"
+    static let iconUrlActive = "icoUrlActive"
+    static let iconInfoDefault = "icoInfo"
+    static let iconInfoActive = "icoInfoActive"
 }
 
 struct BarButtonImages {

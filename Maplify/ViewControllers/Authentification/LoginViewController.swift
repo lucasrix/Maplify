@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: ViewController {
+class LoginViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
     
@@ -58,9 +58,14 @@ class LoginViewController: ViewController {
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()
-                print(statusCode)
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
+    }
+    
+    // MARK: - ErrorHandlingProtocol 
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        print(messages)
     }
     
 }

@@ -58,7 +58,7 @@ class SessionManager {
         
         let token = headers["access-token"] as! String
         if client.length > 0 {
-            sessionDictionary["token"] = token
+            sessionDictionary["access-token"] = token
         }
         
         let expiry = headers["expiry"] as! String

@@ -52,7 +52,7 @@
 		A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
 		A5A0E98F1C86FA410094FC04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E98E1C86FA410094FC04 /* User.swift */; };
 		A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9901C86FC9B0094FC04 /* Model.swift */; };
-		A5A0E9931C86FF780094FC04 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9921C86FF780094FC04 /* Account.swift */; };
+		A5A0E9931C86FF780094FC04 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9921C86FF780094FC04 /* Profile.swift */; };
 		A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9941C8738F90094FC04 /* RequestConfig.swift */; };
 		A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */; };
 		A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */; };
@@ -119,7 +119,7 @@
 		A58A53191C7F345300443C06 /* ConfigHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHepler.swift; sourceTree = "<group>"; };
 		A5A0E98E1C86FA410094FC04 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5A0E9901C86FC9B0094FC04 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		A5A0E9921C86FF780094FC04 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		A5A0E9921C86FF780094FC04 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A5A0E9941C8738F90094FC04 /* RequestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
 		A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabelUtils.swift; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 			children = (
 				A5A0E9901C86FC9B0094FC04 /* Model.swift */,
 				A5A0E98E1C86FA410094FC04 /* User.swift */,
-				A5A0E9921C86FF780094FC04 /* Account.swift */,
+				A5A0E9921C86FF780094FC04 /* Profile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -596,7 +596,7 @@
 				A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */,
 				A5728A1A1C88860100C6DA7E /* SignupPhotoController.swift in Sources */,
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
-				A5A0E9931C86FF780094FC04 /* Account.swift in Sources */,
+				A5A0E9931C86FF780094FC04 /* Profile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -87,7 +87,7 @@ class ApiClient {
     }
     
     private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let errorDict = payload["errors"] as! [String: AnyObject]
+        let errorDict = payload["error"] as! [String: AnyObject]
         let details = errorDict["details"] as! [String: AnyObject]
         let messages = errorDict["error_messages"] as! [AnyObject]
         
@@ -140,7 +140,7 @@ class ApiClient {
     
     func updateProfile(location: String, personalUrl: String, about: String, success: successClosure!, failure: failureClosure!) {
         let params = ["city": location, "url": personalUrl, "about": about]
-        self.putRequest("profile", params: params, map: User.self, success: success, failure: failure)
+        self.putRequest("profile", params: params, map: Profile.self, success: success, failure: failure)
     }
 }
 

@@ -68,6 +68,7 @@ class SignupViewController: ViewController {
                 self?.routesOpenSignUpUpdateProfileViewController(response as! User)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                print(errors)
                 self?.hideProgressHUD()
                 print(statusCode)
             }

@@ -40,6 +40,9 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
         self.emailInputField.setupTextField(emailPlaceholder, defaultIconName: InputTextFieldImages.emailIconDefault, highlitedIconName: InputTextFieldImages.emailIconHighlited)
         self.passwordInputField.setupTextField(passwordPlaceholder, defaultIconName: InputTextFieldImages.passwordIconDefault, highlitedIconName: InputTextFieldImages.passwordIconHighlited)
         self.passwordInputField.textField.secureTextEntry = true
+        
+        self.emailInputField.descriptionLabel.text = NSLocalizedString("InputField.Description.Email", comment: String())
+        self.passwordInputField.descriptionLabel.text = NSLocalizedString("InputField.Description.Password", comment: String())
     }
     
     func setupNextButton() {

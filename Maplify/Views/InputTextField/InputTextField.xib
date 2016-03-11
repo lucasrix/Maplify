@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
             <connections>
                 <outlet property="defaultImageWidth" destination="aSG-b8-mgW" id="U7F-uM-JrC"/>
+                <outlet property="descriptionLabel" destination="U7G-fz-nwr" id="lVz-2q-ndg"/>
                 <outlet property="errorLabel" destination="200-cW-2dz" id="b1X-9b-yzp"/>
                 <outlet property="highlightedImageWidth" destination="SN4-o2-URK" id="cVI-ML-WYw"/>
                 <outlet property="iconHighlitedImageView" destination="Y2O-dh-5dV" id="Av5-M4-x1S"/>
@@ -67,26 +68,42 @@
                         <action selector="editingDidEnd:" destination="-1" eventType="editingDidEnd" id="epz-Eu-2qt"/>
                     </connections>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7G-fz-nwr">
+                    <rect key="frame" x="20" y="41" width="401" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="U7G-fz-nwr" secondAttribute="trailing" constant="20" id="3vC-eB-osG"/>
+                <constraint firstItem="U7G-fz-nwr" firstAttribute="height" secondItem="200-cW-2dz" secondAttribute="height" id="7a4-4u-vh1"/>
                 <constraint firstAttribute="bottom" secondItem="200-cW-2dz" secondAttribute="bottom" id="CBs-QN-3Bz"/>
                 <constraint firstItem="e6w-ck-M78" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="IcE-Ld-GHX"/>
                 <constraint firstItem="200-cW-2dz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="JYg-Wx-PQu"/>
+                <constraint firstItem="U7G-fz-nwr" firstAttribute="top" secondItem="200-cW-2dz" secondAttribute="top" id="LSm-GM-Jut"/>
                 <constraint firstItem="200-cW-2dz" firstAttribute="top" secondItem="Ybd-5P-2BZ" secondAttribute="bottom" constant="3" id="Pj1-m0-d27"/>
                 <constraint firstItem="Ybd-5P-2BZ" firstAttribute="top" secondItem="Py5-Yk-Qp4" secondAttribute="bottom" id="f8K-Cb-Vgd"/>
                 <constraint firstAttribute="trailing" secondItem="200-cW-2dz" secondAttribute="trailing" constant="20" id="hV4-sQ-W0j"/>
                 <constraint firstItem="Y2O-dh-5dV" firstAttribute="leading" secondItem="e6w-ck-M78" secondAttribute="leading" id="hmH-pr-cfY"/>
                 <constraint firstItem="Y2O-dh-5dV" firstAttribute="top" secondItem="e6w-ck-M78" secondAttribute="top" id="l5u-JT-QRm"/>
+                <constraint firstItem="U7G-fz-nwr" firstAttribute="width" secondItem="200-cW-2dz" secondAttribute="width" id="lre-nJ-U7w"/>
                 <constraint firstItem="Ybd-5P-2BZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mHm-rf-c5W"/>
                 <constraint firstAttribute="trailing" secondItem="Ybd-5P-2BZ" secondAttribute="trailing" id="mhV-Oe-2ou"/>
                 <constraint firstItem="Py5-Yk-Qp4" firstAttribute="leading" secondItem="e6w-ck-M78" secondAttribute="trailing" constant="10" id="udq-vy-fLR"/>
                 <constraint firstItem="Ybd-5P-2BZ" firstAttribute="top" secondItem="e6w-ck-M78" secondAttribute="bottom" id="vFA-Mi-KVY"/>
+                <constraint firstItem="U7G-fz-nwr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="68" id="vSv-ze-6eQ"/>
                 <constraint firstItem="Y2O-dh-5dV" firstAttribute="width" secondItem="e6w-ck-M78" secondAttribute="width" id="veb-cb-tjK"/>
                 <constraint firstItem="Y2O-dh-5dV" firstAttribute="height" secondItem="e6w-ck-M78" secondAttribute="height" id="xJK-iT-8Og"/>
                 <constraint firstAttribute="trailing" secondItem="Py5-Yk-Qp4" secondAttribute="trailing" id="yQw-em-wwy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="vSv-ze-6eQ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="485.5" y="325"/>
         </view>
     </objects>

@@ -26,6 +26,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,6 +64,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     func setDefaultState() {
+        self.descriptionLabel.hidden = false
         self.updateViewWithAnimation(false, errorShow: false, separatrorColor: UIColor.warmGrey())
     }
     
@@ -71,6 +73,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     }
     
     func setErrorState(errorMessage: String) {
+        self.descriptionLabel.hidden = true
         self.updateViewWithAnimation(false, errorShow: true, separatrorColor: UIColor.lightishRed())
         self.errorLabel.text = errorMessage
     }

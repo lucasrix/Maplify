@@ -15,6 +15,10 @@
 "Text.Placeholder.PersonalURL" = "Personal URL";
 "Text.Placeholder.AboutYou" = "About You";
 
+// Input fields description
+"InputField.Description.Email" = "We will not share your email";
+"InputField.Description.Password" = "at least 6 characters";
+
 // Labels
 "Controller.Signup.Title" = "Sign Up";
 "Controller.Signup.setPhoto" = "Set your photo";

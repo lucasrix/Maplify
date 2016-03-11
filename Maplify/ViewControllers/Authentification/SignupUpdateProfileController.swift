@@ -95,15 +95,17 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         self.urlInputField.textField.endEditing(true)
         self.aboutInputField.textView.endEditing(true)
         
-        let location = self.locationInputField.textField.text
-        let url = self.urlInputField.textField.text
-        let about = self.aboutInputField.textView.text
+        self.user.profile.city = self.locationInputField.textField.text!
+        self.user.profile.url = self.urlInputField.textField.text!
+        self.user.profile.about = self.aboutInputField.textView.text
         
         self.showProgressHUD()
-        ApiClient.sharedClient.updateProfile(location!, personalUrl: url!, about: about,
+        ApiClient.sharedClient.updateProfile(self.user.profile,
             success: { [weak self] (response) -> () in
+                self!.user.profile = response as! Profile
                 self?.hideProgressHUD()
                 print(response)
+                print(self!.user)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

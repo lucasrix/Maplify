@@ -13,8 +13,8 @@ class Profile: Model {
     dynamic var firstName = ""
     dynamic var lastName = ""
     dynamic var photo = ""
-    dynamic var homeCity = ""
-    dynamic var personalUrl = ""
+    dynamic var city = ""
+    dynamic var url = ""
     dynamic var about = ""
 
     convenience required init(_ map: [String : AnyObject]) {
@@ -26,6 +26,8 @@ class Profile: Model {
         self.firstName <- profileDict.property("first_name")
         self.lastName <- profileDict.property("last_name")
         self.about <- profileDict.property("about")
+        self.city <- profileDict.property("city")
+        self.url <- profileDict.property("url")
         self.photo <- profileDict.property("photo_url")
     }
 }

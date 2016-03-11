@@ -62,10 +62,14 @@ class SignupViewController: ViewController {
         
         self.showProgressHUD()
         
+        let profile = user.profile
+        
         ApiClient.sharedClient.signUp(self.user, password: password!, passwordConfirmation: password!, photo: photo,
             success: { [weak self] (response) -> () in
                 self?.hideProgressHUD()
-                self?.routesOpenSignUpUpdateProfileViewController(response as! User)
+                let user = response as! User
+                user.profile = profile
+                self?.routesOpenSignUpUpdateProfileViewController(user)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 print(errors)

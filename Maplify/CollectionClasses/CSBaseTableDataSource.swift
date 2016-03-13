@@ -44,7 +44,7 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         let cellData = self.activeModel.cellData(indexPath)
         let cellIdentifier = self.activeModel.cellIdentifier(indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CSTableViewCell
-        cell.configure(cellData as! AnyObject)
+        cell.configure(cellData)
         return cell
     }
     
@@ -72,6 +72,10 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         
         let cellData = self.activeModel.cellData(indexPath)
         self.delegate?.didSelectModel?(cellData.model, indexPath: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.heightForHeader(tableView, section: section)
     }
     
     func provideSelectionLogic(indexPath: NSIndexPath) {
@@ -128,7 +132,7 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         return false
     }
     
-    func viewForHeader(section: Int, sectionTitle: String) -> UIView? {
+    func viewForHeader(section: Int, sectionTitle: String!) -> UIView? {
         return nil
     }
     

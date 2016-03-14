@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kPasswordMinLength = 6
+
 extension String {
     var length: Int {
         return self.characters.count
@@ -39,6 +41,10 @@ extension String {
         } catch {
             return false
         }
+    }
+    
+    var isValidPassword: Bool {
+        return (self.length >= kPasswordMinLength)
     }
     
     func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {

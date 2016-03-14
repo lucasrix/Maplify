@@ -62,6 +62,16 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
         self.emailInputField.textField.endEditing(true)
         self.passwordInputField.textField.endEditing(true)
         
+        if self.emailInputField.textField.text?.isEmail == false {
+            self.showMessageAlert(nil, message: NSLocalizedString("Error.InvalidEmail", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
+        } else if self.passwordInputField.textField.text?.isValidPassword == false {
+            self.showMessageAlert(nil, message: NSLocalizedString("Error.InvalidPassword", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
+        } else {
+            self.signup()
+        }
+    }
+    
+    func signup() {
         self.user.email = self.emailInputField.textField.text!
         let password = self.passwordInputField.textField.text
         let photo =  UIImagePNGRepresentation(self.imageView.image!)

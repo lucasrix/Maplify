@@ -93,11 +93,16 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     func nextButtonDidTap() {
-        self.user = User()
-        self.user.profile = Profile()
-        self.user.profile.firstName = self.firstNameField.textField.text!
-        self.user.profile.lastName = self.lastNameField.textField.text!
-        self.routesOpenSignUpViewController(self.setPhotoImage.image, user: self.user)
+        if self.firstNameField.textField.text!.length > 0 || self.lastNameField.textField.text!.length > 0 {
+            self.user = User()
+            self.user.profile = Profile()
+            self.user.profile.firstName = self.firstNameField.textField.text!
+            self.user.profile.lastName = self.lastNameField.textField.text!
+            self.routesOpenSignUpViewController(self.setPhotoImage.image, user: self.user)
+        } else {
+            self.firstNameField.setErrorState(String())
+            self.lastNameField.setErrorState(String())
+        }
     }
     
     func showImagePicker(sourceType: UIImagePickerControllerSourceType) {

@@ -43,6 +43,7 @@
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
 "Alert.Error" = "Error";
+"Alert.EnterName" = "Please enter your name.";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

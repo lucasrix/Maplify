@@ -31,6 +31,7 @@ struct Controllers {
     static let signupController = "SignupController"
     static let signupUpdateProfileController = "SignupUpdateProfileController"
     static let termsController = "TermsController"
+    static let policyController = "PolicyController"
 }
 
 struct AppIDs {

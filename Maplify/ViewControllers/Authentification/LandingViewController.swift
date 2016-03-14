@@ -117,7 +117,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         } else if url.absoluteString == kTermsActiveLink {
             self.routesOpenTermsViewController()
         } else if url.absoluteString == kPolicyActiveLink {
-    // TODO:
+            self.routesOpenPolicyViewController()
         }
     }
 }

@@ -1,12 +1,12 @@
 //
-//  WebContentViewController.swift
+//  PolicyViewController.swift
 //  Maplify
 //
 //  Created by Sergey on 3/14/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class TermsViewController: ViewController, ErrorHandlingProtocol {
+class PolicyViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var webView: UIWebView!
     
     // MARK: - view controller life cycle
@@ -18,8 +18,8 @@ class TermsViewController: ViewController, ErrorHandlingProtocol {
     }
     
     // MARK: - setup
-    func setup() {        
-        self.title = NSLocalizedString("Controller.Terms.Title", comment: String())
+    func setup() {
+        self.title = NSLocalizedString("Controller.Policy.Title", comment: String())
     }
     
     override func navigationBarColor() -> UIColor {
@@ -27,7 +27,7 @@ class TermsViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func loadRemoteData() {
-        ApiClient.sharedClient.retrieveTermsOfUse({ [weak self] (response) -> () in
+        ApiClient.sharedClient.retrievePrivacyPolicy({ [weak self] (response) -> () in
             let htmlString = (response as! WebContent).html
             self?.webView.loadHTMLString(htmlString, baseURL: nil)
         },

@@ -22,6 +22,10 @@ extension UIViewController {
         self.routesOpenViewController(Controllers.signupPhotoController)
     }
     
+    func routesOpenPolicyViewController() {
+        self.routesOpenViewController(Controllers.policyController)
+    }
+    
     func routesOpenViewController(identifier: String) {
         let viewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)

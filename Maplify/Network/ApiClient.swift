@@ -151,6 +151,10 @@ class ApiClient {
     func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
         self.getRequest("terms_of_service", params: nil, map: WebContent.self, success: success, failure: failure)
     }
+    
+    func retrievePrivacyPolicy(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("privacy_policy", params: nil, map: WebContent.self, success: success, failure: failure)
+    }
 }
 
 private extension String {

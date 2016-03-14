@@ -102,6 +102,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
         } else {
             self.firstNameField.setErrorState(String())
             self.lastNameField.setErrorState(String())
+            self.showMessageAlert(nil, message: NSLocalizedString("Alert.EnterName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     

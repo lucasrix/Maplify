@@ -13,7 +13,7 @@ import UIKit
 }
 
 class CSTableViewCell: UITableViewCell, CSTableViewCellProtocol {
-    func configure(cellData: AnyObject) {
+    func configure(cellData: CSCellData) {
         //override at subclass
     }
 }

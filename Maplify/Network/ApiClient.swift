@@ -87,14 +87,14 @@ class ApiClient {
     }
     
     private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let errorDict = payload["errors"] as! [String: AnyObject]
+        let errorDict = payload["error"] as! [String: AnyObject]
         let details = errorDict["details"] as! [String: AnyObject]
-        let messages = errorDict["error_messages"] as! [AnyObject]
+        let messages = errorDict["error_messages"] as! [String]
         
         let errors = ApiError.parseErrors(details, messages: messages)
         
         dispatch_async(dispatch_get_main_queue()) {
-            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages.first as! [String])
+            failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }
     }
     
@@ -119,8 +119,8 @@ class ApiClient {
     }
     
     // MARK: - user methods
-    func signUp(account: User, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
-        let params = ["email": account.email, "first_name": account.firstName, "last_name": account.lastName, "password": password, "password_confirmation": passwordConfirmation, "mimeType": "image/png", "fileName": "photo.png"]
+    func signUp(user: User, password: String, passwordConfirmation: String, photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": user.email, "password": password, "password_confirmation": passwordConfirmation, "mimeType": "image/png", "fileName": "photo.png"]
         var data: [String: AnyObject]! = nil
         if (photo != nil) {
             data = ["photo": photo]
@@ -138,9 +138,9 @@ class ApiClient {
         self.postRequest("auth/provider_sessions", params:params , data: nil, map: User.self, progress: nil, success: success, failure: failure)
     }
     
-    func updateProfile(location: String, personalUrl: String, about: String, success: successClosure!, failure: failureClosure!) {
-        let params = ["city": location, "url": personalUrl, "about": about]
-        self.putRequest("profile", params: params, map: User.self, success: success, failure: failure)
+    func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
+        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
+        self.putRequest("profile", params: params, map: Profile.self, success: success, failure: failure)
     }
 }
 

@@ -61,4 +61,8 @@ extension UIColor {
     class func activeWhite() -> UIColor {
         return UIColor(red: 255, green: 255, blue: 255).colorWithAlphaComponent(0.35)
     }
+    
+    class func waterMelon() -> UIColor {
+        return UIColor(red: 255, green: 77, blue: 99)
+    }
 }

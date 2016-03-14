@@ -37,7 +37,7 @@ class CSActiveModel {
         self.sectionsArray?[section] = array!
     }
     
-    func addItems(array: [AnyObject], cellIdentifier: String, sectionTitle: String, delegate: AnyObject!) {
+    func addItems(array: [AnyObject], cellIdentifier: String, sectionTitle: String!, delegate: AnyObject!) {
         var dataArray = [CSCellData]()
         
         for model in array {
@@ -118,8 +118,8 @@ class CSActiveModel {
         return self.sectionsArray![indexPath.section][indexPath.row].cellIdentifier
     }
     
-    func sectionTitle(section: Int) -> String {
-        return (self.sectionsArray![section].last?.sectionTitle)!
+    func sectionTitle(section: Int) -> String! {
+        return self.sectionsArray![section].last?.sectionTitle
     }
     
     // MARK: - selection

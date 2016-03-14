@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kPasswordMinLength = 6
+
 extension String {
     var length: Int {
         return self.characters.count
@@ -41,6 +43,10 @@ extension String {
         }
     }
     
+    var isValidPassword: Bool {
+        return (self.length >= kPasswordMinLength)
+    }
+    
     func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {
         return self.toDate(format, dateTimeZone: NSTimeZone.defaultTimeZone())
     }
@@ -50,5 +56,13 @@ extension String {
         dateFormatter.timeZone = dateTimeZone
         dateFormatter.dateFormat = format
         return dateFormatter.dateFromString(self)
+    }
+    
+    static func formattedErrorMessage(lines: [String]) -> String {
+        var message = String()
+        for str in lines {
+            message += str + "\n"
+        }
+        return message
     }
 }

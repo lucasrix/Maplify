@@ -50,6 +50,8 @@
 		A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D91C7F192100443C06 /* AlertController.swift */; };
 		A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DB1C7F192100443C06 /* StringUtils.swift */; };
 		A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
+		A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E741C96F48A00399A38 /* TermsViewController.swift */; };
+		A59A7E771C96F77C00399A38 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E761C96F77C00399A38 /* WebContent.swift */; };
 		A5A0E98F1C86FA410094FC04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E98E1C86FA410094FC04 /* User.swift */; };
 		A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9901C86FC9B0094FC04 /* Model.swift */; };
 		A5A0E9931C86FF780094FC04 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9921C86FF780094FC04 /* Profile.swift */; };
@@ -118,6 +120,8 @@
 		A58A52DA1C7F192100443C06 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		A58A52DB1C7F192100443C06 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		A58A53191C7F345300443C06 /* ConfigHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHepler.swift; sourceTree = "<group>"; };
+		A59A7E741C96F48A00399A38 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		A59A7E761C96F77C00399A38 /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		A5A0E98E1C86FA410094FC04 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5A0E9901C86FC9B0094FC04 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5A0E9921C86FF780094FC04 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A59A7E731C96F45200399A38 /* WebContent */,
 				A5728A181C8885E300C6DA7E /* Authentification */,
 				A5728A1B1C88887400C6DA7E /* NavigationViewController.swift */,
 				A58A52A11C7F103000443C06 /* ViewController.swift */,
@@ -364,12 +369,21 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		A59A7E731C96F45200399A38 /* WebContent */ = {
+			isa = PBXGroup;
+			children = (
+				A59A7E741C96F48A00399A38 /* TermsViewController.swift */,
+			);
+			path = WebContent;
+			sourceTree = "<group>";
+		};
 		A5A0E98D1C86FA290094FC04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A5A0E9901C86FC9B0094FC04 /* Model.swift */,
 				A5A0E98E1C86FA410094FC04 /* User.swift */,
 				A5A0E9921C86FF780094FC04 /* Profile.swift */,
+				A59A7E761C96F77C00399A38 /* WebContent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -591,6 +605,7 @@
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
+				A59A7E771C96F77C00399A38 /* WebContent.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
@@ -609,6 +624,7 @@
 				A5728A1A1C88860100C6DA7E /* SignupPhotoController.swift in Sources */,
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
 				A5A0E9931C86FF780094FC04 /* Profile.swift in Sources */,
+				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

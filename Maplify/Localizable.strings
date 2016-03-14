@@ -29,6 +29,7 @@
 "Controller.Landing.RangeTerms" = "Terms";
 "Controller.Landing.RangePolicy" = "Privacy Policy";
 "Controller.Login.Title" = "Log In";
+"Controller.Terms.Title" = "Terms of Use";
 
 //Buttons
 "Button.Ok" = "OK";

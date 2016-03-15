@@ -61,6 +61,15 @@ class ViewController: UIViewController {
         return UIImage(color: self.navigationBarColor())!
     }
     
+    // MARK: - device orientation support
+    override func shouldAutorotate() -> Bool {
+        return (self.supportLandscapeMode()) ? true : (UIDevice.currentDevice().orientation != .Portrait)
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return (self.supportLandscapeMode()) ? .All : .Portrait
+    }
+    
     // MARK: - methods to override
     func backButtonHidden() -> Bool {
         return false
@@ -84,6 +93,10 @@ class ViewController: UIViewController {
     
     func navigationBarTextColor() -> UIColor {
         return UIColor.whiteColor()
+    }
+    
+    func supportLandscapeMode() -> Bool {
+        return false
     }
 }
 

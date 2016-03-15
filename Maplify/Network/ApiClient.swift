@@ -73,7 +73,12 @@ class ApiClient {
             SessionManager.sharedManager.setSessionData(headersDictionary)
         }
         
-        let payload = JSON(data: data).dictionaryObject
+        var payload = JSON(data: data).dictionaryObject
+        if payload == nil {
+            let str = String(data: data, encoding: NSUTF8StringEncoding)
+            let htmlDict = ["html": str!] as NSDictionary
+            payload = ["data": htmlDict]
+        }
         let statusCode = (response as NSHTTPURLResponse).statusCode
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = payload!["data"] {
@@ -104,7 +109,7 @@ class ApiClient {
     }
     
     func getRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, map: T.Type, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .GET, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        let config = RequestConfig(type: .GET, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, map: map, success: success, failure: failure)
     }
     
@@ -141,6 +146,14 @@ class ApiClient {
     func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
         let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
         self.putRequest("profile", params: params, map: Profile.self, success: success, failure: failure)
+    }
+    
+    func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("terms_of_service", params: nil, map: WebContent.self, success: success, failure: failure)
+    }
+    
+    func retrievePrivacyPolicy(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("privacy_policy", params: nil, map: WebContent.self, success: success, failure: failure)
     }
 }
 

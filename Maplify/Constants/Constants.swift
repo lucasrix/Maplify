@@ -26,10 +26,12 @@ struct Network {
 }
 
 struct Controllers {
-    static let loginControllerId = "LoginController"
+    static let loginController = "LoginController"
     static let signupPhotoController = "SignupPhotoController"
     static let signupController = "SignupController"
     static let signupUpdateProfileController = "SignupUpdateProfileController"
+    static let termsController = "TermsController"
+    static let policyController = "PolicyController"
 }
 
 struct AppIDs {

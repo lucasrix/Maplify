@@ -19,7 +19,12 @@ class ProgressHUD {
     
     func showProgressHUD() {
         self.setupOverlayView()
-        self.setupSpinner()
+        self.setupSpinner(self.overlayView)
+    }
+    
+    func showProgressHUD(view: UIView) {
+        self.setupSpinner(view)
+        self.placeSpinner(view)
     }
     
     func setupOverlayView() {
@@ -28,14 +33,17 @@ class ProgressHUD {
         UIApplication.sharedApplication().keyWindow?.addSubview(self.overlayView)
     }
     
-    func setupSpinner() {
-        let x = (self.overlayView.frame.size.width - kOverlaySpinnerSize) / 2
-        let y = (self.overlayView.frame.size.height - kOverlaySpinnerSize) / 2
+    func setupSpinner(view: UIView) {
+        let x = (CGRectGetWidth(view.frame) - kOverlaySpinnerSize) / 2
+        let y = (CGRectGetHeight(view.frame) - kOverlaySpinnerSize) / 2
         let spinnerFrame = CGRectMake(x, y, kOverlaySpinnerSize, kOverlaySpinnerSize)
         self.spinner = ALThreeCircleSpinner(frame: spinnerFrame)
         self.spinner.tintColor = UIColor.dodgerBlue()
-        UIApplication.sharedApplication().keyWindow?.addSubview(self.spinner)
-        
+        self.placeSpinner((UIApplication.sharedApplication().keyWindow)!)
+    }
+    
+    func placeSpinner(view: UIView) {
+        view.addSubview(self.spinner)
         self.spinner.startAnimating()
     }
     
@@ -43,5 +51,10 @@ class ProgressHUD {
         self.spinner.stopAnimating()
         self.spinner.removeFromSuperview()
         self.overlayView.removeFromSuperview()
+    }
+    
+    func hideProgressHUD(view: UIView) {
+        self.spinner.stopAnimating()
+        self.spinner.removeFromSuperview()
     }
 }

@@ -29,6 +29,14 @@ class ViewController: UIViewController {
         self.progressHud.hideProgressHUD()
     }
     
+    func showProgressHUD(view: UIView) {
+        self.progressHud.showProgressHUD(view)
+    }
+    
+    func hideProgressHUD(view: UIView) {
+        self.progressHud.hideProgressHUD(view)
+    }
+    
     // MARK: - setup
     private func setupTopBar() {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : self.navigationBarTextColor()]

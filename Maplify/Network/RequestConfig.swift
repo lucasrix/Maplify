@@ -16,7 +16,7 @@ struct RequestConfig {
     var data: [String: AnyObject]!
     var progress: progressClosure!
     
-    init(type: Alamofire.Method, uri: String, params: [String: AnyObject], acceptCodes: [Int]!, data: [String: AnyObject]!) {
+    init(type: Alamofire.Method, uri: String, params: [String: AnyObject]!, acceptCodes: [Int]!, data: [String: AnyObject]!) {
         self.type = type
         self.uri = uri
         self.params = params

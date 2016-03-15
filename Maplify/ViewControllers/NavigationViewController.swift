@@ -27,4 +27,13 @@ class NavigationViewController: UINavigationController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
+    // MARK: - device orientation support
+    override func shouldAutorotate() -> Bool {
+        return (self.topViewController?.shouldAutorotate())!
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return (self.topViewController?.supportedInterfaceOrientations())!
+    }
 }

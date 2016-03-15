@@ -37,7 +37,8 @@ class SessionManager {
     }
     
     func sessionData() -> [NSObject : AnyObject]! {
-        return Locksmith.loadDataForUserAccount(Config.localUserAccount)
+        let dictionary = Locksmith.loadDataForUserAccount(Config.localUserAccount)
+        return (dictionary != nil) ? dictionary : [NSObject : AnyObject]()
     }
     
     func removeSessionData() {

@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class PolicyViewController: ViewController, ErrorHandlingProtocol {
+class PolicyViewController: ViewController, ErrorHandlingProtocol, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     
     // MARK: - view controller life cycle
@@ -20,6 +20,7 @@ class PolicyViewController: ViewController, ErrorHandlingProtocol {
     // MARK: - setup
     func setup() {
         self.title = NSLocalizedString("Controller.Policy.Title", comment: String())
+        self.webView.delegate = self
     }
     
     override func navigationBarColor() -> UIColor {
@@ -27,11 +28,13 @@ class PolicyViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func loadRemoteData() {
+        self.showProgressHUD(self.webView)
         ApiClient.sharedClient.retrievePrivacyPolicy({ [weak self] (response) -> () in
             let htmlString = (response as! WebContent).html
             self?.webView.loadHTMLString(htmlString, baseURL: nil)
         },
         failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
+            self!.hideProgressHUD(self!.webView)
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         })
     }
@@ -43,4 +46,8 @@ class PolicyViewController: ViewController, ErrorHandlingProtocol {
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
     
+    // MARK: - UIWebViewDelegate
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.hideProgressHUD(self.webView)
+    }
 }

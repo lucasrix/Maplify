@@ -34,8 +34,8 @@ class ProgressHUD {
     }
     
     func setupSpinner(view: UIView) {
-        let x = (view.frame.size.width - kOverlaySpinnerSize) / 2
-        let y = (view.frame.size.height - kOverlaySpinnerSize) / 2
+        let x = (CGRectGetWidth(view.frame) - kOverlaySpinnerSize) / 2
+        let y = (CGRectGetHeight(view.frame) - kOverlaySpinnerSize) / 2
         let spinnerFrame = CGRectMake(x, y, kOverlaySpinnerSize, kOverlaySpinnerSize)
         self.spinner = ALThreeCircleSpinner(frame: spinnerFrame)
         self.spinner.tintColor = UIColor.dodgerBlue()

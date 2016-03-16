@@ -53,9 +53,18 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         let urlLPlaceholder = NSLocalizedString("Text.Placeholder.PersonalURL", comment: String())
         let locationAboutPlaceholder = NSLocalizedString("Text.Placeholder.AboutYou", comment: String())
         
+        let locationDescription = NSLocalizedString("InputField.Description.City", comment: String())
+        let optionalDescription = NSLocalizedString("InputField.Description.Optional", comment: String())
+        
         self.locationInputField.setupTextField(locationPlaceholder, defaultIconName: InputTextFieldImages.locationIconDefault, highlitedIconName: InputTextFieldImages.locationIconActive)
+        self.locationInputField.descriptionLabel.text = locationDescription
+        
         self.urlInputField.setupTextField(urlLPlaceholder, defaultIconName: InputTextFieldImages.iconUrlDefault, highlitedIconName: InputTextFieldImages.iconUrlActive)
+        self.urlInputField.descriptionLabel.text = optionalDescription
+        
         self.aboutInputField.setupTextField(locationAboutPlaceholder, defaultIconName: InputTextFieldImages.iconInfoDefault, highlitedIconName: InputTextFieldImages.iconInfoActive)
+        self.aboutInputField.rightDetailLabel.text = optionalDescription
+        self.aboutInputField.maxCharLength = 255
         self.aboutInputField.delegate = self
     }
 

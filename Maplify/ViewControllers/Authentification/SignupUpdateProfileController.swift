@@ -8,6 +8,8 @@
 
 import GoogleMaps
 
+let kMaxAboutTextLength = 255
+
 class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
     @IBOutlet weak var locationInputField: InputTextField!
     @IBOutlet weak var urlInputField: InputTextField!
@@ -49,13 +51,34 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
     }
     
     func setupTextFields() {
+        self.setupLocationInputField()
+        self.setupURLInputField()
+        self.setupAboutInputField()
+    }
+    
+    func setupLocationInputField() {
         let locationPlaceholder = NSLocalizedString("Text.Placeholder.Location", comment: String())
-        let urlLPlaceholder = NSLocalizedString("Text.Placeholder.PersonalURL", comment: String())
-        let locationAboutPlaceholder = NSLocalizedString("Text.Placeholder.AboutYou", comment: String())
+        let locationDescription = NSLocalizedString("InputField.Description.City", comment: String())
         
         self.locationInputField.setupTextField(locationPlaceholder, defaultIconName: InputTextFieldImages.locationIconDefault, highlitedIconName: InputTextFieldImages.locationIconActive)
+        self.locationInputField.descriptionLabel.text = locationDescription
+    }
+    
+    func setupURLInputField() {
+        let urlLPlaceholder = NSLocalizedString("Text.Placeholder.PersonalURL", comment: String())
+        let optionalDescription = NSLocalizedString("InputField.Description.Optional", comment: String())
+
         self.urlInputField.setupTextField(urlLPlaceholder, defaultIconName: InputTextFieldImages.iconUrlDefault, highlitedIconName: InputTextFieldImages.iconUrlActive)
+        self.urlInputField.descriptionLabel.text = optionalDescription
+    }
+    
+    func setupAboutInputField() {
+        let locationAboutPlaceholder = NSLocalizedString("Text.Placeholder.AboutYou", comment: String())
+        let optionalDescription = NSLocalizedString("InputField.Description.Optional", comment: String())
+        
         self.aboutInputField.setupTextField(locationAboutPlaceholder, defaultIconName: InputTextFieldImages.iconInfoDefault, highlitedIconName: InputTextFieldImages.iconInfoActive)
+        self.aboutInputField.rightDetailLabel.text = optionalDescription
+        self.aboutInputField.maxCharLength = kMaxAboutTextLength
         self.aboutInputField.delegate = self
     }
 

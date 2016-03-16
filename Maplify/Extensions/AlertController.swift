@@ -12,7 +12,7 @@ typealias buttonClosure = (buttonIndex: Int) -> ()
 
 extension UIViewController {
     
-    func showAlert(title: String, message: String, cancel: String, buttons: [String], handle: buttonClosure) {
+    func showAlert(title: String, message: String, cancel: String!, buttons: [String], handle: buttonClosure) {
         self.showController(title, message: message, cancel: cancel, destructive: nil, buttons: buttons, style: .Alert, handle: handle)
     }
     
@@ -28,7 +28,7 @@ extension UIViewController {
             self.showController(title, message: message, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
     }
     
-    private func showController(title: String!, message: String, cancel: String, destructive: String!,
+    private func showController(title: String!, message: String, cancel: String!, destructive: String!,
         buttons: [String], style: UIAlertControllerStyle, handle: buttonClosure) {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
             
@@ -49,7 +49,7 @@ extension UIViewController {
                 alertController.addAction(alertAction)
             }
             
-            if cancel.length > 0 {
+            if cancel?.length > 0 {
                 let alertAction = UIAlertAction(title: cancel, style: .Cancel,
                     handler: { (action: UIAlertAction) -> () in
                         let index = (style == .Alert || destructive == nil) ? buttons.count : buttons.count + 1

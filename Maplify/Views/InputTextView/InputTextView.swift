@@ -27,6 +27,11 @@ class InputTextView: UIView, UITextViewDelegate {
     @IBOutlet weak var leftDetailLabel: UILabel!
     
     var delegate: InputTextViewDelegate! = nil
+    var maxCharLength: Int = 0 {
+        didSet {
+            self.showTextLengthLimitIfNeeded()
+        }
+    }
     var view: UIView! = nil
     private var isVisibleKeyboard = true
     
@@ -110,6 +115,17 @@ class InputTextView: UIView, UITextViewDelegate {
         self.updateViewWithAnimation(true, errorShow: false, separatrorColor: UIColor.dodgerBlue())
     }
     
+    func showTextLengthLimitIfNeeded() {
+        if self.maxCharLength > 0 {
+            let char = NSLocalizedString("InputField.Description.Char", comment: String())
+            let of = NSLocalizedString("InputField.Description.Of", comment: String())
+            self.leftDetailLabel.text = "\(textView.text.length) " + of + " \(self.maxCharLength) " + char
+            if self.textView.text?.length >= self.maxCharLength {
+                self.textView.text = self.textView.text?.substr(0, end: self.maxCharLength - 1)
+            }
+        }
+    }
+    
     // MARK: - UITextViewDelegate
     func textViewDidBeginEditing(textView: UITextView) {
         self.setHighlightedState()
@@ -122,6 +138,7 @@ class InputTextView: UIView, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
+        self.showTextLengthLimitIfNeeded()
         self.setHighlightedState()
         self.delegate?.editingChanged?(self)
     }

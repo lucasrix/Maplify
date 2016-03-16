@@ -54,7 +54,9 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupImageView() {
-        self.imageView.image = self.photoImage.roundCornersToCircle()
+        if (self.photoImage != nil) {
+            self.imageView.image = self.photoImage.roundCornersToCircle()
+        }
     }
     
     // MARK: - actions

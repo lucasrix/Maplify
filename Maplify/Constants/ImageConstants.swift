@@ -23,6 +23,10 @@ struct InputTextFieldImages {
     static let iconInfoActive = "icoInfoActive"
 }
 
+struct PlaceholderImages {
+    static let setPhotoPlaceholder = "photoAddPlaceholder"
+}
+
 struct BarButtonImages {
     static let backArrow = "icoBack"
 }

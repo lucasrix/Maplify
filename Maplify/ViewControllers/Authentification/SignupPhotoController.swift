@@ -24,6 +24,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     
     var user: User! = nil
     var imagePicker: UIImagePickerController! = nil
+    var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -60,6 +61,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     func setupImageView() {
+        self.setPhotoImage.image = self.placeholderImage
         let tapGesture = UITapGestureRecognizer(target: self, action: "imageViewDidTap")
         self.setPhotoImage.addGestureRecognizer(tapGesture)
     }
@@ -77,6 +79,10 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
         self.firstNameField.textField.endEditing(true)
         self.lastNameField.textField.endEditing(true)
         
+        self.showPhotoActionSheet()
+    }
+    
+    func showPhotoActionSheet() {
         let cancel = NSLocalizedString("Button.Cancel", comment: String())
         let message = NSLocalizedString("Alert.SetPhoto", comment: String())
         let existingPhoto = NSLocalizedString("Button.ExistingPhoto", comment: String())
@@ -89,7 +95,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
                 } else if ActionSheetButtonType(rawValue: buttonIndex) == .TakeNewPhotoType {
                     self?.showImagePicker(.Camera)
                 }
-        })
+            })
     }
     
     func nextButtonDidTap() {
@@ -98,11 +104,34 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
             self.user.profile = Profile()
             self.user.profile.firstName = self.firstNameField.textField.text!
             self.user.profile.lastName = self.lastNameField.textField.text!
-            self.routesOpenSignUpViewController(self.setPhotoImage.image, user: self.user)
+            self.showPhotoProposalAlertIfNeeded()
         } else {
             self.firstNameField.setErrorState(String())
             self.lastNameField.setErrorState(String())
             self.showMessageAlert(nil, message: NSLocalizedString("Error.EnterName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
+        }
+    }
+    
+    func showPhotoProposalAlertIfNeeded() {
+        if (self.setPhotoImage.image != self.placeholderImage) {
+            self.routesOpenSignUpViewController(self.setPhotoImage.image, user: self.user)
+        } else {
+            self.firstNameField.textField.endEditing(true)
+            self.lastNameField.textField.endEditing(true)
+            
+            let title = NSLocalizedString("Alert.Title.ProfilePhoto", comment: String())
+            let message = NSLocalizedString("Alert.NoPhoto", comment: String())
+            let skip = NSLocalizedString("Button.Skip", comment: String())
+            let setPhoto = NSLocalizedString("Button.SetPhoto", comment: String())
+            self.showAlert(title, message: message, cancel: nil, buttons: [skip, setPhoto],
+                handle:  { [weak self] (buttonIndex) -> () in
+                    if buttonIndex == 0 {
+                        self!.routesOpenSignUpViewController(nil, user: self!.user)
+                    } else {
+                        self!.showPhotoActionSheet()
+                    }
+                }
+            )
         }
     }
     

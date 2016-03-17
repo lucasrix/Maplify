@@ -8,7 +8,7 @@
         <!--Landing View Controller-->
         <scene sceneID="lce-Y2-oT7">
             <objects>
-                <viewController id="2ts-iS-H47" customClass="LandingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingController" id="2ts-iS-H47" customClass="LandingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QBW-Vw-QZN"/>
                         <viewControllerLayoutGuide type="bottom" id="f7E-1i-pFf"/>

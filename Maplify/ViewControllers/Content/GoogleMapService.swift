@@ -8,12 +8,13 @@
 
 import GoogleMaps
 
-class GoogleMapService: MCMapService {
+class GoogleMapService: MCMapService, GMSMapViewDelegate {
     
     // MARK: - MCMapServiceProtocol
     override func configuredMapView(region: MCMapRegion, zoom: Float) -> UIView! {
         let camera = GMSCameraPosition.cameraWithLatitude(region.location.latitude, longitude:region.location.longitude, zoom: zoom)
         let mapView = GMSMapView.mapWithFrame(region.span.rect, camera:camera)
+        mapView.delegate = self
         return mapView
     }
     
@@ -49,5 +50,11 @@ class GoogleMapService: MCMapService {
         let longitude = self.defaultRegion.location.longitude
         let camera = GMSCameraPosition.cameraWithLatitude(latitude, longitude: longitude, zoom: self.defaultZoom)
         (self.mapView as! GMSMapView).camera = camera
+    }
+    
+    // MARK: - MCMapServiceProtocol
+    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        self.delegate?.didTapMapView?(mapView, itemObject: marker)
+        return true
     }
 }

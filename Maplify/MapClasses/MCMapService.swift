@@ -16,13 +16,19 @@ protocol MCMapServiceProtocol {
     func moveToDefaultRegion()
 }
 
-class MCMapService: MCMapServiceProtocol {
+@objc protocol MCMapServiceDelegate {
+    optional func didTapMapView(mapView: UIView, itemObject: AnyObject)
+}
+
+class MCMapService: NSObject, MCMapServiceProtocol {
     var mapView: UIView! = nil
     var defaultRegion: MCMapRegion! = nil
     var defaultZoom: Float! = nil
+    var delegate: MCMapServiceDelegate! = nil
     lazy var itemsArray = [MCMapItemsGroup]()
 
     init(region: MCMapRegion, zoom: Float) {
+        super.init()
         self.defaultRegion = region
         self.defaultZoom = zoom
         self.mapView = self.configuredMapView(region, zoom: zoom)

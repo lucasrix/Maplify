@@ -11,6 +11,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var passwordInputField: InputTextField!
     @IBOutlet weak var imageView: UIImageView!
     
+    var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     var photoImage: UIImage! = nil
     var user: User! = nil
     
@@ -54,9 +55,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupImageView() {
-        if (self.photoImage != nil) {
-            self.imageView.image = self.photoImage.roundCornersToCircle()
-        }
+        self.imageView.image = (self.photoImage != nil) ? self.photoImage.roundCornersToCircle() : self.placeholderImage
     }
     
     // MARK: - actions
@@ -76,7 +75,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     func signup() {
         self.user.email = self.emailInputField.textField.text!
         let password = self.passwordInputField.textField.text
-        let photo =  UIImagePNGRepresentation(self.imageView.image!)
+        let photo = (self.photoImage != nil) ? UIImagePNGRepresentation(self.photoImage) : nil
         
         self.showProgressHUD()
         

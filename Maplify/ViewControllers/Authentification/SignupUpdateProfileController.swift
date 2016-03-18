@@ -118,7 +118,6 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         self.urlInputField.textField.endEditing(true)
         self.aboutInputField.textView.endEditing(true)
         
-        self.user.profile = Profile()
         self.user.profile.city = self.locationInputField.textField.text!
         self.user.profile.url = self.urlInputField.textField.text!
         self.user.profile.about = self.aboutInputField.textView.text
@@ -129,6 +128,9 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
                 self?.user.profile = response as! Profile
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
+                print(self!.user)
+                print(self!.user.profile)
+                print(self)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

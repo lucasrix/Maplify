@@ -20,14 +20,14 @@ class Profile: Model {
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
-        let profileDict = map["profile"] as! [String : AnyObject]
+        let dictionary = (map["profile"] != nil) ? (map["profile"] as! [String : AnyObject]) : map
         
-        self.id = profileDict["id"] as! Int
-        self.firstName <- profileDict.property("first_name")
-        self.lastName <- profileDict.property("last_name")
-        self.about <- profileDict.property("about")
-        self.city <- profileDict.property("city")
-        self.url <- profileDict.property("url")
-        self.photo <- profileDict.property("photo_url")
+        self.id = dictionary["id"] as! Int
+        self.firstName <- dictionary.property("first_name")
+        self.lastName <- dictionary.property("last_name")
+        self.about <- dictionary.property("about")
+        self.city <- dictionary.property("city")
+        self.url <- dictionary.property("url")
+        self.photo <- dictionary.property("photo_url")
     }
 }

@@ -128,9 +128,6 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
                 self?.user.profile = response as! Profile
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
-                print(self!.user)
-                print(self!.user.profile)
-                print(self)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

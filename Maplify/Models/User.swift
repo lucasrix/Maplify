@@ -28,6 +28,6 @@ class User: Model {
         self.email <- userDict.property("email")
         self.provider <- userDict.property("provider")
         self.uid <- userDict.property("uid")
-        self.profile <- map.relation("user")
+        self.profile <- userDict.relation("profile")
     }
 }

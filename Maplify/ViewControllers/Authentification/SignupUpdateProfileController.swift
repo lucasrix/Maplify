@@ -118,7 +118,6 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
         self.urlInputField.textField.endEditing(true)
         self.aboutInputField.textView.endEditing(true)
         
-        self.user.profile = Profile()
         self.user.profile.city = self.locationInputField.textField.text!
         self.user.profile.url = self.urlInputField.textField.text!
         self.user.profile.about = self.aboutInputField.textView.text

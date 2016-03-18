@@ -15,6 +15,7 @@ struct RequestConfig {
     var acceptCodes: [Int]!
     var data: [String: AnyObject]!
     var progress: progressClosure!
+    var modelManager: ModelManager!
     
     init(type: Alamofire.Method, uri: String, params: [String: AnyObject]!, acceptCodes: [Int]!, data: [String: AnyObject]!) {
         self.type = type

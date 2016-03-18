@@ -20,14 +20,12 @@ class Profile: Model {
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
-        let profileDict = map["profile"] as! [String : AnyObject]
-        
-        self.id = profileDict["id"] as! Int
-        self.firstName <- profileDict.property("first_name")
-        self.lastName <- profileDict.property("last_name")
-        self.about <- profileDict.property("about")
-        self.city <- profileDict.property("city")
-        self.url <- profileDict.property("url")
-        self.photo <- profileDict.property("photo_url")
+        self.id = map["id"] as! Int
+        self.firstName <- map.property("first_name")
+        self.lastName <- map.property("last_name")
+        self.about <- map.property("about")
+        self.city <- map.property("city")
+        self.url <- map.property("url")
+        self.photo <- map.property("photo_url")
     }
 }

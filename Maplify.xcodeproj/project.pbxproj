@@ -11,6 +11,7 @@
 		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		1FB705B41C9C212C00FC3496 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -95,6 +96,7 @@
 /* Begin PBXFileReference section */
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
+		1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,14 @@
 				1F2E33791C80652E00D3B446 /* InputTextField.swift */,
 			);
 			path = InputTextField;
+			sourceTree = "<group>";
+		};
+		1FB705B21C9C20C500FC3496 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
@@ -319,6 +329,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1FB705B21C9C20C500FC3496 /* Onboarding */,
 				A59A7E8A1C9ADBB800399A38 /* Content */,
 				A59A7E731C96F45200399A38 /* WebContent */,
 				A5728A181C8885E300C6DA7E /* Authentification */,
@@ -712,6 +723,7 @@
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
+				1FB705B41C9C212C00FC3496 /* OnboardingViewController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* UserManager.swift in Sources */,

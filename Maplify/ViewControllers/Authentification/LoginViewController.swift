@@ -57,7 +57,7 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
         ApiClient.sharedClient.signIn(self.emailInputField.textField.text!, password: self.passwordInputField.textField.text!,
             success: { [weak self] (response) -> () in
                 self?.hideProgressHUD()
-                print(response)
+                self?.routesSetContentController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

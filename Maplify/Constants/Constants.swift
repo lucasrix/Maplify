@@ -22,6 +22,7 @@ struct FileType {
 }
 
 struct Network {
+    static let isUserLogin = "isUserLogin"
     static let successStatusCodes = [200, 201]
 }
 
@@ -32,6 +33,8 @@ struct Controllers {
     static let signupUpdateProfileController = "SignupUpdateProfileController"
     static let termsController = "TermsController"
     static let policyController = "PolicyController"
+    static let landingController = "LandingController"
+    static let contentController = "ContentController"
 }
 
 struct AppIDs {

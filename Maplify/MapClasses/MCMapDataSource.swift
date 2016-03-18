@@ -22,19 +22,15 @@ class MCMapDataSource {
     func reloadMapView() {
         self.mapService.removeAllItems()
         
-        var i: Int = 0
-        var j: Int = 0
         let numberOfGroups: Int = (self.delegate?.numberOfGroups())!
         
-        for _ in 0...numberOfGroups {
+        for i in 0...numberOfGroups {
             let numberOfItems = (self.delegate?.numberOfMapItemsForGroup(i))!
-            for _ in 0...numberOfItems {
+            for j in 0...numberOfItems {
                 let indexPath = NSIndexPath(forRow: i, inSection: j)
                 let mapItem = self.delegate?.mapItem(self.mapView, indexPath: indexPath)
                 self.mapService.placeItem(mapItem!)
-                j++
             }
-            i++
         }
     }
 }

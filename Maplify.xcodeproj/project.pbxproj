@@ -11,7 +11,12 @@
 		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
-		1FB705B41C9C212C00FC3496 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */; };
+		1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* PageViewController.swift */; };
+		1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B51C9C5D0000FC3496 /* ChildController.swift */; };
+		1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */; };
+		1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */; };
+		1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */; };
+		1FB705BD1C9C89B500FC3496 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Auth.storyboard */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -96,7 +101,11 @@
 /* Begin PBXFileReference section */
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
-		1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		1FB705B31C9C212C00FC3496 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		1FB705B51C9C5D0000FC3496 /* ChildController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildController.swift; sourceTree = "<group>"; };
+		1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardDiscoverController.swift; sourceTree = "<group>"; };
+		1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardCaptureController.swift; sourceTree = "<group>"; };
+		1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,7 +221,10 @@
 		1FB705B21C9C20C500FC3496 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				1FB705B31C9C212C00FC3496 /* OnboardingViewController.swift */,
+				1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */,
+				1FB705B31C9C212C00FC3496 /* PageViewController.swift */,
+				1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */,
+				1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -401,6 +413,7 @@
 				A52E09951C8D89BF00706F9C /* SimpleAuth.swift */,
 				A52E09991C8D8D6000706F9C /* Integer.swift */,
 				A508F4301C902634007131C9 /* ProgressHUD.swift */,
+				1FB705B51C9C5D0000FC3496 /* ChildController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,6 +624,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB705BD1C9C89B500FC3496 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,7 +713,9 @@
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
+				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
+				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
@@ -714,6 +730,7 @@
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
 				A5D7AAF91C9C437F00A94C4F /* WebContent.swift in Sources */,
 				8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */,
+				1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
@@ -723,7 +740,8 @@
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
-				1FB705B41C9C212C00FC3496 /* OnboardingViewController.swift in Sources */,
+				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
+				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* UserManager.swift in Sources */,

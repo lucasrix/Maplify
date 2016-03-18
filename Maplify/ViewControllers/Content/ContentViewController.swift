@@ -14,6 +14,8 @@ class ContentViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.routesOpenOnboardController()
+        
 //        //test map classes
 //        let region = MCMapRegion(latitude: -33.8683, longitude: 151.2086)
 //        self.mapView.service = GoogleMapService(region: region, zoom: 6)

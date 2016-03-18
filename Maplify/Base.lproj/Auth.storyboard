@@ -561,24 +561,104 @@ Terms &amp; Privacy Policy.</string>
             </objects>
             <point key="canvasLocation" x="1855.5" y="391.5"/>
         </scene>
-        <!--Onboarding View Controller-->
-        <scene sceneID="Zub-cF-qln">
+        <!--Onboard View Controller-->
+        <scene sceneID="moi-TV-8bc">
             <objects>
-                <viewController storyboardIdentifier="OnboardController" automaticallyAdjustsScrollViewInsets="NO" id="r9d-TT-nMl" customClass="OnboardingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardController" id="mgo-TE-4RX" customClass="OnboardViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ISk-AR-zfi"/>
-                        <viewControllerLayoutGuide type="bottom" id="1ZT-uc-C3q"/>
+                        <viewControllerLayoutGuide type="top" id="aR4-de-nNp"/>
+                        <viewControllerLayoutGuide type="bottom" id="OZL-yr-PlT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ebt-BC-Ha7">
+                    <view key="view" contentMode="scaleToFill" id="4OK-WU-1r4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="iqc-b5-nhJ">
+                                <rect key="frame" x="176" y="580" width="23" height="37"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.465605514" blue="0.084608036299999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OZL-yr-PlT" firstAttribute="top" secondItem="iqc-b5-nhJ" secondAttribute="bottom" constant="50" id="MPD-kh-RNo"/>
+                            <constraint firstItem="iqc-b5-nhJ" firstAttribute="centerX" secondItem="4OK-WU-1r4" secondAttribute="centerX" id="WBJ-gU-nfl"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bNW-eZ-7OS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GBI-7D-IMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2292.5" y="391.5"/>
+            <point key="canvasLocation" x="2276.5" y="391.5"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="qEy-oo-dsC">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Egp-UW-404" customClass="PageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXQ-gG-Akm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739.5" y="391.5"/>
+        </scene>
+        <!--Onboard Discover Controller-->
+        <scene sceneID="J5Q-Lh-56O">
+            <objects>
+                <viewController storyboardIdentifier="onboardDiscoverController" id="lbv-PW-Uno" customClass="OnboardDiscoverController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Haw-bM-aLa"/>
+                        <viewControllerLayoutGuide type="bottom" id="cLc-Jk-7oY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bhs-N0-Yna">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardDiscoverBackground" translatesAutoresizingMaskIntoConstraints="NO" id="S16-Lt-7Xn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S16-Lt-7Xn" firstAttribute="top" secondItem="bhs-N0-Yna" secondAttribute="top" id="32a-Hs-Wmb"/>
+                            <constraint firstAttribute="trailing" secondItem="S16-Lt-7Xn" secondAttribute="trailing" id="SHg-Mw-hpG"/>
+                            <constraint firstItem="cLc-Jk-7oY" firstAttribute="top" secondItem="S16-Lt-7Xn" secondAttribute="bottom" id="n2s-zt-u3M"/>
+                            <constraint firstItem="S16-Lt-7Xn" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" id="thO-vu-qIn"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fn9-pd-tiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3169.5" y="-121.5"/>
+        </scene>
+        <!--Onboard Capture Controller-->
+        <scene sceneID="oie-k8-ovo">
+            <objects>
+                <viewController storyboardIdentifier="onboardCaptureController" id="P7j-H2-kei" customClass="OnboardCaptureController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U8D-gs-oS5"/>
+                        <viewControllerLayoutGuide type="bottom" id="dw9-TW-aKn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ToM-b9-Z2x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardCaptureBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Yb2-6k-9Ke">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yb2-6k-9Ke" firstAttribute="leading" secondItem="ToM-b9-Z2x" secondAttribute="leading" id="Hqc-za-AdN"/>
+                            <constraint firstAttribute="trailing" secondItem="Yb2-6k-9Ke" secondAttribute="trailing" id="QdI-Po-Fxe"/>
+                            <constraint firstItem="Yb2-6k-9Ke" firstAttribute="top" secondItem="ToM-b9-Z2x" secondAttribute="top" id="tXS-ff-eD0"/>
+                            <constraint firstItem="dw9-TW-aKn" firstAttribute="top" secondItem="Yb2-6k-9Ke" secondAttribute="bottom" id="uhl-ke-keR"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oWj-9l-TRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3169.5" y="655.5"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="VJB-tU-PSc">
@@ -643,6 +723,8 @@ Terms &amp; Privacy Policy.</string>
         <image name="icoEnvelope" width="24" height="19"/>
         <image name="icoFb" width="24" height="24"/>
         <image name="logo" width="276" height="95"/>
+        <image name="onboardCaptureBackground" width="375" height="667"/>
+        <image name="onboardDiscoverBackground" width="375" height="667"/>
         <image name="photoAddPlaceholder" width="90" height="90"/>
     </resources>
 </document>

@@ -30,3 +30,10 @@ struct PlaceholderImages {
 struct BarButtonImages {
     static let backArrow = "icoBack"
 }
+
+struct OnboardImages {
+    static let onboardDiscoverBackground = "onboardDiscoverBackground"
+    static let onboardCaptureBackground = "onboardCaptureBackground"
+    static let onboardDiscoverIcon = "onboardDiscoverIcon"
+    static let onboardCaptureIcon = "onboardCaptureIcon"
+}

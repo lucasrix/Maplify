@@ -18,23 +18,23 @@ class ApiClient {
     static let sharedClient = ApiClient()
     
     // MARK: - request management
-    private func request<T: Mappable>(config: RequestConfig, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    private func request(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         if (config.data != nil) {
-            self.dataRequest(config, map: map, success: success, failure: failure)
+            self.dataRequest(config, manager: manager, success: success, failure: failure)
         } else {
-            self.baseRequest(config, map: map, success: success, failure: failure)
+            self.baseRequest(config, manager: manager, success: success, failure: failure)
         }
     }
     
-    private func baseRequest<T: Mappable>(config: RequestConfig, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    private func baseRequest(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: .JSON, headers: headers)
             .response {[weak self] request, response, data, error  in
-                self?.manageResponse(response!, data: data!, map: map, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
         }
     }
     
-    private func dataRequest<T: Mappable>(config: RequestConfig, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    private func dataRequest(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
@@ -58,7 +58,7 @@ class ApiClient {
                         }
                     }
                     upload.response(completionHandler: { [weak self] (request, response, data, error) -> () in
-                        self?.manageResponse(response!, data: data!, map: map, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                        self?.manageResponse(response!, data: data!, manager:  manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
                     })
                 case .Failure(let encodingError):
                     print(encodingError)
@@ -67,7 +67,7 @@ class ApiClient {
         )
     }
     
-    private func manageResponse<T: Mappable>(response: NSHTTPURLResponse!, data: NSData!, map: T.Type, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
+    private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
             SessionManager.sharedManager.setSessionData(headersDictionary)
@@ -83,7 +83,7 @@ class ApiClient {
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = payload!["data"] {
                 dispatch_async(dispatch_get_main_queue()) {
-                    success?(response: T(dataDictionary as! [String : AnyObject]) as! AnyObject)
+                    success?(response: manager.manageResponse(dataDictionary as! [String : AnyObject]))
                 }
             }
         } else {
@@ -103,24 +103,24 @@ class ApiClient {
         }
     }
     
-    func postRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, map: T.Type, progress: progressClosure!, success: successClosure!, failure: failureClosure!) {
+    func postRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, progress: progressClosure!, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .POST, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
-        self.request(config, map: map, success: success, failure: failure)
+        self.request(config, manager: manager, success: success, failure: failure)
     }
     
-    func getRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    func getRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .GET, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, map: map, success: success, failure: failure)
+        self.request(config, manager: manager, success: success, failure: failure)
     }
     
-    func putRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    func putRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, map: map, success: success, failure: failure)
+        self.request(config, manager: manager, success: success, failure: failure)
     }
     
-    func deleteRequest<T: Mappable>(uri: String, params: [String: AnyObject]?, map: T.Type, success: successClosure!, failure: failureClosure!) {
+    func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, map: map, success: success, failure: failure)
+        self.request(config, manager: manager, success: success, failure: failure)
     }
     
     // MARK: - user methods
@@ -130,30 +130,30 @@ class ApiClient {
         if (photo != nil) {
             data = ["photo": photo]
         }
-        self.postRequest("auth", params: params, data: data, map: User.self, progress: nil, success: success, failure: failure)
+        self.postRequest("auth", params: params, data: data, manager: UserManager(), progress: nil, success: success, failure: failure)
     }
     
     func signIn(email: String, password: String, success: successClosure!, failure: failureClosure!) {
         let params = ["email": email, "password": password]
-        self.postRequest("auth/sign_in", params: params, data: nil, map: User.self, progress: nil, success: success, failure: failure)
+        self.postRequest("auth/sign_in", params: params, data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
     }
     
     func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {
         let params = ["facebook_access_token": token]
-        self.postRequest("auth/provider_sessions", params:params , data: nil, map: User.self, progress: nil, success: success, failure: failure)
+        self.postRequest("auth/provider_sessions", params:params , data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
     }
     
     func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
         let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
-        self.putRequest("profile", params: params, map: Profile.self, success: success, failure: failure)
+        self.putRequest("profile", params: params, manager: ProfileManager(), success: success, failure: failure)
     }
     
     func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
-        self.getRequest("terms_of_service", params: nil, map: WebContent.self, success: success, failure: failure)
+        self.getRequest("terms_of_service", params: nil, manager: WebContentManager(), success: success, failure: failure)
     }
     
     func retrievePrivacyPolicy(success: successClosure!, failure: failureClosure!) {
-        self.getRequest("privacy_policy", params: nil, map: WebContent.self, success: success, failure: failure)
+        self.getRequest("privacy_policy", params: nil, manager: WebContentManager(), success: success, failure: failure)
     }
 }
 

@@ -14,4 +14,17 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     @IBAction func createStoryPointTapped(sender: UIButton) {
         self.routesShowPopupStoryPointCreationController(self)
     }
+    
+    //MARK: - StoryPointCreationPopupDelegate
+    func ambientDidTapped() {
+        
+    }
+    
+    func photoVideoDidTapped() {
+        
+    }
+    
+    func textDidTapped() {
+        
+    }
 }

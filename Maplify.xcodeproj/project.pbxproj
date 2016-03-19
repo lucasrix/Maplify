@@ -21,6 +21,7 @@
 		1FB706071C9D9D1800FC3496 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508F4301C902634007131C9 /* ProgressHUD.swift */; };
 		1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */; };
+		1FB70B331C9DB19500FC3496 /* StoryPointCreationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -791,6 +792,7 @@
 				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */,
 				A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */,
+				1FB70B331C9DB19500FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

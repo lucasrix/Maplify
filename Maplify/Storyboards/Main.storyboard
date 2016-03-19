@@ -95,29 +95,106 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Point Creation Popup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-9f-scE">
-                                <rect key="frame" x="63" y="20" width="248" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.90263985049999995" blue="0.32343747249999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-KK-uZY" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </view>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4o-Q0-bud" userLabel="Color View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.16078431372549018" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpZ-vu-ZtS" userLabel="Main View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Point Creation Popup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-9f-scE">
+                                        <rect key="frame" x="84" y="84" width="207" height="53"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysw-b6-S8l">
+                                        <rect key="frame" x="50" y="210" width="295" height="99"/>
+                                        <color key="backgroundColor" red="0.0" green="0.81960784310000001" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
+                                        <state key="normal" title="ambient" image="CreateStoryPopintIcoAudio"/>
+                                        <state key="highlighted" image="CreateStoryPopintIcoAudio"/>
+                                        <connections>
+                                            <action selector="ambientTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="OS6-RG-gqT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SM-gk-ccV">
+                                        <rect key="frame" x="50" y="319" width="295" height="100"/>
+                                        <color key="backgroundColor" red="1" green="0.90263985049999995" blue="0.32343747249999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
+                                        <state key="normal" title="photo / video" image="CreateStoryPopintIcoPhotoVideo"/>
+                                        <state key="highlighted" image="CreateStoryPopintIcoPhotoVideo"/>
+                                        <connections>
+                                            <action selector="photoVideoTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="0CB-sm-Y98"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ8-Yf-bEx">
+                                        <rect key="frame" x="50" y="429" width="295" height="99"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.465605514" blue="0.084608036299999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
+                                        <state key="normal" title="Ambient" image="CreateStoryPopintIcoText"/>
+                                        <state key="highlighted" image="CreateStoryPopintIcoText"/>
+                                        <connections>
+                                            <action selector="textTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="VGU-Yd-c8w"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="eID-6l-ELf"/>
+                                    <constraint firstItem="gJ8-Yf-bEx" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="2We-6p-jmO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" constant="30" id="4IG-oH-DJ4"/>
+                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="6SM-gk-ccV" secondAttribute="height" id="7Gk-Yd-aEn"/>
+                                    <constraint firstItem="gJ8-Yf-bEx" firstAttribute="top" secondItem="6SM-gk-ccV" secondAttribute="bottom" constant="10" id="L19-13-fJI"/>
+                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="top" secondItem="Usv-9f-scE" secondAttribute="bottom" constant="73" id="WSe-ki-90I"/>
+                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="gJ8-Yf-bEx" secondAttribute="height" id="Wg6-zv-jmc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Usv-9f-scE" secondAttribute="trailing" constant="84" id="YMY-1r-DDD"/>
+                                    <constraint firstItem="6SM-gk-ccV" firstAttribute="top" secondItem="ysw-b6-S8l" secondAttribute="bottom" constant="10" id="Zn4-2C-I59"/>
+                                    <constraint firstAttribute="bottom" secondItem="gJ8-Yf-bEx" secondAttribute="bottom" constant="139" id="b7l-qI-xEH"/>
+                                    <constraint firstItem="6SM-gk-ccV" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="e1H-Wf-2db"/>
+                                    <constraint firstAttribute="trailing" secondItem="6SM-gk-ccV" secondAttribute="trailing" constant="30" id="n97-hh-WUm"/>
+                                    <constraint firstItem="Usv-9f-scE" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="top" constant="84" id="owf-fO-CJt"/>
+                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="puM-F8-JTg"/>
+                                    <constraint firstAttribute="trailing" secondItem="gJ8-Yf-bEx" secondAttribute="trailing" constant="30" id="sdK-rM-YWI"/>
+                                    <constraint firstItem="Usv-9f-scE" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="84" id="znx-tk-hju"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Usv-9f-scE" secondAttribute="trailing" constant="64" id="ASx-FK-jto"/>
-                            <constraint firstItem="Usv-9f-scE" firstAttribute="top" secondItem="dmn-IV-P1q" secondAttribute="bottom" id="Jhe-2P-ch7"/>
-                            <constraint firstItem="Usv-9f-scE" firstAttribute="leading" secondItem="cv3-bT-Le5" secondAttribute="leading" constant="63" id="XEK-Di-rnV"/>
+                            <constraint firstItem="2D3-dY-EjS" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="bottom" id="3pL-GG-GKn"/>
+                            <constraint firstItem="r4o-Q0-bud" firstAttribute="top" secondItem="cv3-bT-Le5" secondAttribute="top" id="6mA-x7-yhO"/>
+                            <constraint firstItem="GpZ-vu-ZtS" firstAttribute="top" secondItem="cv3-bT-Le5" secondAttribute="top" id="B8t-oa-VC3"/>
+                            <constraint firstAttribute="trailing" secondItem="dyc-KK-uZY" secondAttribute="trailing" id="C0a-1n-7mW"/>
+                            <constraint firstItem="GpZ-vu-ZtS" firstAttribute="leading" secondItem="cv3-bT-Le5" secondAttribute="leading" id="JNb-hu-rbo"/>
+                            <constraint firstItem="dyc-KK-uZY" firstAttribute="leading" secondItem="cv3-bT-Le5" secondAttribute="leading" id="NDm-CY-d5b"/>
+                            <constraint firstItem="r4o-Q0-bud" firstAttribute="leading" secondItem="cv3-bT-Le5" secondAttribute="leading" id="SoH-U8-UcX"/>
+                            <constraint firstItem="dyc-KK-uZY" firstAttribute="top" secondItem="cv3-bT-Le5" secondAttribute="top" id="ZUW-cc-V3V"/>
+                            <constraint firstItem="2D3-dY-EjS" firstAttribute="top" secondItem="r4o-Q0-bud" secondAttribute="bottom" id="dXh-Iw-yhj"/>
+                            <constraint firstAttribute="trailing" secondItem="GpZ-vu-ZtS" secondAttribute="trailing" id="jij-zN-i9k"/>
+                            <constraint firstAttribute="trailing" secondItem="r4o-Q0-bud" secondAttribute="trailing" id="prg-A5-U5V"/>
+                            <constraint firstItem="2D3-dY-EjS" firstAttribute="top" secondItem="dyc-KK-uZY" secondAttribute="bottom" id="yeZ-jw-2cZ"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="backView" destination="dyc-KK-uZY" id="C4s-fx-3Se"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4g-KB-EsV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1395.5" y="473.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>
+        <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
+        <image name="CreateStoryPopintIcoText" width="40" height="35"/>
+    </resources>
 </document>

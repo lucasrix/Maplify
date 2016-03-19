@@ -8,9 +8,14 @@
 
 import UIKit
 
+let kTopPaddingIPhone4_0: CGFloat = 100
+let kTitleTopPaddingIPhone4_0: CGFloat = 30
+let kDescriptionLeftRightPaddingIPhone4_0: CGFloat = 30
+let kDescriptionLabelFontSizeIPhone5_5: CGFloat = 21
 let kPageIndicatorColorAlpha: CGFloat = 0.5
 let kPageControlBottomPaddingIPhone4_0: CGFloat = 70
-let kPageControlBottomPaddingIPhoneGreater4_0: CGFloat = 115
+let kPageControlBottomPaddingIPhone4_7: CGFloat = 115
+let kPageControlBottomPaddingIPhone5_5: CGFloat = 150
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
@@ -50,8 +55,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     func setupPageControl(pageControl: UIPageControl) {
         if UIScreen().isIPhoneScreenSize4_0() {
             pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone4_0
+        } else if UIScreen().isIPhoneScreenSize4_0() {
+            pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone4_7
         } else {
-            pageControl.frame.origin.y -= kPageControlBottomPaddingIPhoneGreater4_0
+            pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone5_5
         }
         pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorColorAlpha)
         pageControl.currentPageIndicatorTintColor = UIColor.dodgerBlue()

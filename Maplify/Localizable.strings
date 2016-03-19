@@ -37,6 +37,8 @@
 "Controller.Policy.Title" = "Privacy Policy";
 "Controller.Onboard.Discover.Title" = "Discover";
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. what does it [sound.look.feel.taste] like there?";
+"Controller.Onboard.Capture.Title" = "Capture";
+"Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
 
 //Buttons
 "Button.Ok" = "OK";

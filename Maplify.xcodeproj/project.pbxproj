@@ -17,6 +17,7 @@
 		1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */; };
 		1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */; };
 		1FB705BD1C9C89B500FC3496 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Auth.storyboard */; };
+		1FB705BF1C9D4E9A00FC3496 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -106,6 +107,7 @@
 		1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardDiscoverController.swift; sourceTree = "<group>"; };
 		1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardCaptureController.swift; sourceTree = "<group>"; };
 		1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				A52E09991C8D8D6000706F9C /* Integer.swift */,
 				A508F4301C902634007131C9 /* ProgressHUD.swift */,
 				1FB705B51C9C5D0000FC3496 /* ChildController.swift */,
+				1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -747,6 +750,8 @@
 				A5D7AAFB1C9C438E00A94C4F /* UserManager.swift in Sources */,
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,
 				A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */,
+				1FB705BF1C9D4E9A00FC3496 /* ScreenSize.swift in Sources */,
+				A5A0E98F1C86FA410094FC04 /* User.swift in Sources */,
 				A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */,
 				A5728A1A1C88860100C6DA7E /* SignupPhotoController.swift in Sources */,
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,

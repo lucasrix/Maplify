@@ -10,6 +10,12 @@ import Foundation
 
 class OnboardCaptureController: ViewController {
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setup()
+    }
+    
+    func setup() {
         
     }
 }

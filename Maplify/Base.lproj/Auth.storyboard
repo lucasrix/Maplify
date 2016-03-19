@@ -575,10 +575,9 @@ Terms &amp; Privacy Policy.</string>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="iqc-b5-nhJ">
                                 <rect key="frame" x="176" y="580" width="23" height="37"/>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.465605514" blue="0.084608036299999995" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="OZL-yr-PlT" firstAttribute="top" secondItem="iqc-b5-nhJ" secondAttribute="bottom" constant="50" id="MPD-kh-RNo"/>
                             <constraint firstItem="iqc-b5-nhJ" firstAttribute="centerX" secondItem="4OK-WU-1r4" secondAttribute="centerX" id="WBJ-gU-nfl"/>
@@ -615,16 +614,56 @@ Terms &amp; Privacy Policy.</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardDiscoverBackground" translatesAutoresizingMaskIntoConstraints="NO" id="S16-Lt-7Xn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardDiscoverIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9a3-Ns-YGw">
+                                <rect key="frame" x="87" y="90" width="200" height="163"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="5Mi-cE-qlX"/>
+                                    <constraint firstAttribute="height" constant="163" id="6Lk-1z-T7v"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOd-MZ-4OS">
+                                <rect key="frame" x="20" y="301" width="335" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="hy2-fc-hDd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXd-ik-jje">
+                                <rect key="frame" x="64" y="344" width="247" height="168"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="S16-Lt-7Xn" firstAttribute="top" secondItem="bhs-N0-Yna" secondAttribute="top" id="32a-Hs-Wmb"/>
+                            <constraint firstAttribute="trailing" secondItem="nXd-ik-jje" secondAttribute="trailing" constant="64" id="ES3-Hf-Mbf"/>
+                            <constraint firstItem="nXd-ik-jje" firstAttribute="top" secondItem="dOd-MZ-4OS" secondAttribute="bottom" constant="8" id="IQ4-0O-5Ca"/>
+                            <constraint firstAttribute="trailing" secondItem="dOd-MZ-4OS" secondAttribute="trailing" constant="20" id="Iee-m8-o9k"/>
+                            <constraint firstItem="dOd-MZ-4OS" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" constant="20" id="Jhw-P1-eWF"/>
                             <constraint firstAttribute="trailing" secondItem="S16-Lt-7Xn" secondAttribute="trailing" id="SHg-Mw-hpG"/>
+                            <constraint firstItem="9a3-Ns-YGw" firstAttribute="centerX" secondItem="bhs-N0-Yna" secondAttribute="centerX" id="aNj-ev-c5F"/>
+                            <constraint firstItem="dOd-MZ-4OS" firstAttribute="top" secondItem="9a3-Ns-YGw" secondAttribute="bottom" constant="48" id="biX-vc-rpu"/>
+                            <constraint firstItem="9a3-Ns-YGw" firstAttribute="top" secondItem="Haw-bM-aLa" secondAttribute="bottom" constant="70" id="cTF-5B-cKl"/>
+                            <constraint firstItem="cLc-Jk-7oY" firstAttribute="top" secondItem="nXd-ik-jje" secondAttribute="bottom" constant="155" id="gSs-U1-hHH"/>
                             <constraint firstItem="cLc-Jk-7oY" firstAttribute="top" secondItem="S16-Lt-7Xn" secondAttribute="bottom" id="n2s-zt-u3M"/>
+                            <constraint firstItem="nXd-ik-jje" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" constant="64" id="s7w-Zs-QpP"/>
                             <constraint firstItem="S16-Lt-7Xn" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" id="thO-vu-qIn"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="gSs-U1-hHH" id="btc-SK-VfX"/>
+                        <outlet property="descriptionLeftConstraint" destination="s7w-Zs-QpP" id="E8b-JA-vMG"/>
+                        <outlet property="descriptionRightConstraint" destination="ES3-Hf-Mbf" id="X1e-jf-1TQ"/>
+                        <outlet property="discoverDescription" destination="nXd-ik-jje" id="ad9-MV-8Zt"/>
+                        <outlet property="discoverTitle" destination="dOd-MZ-4OS" id="yKh-RT-FM3"/>
+                        <outlet property="titleTopConstraint" destination="biX-vc-rpu" id="kLp-bm-szm"/>
+                        <outlet property="topConstraint" destination="cTF-5B-cKl" id="5kc-mE-135"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fn9-pd-tiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -725,6 +764,7 @@ Terms &amp; Privacy Policy.</string>
         <image name="logo" width="276" height="95"/>
         <image name="onboardCaptureBackground" width="375" height="667"/>
         <image name="onboardDiscoverBackground" width="375" height="667"/>
+        <image name="onboardDiscoverIcon" width="200" height="163"/>
         <image name="photoAddPlaceholder" width="90" height="90"/>
     </resources>
 </document>

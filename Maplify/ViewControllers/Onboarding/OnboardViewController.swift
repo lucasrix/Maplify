@@ -40,4 +40,9 @@ class OnboardViewController: ViewController {
         let pageViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.pageViewController)
         self.configureChildViewController(pageViewController, onView: self.view)
     }
+    
+    // MARK: - navigation bar actions
+    func nextButtonDidTap() {
+        self.routesSetContentController()
+    }
 }

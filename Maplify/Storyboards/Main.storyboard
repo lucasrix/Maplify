@@ -45,8 +45,24 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahx-eN-cyr">
+                                        <rect key="frame" x="134" y="282" width="106" height="84"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.465605514" blue="0.084608036299999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="106" id="cfQ-le-gX8"/>
+                                            <constraint firstAttribute="height" constant="84" id="vuU-WH-TnJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Create sPoint"/>
+                                        <connections>
+                                            <action selector="createStoryPointTapped:" destination="AhY-W2-fgV" eventType="touchUpInside" id="p8g-Qu-mEe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ahx-eN-cyr" firstAttribute="centerX" secondItem="yF5-pf-fuB" secondAttribute="centerX" id="1ur-kJ-zHs"/>
+                                    <constraint firstItem="ahx-eN-cyr" firstAttribute="centerY" secondItem="yF5-pf-fuB" secondAttribute="centerY" id="jtR-nR-iyf"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,6 +82,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uZ-qH-yMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="956.5" y="473.5"/>
+        </scene>
+        <!--Story Point Creation Popup View Controller-->
+        <scene sceneID="jQo-hW-7kB">
+            <objects>
+                <viewController storyboardIdentifier="StoryPointCreationPopupController" id="ESY-vW-ls9" customClass="StoryPointCreationPopupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dmn-IV-P1q"/>
+                        <viewControllerLayoutGuide type="bottom" id="2D3-dY-EjS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cv3-bT-Le5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Point Creation Popup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-9f-scE">
+                                <rect key="frame" x="63" y="20" width="248" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.90263985049999995" blue="0.32343747249999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eID-6l-ELf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Usv-9f-scE" secondAttribute="trailing" constant="64" id="ASx-FK-jto"/>
+                            <constraint firstItem="Usv-9f-scE" firstAttribute="top" secondItem="dmn-IV-P1q" secondAttribute="bottom" id="Jhe-2P-ch7"/>
+                            <constraint firstItem="Usv-9f-scE" firstAttribute="leading" secondItem="cv3-bT-Le5" secondAttribute="leading" constant="63" id="XEK-Di-rnV"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4g-KB-EsV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1395.5" y="473.5"/>
         </scene>
     </scenes>
 </document>

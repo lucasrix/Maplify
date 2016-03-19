@@ -20,6 +20,7 @@
 		1FB705BF1C9D4E9A00FC3496 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */; };
 		1FB706071C9D9D1800FC3496 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508F4301C902634007131C9 /* ProgressHUD.swift */; };
+		1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -110,6 +111,7 @@
 		1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardCaptureController.swift; sourceTree = "<group>"; };
 		1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointCreationPopupViewController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +235,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		1FB70B301C9DA52C00FC3496 /* StoryPointCreation */ = {
+			isa = PBXGroup;
+			children = (
+				1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */,
+			);
+			path = StoryPointCreation;
+			sourceTree = "<group>";
+		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
+				1FB70B301C9DA52C00FC3496 /* StoryPointCreation */,
 				A59A7E8A1C9ADBB800399A38 /* Content */,
 				A59A7E731C96F45200399A38 /* WebContent */,
 				A5728A181C8885E300C6DA7E /* Authentification */,
@@ -728,6 +739,7 @@
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
+				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,

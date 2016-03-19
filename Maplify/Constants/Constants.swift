@@ -39,7 +39,7 @@ struct Controllers {
     static let pageViewController = "PageViewController"
     static let onboardDiscoverController = "OnboardDiscoverController"
     static let onboardCaptureController = "OnboardCaptureController"
-    
+    static let storyPointCreationPopupController = "StoryPointCreationPopupController"
 }
 
 struct AppIDs {

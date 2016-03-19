@@ -20,8 +20,8 @@ let kPageControlBottomPaddingIPhone5_5: CGFloat = 150
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     let pageContentViewControllers = [
-        UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier("onboardDiscoverController"),
-        UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier("onboardCaptureController")
+        UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.onboardDiscoverController),
+        UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.onboardCaptureController)
     ]
     
     // MARK: - view controller life cycle

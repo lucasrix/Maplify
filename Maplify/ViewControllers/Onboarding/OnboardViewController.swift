@@ -45,4 +45,9 @@ class OnboardViewController: ViewController {
     func nextButtonDidTap() {
         self.routesSetContentController()
     }
+    
+    // MARK: - override
+    override func backButtonHidden() -> Bool {
+        return true
+    }
 }

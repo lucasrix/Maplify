@@ -27,7 +27,7 @@ class OnboardDiscoverController: ViewController {
     func setup() {
         self.setupConstraints()
         self.setupTitle()
-        self.setupDescription()
+        self.setupDescription()        
     }
     
     // MARK: - private

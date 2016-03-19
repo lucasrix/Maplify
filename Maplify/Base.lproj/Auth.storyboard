@@ -603,7 +603,7 @@ Terms &amp; Privacy Policy.</string>
         <!--Onboard Discover Controller-->
         <scene sceneID="J5Q-Lh-56O">
             <objects>
-                <viewController storyboardIdentifier="onboardDiscoverController" id="lbv-PW-Uno" customClass="OnboardDiscoverController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardDiscoverController" id="lbv-PW-Uno" customClass="OnboardDiscoverController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Haw-bM-aLa"/>
                         <viewControllerLayoutGuide type="bottom" id="cLc-Jk-7oY"/>
@@ -671,7 +671,7 @@ Terms &amp; Privacy Policy.</string>
         <!--Onboard Capture Controller-->
         <scene sceneID="oie-k8-ovo">
             <objects>
-                <viewController storyboardIdentifier="onboardCaptureController" id="P7j-H2-kei" customClass="OnboardCaptureController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardCaptureController" id="P7j-H2-kei" customClass="OnboardCaptureController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U8D-gs-oS5"/>
                         <viewControllerLayoutGuide type="bottom" id="dw9-TW-aKn"/>

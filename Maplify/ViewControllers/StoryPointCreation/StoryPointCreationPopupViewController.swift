@@ -42,15 +42,21 @@ class StoryPointCreationPopupViewController: ViewController {
     
     //MARK: - Actions
     @IBAction func ambientTapped(sender: UIButton) {
-        self.delegate?.ambientDidTapped?()
+        self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
+            self?.delegate?.ambientDidTapped?()
+        }
     }
     
     @IBAction func photoVideoTapped(sender: UIButton) {
-        self.delegate?.photoVideoDidTapped?()
+        self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
+            self?.delegate?.photoVideoDidTapped?()
+        }
     }
     
     @IBAction func textTapped(sender: UIButton) {
-        self.delegate?.textDidTapped?()
+        self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
+            self?.delegate?.textDidTapped?()
+        }
     }
 }
 

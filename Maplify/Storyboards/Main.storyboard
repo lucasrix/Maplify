@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -106,41 +107,47 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Point Creation Popup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usv-9f-scE">
-                                        <rect key="frame" x="84" y="84" width="207" height="53"/>
+                                        <rect key="frame" x="84" y="75" width="207" height="53"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="207" id="sVh-Eb-Zbm"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysw-b6-S8l">
-                                        <rect key="frame" x="50" y="197" width="295" height="104"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <rect key="frame" x="68" y="188" width="270" height="107"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="270" id="xQg-rb-0kp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
                                         <inset key="contentEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="titleEdgeInsets" minX="27" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="27" minY="0.0" maxX="0.0" maxY="10"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
-                                        <state key="normal" title="ambient" image="CreateStoryPopintIcoAudio"/>
+                                        <state key="normal" title="Ambient" image="CreateStoryPopintIcoAudio"/>
                                         <state key="highlighted" image="CreateStoryPopintIcoAudio"/>
                                         <connections>
                                             <action selector="ambientTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="OS6-RG-gqT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SM-gk-ccV">
-                                        <rect key="frame" x="50" y="311" width="295" height="103"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <rect key="frame" x="68" y="305" width="270" height="106"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
+                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="10"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
-                                        <state key="normal" title="photo / video" image="CreateStoryPopintIcoPhotoVideo"/>
+                                        <state key="normal" title="Photo / Video" image="CreateStoryPopintIcoPhotoVideo"/>
                                         <state key="highlighted" image="CreateStoryPopintIcoPhotoVideo"/>
                                         <connections>
                                             <action selector="photoVideoTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="0CB-sm-Y98"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ8-Yf-bEx">
-                                        <rect key="frame" x="50" y="424" width="295" height="104"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <rect key="frame" x="68" y="421" width="270" height="107"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
                                         <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="titleEdgeInsets" minX="21" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="21" minY="0.0" maxX="0.0" maxY="10"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
-                                        <state key="normal" title="text" image="CreateStoryPopintIcoText"/>
+                                        <state key="normal" title="Text" image="CreateStoryPopintIcoText"/>
                                         <state key="highlighted" image="CreateStoryPopintIcoText"/>
                                         <connections>
                                             <action selector="textTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="VGU-Yd-c8w"/>
@@ -148,21 +155,19 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gJ8-Yf-bEx" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="2We-6p-jmO"/>
-                                    <constraint firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" constant="30" id="4IG-oH-DJ4"/>
+                                    <constraint firstItem="6SM-gk-ccV" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="4Yc-WE-Mpv"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="6SM-gk-ccV" secondAttribute="height" id="7Gk-Yd-aEn"/>
+                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" multiplier="1.08" id="HI2-Ws-mDX"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="top" secondItem="6SM-gk-ccV" secondAttribute="bottom" constant="10" id="L19-13-fJI"/>
+                                    <constraint firstItem="Usv-9f-scE" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" id="UVl-JE-Kus"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="top" secondItem="Usv-9f-scE" secondAttribute="bottom" constant="60" id="WSe-ki-90I"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="gJ8-Yf-bEx" secondAttribute="height" id="Wg6-zv-jmc"/>
-                                    <constraint firstAttribute="trailing" secondItem="Usv-9f-scE" secondAttribute="trailing" constant="84" id="YMY-1r-DDD"/>
+                                    <constraint firstItem="gJ8-Yf-bEx" firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" id="ZWh-OA-W3s"/>
                                     <constraint firstItem="6SM-gk-ccV" firstAttribute="top" secondItem="ysw-b6-S8l" secondAttribute="bottom" constant="10" id="Zn4-2C-I59"/>
+                                    <constraint firstItem="gJ8-Yf-bEx" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="a5S-2f-kNv"/>
                                     <constraint firstAttribute="bottom" secondItem="gJ8-Yf-bEx" secondAttribute="bottom" constant="139" id="b7l-qI-xEH"/>
-                                    <constraint firstItem="6SM-gk-ccV" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="e1H-Wf-2db"/>
-                                    <constraint firstAttribute="trailing" secondItem="6SM-gk-ccV" secondAttribute="trailing" constant="30" id="n97-hh-WUm"/>
-                                    <constraint firstItem="Usv-9f-scE" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="top" constant="84" id="owf-fO-CJt"/>
-                                    <constraint firstItem="ysw-b6-S8l" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="50" id="puM-F8-JTg"/>
-                                    <constraint firstAttribute="trailing" secondItem="gJ8-Yf-bEx" secondAttribute="trailing" constant="30" id="sdK-rM-YWI"/>
-                                    <constraint firstItem="Usv-9f-scE" firstAttribute="leading" secondItem="GpZ-vu-ZtS" secondAttribute="leading" constant="84" id="znx-tk-hju"/>
+                                    <constraint firstItem="Usv-9f-scE" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="top" constant="75" id="owf-fO-CJt"/>
+                                    <constraint firstItem="6SM-gk-ccV" firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" id="vBh-dA-ccC"/>
                                 </constraints>
                             </view>
                         </subviews>

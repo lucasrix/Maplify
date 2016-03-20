@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import DynamicBlurView
-import SABlurImageView
 
 class StoryPointCreationPopupViewController: ViewController {
     var delegate: StoryPointCreationPopupDelegate! = nil
     
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var ambientButton: UIButton!
+    @IBOutlet weak var photoVideoButton: UIButton!
+    @IBOutlet weak var textButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +33,19 @@ class StoryPointCreationPopupViewController: ViewController {
         self.view.opaque = false
 
         let blur = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
-        blur.tintColor = UIColor.redColor()
-            blur.frame = view.frame
+        blur.frame = view.frame
         self.backView.addSubview(blur)
     }
     
     func setupLabels() {
-        
+        self.topLabel.text = NSLocalizedString("Label.CreateStoryPopupTop", comment: String())
+        self.ambientButton.setTitle(NSLocalizedString("Button.Ambient", comment: String()), forState: UIControlState.Normal)
+        self.photoVideoButton.setTitle(NSLocalizedString("Button.PhotoVideo", comment: String()), forState: UIControlState.Normal)
+        self.textButton.setTitle(NSLocalizedString("Button.Text", comment: String()), forState: UIControlState.Normal)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     //MARK: - Actions

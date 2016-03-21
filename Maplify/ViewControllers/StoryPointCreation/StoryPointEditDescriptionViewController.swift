@@ -24,6 +24,12 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         self.setup()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.descriptionTextView.becomeFirstResponder()
+    }
+    
     deinit {
         self.unsubscribeNotifications()
     }
@@ -61,7 +67,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
-        // TODO:
+        self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text)
     }
     
     // MARK: - keyboard notification

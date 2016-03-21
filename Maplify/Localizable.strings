@@ -14,6 +14,9 @@
 "Text.Placeholder.Location" = "Home City";
 "Text.Placeholder.PersonalURL" = "Personal URL";
 "Text.Placeholder.AboutYou" = "About You";
+"Text.Placeholder.EnterBriefCaption" = "Enter a brief caption";
+"Text.Placeholder.EveryPostMustBeGeotagged" = "Every post must be geotagged";
+"Text.Placeholder.EnterTag" = "Enter tag";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -44,6 +47,10 @@
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
+"Label.Caption" = "Caption";
+"Label.PlaceOrLocation" = "Place or location";
+"Label.Tags" = "Tags";
+"Label.IsThisPartOfStory" = "Is this part of a story?";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -63,6 +70,8 @@
 "Button.Ambient" = "Ambient";
 "Button.PhotoVideo" = "Photo / Video";
 "Button.Text" = "Text";
+"Button.Post" = "Post";
+"Button.AddToStory" = "Add to Story >";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

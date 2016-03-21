@@ -27,7 +27,13 @@ class StoryPointEditDescriptionViewController: ViewController {
     
     // MARK: - setup
     func setup() {
+        self.setupViews()
         self.subscribeNotifications()
+    }
+    
+    func setupViews() {
+        self.title = NSLocalizedString("Controller.StoryPointEditDescription.Title", comment: String())
+        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
     // MARK: - notifications/observers
@@ -46,6 +52,11 @@ class StoryPointEditDescriptionViewController: ViewController {
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    // MARK: - navigation bar item actions
+    override func rightBarButtonItemDidTap() {
+        // TODO:
     }
     
     // MARK: - keyboard notification

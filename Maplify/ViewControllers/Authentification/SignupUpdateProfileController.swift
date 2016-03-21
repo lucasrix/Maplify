@@ -83,11 +83,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     }
 
     func setupNextButton() {
-        let nextButton = RoundedButton(frame: Frame.doneButtonFrame)
-        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
-        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: nextButton)
-        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
     func retrieveCurrentPlace() {
@@ -113,7 +109,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     }
     
     // MARK: - actions
-    func nextButtonDidTap() {
+    override func rightBarButtonItemDidTap() {
         self.locationInputField.textField.endEditing(true)
         self.urlInputField.textField.endEditing(true)
         self.aboutInputField.textView.endEditing(true)

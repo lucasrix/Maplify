@@ -29,11 +29,7 @@ class OnboardViewController: ViewController {
     }
     
     func setupNavigationBarItems() {
-        let nextButton = RoundedButton(frame: Frame.doneButtonFrame)
-        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
-        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: nextButton)
-        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
     func openPageController() {
@@ -42,7 +38,7 @@ class OnboardViewController: ViewController {
     }
     
     // MARK: - navigation bar actions
-    func nextButtonDidTap() {
+    override func rightBarButtonItemDidTap() {
         self.routesSetContentController()
     }
     

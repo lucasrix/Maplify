@@ -40,6 +40,8 @@
 "Controller.Onboard.Capture.Title" = "Capture";
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
 
+"Label.CreateStoryPopupTop" = "What would you like to post?";
+
 //Buttons
 "Button.Ok" = "OK";
 "Button.Next" = "Next";
@@ -51,6 +53,9 @@
 "Button.TakePhoto" = "Take new photo";
 "Button.Skip" = "Skip";
 "Button.SetPhoto" = "Set Photo";
+"Button.Ambient" = "Ambient";
+"Button.PhotoVideo" = "Photo / Video";
+"Button.Text" = "Text";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

@@ -63,4 +63,12 @@ extension UIViewController {
         signupUpdateProfileController.user = user
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
+    
+    // MARK: - open as popup controllers
+    func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate) {
+        let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController
+        storyPointCreationPopupController.delegate = delegate
+        storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
+        self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
+    }
 }

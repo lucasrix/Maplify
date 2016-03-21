@@ -6,8 +6,6 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import INTULocationManager
-import GoogleMaps
 import AFImageHelper
 
 class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
@@ -17,8 +15,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     @IBOutlet weak var profileTabButton: UIButton!
     @IBOutlet weak var parentView: UIView!
     
-    var captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
-    var discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController)
+    var tabCaptureNavigationController: NavigationViewController! = nil
+    var tabDiscoverNavigationController: NavigationViewController! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -29,12 +27,27 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     
     // MARK: - setup
     func setup() {
+        self.setupNavigationBar()
         self.setupTabButtons()
         self.setupControllers()
     }
     
-    func setupControllers() {
-        self.replaceChildViewController(self.captureController, parentView: self.parentView)
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func setupControllers() {        
+        let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
+        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] () -> () in
+            self?.routesShowPopupStoryPointCreationController(self!)
+        }
+        self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
+        self.tabCaptureNavigationController.navigationBar.barStyle = .Black
+        
+        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController)
+        self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
+
+        self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)
         self.captureTabButton.selected = true
     }
     
@@ -72,6 +85,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
         return true
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    
     // MARK: - actions
     func selectTabButton(button: UIButton) {
         self.menuTabButton.selected = false
@@ -87,12 +105,12 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     
     @IBAction func captureButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
-        self.replaceChildViewController(self.captureController, parentView: self.parentView)
+        self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)
     }
     
     @IBAction func discoverButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
-        self.replaceChildViewController(self.discoverController, parentView: self.parentView)
+        self.replaceChildViewController(self.tabDiscoverNavigationController, parentView: self.parentView)
     }
     
     @IBAction func profileButtonDidTap(sender: AnyObject) {
@@ -105,14 +123,14 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped() {
-        
+    // TODO:
     }
     
     func photoVideoDidTapped() {
-        
+    // TODO:
     }
     
     func textDidTapped() {
-        
+    // TODO:
     }
 }

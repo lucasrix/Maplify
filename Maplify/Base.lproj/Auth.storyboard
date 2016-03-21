@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4WW-e0-Lwt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4WW-e0-Lwt">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -625,7 +624,7 @@ Terms &amp; Privacy Policy.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXd-ik-jje">
-                                <rect key="frame" x="64" y="404" width="247" height="22"/>
+                                <rect key="frame" x="60" y="404" width="255" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -641,7 +640,7 @@ Terms &amp; Privacy Policy.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="S16-Lt-7Xn" firstAttribute="top" secondItem="bhs-N0-Yna" secondAttribute="top" id="32a-Hs-Wmb"/>
-                            <constraint firstAttribute="trailing" secondItem="nXd-ik-jje" secondAttribute="trailing" constant="64" id="ES3-Hf-Mbf"/>
+                            <constraint firstAttribute="trailing" secondItem="nXd-ik-jje" secondAttribute="trailing" constant="60" id="ES3-Hf-Mbf"/>
                             <constraint firstItem="nXd-ik-jje" firstAttribute="top" secondItem="dOd-MZ-4OS" secondAttribute="bottom" constant="28" id="IQ4-0O-5Ca"/>
                             <constraint firstAttribute="trailing" secondItem="dOd-MZ-4OS" secondAttribute="trailing" constant="20" id="Iee-m8-o9k"/>
                             <constraint firstItem="dOd-MZ-4OS" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" constant="20" id="Jhw-P1-eWF"/>
@@ -649,7 +648,7 @@ Terms &amp; Privacy Policy.</string>
                             <constraint firstItem="9a3-Ns-YGw" firstAttribute="centerX" secondItem="bhs-N0-Yna" secondAttribute="centerX" id="aNj-ev-c5F"/>
                             <constraint firstItem="dOd-MZ-4OS" firstAttribute="top" secondItem="9a3-Ns-YGw" secondAttribute="bottom" constant="48" id="biX-vc-rpu"/>
                             <constraint firstItem="cLc-Jk-7oY" firstAttribute="top" secondItem="S16-Lt-7Xn" secondAttribute="bottom" id="n2s-zt-u3M"/>
-                            <constraint firstItem="nXd-ik-jje" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" constant="64" id="s7w-Zs-QpP"/>
+                            <constraint firstItem="nXd-ik-jje" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" constant="60" id="s7w-Zs-QpP"/>
                             <constraint firstItem="S16-Lt-7Xn" firstAttribute="leading" secondItem="bhs-N0-Yna" secondAttribute="leading" id="thO-vu-qIn"/>
                             <constraint firstItem="9a3-Ns-YGw" firstAttribute="top" secondItem="bhs-N0-Yna" secondAttribute="topMargin" constant="130" id="yrO-Gb-iK1"/>
                         </constraints>
@@ -693,7 +692,7 @@ Terms &amp; Privacy Policy.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdw-eZ-1oZ">
-                                <rect key="frame" x="64" y="404" width="247" height="22"/>
+                                <rect key="frame" x="60" y="404" width="255" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -709,8 +708,8 @@ Terms &amp; Privacy Policy.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="hWn-My-nns" secondAttribute="trailing" constant="20" id="4HC-t9-sLQ"/>
-                            <constraint firstAttribute="trailing" secondItem="sdw-eZ-1oZ" secondAttribute="trailing" constant="64" id="8YD-Kj-3K5"/>
-                            <constraint firstItem="sdw-eZ-1oZ" firstAttribute="leading" secondItem="ToM-b9-Z2x" secondAttribute="leading" constant="64" id="EFH-Sv-Acl"/>
+                            <constraint firstAttribute="trailing" secondItem="sdw-eZ-1oZ" secondAttribute="trailing" constant="60" id="8YD-Kj-3K5"/>
+                            <constraint firstItem="sdw-eZ-1oZ" firstAttribute="leading" secondItem="ToM-b9-Z2x" secondAttribute="leading" constant="60" id="EFH-Sv-Acl"/>
                             <constraint firstItem="JUf-dj-E7R" firstAttribute="centerX" secondItem="ToM-b9-Z2x" secondAttribute="centerX" id="FCS-T6-bHk"/>
                             <constraint firstItem="Yb2-6k-9Ke" firstAttribute="leading" secondItem="ToM-b9-Z2x" secondAttribute="leading" id="Hqc-za-AdN"/>
                             <constraint firstAttribute="trailing" secondItem="Yb2-6k-9Ke" secondAttribute="trailing" id="QdI-Po-Fxe"/>

@@ -766,7 +766,6 @@
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,
 				A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */,
 				1FB705BF1C9D4E9A00FC3496 /* ScreenSize.swift in Sources */,
-				A5A0E98F1C86FA410094FC04 /* User.swift in Sources */,
 				A5A0E9951C8738F90094FC04 /* RequestConfig.swift in Sources */,
 				A5728A1A1C88860100C6DA7E /* SignupPhotoController.swift in Sources */,
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
@@ -921,6 +920,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -937,6 +937,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

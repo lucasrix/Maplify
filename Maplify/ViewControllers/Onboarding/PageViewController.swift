@@ -55,7 +55,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     func setupPageControl(pageControl: UIPageControl) {
         if UIScreen().isIPhoneScreenSize4_0() {
             pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone4_0
-        } else if UIScreen().isIPhoneScreenSize4_0() {
+        } else if UIScreen().isIPhoneScreenSize4_7() {
             pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone4_7
         } else {
             pageControl.frame.origin.y -= kPageControlBottomPaddingIPhone5_5

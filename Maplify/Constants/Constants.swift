@@ -43,6 +43,7 @@ struct Controllers {
     static let storyPointCreationPopupController = "StoryPointCreationPopupController"
     static let captureController = "CaptureController"
     static let discoverController = "DiscoverController"
+    static let storyPointEditDescriptionViewController = "StoryPointEditDescriptionViewController"
 }
 
 struct AppIDs {

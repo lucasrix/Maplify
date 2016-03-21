@@ -333,6 +333,25 @@
             </objects>
             <point key="canvasLocation" x="1395.5" y="473.5"/>
         </scene>
+        <!--Story Point Edit Description View Controller-->
+        <scene sceneID="g4j-Pz-14H">
+            <objects>
+                <viewController storyboardIdentifier="StoryPointEditDescriptionViewController" id="riZ-T8-Hes" customClass="StoryPointEditDescriptionViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oGr-Mo-zLX"/>
+                        <viewControllerLayoutGuide type="bottom" id="0id-VV-gVW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5HE-On-Cit">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vIX-EB-Bht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1832.5" y="473.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>

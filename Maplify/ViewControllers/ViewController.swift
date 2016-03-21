@@ -10,6 +10,7 @@ import UIKit
 import AFImageHelper
 
 class ViewController: UIViewController {
+    private var currentChildViewController: UIViewController! = nil
     private let progressHud = ProgressHUD()
     
     // MARK: - view controller life cycle
@@ -69,6 +70,16 @@ class ViewController: UIViewController {
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return (self.supportLandscapeMode()) ? .All : .Portrait
+    }
+    
+    // MARK: - manage child view controllers
+    func replaceChildViewController(viewController: UIViewController, parentView: UIView) {
+        if self.currentChildViewController != nil {
+            self.removeChildController(self.currentChildViewController)
+        }
+        
+        self.currentChildViewController = viewController
+        self.configureChildViewController(self.currentChildViewController, onView: parentView)
     }
     
     // MARK: - methods to override

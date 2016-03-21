@@ -42,6 +42,10 @@ extension UIViewController {
         self.routesOpenViewController(Controllers.policyController)
     }
     
+    func routesOpenOnboardController() {
+        self.routesOpenViewController(Controllers.onboardController)
+    }
+    
     func routesOpenViewController(identifier: String) {
         let viewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)

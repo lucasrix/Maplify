@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         if self.backButtonHidden() {
             self.navigationItem.setHidesBackButton(true, animated: false)
             self.navigationItem.leftBarButtonItem = nil
+            self.navigationController?.navigationBar.tintColor = UIColor.clearColor()
         } else {
             let backItemimage = UIImage(named: BarButtonImages.backArrow)
             let backItem = UIBarButtonItem(image: backItemimage, style: .Plain, target: self, action: "backTapped")

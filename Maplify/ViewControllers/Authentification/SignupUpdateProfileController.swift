@@ -127,7 +127,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
             success: { [weak self] (response) -> () in
                 self?.user.profile = response as! Profile
                 self?.hideProgressHUD()
-                self?.routesSetContentController()
+                self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

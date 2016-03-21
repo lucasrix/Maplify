@@ -35,6 +35,11 @@ struct Controllers {
     static let policyController = "PolicyController"
     static let landingController = "LandingController"
     static let contentController = "ContentController"
+    static let onboardController = "OnboardController"
+    static let pageViewController = "PageViewController"
+    static let onboardDiscoverController = "OnboardDiscoverController"
+    static let onboardCaptureController = "OnboardCaptureController"
+    
 }
 
 struct AppIDs {

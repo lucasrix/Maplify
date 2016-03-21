@@ -24,6 +24,7 @@ struct FileType {
 struct Network {
     static let isUserLogin = "isUserLogin"
     static let successStatusCodes = [200, 201]
+    static let mapRequestTimeOut: NSTimeInterval = 10
 }
 
 struct Controllers {

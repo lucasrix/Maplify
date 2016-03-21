@@ -45,6 +45,10 @@
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
 
+//Subsrtings
+"Substring.Of" = "of";
+"Substring.Chars" = "chars";
+
 //Buttons
 "Button.Ok" = "OK";
 "Button.Next" = "Next";

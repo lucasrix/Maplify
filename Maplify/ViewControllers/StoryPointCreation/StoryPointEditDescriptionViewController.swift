@@ -15,13 +15,19 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     @IBOutlet weak var charactersCountLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var type: String! = nil
+    var type: StoryPointKind! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,7 +73,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
-        self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text)
+        self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: StoryPointKind.Text)
     }
     
     // MARK: - keyboard notification

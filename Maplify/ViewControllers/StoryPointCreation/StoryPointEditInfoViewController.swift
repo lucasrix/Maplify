@@ -19,6 +19,7 @@ class StoryPointEditInfoViewController: ViewController {
     @IBOutlet weak var isPartOfStoryLabel: UILabel!
     @IBOutlet weak var addToStoryButton: UIButton!
     
+    var storyPointKind: StoryPointKind! = nil
     var storyPointDescription = ""
     var placesClient: GMSPlacesClient! = nil
     var location: Location! = nil

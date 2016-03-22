@@ -64,15 +64,16 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(type: String) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
-        storyPointEditDescriptionController.type = type
+        storyPointEditDescriptionController.type = storyPointKind
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
-    func routesOpenStoryPointEditInfoController(storyPointDescription: String) {
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind) {
         let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
         storyPointEditInfoViewController.storyPointDescription = storyPointDescription
+        storyPointEditInfoViewController.storyPointKind = storyPointKind
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     

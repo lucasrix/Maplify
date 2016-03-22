@@ -8,6 +8,13 @@
 
 import Tailor
 
+public enum StoryPointKind: String {
+    case Audio = "audio"
+    case Video = "video"
+    case Photo = "photo"
+    case Text = "text"
+}
+
 class StoryPoint: Model {
     dynamic var user: User! = nil
     dynamic var story: Story! = nil
@@ -28,6 +35,5 @@ class StoryPoint: Model {
         self.kind <- storyPointDict.property("kind")
         self.caption <- storyPointDict.property("caption")
         self.attachment <- storyPointDict.relation("attachment")
-        print("")
     }
 }

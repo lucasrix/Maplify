@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import RealmSwift
 
-class StoryPointEditInfoViewController: ViewController {
+class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var placeOrLocationLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
@@ -87,22 +88,43 @@ class StoryPointEditInfoViewController: ViewController {
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
+        self.hideKeyboard()
         self.remotePostStoryPoint()
     }
     
     // MARK: - private
     func remotePostStoryPoint() {
-
+        self.showProgressHUD()
+        
         let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
         let storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
                                             "kind":"text",
                                             "text":self.storyPointDescription,
                                         "location":locationDict]
         
-        ApiClient.sharedClient.createTextStoryPoint(storyPointDict, success: { (response) -> () in
-            print("YES")
-            }) { (statusCode, errors, localDescription, messages) -> () in
-                print("NO")
+        ApiClient.sharedClient.createTextStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(response as! StoryPoint)
+            }
+            self?.hideProgressHUD()
+            self?.navigationController?.popToRootViewControllerAnimated(true)
+            }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
+    }
+    
+    func hideKeyboard() {
+        self.captionTextField.endEditing(true)
+        self.placeOrLocationTextField.endEditing(true)
+        self.tagsTextField.endEditing(true)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

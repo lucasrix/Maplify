@@ -14,11 +14,6 @@ class Model: RealmSwift.Object, Mappable {
     dynamic var created_at = ""
     dynamic var updated_at = ""
     
-    required init() {
-        super.init()
-        
-    }
-    
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
     }

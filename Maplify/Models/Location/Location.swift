@@ -12,10 +12,6 @@ class Location: Model {
     dynamic var latitude: Double = 0
     dynamic var longitude: Double = 0
     
-    required init() {
-        super.init()
-    }
-    
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         

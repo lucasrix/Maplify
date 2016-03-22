@@ -14,10 +14,6 @@ class User: Model {
     dynamic var email = ""
     dynamic var profile: Profile! = nil
     
-    required init() {
-        super.init()
-    }
-    
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         

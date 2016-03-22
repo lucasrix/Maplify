@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import SwiftyJSON
 import Tailor
 
 typealias successClosure = (response: AnyObject!) -> ()
@@ -73,7 +72,7 @@ class ApiClient {
             SessionManager.sharedManager.setSessionData(headersDictionary)
         }
         
-        var payload = JSON(data: data).dictionaryObject
+        var payload = data.jsonDictionary()
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)
             let htmlDict = ["html": str!] as NSDictionary
@@ -87,7 +86,7 @@ class ApiClient {
                 }
             }
         } else {
-            self.handleError(payload!, statusCode: statusCode, error: error, failure: failure)
+            self.handleError(payload! as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
         }
     }
     

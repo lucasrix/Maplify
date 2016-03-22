@@ -10,7 +10,7 @@ import GoogleMaps
 
 let kMaxAboutTextLength = 255
 
-class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
+class SignupUpdateProfileController: ViewController, InputTextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var locationInputField: InputTextField!
     @IBOutlet weak var urlInputField: InputTextField!
     @IBOutlet weak var aboutInputField: InputTextView!
@@ -131,8 +131,15 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate {
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()
-                print(statusCode)
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
+    }
+    
+    //MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

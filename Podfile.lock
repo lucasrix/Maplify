@@ -45,7 +45,6 @@ PODS:
   - SimpleAuth/FacebookWeb (0.3.9):
     - SimpleAuth/Core
   - Sugar (1.0.5)
-  - SwiftyJSON (2.3.2)
   - Tailor (0.4.5):
     - Sugar
   - TPKeyboardAvoiding (1.2.11)
@@ -69,7 +68,6 @@ DEPENDENCIES:
     branch `facebook-2.4-breaking-changes`)
   - SimpleAuth/FacebookWeb (from `https://github.com/adamjmcgrath/SimpleAuth-1.git`,
     branch `facebook-2.4-breaking-changes`)
-  - SwiftyJSON (~> 2.3)
   - Tailor (~> 0.4)
   - TPKeyboardAvoiding (~> 1.2)
   - TTTAttributedLabel (~> 1.13)
@@ -107,7 +105,6 @@ SPEC CHECKSUMS:
   RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7
   SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f

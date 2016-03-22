@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 
 class StoryPointCreationPopupViewController: ViewController {
-    var delegate: StoryPointCreationPopupDelegate! = nil
-    
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var ambientButton: UIButton!
     @IBOutlet weak var photoVideoButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
+    
+    var delegate: StoryPointCreationPopupDelegate! = nil
+    var location: MCMapCoordinate! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,25 +53,25 @@ class StoryPointCreationPopupViewController: ViewController {
     //MARK: - Actions
     @IBAction func ambientTapped(sender: UIButton) {
         self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
-            self?.delegate?.ambientDidTapped?()
+            self?.delegate?.ambientDidTapped((self?.location)!)
         }
     }
     
     @IBAction func photoVideoTapped(sender: UIButton) {
         self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
-            self?.delegate?.photoVideoDidTapped?()
+            self?.delegate?.photoVideoDidTapped((self?.location)!)
         }
     }
     
     @IBAction func textTapped(sender: UIButton) {
         self.dismissViewControllerAnimated(true) { [weak self] () -> Void in
-            self?.delegate?.textDidTapped?()
+            self?.delegate?.textDidTapped((self?.location)!)
         }
     }
 }
 
-@objc protocol StoryPointCreationPopupDelegate {
-    optional func ambientDidTapped()
-    optional func photoVideoDidTapped()
-    optional func textDidTapped()
+protocol StoryPointCreationPopupDelegate {
+    func ambientDidTapped(location: MCMapCoordinate)
+    func photoVideoDidTapped(location: MCMapCoordinate)
+    func textDidTapped(location: MCMapCoordinate)
 }

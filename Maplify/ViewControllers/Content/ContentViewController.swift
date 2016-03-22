@@ -9,6 +9,7 @@
 import Fusuma
 import Haneke
 import AFImageHelper
+import CoreLocation
 
 class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
@@ -40,8 +41,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
-        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] () -> () in
-            self?.routesShowPopupStoryPointCreationController(self!)
+        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
+            self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
@@ -140,7 +141,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     // MARK: - FusumaDelegate
     func fusumaImageSelected(image: UIImage) {
-        
         // cashing image
         let cache = Shared.imageCache
         let uniqeId = NSUUID().UUIDString
@@ -158,5 +158,13 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     func fusumaDismissedWithImage(image: UIImage) {
         // TODO:
         print("Called just after FusumaViewController is dismissed.")
+    }
+    
+    func photoVideoDidTapped(location: MCMapCoordinate) {
+    // TODO:
+    }
+    
+    func textDidTapped(location: MCMapCoordinate) {
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, location: location)
     }
 }

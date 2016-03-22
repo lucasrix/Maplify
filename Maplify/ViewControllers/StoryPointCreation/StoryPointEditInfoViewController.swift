@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import RealmSwift
 import Haneke
+import CoreLocation
 
 class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
@@ -25,7 +26,7 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     var storyPointAttachmentId = ""
     var storyPointDescription = ""
     var placesClient: GMSPlacesClient! = nil
-    var location: Location! = nil
+    var location: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -67,22 +68,15 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - location
     func retrieveCurrentPlace() {
-        self.placesClient = GMSPlacesClient()
-        self.placesClient.currentPlaceWithCallback { [weak self] (placesList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
-            if (error != nil) {
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
+            if error != nil {
                 print(error)
             } else {
-                if let placeLikelihoodList = placesList {
-                    let place = placeLikelihoodList.likelihoods.first?.place
-                    if let place = place {
-                        self?.placeOrLocationTextField.text = place.name
-                        self?.location = Location()
-                        self?.location.latitude = place.coordinate.latitude
-                        self?.location.longitude = place.coordinate.longitude
-                    }
-                }
+                let address = response?.firstResult()
+                self?.placeOrLocationTextField.text = address?.thoroughfare
             }
-        }
+        })
     }
     
     // MARK: - actions

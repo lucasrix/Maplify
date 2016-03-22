@@ -15,8 +15,9 @@ class CaptureViewController: ViewController {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var addStoryPointImageView: UIImageView!
     
-    var addStoryPointButtonTapped: (() -> ())! = nil
-
+    var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
+    var googleMapService: GoogleMapService! = nil
+    
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class CaptureViewController: ViewController {
     }
     
     func setupAddStoryPointImageView() {
-        let gesture = UILongPressGestureRecognizer(target: self, action: "addStoryPointImageDidTap")
+        let gesture = UILongPressGestureRecognizer(target: self, action: "addStoryPointImageDidTap:")
         gesture.minimumPressDuration = kMinimumPressDuration
         self.addStoryPointImageView.addGestureRecognizer(gesture)
     }
@@ -60,8 +61,10 @@ class CaptureViewController: ViewController {
     }
     
     // MARK: - actions
-    @IBAction func addStoryPointImageDidTap() {
-        self.addStoryPointButtonTapped()
+    func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
+        let point = touchGesture.locationInView(self.mapView)
+        let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
+        self.addStoryPointButtonTapped(location: location)
     }
 }
 

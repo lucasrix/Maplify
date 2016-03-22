@@ -52,6 +52,14 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         (self.mapView as! GMSMapView).camera = camera
     }
     
+    // MARK: - location
+    func locationFromTouch(mapView: UIView, point: CGPoint) -> MCMapCoordinate {
+        let serviceView = (mapView as! MCMapView).serviceView
+        let coordinate = (serviceView as! GMSMapView).projection.coordinateForPoint(point)
+        let location = MCMapCoordinate(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return location
+    }
+    
     // MARK: - MCMapServiceProtocol
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         self.delegate?.didTapMapView?(mapView, itemObject: marker)

@@ -348,8 +348,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7BE-5q-eJy">
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label for characters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yR8-4H-4ll">
-                                        <rect key="frame" x="8" y="4" width="359" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label for characters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="yR8-4H-4ll">
+                                        <rect key="frame" x="8" y="7" width="359" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -358,6 +358,9 @@
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8oQ-gN-Pib"/>
+                                    <constraint firstItem="yR8-4H-4ll" firstAttribute="leading" secondItem="7BE-5q-eJy" secondAttribute="leading" constant="8" id="ArI-kc-tG9"/>
+                                    <constraint firstAttribute="trailing" secondItem="yR8-4H-4ll" secondAttribute="trailing" constant="8" id="Wu7-WX-sH8"/>
+                                    <constraint firstItem="yR8-4H-4ll" firstAttribute="centerY" secondItem="7BE-5q-eJy" secondAttribute="centerY" id="fNt-Aj-aqE"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TpD-2L-g93">
@@ -436,7 +439,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is this part of a story?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="My2-bp-8Jg">
-                                                <rect key="frame" x="15" y="206" width="207" height="25"/>
+                                                <rect key="frame" x="15" y="206" width="215" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="vz2-2R-dKC"/>
                                                 </constraints>
@@ -445,10 +448,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJm-bX-vti">
-                                                <rect key="frame" x="232" y="199" width="128" height="40"/>
+                                                <rect key="frame" x="240" y="199" width="120" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="8S6-0n-eK9"/>
-                                                    <constraint firstAttribute="width" constant="128" id="tk1-gj-shX"/>
+                                                    <constraint firstAttribute="width" constant="120" id="tk1-gj-shX"/>
                                                 </constraints>
                                                 <state key="normal" title="Add to story &gt;"/>
                                                 <connections>

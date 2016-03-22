@@ -154,6 +154,10 @@ class ApiClient {
     func retrievePrivacyPolicy(success: successClosure!, failure: failureClosure!) {
         self.getRequest("privacy_policy", params: nil, manager: WebContentManager(), success: success, failure: failure)
     }
+    
+    func createTextStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
 }
 
 private extension String {

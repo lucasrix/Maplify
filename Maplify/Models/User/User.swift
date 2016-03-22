@@ -23,6 +23,7 @@ class User: Model {
         
         let userDict = map["user"] as! [String : AnyObject]
         
+        self.id <- userDict.property("id")
         self.created_at <- userDict.property("created_at")
         self.updated_at <- userDict.property("updated_at")
         self.email <- userDict.property("email")

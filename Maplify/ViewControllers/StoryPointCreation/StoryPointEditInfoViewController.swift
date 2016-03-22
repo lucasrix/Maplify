@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class StoryPointEditInfoViewController: ViewController {
     @IBOutlet weak var captionLabel: UILabel!
@@ -19,11 +20,14 @@ class StoryPointEditInfoViewController: ViewController {
     @IBOutlet weak var addToStoryButton: UIButton!
     
     var storyPointDescription = ""
+    var placesClient: GMSPlacesClient! = nil
+    var location: Location! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
+        self.retrieveCurrentPlace()
     }
     
     func setup() {
@@ -55,8 +59,49 @@ class StoryPointEditInfoViewController: ViewController {
         return UIColor.darkGreyBlue()
     }
     
+    // MARK: - location
+    func retrieveCurrentPlace() {
+        self.placesClient = GMSPlacesClient()
+        self.placesClient.currentPlaceWithCallback { [weak self] (placesList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+            if (error != nil) {
+                print(error)
+            } else {
+                if let placeLikelihoodList = placesList {
+                    let place = placeLikelihoodList.likelihoods.first?.place
+                    if let place = place {
+                        self?.placeOrLocationTextField.text = place.name
+                        self?.location = Location()
+                        self?.location.latitude = place.coordinate.latitude
+                        self?.location.longitude = place.coordinate.longitude
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
         // TODO:
+    }
+    
+    // MARK: - navigation bar item actions
+    override func rightBarButtonItemDidTap() {
+        self.remotePostStoryPoint()
+    }
+    
+    // MARK: - private
+    func remotePostStoryPoint() {
+
+        let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
+        let storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
+                                            "kind":"text",
+                                            "text":self.storyPointDescription,
+                                        "location":locationDict]
+        
+        ApiClient.sharedClient.createTextStoryPoint(storyPointDict, success: { (response) -> () in
+            print("YES")
+            }) { (statusCode, errors, localDescription, messages) -> () in
+                print("NO")
+        }
     }
 }

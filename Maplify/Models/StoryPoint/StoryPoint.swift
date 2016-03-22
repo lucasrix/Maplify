@@ -7,21 +7,27 @@
 //
 
 import Tailor
-import CoreLocation
 
 class StoryPoint: Model {
     dynamic var user: User! = nil
     dynamic var story: Story! = nil
-    dynamic var location: CLLocation! = nil
-    dynamic var locationTitle = ""
-    dynamic var title = ""
+    dynamic var location: Location! = nil
+    dynamic var attachment: Attachment! = nil
+    dynamic var kind = ""
+    dynamic var caption = ""
     dynamic var storyPointDescription = ""
-    dynamic var file = ""
-    dynamic var type = ""
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
-        //TODO:
+        let storyPointDict = map["story_point"] as! [String : AnyObject]
+        
+        self.id <- storyPointDict.property("id")
+        self.user <- map.relation("story_point")
+        self.location <- storyPointDict.relation("location")
+        self.kind <- storyPointDict.property("kind")
+        self.caption <- storyPointDict.property("caption")
+        self.attachment <- storyPointDict.relation("attachment")
+        print("")
     }
 }

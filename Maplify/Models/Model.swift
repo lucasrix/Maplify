@@ -10,11 +10,13 @@ import RealmSwift
 import Tailor
 
 class Model: RealmSwift.Object, Mappable {
+    dynamic var id: Int = 0
     dynamic var created_at = ""
     dynamic var updated_at = ""
     
     required init() {
         super.init()
+        
     }
     
     convenience required init(_ map: [String : AnyObject]) {

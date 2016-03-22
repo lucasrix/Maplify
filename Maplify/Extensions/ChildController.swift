@@ -8,14 +8,14 @@
 
 import Foundation
 
-extension UIViewController {
+extension ViewController {
     func configureChildViewController(childController: UIViewController, onView: UIView?) {
         var holderView = self.view
         if let onView = onView {
             holderView = onView
         }
         self.addChildViewController(childController)
-        childController.view.frame = self.view.bounds
+        childController.view.frame = onView!.bounds
         holderView.addSubview(childController.view)
         childController.didMoveToParentViewController(self)
     }

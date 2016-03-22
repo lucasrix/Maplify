@@ -10,6 +10,7 @@ import UIKit
 import AFImageHelper
 
 class ViewController: UIViewController {
+    private var currentChildViewController: UIViewController! = nil
     private let progressHud = ProgressHUD()
     
     // MARK: - view controller life cycle
@@ -42,7 +43,6 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : self.navigationBarTextColor()]
         self.navigationController?.navigationBar.translucent = self.navigationBarIsTranlucent()
         self.navigationController?.navigationBar.setBackgroundImage(self.navigationBarBackgroundImage(), forBarMetrics: .Default)
-        UIApplication.sharedApplication().statusBarStyle = self.navigationBarStyle()
     }
     
     private func populateNavigationBarItems() {
@@ -71,6 +71,16 @@ class ViewController: UIViewController {
         return (self.supportLandscapeMode()) ? .All : .Portrait
     }
     
+    // MARK: - manage child view controllers
+    func replaceChildViewController(viewController: UIViewController, parentView: UIView) {
+        if self.currentChildViewController != nil {
+            self.removeChildController(self.currentChildViewController)
+        }
+        
+        self.currentChildViewController = viewController
+        self.configureChildViewController(self.currentChildViewController, onView: parentView)
+    }
+    
     // MARK: - methods to override
     func backButtonHidden() -> Bool {
         return false
@@ -88,7 +98,7 @@ class ViewController: UIViewController {
         return UIColor.clearColor()
     }
     
-    func navigationBarStyle() -> UIStatusBarStyle {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     

@@ -24,8 +24,8 @@ class NavigationViewController: UINavigationController {
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return self.topViewController
     }
     
     // MARK: - device orientation support

@@ -19,3 +19,7 @@ struct Frame {
 struct ScreenSize {
     static let iPhoneSixScreenPointsHeight: CGFloat = 667
 }
+
+struct NavigationBar {
+    static let defaultOpacity: CGFloat = 0.8
+}

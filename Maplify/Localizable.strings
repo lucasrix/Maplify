@@ -23,7 +23,7 @@
 "InputField.Description.Char" = "char";
 "InputField.Description.Of" = "of";
 
-// Labels
+//Controllers
 "Controller.Signup.Title" = "Sign Up";
 "Controller.Signup.setPhoto" = "Set your photo";
 "Controller.Signup.description" = "Hi, what's your name?";
@@ -39,7 +39,9 @@
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
+"Controller.Capture.Title" = "Near you";
 
+// Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
 
 //Buttons

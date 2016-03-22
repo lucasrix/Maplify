@@ -37,3 +37,10 @@ struct OnboardImages {
     static let onboardDiscoverIcon = "onboardDiscoverIcon"
     static let onboardCaptureIcon = "onboardCaptureIcon"
 }
+
+struct TabButtonImages {
+    static let menuHighlighted = "icoTabMenuHighlighted"
+    static let profileHighlighted = "icoTabProfileHighlighted"
+    static let locationHighlighted = "icoTabLocationHighlighted"
+    static let discoverHighlighted = "icoTabDiscoverHighlighted"
+}

@@ -155,8 +155,17 @@ class ApiClient {
         self.getRequest("privacy_policy", params: nil, manager: WebContentManager(), success: success, failure: failure)
     }
     
-    func createTextStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+    func createStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func postAttachment(file: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["mimeType": "image/png", "fileName": "photo.png"]
+        var data: [String: AnyObject]! = nil
+        if (file != nil) {
+            data = ["file": file]
+        }
+        self.postRequest("attachments", params: params, data: data, manager: AttachmentManager(), progress: nil, success: success, failure: failure)
     }
 }
 

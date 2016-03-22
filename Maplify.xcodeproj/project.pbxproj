@@ -31,6 +31,8 @@
 		1FC781021CA14C2600C50C23 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781011CA14C2600C50C23 /* Location.swift */; };
 		1FC781051CA151E900C50C23 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781041CA151E900C50C23 /* Attachment.swift */; };
 		1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781061CA171AF00C50C23 /* Dictionary.swift */; };
+		1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
+		1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -135,6 +137,7 @@
 		1FC781011CA14C2600C50C23 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1FC781041CA151E900C50C23 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		1FC781061CA171AF00C50C23 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManager.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				1FC781041CA151E900C50C23 /* Attachment.swift */,
+				1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */,
 			);
 			path = Attachment;
 			sourceTree = "<group>";
@@ -729,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB705BD1C9C89B500FC3496 /* Auth.storyboard in Resources */,
+				1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +825,7 @@
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
+				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,

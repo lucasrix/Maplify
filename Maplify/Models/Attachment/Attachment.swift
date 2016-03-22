@@ -14,7 +14,9 @@ class Attachment: Model {
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
-        self.id <- map.property("id")
-        self.file_url <- map.property("file_url")
+        let attachmentDict = map["attachment"] as! [String : AnyObject]
+        
+        self.id <- attachmentDict.property("id")
+        self.file_url <- attachmentDict.property("file_url")
     }
 }

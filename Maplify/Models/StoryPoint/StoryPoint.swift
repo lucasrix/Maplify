@@ -34,6 +34,8 @@ class StoryPoint: Model {
         self.location <- storyPointDict.relation("location")
         self.kind <- storyPointDict.property("kind")
         self.caption <- storyPointDict.property("caption")
-        self.attachment <- storyPointDict.relation("attachment")
+        if !(storyPointDict["attachment"] is NSNull) {
+            self.attachment <- map.relation("story_point")
+        }
     }
 }

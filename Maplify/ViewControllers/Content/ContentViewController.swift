@@ -84,12 +84,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     override func backButtonHidden() -> Bool {
         return true
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    
+
     // MARK: - actions
     func selectTabButton(button: UIButton) {
         self.menuTabButton.selected = false

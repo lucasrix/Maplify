@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : self.navigationBarTextColor()]
         self.navigationController?.navigationBar.translucent = self.navigationBarIsTranlucent()
         self.navigationController?.navigationBar.setBackgroundImage(self.navigationBarBackgroundImage(), forBarMetrics: .Default)
-        UIApplication.sharedApplication().statusBarStyle = self.navigationBarStyle()
     }
     
     private func populateNavigationBarItems() {
@@ -99,7 +98,7 @@ class ViewController: UIViewController {
         return UIColor.clearColor()
     }
     
-    func navigationBarStyle() -> UIStatusBarStyle {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     

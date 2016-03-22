@@ -63,6 +63,7 @@
 		A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D91C7F192100443C06 /* AlertController.swift */; };
 		A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DB1C7F192100443C06 /* StringUtils.swift */; };
 		A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
+		A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7BBB1CA1628800455E6D /* UIImage.swift */; };
 		A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E741C96F48A00399A38 /* TermsViewController.swift */; };
 		A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E781C971DF200399A38 /* PolicyViewController.swift */; };
 		A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
@@ -159,6 +160,7 @@
 		A58A52DA1C7F192100443C06 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		A58A52DB1C7F192100443C06 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		A58A53191C7F345300443C06 /* ConfigHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHepler.swift; sourceTree = "<group>"; };
+		A59A7BBB1CA1628800455E6D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		A59A7E741C96F48A00399A38 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		A59A7E781C971DF200399A38 /* PolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
 		A59A7E7A1C9AC32400399A38 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				A508F4301C902634007131C9 /* ProgressHUD.swift */,
 				1FB705B51C9C5D0000FC3496 /* ChildController.swift */,
 				1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */,
+				A59A7BBB1CA1628800455E6D /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -802,6 +805,7 @@
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */,
+				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,

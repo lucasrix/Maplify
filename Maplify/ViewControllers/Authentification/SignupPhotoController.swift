@@ -140,15 +140,15 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
             self.imagePicker = UIImagePickerController()
             self.imagePicker.delegate = self
             self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = sourceType
         }
+        self.imagePicker.sourceType = sourceType
         self.presentViewController(self.imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
-            self.setPhotoImage.image = pickedImage.roundCornersToCircle()
+            self.setPhotoImage.image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
         }
         self.setPhotoLabelView.hidden = true
         dismissViewControllerAnimated(true, completion: nil)

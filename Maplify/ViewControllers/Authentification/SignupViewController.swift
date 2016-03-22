@@ -47,11 +47,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupNextButton() {
-        let nextButton = RoundedButton(frame: Frame.doneButtonFrame)
-        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
-        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: nextButton)
-        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
     func setupImageView() {
@@ -59,7 +55,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     }
     
     // MARK: - actions
-    func nextButtonDidTap() {
+    override func rightBarButtonItemDidTap() {
         self.emailInputField.textField.endEditing(true)
         self.passwordInputField.textField.endEditing(true)
         

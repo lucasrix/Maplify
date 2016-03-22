@@ -40,15 +40,11 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupDoneButton() {
-        let doneButton = RoundedButton(frame: Frame.doneButtonFrame)
-        doneButton.setTitle(NSLocalizedString("Button.Done", comment: String()), forState: .Normal)
-        doneButton.addTarget(self, action: "doneButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: doneButton)
-        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
     }
     
     // MARK: - Actions
-    func doneButtonDidTap() {
+    override func rightBarButtonItemDidTap() {
         self.emailInputField.textField.endEditing(true)
         self.passwordInputField.textField.endEditing(true)
         

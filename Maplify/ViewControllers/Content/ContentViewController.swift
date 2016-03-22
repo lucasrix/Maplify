@@ -126,6 +126,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     }
     
     func textDidTapped() {
-    // TODO:
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text)
     }
 }

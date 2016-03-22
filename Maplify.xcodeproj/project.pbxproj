@@ -24,6 +24,13 @@
 		1FB70B331C9DB19500FC3496 /* StoryPointCreationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */; };
 		1FC780F51CA01DB000C50C23 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F41CA01DB000C50C23 /* Story.swift */; };
 		1FC780F71CA01ED500C50C23 /* StoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F61CA01ED500C50C23 /* StoryPoint.swift */; };
+		1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */; };
+		1FC780FB1CA0349E00C50C23 /* NavigationBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */; };
+		1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */; };
+		1FC780FF1CA14A0C00C50C23 /* StoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */; };
+		1FC781021CA14C2600C50C23 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781011CA14C2600C50C23 /* Location.swift */; };
+		1FC781051CA151E900C50C23 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781041CA151E900C50C23 /* Attachment.swift */; };
+		1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781061CA171AF00C50C23 /* Dictionary.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -121,6 +128,13 @@
 		1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointCreationPopupViewController.swift; sourceTree = "<group>"; };
 		1FC780F41CA01DB000C50C23 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		1FC780F61CA01ED500C50C23 /* StoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPoint.swift; sourceTree = "<group>"; };
+		1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointEditDescriptionViewController.swift; sourceTree = "<group>"; };
+		1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarItems.swift; sourceTree = "<group>"; };
+		1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointEditInfoViewController.swift; sourceTree = "<group>"; };
+		1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointManager.swift; sourceTree = "<group>"; };
+		1FC781011CA14C2600C50C23 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1FC781041CA151E900C50C23 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		1FC781061CA171AF00C50C23 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */,
+				1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */,
+				1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */,
 			);
 			path = StoryPointCreation;
 			sourceTree = "<group>";
@@ -268,8 +284,25 @@
 			isa = PBXGroup;
 			children = (
 				1FC780F61CA01ED500C50C23 /* StoryPoint.swift */,
+				1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */,
 			);
 			path = StoryPoint;
+			sourceTree = "<group>";
+		};
+		1FC781001CA14C1A00C50C23 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				1FC781011CA14C2600C50C23 /* Location.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		1FC781031CA151DB00C50C23 /* Attachment */ = {
+			isa = PBXGroup;
+			children = (
+				1FC781041CA151E900C50C23 /* Attachment.swift */,
+			);
+			path = Attachment;
 			sourceTree = "<group>";
 		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
@@ -461,6 +494,8 @@
 				1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */,
 				A59A7BBB1CA1628800455E6D /* UIImage.swift */,
 				A59A7BBD1CA1666100455E6D /* NSData.swift */,
+				1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */,
+				1FC781061CA171AF00C50C23 /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,6 +546,8 @@
 		A5A0E98D1C86FA290094FC04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FC781031CA151DB00C50C23 /* Attachment */,
+				1FC781001CA14C1A00C50C23 /* Location */,
 				1FC780F21CA01D8000C50C23 /* Story */,
 				1FC780F31CA01D8000C50C23 /* StoryPoint */,
 				A5D7AAF11C9C437F00A94C4F /* Profile */,
@@ -776,6 +813,7 @@
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
+				1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
@@ -787,6 +825,7 @@
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
+				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
@@ -798,9 +837,13 @@
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
+				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
+				1FC780FB1CA0349E00C50C23 /* NavigationBarItems.swift in Sources */,
+				1FC780FF1CA14A0C00C50C23 /* StoryPointManager.swift in Sources */,
 				A5D7AAF91C9C437F00A94C4F /* WebContent.swift in Sources */,
 				8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */,
 				1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */,
+				1FC781051CA151E900C50C23 /* Attachment.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
@@ -827,6 +870,7 @@
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
+				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
 				A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */,
 				A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */,

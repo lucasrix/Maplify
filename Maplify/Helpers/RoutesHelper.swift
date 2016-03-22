@@ -64,6 +64,19 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind) {
+        let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
+        storyPointEditDescriptionController.type = storyPointKind
+        self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
+    }
+    
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind) {
+        let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
+        storyPointEditInfoViewController.storyPointDescription = storyPointDescription
+        storyPointEditInfoViewController.storyPointKind = storyPointKind
+        self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController

@@ -80,7 +80,7 @@ class ApiClient {
         }
         let statusCode = (response as NSHTTPURLResponse).statusCode
         if acceptCodes.contains(statusCode) {
-            if let dataDictionary = payload!["data"] {
+            if let dataDictionary = (payload as! [String : AnyObject])["data"] {
                 dispatch_async(dispatch_get_main_queue()) {
                     success?(response: manager.manageResponse(dataDictionary as! [String : AnyObject]))
                 }
@@ -153,6 +153,10 @@ class ApiClient {
     
     func retrievePrivacyPolicy(success: successClosure!, failure: failureClosure!) {
         self.getRequest("privacy_policy", params: nil, manager: WebContentManager(), success: success, failure: failure)
+    }
+    
+    func createTextStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
 }
 

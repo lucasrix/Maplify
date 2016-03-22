@@ -14,15 +14,12 @@ class User: Model {
     dynamic var email = ""
     dynamic var profile: Profile! = nil
     
-    required init() {
-        super.init()
-    }
-    
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
         let userDict = map["user"] as! [String : AnyObject]
         
+        self.id <- userDict.property("id")
         self.created_at <- userDict.property("created_at")
         self.updated_at <- userDict.property("updated_at")
         self.email <- userDict.property("email")

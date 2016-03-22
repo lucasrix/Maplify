@@ -14,6 +14,9 @@
 "Text.Placeholder.Location" = "Home City";
 "Text.Placeholder.PersonalURL" = "Personal URL";
 "Text.Placeholder.AboutYou" = "About You";
+"Text.Placeholder.EnterBriefCaption" = "Enter a brief caption";
+"Text.Placeholder.EveryPostMustBeGeotagged" = "Every post must be geotagged";
+"Text.Placeholder.EnterTag" = "Enter tag";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -35,6 +38,7 @@
 "Controller.Login.Title" = "Log In";
 "Controller.Terms.Title" = "Terms of Use";
 "Controller.Policy.Title" = "Privacy Policy";
+"Controller.StoryPointEditDescription.Title" = "New Post";
 "Controller.Onboard.Discover.Title" = "Discover";
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";
@@ -43,6 +47,14 @@
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
+"Label.Caption" = "Caption";
+"Label.PlaceOrLocation" = "Place or location";
+"Label.Tags" = "Tags";
+"Label.IsThisPartOfStory" = "Is this part of a story?";
+
+//Subsrtings
+"Substring.Of" = "of";
+"Substring.Chars" = "chars";
 
 //Buttons
 "Button.Ok" = "OK";
@@ -58,6 +70,8 @@
 "Button.Ambient" = "Ambient";
 "Button.PhotoVideo" = "Photo / Video";
 "Button.Text" = "Text";
+"Button.Post" = "Post";
+"Button.AddToStory" = "Add to Story >";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

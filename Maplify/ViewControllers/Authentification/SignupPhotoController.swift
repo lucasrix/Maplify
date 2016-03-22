@@ -67,11 +67,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     func setupNextButton() {
-        let nextButton = RoundedButton(frame: Frame.doneButtonFrame)
-        nextButton.setTitle(NSLocalizedString("Button.Next", comment: String()), forState: .Normal)
-        nextButton.addTarget(self, action: "nextButtonDidTap", forControlEvents: .TouchUpInside)
-        let rightBarItem = UIBarButtonItem(customView: nextButton)
-        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
     // MARK: - actions
@@ -98,7 +94,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
             })
     }
     
-    func nextButtonDidTap() {
+    override func rightBarButtonItemDidTap() {
         if self.firstNameField.textField.text!.length > 0 || self.lastNameField.textField.text!.length > 0 {
             self.user = User()
             self.user.profile = Profile()

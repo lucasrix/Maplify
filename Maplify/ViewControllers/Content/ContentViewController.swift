@@ -127,11 +127,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped() {
-    // TODO:
+        self.routesOpenAudioStoryPointController()
     }
     
     func photoVideoDidTapped() {
-//        self.routesOpenStoryPointAddPhotoVideoController()
         self.openFusumaController()
     }
     

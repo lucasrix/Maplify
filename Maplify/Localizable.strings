@@ -44,6 +44,7 @@
 "Controller.Onboard.Capture.Title" = "Capture";
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
 "Controller.Capture.Title" = "Near you";
+"Controller.Ambient.Title" = "Ambient";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";

@@ -6,6 +6,12 @@ PODS:
     - ISO8601
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
+  - EZAudio (1.1.4):
+    - EZAudio/Full (= 1.1.4)
+  - EZAudio/Core (1.1.4)
+  - EZAudio/Full (1.1.4):
+    - EZAudio/Core
+    - TPCircularBuffer (= 1.1)
   - Fabric (1.6.6)
   - Fusuma (0.2.5)
   - GoogleMaps (1.12.3)
@@ -48,6 +54,7 @@ PODS:
   - Sugar (1.0.5)
   - Tailor (0.4.5):
     - Sugar
+  - TPCircularBuffer (1.1)
   - TPKeyboardAvoiding (1.2.11)
   - TTTAttributedLabel (1.13.4)
 
@@ -55,9 +62,10 @@ DEPENDENCIES:
   - AFImageHelper (~> 3.0)
   - Alamofire (~> 3.2)
   - ALThreeCircleSpinner (~> 1.0)
-  - Crashlytics
-  - Fabric
-  - Fusuma
+  - Crashlytics (~> 3.7)
+  - EZAudio (from `https://github.com/rzehan/EZAudio.git`, commit `df349f2729139bfb2410644e05bb2945af6f57c3`)
+  - Fabric (~> 1.6)
+  - Fusuma (~> 0.2)
   - GoogleMaps (~> 1.12)
   - GooglePlaces (~> 1.0)
   - HanekeSwift (~> 0.10)
@@ -75,11 +83,17 @@ DEPENDENCIES:
   - TTTAttributedLabel (~> 1.13)
 
 EXTERNAL SOURCES:
+  EZAudio:
+    :commit: df349f2729139bfb2410644e05bb2945af6f57c3
+    :git: https://github.com/rzehan/EZAudio.git
   SimpleAuth:
     :branch: facebook-2.4-breaking-changes
     :git: https://github.com/adamjmcgrath/SimpleAuth-1.git
 
 CHECKOUT OPTIONS:
+  EZAudio:
+    :commit: df349f2729139bfb2410644e05bb2945af6f57c3
+    :git: https://github.com/rzehan/EZAudio.git
   SimpleAuth:
     :commit: f63bbd69bb042e1d1576696c9c0aa4b01a7c668e
     :git: https://github.com/adamjmcgrath/SimpleAuth-1.git
@@ -90,6 +104,7 @@ SPEC CHECKSUMS:
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
   CMDQueryStringSerialization: 4bb0a2f5e7d8d8678d911d88072274952cbef4e5
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  EZAudio: 8e684b2b81b0437fe45faa7e2725fe99f69c84b6
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   Fusuma: ac7afe6344ff96e58f6a699021bca0c480daa161
   GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
@@ -109,6 +124,7 @@ SPEC CHECKSUMS:
   SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5
+  TPCircularBuffer: 4960a919e667280f7f38963d771f45871b64fe62
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 

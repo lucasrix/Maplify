@@ -46,6 +46,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.onboardController)
     }
     
+    func routesOpenAudioStoryPointController() {
+        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyPointAddAudioController)
+    }
+    
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)

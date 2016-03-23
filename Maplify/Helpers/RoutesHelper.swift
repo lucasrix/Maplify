@@ -68,18 +68,20 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, location: MCMapCoordinate) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.type = storyPointKind
         storyPointEditDescriptionController.location = location
+        storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
-    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, location: MCMapCoordinate) {
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
         let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
         storyPointEditInfoViewController.storyPointDescription = storyPointDescription
         storyPointEditInfoViewController.storyPointKind = storyPointKind
         storyPointEditInfoViewController.location = location
+        storyPointEditInfoViewController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     

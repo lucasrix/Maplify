@@ -115,10 +115,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
         self.selectTabButton(sender as! UIButton)
     }
     
-    @IBAction func createStoryPointTapped(sender: UIButton) {
-        self.routesShowPopupStoryPointCreationController(self)
-    }
-    
     // MARK: - private
     func openFusumaController() {
         let fusuma = FusumaViewController()
@@ -131,12 +127,12 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
         self.routesOpenAudioStoryPointController()
     }
     
-    func photoVideoDidTapped() {
+    func photoVideoDidTapped(location: MCMapCoordinate) {
         self.openFusumaController()
     }
     
-    func textDidTapped() {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "")
+    func textDidTapped(location: MCMapCoordinate) {
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
     }
     
     // MARK: - FusumaDelegate
@@ -145,7 +141,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
         let cache = Shared.imageCache
         let uniqeId = NSUUID().UUIDString
         cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  MCMapCoordinate(latitude: 0, longitude: 0))
     }
     
     // When camera roll is not authorized, this method is called.
@@ -158,13 +154,5 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     func fusumaDismissedWithImage(image: UIImage) {
         // TODO:
         print("Called just after FusumaViewController is dismissed.")
-    }
-    
-    func photoVideoDidTapped(location: MCMapCoordinate) {
-    // TODO:
-    }
-    
-    func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, location: location)
     }
 }

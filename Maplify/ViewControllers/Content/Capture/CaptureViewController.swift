@@ -37,9 +37,11 @@ class CaptureViewController: ViewController {
 
     func setupMap() {
         INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
-            let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            self!.mapView.service = GoogleMapService(region: region, zoom: 6)
-            self!.mapView.service.setMapType(kGMSTypeNormal)
+            if location != nil {
+                let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self!.mapView.service = GoogleMapService(region: region, zoom: 6)
+                self!.mapView.service.setMapType(kGMSTypeNormal)
+            }
         }
     }
     

@@ -27,27 +27,27 @@ extension UIViewController {
     
     // MARK: - open controllers
     func routesOpenLoginViewController() {
-        self.routesOpenViewController(Controllers.loginController)
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.loginController)
     }
     
     func routesOpenTermsViewController() {
-        self.routesOpenViewController(Controllers.termsController)
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.termsController)
     }
     
     func routesOpenSignUpPhotoViewController() {
-        self.routesOpenViewController(Controllers.signupPhotoController)
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.signupPhotoController)
     }
     
     func routesOpenPolicyViewController() {
-        self.routesOpenViewController(Controllers.policyController)
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.policyController)
     }
     
     func routesOpenOnboardController() {
-        self.routesOpenViewController(Controllers.onboardController)
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.onboardController)
     }
     
-    func routesOpenViewController(identifier: String) {
-        let viewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(identifier)
+    func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -64,16 +64,18 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
-        storyPointEditDescriptionController.type = storyPointKind
+        storyPointEditDescriptionController.storyPointKind = storyPointKind
+        storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
-    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind) {
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: String) {
         let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
         storyPointEditInfoViewController.storyPointDescription = storyPointDescription
         storyPointEditInfoViewController.storyPointKind = storyPointKind
+        storyPointEditInfoViewController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     

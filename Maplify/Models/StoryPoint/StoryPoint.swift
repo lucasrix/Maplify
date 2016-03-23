@@ -26,14 +26,13 @@ class StoryPoint: Model {
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
+                
+        self.id <- map.property("id")
+        self.user <- map.relationOrNil("story_point")
+        self.location <- map.relationOrNil("location")
+        self.kind <- map.property("kind")
+        self.caption <- map.property("caption")
+        self.attachment <- map.relationOrNil("attachment")
         
-        let storyPointDict = map["story_point"] as! [String : AnyObject]
-        
-        self.id <- storyPointDict.property("id")
-        self.user <- map.relation("story_point")
-        self.location <- storyPointDict.relation("location")
-        self.kind <- storyPointDict.property("kind")
-        self.caption <- storyPointDict.property("caption")
-        self.attachment <- storyPointDict.relation("attachment")
     }
 }

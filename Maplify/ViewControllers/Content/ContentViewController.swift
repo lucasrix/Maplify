@@ -6,9 +6,11 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import Fusuma
+import Haneke
 import AFImageHelper
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
     @IBOutlet weak var captureTabButton: UIButton!
     @IBOutlet weak var discoverTabButton: UIButton!
@@ -116,16 +118,46 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
         self.routesShowPopupStoryPointCreationController(self)
     }
     
+    // MARK: - private
+    func openFusumaController() {
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.presentViewController(fusuma, animated: true, completion: nil)
+    }
+    
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped() {
     // TODO:
     }
     
     func photoVideoDidTapped() {
-    // TODO:
+//        self.routesOpenStoryPointAddPhotoVideoController()
+        self.openFusumaController()
     }
     
     func textDidTapped() {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "")
+    }
+    
+    // MARK: - FusumaDelegate
+    func fusumaImageSelected(image: UIImage) {
+        
+        // cashing image
+        let cache = Shared.imageCache
+        let uniqeId = NSUUID().UUIDString
+        cache.set(value: image, key: uniqeId)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId)
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    func fusumaCameraRollUnauthorized() {
+        // TODO:
+        print("Camera roll unauthorized")
+    }
+    
+    // (Optional) Return the image but called after is dismissed.
+    func fusumaDismissedWithImage(image: UIImage) {
+        // TODO:
+        print("Called just after FusumaViewController is dismissed.")
     }
 }

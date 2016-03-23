@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import RealmSwift
+import Haneke
 
 class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
@@ -21,10 +22,12 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var addToStoryButton: UIButton!
     
     var storyPointKind: StoryPointKind! = nil
+    var storyPointAttachmentId = ""
     var storyPointDescription = ""
     var placesClient: GMSPlacesClient! = nil
     var location: Location! = nil
     
+    // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +35,7 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         self.retrieveCurrentPlace()
     }
     
+    // MARK: - setup
     func setup() {
         self.setupViews()
     }
@@ -89,20 +93,43 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         self.hideKeyboard()
-        self.remotePostStoryPoint()
+        self.showProgressHUD()
+        if self.storyPointKind == StoryPointKind.Text {
+            self.remotePostStoryPoint(0)
+        } else {
+            self.remotePostAttachment()
+        }
     }
     
     // MARK: - private
-    func remotePostStoryPoint() {
-        self.showProgressHUD()
-        
+    func remotePostAttachment() {
+        var file: NSData! = nil
+        if self.storyPointKind == StoryPointKind.Photo {
+            let cache = Shared.imageCache
+            cache.fetch(key: self.storyPointAttachmentId).onSuccess { data in
+                file = UIImagePNGRepresentation(data)
+            }
+        }
+        ApiClient.sharedClient.postAttachment(file, success: { [weak self] (response) -> () in
+            self?.remotePostStoryPoint((response as! Attachment).id)
+            }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    func remotePostStoryPoint(attachmentId: Int) {
         let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
-        let storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
-                                            "kind":"text",
+        let kind = self.storyPointKind.rawValue
+        var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
+                                            "kind":kind,
                                             "text":self.storyPointDescription,
                                         "location":locationDict]
+        if self.storyPointKind != StoryPointKind.Text {
+            storyPointDict["attachment_id"] = attachmentId
+        }
         
-        ApiClient.sharedClient.createTextStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
+        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
             let realm = try! Realm()
             try! realm.write {
                 realm.add(response as! StoryPoint)

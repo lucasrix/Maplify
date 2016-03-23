@@ -60,6 +60,11 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         return location
     }
     
+    // MARK: - GMSMapViewDelegate
+    func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
+        self.delegate?.didMoveMapView?(mapView, target: position)
+    }
+    
     // MARK: - MCMapServiceProtocol
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         self.delegate?.didTapMapView?(mapView, itemObject: marker)

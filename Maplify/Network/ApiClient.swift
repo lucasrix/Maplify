@@ -159,7 +159,11 @@ class ApiClient {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
     
-    func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+   func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.getRequest("story_points", params: params, manager: StoryPointManager(), success: success, failure: failure)
+    }
+
+   func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
          var data: [String: AnyObject]! = nil
         if (file != nil) {
             data = ["file": file]

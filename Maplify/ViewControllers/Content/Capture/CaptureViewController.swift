@@ -12,7 +12,7 @@ import GoogleMaps
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
 
-class CaptureViewController: ViewController {
+class CaptureViewController: ViewController, MCMapServiceDelegate {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var addStoryPointImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -47,6 +47,7 @@ class CaptureViewController: ViewController {
                 let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self?.googleMapService = GoogleMapService(region: region, zoom: 6)
                 self?.googleMapService.setMapType(kGMSTypeNormal)
+                self?.googleMapService.delegate = self
                 self?.mapView.service = self?.googleMapService
             }
         }
@@ -74,6 +75,11 @@ class CaptureViewController: ViewController {
     
     override func backButtonHidden() -> Bool {
         return true
+    }
+    
+    // MARK: - MCMapServiceDelegate
+    func didMoveMapView(mapView: UIView, target: AnyObject) {
+        print((target as! GMSCameraPosition).target)
     }
     
     // MARK: - actions

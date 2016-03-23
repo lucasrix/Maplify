@@ -20,6 +20,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     var tabCaptureNavigationController: NavigationViewController! = nil
     var tabDiscoverNavigationController: NavigationViewController! = nil
+    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -42,6 +43,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
         (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
+            self?.pickedLocation = location
             self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
@@ -141,7 +143,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
         let cache = Shared.imageCache
         let uniqeId = NSUUID().UUIDString
         cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  MCMapCoordinate(latitude: 0, longitude: 0))
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  self.pickedLocation)
     }
     
     // When camera roll is not authorized, this method is called.

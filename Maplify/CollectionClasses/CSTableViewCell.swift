@@ -8,8 +8,8 @@
 
 import UIKit
 
-@objc protocol CSTableViewCellProtocol {
-    optional func configure(cellData: AnyObject)
+protocol CSTableViewCellProtocol {
+    func configure(cellData: CSCellData)
 }
 
 class CSTableViewCell: UITableViewCell, CSTableViewCellProtocol {

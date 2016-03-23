@@ -8,12 +8,12 @@
 
 import UIKit
 
-@objc protocol CSCollectionViewCellProtocol {
-    optional func configure(cellData: AnyObject)
+protocol CSCollectionViewCellProtocol {
+    func configure(cellData: CSCellData)
 }
 
 class CSCollectionViewCell: UICollectionViewCell, CSCollectionViewCellProtocol {
-    func configure(cellData: AnyObject) {
+    func configure(cellData: CSCellData) {
         //override at subclass
     }
 }

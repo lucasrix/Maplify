@@ -42,6 +42,8 @@
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
 		8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A281C8CD5A10005DF12 /* SignupViewController.swift */; };
+		A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
+		A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
 		A5081E561C806D35006FBA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
 		A5081E591C807561006FBA52 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E581C807561006FBA52 /* SessionManager.swift */; };
@@ -151,6 +153,8 @@
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C130A281C8CD5A10005DF12 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorypointCell.swift; sourceTree = "<group>"; };
+		A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDataSource.swift; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		A5081E551C806D35006FBA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5081E581C807561006FBA52 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -619,6 +623,8 @@
 			isa = PBXGroup;
 			children = (
 				A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */,
+				A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */,
+				A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */,
 			);
 			path = Capture;
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 				A5728A1C1C88887400C6DA7E /* NavigationViewController.swift in Sources */,
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
+				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
@@ -855,6 +862,7 @@
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
 				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
+				A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */,
 				1FC780FB1CA0349E00C50C23 /* NavigationBarItems.swift in Sources */,
 				1FC780FF1CA14A0C00C50C23 /* StoryPointManager.swift in Sources */,
 				A5D7AAF91C9C437F00A94C4F /* WebContent.swift in Sources */,

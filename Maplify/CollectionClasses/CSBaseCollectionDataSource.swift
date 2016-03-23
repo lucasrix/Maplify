@@ -45,7 +45,7 @@ class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollec
         let cellData = self.activeModel.cellData(indexPath)
         let cellIdentifier = self.activeModel.cellIdentifier(indexPath)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! CSCollectionViewCell
-        cell.configure(cellData as! AnyObject)
+        cell.configure(cellData)
         return cell
     }
     

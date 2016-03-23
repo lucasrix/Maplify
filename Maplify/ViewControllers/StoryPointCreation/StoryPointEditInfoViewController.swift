@@ -11,6 +11,7 @@ import GoogleMaps
 import RealmSwift
 import Haneke
 import CoreLocation
+import Haneke
 
 class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!

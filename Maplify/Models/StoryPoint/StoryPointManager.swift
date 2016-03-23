@@ -10,6 +10,7 @@ import Tailor
 
 class StoryPointManager: ModelManager {
     override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        return StoryPoint(response)
+        let dictionary = (response["story_point"] != nil) ? (response["story_point"] as! [String : AnyObject]) : response
+        return StoryPoint(dictionary)
     }
 }

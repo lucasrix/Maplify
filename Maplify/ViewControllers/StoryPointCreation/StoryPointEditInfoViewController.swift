@@ -128,7 +128,6 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         if self.storyPointKind != StoryPointKind.Text {
             storyPointDict["attachment_id"] = attachmentId
         }
-        print(storyPointDict)
         
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
             let realm = try! Realm()

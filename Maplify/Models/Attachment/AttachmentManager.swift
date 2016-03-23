@@ -10,6 +10,7 @@ import Tailor
 
 class AttachmentManager: ModelManager {
     override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        return Attachment(response)
+        let dictionary = (response["attachment"] != nil) ? (response["attachment"] as! [String : AnyObject]) : response
+        return Attachment(dictionary)
     }
 }

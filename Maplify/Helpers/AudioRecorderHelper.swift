@@ -9,20 +9,28 @@
 import Foundation
 
 let kAudioFileName = "MaplifyAudioRecording.m4a"
+let kRecordTimeUpdateInterval: Double = 0.03
 
 class AudioRecorderHelper: NSObject {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var delegate: AudioRecorderDelegate! = nil
     var isRecording = false
+    var recordTimeMax: Double = 20
+    var recordProgress: Double = 0
+    private var timer: NSTimer? = nil
     
     override init() {
         super.init()
         
-        self.setupRecord()
+        self.setup()
     }
     
     // MARK: - setup
+    func setup() {
+        self.setupRecord()
+    }
+    
     func setupRecord() {
         recordingSession = AVAudioSession.sharedInstance()
         do {
@@ -54,8 +62,36 @@ class AudioRecorderHelper: NSObject {
         }
     }
     
+    // MARK: - timer
+    func startTimer() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(kRecordTimeUpdateInterval, target: self, selector: "timerDidUpdate:", userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    func timerDidUpdate(timer: NSTimer) {
+        if self.canRecord() {
+            self.recordProgress += kRecordTimeUpdateInterval
+            let progress = recordProgress / recordTimeMax
+            print(progress)
+            self.delegate?.audioRecordDidUpdateProgress(Float(progress))
+        } else {
+            timer.invalidate()
+            self.pauseRecording()
+        }
+    }
+    
     // MARK: - toggle record
     func toggleStartPauseRecording() {
+        if self.canRecord() {
+            self.changeRecordState()
+        }
+    }
+    
+    func changeRecordState() {
         if self.isRecording {
             self.pauseRecording()
         } else {
@@ -67,11 +103,15 @@ class AudioRecorderHelper: NSObject {
     // MARK: - start record
     private func startRecord() {
         audioRecorder.record()
+        self.startTimer()
+        self.delegate?.audioRecordDidStart()
     }
     
     // MARK: - pause record
     private func pauseRecording() {
         self.audioRecorder.pause()
+        self.stopTimer()
+        self.delegate?.audioRecordDidPause()
     }
 
     // MARK: - stop record
@@ -91,8 +131,15 @@ class AudioRecorderHelper: NSObject {
     private func filePath() -> String {
         return getDocumentsDirectory().stringByAppendingPathComponent(kAudioFileName)
     }
+    
+    private func canRecord() -> Bool {
+        return self.recordProgress < recordTimeMax
+    }
 }
 
 protocol AudioRecorderDelegate {
     func audioRecordDidFinishRecording(success: Bool, filePath: String)
+    func audioRecordDidUpdateProgress(progress: Float)
+    func audioRecordDidStart()
+    func audioRecordDidPause()
 }

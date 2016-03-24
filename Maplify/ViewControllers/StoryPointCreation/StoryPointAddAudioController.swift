@@ -45,6 +45,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.title = NSLocalizedString("Controller.Ambient.Title", comment: String())
         self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
         self.progressBarHeightConstraint.constant = kProgressBarHeight
+        self.progressBar.progress = 0 as Float
     }
     
     func setupAudioPlot() {
@@ -79,10 +80,18 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     }
     
     // MARK: - private
-    func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
+    private func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
         dispatch_async(dispatch_get_main_queue(), { () -> () in
             self.audioPlot?.updateBuffer(buffer[0], withBufferSize: bufferSize);
         });
+    }
+    
+    private func setupStartRecordUI() {
+        
+    }
+    
+    private func setupPauseRecordUI() {
+        
     }
     
     // MARK: - AudioRecorderDelegate
@@ -92,5 +101,17 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         } else {
             
         }
+    }
+    
+    func audioRecordDidUpdateProgress(progress: Float) {
+        self.progressBar.progress = progress
+    }
+    
+    func audioRecordDidStart() {
+        
+    }
+    
+    func audioRecordDidPause() {
+        
     }
 }

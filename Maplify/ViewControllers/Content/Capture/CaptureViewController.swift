@@ -12,6 +12,7 @@ import GoogleMaps
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
 let kStoryPointsRequestSuspendInterval: NSTimeInterval = 2
+let kStoryPointsFindingRadius: CGFloat = 100
 
 class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
@@ -85,8 +86,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
         ApiClient.sharedClient.getStoryPoints(params,
             success: { [weak self] (response) in
-                print(response)
-                print(self)
+                StoryPointManager.saveStoryPoints(response as! [StoryPoint])
             },
             failure:  { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -103,8 +103,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         let clLocation = (target as! GMSCameraPosition).target
         let location = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
         self.suspender.executeEvent(kStoryPointsRequestSuspendInterval) { [weak self] () in
-            print("request")
-            self!.retrieveStoryPoints(location, radius: 1)
+            self?.retrieveStoryPoints(location, radius: kStoryPointsFindingRadius)
         }
     }
     

@@ -112,6 +112,7 @@
 		A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAFE1C9C461900A94C4F /* WebContentManager.swift */; };
 		A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */; };
 		A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */; };
+		A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +225,7 @@
 		A5D7AAFE1C9C461900A94C4F /* WebContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentManager.swift; sourceTree = "<group>"; };
 		A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryPointManager.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +303,7 @@
 			children = (
 				1FC780F61CA01ED500C50C23 /* StoryPoint.swift */,
 				1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */,
+				A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */,
 			);
 			path = StoryPoint;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
+				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */,

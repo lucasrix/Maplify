@@ -35,4 +35,8 @@ class StoryPoint: Model {
         self.attachment <- map.relationOrNil("attachment")
         self.text <- map.property("text")
     }
+    
+    override class func primaryKey() -> String {
+        return "id"
+    }
 }

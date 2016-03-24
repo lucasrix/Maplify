@@ -46,6 +46,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
         self.progressBarHeightConstraint.constant = kProgressBarHeight
         self.progressBar.progress = 0 as Float
+        self.setupStartRecordUI()
     }
     
     func setupAudioPlot() {
@@ -80,18 +81,22 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     }
     
     // MARK: - private
-    private func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
+    func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
         dispatch_async(dispatch_get_main_queue(), { () -> () in
             self.audioPlot?.updateBuffer(buffer[0], withBufferSize: bufferSize);
         });
     }
     
     private func setupStartRecordUI() {
-        
+        self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStartDefault), forState: .Normal)
+        self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStartHighlited), forState: .Highlighted)
+        self.progressBar.progressTintColor = UIColor.dodgerBlue()
     }
     
     private func setupPauseRecordUI() {
-        
+        self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStopDefault), forState: .Normal)
+        self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStopHighlited), forState: .Highlighted)
+        self.progressBar.progressTintColor = UIColor.cherryRed()
     }
     
     // MARK: - AudioRecorderDelegate
@@ -108,10 +113,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     }
     
     func audioRecordDidStart() {
-        
+        self.setupPauseRecordUI()
     }
     
     func audioRecordDidPause() {
-        
+        self.setupStartRecordUI()
     }
 }

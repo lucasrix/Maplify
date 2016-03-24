@@ -44,3 +44,11 @@ struct TabButtonImages {
     static let locationHighlighted = "icoTabLocationHighlighted"
     static let discoverHighlighted = "icoTabDiscoverHighlighted"
 }
+
+struct ButtonImages {
+    static let recordButtonShotStartDefault = "ButtonShotDefault"
+    static let recordButtonShotStartHighlited = "ButtonShotHighlited"
+    static let recordButtonShotStopDefault = "ButtonShotStopDefault"
+    static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
+    
+}

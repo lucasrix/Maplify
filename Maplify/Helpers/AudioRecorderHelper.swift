@@ -76,7 +76,6 @@ class AudioRecorderHelper: NSObject {
         if self.canRecord() {
             self.recordProgress += kRecordTimeUpdateInterval
             let progress = recordProgress / recordTimeMax
-            print(progress)
             self.delegate?.audioRecordDidUpdateProgress(Float(progress))
         } else {
             timer.invalidate()

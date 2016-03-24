@@ -10,11 +10,12 @@ import UIKit
 
 @objc protocol CSBaseCollectionDataSourceDelegate {
     optional func didSelectModel(model: AnyObject, indexPath: NSIndexPath)
+    optional func scrollViewDidEndDecelerating(scrollView: UIScrollView)
 }
 
-class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var collectionView: UICollectionView!
-    var delegate: AnyObject!
+    var delegate: CSBaseCollectionDataSourceDelegate!
     var activeModel: CSActiveModel!
     var flowLayout: UICollectionViewFlowLayout! {
         didSet {
@@ -23,7 +24,7 @@ class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollec
     }
     
     // MARK: - init
-    init(collectionView: UICollectionView, activeModel: CSActiveModel, delegate: AnyObject) {
+    init(collectionView: UICollectionView, activeModel: CSActiveModel, delegate: CSBaseCollectionDataSourceDelegate) {
         super.init()
         self.collectionView = collectionView
         self.collectionView.dataSource = self
@@ -53,6 +54,11 @@ class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cellData = self.activeModel.cellData(indexPath)
         self.delegate?.didSelectModel?(cellData.model, indexPath: indexPath)
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        self.delegate?.scrollViewDidEndDecelerating!(scrollView)
     }
     
     // MARK: - Actions

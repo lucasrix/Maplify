@@ -60,6 +60,10 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         return location
     }
     
+    func currentZoom() -> Float {
+        return (self.mapView as! GMSMapView).camera.zoom
+    }
+    
     // MARK: - GMSMapViewDelegate
     func mapView(mapView: GMSMapView, willMove gesture: Bool) {
         self.delegate?.willMoveMapView!(mapView, willMove: gesture)
@@ -69,7 +73,6 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         self.delegate?.didMoveMapView?(mapView, target: position)
     }
     
-    // MARK: - MCMapServiceProtocol
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         self.delegate?.didTapMapView?(mapView, itemObject: marker)
         return true

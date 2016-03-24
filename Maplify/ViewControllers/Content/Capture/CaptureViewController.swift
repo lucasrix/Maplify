@@ -13,18 +13,21 @@ import RealmSwift
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
 let kStoryPointsRequestSuspendInterval: NSTimeInterval = 2
-let kStoryPointsFindingRadius: CGFloat = 100
+let kStoryPointsFindingRadius: CGFloat = 10
+let kDefaulMapZoom: Float = 13
 
-class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandlingProtocol {
+class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var addStoryPointImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
-    var storyPointDataSource: StoryPointDataSource! = nil
-    var storyPointActiveModel: CSActiveModel! = nil
     var suspender = Suspender()
+    
+    var storyPointDataSource: StoryPointDataSource! = nil
+    var storyPointActiveModel = CSActiveModel()
+    
     var mapActiveModel = MCMapActiveModel()
     var mapDataSource: MCMapDataSource! = nil
     
@@ -47,7 +50,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         self.setupMap()
         self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
-        self.setupStoryPointDetails()
     }
     
     func setupNavigationBar() {
@@ -66,7 +68,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
             if location != nil {
                 let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self?.googleMapService = GoogleMapService(region: region, zoom: 6)
+                self?.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
                 self?.googleMapService.setMapType(kGMSTypeNormal)
                 self?.googleMapService.delegate = self
                 self?.mapView.service = self?.googleMapService
@@ -80,9 +82,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         self.addStoryPointImageView.addGestureRecognizer(gesture)
     }
     
-    func setupStoryPointDetails() {
-        self.storyPointActiveModel = CSActiveModel()
-        self.storyPointActiveModel.addItems(["1", "2", "3"], cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
+    func updateStoryPointDetails(storyPoints: [StoryPoint]) {
+        self.storyPointActiveModel.removeData()
+        self.storyPointActiveModel.addItems(storyPoints, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
         self.storyPointDataSource = StoryPointDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
         let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumLineSpacing = kMinimumLineSpacing
@@ -101,6 +103,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
     func loadItemsFromDB() {
         let realm = try! Realm()
         let storyPoints = Array(realm.objects(StoryPoint))
+        self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
     }
@@ -119,7 +122,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
                 StoryPointManager.saveStoryPoints(response as! [StoryPoint])
                 self?.loadItemsFromDB()
             },
-            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+            failure: { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
@@ -145,6 +148,27 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         }
     }
     
+    func didTapMapView(mapView: UIView, itemObject: AnyObject) {
+        let clLocation = (itemObject as! GMSMarker).position
+        let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
+        let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
+        if storyPointIndex != NSNotFound {
+            let indexPath = NSIndexPath(forRow: storyPointIndex, inSection: 0)
+            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
+            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+        }
+    }
+    
+    // MARK: - CSBaseCollectionDataSourceDelegate
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
+        let storyPoint = self.mapActiveModel.storyPoint(indexPath)
+        
+        let region = MCMapRegion(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+        self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+    }
     
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {

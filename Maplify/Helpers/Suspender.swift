@@ -15,8 +15,10 @@ class Suspender: NSObject {
     var event: eventClosure! = nil
     
     func suspendEvent() {
-        self.timer.invalidate()
-        self.timer = nil
+        if self.timer != nil {
+            self.timer.invalidate()
+            self.timer = nil
+        }
     }
     
     func executeEvent(interval: NSTimeInterval, event: eventClosure) {

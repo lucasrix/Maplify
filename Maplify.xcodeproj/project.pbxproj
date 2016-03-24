@@ -113,6 +113,8 @@
 		A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */; };
 		A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */; };
 		A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */; };
+		A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
+		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +228,8 @@
 		A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryPointManager.swift; sourceTree = "<group>"; };
+		A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCMapActiveModel.swift; sourceTree = "<group>"; };
+		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -551,6 +555,7 @@
 				A59A7E881C9AD38600399A38 /* MCMapDataSource.swift */,
 				A59A7E8F1C9AE62E00399A38 /* MCMapRegion.swift */,
 				A59A7E911C9AFA0300399A38 /* MCMapItemsGroup.swift */,
+				A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */,
 			);
 			path = MapClasses;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 				A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */,
 				A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */,
 				A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */,
+				A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */,
 			);
 			path = Capture;
 			sourceTree = "<group>";
@@ -853,6 +859,7 @@
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
+				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
@@ -865,6 +872,7 @@
 				A5CACDE81CA40871004F1A3D /* Suspender.swift in Sources */,
 				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
+				A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */,
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,

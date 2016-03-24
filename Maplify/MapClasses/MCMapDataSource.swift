@@ -17,19 +17,21 @@ protocol MCMapDataSourceDelegate {
 class MCMapDataSource {
     var mapView: MCMapView! = nil
     var mapService: MCMapService! = nil
-    var delegate: MCMapDataSourceDelegate! = nil
-
-    func reloadMapView() {
+    var mapActiveModel: MCMapActiveModel! = nil
+    var delegate: AnyObject! = nil
+    
+    func reloadMapView<T: MCMapItem>(type: T.Type) {
         self.mapService.removeAllItems()
         
-        let numberOfGroups: Int = (self.delegate?.numberOfGroups())!
+        print(self.mapActiveModel.numberOfSections())
         
-        for i in 0...numberOfGroups {
-            let numberOfItems = (self.delegate?.numberOfMapItemsForGroup(i))!
-            for j in 0...numberOfItems {
-                let indexPath = NSIndexPath(forRow: i, inSection: j)
-                let mapItem = self.delegate?.mapItem(self.mapView, indexPath: indexPath)
-                self.mapService.placeItem(mapItem!)
+        for i in 0...self.mapActiveModel.numberOfSections() - 1 {
+            for j in 0...self.mapActiveModel.numberOfItems(i) - 1 {
+                let indexPath = NSIndexPath(forRow: j, inSection: i)
+                let data = self.mapActiveModel.cellData(indexPath)
+                let mapItem = T()
+                mapItem.configure(data)
+                self.mapService.placeItem(mapItem)
             }
         }
     }

@@ -29,8 +29,6 @@ class ApiClient {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
-                print(response)
-                print(error)
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
         }
     }

@@ -24,6 +24,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel: CSActiveModel! = nil
     var suspender = Suspender()
+    var mapActiveModel = MCMapActiveModel()
+    var mapDataSource: MCMapDataSource! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -42,6 +44,19 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+    }
+    
+    func updateMapActiveModel(storyPoints: [StoryPoint]) {
+        self.mapActiveModel.removeData()
+        self.mapActiveModel.addItems(storyPoints)
+    }
+    
+    func setupMapDataSource() {
+        self.mapDataSource = MCMapDataSource()
+        self.mapDataSource.mapActiveModel = self.mapActiveModel
+        self.mapDataSource.mapView = self.mapView
+        self.mapDataSource.mapService = self.googleMapService
+        self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
 
     func setupMap() {
@@ -87,11 +102,20 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         ApiClient.sharedClient.getStoryPoints(params,
             success: { [weak self] (response) in
                 StoryPointManager.saveStoryPoints(response as! [StoryPoint])
+                self?.updateMapActiveModel(response as! [StoryPoint])
+                self?.setupMapDataSource()
             },
             failure:  { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
+    }
+    
+    // MARK: - actions
+    func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
+        let point = touchGesture.locationInView(self.mapView)
+        let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
+        self.addStoryPointButtonTapped(location: location)
     }
     
     // MARK: - MCMapServiceDelegate
@@ -107,12 +131,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         }
     }
     
-    // MARK: - actions
-    func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
-        let point = touchGesture.locationInView(self.mapView)
-        let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
-        self.addStoryPointButtonTapped(location: location)
-    }
     
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {

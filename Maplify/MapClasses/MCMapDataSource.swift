@@ -21,17 +21,17 @@ class MCMapDataSource {
     var delegate: AnyObject! = nil
     
     func reloadMapView<T: MCMapItem>(type: T.Type) {
-        self.mapService.removeAllItems()
-        
-        print(self.mapActiveModel.numberOfSections())
-        
-        for i in 0...self.mapActiveModel.numberOfSections() - 1 {
-            for j in 0...self.mapActiveModel.numberOfItems(i) - 1 {
-                let indexPath = NSIndexPath(forRow: j, inSection: i)
-                let data = self.mapActiveModel.cellData(indexPath)
-                let mapItem = T()
-                mapItem.configure(data)
-                self.mapService.placeItem(mapItem)
+        if self.mapService != nil {
+            self.mapService.removeAllItems()
+            
+            for i in 0...self.mapActiveModel.numberOfSections() - 1 {
+                for j in 0...self.mapActiveModel.numberOfItems(i) - 1 {
+                    let indexPath = NSIndexPath(forRow: j, inSection: i)
+                    let data = self.mapActiveModel.cellData(indexPath)
+                    let mapItem = T()
+                    mapItem.configure(data)
+                    self.mapService.placeItem(mapItem)
+                }
             }
         }
     }

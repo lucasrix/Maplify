@@ -9,7 +9,26 @@
 class StoryPointMapItem: MCMapItem {
     override func configure(data: CSCellData) {
         let storyPoint = data.model as! StoryPoint
-        self.location = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
-        self.image = UIImage(named: MapPinImages.base)
+        
+        self.setupLocation(storyPoint.location)
+        self.setupImage(storyPoint.kind)
+    }
+    
+    func setupLocation(location: Location) {
+        self.location = MCMapCoordinate(latitude: location.latitude, longitude: location.longitude)
+    }
+    
+    func setupImage(type: String) {
+        if type == StoryPointKind.Audio.rawValue {
+            self.image = UIImage(named: MapPinImages.audio)
+        } else if type == StoryPointKind.Text.rawValue {
+            self.image = UIImage(named: MapPinImages.text)
+        } else if type == StoryPointKind.Video.rawValue {
+            self.image = UIImage(named: MapPinImages.video)
+        } else if type == StoryPointKind.Photo.rawValue {
+            self.image = UIImage(named: MapPinImages.video)
+        } else {
+            self.image = UIImage(named: MapPinImages.base)
+        }
     }
 }

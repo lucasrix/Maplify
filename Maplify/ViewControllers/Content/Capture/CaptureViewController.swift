@@ -8,6 +8,7 @@
 
 import INTULocationManager
 import GoogleMaps
+import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
@@ -34,21 +35,23 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadItemsFromDB()
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
         self.setupMap()
+        self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
         self.setupStoryPointDetails()
     }
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
-    }
-    
-    func updateMapActiveModel(storyPoints: [StoryPoint]) {
-        self.mapActiveModel.removeData()
-        self.mapActiveModel.addItems(storyPoints)
     }
     
     func setupMapDataSource() {
@@ -95,6 +98,18 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         return true
     }
     
+    func loadItemsFromDB() {
+        let realm = try! Realm()
+        let storyPoints = Array(realm.objects(StoryPoint))
+        self.updateMapActiveModel(storyPoints)
+        self.setupMapDataSource()
+    }
+    
+    func updateMapActiveModel(storyPoints: [StoryPoint]) {
+        self.mapActiveModel.removeData()
+        self.mapActiveModel.addItems(storyPoints)
+    }
+    
     // MARK: - request
     func retrieveStoryPoints(location: MCMapCoordinate, radius: CGFloat) {
         let locationDict: [String: AnyObject] = ["latitude": CGFloat(location.latitude), "longitude": CGFloat(location.longitude)]
@@ -102,8 +117,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandling
         ApiClient.sharedClient.getStoryPoints(params,
             success: { [weak self] (response) in
                 StoryPointManager.saveStoryPoints(response as! [StoryPoint])
-                self?.updateMapActiveModel(response as! [StoryPoint])
-                self?.setupMapDataSource()
+                self?.loadItemsFromDB()
             },
             failure:  { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -550,6 +549,9 @@
                                         </constraints>
                                         <state key="normal" image="ButtonShotDefault"/>
                                         <state key="highlighted" image="ButtonShotFocus"/>
+                                        <connections>
+                                            <action selector="recordTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="awq-Iv-KMo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
@@ -593,6 +595,7 @@
                         <outlet property="audioPlot" destination="CCK-Ng-tHv" id="P8i-mn-ZlQ"/>
                         <outlet property="progressBar" destination="qGa-yP-LkD" id="qXm-U9-JIr"/>
                         <outlet property="progressBarHeightConstraint" destination="hVa-9o-x9f" id="1wf-vQ-LIU"/>
+                        <outlet property="recordButton" destination="jYF-8W-iSH" id="J4n-u1-fhe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4q-og-kJ5" userLabel="First Responder" sceneMemberID="firstResponder"/>

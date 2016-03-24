@@ -11,6 +11,7 @@
 		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */; };
 		1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* PageViewController.swift */; };
 		1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B51C9C5D0000FC3496 /* ChildController.swift */; };
 		1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */; };
@@ -123,6 +124,7 @@
 /* Begin PBXFileReference section */
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
+		1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
 		1FB705B31C9C212C00FC3496 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		1FB705B51C9C5D0000FC3496 /* ChildController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildController.swift; sourceTree = "<group>"; };
 		1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardDiscoverController.swift; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				A58A53191C7F345300443C06 /* ConfigHepler.swift */,
 				8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */,
 				8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */,
+				1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
+				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
 				1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */,

@@ -8,15 +8,18 @@
 
 import UIKit
 import EZAudio
+import AVFoundation
 
 let kProgressBarHeight: CGFloat = 4
 
-class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate {
+class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioRecorderDelegate {
     @IBOutlet weak var audioPlot: EZAudioPlot!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var recordButton: UIButton!
     
     var microphone: EZMicrophone!
+    var audioRecorder = AudioRecorderHelper()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -35,6 +38,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate {
     func setup() {
         self.setupViews()
         self.setupAudioPlot()
+        self.setupAudioRecording()
     }
     
     func setupViews() {
@@ -50,6 +54,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate {
         self.microphone = EZMicrophone(delegate: self, startsImmediately: true);
     }
     
+    func setupAudioRecording() {
+        self.audioRecorder.delegate = self
+    }
+    
     // MARK: - navigation bar
     override func navigationBarIsTranlucent() -> Bool {
         return false
@@ -62,11 +70,27 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate {
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         // TODO:
+        self.audioRecorder.finishRecording()
     }
     
+    // MARK: - actions
+    @IBAction func recordTapped(sender: UIButton) {
+            self.audioRecorder.toggleStartPauseRecording()
+    }
+    
+    // MARK: - private
     func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
         dispatch_async(dispatch_get_main_queue(), { () -> () in
             self.audioPlot?.updateBuffer(buffer[0], withBufferSize: bufferSize);
         });
+    }
+    
+    // MARK: - AudioRecorderDelegate
+    func audioRecordDidFinishRecording(success: Bool, filePath: String) {
+        if success {
+            
+        } else {
+            
+        }
     }
 }

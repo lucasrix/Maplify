@@ -159,9 +159,8 @@ class ApiClient {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
     
-    func postAttachment(file: NSData!, success: successClosure!, failure: failureClosure!) {
-        let params = ["mimeType": "image/png", "fileName": "photo.png"]
-        var data: [String: AnyObject]! = nil
+    func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+         var data: [String: AnyObject]! = nil
         if (file != nil) {
             data = ["file": file]
         }

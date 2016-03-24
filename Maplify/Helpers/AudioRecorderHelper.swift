@@ -15,9 +15,9 @@ class AudioRecorderHelper: NSObject {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var delegate: AudioRecorderDelegate! = nil
-    var isRecording = false
     var recordTimeMax: Double = 20
-    var recordProgress: Double = 0
+    private var isRecording = false
+    private var recordProgress: Double = 0
     private var timer: NSTimer? = nil
     
     override init() {
@@ -115,6 +115,7 @@ class AudioRecorderHelper: NSObject {
 
     // MARK: - stop record
     func finishRecording() {
+        self.pauseRecording()
         audioRecorder.stop()
         audioRecorder = nil
         self.delegate?.audioRecordDidFinishRecording(true, filePath: filePath())

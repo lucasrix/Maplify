@@ -101,6 +101,7 @@
 		A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */; };
 		A5C584C61C91957D0036064A /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C51C91957D0036064A /* InputTextView.swift */; };
 		A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C71C919DCB0036064A /* InputTextView.xib */; };
+		A5CACDE81CA40871004F1A3D /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CACDE71CA40871004F1A3D /* Suspender.swift */; };
 		A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE2EF11C92F54900DCA2A7 /* ErrorHandlingProtocol.swift */; };
 		A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAEF1C9C3C6400A94C4F /* ModelManager.swift */; };
 		A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAF21C9C437F00A94C4F /* Profile.swift */; };
@@ -212,6 +213,7 @@
 		A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupUpdateProfileController.swift; sourceTree = "<group>"; };
 		A5C584C51C91957D0036064A /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A5C584C71C919DCB0036064A /* InputTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextView.xib; sourceTree = "<group>"; };
+		A5CACDE71CA40871004F1A3D /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		A5CE2EF11C92F54900DCA2A7 /* ErrorHandlingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlingProtocol.swift; sourceTree = "<group>"; };
 		A5D7AAEF1C9C3C6400A94C4F /* ModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		A5D7AAF21C9C437F00A94C4F /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */,
 				8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */,
 				1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */,
+				A5CACDE71CA40871004F1A3D /* Suspender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
 				1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */,
+				A5CACDE81CA40871004F1A3D /* Suspender.swift in Sources */,
 				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,

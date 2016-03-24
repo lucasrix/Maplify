@@ -19,6 +19,7 @@ protocol MCMapServiceProtocol {
 @objc protocol MCMapServiceDelegate {
     optional func didTapMapView(mapView: UIView, itemObject: AnyObject)
     optional func didMoveMapView(mapView: UIView, target: AnyObject)
+    optional func willMoveMapView(mapView: UIView, willMove: Bool)
 }
 
 class MCMapService: NSObject, MCMapServiceProtocol {

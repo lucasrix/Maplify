@@ -17,18 +17,20 @@ class ApiClient {
     static let sharedClient = ApiClient()
     
     // MARK: - request management
-    private func request(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+    private func request(config: RequestConfig, manager: ModelManager, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         if (config.data != nil) {
             self.dataRequest(config, manager: manager, success: success, failure: failure)
         } else {
-            self.baseRequest(config, manager: manager, success: success, failure: failure)
+            self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
         }
     }
     
-    private func baseRequest(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+    private func baseRequest(config: RequestConfig, manager: ModelManager, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
-        Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: .JSON, headers: headers)
+        Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
+                print(response)
+                print(error)
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
         }
     }
@@ -104,22 +106,22 @@ class ApiClient {
     
     func postRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, progress: progressClosure!, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .POST, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
-        self.request(config, manager: manager, success: success, failure: failure)
+        self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
     func getRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .GET, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, manager: manager, success: success, failure: failure)
+        self.request(config, manager: manager, encoding: .URL, success: success, failure: failure)
     }
     
     func putRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, manager: manager, success: success, failure: failure)
+        self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
     func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
-        self.request(config, manager: manager, success: success, failure: failure)
+        self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
     // MARK: - user methods

@@ -11,8 +11,9 @@ import GoogleMaps
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
+let kStoryPointsRequestSuspendInterval: NSTimeInterval = 2
 
-class CaptureViewController: ViewController, MCMapServiceDelegate {
+class CaptureViewController: ViewController, MCMapServiceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var addStoryPointImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,6 +22,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate {
     var googleMapService: GoogleMapService! = nil
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel: CSActiveModel! = nil
+    var suspender = Suspender()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -77,9 +79,33 @@ class CaptureViewController: ViewController, MCMapServiceDelegate {
         return true
     }
     
+    // MARK: - request
+    func retrieveStoryPoints(location: MCMapCoordinate, radius: CGFloat) {
+        let locationDict: [String: AnyObject] = ["latitude": CGFloat(location.latitude), "longitude": CGFloat(location.longitude)]
+        let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
+        ApiClient.sharedClient.getStoryPoints(params,
+            success: { [weak self] (response) in
+                print(response)
+                print(self)
+            },
+            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            }
+        )
+    }
+    
     // MARK: - MCMapServiceDelegate
+    func willMoveMapView(mapView: UIView, willMove: Bool) {
+        self.suspender.suspendEvent()
+    }
+    
     func didMoveMapView(mapView: UIView, target: AnyObject) {
-        print((target as! GMSCameraPosition).target)
+        let clLocation = (target as! GMSCameraPosition).target
+        let location = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
+        self.suspender.executeEvent(kStoryPointsRequestSuspendInterval) { [weak self] () in
+            print("request")
+            self!.retrieveStoryPoints(location, radius: 1)
+        }
     }
     
     // MARK: - actions
@@ -87,6 +113,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate {
         let point = touchGesture.locationInView(self.mapView)
         let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
         self.addStoryPointButtonTapped(location: location)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }
 

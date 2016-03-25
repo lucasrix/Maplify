@@ -9,6 +9,8 @@
 import UIKit
 
 class MCMapView: UIView {
+    var serviceView: UIView! = nil
+    
     var service: MCMapService! {
         didSet {
             self.configure(service)
@@ -16,7 +18,8 @@ class MCMapView: UIView {
     }
     
     func configure(service: MCMapService!) {
-        service.mapView.frame = self.bounds
-        self.addSubview(service.mapView)
+        self.serviceView = service.mapView
+        self.serviceView.frame = self.bounds
+        self.addSubview(self.serviceView)
     }
 }

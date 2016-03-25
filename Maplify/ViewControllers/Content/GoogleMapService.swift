@@ -52,7 +52,27 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         (self.mapView as! GMSMapView).camera = camera
     }
     
-    // MARK: - MCMapServiceProtocol
+    // MARK: - location
+    func locationFromTouch(mapView: UIView, point: CGPoint) -> MCMapCoordinate {
+        let serviceView = (mapView as! MCMapView).serviceView
+        let coordinate = (serviceView as! GMSMapView).projection.coordinateForPoint(point)
+        let location = MCMapCoordinate(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return location
+    }
+    
+    func currentZoom() -> Float {
+        return (self.mapView as! GMSMapView).camera.zoom
+    }
+    
+    // MARK: - GMSMapViewDelegate
+    func mapView(mapView: GMSMapView, willMove gesture: Bool) {
+        self.delegate?.willMoveMapView!(mapView, willMove: gesture)
+    }
+    
+    func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
+        self.delegate?.didMoveMapView?(mapView, target: position)
+    }
+    
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         self.delegate?.didTapMapView?(mapView, itemObject: marker)
         return true

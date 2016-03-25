@@ -7,6 +7,7 @@
 //
 
 import Tailor
+import RealmSwift
 
 class User: Model {
     dynamic var uid = ""

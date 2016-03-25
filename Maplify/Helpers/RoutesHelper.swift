@@ -68,25 +68,28 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.storyPointKind = storyPointKind
+        storyPointEditDescriptionController.location = location
         storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
-    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: String) {
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
         let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
         storyPointEditInfoViewController.storyPointDescription = storyPointDescription
         storyPointEditInfoViewController.storyPointKind = storyPointKind
+        storyPointEditInfoViewController.location = location
         storyPointEditInfoViewController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     
     // MARK: - open as popup controllers
-    func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate) {
+    func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController
         storyPointCreationPopupController.delegate = delegate
+        storyPointCreationPopupController.location = location
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
         self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
     }

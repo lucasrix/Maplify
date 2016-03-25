@@ -10,15 +10,17 @@ import Foundation
 
 let kDefaulMapItemOpacity: CGFloat = 1
 
-class MCMapItem {
+protocol MCMapItemProtocol {
+    func configure(data: CSCellData)
+}
+
+class MCMapItem: MCMapItemProtocol {
     var location: MCMapCoordinate! = nil
     var title: String! = nil
     var image: UIImage! = nil
     var opacity: CGFloat = kDefaulMapItemOpacity
+
+    required init() {}
     
-    init(location: MCMapCoordinate, title: String!, image: UIImage!) {
-        self.location = location
-        self.title = title
-        self.image = image
-    }
+    func configure(data: CSCellData) {}
 }

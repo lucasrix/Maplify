@@ -9,6 +9,7 @@
 import Fusuma
 import Haneke
 import AFImageHelper
+import CoreLocation
 
 class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
@@ -19,6 +20,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     var tabCaptureNavigationController: NavigationViewController! = nil
     var tabDiscoverNavigationController: NavigationViewController! = nil
+    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -40,8 +42,9 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
-        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] () -> () in
-            self?.routesShowPopupStoryPointCreationController(self!)
+        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
+            self?.pickedLocation = location
+            self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
@@ -114,10 +117,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
         self.selectTabButton(sender as! UIButton)
     }
     
-    @IBAction func createStoryPointTapped(sender: UIButton) {
-        self.routesShowPopupStoryPointCreationController(self)
-    }
-    
     // MARK: - private
     func openFusumaController() {
         let fusuma = FusumaViewController()
@@ -126,26 +125,25 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     // MARK: - storyPointCreationPopupDelegate
-    func ambientDidTapped() {
+    func ambientDidTapped(location: MCMapCoordinate) {
         self.routesOpenAudioStoryPointController()
     }
     
-    func photoVideoDidTapped() {
+    func photoVideoDidTapped(location: MCMapCoordinate) {
         self.openFusumaController()
     }
     
-    func textDidTapped() {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "")
+    func textDidTapped(location: MCMapCoordinate) {
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
     }
     
     // MARK: - FusumaDelegate
     func fusumaImageSelected(image: UIImage) {
-        
         // cashing image
         let cache = Shared.imageCache
         let uniqeId = NSUUID().UUIDString
         cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  self.pickedLocation)
     }
     
     // When camera roll is not authorized, this method is called.

@@ -45,6 +45,14 @@ struct TabButtonImages {
     static let discoverHighlighted = "icoTabDiscoverHighlighted"
 }
 
+struct MapPinImages {
+    static let base = "pinBlueDefault"
+    static let audio = "pinBlueAudio"
+    static let video = "pinBlueVideo"
+    static let text = "pinBlueText"
+    static let play = "pinBluePlay"
+    static let marked = "pinMarked"
+}
 struct ButtonImages {
     static let recordButtonShotStartDefault = "ButtonShotDefault"
     static let recordButtonShotStartHighlited = "ButtonShotHighlited"

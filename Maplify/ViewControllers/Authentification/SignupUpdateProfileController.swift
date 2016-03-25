@@ -121,8 +121,9 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         self.showProgressHUD()
         ApiClient.sharedClient.updateProfile(self.user.profile,
             success: { [weak self] (response) -> () in
-                self?.user.profile = response as! Profile
+                self?.user.profile = response as! Profile  
                 self?.hideProgressHUD()
+                UserManager.saveCurrentUser((self?.user)!)
                 self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in

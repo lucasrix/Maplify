@@ -115,7 +115,9 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
             self.hideProgressHUD()
-            self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath)
+            //TODO: 
+            let location = MCMapCoordinate(latitude: 0, longitude: 0)
+            self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath, location: location)
         } else {
             // TODO:
         }

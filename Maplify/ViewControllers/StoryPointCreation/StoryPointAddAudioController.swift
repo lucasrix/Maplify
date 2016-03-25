@@ -57,6 +57,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     }
     
     func setupAudioRecording() {
+        self.audioRecorder.setupRecord()
         self.audioRecorder.delegate = self
     }
     
@@ -100,13 +101,23 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.progressBar.progressTintColor = UIColor.cherryRed()
     }
     
+    private func showAudioPermissionsError() {
+        let title = NSLocalizedString("Alert.Warning", comment: String())
+        let message = NSLocalizedString("Alert.Audio.Permissions", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        
+        self.showMessageAlert(title, message: message, cancel: cancel) { [weak self] (alerAction) -> Void in
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
     // MARK: - AudioRecorderDelegate
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
-        self.hideProgressHUD()
         if success {
+            self.hideProgressHUD()
             self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath)
         } else {
-            // TODO:
+            self.showAudioPermissionsError()
         }
     }
     

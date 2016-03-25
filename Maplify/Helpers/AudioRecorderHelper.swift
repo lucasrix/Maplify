@@ -20,17 +20,7 @@ class AudioRecorderHelper: NSObject {
     private var recordProgress: Double = 0
     private var timer: NSTimer? = nil
     
-    override init() {
-        super.init()
-        
-        self.setup()
-    }
-    
     // MARK: - setup
-    func setup() {
-        self.setupRecord()
-    }
-    
     func setupRecord() {
         recordingSession = AVAudioSession.sharedInstance()
         do {

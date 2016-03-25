@@ -115,6 +115,7 @@
 		A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */; };
 		A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
+		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +231,7 @@
 		A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryPointManager.swift; sourceTree = "<group>"; };
 		A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCMapActiveModel.swift; sourceTree = "<group>"; };
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
+		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -617,6 +619,7 @@
 			children = (
 				A5D7AAF41C9C437F00A94C4F /* User.swift */,
 				A5D7AAFA1C9C438E00A94C4F /* UserManager.swift */,
+				A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */,
 				1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */,
 				1FC781051CA151E900C50C23 /* Attachment.swift in Sources */,
+				A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,

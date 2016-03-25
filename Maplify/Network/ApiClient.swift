@@ -17,7 +17,7 @@ class ApiClient {
     static let sharedClient = ApiClient()
     
     // MARK: - request management
-    private func request(config: RequestConfig, manager: ModelManager, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
+    private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         if (config.data != nil) {
             self.dataRequest(config, manager: manager, success: success, failure: failure)
         } else {
@@ -25,7 +25,7 @@ class ApiClient {
         }
     }
     
-    private func baseRequest(config: RequestConfig, manager: ModelManager, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
+    private func baseRequest(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
@@ -33,7 +33,7 @@ class ApiClient {
         }
     }
     
-    private func dataRequest(config: RequestConfig, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+    private func dataRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
@@ -66,7 +66,7 @@ class ApiClient {
         )
     }
     
-    private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
+    private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
             SessionManager.sharedManager.setSessionData(headersDictionary)
@@ -82,7 +82,7 @@ class ApiClient {
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = (payload as! [String : AnyObject])["data"] {
                 dispatch_async(dispatch_get_main_queue()) {
-                    success?(response: manager.manageResponse(dataDictionary as! [String : AnyObject]))
+                    success?(response: manager?.manageResponse(dataDictionary as! [String : AnyObject]))
                 }
             }
         } else {
@@ -117,7 +117,7 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
-    func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+    func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
@@ -163,8 +163,13 @@ class ApiClient {
         self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
 
-   func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
-         var data: [String: AnyObject]! = nil
+    func signOut(success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("auth/sign_out", params: nil, manager:nil, success: success, failure: failure)
+    }
+    
+    func postAttachment(file: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["mimeType": "image/png", "fileName": "photo.png"]
+        var data: [String: AnyObject]! = nil
         if (file != nil) {
             data = ["file": file]
         }

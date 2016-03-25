@@ -17,7 +17,6 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId = ""
-    var type: StoryPointKind! = nil
     var location: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle

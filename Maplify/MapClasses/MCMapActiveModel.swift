@@ -28,14 +28,13 @@ class MCMapActiveModel : CSActiveModel {
     
     func storyPointIndex(location: MCMapCoordinate, section: Int) -> Int {
         let dataArray = self.sectionsArray![0]
-        var i = 0
-        for data in dataArray {
+        for i in 0...dataArray.count {
+            let data = dataArray[i]
             let latitude = (data.model as! StoryPoint).location.latitude
             let longitude = (data.model as! StoryPoint).location.longitude
             if (latitude == location.latitude) && (longitude == location.longitude) {
                 return i
             }
-            i++
         }
         return NSNotFound
     }

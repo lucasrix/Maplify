@@ -70,7 +70,7 @@ extension UIViewController {
     
     func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
-        storyPointEditDescriptionController.type = storyPointKind
+        storyPointEditDescriptionController.storyPointKind = storyPointKind
         storyPointEditDescriptionController.location = location
         storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)

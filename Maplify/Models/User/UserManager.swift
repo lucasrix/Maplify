@@ -30,6 +30,8 @@ class UserManager: ModelManager {
     
     class func removeCurrentUser() {
         let realm = try! Realm()
-        realm.delete(self.currentUser())
+        try! realm.write {
+            realm.delete(self.currentUser())
+        }
     }
 }

@@ -82,7 +82,7 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
-        // TODO:
+        self.routesOpenAddToStoryController()
     }
     
     // MARK: - navigation bar item actions

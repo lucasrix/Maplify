@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -548,6 +548,13 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icoGpsBlue" translatesAutoresizingMaskIntoConstraints="NO" id="cOd-tC-5PY">
+                                                <rect key="frame" x="337" y="91" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="bla-K8-rub"/>
+                                                    <constraint firstAttribute="width" constant="20" id="jpa-Gz-VnI"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="xeO-2E-9cH">
                                                 <rect key="frame" x="15" y="129" width="345" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -592,6 +599,8 @@
                                             <constraint firstItem="hqi-Df-0wE" firstAttribute="leading" secondItem="XMl-Yq-Uxf" secondAttribute="leading" id="KLj-Uu-p0e"/>
                                             <constraint firstItem="hqi-Df-0wE" firstAttribute="top" secondItem="XMl-Yq-Uxf" secondAttribute="bottom" constant="30" id="STa-Xz-ea0"/>
                                             <constraint firstItem="hqi-Df-0wE" firstAttribute="top" secondItem="xZI-Lj-zz9" secondAttribute="bottom" constant="2" id="SWO-6F-tNw"/>
+                                            <constraint firstItem="cOd-tC-5PY" firstAttribute="centerY" secondItem="hqi-Df-0wE" secondAttribute="centerY" id="U6h-py-iXP"/>
+                                            <constraint firstAttribute="trailing" secondItem="cOd-tC-5PY" secondAttribute="trailing" constant="18" id="VDP-39-cxS"/>
                                             <constraint firstItem="XMl-Yq-Uxf" firstAttribute="top" secondItem="Ccy-YL-Sq9" secondAttribute="bottom" constant="2" id="VKY-36-4IG"/>
                                             <constraint firstItem="JJm-bX-vti" firstAttribute="centerY" secondItem="My2-bp-8Jg" secondAttribute="centerY" id="YeG-oi-eGX"/>
                                             <constraint firstItem="0GQ-2O-Ozp" firstAttribute="top" secondItem="xeO-2E-9cH" secondAttribute="bottom" constant="2" id="d0z-nr-Ice"/>
@@ -641,6 +650,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9h-my-brb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2271.5" y="473.5"/>
+        </scene>
+        <!--Add Story View Controller-->
+        <scene sceneID="Ijd-jg-Tbn">
+            <objects>
+                <viewController storyboardIdentifier="AddStoryViewController" id="l5s-PH-fNa" customClass="AddStoryViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KVr-rq-yKj"/>
+                        <viewControllerLayoutGuide type="bottom" id="EpF-Dh-Fu7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dm6-Pe-jpJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DxV-oL-grt">
+                                <rect key="frame" x="0.0" y="68" width="375" height="599"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ub-Ch-SQb">
+                                <rect key="frame" x="10" y="30" width="267" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Qp-irA">
+                                <rect key="frame" x="287" y="30" width="80" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="7jm-C7-50V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                <state key="normal" title="CREATE">
+                                    <color key="titleColor" red="0.20784313725490194" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4ub-Ch-SQb" firstAttribute="top" secondItem="KVr-rq-yKj" secondAttribute="bottom" constant="10" id="0J5-Vd-bYg"/>
+                            <constraint firstItem="4ub-Ch-SQb" firstAttribute="leading" secondItem="dm6-Pe-jpJ" secondAttribute="leading" constant="10" id="ESc-La-wFv"/>
+                            <constraint firstItem="DxV-oL-grt" firstAttribute="top" secondItem="4ub-Ch-SQb" secondAttribute="bottom" id="Laq-dH-rqm"/>
+                            <constraint firstItem="EpF-Dh-Fu7" firstAttribute="top" secondItem="DxV-oL-grt" secondAttribute="bottom" id="MSZ-wy-Bb2"/>
+                            <constraint firstItem="DxV-oL-grt" firstAttribute="leading" secondItem="dm6-Pe-jpJ" secondAttribute="leading" id="SvJ-tx-IRq"/>
+                            <constraint firstItem="caq-Qp-irA" firstAttribute="leading" secondItem="4ub-Ch-SQb" secondAttribute="trailing" constant="10" id="X49-AQ-Dhm"/>
+                            <constraint firstAttribute="trailing" secondItem="caq-Qp-irA" secondAttribute="trailing" constant="8" id="ZDY-Jo-t5I"/>
+                            <constraint firstItem="DxV-oL-grt" firstAttribute="top" secondItem="caq-Qp-irA" secondAttribute="bottom" id="hEE-0J-vx4"/>
+                            <constraint firstItem="caq-Qp-irA" firstAttribute="top" secondItem="KVr-rq-yKj" secondAttribute="bottom" constant="10" id="hMs-Oc-K8H"/>
+                            <constraint firstItem="DxV-oL-grt" firstAttribute="top" secondItem="KVr-rq-yKj" secondAttribute="bottom" constant="48" id="jcf-EM-KWk"/>
+                            <constraint firstAttribute="trailing" secondItem="DxV-oL-grt" secondAttribute="trailing" id="t3f-TU-AMK"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="createStoryButton" destination="caq-Qp-irA" id="w9Z-VD-q91"/>
+                        <outlet property="myStoriesLabel" destination="4ub-Ch-SQb" id="2mt-NK-AJb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DRI-Mz-3vQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2271.5" y="1205.5"/>
         </scene>
         <!--Story Point Add Audio Controller-->
         <scene sceneID="Cps-um-JDI">
@@ -813,6 +880,7 @@
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>
         <image name="fill1" width="14" height="17"/>
         <image name="icoCreatePoint" width="93" height="93"/>
+        <image name="icoGpsBlue" width="20" height="20"/>
         <image name="icoTabDiscoverDefault" width="24" height="24"/>
         <image name="icoTabDiscoverHighlighted" width="24" height="24"/>
         <image name="icoTabLocationDefault" width="24" height="24"/>

@@ -46,6 +46,7 @@
 "Controller.CameraRoll.Title" = "Camera Roll";
 "Controller.Photo.Title" = "Photo";
 "Controller.Video.Title" = "Video";
+"Controller.AddToStory.Title" = "Add to Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -53,6 +54,7 @@
 "Label.PlaceOrLocation" = "Place or location";
 "Label.Tags" = "Tags";
 "Label.IsThisPartOfStory" = "Is this part of a story?";
+"Label.MyStories" = "My stories";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -76,6 +78,8 @@
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
 "Button.Delete" = "Delete";
+"Button.Add" = "Add";
+"Button.CreateStory" = "Create story";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

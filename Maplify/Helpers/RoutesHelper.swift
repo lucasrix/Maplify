@@ -90,6 +90,11 @@ extension UIViewController {
         storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
         self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
     }
+
+    func routesOpenAddToStoryController() {
+        let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
+        self.navigationController?.pushViewController(addStoryViewController, animated: true)
+    }
     
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {

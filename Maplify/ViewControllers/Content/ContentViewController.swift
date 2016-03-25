@@ -125,7 +125,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     // MARK: - storyPointCreationPopupDelegate
-    func ambientDidTapped() {
+    func ambientDidTapped(location: MCMapCoordinate) {
         self.routesOpenAudioStoryPointController()
     }
     

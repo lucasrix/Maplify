@@ -19,7 +19,7 @@ class ApiClient {
     // MARK: - request management
     private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         if (config.data != nil) {
-            self.dataRequest(config, manager: manager, success: success, failure: failure)
+            self.multipartRequest(config, manager: manager, success: success, failure: failure)
         } else {
             self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
         }
@@ -33,7 +33,7 @@ class ApiClient {
         }
     }
     
-    private func dataRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
+    private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
         let headers = SessionManager.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,

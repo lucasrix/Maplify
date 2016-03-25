@@ -167,8 +167,7 @@ class ApiClient {
         self.deleteRequest("auth/sign_out", params: nil, manager:nil, success: success, failure: failure)
     }
     
-    func postAttachment(file: NSData!, success: successClosure!, failure: failureClosure!) {
-        let params = ["mimeType": "image/png", "fileName": "photo.png"]
+    func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         var data: [String: AnyObject]! = nil
         if (file != nil) {
             data = ["file": file]

@@ -110,7 +110,8 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
             file = NSFileManager.defaultManager().contentsAtPath(self.storyPointAttachmentId)
             params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
         }
-        ApiClient.sharedClient.postAttachment(file, success: { [weak self] (response) -> () in
+       
+        ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
             self?.remotePostStoryPoint((response as! Attachment).id)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

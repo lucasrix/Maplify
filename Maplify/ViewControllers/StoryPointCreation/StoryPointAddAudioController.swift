@@ -117,7 +117,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
             self.hideProgressHUD()
             self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath)
         } else {
-            self.showAudioPermissionsError()
+            // TODO:
         }
     }
     
@@ -131,5 +131,11 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     func audioRecordDidPause() {
         self.setupStartRecordUI()
+    }
+    
+    func audioRecordDidCheckedPermissions(success: Bool) {
+        if !success {
+            self.showAudioPermissionsError()
+        }
     }
 }

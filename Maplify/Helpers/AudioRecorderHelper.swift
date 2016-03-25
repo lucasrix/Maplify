@@ -28,9 +28,7 @@ class AudioRecorderHelper: NSObject {
             try recordingSession.setActive(true)
             recordingSession.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
-                    if !allowed {
-                        self.delegate?.audioRecordDidFinishRecording(false, filePath: String())
-                    }
+                        self.delegate?.audioRecordDidCheckedPermissions(allowed)
                 }
             }
         } catch {
@@ -132,4 +130,5 @@ protocol AudioRecorderDelegate {
     func audioRecordDidUpdateProgress(progress: Float)
     func audioRecordDidStart()
     func audioRecordDidPause()
+    func audioRecordDidCheckedPermissions(success: Bool)
 }

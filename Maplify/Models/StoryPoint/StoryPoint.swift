@@ -22,7 +22,7 @@ class StoryPoint: Model {
     dynamic var attachment: Attachment! = nil
     dynamic var kind = ""
     dynamic var caption = ""
-    dynamic var storyPointDescription = ""
+    dynamic var text = ""
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
@@ -33,6 +33,6 @@ class StoryPoint: Model {
         self.kind <- map.property("kind")
         self.caption <- map.property("caption")
         self.attachment <- map.relationOrNil("attachment")
-        
+        self.text <- map.property("text")
     }
 }

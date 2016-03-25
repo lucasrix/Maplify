@@ -73,4 +73,8 @@ extension UIColor {
     class func darkBlueGrey() -> UIColor {
         return UIColor(red: 18, green: 42, blue: 66)
     }
+    
+    class func cherryRed() -> UIColor {
+        return UIColor(red: 255, green: 1, blue: 32)
+    }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -526,8 +526,86 @@
             </objects>
             <point key="canvasLocation" x="2271.5" y="473.5"/>
         </scene>
+        <!--Story Point Add Audio Controller-->
+        <scene sceneID="Cps-um-JDI">
+            <objects>
+                <viewController storyboardIdentifier="StoryPointAddAudioController" id="odW-8k-yjr" customClass="StoryPointAddAudioController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Y3-7F-hBS"/>
+                        <viewControllerLayoutGuide type="bottom" id="WSz-gH-AlW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5I4-Rg-nhJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhB-HF-bea" userLabel="Bottom View">
+                                <rect key="frame" x="0.0" y="375" width="375" height="292"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYF-8W-iSH">
+                                        <rect key="frame" x="151" y="35" width="72" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="dgv-XF-l37"/>
+                                            <constraint firstAttribute="height" constant="72" id="heI-7H-6IB"/>
+                                        </constraints>
+                                        <state key="normal" image="ButtonShotDefault"/>
+                                        <state key="highlighted" image="ButtonShotFocus"/>
+                                        <connections>
+                                            <action selector="recordTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="awq-Iv-KMo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="jYF-8W-iSH" firstAttribute="centerX" secondItem="lhB-HF-bea" secondAttribute="centerX" id="7tr-3b-k0V"/>
+                                    <constraint firstItem="jYF-8W-iSH" firstAttribute="top" secondItem="lhB-HF-bea" secondAttribute="top" constant="35" id="ads-pc-scU"/>
+                                </constraints>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-yP-LkD">
+                                <rect key="frame" x="0.0" y="375" width="375" height="3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="hVa-9o-x9f"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.20784313725490194" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" red="0.070588235294117646" green="0.16470588235294117" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCK-Ng-tHv" userLabel="Equalizer View" customClass="EZAudioPlot">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CCK-Ng-tHv" secondAttribute="height" multiplier="1:1" id="Fma-du-A0h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lhB-HF-bea" secondAttribute="trailing" id="3fd-af-ibR"/>
+                            <constraint firstItem="CCK-Ng-tHv" firstAttribute="top" secondItem="5I4-Rg-nhJ" secondAttribute="top" id="90w-GQ-hPk"/>
+                            <constraint firstAttribute="trailing" secondItem="qGa-yP-LkD" secondAttribute="trailing" id="OMu-5O-fy6"/>
+                            <constraint firstItem="lhB-HF-bea" firstAttribute="top" secondItem="CCK-Ng-tHv" secondAttribute="bottom" id="SLg-uL-wC5"/>
+                            <constraint firstAttribute="trailing" secondItem="CCK-Ng-tHv" secondAttribute="trailing" id="V7g-jh-Mxv"/>
+                            <constraint firstItem="CCK-Ng-tHv" firstAttribute="leading" secondItem="5I4-Rg-nhJ" secondAttribute="leading" id="ZiY-vg-zHV"/>
+                            <constraint firstItem="qGa-yP-LkD" firstAttribute="top" secondItem="CCK-Ng-tHv" secondAttribute="bottom" id="mkf-et-cXv"/>
+                            <constraint firstItem="qGa-yP-LkD" firstAttribute="leading" secondItem="5I4-Rg-nhJ" secondAttribute="leading" id="qRE-O0-E7o"/>
+                            <constraint firstItem="lhB-HF-bea" firstAttribute="leading" secondItem="5I4-Rg-nhJ" secondAttribute="leading" id="rqJ-cZ-3hK"/>
+                            <constraint firstItem="WSz-gH-AlW" firstAttribute="top" secondItem="lhB-HF-bea" secondAttribute="bottom" id="ujE-ps-5c5"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="audioPlot" destination="CCK-Ng-tHv" id="P8i-mn-ZlQ"/>
+                        <outlet property="progressBar" destination="qGa-yP-LkD" id="qXm-U9-JIr"/>
+                        <outlet property="progressBarHeightConstraint" destination="hVa-9o-x9f" id="1wf-vQ-LIU"/>
+                        <outlet property="recordButton" destination="jYF-8W-iSH" id="J4n-u1-fhe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z4q-og-kJ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708.5" y="473.5"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ButtonShotDefault" width="72" height="72"/>
+        <image name="ButtonShotFocus" width="72" height="72"/>
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>

@@ -11,6 +11,7 @@
 		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
 		1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */; };
 		1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* PageViewController.swift */; };
 		1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B51C9C5D0000FC3496 /* ChildController.swift */; };
 		1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */; };
@@ -34,6 +35,7 @@
 		1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
 		1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */; };
 		1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
+		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
@@ -122,6 +124,7 @@
 /* Begin PBXFileReference section */
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
+		1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
 		1FB705B31C9C212C00FC3496 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		1FB705B51C9C5D0000FC3496 /* ChildController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildController.swift; sourceTree = "<group>"; };
 		1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardDiscoverController.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 		1FC781061CA171AF00C50C23 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManager.swift; sourceTree = "<group>"; };
 		1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationOrNil.swift; sourceTree = "<group>"; };
+		1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddAudioController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */,
 				1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */,
 				1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */,
+				1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */,
 			);
 			path = StoryPointCreation;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				A58A53191C7F345300443C06 /* ConfigHepler.swift */,
 				8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */,
 				8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */,
+				1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -838,8 +844,10 @@
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
+				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
+				1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */,
 				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,

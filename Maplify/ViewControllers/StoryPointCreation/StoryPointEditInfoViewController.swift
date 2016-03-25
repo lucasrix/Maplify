@@ -104,13 +104,18 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     // MARK: - private
     func remotePostAttachment() {
         var file: NSData! = nil
+        var params: [String: AnyObject]! = nil
         if self.storyPointKind == StoryPointKind.Photo {
             let cache = Shared.imageCache
             cache.fetch(key: self.storyPointAttachmentId).onSuccess { data in
                 file = UIImagePNGRepresentation(data)
+                params = ["mimeType": "image/png", "fileName": "photo.png"]
             }
+        } else if self.storyPointKind == StoryPointKind.Audio {
+            file = NSFileManager.defaultManager().contentsAtPath(self.storyPointAttachmentId)
+            params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
         }
-        ApiClient.sharedClient.postAttachment(file, success: { [weak self] (response) -> () in
+        ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
             self?.remotePostStoryPoint((response as! Attachment).id)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

@@ -24,8 +24,8 @@ class MCMapDataSource {
         if self.mapService != nil {
             self.mapService.removeAllItems()
             
-            for i in 0...self.mapActiveModel.numberOfSections() - 1 {
-                for j in 0...self.mapActiveModel.numberOfItems(i) - 1 {
+            for i in 0..<self.mapActiveModel.numberOfSections() {
+                for j in 0..<self.mapActiveModel.numberOfItems(i) {
                     let indexPath = NSIndexPath(forRow: j, inSection: i)
                     let data = self.mapActiveModel.cellData(indexPath)
                     let mapItem = T()

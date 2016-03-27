@@ -92,7 +92,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
 
     // MARK: - actions
     func selectTabButton(button: UIButton) {
-        self.menuTabButton.selected = false
         self.captureTabButton.selected = false
         self.discoverTabButton.selected = false
         self.profileTabButton.selected = false
@@ -100,7 +99,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     @IBAction func menuButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
+        self.routerShowMenuController()
     }
     
     @IBAction func captureButtonDidTap(sender: AnyObject) {

@@ -93,4 +93,9 @@ extension UIViewController {
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
         self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
     }
+    
+    func routerShowMenuController() {
+        let menuController = UIStoryboard.menuStoryboard().instantiateViewControllerWithIdentifier(Controllers.menuViewController) as! MenuViewController
+        self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
+    }
 }

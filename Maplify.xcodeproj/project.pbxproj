@@ -116,6 +116,10 @@
 		A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
+		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
+		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
+		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
+		F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +237,9 @@
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
+		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
+		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,6 +450,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F01A89531CA75114008B8702 /* Menu */,
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
 				1FB70B301C9DA52C00FC3496 /* StoryPointCreation */,
 				A59A7E8A1C9ADBB800399A38 /* Content */,
@@ -469,6 +477,7 @@
 				A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */,
 				A58A527E1C7F0A2900443C06 /* Auth.storyboard */,
 				A59A7E7A1C9AC32400399A38 /* Main.storyboard */,
+				F01A89501CA74C8E008B8702 /* Menu.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -661,6 +670,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F01A89531CA75114008B8702 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				F01A89541CA753E3008B8702 /* MenuViewController.swift */,
+				F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -752,6 +770,7 @@
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
+				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
@@ -849,6 +868,7 @@
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
+				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */,
@@ -865,6 +885,7 @@
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
+				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
@@ -935,6 +956,7 @@
 				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
 				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */,
+				F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */,
 				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */,
 				A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */,
@@ -967,6 +989,14 @@
 				A58A52841C7F0A2900443C06 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F01A89501CA74C8E008B8702 /* Menu.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F01A89511CA74C8E008B8702 /* Base */,
+			);
+			name = Menu.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -57,7 +57,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     // MARK: - notifications/observers
     func subscribeNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StoryPointEditDescriptionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
     }
     
     func unsubscribeNotifications() {

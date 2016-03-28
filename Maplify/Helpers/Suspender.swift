@@ -23,7 +23,7 @@ class Suspender: NSObject {
     
     func executeEvent(interval: NSTimeInterval, event: eventClosure) {
         self.event = event
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "update", userInfo: nil, repeats: false)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: #selector(Suspender.update), userInfo: nil, repeats: false)
     }
     
     func update() {

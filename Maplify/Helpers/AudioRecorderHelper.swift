@@ -52,7 +52,7 @@ class AudioRecorderHelper: NSObject {
     
     // MARK: - timer
     func startTimer() {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(kRecordTimeUpdateInterval, target: self, selector: "timerDidUpdate:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(kRecordTimeUpdateInterval, target: self, selector: #selector(AudioRecorderHelper.timerDidUpdate(_:)), userInfo: nil, repeats: true)
     }
     
     func stopTimer() {

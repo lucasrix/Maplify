@@ -71,7 +71,7 @@ class CSActiveModel {
                 cellData.delegate = delegate
                 
                 dataArray.insert(cellData, atIndex: indexPath.row + rowCount)
-                rowCount++
+                rowCount += 1
             }
             
             self.sectionsArray![indexPath.section] = dataArray
@@ -152,9 +152,9 @@ class CSActiveModel {
                 if cellData.selected {
                     array.append(NSIndexPath(forRow: row, inSection: section))
                 }
-                row++
+                row += 1
             }
-            section++
+            section += 1
         }
         return array
     }
@@ -178,9 +178,9 @@ class CSActiveModel {
                 if cellData.model === model {
                     indexPath = NSIndexPath(forRow: row, inSection: section)
                 }
-                row++
+                row += 1
             }
-            section++
+            section += 1
         }
         return indexPath
     }

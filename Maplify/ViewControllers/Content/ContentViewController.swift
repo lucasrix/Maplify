@@ -11,7 +11,7 @@ import Haneke
 import AFImageHelper
 import CoreLocation
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate {
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate, MenuDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
     @IBOutlet weak var captureTabButton: UIButton!
     @IBOutlet weak var discoverTabButton: UIButton!
@@ -92,7 +92,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
 
     // MARK: - actions
     func selectTabButton(button: UIButton) {
-        self.menuTabButton.selected = false
         self.captureTabButton.selected = false
         self.discoverTabButton.selected = false
         self.profileTabButton.selected = false
@@ -100,7 +99,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     @IBAction func menuButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
+        self.routerShowMenuController(self)
     }
     
     @IBAction func captureButtonDidTap(sender: AnyObject) {
@@ -156,5 +155,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     func fusumaDismissedWithImage(image: UIImage) {
         // TODO:
         print("Called just after FusumaViewController is dismissed.")
+    }
+    
+    // MARK: - MenuDelegate
+    func menuDidSelectItem(actionString:String) {
+        self.performSelector(Selector(actionString))
     }
 }

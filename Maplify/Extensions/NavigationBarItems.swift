@@ -12,7 +12,7 @@ extension UIViewController {
     func addRightBarItem(title: String) -> () {
         let rightButton = RoundedButton(frame: Frame.doneButtonFrame)
         rightButton.setTitle(title, forState: .Normal)
-        rightButton.addTarget(self, action: "rightBarButtonItemDidTap", forControlEvents: .TouchUpInside)
+        rightButton.addTarget(self, action: #selector(UIViewController.rightBarButtonItemDidTap), forControlEvents: .TouchUpInside)
         let rightBarItem = UIBarButtonItem(customView: rightButton)
         self.navigationItem.rightBarButtonItem = rightBarItem
     }

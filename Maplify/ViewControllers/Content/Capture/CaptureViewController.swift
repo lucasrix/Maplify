@@ -77,7 +77,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupAddStoryPointImageView() {
-        let gesture = UILongPressGestureRecognizer(target: self, action: "addStoryPointImageDidTap:")
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(CaptureViewController.addStoryPointImageDidTap(_:)))
         gesture.minimumPressDuration = kMinimumPressDuration
         self.addStoryPointImageView.addGestureRecognizer(gesture)
     }

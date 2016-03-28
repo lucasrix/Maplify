@@ -30,7 +30,7 @@ extension String {
         } else if end < 0 || end > self.length {
             return ""
         }
-        let range = Range(start: self.startIndex.advancedBy(start), end: self.startIndex.advancedBy(end))
+        let range = Range(self.startIndex.advancedBy(start)..<self.startIndex.advancedBy(end))
         return self.substringWithRange(range)
     }
     

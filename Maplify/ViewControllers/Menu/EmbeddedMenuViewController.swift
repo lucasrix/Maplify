@@ -9,13 +9,17 @@
 import UIKit
 
 public enum MenuItem: Int {
-    case Notifications = 1
-    case EditProfile = 2
-    case ChangePassword = 3
-    case About = 5
-    case PrivacyPolicy = 6
-    case TermsOfService = 7
-    case LogOut = 9
+    case SectionAccount = 0
+    case SectionNotifications
+    case SectionEditProfile
+    case SectionChangePassword
+    case SectionInformation
+    case SectionAbout
+    case SectionPrivacyPolicy
+    case SectionTermsOfService
+    case SectionEmpty
+    case SectionLogOut
+    case SectionCopyright
 }
 
 class EmbeddedMenuViewController: UITableViewController {
@@ -36,32 +40,39 @@ class EmbeddedMenuViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.didSelectMenuItem(indexPath.row)
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - private
     func didSelectMenuItem(index: Int) {
         switch index {
             
-        case MenuItem.Notifications.rawValue:
-            self.notificationsDidSelect()
+        case MenuItem.SectionNotifications.rawValue:
+            // TODO:
+            // example
+            // self.sendAction("routesOpenAudioStoryPointController")
+            break
             
-        case MenuItem.EditProfile.rawValue:
-            self.editProfileDidSelect()
+        case MenuItem.SectionEditProfile.rawValue:
+            // TODO:
+            break
             
-        case MenuItem.ChangePassword.rawValue:
-            self.changePasswordDidSelect()
+        case MenuItem.SectionChangePassword.rawValue:
+            // TODO:
+            break
             
-        case MenuItem.About.rawValue:
-            self.aboutDidSelect()
+        case MenuItem.SectionAbout.rawValue:
+            // TODO:
+            break
             
-        case MenuItem.PrivacyPolicy.rawValue:
-            self.privacyPolicyDidSelect()
+        case MenuItem.SectionPrivacyPolicy.rawValue:
+            // TODO:
+            break
             
-        case MenuItem.TermsOfService.rawValue:
-            self.termsOfServiceDidSelect()
+        case MenuItem.SectionTermsOfService.rawValue:
+            // TODO:
+            break
             
-        case MenuItem.LogOut.rawValue:
+        case MenuItem.SectionLogOut.rawValue:
             self.logOutDidSelect()
             
         default:
@@ -69,30 +80,9 @@ class EmbeddedMenuViewController: UITableViewController {
         }
     }
     
-    func notificationsDidSelect() {
-        // TODO:
-        // example
-//        self.delegate?.menuDidSelectItem("routesOpenAudioStoryPointController")
-    }
-    
-    func editProfileDidSelect() {
-        // TODO:
-    }
-    
-    func changePasswordDidSelect() {
-        // TODO:
-    }
-    
-    func aboutDidSelect() {
-        // TODO:
-    }
-    
-    func privacyPolicyDidSelect() {
-        // TODO:
-    }
-    
-    func termsOfServiceDidSelect() {
-        // TODO:
+    func sendAction(actionString: String) {
+        self.delegate?.menuDidSelectItem(actionString)
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func logOutDidSelect() {

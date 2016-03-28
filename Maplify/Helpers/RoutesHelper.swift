@@ -94,8 +94,9 @@ extension UIViewController {
         self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
     }
     
-    func routerShowMenuController() {
+    func routerShowMenuController(delegate: MenuDelegate) {
         let menuController = UIStoryboard.menuStoryboard().instantiateViewControllerWithIdentifier(Controllers.menuViewController) as! MenuViewController
+        menuController.delegate = delegate
         self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
     }
 }

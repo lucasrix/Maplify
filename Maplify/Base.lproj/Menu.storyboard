@@ -430,21 +430,12 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icoBackRight" translatesAutoresizingMaskIntoConstraints="NO" id="FjL-q4-YVj">
-                                                    <rect key="frame" x="351" y="17" width="9" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="9" id="IvV-tI-jAd"/>
-                                                        <constraint firstAttribute="height" constant="15" id="gjS-rq-ySz"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="FjL-q4-YVj" secondAttribute="trailing" constant="15" id="0w7-EX-ZhB"/>
                                                 <constraint firstItem="m5U-CU-sIk" firstAttribute="leading" secondItem="twQ-OG-1Nv" secondAttribute="leading" id="3hV-5d-4lf"/>
                                                 <constraint firstItem="m5U-CU-sIk" firstAttribute="top" secondItem="twQ-OG-1Nv" secondAttribute="top" id="8gh-7M-Kf6"/>
                                                 <constraint firstItem="jHC-q3-QVY" firstAttribute="leading" secondItem="twQ-OG-1Nv" secondAttribute="leading" constant="20" id="9MQ-OQ-vo7"/>
-                                                <constraint firstItem="FjL-q4-YVj" firstAttribute="centerY" secondItem="twQ-OG-1Nv" secondAttribute="centerY" id="A8p-3I-Xnl"/>
                                                 <constraint firstAttribute="trailing" secondItem="m5U-CU-sIk" secondAttribute="trailing" id="AMU-Ba-75O"/>
                                                 <constraint firstAttribute="trailing" secondItem="jHC-q3-QVY" secondAttribute="trailing" constant="10" id="AUp-Ja-3Nc"/>
                                                 <constraint firstItem="jHC-q3-QVY" firstAttribute="centerY" secondItem="twQ-OG-1Nv" secondAttribute="centerY" id="ogz-5M-A67"/>

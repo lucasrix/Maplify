@@ -9,17 +9,12 @@
 import UIKit
 
 class MenuViewController: ViewController {
+    var delegate: MenuDelegate! = nil
     
-    // MARK: - view controller life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.setup()
-    }
-    
-    // MARK: - setup
-    func setup() {
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let nextController = segue.destinationViewController as! EmbeddedMenuViewController
+        print(nextController)
+        nextController.delegate = self.delegate
     }
     
     // MARK: - actions

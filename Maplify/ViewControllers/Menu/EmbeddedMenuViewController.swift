@@ -19,6 +19,7 @@ public enum MenuItem: Int {
 }
 
 class EmbeddedMenuViewController: UITableViewController {
+    var delegate: MenuDelegate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ class EmbeddedMenuViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.didSelectMenuItem(indexPath.row)
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - private
@@ -69,6 +71,8 @@ class EmbeddedMenuViewController: UITableViewController {
     
     func notificationsDidSelect() {
         // TODO:
+        // example
+//        self.delegate?.menuDidSelectItem("routesOpenAudioStoryPointController")
     }
     
     func editProfileDidSelect() {
@@ -94,4 +98,8 @@ class EmbeddedMenuViewController: UITableViewController {
     func logOutDidSelect() {
         // TODO:
     }
+}
+
+protocol MenuDelegate {
+    func menuDidSelectItem(actionString:String)
 }

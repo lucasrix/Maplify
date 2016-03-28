@@ -1,0 +1,25 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'Maplify' do
+  pod 'Alamofire', '~> 3.2'
+  pod 'RealmSwift', '~> 0.98'
+  pod 'HanekeSwift', '~> 0.10'
+  pod 'TTTAttributedLabel', '~> 1.13'
+  pod 'ALThreeCircleSpinner', '~> 1.0'
+  pod 'Locksmith', '~> 2.0'
+  pod 'Tailor', '~> 0.4'
+  pod 'AFImageHelper', '~> 3.0'
+  pod 'TPKeyboardAvoiding', '~> 1.2'
+  pod 'SimpleAuth/Facebook', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
+  pod 'SimpleAuth/FacebookWeb', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
+  pod 'INTULocationManager', '~> 4.1'
+  pod 'GoogleMaps', '~> 1.12'
+  pod 'GooglePlaces', '~> 1.0'
+  pod 'RSKGrowingTextView', '~> 1.0'
+  pod 'RSKKeyboardAnimationObserver', '~> 1.0'
+  pod 'Fabric', '~> 1.6'
+  pod 'Crashlytics', '~> 3.7'
+  pod 'Fusuma', '~> 0.2'
+  pod 'EZAudio', :git => 'https://github.com/rzehan/EZAudio.git', :commit => 'df349f2729139bfb2410644e05bb2945af6f57c3'
+end

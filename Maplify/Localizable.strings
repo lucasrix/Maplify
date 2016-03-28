@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  Maplify
+
+  Created by Sergey on 3/3/16.
+  Copyright © 2016 rubygarage. All rights reserved.
+*/
+
+// Text placeholders
+"Text.Placeholder.FirstName" = "First Name";
+"Text.Placeholder.LastName" = "Last Name";
+"Text.Placeholder.Email" = "Email";
+"Text.Placeholder.Password" = "Password";
+"Text.Placeholder.Location" = "Home City";
+"Text.Placeholder.PersonalURL" = "Personal URL";
+"Text.Placeholder.AboutYou" = "About You";
+"Text.Placeholder.EnterBriefCaption" = "Enter a brief caption";
+"Text.Placeholder.EveryPostMustBeGeotagged" = "Every post must be geotagged";
+"Text.Placeholder.EnterTag" = "Enter tag";
+
+// Input fields description
+"InputField.Description.Email" = "We will not share your email";
+"InputField.Description.Password" = "at least 6 characters";
+"InputField.Description.City" = "Recommended, to see stories around you";
+"InputField.Description.Optional" = "Optional";
+"InputField.Description.Char" = "char";
+"InputField.Description.Of" = "of";
+
+//Controllers
+"Controller.Signup.Title" = "Sign Up";
+"Controller.Signup.setPhoto" = "Set your photo";
+"Controller.Signup.description" = "Hi, what's your name?";
+"Controller.Landing.Login" = "Already have an account? Log in";
+"Controller.Landing.RangeLogin" = "Log in";
+"Controller.Landing.Terms" = "By continuing, you agree to our Terms & Privacy Policy.";
+"Controller.Landing.RangeTerms" = "Terms";
+"Controller.Landing.RangePolicy" = "Privacy Policy";
+"Controller.Login.Title" = "Log In";
+"Controller.Terms.Title" = "Terms of Use";
+"Controller.Policy.Title" = "Privacy Policy";
+"Controller.StoryPointEditDescription.Title" = "New Post";
+"Controller.Onboard.Discover.Title" = "Discover";
+"Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
+"Controller.Onboard.Capture.Title" = "Capture";
+"Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
+"Controller.Capture.Title" = "Near you";
+"Controller.Ambient.Title" = "Ambient";
+
+// Labels
+"Label.CreateStoryPopupTop" = "What would you like to post?";
+"Label.Caption" = "Caption";
+"Label.PlaceOrLocation" = "Place or location";
+"Label.Tags" = "Tags";
+"Label.IsThisPartOfStory" = "Is this part of a story?";
+
+//Subsrtings
+"Substring.Of" = "of";
+"Substring.Chars" = "chars";
+
+//Buttons
+"Button.Ok" = "OK";
+"Button.Next" = "Next";
+"Button.Done" = "Done";
+"Button.FacebookLogin" = "Continue with Facebook";
+"Button.EmailSignup" = "Sign up with email";
+"Button.Cancel" = "Cancel";
+"Button.ExistingPhoto" = "Choose existing photo";
+"Button.TakePhoto" = "Take new photo";
+"Button.Skip" = "Skip";
+"Button.SetPhoto" = "Set Photo";
+"Button.Ambient" = "Ambient";
+"Button.PhotoVideo" = "Photo / Video";
+"Button.Text" = "Text";
+"Button.Post" = "Post";
+"Button.AddToStory" = "Add to Story >";
+
+//Alerts
+"Alert.SetPhoto" = "Set your profile photo";
+"Alert.Error" = "Error";
+"Alert.Warning" = "Warning";
+"Alert.NoPhoto" = "You didn’t set a profile photo. It just takes a sec and you can always change it later!";
+"Alert.Title.ProfilePhoto" = "Profile Photo";
+"Alert.Audio.Permissions" = "Your microphone is disabled. Please turn it on in your phone settings so as to create Ambient post";
+
+//Errors
+"Error.InvalidEmail" = "Please enter valid email";
+"Error.InvalidPassword" = "Please enter password";
+"Error.EnterName" = "Please enter your name.";
+"Error.InvalidPassword" = "Password must be at least 6 characters.";

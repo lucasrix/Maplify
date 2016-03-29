@@ -110,6 +110,16 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
         self.configureChildViewController(controller, onView: self.containerView)
     }
     
+    private func showGalleryPermissionsError() {
+        let title = NSLocalizedString("Alert.Warning", comment: String())
+        let message = NSLocalizedString("Alert.Gallery.Permissions", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        
+        self.showMessageAlert(title, message: message, cancel: cancel) { [weak self] (alerAction) -> Void in
+            self!.photoTapped(self!.photoButton)
+        }
+    }
+    
     // MARK: - CameraRollDelegate
     func imageDidSelect(image: UIImage) {
         let cache = Shared.imageCache
@@ -119,6 +129,6 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
     }
     
     func cameraRollUnauthorized() {
-        print("unauth")
+        self.showGalleryPermissionsError()
     }
 }

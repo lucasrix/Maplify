@@ -112,15 +112,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
-    }
-    
-    // MARK: - private
-    func openPhotoVideoController() {
-        
-        // TODO:
-        
-        self.routesOpenPhotoVideoViewController(self.pickedLocation)
-    }
+    } 
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped(location: MCMapCoordinate) {
@@ -128,7 +120,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.openPhotoVideoController()
+        self.routesOpenPhotoVideoViewController(self.pickedLocation)
     }
     
     func textDidTapped(location: MCMapCoordinate) {

@@ -133,6 +133,7 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
             let realm = try! Realm()
             try! realm.write {
+                print(response as! StoryPoint)
                 realm.add(response as! StoryPoint)
             }
             self?.hideProgressHUD()

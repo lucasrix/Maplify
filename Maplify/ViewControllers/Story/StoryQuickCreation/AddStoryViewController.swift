@@ -60,8 +60,15 @@ class AddStoryViewController: ViewController {
 //        self.setupMapDataSource()
     }
     
-    // MARK: - navigation bar item actions
+    // MARK: - actions
     override func rightBarButtonItemDidTap() {
         // TODO:
     }
+    
+    @IBAction func createStoryButtonDidTap(sender: AnyObject) {
+        let alertTitle = NSLocalizedString("Alert.Title.CreateStory", comment: String())
+        let alertMessage = NSLocalizedString("Alert.CreateStory.Description", comment: String())
+        
+    }
+    
 }

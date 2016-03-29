@@ -53,10 +53,19 @@ struct MapPinImages {
     static let play = "pinBluePlay"
     static let marked = "pinMarked"
 }
+
 struct ButtonImages {
     static let recordButtonShotStartDefault = "ButtonShotDefault"
     static let recordButtonShotStartHighlited = "ButtonShotHighlited"
     static let recordButtonShotStopDefault = "ButtonShotStopDefault"
     static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
-    
+}
+
+struct MediaButtons {
+    static let galleryDefault = "AddMediaScreenGalleryOff"
+    static let galleryHighlited = "AddMediaScreenGalleryOn"
+    static let photoDefault = "AddMediaScreenPhotoOff"
+    static let photoHighlited = "AddMediaScreenPhotoOn"
+    static let videoDefault = "AddMediaScreenVideoOff"
+    static let videoHighlited = "AddMediaScreenVideoOn"
 }

@@ -116,6 +116,12 @@
 		A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
+		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
+		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
+		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
+		CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B131CAAD90100EBCC7A /* CameraRollView.xib */; };
+		CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */; };
+		CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B151CAAD90100EBCC7A /* ImageCropView.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -237,6 +243,12 @@
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
+		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
+		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
+		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
+		CD451B131CAAD90100EBCC7A /* CameraRollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollView.xib; sourceTree = "<group>"; };
+		CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
+		CD451B151CAAD90100EBCC7A /* ImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropView.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +277,7 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,
@@ -299,6 +312,7 @@
 				1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */,
 				1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */,
 				1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */,
+				CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */,
 			);
 			path = StoryPointCreation;
 			sourceTree = "<group>";
@@ -670,6 +684,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD451B101CAAD90100EBCC7A /* CameraRollController */ = {
+			isa = PBXGroup;
+			children = (
+				CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */,
+				CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */,
+				CD451B131CAAD90100EBCC7A /* CameraRollView.xib */,
+				CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */,
+				CD451B151CAAD90100EBCC7A /* ImageCropView.swift */,
+			);
+			path = CameraRollController;
+			sourceTree = "<group>";
+		};
 		F01A89531CA75114008B8702 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,10 +795,12 @@
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
+				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
+				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
@@ -857,6 +885,7 @@
 			files = (
 				A5728A1C1C88887400C6DA7E /* NavigationViewController.swift in Sources */,
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
+				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
@@ -883,9 +912,11 @@
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
+				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
+				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
@@ -937,6 +968,7 @@
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
+				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,

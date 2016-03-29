@@ -20,6 +20,5 @@ target 'Maplify' do
   pod 'RSKKeyboardAnimationObserver', '~> 1.0'
   pod 'Fabric', '~> 1.6'
   pod 'Crashlytics', '~> 3.7'
-  pod 'Fusuma', '~> 0.2'
   pod 'EZAudio', :git => 'https://github.com/rzehan/EZAudio.git', :commit => 'df349f2729139bfb2410644e05bb2945af6f57c3'
 end

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -716,8 +718,94 @@
             </objects>
             <point key="canvasLocation" x="2708.5" y="473.5"/>
         </scene>
+        <!--Story Point Add Photo Video View Controller-->
+        <scene sceneID="2Gx-qA-TgH">
+            <objects>
+                <viewController storyboardIdentifier="StoryPointAddPhotoVideoViewController" id="UBv-qO-lQd" customClass="StoryPointAddPhotoVideoViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jpt-ut-wNR"/>
+                        <viewControllerLayoutGuide type="bottom" id="goT-IZ-Tgg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C1B-O2-bfr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIU-QG-hOv" userLabel="Gallery Button">
+                                <rect key="frame" x="0.0" y="623" width="125" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Jba-xI-dz1"/>
+                                </constraints>
+                                <state key="normal" image="AddMediaScreenGalleryOff"/>
+                                <state key="selected" image="AddMediaScreenGalleryOn"/>
+                                <state key="highlighted" image="AddMediaScreenGalleryOn"/>
+                                <connections>
+                                    <action selector="galleryTapped:" destination="UBv-qO-lQd" eventType="touchUpInside" id="0js-pi-BDz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY7-EW-cWD" userLabel="Photo Button">
+                                <rect key="frame" x="125" y="623" width="125" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="AddMediaScreenPhotoOff"/>
+                                <state key="selected" image="AddMediaScreenPhotoOn"/>
+                                <state key="highlighted" image="AddMediaScreenPhotoOn"/>
+                                <connections>
+                                    <action selector="photoTapped:" destination="UBv-qO-lQd" eventType="touchUpInside" id="lHV-gF-GWY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaZ-4v-o3l" userLabel="Video Button">
+                                <rect key="frame" x="250" y="623" width="125" height="44"/>
+                                <state key="normal" image="AddMediaScreenVideoOff"/>
+                                <state key="selected" image="AddMediaScreenVideoOn"/>
+                                <state key="highlighted" image="AddMediaScreenVideoOn"/>
+                                <connections>
+                                    <action selector="videoTapped:" destination="UBv-qO-lQd" eventType="touchUpInside" id="rvw-6C-lo8"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocz-fv-rLL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.16470588235294117" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ocz-fv-rLL" firstAttribute="top" secondItem="C1B-O2-bfr" secondAttribute="top" id="2ZH-7W-hUF"/>
+                            <constraint firstAttribute="trailing" secondItem="oaZ-4v-o3l" secondAttribute="trailing" id="54d-Pb-jF5"/>
+                            <constraint firstItem="oaZ-4v-o3l" firstAttribute="leading" secondItem="bY7-EW-cWD" secondAttribute="trailing" id="70g-OY-fco"/>
+                            <constraint firstItem="oaZ-4v-o3l" firstAttribute="width" secondItem="MIU-QG-hOv" secondAttribute="width" id="A99-Kl-eUx"/>
+                            <constraint firstItem="bY7-EW-cWD" firstAttribute="height" secondItem="MIU-QG-hOv" secondAttribute="height" id="Cwi-1n-Uc9"/>
+                            <constraint firstItem="bY7-EW-cWD" firstAttribute="leading" secondItem="MIU-QG-hOv" secondAttribute="trailing" id="JtR-pe-j4h"/>
+                            <constraint firstItem="bY7-EW-cWD" firstAttribute="width" secondItem="MIU-QG-hOv" secondAttribute="width" id="KiJ-T4-QBG"/>
+                            <constraint firstItem="ocz-fv-rLL" firstAttribute="leading" secondItem="C1B-O2-bfr" secondAttribute="leading" id="MOP-Yx-gGg"/>
+                            <constraint firstAttribute="trailing" secondItem="ocz-fv-rLL" secondAttribute="trailing" id="Rre-Iy-0Ga"/>
+                            <constraint firstItem="MIU-QG-hOv" firstAttribute="top" secondItem="ocz-fv-rLL" secondAttribute="bottom" id="V4P-rp-Kuc"/>
+                            <constraint firstItem="goT-IZ-Tgg" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="bottom" id="Z1Q-nD-sNy"/>
+                            <constraint firstItem="goT-IZ-Tgg" firstAttribute="top" secondItem="ocz-fv-rLL" secondAttribute="bottom" constant="44" id="euD-Xp-Y1e"/>
+                            <constraint firstItem="oaZ-4v-o3l" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="top" id="gT5-lf-dbo"/>
+                            <constraint firstItem="bY7-EW-cWD" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="top" id="h0u-hZ-o5K"/>
+                            <constraint firstItem="MIU-QG-hOv" firstAttribute="leading" secondItem="C1B-O2-bfr" secondAttribute="leading" id="h7Y-iW-dRr"/>
+                            <constraint firstItem="oaZ-4v-o3l" firstAttribute="height" secondItem="MIU-QG-hOv" secondAttribute="height" id="pAN-xX-91c"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="containerView" destination="ocz-fv-rLL" id="z0r-VX-Fuc"/>
+                        <outlet property="galleryButton" destination="MIU-QG-hOv" id="eqe-bj-EgD"/>
+                        <outlet property="photoButton" destination="bY7-EW-cWD" id="hPi-og-im4"/>
+                        <outlet property="videoButton" destination="oaZ-4v-o3l" id="K7Q-f0-ELN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pPI-KT-ZcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708.5" y="1228.5"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="AddMediaScreenGalleryOff" width="25" height="25"/>
+        <image name="AddMediaScreenGalleryOn" width="25" height="25"/>
+        <image name="AddMediaScreenPhotoOff" width="28" height="25"/>
+        <image name="AddMediaScreenPhotoOn" width="28" height="25"/>
+        <image name="AddMediaScreenVideoOff" width="32" height="17"/>
+        <image name="AddMediaScreenVideoOn" width="32" height="17"/>
         <image name="ButtonShotDefault" width="72" height="72"/>
         <image name="ButtonShotFocus" width="72" height="72"/>
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>

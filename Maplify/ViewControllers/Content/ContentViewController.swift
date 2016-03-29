@@ -6,12 +6,10 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Fusuma
-import Haneke
 import AFImageHelper
 import CoreLocation
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate, MenuDelegate {
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate, MenuDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
     @IBOutlet weak var captureTabButton: UIButton!
     @IBOutlet weak var discoverTabButton: UIButton!
@@ -117,10 +115,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     // MARK: - private
-    func openFusumaController() {
-        let fusuma = FusumaViewController()
-        fusuma.delegate = self
-        self.presentViewController(fusuma, animated: true, completion: nil)
+    func openPhotoVideoController() {
+        
+        // TODO:
+        
+        self.routesOpenPhotoVideoViewController(self.pickedLocation)
     }
     
     // MARK: - storyPointCreationPopupDelegate
@@ -129,32 +128,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.openFusumaController()
+        self.openPhotoVideoController()
     }
     
     func textDidTapped(location: MCMapCoordinate) {
         self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
-    }
-    
-    // MARK: - FusumaDelegate
-    func fusumaImageSelected(image: UIImage) {
-        // cashing image
-        let cache = Shared.imageCache
-        let uniqeId = NSUUID().UUIDString
-        cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  self.pickedLocation)
-    }
-    
-    // When camera roll is not authorized, this method is called.
-    func fusumaCameraRollUnauthorized() {
-        // TODO:
-        print("Camera roll unauthorized")
-    }
-    
-    // (Optional) Return the image but called after is dismissed.
-    func fusumaDismissedWithImage(image: UIImage) {
-        // TODO:
-        print("Called just after FusumaViewController is dismissed.")
     }
     
     // MARK: - MenuDelegate

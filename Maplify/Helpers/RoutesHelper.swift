@@ -85,6 +85,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     
+    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate) {
+        let storyPointAddPhotoVideoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddPhotoVideoViewController) as! StoryPointAddPhotoVideoViewController
+        storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
+        self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController

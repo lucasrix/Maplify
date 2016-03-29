@@ -144,7 +144,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let clLocation = (target as! GMSCameraPosition).target
         let location = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
         self.suspender.executeEvent(kStoryPointsRequestSuspendInterval) { [weak self] () in
-            self?.retrieveStoryPoints(location, radius: kStoryPointsFindingRadius)
+//            self?.retrieveStoryPoints(location, radius: kStoryPointsFindingRadius)
         }
     }
     

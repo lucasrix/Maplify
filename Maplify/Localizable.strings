@@ -88,6 +88,8 @@
 "Alert.Audio.Permissions.Message" = "Open settings. Enable microphone";
 "Alert.Gallery.Permissions.Title" = "Enable photos";
 "Alert.Gallery.Permissions.Message" = "Open settings. Enable photos";
+"Alert.Camera.Permissions.Title" = "Enable camera";
+"Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

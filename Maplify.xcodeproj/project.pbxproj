@@ -122,6 +122,9 @@
 		CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B131CAAD90100EBCC7A /* CameraRollView.xib */; };
 		CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */; };
 		CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B151CAAD90100EBCC7A /* ImageCropView.swift */; };
+		CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */; };
+		CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */; };
+		CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -249,6 +252,9 @@
 		CD451B131CAAD90100EBCC7A /* CameraRollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollView.xib; sourceTree = "<group>"; };
 		CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
 		CD451B151CAAD90100EBCC7A /* ImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropView.swift; sourceTree = "<group>"; };
+		CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImage.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +283,7 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
@@ -546,6 +553,7 @@
 				1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */,
 				1FC781061CA171AF00C50C23 /* Dictionary.swift */,
 				1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */,
+				CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -696,6 +704,15 @@
 			path = CameraRollController;
 			sourceTree = "<group>";
 		};
+		CD451B5B1CABFEAC00EBCC7A /* PhotoController */ = {
+			isa = PBXGroup;
+			children = (
+				CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */,
+				CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */,
+			);
+			path = PhotoController;
+			sourceTree = "<group>";
+		};
 		F01A89531CA75114008B8702 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +818,7 @@
 				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
+				CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
@@ -908,6 +926,7 @@
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
+				CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
@@ -958,6 +977,7 @@
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */,
+				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* UserManager.swift in Sources */,
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,
 				A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */,

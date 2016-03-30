@@ -9,7 +9,7 @@
 import Haneke
 import UIKit
 
-class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate {
+class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var galleryButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
@@ -63,7 +63,11 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
-        (self.currentChildController as! CameraRollViewController).donePressed()
+        if self.currentChildController is CameraRollViewController {
+            (self.currentChildController as! CameraRollViewController).donePressed()
+        } else if self.currentChildController is PhotoViewController {
+            (self.currentChildController as! PhotoViewController).donePressed()
+        }
     }
     
     // MARK: - actions
@@ -78,6 +82,9 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
     @IBAction func photoTapped(sender: UIButton) {
         self.updateControllerTitle(NSLocalizedString("Controller.Photo.Title", comment: String()))
         self.selectButton(sender)
+        let photoController = PhotoViewController()
+        photoController.delegate = self
+        self.showController(photoController)
     }
     
     @IBAction func videoTapped(sender: UIButton) {
@@ -127,15 +134,43 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
         }
     }
     
-    // MARK: - CameraRollDelegate
-    func imageDidSelect(image: UIImage) {
+    private func showCameraPermissionsError() {
+        let title = NSLocalizedString("Alert.Camera.Permissions.Title", comment: String()).capitalizedString
+        let message = NSLocalizedString("Alert.Camera.Permissions.Message", comment: String()).capitalizedString
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttonOpenSettingsTitle = NSLocalizedString("Button.OpenSettings", comment: String()).capitalizedString
+        
+        self.showAlert(title, message: message, cancel: cancel, buttons: [buttonOpenSettingsTitle]) { [weak self] (buttonIndex) in
+            print(buttonIndex)
+            if buttonIndex == 0 {
+                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
+            }
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    func createPhotoStoryPoint(image: UIImage) {
         let cache = Shared.imageCache
         let uniqeId = NSUUID().UUIDString
         cache.set(value: image, key: uniqeId)
         self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location: self.pickedLocation)
     }
     
+    // MARK: - CameraRollDelegate
+    func imageDidSelect(image: UIImage) {
+        self.createPhotoStoryPoint(image)
+    }
+    
     func cameraRollUnauthorized() {
         self.showGalleryPermissionsError()
+    }
+    
+    // MARK: - PhotoControllerDelegate
+    func photoDidTake(image: UIImage) {
+        self.createPhotoStoryPoint(image)
+    }
+    
+    func photoCameraUnauthorized() {
+        self.showCameraPermissionsError()
     }
 }

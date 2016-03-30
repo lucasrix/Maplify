@@ -21,4 +21,6 @@ target 'Maplify' do
   pod 'Fabric', '~> 1.6'
   pod 'Crashlytics', '~> 3.7'
   pod 'EZAudio', :git => 'https://github.com/rzehan/EZAudio.git', :commit => 'df349f2729139bfb2410644e05bb2945af6f57c3'
+  pod 'PGMCameraKit', '~> 0.1'
+  pod 'LLSimpleCamera', '~> 4.2'
 end

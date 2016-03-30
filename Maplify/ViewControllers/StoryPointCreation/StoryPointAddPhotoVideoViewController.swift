@@ -111,12 +111,19 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate 
     }
     
     private func showGalleryPermissionsError() {
-        let title = NSLocalizedString("Alert.Warning", comment: String())
-        let message = NSLocalizedString("Alert.Gallery.Permissions", comment: String())
-        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        let title = NSLocalizedString("Alert.Gallery.Permissions.Title", comment: String()).capitalizedString
+        let message = NSLocalizedString("Alert.Gallery.Permissions.Message", comment: String()).capitalizedString
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttonOpenSettingsTitle = NSLocalizedString("Button.OpenSettings", comment: String()).capitalizedString
         
-        self.showMessageAlert(title, message: message, cancel: cancel) { [weak self] (alerAction) -> Void in
-            self!.photoTapped(self!.photoButton)
+        self.showAlert(title, message: message, cancel: cancel, buttons: [buttonOpenSettingsTitle]) { [weak self] (buttonIndex) in
+            print(buttonIndex)
+            if buttonIndex == 0 {
+                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
+                self?.navigationController?.popViewControllerAnimated(true)
+            } else if buttonIndex == 1 {
+                self?.photoTapped(self!.photoButton)
+            }
         }
     }
     

@@ -18,7 +18,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     var tabCaptureNavigationController: NavigationViewController! = nil
     var tabDiscoverNavigationController: NavigationViewController! = nil
-    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -41,7 +40,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
         (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
-            self?.pickedLocation = location
             self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
@@ -120,7 +118,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.routesOpenPhotoVideoViewController(self.pickedLocation)
+        self.routesOpenPhotoVideoViewController(location)
     }
     
     func textDidTapped(location: MCMapCoordinate) {

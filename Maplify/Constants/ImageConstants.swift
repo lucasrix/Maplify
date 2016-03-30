@@ -73,3 +73,8 @@ struct MediaButtons {
     static let flashOff = "AddMediaScreenFlashOff"
     static let flashOn = "AddMediaScreenFlashOn"
 }
+
+struct CellImages {
+    static let emptyCircle = "empty-circle"
+    static let selectedCircle = "icoCircleChecked"
+}

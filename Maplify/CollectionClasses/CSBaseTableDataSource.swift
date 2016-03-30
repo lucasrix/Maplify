@@ -11,7 +11,7 @@ import UIKit
 let kCellTableHeaderFooterNullHeight: CGFloat = 0.0001
 
 @objc protocol CSBaseTableDataSourceDelegate {
-    optional func didSelectModel(model: AnyObject, indexPath: NSIndexPath)
+    optional func didSelectModel(model: AnyObject, selection: Bool, indexPath: NSIndexPath)
     optional func willRemoveModel(model: AnyObject, indexPath: NSIndexPath)
 }
 
@@ -71,7 +71,7 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         }
         
         let cellData = self.activeModel.cellData(indexPath)
-        self.delegate?.didSelectModel?(cellData.model, indexPath: indexPath)
+        self.delegate?.didSelectModel?(cellData.model, selection: cellData.selected, indexPath: indexPath)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

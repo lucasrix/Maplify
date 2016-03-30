@@ -75,14 +75,14 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     func createStoryPoint(name: String) {
         self.showProgressHUD()
         ApiClient.sharedClient.createStory(name, discoverable: false,
-                                           success: { [weak self] (response) in
-                                            StoryManager.saveStory(response as! Story)
-                                            self?.hideProgressHUD()
-                                            self?.loadItemsFromDB()
+                success: { [weak self] (response) in
+                    StoryManager.saveStory(response as! Story)
+                    self?.hideProgressHUD()
+                    self?.loadItemsFromDB()
             },
-                                           failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                                            self?.hideProgressHUD()
-                                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
     }
@@ -105,7 +105,6 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         // TODO:
     }
     
-    
     @IBAction func createStoryPlaceholderButtonDidTap(sender: AnyObject) {
         self.createStory()
     }
@@ -126,5 +125,4 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
-    
 }

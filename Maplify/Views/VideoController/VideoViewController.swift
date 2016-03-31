@@ -51,6 +51,7 @@ class VideoViewController: UIViewController {
         self.progressBarHeightConstraint.constant = kProgressViewHeight
         self.progressView.progress = Float(0)
         self.updateUI()
+        self.setupBottomButtons()
     }
     
     func setupCamera() {
@@ -70,6 +71,17 @@ class VideoViewController: UIViewController {
         self.simpleCamera.start()
         self.configureChildViewController(self.simpleCamera, onView: self.cameraView)
         self.cameraState = CameraState.Ready
+    }
+    
+    func setupBottomButtons() {
+        // record button
+        self.recordButton.setImage(UIImage(named: MediaButtons.photoShotHighlited), forState: [.Highlighted, .Selected])
+        
+        // delete button
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: .Selected)
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: .Highlighted)
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: [.Selected, .Highlighted])
+        self.deleteButton.setTitle(NSLocalizedString("Button.Delete", comment: String()), forState: .Normal)
     }
     
     // MARK: - actions

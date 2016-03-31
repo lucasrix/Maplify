@@ -10,6 +10,7 @@ import Foundation
 
 class CSActiveModel {
     var sectionsArray: [[CSCellData]]?
+    var page: Int = 1
     
     // MARK: - Init
     init() {
@@ -183,6 +184,10 @@ class CSActiveModel {
             section += 1
         }
         return indexPath
+    }
+    
+    func updatePage() {
+        self.page += 1
     }
 }
 

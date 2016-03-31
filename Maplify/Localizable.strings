@@ -55,6 +55,7 @@
 "Label.Tags" = "Tags";
 "Label.IsThisPartOfStory" = "Is this part of a story?";
 "Label.MyStories" = "My stories";
+"Label.CreateStoryPlaceholder" = "Looks like you don't have any stories yet.";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -80,6 +81,7 @@
 "Button.Delete" = "Delete";
 "Button.Add" = "Add";
 "Button.CreateStory" = "Create story";
+"Button.CreateStoryPlaceholder" = "Create one now.";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

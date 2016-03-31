@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import INSPullToRefresh.UIScrollView_INSPullToRefresh
 
 class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var myStoriesLabel: UILabel!
@@ -25,17 +26,54 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         super.viewDidLoad()
         
         self.setup()
+        self.loadItemsFromDB()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadItemsFromDB()
+        self.loadRemoteData()
+    }
+    
+    deinit {
+        self.tableView.ins_removePullToRefresh()
+        self.tableView.ins_endInfinityScroll()
     }
     
     // MARK: - setup
     func setup() {
+        self.setupTableView()
         self.setupViews()
+        self.setupPlaceholderView()
+    }
+    
+    func setupTableView() {
+        self.setupPullToRefresh()
+        self.setupInfinityScroll()
+    }
+    
+    func setupPullToRefresh() {
+        self.tableView.ins_addPullToRefreshWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+            self?.loadRemoteData()
+        }
+        
+        let pullToRefresh = INSDefaultPullToRefresh(frame: Frame.pullToRefreshFrame, backImage: nil, frontImage: nil)
+        self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = false
+        self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+        self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
+    }
+    
+    func setupInfinityScroll() {
+        self.tableView.ins_setInfinityScrollEnabled(true)
+        self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+            self?.loadRemoteData()
+        }
+        
+        let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
+        self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
+        self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
+        indicator.startAnimating()
     }
     
     func setupViews() {
@@ -45,6 +83,12 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.createStoryButton.setTitle(NSLocalizedString("Button.CreateStory", comment: String()).uppercaseString, forState: .Normal)
     }
     
+    func setupPlaceholderView() {
+        self.placeholderDescriptionLabel.text = NSLocalizedString("Label.CreateStoryPlaceholder", comment: String())
+        let buttonTitle = NSLocalizedString("Button.CreateStoryPlaceholder", comment: String())
+        self.placeholderCreateButton.setTitle(buttonTitle, forState: .Normal)
+    }
+    
     // MARK: - navigation bar
     override func navigationBarIsTranlucent() -> Bool {
         return false
@@ -52,6 +96,23 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    func loadRemoteData() {
+        ApiClient.sharedClient.getCurrentUserStories(self.storyActiveModel.page,
+            success: { [weak self] (response) in
+                self?.tableView.ins_endPullToRefresh()
+                self?.tableView.ins_endInfinityScroll()
+                StoryManager.saveStories(response as! [Story])
+                self?.storyActiveModel.updatePage()
+                self?.loadItemsFromDB()
+            },
+            failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.tableView.ins_endPullToRefresh()
+                self?.tableView.ins_endInfinityScroll()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            }
+        )
     }
     
     func updateStoryPointDetails(stories: [Story]) {
@@ -76,7 +137,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.showProgressHUD()
         ApiClient.sharedClient.createStory(name, discoverable: false,
                 success: { [weak self] (response) in
-                    StoryManager.saveStory(response as! Story)
+                    StoryManager.saveStories([response as! Story])
                     self?.hideProgressHUD()
                     self?.loadItemsFromDB()
             },

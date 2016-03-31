@@ -14,12 +14,14 @@ class StoryManager: ModelManager {
         return Story(dictionary)
     }
     
-    class func saveStory(story: Story) {
+    class func saveStories(stories: [Story]) {
         let realm = try! Realm()
         
-        let recordExists = (realm.objectForPrimaryKey(Story.self, key: story.id) != nil)
-        try! realm.write {
-            realm.add(story, update: recordExists)
+        for story in stories {
+            let recordExists = (realm.objectForPrimaryKey(Story.self, key: story.id) != nil)
+            try! realm.write {
+                realm.add(story, update: recordExists)
+            }
         }
     }
 }

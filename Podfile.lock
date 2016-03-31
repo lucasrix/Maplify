@@ -18,6 +18,7 @@ PODS:
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
   - HanekeSwift (0.10.1)
+  - INSPullToRefresh (1.1.5)
   - INTULocationManager (4.1.1)
   - ISO8601 (0.5.0)
   - LLSimpleCamera (4.2.0)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - GoogleMaps (~> 1.12)
   - GooglePlaces (~> 1.0)
   - HanekeSwift (~> 0.10)
+  - INSPullToRefresh (~> 1.1)
   - INTULocationManager (~> 4.1)
   - LLSimpleCamera (~> 4.2)
   - Locksmith (~> 2.0)
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
   GooglePlaces: af82dff8b6699dd59fdbf8ec9b3ad170e5f2217a
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47
   INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
   ISO8601: 25d7a973fa8daf31a50bbd0401d2e7b98e8a7df3
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6

@@ -25,11 +25,20 @@ class RecommendedSettingsViewController: ViewController {
     
     // MARK: - setup
     func setup() {
+        self.setupLabels()
+        self.setupDoneButton()
+    }
+    
+    func setupLabels() {
         self.title = NSLocalizedString("Controller.RecommendedSettings.Title", comment: String())
         self.pushNotificationsTitleLabel.text = NSLocalizedString("Label.Switch.PushNotification", comment: String())
         self.pushNotificationsDescriptionLabel.text = NSLocalizedString("Label.Switch.PushNotificationDescription", comment: String())
         self.locationTitleLabel.text = NSLocalizedString("Label.Switch.Location", comment: String())
         self.locationDescriptionTitleLabel.text = NSLocalizedString("Label.Switch.LocationDescription", comment: String())
+    }
+    
+    func setupDoneButton() {
+        self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
     }
     
     //MARK: - actions
@@ -41,5 +50,9 @@ class RecommendedSettingsViewController: ViewController {
     @IBAction func locationSwitchDidChangeValue(sender: AnyObject) {
         let enabled = self.locationSwitch.on
         SessionManager.sharedManager.setLocationEnabled(enabled)
+    }
+    
+    override func rightBarButtonItemDidTap() {
+        //TODO: -
     }
 }

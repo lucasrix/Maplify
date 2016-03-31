@@ -47,6 +47,7 @@
 "Controller.Photo.Title" = "Photo";
 "Controller.Video.Title" = "Video";
 "Controller.AddToStory.Title" = "Add to Story";
+"Controller.RecommendedSettings.Title" = "Recommended Settings";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -56,6 +57,10 @@
 "Label.IsThisPartOfStory" = "Is this part of a story?";
 "Label.MyStories" = "My stories";
 "Label.CreateStoryPlaceholder" = "Looks like you don't have any stories yet.";
+"Label.Switch.PushNotification" = "Allow Push notifications";
+"Label.Switch.PushNotificationDescription" = "We will inform as soon as something important will happen";
+"Label.Switch.Location" = "Location authorization"
+"Label.Switch.LocationDescription" = "We will suggest content for you based on your location";
 
 //Subsrtings
 "Substring.Of" = "of";

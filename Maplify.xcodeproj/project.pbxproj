@@ -43,6 +43,7 @@
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
 		8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A281C8CD5A10005DF12 /* SignupViewController.swift */; };
 		8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */; };
+		8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */; };
 		A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
 		A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
@@ -179,6 +180,7 @@
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C130A281C8CD5A10005DF12 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryManager.swift; sourceTree = "<group>"; };
+		8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedSettingsViewController.swift; sourceTree = "<group>"; };
 		A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorypointCell.swift; sourceTree = "<group>"; };
 		A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDataSource.swift; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -392,6 +394,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8C9094D21CAD5BE4002F26A9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		A5081E4F1C805845006FBA52 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +505,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C9094D21CAD5BE4002F26A9 /* Settings */,
 				F01A89531CA75114008B8702 /* Menu */,
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
 				1FB70B301C9DA52C00FC3496 /* StoryPointCreation */,
@@ -1012,6 +1023,7 @@
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
+				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,

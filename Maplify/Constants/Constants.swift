@@ -15,6 +15,8 @@ struct Config {
     static let productionConfigFile = "config_production"
     static let localUserAccount = "localUserAccount"
     static let userAppLaunch = "userAppLaunch"
+    static let locationEnabled = "locationEnabled"
+    static let pushNotificationsEnabled = "pushNotificationsEnabled"
 }
 
 struct FileType {
@@ -49,6 +51,7 @@ struct Controllers {
     static let menuViewController = "MenuViewController"
     static let storyPointAddPhotoVideoViewController = "StoryPointAddPhotoVideoViewController"
     static let addStoryViewController = "AddStoryViewController"
+    static let recommendedSettingsController = "RecommendedSettingsController"
 }
 
 struct AppIDs {

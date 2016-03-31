@@ -10,7 +10,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController">
             <connections>
                 <outlet property="cameraView" destination="3ec-Vw-QBk" id="rfj-RH-p1k"/>
+                <outlet property="deleteButton" destination="8CE-wv-kSW" id="RvG-Pf-WDJ"/>
                 <outlet property="flashButton" destination="RRN-bg-MP5" id="Llc-G6-oPE"/>
+                <outlet property="previewImageView" destination="INr-Th-Oyf" id="ek9-Fj-DWd"/>
                 <outlet property="shotButton" destination="RI2-Zq-sNV" id="fVt-Aq-zb3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="bB9-UL-90e"/>
             </connections>
@@ -27,6 +29,9 @@
                         <constraint firstAttribute="width" secondItem="3ec-Vw-QBk" secondAttribute="height" multiplier="125:125" id="HiP-Oq-j1M"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="INr-Th-Oyf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akh-Bh-PsO" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="375" width="375" height="292"/>
                     <subviews>
@@ -60,9 +65,24 @@
                                 <constraint firstAttribute="width" constant="50" id="ABc-E0-Hlr"/>
                                 <constraint firstAttribute="height" constant="50" id="oA9-dL-ZS5"/>
                             </constraints>
-                            <state key="normal" image="AddMediaScreenFlashAuto"/>
+                            <state key="normal" image="AddMediaScreenFlashOff"/>
                             <connections>
                                 <action selector="flashTapped:" destination="-1" eventType="touchUpInside" id="dbf-Qp-fW4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CE-wv-kSW">
+                            <rect key="frame" x="127" y="154" width="120" height="49"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="Mpf-PJ-gfL"/>
+                                <constraint firstAttribute="width" constant="120" id="R1y-Af-3O1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="2" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                            <state key="normal" title="Delete" image="icoCancel"/>
+                            <connections>
+                                <action selector="deleteTapped:" destination="-1" eventType="touchUpInside" id="NK2-Yd-fKX"/>
                             </connections>
                         </button>
                     </subviews>
@@ -70,20 +90,26 @@
                     <constraints>
                         <constraint firstItem="RRN-bg-MP5" firstAttribute="leading" secondItem="RI2-Zq-sNV" secondAttribute="trailing" constant="60" id="0uZ-x7-NG2"/>
                         <constraint firstItem="RI2-Zq-sNV" firstAttribute="leading" secondItem="U8h-6S-Y8y" secondAttribute="trailing" constant="60" id="H3k-LP-cof"/>
+                        <constraint firstItem="8CE-wv-kSW" firstAttribute="top" secondItem="RI2-Zq-sNV" secondAttribute="bottom" constant="15" id="QCJ-da-j0e"/>
                         <constraint firstItem="RI2-Zq-sNV" firstAttribute="centerX" secondItem="akh-Bh-PsO" secondAttribute="centerX" id="Umx-R3-aJ4"/>
                         <constraint firstItem="RI2-Zq-sNV" firstAttribute="centerY" secondItem="akh-Bh-PsO" secondAttribute="centerY" multiplier="0.7" id="YDf-cj-s40"/>
                         <constraint firstItem="U8h-6S-Y8y" firstAttribute="centerY" secondItem="RI2-Zq-sNV" secondAttribute="centerY" id="aaN-qV-dCj"/>
                         <constraint firstItem="RRN-bg-MP5" firstAttribute="centerY" secondItem="RI2-Zq-sNV" secondAttribute="centerY" id="gq2-Tc-uAE"/>
+                        <constraint firstItem="8CE-wv-kSW" firstAttribute="centerX" secondItem="akh-Bh-PsO" secondAttribute="centerX" id="mx5-Jo-bpK"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="akh-Bh-PsO" secondAttribute="bottom" id="2Ud-Yp-IfL"/>
+                <constraint firstAttribute="trailing" secondItem="INr-Th-Oyf" secondAttribute="trailing" id="3Hg-vC-wZV"/>
                 <constraint firstItem="3ec-Vw-QBk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9uu-Ay-YwF"/>
+                <constraint firstItem="INr-Th-Oyf" firstAttribute="height" secondItem="3ec-Vw-QBk" secondAttribute="height" id="VpG-kG-DU4"/>
+                <constraint firstItem="INr-Th-Oyf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WhM-BJ-t26"/>
                 <constraint firstAttribute="trailing" secondItem="akh-Bh-PsO" secondAttribute="trailing" id="XLM-80-4Jg"/>
                 <constraint firstItem="akh-Bh-PsO" firstAttribute="top" secondItem="3ec-Vw-QBk" secondAttribute="bottom" id="hsI-I5-j2t"/>
                 <constraint firstItem="3ec-Vw-QBk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ipc-qh-1Nd"/>
+                <constraint firstItem="INr-Th-Oyf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ky1-7z-G19"/>
                 <constraint firstItem="akh-Bh-PsO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="l1R-xD-lic"/>
                 <constraint firstAttribute="trailing" secondItem="3ec-Vw-QBk" secondAttribute="trailing" id="yFg-kp-ehJ"/>
             </constraints>
@@ -93,8 +119,9 @@
     </objects>
     <resources>
         <image name="AddMediaScreenCameraModeButton" width="27" height="24"/>
-        <image name="AddMediaScreenFlashAuto" width="21" height="27"/>
+        <image name="AddMediaScreenFlashOff" width="20" height="27"/>
         <image name="AddMediaScreenPhotoButtonShotDefault" width="72" height="72"/>
         <image name="AddMediaScreenPhotoButtonShotSelected" width="72" height="72"/>
+        <image name="icoCancel" width="16" height="16"/>
     </resources>
 </document>

@@ -77,6 +77,7 @@
 "Button.Text" = "Text";
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
+"Button.Delete" = "Delete";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

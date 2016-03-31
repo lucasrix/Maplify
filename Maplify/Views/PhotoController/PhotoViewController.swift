@@ -11,13 +11,18 @@ import UIKit
 import CoreMedia
 import AVFoundation
 
+let kDeleteButtonHighlitedStateAlpha: CGFloat = 0.5
+
 class PhotoViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var shotButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var previewImageView: UIImageView!
     
     var simpleCamera: LLSimpleCamera! = nil
     var delegate: PhotoControllerDelegate! = nil
+    var cameraStatePhoto = true
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -57,33 +62,34 @@ class PhotoViewController: UIViewController {
     
     func configureCamera() {
         self.simpleCamera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: false)
+        self.updateUI()
         self.simpleCamera.start()
         self.configureChildViewController(self.simpleCamera, onView: self.cameraView)
-        self.simpleCamera.updateFlashMode(LLCameraFlashAuto)
-        self.updateFlashUI()
     }
     
     func setupBottomButtons() {
+        // shot button
         self.shotButton.setImage(UIImage(named: MediaButtons.photoShotHighlited), forState: [.Highlighted, .Selected])
-    }
-    
-    // MARK: Orientation
-    override func shouldAutorotate() -> Bool {
-        return false
+        
+        // delete button
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: .Selected)
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: .Highlighted)
+        self.deleteButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(kDeleteButtonHighlitedStateAlpha), forState: [.Selected, .Highlighted])
+        self.deleteButton.setTitle(NSLocalizedString("Button.Delete", comment: String()), forState: .Normal)
     }
     
     // MARK: - actions
     @IBAction func shotTapped(sender: UIButton) {
-        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> Void in
-            if let capturedImage = image {
-                let correctOrientedImage = capturedImage.correctlyOrientedImage()
-                self!.delegate?.photoDidTake(correctOrientedImage.cropToSquare())
-            }
-        })
+        if self.cameraStatePhoto {
+            self.captureAction()
+        }
     }
     
     @IBAction func cameraModeTapped(sender: UIButton) {
-        self.simpleCamera.togglePosition()
+        if self.cameraStatePhoto {
+            self.simpleCamera.togglePosition()
+            self.flashButton.hidden = self.simpleCamera.position == LLCameraPositionFront
+        }
     }
     
     @IBAction func flashTapped(sender: UIButton) {
@@ -96,23 +102,52 @@ class PhotoViewController: UIViewController {
             flash = LLCameraFlashAuto
         }
         self.simpleCamera.updateFlashMode(flash)
-        self.updateFlashUI()
+        self.updateFlashIcon()
     }
     
-    func updateFlashUI() {
+    @IBAction func deleteTapped(sender: UIButton) {
+        self.simpleCamera.start()
+        self.toggleCameraMode()
+    }
+    
+    // MARK: - private
+    func captureAction() {
+        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> Void in
+            if let capturedImage = image {
+                let correctOrientedImage = capturedImage.correctlyOrientedImage()
+                self?.toggleCameraMode()
+                self?.simpleCamera.stop()
+                self?.previewImageView.image = correctOrientedImage.cropToSquare()
+            }
+        })
+    }
+    
+    func toggleCameraMode() {
+        self.cameraStatePhoto = !self.cameraStatePhoto
+        self.updateUI()
+    }
+    
+    func updateUI() {
+        self.previewImageView.hidden = self.cameraStatePhoto
+        self.deleteButton.hidden = self.cameraStatePhoto
+    }
+    
+    func updateFlashIcon() {
         var flashImageString = String()
         if self.simpleCamera.flash == LLCameraFlashAuto {
-            flashImageString = MediaButtons.flashOn
-        } else if self.simpleCamera.flash == LLCameraFlashOn {
-            flashImageString = MediaButtons.flashOff
-        } else if self.simpleCamera.flash == LLCameraFlashOff {
             flashImageString = MediaButtons.flashAuto
+        } else if self.simpleCamera.flash == LLCameraFlashOn {
+            flashImageString = MediaButtons.flashOn
+        } else if self.simpleCamera.flash == LLCameraFlashOff {
+            flashImageString = MediaButtons.flashOff
         }
         self.flashButton.setImage(UIImage(named: flashImageString), forState: .Normal)
     }
     
     func donePressed() {
-        // TODO:
+        if !self.previewImageView.hidden {
+            self.delegate?.photoDidTake(self.previewImageView.image!)
+        }
     }
 }
 

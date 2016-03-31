@@ -70,7 +70,7 @@
                                 <action selector="flashTapped:" destination="-1" eventType="touchUpInside" id="dbf-Qp-fW4"/>
                             </connections>
                         </button>
-                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CE-wv-kSW">
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CE-wv-kSW">
                             <rect key="frame" x="127" y="154" width="120" height="49"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>

@@ -9,7 +9,7 @@
 import Haneke
 import UIKit
 
-class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate {
+class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate, VideoControllerDelagate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var galleryButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
@@ -67,6 +67,8 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
             (self.currentChildController as! CameraRollViewController).donePressed()
         } else if self.currentChildController is PhotoViewController {
             (self.currentChildController as! PhotoViewController).donePressed()
+        } else if self.currentChildController is VideoViewController {
+            (self.currentChildController as! VideoViewController).donePressed()
         }
     }
     
@@ -90,6 +92,9 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     @IBAction func videoTapped(sender: UIButton) {
         self.updateControllerTitle(NSLocalizedString("Controller.Video.Title", comment: String()))
         self.selectButton(sender)
+        let videoViewController = VideoViewController()
+        videoViewController.delegate = self
+        self.showController(videoViewController)
         
     }
     
@@ -171,6 +176,15 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     func photoCameraUnauthorized() {
+        self.showCameraPermissionsError()
+    }
+    
+    // MARK: - VideoControllerDelagate
+    func videoDidWrite(url: String) {
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Video, storyPointAttachmentId: url, location: self.pickedLocation)
+    }
+    
+    func videoCameraUnauthorized() {
         self.showCameraPermissionsError()
     }
 }

@@ -29,7 +29,7 @@ class InputTextView: UIView, UITextViewDelegate {
     var delegate: InputTextViewDelegate! = nil
     var maxCharLength: Int = 0 {
         didSet {
-            self.showTextLengthLimitIfNeeded()
+            self.showTextLengthLimitIfNeeded(Int(0))
         }
     }
     var view: UIView! = nil
@@ -115,18 +115,24 @@ class InputTextView: UIView, UITextViewDelegate {
         self.updateViewWithAnimation(true, errorShow: false, separatrorColor: UIColor.dodgerBlue())
     }
     
-    func showTextLengthLimitIfNeeded() {
-        if self.maxCharLength > 0 {
-            let char = NSLocalizedString("InputField.Description.Char", comment: String())
-            let of = NSLocalizedString("InputField.Description.Of", comment: String())
-            self.leftDetailLabel.text = "\(textView.text.length) " + of + " \(self.maxCharLength) " + char
-            if self.textView.text?.length >= self.maxCharLength {
-                self.textView.text = self.textView.text?.substr(0, end: self.maxCharLength - 1)
-            }
-        }
+    func showTextLengthLimitIfNeeded(charactersCount: Int) {
+        let substringOf = NSLocalizedString("Substring.Of", comment: String())
+        let substringChars = NSLocalizedString("Substring.Chars", comment: String())
+        self.leftDetailLabel.text = "\(charactersCount) " + substringOf + " \(maxCharLength) " + substringChars
     }
     
     // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultCharactersCount = (self.textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
+        if resultCharactersCount <= maxCharLength {
+            self.showTextLengthLimitIfNeeded(resultCharactersCount)
+            self.setHighlightedState()
+            self.delegate?.editingChanged?(self)
+            return true
+        }
+        return false
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         self.setHighlightedState()
         self.delegate?.editingBegin?(self)
@@ -135,12 +141,6 @@ class InputTextView: UIView, UITextViewDelegate {
     func textViewDidEndEditing(textView: UITextView) {
         self.setDefaultState()
         self.delegate?.editingEnd?(self)
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-        self.showTextLengthLimitIfNeeded()
-        self.setHighlightedState()
-        self.delegate?.editingChanged?(self)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

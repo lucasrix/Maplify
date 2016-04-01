@@ -8,7 +8,7 @@
 
 import GoogleMaps
 
-let kMaxAboutTextLength = 255
+let kMaxAboutTextLength = 500
 
 class SignupUpdateProfileController: ViewController, InputTextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var locationInputField: InputTextField!

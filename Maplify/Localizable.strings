@@ -23,8 +23,6 @@
 "InputField.Description.Password" = "at least 6 characters";
 "InputField.Description.City" = "Recommended, to see stories around you";
 "InputField.Description.Optional" = "Optional";
-"InputField.Description.Char" = "char";
-"InputField.Description.Of" = "of";
 
 //Controllers
 "Controller.Signup.Title" = "Sign Up";

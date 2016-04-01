@@ -28,7 +28,7 @@ class StoryPoint: Model {
         self.init()
                 
         self.id <- map.property("id")
-        self.user <- map.relationOrNil("story_point")
+        self.user <- map.relationOrNil("user")
         self.location <- map.relationOrNil("location")
         self.kind <- map.property("kind")
         self.caption <- map.property("caption")

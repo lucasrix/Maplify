@@ -58,10 +58,11 @@
 "Label.PartOfStory" = "Part of a story:";
 "Label.MyStories" = "My stories";
 "Label.CreateStoryPlaceholder" = "Looks like you don't have any stories yet.";
-"Label.Switch.PushNotification" = "Allow Push notifications";
-"Label.Switch.PushNotificationDescription" = "We will inform as soon as something important will happen";
-"Label.Switch.Location" = "Location authorization";
-"Label.Switch.LocationDescription" = "We will suggest content for you based on your location";
+"Label.Switch.PushNotification" = "Notify me about fun stuff";
+"Label.Switch.PushNotificationDescription" = "We can send you push notifications when something fun happens like when your friends create new stories";
+"Label.Switch.Location" = "Use my location";
+"Label.Switch.LocationDescription" = "We'll use your location to show you people's stories around you, where you are. It also makes it easier to create a new geotagged story. We will only use your location while in the app.";
+"Label.Alert.Details" = "If these sound good, next you'll get a popup asking for permission. Tap OK once it appears.";
 
 //Subsrtings
 "Substring.Of" = "of";

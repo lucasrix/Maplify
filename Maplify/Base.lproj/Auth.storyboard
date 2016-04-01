@@ -806,8 +806,8 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UM-oe-KTG">
-                                <rect key="frame" x="35" y="221" width="182" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use my location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UM-oe-KTG">
+                                <rect key="frame" x="35" y="232" width="182" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="SkR-Xd-uZ4"/>
                                     <constraint firstAttribute="height" constant="21" id="m4Y-cV-fRY"/>
@@ -816,20 +816,18 @@ Terms &amp; Privacy Policy.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b94-AX-AHt">
-                                <rect key="frame" x="35" y="137" width="235" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We can send you push notifications when something fun happens like when your friends create new stories" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b94-AX-AHt">
+                                <rect key="frame" x="35" y="144" width="253" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="fJK-Cu-DUi"/>
-                                    <constraint firstAttribute="width" constant="235" id="zrc-Te-GjZ"/>
+                                    <constraint firstAttribute="height" constant="69" id="fJK-Cu-DUi"/>
+                                    <constraint firstAttribute="width" constant="253" id="zrc-Te-GjZ"/>
                                 </constraints>
-                                <string key="text">We will inform as soon as something
-important will happen</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.51274379432624118" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v51-1y-bEo">
-                                <rect key="frame" x="296" y="108" width="51" height="31"/>
+                                <rect key="frame" x="296" y="119" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="UgY-C1-dvG"/>
                                     <constraint firstAttribute="height" constant="31" id="rjv-uw-1UP"/>
@@ -839,18 +837,19 @@ important will happen</string>
                                     <action selector="pushNotificationSwitchDidChangeValue:" destination="fam-TZ-Dfq" eventType="valueChanged" id="7Gb-Ka-YcI"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will suggest content for you based on your location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-DS-pkS">
-                                <rect key="frame" x="35" y="245" width="235" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-DS-pkS">
+                                <rect key="frame" x="35" y="256" width="235" height="104"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="joC-XW-N6a"/>
+                                    <constraint firstAttribute="height" constant="104" id="joC-XW-N6a"/>
                                     <constraint firstAttribute="width" constant="235" id="yWU-vT-eGE"/>
                                 </constraints>
+                                <string key="text">We'll use your location to show you people's stories around you, where you are. It also makes it easier to create a new geotagged story. We will only use your location while in the app.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.51274379430000006" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X9M-UH-X4X">
-                                <rect key="frame" x="296" y="216" width="51" height="31"/>
+                                <rect key="frame" x="296" y="227" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="MVS-Lu-QXh"/>
                                     <constraint firstAttribute="width" constant="49" id="nMn-9C-MEA"/>
@@ -860,8 +859,8 @@ important will happen</string>
                                     <action selector="locationSwitchDidChangeValue:" destination="fam-TZ-Dfq" eventType="valueChanged" id="wED-Jr-f1Q"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Push notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLg-l0-LfR">
-                                <rect key="frame" x="35" y="113" width="182" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me about fun stuff" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLg-l0-LfR">
+                                <rect key="frame" x="35" y="124" width="182" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="3WV-KJ-wll"/>
                                     <constraint firstAttribute="height" constant="21" id="KD5-Hl-CtK"/>
@@ -870,19 +869,33 @@ important will happen</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So5-Mr-NJ2">
+                                <rect key="frame" x="35" y="382" width="235" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="63Z-1V-mNg"/>
+                                    <constraint firstAttribute="height" constant="57" id="dE5-ry-8LP"/>
+                                </constraints>
+                                <string key="text">If these sound good, next you'll get a popup asking for permission. 
+Tap OK once it appears.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="X9M-UH-X4X" secondAttribute="trailing" constant="30" id="5Ul-U4-1Pa"/>
-                            <constraint firstItem="b94-AX-AHt" firstAttribute="top" secondItem="tLg-l0-LfR" secondAttribute="bottom" constant="3" id="8XW-yt-VPs"/>
+                            <constraint firstItem="b94-AX-AHt" firstAttribute="top" secondItem="tLg-l0-LfR" secondAttribute="bottom" constant="-1" id="8XW-yt-VPs"/>
                             <constraint firstItem="tLg-l0-LfR" firstAttribute="leading" secondItem="2cZ-fB-FTl" secondAttribute="leading" constant="35" id="Bqf-LJ-LaM"/>
-                            <constraint firstItem="2UM-oe-KTG" firstAttribute="top" secondItem="b94-AX-AHt" secondAttribute="bottom" constant="46" id="GfV-8p-tnM"/>
+                            <constraint firstItem="2UM-oe-KTG" firstAttribute="top" secondItem="b94-AX-AHt" secondAttribute="bottom" constant="19" id="GfV-8p-tnM"/>
                             <constraint firstItem="b94-AX-AHt" firstAttribute="leading" secondItem="2cZ-fB-FTl" secondAttribute="leading" constant="35" id="J2r-EL-y25"/>
-                            <constraint firstItem="tLg-l0-LfR" firstAttribute="top" secondItem="Zc0-Cj-VaS" secondAttribute="bottom" constant="49" id="QUW-MQ-gTJ"/>
+                            <constraint firstItem="So5-Mr-NJ2" firstAttribute="leading" secondItem="2cZ-fB-FTl" secondAttribute="leading" constant="35" id="MNZ-Mk-NT0"/>
+                            <constraint firstItem="tLg-l0-LfR" firstAttribute="top" secondItem="Zc0-Cj-VaS" secondAttribute="bottom" constant="60" id="QUW-MQ-gTJ"/>
                             <constraint firstItem="X9M-UH-X4X" firstAttribute="top" secondItem="v51-1y-bEo" secondAttribute="bottom" constant="77" id="RzO-Vq-CsH"/>
                             <constraint firstItem="2UM-oe-KTG" firstAttribute="leading" secondItem="2cZ-fB-FTl" secondAttribute="leading" constant="35" id="SO5-gw-sR7"/>
+                            <constraint firstItem="So5-Mr-NJ2" firstAttribute="top" secondItem="ohL-DS-pkS" secondAttribute="bottom" constant="22" id="W0u-NH-J7z"/>
                             <constraint firstAttribute="trailing" secondItem="v51-1y-bEo" secondAttribute="trailing" constant="30" id="fug-tf-YYd"/>
-                            <constraint firstItem="v51-1y-bEo" firstAttribute="top" secondItem="Zc0-Cj-VaS" secondAttribute="bottom" constant="44" id="l38-F4-cYE"/>
+                            <constraint firstItem="v51-1y-bEo" firstAttribute="top" secondItem="Zc0-Cj-VaS" secondAttribute="bottom" constant="55" id="l38-F4-cYE"/>
                             <constraint firstItem="ohL-DS-pkS" firstAttribute="top" secondItem="2UM-oe-KTG" secondAttribute="bottom" constant="3" id="pnA-Mg-hgf"/>
                             <constraint firstItem="ohL-DS-pkS" firstAttribute="leading" secondItem="2cZ-fB-FTl" secondAttribute="leading" constant="35" id="z9b-wd-57I"/>
                         </constraints>

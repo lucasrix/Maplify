@@ -59,6 +59,7 @@ struct ButtonImages {
     static let recordButtonShotStartHighlited = "ButtonShotHighlited"
     static let recordButtonShotStopDefault = "ButtonShotStopDefault"
     static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
+    static let deleteButtonItem = "icoMinus"
 }
 
 struct MediaButtons {

@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 import INSPullToRefresh.UIScrollView_INSPullToRefresh
 
+typealias updateStoryClosure = ([Story]) -> ()
+
 class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var myStoriesLabel: UILabel!
     @IBOutlet weak var createStoryButton: UIButton!
@@ -20,6 +22,8 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     var storyDataSource: CSBaseTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
+    var updatedStoryIds: updateStoryClosure! = nil
+    var selectedIndexPathes: [NSIndexPath]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -27,7 +31,6 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         
         self.setup()
         self.loadItemsFromDB()
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -119,9 +122,12 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.tableView.hidden = !Bool(stories.count)
         self.placeholderView.hidden = Bool(stories.count)
         
+        self.selectedIndexPathes = self.storyActiveModel.selectedIndexPathes()
         self.storyActiveModel.removeData()
+        
         let cellIdentifier = "StoryQuickCreationCell"
         self.storyActiveModel.addItems(stories, cellIdentifier: cellIdentifier, sectionTitle: nil, delegate: self)
+        self.storyActiveModel.selectModels(self.selectedIndexPathes)
         self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.allowMultipleSelection = true
         self.storyDataSource.reloadTable()
@@ -163,7 +169,11 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     // MARK: - actions
     override func rightBarButtonItemDidTap() {
-        // TODO:
+        if self.storyActiveModel.selectedIndexPathes().count > 0 {
+            let selectedStories = self.storyActiveModel.selectedModels().map({$0.model as! Story})
+            self.updatedStoryIds(selectedStories)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     @IBAction func createStoryPlaceholderButtonDidTap(sender: AnyObject) {

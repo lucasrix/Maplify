@@ -55,11 +55,12 @@
 "Label.PlaceOrLocation" = "Place or location";
 "Label.Tags" = "Tags";
 "Label.IsThisPartOfStory" = "Is this part of a story?";
+"Label.PartOfStory" = "Part of a story:";
 "Label.MyStories" = "My stories";
 "Label.CreateStoryPlaceholder" = "Looks like you don't have any stories yet.";
 "Label.Switch.PushNotification" = "Allow Push notifications";
 "Label.Switch.PushNotificationDescription" = "We will inform as soon as something important will happen";
-"Label.Switch.Location" = "Location authorization"
+"Label.Switch.Location" = "Location authorization";
 "Label.Switch.LocationDescription" = "We will suggest content for you based on your location";
 
 //Subsrtings
@@ -84,6 +85,7 @@
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
 "Button.Delete" = "Delete";
+"Button.ChangeStory" = "Change Story";
 "Button.Add" = "Add";
 "Button.CreateStory" = "Create story";
 "Button.CreateStoryPlaceholder" = "Create one now.";

@@ -43,7 +43,6 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     func setup() {
         self.setupCollectionView()
         self.checkPhotoAuth()
-//        self.setupImages()
     }
     
     func setupCollectionView() {

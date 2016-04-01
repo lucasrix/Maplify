@@ -23,9 +23,6 @@ PODS:
   - LLSimpleCamera (4.2.0)
   - Locksmith (2.0.8)
   - ObjectMapper (1.1.5)
-  - PGMCameraKit (0.1.3):
-    - PGMTimer
-  - PGMTimer (0.1.3)
   - ReactiveCocoa (4.0.1):
     - ReactiveCocoa/UI (= 4.0.1)
     - Result (~> 1.0.2)
@@ -74,7 +71,6 @@ DEPENDENCIES:
   - INTULocationManager (~> 4.1)
   - LLSimpleCamera (~> 4.2)
   - Locksmith (~> 2.0)
-  - PGMCameraKit (~> 0.1)
   - RealmSwift (~> 0.98)
   - RSKGrowingTextView (~> 1.0)
   - RSKKeyboardAnimationObserver (~> 1.0)
@@ -118,8 +114,6 @@ SPEC CHECKSUMS:
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
-  PGMCameraKit: 971c895bc05439bab547c0ce904d06492432c417
-  PGMTimer: 85d3784d80df0bad8ce1dd23a733c2acb8dda7f1
   ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea

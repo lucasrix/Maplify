@@ -109,6 +109,10 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         } else if self.storyPointKind == StoryPointKind.Audio {
             file = NSFileManager.defaultManager().contentsAtPath(self.storyPointAttachmentId)
             params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
+        } else if self.storyPointKind == StoryPointKind.Video {
+            let url = NSURL(string: self.storyPointAttachmentId)
+            file = NSData(contentsOfURL: url!)
+            params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
         }
        
         ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in

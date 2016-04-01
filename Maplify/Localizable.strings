@@ -45,6 +45,9 @@
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
 "Controller.Capture.Title" = "Near you";
 "Controller.Ambient.Title" = "Ambient";
+"Controller.CameraRoll.Title" = "Camera Roll";
+"Controller.Photo.Title" = "Photo";
+"Controller.Video.Title" = "Video";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -64,6 +67,7 @@
 "Button.FacebookLogin" = "Continue with Facebook";
 "Button.EmailSignup" = "Sign up with email";
 "Button.Cancel" = "Cancel";
+"Button.OpenSettings" = "Open settings";
 "Button.ExistingPhoto" = "Choose existing photo";
 "Button.TakePhoto" = "Take new photo";
 "Button.Skip" = "Skip";
@@ -73,6 +77,7 @@
 "Button.Text" = "Text";
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
+"Button.Delete" = "Delete";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -80,7 +85,12 @@
 "Alert.Warning" = "Warning";
 "Alert.NoPhoto" = "You didn’t set a profile photo. It just takes a sec and you can always change it later!";
 "Alert.Title.ProfilePhoto" = "Profile Photo";
-"Alert.Audio.Permissions" = "Your microphone is disabled. Please turn it on in your phone settings so as to create Ambient post";
+"Alert.Audio.Permissions.Title" = "Enable microphone";
+"Alert.Audio.Permissions.Message" = "Open settings. Enable microphone";
+"Alert.Gallery.Permissions.Title" = "Enable photos";
+"Alert.Gallery.Permissions.Message" = "Open settings. Enable photos";
+"Alert.Camera.Permissions.Title" = "Enable camera";
+"Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

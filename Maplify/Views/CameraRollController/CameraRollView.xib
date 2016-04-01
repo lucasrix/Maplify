@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraRollViewController" customModule="Maplify" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Qye-TF-5X4" id="0cS-tW-JEl"/>
+                <outlet property="imageCropView" destination="Qzx-u1-5j0" id="0Pi-G7-eEW"/>
+                <outlet property="view" destination="iN0-l3-epB" id="AbA-nJ-jHI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qzx-u1-5j0" customClass="ImageCropView" customModule="Maplify" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Qzx-u1-5j0" secondAttribute="height" multiplier="125:125" id="ILq-On-G4W"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Qye-TF-5X4">
+                    <rect key="frame" x="0.0" y="376" width="375" height="291"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="pc9-ME-jXI">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Qzx-u1-5j0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5tl-ki-v08"/>
+                <constraint firstAttribute="bottom" secondItem="Qye-TF-5X4" secondAttribute="bottom" id="6XI-zt-boZ"/>
+                <constraint firstAttribute="trailing" secondItem="Qzx-u1-5j0" secondAttribute="trailing" id="8iE-hf-eKH"/>
+                <constraint firstItem="Qye-TF-5X4" firstAttribute="top" secondItem="Qzx-u1-5j0" secondAttribute="bottom" constant="1" id="E8o-TJ-EB8"/>
+                <constraint firstItem="Qye-TF-5X4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gcn-ln-16e"/>
+                <constraint firstAttribute="trailing" secondItem="Qye-TF-5X4" secondAttribute="trailing" id="keL-pX-5Jf"/>
+                <constraint firstItem="Qzx-u1-5j0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zYU-rw-fVh"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+</document>

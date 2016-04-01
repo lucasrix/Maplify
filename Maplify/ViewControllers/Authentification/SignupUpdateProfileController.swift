@@ -85,6 +85,10 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
+    override func backButtonHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - InputTextViewDelegate
     func editingChanged(inputTextView: InputTextView) {
         let height = inputTextView.textView.frame.height

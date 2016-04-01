@@ -62,7 +62,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     
     func setupImageView() {
         self.setPhotoImage.image = self.placeholderImage
-        let tapGesture = UITapGestureRecognizer(target: self, action: "imageViewDidTap")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SignupPhotoController.imageViewDidTap))
         self.setPhotoImage.addGestureRecognizer(tapGesture)
     }
     

@@ -14,10 +14,15 @@ class StorypointCell: CSCollectionViewCell {
     @IBOutlet weak var roundedView: UIView!
     @IBOutlet weak var blurHostView: UIView!
     
-    
     override func configure(cellData: CSCellData) {
         self.setupRoundedView()
-        self.setupImageView(nil)
+        self.setupImageView(UIImage(named: CellImages.textStoryPoint))
+        
+        let storyPoint = cellData.model as! StoryPoint
+        self.titleLabel.text = storyPoint.caption
+        
+        let profile = storyPoint.user.profile
+        self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }
     
     func setupRoundedView() {

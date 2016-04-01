@@ -13,7 +13,7 @@ import Haneke
 import CoreLocation
 import Haneke
 
-class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
+class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var placeOrLocationLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
@@ -22,12 +22,16 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var isPartOfStoryLabel: UILabel!
     @IBOutlet weak var addToStoryButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId = ""
     var storyPointDescription = ""
     var placesClient: GMSPlacesClient! = nil
     var location: MCMapCoordinate! = nil
+    var selectedStories = [Story]()
+    var selectedStoriesActiveModel: CSActiveModel! = nil
+    var selectedStoriesDataSoure: CSBaseTableDataSource! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -54,8 +58,14 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         self.placeOrLocationTextField.placeholder = NSLocalizedString("Text.Placeholder.EveryPostMustBeGeotagged", comment: String())
         self.tagsTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterTag", comment: String())
         
-        self.isPartOfStoryLabel.text = NSLocalizedString("Label.IsThisPartOfStory", comment: String())
-        self.addToStoryButton.setTitle(NSLocalizedString("Button.AddToStory", comment: String()), forState: .Normal)
+        self.setupStoryAttachmentLabels()
+    }
+    
+    func setupStoryAttachmentLabels() {
+        let attachmentLabel = (self.selectedStories.count > 0) ? NSLocalizedString("Label.PartOfStory", comment: String()) : NSLocalizedString("Label.IsThisPartOfStory", comment: String())
+        let buttonTitle = (self.selectedStories.count > 0) ? NSLocalizedString("Button.ChangeStory", comment: String()) : NSLocalizedString("Button.AddToStory", comment: String())
+        self.isPartOfStoryLabel.text = attachmentLabel
+        self.addToStoryButton.setTitle(buttonTitle, forState: .Normal)
     }
     
     // MARK: - navigation bar
@@ -80,9 +90,20 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         })
     }
     
+    func showSelectedStories(selectedStories: [Story]) {
+        self.selectedStoriesActiveModel = CSActiveModel()
+        self.selectedStoriesActiveModel.addItems(selectedStories, cellIdentifier: String(SelectedStoryCell), sectionTitle: nil, delegate: self)
+        self.selectedStoriesDataSoure = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.selectedStoriesActiveModel, delegate: self)
+        self.selectedStoriesDataSoure.reloadTable()
+    }
+    
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
-        // TODO:
+        self.routesOpenAddToStoryController { [weak self] (selectedStories) in
+            self?.selectedStories = selectedStories
+            self?.setupStoryAttachmentLabels()
+            self?.showSelectedStories((self?.selectedStories)!)
+        }
     }
     
     // MARK: - navigation bar item actions
@@ -109,6 +130,10 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         } else if self.storyPointKind == StoryPointKind.Audio {
             file = NSFileManager.defaultManager().contentsAtPath(self.storyPointAttachmentId)
             params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
+        } else if self.storyPointKind == StoryPointKind.Video {
+            let url = NSURL(string: self.storyPointAttachmentId)
+            file = NSData(contentsOfURL: url!)
+            params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
         }
        
         ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
@@ -130,6 +155,10 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
             storyPointDict["attachment_id"] = attachmentId
         }
         
+        if self.selectedStories.count > 0 {
+            storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
+        }
+        
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
             let realm = try! Realm()
             try! realm.write {
@@ -147,6 +176,14 @@ class StoryPointEditInfoViewController: ViewController, ErrorHandlingProtocol {
         self.captionTextField.endEditing(true)
         self.placeOrLocationTextField.endEditing(true)
         self.tagsTextField.endEditing(true)
+    }
+    
+    // MARK: - SelectedStoryCellProtocol
+    func willDeleteStory(storyId: Int) {
+        let storyIndex = self.selectedStories.indexOf({$0.id == storyId})
+        self.selectedStories.removeAtIndex(storyIndex!)
+        self.showSelectedStories(self.selectedStories)
+        self.setupStoryAttachmentLabels()
     }
     
     // MARK: - ErrorHandlingProtocol

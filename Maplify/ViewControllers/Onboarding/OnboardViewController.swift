@@ -39,7 +39,7 @@ class OnboardViewController: ViewController {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        self.routesSetContentController()
+       self.routesOpenRecommendedSettingsController()
     }
     
     // MARK: - override

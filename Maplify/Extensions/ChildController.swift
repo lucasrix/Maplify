@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ViewController {
+extension UIViewController {
     func configureChildViewController(childController: UIViewController, onView: UIView?) {
         var holderView = self.view
         if let onView = onView {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoViewController" customModule="Maplify" customModuleProvider="target">
+            <connections>
+                <outlet property="cameraView" destination="g2c-mM-fBp" id="sex-Dd-Swd"/>
+                <outlet property="deleteButton" destination="3qp-Qd-n07" id="msr-9g-lPu"/>
+                <outlet property="flashButton" destination="CMW-CI-SJr" id="NC5-BA-Rsj"/>
+                <outlet property="progressBarHeightConstraint" destination="gch-dT-XXp" id="VdM-BX-Tjf"/>
+                <outlet property="progressView" destination="y5X-2d-jYX" id="UrA-i7-9NF"/>
+                <outlet property="recordButton" destination="IwI-kH-0VI" id="5dc-hA-6bs"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Eet-qb-Qp3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2c-mM-fBp" userLabel="Camera View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="g2c-mM-fBp" secondAttribute="height" multiplier="75:75" id="Y7J-3U-jzY"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0Q-px-nQi" userLabel="Bottom View">
+                    <rect key="frame" x="0.0" y="375" width="375" height="292"/>
+                    <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="y5X-2d-jYX">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="gch-dT-XXp"/>
+                            </constraints>
+                            <color key="progressTintColor" red="0.20784313730000001" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="trackTintColor" red="0.070588235289999995" green="0.1647058824" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwI-kH-0VI">
+                            <rect key="frame" x="151" y="66" width="73" height="73"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="1ze-N3-OL1"/>
+                                <constraint firstAttribute="height" constant="73" id="wHz-N6-VfI"/>
+                            </constraints>
+                            <state key="normal" image="AddMediaScreenPhotoButtonShotDefault"/>
+                            <state key="selected" image="AddMediaScreenPhotoButtonShotSelected"/>
+                            <state key="highlighted" image="AddMediaScreenPhotoButtonShotSelected"/>
+                            <connections>
+                                <action selector="recordTapped:" destination="-1" eventType="touchUpInside" id="XTV-20-HFb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7r-0T-zAp">
+                            <rect key="frame" x="41" y="78" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="vHS-Kd-ysA"/>
+                                <constraint firstAttribute="width" constant="50" id="wC4-nT-rOk"/>
+                            </constraints>
+                            <state key="normal" image="AddMediaScreenCameraModeButton"/>
+                            <connections>
+                                <action selector="cameraModeTapped:" destination="-1" eventType="touchUpInside" id="awK-SC-aA4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMW-CI-SJr">
+                            <rect key="frame" x="284" y="78" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="65b-CA-kVa"/>
+                                <constraint firstAttribute="height" constant="50" id="wGF-vO-eWi"/>
+                            </constraints>
+                            <state key="normal" image="AddMediaScreenFlashOff"/>
+                            <connections>
+                                <action selector="flashTapped:" destination="-1" eventType="touchUpInside" id="VsI-tB-Reg"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qp-Qd-n07">
+                            <rect key="frame" x="127" y="154" width="120" height="49"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="JE0-Fx-1uy"/>
+                                <constraint firstAttribute="height" constant="49" id="jMb-zG-omP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="2" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                            <state key="normal" title="Delete" image="icoCancel"/>
+                            <connections>
+                                <action selector="deleteTapped:" destination="-1" eventType="touchUpInside" id="e5r-rT-QcY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="y5X-2d-jYX" firstAttribute="leading" secondItem="V0Q-px-nQi" secondAttribute="leading" id="4m4-O2-CE4"/>
+                        <constraint firstItem="IwI-kH-0VI" firstAttribute="centerY" secondItem="V0Q-px-nQi" secondAttribute="centerY" multiplier="0.7" id="7TM-CN-M7f"/>
+                        <constraint firstItem="CMW-CI-SJr" firstAttribute="leading" secondItem="IwI-kH-0VI" secondAttribute="trailing" constant="60" id="Gpw-H1-RKy"/>
+                        <constraint firstItem="IwI-kH-0VI" firstAttribute="leading" secondItem="a7r-0T-zAp" secondAttribute="trailing" constant="60" id="I5i-rR-emB"/>
+                        <constraint firstItem="y5X-2d-jYX" firstAttribute="top" secondItem="V0Q-px-nQi" secondAttribute="top" id="MtA-w1-cWc"/>
+                        <constraint firstItem="IwI-kH-0VI" firstAttribute="centerX" secondItem="V0Q-px-nQi" secondAttribute="centerX" id="ayt-Sg-QY5"/>
+                        <constraint firstItem="3qp-Qd-n07" firstAttribute="top" secondItem="IwI-kH-0VI" secondAttribute="bottom" constant="15" id="gsQ-A1-QFq"/>
+                        <constraint firstAttribute="trailing" secondItem="y5X-2d-jYX" secondAttribute="trailing" id="iV6-S1-QSs"/>
+                        <constraint firstItem="a7r-0T-zAp" firstAttribute="centerY" secondItem="IwI-kH-0VI" secondAttribute="centerY" id="krT-8P-ASb"/>
+                        <constraint firstItem="CMW-CI-SJr" firstAttribute="centerY" secondItem="IwI-kH-0VI" secondAttribute="centerY" id="oQV-lh-fbk"/>
+                        <constraint firstItem="3qp-Qd-n07" firstAttribute="centerX" secondItem="V0Q-px-nQi" secondAttribute="centerX" id="qwH-zy-bG9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="V0Q-px-nQi" secondAttribute="bottom" id="9D4-WC-i8a"/>
+                <constraint firstItem="V0Q-px-nQi" firstAttribute="top" secondItem="g2c-mM-fBp" secondAttribute="bottom" id="CZI-Nz-e5q"/>
+                <constraint firstAttribute="trailing" secondItem="g2c-mM-fBp" secondAttribute="trailing" id="O6j-ze-Wfw"/>
+                <constraint firstItem="V0Q-px-nQi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pkg-ef-0Ie"/>
+                <constraint firstItem="g2c-mM-fBp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QhL-rX-tGP"/>
+                <constraint firstItem="g2c-mM-fBp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vkn-sJ-WCS"/>
+                <constraint firstAttribute="trailing" secondItem="V0Q-px-nQi" secondAttribute="trailing" id="fEK-n2-YY9"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AddMediaScreenCameraModeButton" width="27" height="24"/>
+        <image name="AddMediaScreenFlashOff" width="20" height="27"/>
+        <image name="AddMediaScreenPhotoButtonShotDefault" width="72" height="72"/>
+        <image name="AddMediaScreenPhotoButtonShotSelected" width="72" height="72"/>
+        <image name="icoCancel" width="16" height="16"/>
+    </resources>
+</document>

@@ -15,6 +15,8 @@ struct Config {
     static let productionConfigFile = "config_production"
     static let localUserAccount = "localUserAccount"
     static let userAppLaunch = "userAppLaunch"
+    static let locationEnabled = "locationEnabled"
+    static let pushNotificationsEnabled = "pushNotificationsEnabled"
 }
 
 struct FileType {
@@ -24,6 +26,7 @@ struct FileType {
 struct Network {
     static let isUserLogin = "isUserLogin"
     static let successStatusCodes = [200, 201]
+    static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
 }
 
@@ -46,8 +49,16 @@ struct Controllers {
     static let storyPointEditDescriptionViewController = "StoryPointEditDescriptionViewController"
     static let storyPointEditInfoViewController = "StoryPointEditInfoViewController"
     static let storyPointAddAudioController = "StoryPointAddAudioController"
+    static let menuViewController = "MenuViewController"
+    static let storyPointAddPhotoVideoViewController = "StoryPointAddPhotoVideoViewController"
+    static let addStoryViewController = "AddStoryViewController"
+    static let recommendedSettingsController = "RecommendedSettingsController"
 }
 
 struct AppIDs {
     static let facebookAppID = "1569818663334609"
+}
+
+struct DefaultLocation {
+    static let washingtonDC = (38.889931, -77.009003)
 }

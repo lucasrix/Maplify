@@ -82,4 +82,21 @@ class SessionManager {
         
         return sessionDictionary
     }
+    
+    // MARK: - permissions
+    func setLocationEnabled(enabled: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(enabled, forKey: Config.locationEnabled)
+    }
+    
+    func setPushNotificationsEnabled(enabled: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(enabled, forKey: Config.pushNotificationsEnabled)
+    }
+    
+    func locationEnabled() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(Config.locationEnabled)
+    }
+    
+    func pushNotificationsEnabled() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(Config.pushNotificationsEnabled)
+    }
 }

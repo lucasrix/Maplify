@@ -16,4 +16,8 @@ extension UIStoryboard {
     class func authStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "Auth", bundle: nil)
     }
+    
+    class func menuStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: "Menu", bundle: nil)
+    }
 }

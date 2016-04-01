@@ -6,12 +6,10 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Fusuma
-import Haneke
 import AFImageHelper
 import CoreLocation
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate, FusumaDelegate {
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate, MenuDelegate {
     @IBOutlet weak var menuTabButton: UIButton!
     @IBOutlet weak var captureTabButton: UIButton!
     @IBOutlet weak var discoverTabButton: UIButton!
@@ -20,7 +18,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     var tabCaptureNavigationController: NavigationViewController! = nil
     var tabDiscoverNavigationController: NavigationViewController! = nil
-    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -43,7 +40,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
         (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
-            self?.pickedLocation = location
             self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
@@ -92,7 +88,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
 
     // MARK: - actions
     func selectTabButton(button: UIButton) {
-        self.menuTabButton.selected = false
         self.captureTabButton.selected = false
         self.discoverTabButton.selected = false
         self.profileTabButton.selected = false
@@ -100,7 +95,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     @IBAction func menuButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
+        self.routerShowMenuController(self)
     }
     
     @IBAction func captureButtonDidTap(sender: AnyObject) {
@@ -115,14 +110,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
-    }
-    
-    // MARK: - private
-    func openFusumaController() {
-        let fusuma = FusumaViewController()
-        fusuma.delegate = self
-        self.presentViewController(fusuma, animated: true, completion: nil)
-    }
+    } 
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped(location: MCMapCoordinate) {
@@ -130,31 +118,15 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Fu
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.openFusumaController()
+        self.routesOpenPhotoVideoViewController(location)
     }
     
     func textDidTapped(location: MCMapCoordinate) {
         self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
     }
     
-    // MARK: - FusumaDelegate
-    func fusumaImageSelected(image: UIImage) {
-        // cashing image
-        let cache = Shared.imageCache
-        let uniqeId = NSUUID().UUIDString
-        cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location:  self.pickedLocation)
-    }
-    
-    // When camera roll is not authorized, this method is called.
-    func fusumaCameraRollUnauthorized() {
-        // TODO:
-        print("Camera roll unauthorized")
-    }
-    
-    // (Optional) Return the image but called after is dismissed.
-    func fusumaDismissedWithImage(image: UIImage) {
-        // TODO:
-        print("Called just after FusumaViewController is dismissed.")
+    // MARK: - MenuDelegate
+    func menuDidSelectItem(actionString:String) {
+        self.performSelector(Selector(actionString))
     }
 }

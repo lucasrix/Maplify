@@ -38,16 +38,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.loadItemsFromDB()
-    }
-    
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupMap()
+        self.checkLocationEnabled()
         self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
     }
@@ -64,20 +58,29 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
 
-    func setupMap() {
-        INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
-            if location != nil {
-                let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self?.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
-                self?.googleMapService.setMapType(kGMSTypeNormal)
-                self?.googleMapService.delegate = self
-                self?.mapView.service = self?.googleMapService
+    func checkLocationEnabled() {
+        if SessionManager.sharedManager.locationEnabled() {
+            INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
+                if location != nil {
+                    self?.setupMap(location)
+                }
             }
+        } else {
+            self.setupMap(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
         }
+        
+    }
+    
+    func setupMap(location: CLLocation) {
+        let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
+        self.googleMapService.setMapType(kGMSTypeNormal)
+        self.googleMapService.delegate = self
+        self.mapView.service = self.googleMapService
     }
     
     func setupAddStoryPointImageView() {
-        let gesture = UILongPressGestureRecognizer(target: self, action: "addStoryPointImageDidTap:")
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(CaptureViewController.addStoryPointImageDidTap(_:)))
         gesture.minimumPressDuration = kMinimumPressDuration
         self.addStoryPointImageView.addGestureRecognizer(gesture)
     }
@@ -119,8 +122,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
         ApiClient.sharedClient.getStoryPoints(params,
             success: { [weak self] (response) in
-                StoryPointManager.saveStoryPoints(response as! [StoryPoint])
-                self?.loadItemsFromDB()
+                if let storyPoints = response {
+                    StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
+                    self?.loadItemsFromDB()
+                }
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

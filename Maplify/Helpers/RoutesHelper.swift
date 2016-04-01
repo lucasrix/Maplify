@@ -49,6 +49,10 @@ extension UIViewController {
     func routesOpenAudioStoryPointController() {
         self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyPointAddAudioController)
     }
+
+    func routesOpenRecommendedSettingsController() {
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
+    }
     
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
@@ -85,6 +89,18 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     
+    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate) {
+        let storyPointAddPhotoVideoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddPhotoVideoViewController) as! StoryPointAddPhotoVideoViewController
+        storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
+        self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
+    }
+
+    func routesOpenAddToStoryController(updateStoryHandle: updateStoryClosure) {
+        let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
+        addStoryViewController.updatedStoryIds = updateStoryHandle
+        self.navigationController?.pushViewController(addStoryViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController
@@ -92,5 +108,11 @@ extension UIViewController {
         storyPointCreationPopupController.location = location
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
         self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
+    }
+    
+    func routerShowMenuController(delegate: MenuDelegate) {
+        let menuController = UIStoryboard.menuStoryboard().instantiateViewControllerWithIdentifier(Controllers.menuViewController) as! MenuViewController
+        menuController.delegate = delegate
+        self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
     }
 }

@@ -42,6 +42,9 @@
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
 		8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A281C8CD5A10005DF12 /* SignupViewController.swift */; };
+		8C512F531CAE8C0C0068AE49 /* SelectedStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */; };
+		8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */; };
+		8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */; };
 		A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
 		A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
@@ -57,7 +60,6 @@
 		A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5728A1D1C88945A00C6DA7E /* Localizable.strings */; };
 		A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5728A331C89C33F00C6DA7E /* ViewConstants.swift */; };
 		A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Auth.storyboard */; };
-		A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A52811C7F0A2900443C06 /* Assets.xcassets */; };
 		A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
 		A58A52A21C7F103000443C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
 		A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A41C7F103500443C06 /* AppDelegate.swift */; };
@@ -116,6 +118,26 @@
 		A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
+		A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD364D1CAAA9EA00281574 /* StoryManager.swift */; };
+		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
+		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
+		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
+		CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B131CAAD90100EBCC7A /* CameraRollView.xib */; };
+		CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */; };
+		CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B151CAAD90100EBCC7A /* ImageCropView.swift */; };
+		CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */; };
+		CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */; };
+		CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */; };
+		CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
+		CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */; };
+		CD451B6A1CAD530400EBCC7A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
+		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
+		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
+		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
+		F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */; };
+		F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */; };
+		F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */; };
+		F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0419C211CA6147600AB83C0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +180,9 @@
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C130A281C8CD5A10005DF12 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStoryCell.swift; sourceTree = "<group>"; };
+		8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryManager.swift; sourceTree = "<group>"; };
+		8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedSettingsViewController.swift; sourceTree = "<group>"; };
 		A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorypointCell.swift; sourceTree = "<group>"; };
 		A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDataSource.swift; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -175,7 +200,6 @@
 		A5728A331C89C33F00C6DA7E /* ViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		A58A52771C7F0A2800443C06 /* Maplify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maplify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A527F1C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
-		A58A52811C7F0A2900443C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A58A52841C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A58A52861C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaplifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,7 +256,25 @@
 		A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCMapActiveModel.swift; sourceTree = "<group>"; };
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
+		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
+		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
+		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
+		CD451B131CAAD90100EBCC7A /* CameraRollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollView.xib; sourceTree = "<group>"; };
+		CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
+		CD451B151CAAD90100EBCC7A /* ImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropView.swift; sourceTree = "<group>"; };
+		CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImage.swift; sourceTree = "<group>"; };
+		CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
+		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
+		F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
+		F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryQuickCreationCell.swift; sourceTree = "<group>"; };
+		F0419C211CA6147600AB83C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +300,9 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD451B101CAAD90100EBCC7A /* CameraRollController */,
+				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
+				CD451B651CAD449500EBCC7A /* VideoController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,
@@ -292,6 +337,7 @@
 				1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */,
 				1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */,
 				1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */,
+				CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */,
 			);
 			path = StoryPointCreation;
 			sourceTree = "<group>";
@@ -300,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				1FC780F41CA01DB000C50C23 /* Story.swift */,
+				A5FD364D1CAAA9EA00281574 /* StoryManager.swift */,
+				8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */,
 			);
 			path = Story;
 			sourceTree = "<group>";
@@ -331,6 +379,14 @@
 			path = Attachment;
 			sourceTree = "<group>";
 		};
+		1FE6D5AF1CA57B470052B412 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
 		4069C54AB44294CF30EEEA95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +394,14 @@
 				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8C9094D21CAD5BE4002F26A9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A5081E4F1C805845006FBA52 /* Network */ = {
@@ -443,8 +507,11 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C9094D21CAD5BE4002F26A9 /* Settings */,
+				F01A89531CA75114008B8702 /* Menu */,
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
 				1FB70B301C9DA52C00FC3496 /* StoryPointCreation */,
+				1FE6D5AF1CA57B470052B412 /* Story */,
 				A59A7E8A1C9ADBB800399A38 /* Content */,
 				A59A7E731C96F45200399A38 /* WebContent */,
 				A5728A181C8885E300C6DA7E /* Authentification */,
@@ -469,6 +536,7 @@
 				A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */,
 				A58A527E1C7F0A2900443C06 /* Auth.storyboard */,
 				A59A7E7A1C9AC32400399A38 /* Main.storyboard */,
+				F01A89501CA74C8E008B8702 /* Menu.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -478,7 +546,7 @@
 			children = (
 				A5C584BE1C90770E0036064A /* config_staging.plist */,
 				A5C584C01C90787D0036064A /* config_production.plist */,
-				A58A52811C7F0A2900443C06 /* Assets.xcassets */,
+				F0419C211CA6147600AB83C0 /* Assets.xcassets */,
 				A58A52861C7F0A2900443C06 /* Info.plist */,
 				A5728A1D1C88945A00C6DA7E /* Localizable.strings */,
 			);
@@ -523,6 +591,7 @@
 				1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */,
 				1FC781061CA171AF00C50C23 /* Dictionary.swift */,
 				1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */,
+				CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -661,6 +730,55 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD451B101CAAD90100EBCC7A /* CameraRollController */ = {
+			isa = PBXGroup;
+			children = (
+				CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */,
+				CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */,
+				CD451B131CAAD90100EBCC7A /* CameraRollView.xib */,
+				CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */,
+				CD451B151CAAD90100EBCC7A /* ImageCropView.swift */,
+			);
+			path = CameraRollController;
+			sourceTree = "<group>";
+		};
+		CD451B5B1CABFEAC00EBCC7A /* PhotoController */ = {
+			isa = PBXGroup;
+			children = (
+				CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */,
+				CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */,
+			);
+			path = PhotoController;
+			sourceTree = "<group>";
+		};
+		CD451B651CAD449500EBCC7A /* VideoController */ = {
+			isa = PBXGroup;
+			children = (
+				CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */,
+				CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */,
+			);
+			path = VideoController;
+			sourceTree = "<group>";
+		};
+		F01A89531CA75114008B8702 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				F01A89541CA753E3008B8702 /* MenuViewController.swift */,
+				F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */ = {
+			isa = PBXGroup;
+			children = (
+				F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */,
+				F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */,
+				8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */,
+			);
+			path = StoryQuickCreation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -710,7 +828,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = rubygarage;
 				TargetAttributes = {
 					A58A52761C7F0A2800443C06 = {
@@ -751,10 +869,15 @@
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
+				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
-				A58A52821C7F0A2900443C06 /* Assets.xcassets in Resources */,
+				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
+				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
+				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
+				CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
+				F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -838,9 +961,11 @@
 			files = (
 				A5728A1C1C88887400C6DA7E /* NavigationViewController.swift in Sources */,
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
+				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
+				8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
 				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
@@ -849,9 +974,11 @@
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
+				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */,
+				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
@@ -859,12 +986,16 @@
 				A58A52A51C7F103500443C06 /* AppDelegate.swift in Sources */,
 				A5081E591C807561006FBA52 /* SessionManager.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
+				CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
+				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
+				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
+				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
@@ -873,6 +1004,7 @@
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
 				1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */,
+				8C512F531CAE8C0C0068AE49 /* SelectedStoryCell.swift in Sources */,
 				A5CACDE81CA40871004F1A3D /* Suspender.swift in Sources */,
 				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
@@ -894,6 +1026,8 @@
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
+				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
+				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
@@ -906,6 +1040,7 @@
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				A52E09961C8D89BF00706F9C /* SimpleAuth.swift in Sources */,
+				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* UserManager.swift in Sources */,
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,
 				A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */,
@@ -916,8 +1051,11 @@
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
+				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
+				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
+				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
 				A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */,
 				A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */,
@@ -933,8 +1071,10 @@
 				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
 				1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */,
 				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
+				CD451B6A1CAD530400EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */,
+				F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */,
 				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */,
 				A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */,
@@ -967,6 +1107,14 @@
 				A58A52841C7F0A2900443C06 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F01A89501CA74C8E008B8702 /* Menu.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F01A89511CA74C8E008B8702 /* Base */,
+			);
+			name = Menu.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1008,7 +1156,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1046,7 +1194,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1066,8 +1214,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1085,7 +1232,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

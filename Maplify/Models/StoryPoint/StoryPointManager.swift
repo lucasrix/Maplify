@@ -15,7 +15,7 @@ class StoryPointManager: ModelManager {
         return StoryPoint(dictionary)
     }
     
-    class func saveStoryPoints(storyPoints: [StoryPoint]) {
+    class func saveStoryPoints(storyPoints: [StoryPoint]!) {
         for storyPoint in storyPoints {
             let realm = try! Realm()
 

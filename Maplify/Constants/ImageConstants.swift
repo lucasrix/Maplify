@@ -53,10 +53,30 @@ struct MapPinImages {
     static let play = "pinBluePlay"
     static let marked = "pinMarked"
 }
+
 struct ButtonImages {
     static let recordButtonShotStartDefault = "ButtonShotDefault"
     static let recordButtonShotStartHighlited = "ButtonShotHighlited"
     static let recordButtonShotStopDefault = "ButtonShotStopDefault"
     static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
-    
+    static let deleteButtonItem = "icoMinus"
+}
+
+struct MediaButtons {
+    static let galleryDefault = "AddMediaScreenGalleryOff"
+    static let galleryHighlited = "AddMediaScreenGalleryOn"
+    static let photoDefault = "AddMediaScreenPhotoOff"
+    static let photoHighlited = "AddMediaScreenPhotoOn"
+    static let videoDefault = "AddMediaScreenVideoOff"
+    static let videoHighlited = "AddMediaScreenVideoOn"
+    static let photoShotHighlited = "AddMediaScreenPhotoButtonShotSelected"
+    static let flashAuto = "AddMediaScreenFlashAuto"
+    static let flashOff = "AddMediaScreenFlashOff"
+    static let flashOn = "AddMediaScreenFlashOn"
+}
+
+struct CellImages {
+    static let emptyCircle = "empty-circle"
+    static let selectedCircle = "icoCircleChecked"
+    static let textStoryPoint = "textStoryPoint"
 }

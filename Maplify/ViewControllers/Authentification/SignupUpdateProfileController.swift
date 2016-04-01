@@ -8,7 +8,7 @@
 
 import GoogleMaps
 
-let kMaxAboutTextLength = 255
+let kMaxAboutTextLength = 500
 
 class SignupUpdateProfileController: ViewController, InputTextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var locationInputField: InputTextField!
@@ -43,7 +43,6 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         self.setupLabels()
         self.setupTextFields()
         self.setupNextButton()
-        self.retrieveCurrentPlace()
     }
     
     func setupLabels() {
@@ -86,20 +85,8 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
     }
     
-    func retrieveCurrentPlace() {
-        self.placesClient = GMSPlacesClient()
-        self.placesClient.currentPlaceWithCallback { [weak self] (placesList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
-            if (error != nil) {
-                print(error)
-            } else {
-                if let placeLikelihoodList = placesList {
-                    let place = placeLikelihoodList.likelihoods.first?.place
-                    if let place = place {
-                        self?.locationInputField.textField.text = place.name
-                    }
-                }
-            }
-        }
+    override func backButtonHidden() -> Bool {
+        return true
     }
     
     // MARK: - InputTextViewDelegate

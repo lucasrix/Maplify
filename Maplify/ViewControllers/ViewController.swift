@@ -52,7 +52,7 @@ class ViewController: UIViewController {
             self.navigationController?.navigationBar.tintColor = UIColor.clearColor()
         } else {
             let backItemimage = UIImage(named: BarButtonImages.backArrow)
-            let backItem = UIBarButtonItem(image: backItemimage, style: .Plain, target: self, action: "backTapped")
+            let backItem = UIBarButtonItem(image: backItemimage, style: .Plain, target: self, action: #selector(ViewController.backTapped))
             backItem.tintColor = UIColor.whiteColor()
             self.navigationItem.leftBarButtonItem = backItem
         }

@@ -23,8 +23,6 @@
 "InputField.Description.Password" = "at least 6 characters";
 "InputField.Description.City" = "Recommended, to see stories around you";
 "InputField.Description.Optional" = "Optional";
-"InputField.Description.Char" = "char";
-"InputField.Description.Of" = "of";
 
 //Controllers
 "Controller.Signup.Title" = "Sign Up";
@@ -45,6 +43,11 @@
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
 "Controller.Capture.Title" = "Near you";
 "Controller.Ambient.Title" = "Ambient";
+"Controller.CameraRoll.Title" = "Camera Roll";
+"Controller.Photo.Title" = "Photo";
+"Controller.Video.Title" = "Video";
+"Controller.AddToStory.Title" = "Add to Story";
+"Controller.RecommendedSettings.Title" = "Recommended Settings";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -52,6 +55,14 @@
 "Label.PlaceOrLocation" = "Place or location";
 "Label.Tags" = "Tags";
 "Label.IsThisPartOfStory" = "Is this part of a story?";
+"Label.PartOfStory" = "Part of a story:";
+"Label.MyStories" = "My stories";
+"Label.CreateStoryPlaceholder" = "Looks like you don't have any stories yet.";
+"Label.Switch.PushNotification" = "Notify me about fun stuff";
+"Label.Switch.PushNotificationDescription" = "We can send you push notifications when something fun happens like when your friends create new stories";
+"Label.Switch.Location" = "Use my location";
+"Label.Switch.LocationDescription" = "We'll use your location to show you people's stories around you, where you are. It also makes it easier to create a new geotagged story. We will only use your location while in the app.";
+"Label.Alert.Details" = "If these sound good, next you'll get a popup asking for permission. Tap OK once it appears.";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -64,6 +75,7 @@
 "Button.FacebookLogin" = "Continue with Facebook";
 "Button.EmailSignup" = "Sign up with email";
 "Button.Cancel" = "Cancel";
+"Button.OpenSettings" = "Open settings";
 "Button.ExistingPhoto" = "Choose existing photo";
 "Button.TakePhoto" = "Take new photo";
 "Button.Skip" = "Skip";
@@ -73,6 +85,11 @@
 "Button.Text" = "Text";
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
+"Button.Delete" = "Delete";
+"Button.ChangeStory" = "Change Story";
+"Button.Add" = "Add";
+"Button.CreateStory" = "Create story";
+"Button.CreateStoryPlaceholder" = "Create one now.";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -80,7 +97,14 @@
 "Alert.Warning" = "Warning";
 "Alert.NoPhoto" = "You didn’t set a profile photo. It just takes a sec and you can always change it later!";
 "Alert.Title.ProfilePhoto" = "Profile Photo";
-"Alert.Audio.Permissions" = "Your microphone is disabled. Please turn it on in your phone settings so as to create Ambient post";
+"Alert.Audio.Permissions.Title" = "Enable microphone";
+"Alert.Audio.Permissions.Message" = "Open settings. Enable microphone";
+"Alert.Gallery.Permissions.Title" = "Enable photos";
+"Alert.Gallery.Permissions.Message" = "Open settings. Enable photos";
+"Alert.Camera.Permissions.Title" = "Enable camera";
+"Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
+"Alert.Title.CreateStory" = "Create a new story";
+"Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

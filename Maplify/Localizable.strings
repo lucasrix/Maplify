@@ -102,6 +102,8 @@
 "Alert.Gallery.Permissions.Message" = "Open settings. Enable photos";
 "Alert.Camera.Permissions.Title" = "Enable camera";
 "Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
+"Alert.Title.CreateStory" = "Create a new story";
+"Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

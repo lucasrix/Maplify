@@ -47,7 +47,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupMap()
+        self.checkLocationEnabled()
         self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
     }
@@ -64,16 +64,25 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
 
-    func setupMap() {
-        INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
-            if location != nil {
-                let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self?.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
-                self?.googleMapService.setMapType(kGMSTypeNormal)
-                self?.googleMapService.delegate = self
-                self?.mapView.service = self?.googleMapService
+    func checkLocationEnabled() {
+        if SessionManager.sharedManager.locationEnabled() {
+            INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
+                if location != nil {
+                    self?.setupMap(location)
+                }
             }
+        } else {
+            self.setupMap(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
         }
+        
+    }
+    
+    func setupMap(location: CLLocation) {
+        let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
+        self.googleMapService.setMapType(kGMSTypeNormal)
+        self.googleMapService.delegate = self
+        self.mapView.service = self.googleMapService
     }
     
     func setupAddStoryPointImageView() {

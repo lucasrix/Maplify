@@ -27,6 +27,7 @@ class RecommendedSettingsViewController: ViewController {
     func setup() {
         self.setupLabels()
         self.setupDoneButton()
+        self.setupDefaultSettings()
     }
     
     func setupLabels() {
@@ -41,6 +42,11 @@ class RecommendedSettingsViewController: ViewController {
         self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
     }
     
+    func setupDefaultSettings() {
+        SessionManager.sharedManager.setPushNotificationsEnabled(true)
+        SessionManager.sharedManager.setLocationEnabled(true)
+    }
+    
     //MARK: - actions
     @IBAction func pushNotificationSwitchDidChangeValue(sender: AnyObject) {
         let enabled = self.pushNotificationsSwitch.on
@@ -53,6 +59,6 @@ class RecommendedSettingsViewController: ViewController {
     }
     
     override func rightBarButtonItemDidTap() {
-        //TODO: -
+        self.routesSetContentController()
     }
 }

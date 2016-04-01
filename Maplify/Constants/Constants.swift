@@ -57,3 +57,7 @@ struct Controllers {
 struct AppIDs {
     static let facebookAppID = "1569818663334609"
 }
+
+struct DefaultLocation {
+    static let washingtonDC = (38.889931, -77.009003)
+}

@@ -11,6 +11,7 @@ import UIKit
 import CoreMedia
 import AVFoundation
 
+let nibNamePhotoControllerView = "PhotoViewController"
 let kDeleteButtonHighlitedStateAlpha: CGFloat = 0.5
 
 class PhotoViewController: UIViewController {
@@ -25,26 +26,23 @@ class PhotoViewController: UIViewController {
     var cameraStatePhoto = true
     
     // MARK: - view controller life cycle
+    override func loadView() {
+        super.viewDidLoad()
+        
+        if let view = UINib(nibName: nibNamePhotoControllerView, bundle: NSBundle(forClass: self.classForCoder)).instantiateWithOwner(self, options: nil).first as? UIView {
+            self.view = view
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.setupCamera()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.simpleCamera.stop()
-    }
-    
     // MARK: - setup
     func setup() {
+        self.setupCamera()
         self.setupBottomButtons()
     }
     

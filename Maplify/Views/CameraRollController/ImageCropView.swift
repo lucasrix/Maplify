@@ -8,6 +8,11 @@
 
 import UIKit
 
+let kImageViewAlphaMin: CGFloat = 0
+let kImageViewAlphaMax: CGFloat = 1
+let kZoomScaleDefault: CGFloat = 1
+let kZoomScaleMax: CGFloat = 2.0
+
 class ImageCropView: UIScrollView, UIScrollViewDelegate {
     var imageView = UIImageView()
     var imageSize: CGSize?
@@ -16,7 +21,7 @@ class ImageCropView: UIScrollView, UIScrollViewDelegate {
         didSet {
             if image != nil {
                 if !imageView.isDescendantOfView(self) {
-                    self.imageView.alpha = 1.0
+                    self.imageView.alpha = kImageViewAlphaMax
                     self.addSubview(imageView)
                 }
             } else {
@@ -63,7 +68,7 @@ class ImageCropView: UIScrollView, UIScrollViewDelegate {
             }
             self.contentSize = CGSize(width: imageView.frame.width + 1, height: imageView.frame.height + 1)
             imageView.image = image
-            self.zoomScale = 1.0
+            self.zoomScale = kZoomScaleDefault
         }
     }
     
@@ -73,12 +78,12 @@ class ImageCropView: UIScrollView, UIScrollViewDelegate {
         self.backgroundColor = UIColor.blackColor()
         self.frame.size      = CGSizeZero
         self.clipsToBounds   = true
-        self.imageView.alpha = 0.0
+        self.imageView.alpha = kImageViewAlphaMin
         
         imageView.frame = CGRect(origin: CGPointZero, size: CGSizeZero)
         
-        self.maximumZoomScale = 2.0
-        self.minimumZoomScale = 0.8
+        self.maximumZoomScale = kZoomScaleMax
+        self.minimumZoomScale = kZoomScaleDefault
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator   = false
         self.bouncesZoom = true
@@ -95,27 +100,4 @@ class ImageCropView: UIScrollView, UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
-    func scrollViewDidZoom(scrollView: UIScrollView) {
-        let boundsSize = scrollView.bounds.size
-        var contentsFrame = imageView.frame
-        
-        if contentsFrame.size.width < boundsSize.width {
-            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
-        } else {
-            contentsFrame.origin.x = 0.0
-        }
-        
-        if contentsFrame.size.height < boundsSize.height {
-            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
-        } else {
-            contentsFrame.origin.y = 0.0
-        }
-        imageView.frame = contentsFrame
-    }
-    
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        self.contentSize = CGSize(width: imageView.frame.width + 1, height: imageView.frame.height + 1)
-    }
-    
 }

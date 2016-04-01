@@ -288,9 +288,9 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CD451B651CAD449500EBCC7A /* VideoController */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
+				CD451B651CAD449500EBCC7A /* VideoController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,

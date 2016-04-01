@@ -9,12 +9,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoViewController" customModule="Maplify" customModuleProvider="target">
             <connections>
-                <outlet property="cameraView" destination="g2c-mM-fBp" id="ToL-Ja-iZh"/>
-                <outlet property="deleteButton" destination="3qp-Qd-n07" id="d7q-8C-LAJ"/>
-                <outlet property="flashButton" destination="CMW-CI-SJr" id="7QD-Uk-Nwm"/>
-                <outlet property="progressBarHeightConstraint" destination="gch-dT-XXp" id="fkq-7L-KGy"/>
-                <outlet property="progressView" destination="y5X-2d-jYX" id="nZ4-OC-D78"/>
-                <outlet property="recordButton" destination="IwI-kH-0VI" id="q6f-hj-FFc"/>
+                <outlet property="cameraView" destination="g2c-mM-fBp" id="sex-Dd-Swd"/>
+                <outlet property="deleteButton" destination="3qp-Qd-n07" id="msr-9g-lPu"/>
+                <outlet property="flashButton" destination="CMW-CI-SJr" id="NC5-BA-Rsj"/>
+                <outlet property="progressBarHeightConstraint" destination="gch-dT-XXp" id="VdM-BX-Tjf"/>
+                <outlet property="progressView" destination="y5X-2d-jYX" id="UrA-i7-9NF"/>
+                <outlet property="recordButton" destination="IwI-kH-0VI" id="5dc-hA-6bs"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Eet-qb-Qp3"/>
             </connections>
         </placeholder>

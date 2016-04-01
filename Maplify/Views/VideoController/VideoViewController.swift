@@ -15,6 +15,7 @@ public enum CameraState: Int {
     case Finished
 }
 
+let nibNameVideoControllerView = "VideoViewController"
 let kVideoFileName = "MaplifyVideoRecording.MOV"
 let recordTimeMax: Double = 20
 let kProgressViewHeight: CGFloat = 4
@@ -35,6 +36,14 @@ class VideoViewController: UIViewController {
     private var timer: NSTimer? = nil
     
     // MARK: - view controller life cycle
+    override func loadView() {
+        super.viewDidLoad()
+        
+        if let view = UINib(nibName: nibNameVideoControllerView, bundle: NSBundle(forClass: self.classForCoder)).instantiateWithOwner(self, options: nil).first as? UIView {
+            self.view = view
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +58,7 @@ class VideoViewController: UIViewController {
     // MARK: - setup
     func setupViews() {
         self.progressBarHeightConstraint.constant = kProgressViewHeight
+        print(self.progressBarHeightConstraint.constant)
         self.progressView.progress = Float(0)
         self.updateUI()
         self.setupBottomButtons()
@@ -97,7 +107,7 @@ class VideoViewController: UIViewController {
         if self.cameraState == CameraState.Ready {
             self.simpleCamera.togglePosition()
         }
-        self.flashButton.hidden = self.simpleCamera.position == LLCameraPositionFront ? true : false
+        self.flashButton.hidden = self.simpleCamera.position == LLCameraPositionFront
     }
     
     @IBAction func flashTapped(sender: UIButton) {

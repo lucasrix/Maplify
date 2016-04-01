@@ -11,6 +11,8 @@ import Photos
 
 let nibNameCameraRollView = "CameraRollView"
 let nibNameAlbumViewCell = "AlbumViewCell"
+let kNumberOfColumnInCollectionView: CGFloat = 4
+let kItemMarginInCollectionView: CGFloat = 1
 
 class CameraRollViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver
 {
@@ -19,15 +21,14 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     
     var images: PHFetchResult!
     var imageManager: PHCachingImageManager?
-    var previousPreheatRect: CGRect = CGRectZero
     var cellSize: CGSize = CGSizeZero
     var delegate: CameraRollDelegate! = nil
     
+    // MARK: - view controller life cycle
     override func loadView() {
         super.viewDidLoad()
         
         if let view = UINib(nibName: nibNameCameraRollView, bundle: NSBundle(forClass: self.classForCoder)).instantiateWithOwner(self, options: nil).first as? UIView {
-            
             self.view = view
         }
     }
@@ -38,17 +39,18 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
         self.setup()
     }
     
+    // MARK: - setup
     func setup() {
         self.setupCollectionView()
         self.checkPhotoAuth()
-        self.setupImages()
+//        self.setupImages()
     }
     
     func setupCollectionView() {
         collectionView.registerNib(UINib(nibName: nibNameAlbumViewCell, bundle: NSBundle(forClass: self.classForCoder)), forCellWithReuseIdentifier: nibNameAlbumViewCell)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        let cellWidth: CGFloat = (UIScreen.mainScreen().bounds.size.width - 3) / 4
+        let cellWidth: CGFloat = self.cellWidth()
         self.cellSize = CGSizeMake(cellWidth, cellWidth)
     }
     
@@ -63,6 +65,15 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
             changeImage(images[0] as! PHAsset)
         }
         collectionView.reloadData()
+    }
+    
+    // MARK: - private
+    private func totalMarginSpace() -> CGFloat {
+        return (kNumberOfColumnInCollectionView - 1) * kItemMarginInCollectionView
+    }
+    
+    private  func cellWidth() -> CGFloat {
+        return (UIScreen.mainScreen().bounds.size.width - self.totalMarginSpace()) / kNumberOfColumnInCollectionView
     }
     
     func donePressed() {
@@ -100,17 +111,12 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
         return cell
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images == nil ? 0 : images.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        let width = (collectionView.frame.width - 3) / 4
+        let width = self.cellWidth()
         return CGSize(width: width, height: width)
     }
     
@@ -198,104 +204,29 @@ private extension CameraRollViewController {
     
     // Check the status of authorization for PHPhotoLibrary
     private func checkPhotoAuth() {
-        
-        PHPhotoLibrary.requestAuthorization { (status) -> Void in
-            switch status {
-            case .Authorized:
-                self.imageManager = PHCachingImageManager()
-                if self.images != nil && self.images.count > 0 {
-                    self.changeImage(self.images[0] as! PHAsset)
+        PHPhotoLibrary.requestAuthorization { [weak self] (status) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                switch status {
+                    
+                case .Authorized:
+                    self?.imageManager = PHCachingImageManager()
+                    self?.setupImages()
+                    
+                case .Restricted, .Denied:
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self?.delegate?.cameraRollUnauthorized()
+                    })
+                    
+                default:
+                    break
                 }
-                
-            case .Restricted, .Denied:
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.delegate?.cameraRollUnauthorized()
-                })
-                
-            default:
-                break
-            }
+            })
         }
     }
     
     // MARK: - Asset Caching
     func resetCachedAssets() {
         imageManager?.stopCachingImagesForAllAssets()
-        previousPreheatRect = CGRectZero
-    }
-    
-    func updateCachedAssets() {
-        var preheatRect = self.collectionView!.bounds
-        preheatRect = CGRectInset(preheatRect, 0.0, -0.5 * CGRectGetHeight(preheatRect))
-        
-        let delta = abs(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect))
-        if delta > CGRectGetHeight(self.collectionView!.bounds) / 3.0 {
-            
-            var addedIndexPaths: [NSIndexPath] = []
-            var removedIndexPaths: [NSIndexPath] = []
-            
-            self.computeDifferenceBetweenRect(self.previousPreheatRect, andRect: preheatRect, removedHandler: {removedRect in
-                let indexPaths = self.collectionView.aapl_indexPathsForElementsInRect(removedRect)
-                removedIndexPaths += indexPaths
-                }, addedHandler: {addedRect in
-                    let indexPaths = self.collectionView.aapl_indexPathsForElementsInRect(addedRect)
-                    addedIndexPaths += indexPaths
-            })
-            
-            let assetsToStartCaching = self.assetsAtIndexPaths(addedIndexPaths)
-            let assetsToStopCaching = self.assetsAtIndexPaths(removedIndexPaths)
-            
-            self.imageManager?.startCachingImagesForAssets(assetsToStartCaching,
-                                                           targetSize: cellSize,
-                                                           contentMode: .AspectFill,
-                                                           options: nil)
-            self.imageManager?.stopCachingImagesForAssets(assetsToStopCaching,
-                                                          targetSize: cellSize,
-                                                          contentMode: .AspectFill,
-                                                          options: nil)
-            
-            self.previousPreheatRect = preheatRect
-        }
-    }
-    
-    func computeDifferenceBetweenRect(oldRect: CGRect, andRect newRect: CGRect, removedHandler: CGRect->Void, addedHandler: CGRect->Void) {
-        if CGRectIntersectsRect(newRect, oldRect) {
-            let oldMaxY = CGRectGetMaxY(oldRect)
-            let oldMinY = CGRectGetMinY(oldRect)
-            let newMaxY = CGRectGetMaxY(newRect)
-            let newMinY = CGRectGetMinY(newRect)
-            if newMaxY > oldMaxY {
-                let rectToAdd = CGRectMake(newRect.origin.x, oldMaxY, newRect.size.width, (newMaxY - oldMaxY))
-                addedHandler(rectToAdd)
-            }
-            if oldMinY > newMinY {
-                let rectToAdd = CGRectMake(newRect.origin.x, newMinY, newRect.size.width, (oldMinY - newMinY))
-                addedHandler(rectToAdd)
-            }
-            if newMaxY < oldMaxY {
-                let rectToRemove = CGRectMake(newRect.origin.x, newMaxY, newRect.size.width, (oldMaxY - newMaxY))
-                removedHandler(rectToRemove)
-            }
-            if oldMinY < newMinY {
-                let rectToRemove = CGRectMake(newRect.origin.x, oldMinY, newRect.size.width, (newMinY - oldMinY))
-                removedHandler(rectToRemove)
-            }
-        } else {
-            addedHandler(newRect)
-            removedHandler(oldRect)
-        }
-    }
-    
-    func assetsAtIndexPaths(indexPaths: [NSIndexPath]) -> [PHAsset] {
-        if indexPaths.count == 0 { return [] }
-        
-        var assets: [PHAsset] = []
-        assets.reserveCapacity(indexPaths.count)
-        for indexPath in indexPaths {
-            let asset = self.images[indexPath.item] as! PHAsset
-            assets.append(asset)
-        }
-        return assets
     }
 }
 

@@ -108,7 +108,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         let buttonOpenSettingsTitle = NSLocalizedString("Button.OpenSettings", comment: String()).capitalizedString
         
         self.showAlert(title, message: message, cancel: cancel, buttons: [buttonOpenSettingsTitle]) { [weak self] (buttonIndex) in
-            print(buttonIndex)
             if buttonIndex == 0 {
                 UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
             }

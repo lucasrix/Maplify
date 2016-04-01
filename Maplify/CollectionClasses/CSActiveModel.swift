@@ -10,6 +10,7 @@ import Foundation
 
 class CSActiveModel {
     var sectionsArray: [[CSCellData]]?
+    var page: Int = 1
     
     // MARK: - Init
     init() {
@@ -127,6 +128,24 @@ class CSActiveModel {
         self.sectionsArray![indexPath.section][indexPath.row].selected = selected
     }
     
+    func selectModels(selectedIndexPathes: [NSIndexPath]) {
+        for indexPath in selectedIndexPathes {
+            self.selectModel(indexPath, selected: true)
+        }
+    }
+    
+    func selectedModels() -> [CSCellData] {
+        var array = [CSCellData]()
+        for dataArray in self.sectionsArray! {
+            for cellData in dataArray {
+                if cellData.selected {
+                    array.append(cellData)
+                }
+            }
+        }
+        return array
+    }
+    
     func selectAll() {
         self.performSelection(true)
     }
@@ -183,6 +202,10 @@ class CSActiveModel {
             section += 1
         }
         return indexPath
+    }
+    
+    func updatePage() {
+        self.page += 1
     }
 }
 

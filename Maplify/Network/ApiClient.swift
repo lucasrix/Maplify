@@ -162,6 +162,11 @@ class ApiClient {
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
+    
+    func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {
+        let params = ["page": page]
+        self.getRequest("stories/my_stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
+    }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("auth/sign_out", params: nil, manager:nil, success: success, failure: failure)
@@ -173,6 +178,11 @@ class ApiClient {
             data = ["file": file]
         }
         self.postRequest("attachments", params: params, data: data, manager: AttachmentManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func createStory(name: String, discoverable: Bool, success: successClosure!, failure: failureClosure!) {
+        let params = ["name": name, "discoverable": discoverable]
+        self.postRequest("stories", params: (params as! [String : AnyObject]), data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
     }
 }
 

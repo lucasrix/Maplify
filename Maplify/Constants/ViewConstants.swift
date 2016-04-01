@@ -14,6 +14,7 @@ struct CornerRadius {
 
 struct Frame {
     static let doneButtonFrame = CGRectMake(0, 0, 62, 28)
+    static let pullToRefreshFrame = CGRectMake(0, 0, 24, 24)
 }
 
 struct ScreenSize {
@@ -22,4 +23,5 @@ struct ScreenSize {
 
 struct NavigationBar {
     static let defaultOpacity: CGFloat = 0.8
+    static let defaultHeight: CGFloat = 64
 }

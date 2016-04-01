@@ -59,6 +59,7 @@ struct ButtonImages {
     static let recordButtonShotStartHighlited = "ButtonShotHighlited"
     static let recordButtonShotStopDefault = "ButtonShotStopDefault"
     static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
+    static let deleteButtonItem = "icoMinus"
 }
 
 struct MediaButtons {
@@ -72,4 +73,9 @@ struct MediaButtons {
     static let flashAuto = "AddMediaScreenFlashAuto"
     static let flashOff = "AddMediaScreenFlashOff"
     static let flashOn = "AddMediaScreenFlashOn"
+}
+
+struct CellImages {
+    static let emptyCircle = "empty-circle"
+    static let selectedCircle = "icoCircleChecked"
 }

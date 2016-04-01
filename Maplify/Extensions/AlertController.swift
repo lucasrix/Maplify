@@ -27,6 +27,23 @@ extension UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func showInputMessageAlert(title: String!, message: String, ok: String, cancel: String, handle: ((UIAlertAction, UIAlertController) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertController.addTextFieldWithConfigurationHandler(nil)
+        
+        let alertAction = UIAlertAction(title: ok, style: .Default) { (alertAction) in
+            handle?(alertAction, alertController)
+        }
+        alertController.addAction(alertAction)
+
+        let cancelAction = UIAlertAction(title: cancel, style: .Cancel)  { (alertAction) in
+            handle?(alertAction, alertController)
+        }
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     func showActionSheet(title: String!, message: String, cancel: String, destructive: String!,
         buttons: [String], handle: buttonClosure) {
             self.showController(title, message: message, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)

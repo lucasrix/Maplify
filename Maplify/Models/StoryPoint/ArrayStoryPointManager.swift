@@ -10,7 +10,7 @@ import Tailor
 
 class ArrayStoryPointManager: ModelManager {
     override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        let storyPointsArray: [StoryPoint]? = response.relations("preview_story_points")
+        let storyPointsArray: [StoryPoint]? = response.relations("story_points")
         return storyPointsArray
     }
 }

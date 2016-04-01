@@ -78,4 +78,5 @@ struct MediaButtons {
 struct CellImages {
     static let emptyCircle = "empty-circle"
     static let selectedCircle = "icoCircleChecked"
+    static let textStoryPoint = "textStoryPoint"
 }

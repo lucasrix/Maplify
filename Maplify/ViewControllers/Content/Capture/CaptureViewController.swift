@@ -38,12 +38,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.loadItemsFromDB()
-    }
-    
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()

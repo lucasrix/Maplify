@@ -58,7 +58,6 @@ class VideoViewController: UIViewController {
     // MARK: - setup
     func setupViews() {
         self.progressBarHeightConstraint.constant = kProgressViewHeight
-        print(self.progressBarHeightConstraint.constant)
         self.progressView.progress = Float(0)
         self.updateUI()
         self.setupBottomButtons()

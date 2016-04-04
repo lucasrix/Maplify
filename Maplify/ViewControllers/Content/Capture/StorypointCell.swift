@@ -17,7 +17,6 @@ class StorypointCell: CSCollectionViewCell {
     // MARK: - setup
     override func configure(cellData: CSCellData) {
         self.setupRoundedView()
-        self.setupImageView(UIImage(named: CellImages.textStoryPoint))
         
         let storyPoint = cellData.model as! StoryPoint
         self.setupLabels(storyPoint)
@@ -32,7 +31,6 @@ class StorypointCell: CSCollectionViewCell {
     
     func setupImageView(image: UIImage!) {
         self.storyPointImageView.image = image
-        self.storyPointImageView.layer.cornerRadius = CornerRadius.defaultRadius
     }
     
     func setupLabels(storyPoint: StoryPoint) {
@@ -56,5 +54,6 @@ class StorypointCell: CSCollectionViewCell {
         } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.storyPointImageView.image = UIImage(contentsOfFile: storyPoint.attachment.file_url)
         }
+        self.storyPointImageView.layer.cornerRadius = CornerRadius.defaultRadius
     }
 }

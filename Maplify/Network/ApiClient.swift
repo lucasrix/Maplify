@@ -118,7 +118,7 @@ class ApiClient {
     }
     
     func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        let config = RequestConfig(type: .DELETE, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     

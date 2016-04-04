@@ -241,9 +241,17 @@
                                                             <color key="textColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icoStory" translatesAutoresizingMaskIntoConstraints="NO" id="pof-5u-twy">
+                                                            <rect key="frame" x="312" y="-3" width="57" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="57" id="0J4-C8-Owi"/>
+                                                                <constraint firstAttribute="height" constant="44" id="WNI-uQ-bfd"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="pof-5u-twy" secondAttribute="trailing" constant="-10" id="FKK-Cy-zCM"/>
                                                         <constraint firstItem="bBE-Bf-2cY" firstAttribute="leading" secondItem="FCE-yN-ieP" secondAttribute="leading" constant="4" id="FOQ-EW-9mD"/>
                                                         <constraint firstItem="Lhc-Vm-hHD" firstAttribute="leading" secondItem="znU-EN-S1W" secondAttribute="trailing" constant="3" id="Fti-E3-qeV"/>
                                                         <constraint firstAttribute="trailing" secondItem="g0D-UL-brx" secondAttribute="trailing" id="LSM-sb-vmG"/>
@@ -254,6 +262,7 @@
                                                         <constraint firstItem="znU-EN-S1W" firstAttribute="top" secondItem="IC7-6M-K0v" secondAttribute="bottom" constant="6" id="bYH-4R-hA0"/>
                                                         <constraint firstItem="Lhc-Vm-hHD" firstAttribute="top" secondItem="g0D-UL-brx" secondAttribute="bottom" constant="13" id="cYc-qP-ays"/>
                                                         <constraint firstItem="2Hm-UO-x8B" firstAttribute="leading" secondItem="bBE-Bf-2cY" secondAttribute="trailing" constant="9" id="h4i-di-lqo"/>
+                                                        <constraint firstItem="pof-5u-twy" firstAttribute="top" secondItem="FCE-yN-ieP" secondAttribute="top" constant="-3" id="lFU-0I-dGV"/>
                                                         <constraint firstItem="znU-EN-S1W" firstAttribute="leading" secondItem="bBE-Bf-2cY" secondAttribute="trailing" constant="4" id="mqH-5J-abt"/>
                                                         <constraint firstItem="2Hm-UO-x8B" firstAttribute="top" secondItem="FCE-yN-ieP" secondAttribute="top" id="qde-RC-Dgf"/>
                                                         <constraint firstItem="IC7-6M-K0v" firstAttribute="top" secondItem="FCE-yN-ieP" secondAttribute="top" constant="40" id="tHw-36-a9P"/>
@@ -275,6 +284,7 @@
                                         <connections>
                                             <outlet property="addressLabel" destination="g0D-UL-brx" id="inJ-7g-QhH"/>
                                             <outlet property="roundedView" destination="FCE-yN-ieP" id="NVc-Ci-xo8"/>
+                                            <outlet property="storyImage" destination="pof-5u-twy" id="po4-O0-8sl"/>
                                             <outlet property="storyPointImageView" destination="bBE-Bf-2cY" id="Fa2-pu-kEA"/>
                                             <outlet property="titleLabel" destination="2Hm-UO-x8B" id="mUg-yz-XYz"/>
                                             <outlet property="userNameLabel" destination="Lhc-Vm-hHD" id="tsa-NA-yNd"/>
@@ -1076,6 +1086,7 @@
         <image name="icoCreatePoint" width="93" height="93"/>
         <image name="icoGpsBlue" width="20" height="20"/>
         <image name="icoMinus" width="29" height="29"/>
+        <image name="icoStory" width="37" height="39"/>
         <image name="icoTabDiscoverDefault" width="24" height="24"/>
         <image name="icoTabDiscoverHighlighted" width="24" height="24"/>
         <image name="icoTabLocationDefault" width="24" height="24"/>

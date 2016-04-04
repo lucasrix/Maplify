@@ -79,4 +79,6 @@ struct CellImages {
     static let emptyCircle = "empty-circle"
     static let selectedCircle = "icoCircleChecked"
     static let textStoryPoint = "textStoryPoint"
+    static let audioStoryPoint = "audioStoryPoint"
+    static let videoStoryPoint = "videoStoryPoint"
 }

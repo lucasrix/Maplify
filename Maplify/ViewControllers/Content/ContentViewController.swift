@@ -137,7 +137,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
 //        SessionManager.sharedManager.removeDatabaseData()
         
         ApiClient.sharedClient.signOut({ (response) in
-                print("")
+                print("gfdfdfdfgd")
             },
             failure:  { (statusCode, errors, localDescription, messages) in
                 print("")

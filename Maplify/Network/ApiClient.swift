@@ -73,6 +73,9 @@ class ApiClient {
         }
         
         var payload = data.jsonDictionary()
+        
+        print(payload)
+        
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)
             let htmlDict = ["html": str!] as NSDictionary
@@ -86,17 +89,20 @@ class ApiClient {
                 }
             }
         } else {
-            self.handleError(payload! as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+            if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+                self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
+                }
+            }
         }
     }
     
-    private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let errorDict = payload["error"] as! [String: AnyObject]
-        let details = errorDict["details"] as! [String: AnyObject]
-        let messages = errorDict["error_messages"] as! [String]
-        
+    private func manageError(dict: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let details = dict["details"] as! [String: AnyObject]
+        let messages = dict["error_messages"] as! [String]
         let errors = ApiError.parseErrors(details, messages: messages)
-        
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }
@@ -169,7 +175,7 @@ class ApiClient {
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
-        self.deleteRequest("auth/sign_out", params: nil, manager:nil, success: success, failure: failure)
+        self.deleteRequest("auth/sign_out", params: nil, manager: SignOutManager(), success: success, failure: failure)
     }
     
     func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {

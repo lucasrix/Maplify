@@ -69,6 +69,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
 
         self.urlInputField.setupTextField(urlLPlaceholder, defaultIconName: InputTextFieldImages.iconUrlDefault, highlitedIconName: InputTextFieldImages.iconUrlActive)
         self.urlInputField.descriptionLabel.text = optionalDescription
+        self.urlInputField.textField.keyboardType = .URL
     }
     
     func setupAboutInputField() {

@@ -74,8 +74,6 @@ class ApiClient {
         
         var payload = data.jsonDictionary()
         
-        print(payload)
-        
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)
             let htmlDict = ["html": str!] as NSDictionary
@@ -86,6 +84,10 @@ class ApiClient {
             if let dataDictionary = (payload as! [String : AnyObject])["data"] {
                 dispatch_async(dispatch_get_main_queue()) {
                     success?(response: manager?.manageResponse(dataDictionary as! [String : AnyObject]))
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    success?(response: nil)
                 }
             }
         } else {

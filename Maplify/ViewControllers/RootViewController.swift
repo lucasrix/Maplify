@@ -18,4 +18,9 @@ class RootViewController: ViewController {
             self.routesSetLandingController()
         }
     }
+    
+    class func navigationController() -> NavigationViewController {
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.window!.rootViewController as! NavigationViewController
+    }
 }

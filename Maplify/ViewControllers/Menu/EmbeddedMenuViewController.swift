@@ -83,8 +83,9 @@ class EmbeddedMenuViewController: UITableViewController {
     }
     
     func sendAction(actionString: String) {
-        self.delegate?.menuDidSelectItem(actionString)
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: { [weak self] () in
+            self?.delegate?.menuDidSelectItem(actionString)
+        })
     }
 }
 

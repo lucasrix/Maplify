@@ -23,4 +23,5 @@ target 'Maplify' do
   pod 'EZAudio', :git => 'https://github.com/rzehan/EZAudio.git', :commit => 'df349f2729139bfb2410644e05bb2945af6f57c3'
   pod 'LLSimpleCamera', '~> 4.2'
   pod 'INSPullToRefresh', '~> 1.1'
+  pod 'SDWebImage', '~> 3.7'
 end

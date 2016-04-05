@@ -9,6 +9,8 @@
 import RealmSwift
 
 let discoverStoryPointCell = "DiscoverStoryPointCell"
+let kDiscoverNavigationBarShadowOpacity: Float = 0.8
+let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 
 class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +39,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+        
+        // add shadow
+        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor();
+        self.navigationController!.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
+        self.navigationController!.navigationBar.layer.shadowOffset = CGSizeZero;
+        self.navigationController!.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
+        self.navigationController!.navigationBar.layer.masksToBounds = false;
     }
     
     // MARK: - navigation bar

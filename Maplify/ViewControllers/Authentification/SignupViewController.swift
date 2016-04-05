@@ -39,6 +39,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
         let passwordPlaceholder = NSLocalizedString("Text.Placeholder.Password", comment: String())
         
         self.emailInputField.setupTextField(emailPlaceholder, defaultIconName: InputTextFieldImages.emailIconDefault, highlitedIconName: InputTextFieldImages.emailIconHighlited)
+        self.emailInputField.textField.keyboardType = .EmailAddress
         self.passwordInputField.setupTextField(passwordPlaceholder, defaultIconName: InputTextFieldImages.passwordIconDefault, highlitedIconName: InputTextFieldImages.passwordIconHighlited)
         self.passwordInputField.textField.secureTextEntry = true
         

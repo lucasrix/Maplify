@@ -59,7 +59,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
 
     func checkLocationEnabled() {
-        if SessionManager.sharedManager.locationEnabled() {
+        if SessionHelper.sharedManager.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
                     self?.setupMap(location)

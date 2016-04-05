@@ -64,7 +64,8 @@ struct ButtonImages {
     static let discoverLike = "DiscoverLike"
     static let discoverAdd = "DiscoverAdd"
     static let discoverShare = "DiscoverShare"
-    static let discoverShowHideDescription = "DiscoverShowHideDescription"
+    static let discoverShowHideDescriptionDown = "DiscoverShowHideDescriptionDown"
+    static let discoverShowHideDescriptionUp = "DiscoverShowHideDescriptionUp"
 }
 
 struct MediaButtons {

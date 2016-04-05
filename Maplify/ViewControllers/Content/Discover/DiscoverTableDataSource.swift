@@ -14,7 +14,7 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         let model = cellData.model
         var itemHeight: CGFloat = 0
         if model is StoryPoint {
-            itemHeight = DiscoverStoryPointCell.contentHeightForStoryPoint(model as! StoryPoint)
+            itemHeight = DiscoverStoryPointCell.contentHeightForStoryPoint(cellData)
         } else if model is Story {
             // TODO:
         }

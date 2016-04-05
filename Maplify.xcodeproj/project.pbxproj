@@ -43,6 +43,7 @@
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
 		8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A281C8CD5A10005DF12 /* SignupViewController.swift */; };
 		8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3575D61CB3C6690039828A /* SessionHelper.swift */; };
+		8C3575DA1CB3D8A40039828A /* StoryPointEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3575D91CB3D8A40039828A /* StoryPointEditViewController.swift */; };
 		8C512F531CAE8C0C0068AE49 /* SelectedStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */; };
 		8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */; };
 		8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */; };
@@ -184,6 +185,7 @@
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C130A281C8CD5A10005DF12 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8C3575D61CB3C6690039828A /* SessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelper.swift; sourceTree = "<group>"; };
+		8C3575D91CB3D8A40039828A /* StoryPointEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointEditViewController.swift; sourceTree = "<group>"; };
 		8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStoryCell.swift; sourceTree = "<group>"; };
 		8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryManager.swift; sourceTree = "<group>"; };
 		8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedSettingsViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +404,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8C3575D81CB3D8870039828A /* StoryPointEdit */ = {
+			isa = PBXGroup;
+			children = (
+				8C3575D91CB3D8A40039828A /* StoryPointEditViewController.swift */,
+			);
+			path = StoryPointEdit;
+			sourceTree = "<group>";
+		};
 		8C9094D21CAD5BE4002F26A9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +517,7 @@
 				8C9094D21CAD5BE4002F26A9 /* Settings */,
 				F01A89531CA75114008B8702 /* Menu */,
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
+				8C3575D81CB3D8870039828A /* StoryPointEdit */,
 				1FB70B301C9DA52C00FC3496 /* StoryPointCreation */,
 				1FE6D5AF1CA57B470052B412 /* Story */,
 				A59A7E8A1C9ADBB800399A38 /* Content */,
@@ -1014,6 +1025,7 @@
 				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
+				8C3575DA1CB3D8A40039828A /* StoryPointEditViewController.swift in Sources */,
 				1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */,
 				8C512F531CAE8C0C0068AE49 /* SelectedStoryCell.swift in Sources */,
 				A5CACDE81CA40871004F1A3D /* Suspender.swift in Sources */,

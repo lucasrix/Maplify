@@ -9,10 +9,14 @@
 import Tailor
 import RealmSwift
 
-class UserManager: ModelManager {
-    override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        let dictionary = (response["user"] != nil) ? (response["user"] as! [String : AnyObject]) : response
-        return User(dictionary)
+class SessionManager: ModelManager {
+    override func manageResponse(response: [String : AnyObject]!) -> AnyObject! {
+        if response != nil {
+            let dictionary = (response["user"] != nil) ? (response["user"] as! [String : AnyObject]) : response
+            return User(dictionary)
+        } else {
+            return nil
+        }
     }
     
     class func saveCurrentUser(user: User) {

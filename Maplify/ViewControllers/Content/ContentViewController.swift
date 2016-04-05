@@ -131,9 +131,9 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func signOut() {
-        SessionManager.sharedManager.removeSessionData()
-        SessionManager.sharedManager.removeSessionAuthCookies()
-        SessionManager.sharedManager.removeDatabaseData()
+        SessionHelper.sharedManager.removeSessionData()
+        SessionHelper.sharedManager.removeSessionAuthCookies()
+        SessionHelper.sharedManager.removeDatabaseData()
         
         self.showProgressHUD()
         ApiClient.sharedClient.signOut({ [weak self] (response) in

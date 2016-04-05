@@ -26,7 +26,7 @@ class ApiClient {
     }
     
     private func baseRequest(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionManager.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
@@ -34,7 +34,7 @@ class ApiClient {
     }
     
     private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionManager.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
             multipartFormData: { (multipartFormData) -> () in
@@ -69,7 +69,7 @@ class ApiClient {
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
-            SessionManager.sharedManager.setSessionData(headersDictionary)
+            SessionHelper.sharedManager.setSessionData(headersDictionary)
         }
         
         var payload = data.jsonDictionary()
@@ -137,17 +137,17 @@ class ApiClient {
         if (photo != nil) {
             data = ["photo": photo]
         }
-        self.postRequest("auth", params: params, data: data, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth", params: params, data: data, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func signIn(email: String, password: String, success: successClosure!, failure: failureClosure!) {
         let params = ["email": email, "password": password]
-        self.postRequest("auth/sign_in", params: params, data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth/sign_in", params: params, data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {
         let params = ["facebook_access_token": token]
-        self.postRequest("auth/provider_sessions", params:params , data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth/provider_sessions", params:params , data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
@@ -177,7 +177,7 @@ class ApiClient {
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
-        self.deleteRequest("auth/sign_out", params: nil, manager: SignOutManager(), success: success, failure: failure)
+        self.deleteRequest("auth/sign_out", params: nil, manager: SessionManager(), success: success, failure: failure)
     }
     
     func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {

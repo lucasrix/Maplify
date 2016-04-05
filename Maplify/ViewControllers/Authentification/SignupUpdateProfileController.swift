@@ -111,7 +111,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
             success: { [weak self] (response) -> () in
                 self?.user.profile = response as! Profile  
                 self?.hideProgressHUD()
-                UserManager.saveCurrentUser((self?.user)!)
+                SessionManager.saveCurrentUser((self?.user)!)
                 self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in

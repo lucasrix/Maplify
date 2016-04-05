@@ -9,8 +9,8 @@
 import Locksmith
 import RealmSwift
 
-class SessionManager {
-    static let sharedManager = SessionManager()
+class SessionHelper {
+    static let sharedManager = SessionHelper()
     
     // MARK: - app launch management
     func trackUserAppLaunch() {

@@ -8,3 +8,5 @@
 #import <LLSimpleCamera/LLSimpleCamera.h>
 #import <INSPullToRefresh/UIScrollView+INSPullToRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>

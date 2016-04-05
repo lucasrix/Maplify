@@ -48,9 +48,11 @@ class ProgressHUD {
     }
     
     func hideProgressHUD() {
-        self.spinner.stopAnimating()
-        self.spinner.removeFromSuperview()
-        self.overlayView.removeFromSuperview()
+        if self.spinner != nil {
+            self.spinner.stopAnimating()
+            self.spinner.removeFromSuperview()
+            self.overlayView.removeFromSuperview()
+        }
     }
     
     func hideProgressHUD(view: UIView) {

@@ -118,7 +118,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     @IBAction func editContentTapped(sender: AnyObject) {
-        self.delegate?.editContentDidTap()
+        self.delegate?.editContentDidTap(self.storyPointId)
     }
     
     // MARK: - class func
@@ -159,5 +159,5 @@ class DiscoverStoryPointCell: CSTableViewCell {
 
 protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
-    func editContentDidTap()
+    func editContentDidTap(storyPointId: Int)
 }

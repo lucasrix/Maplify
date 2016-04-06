@@ -77,7 +77,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     // MARK: - actions
-    func showEditContentMenu() {
+    func showEditContentMenu(storyPointId: Int) {
         let editPost = NSLocalizedString("Button.EditPost", comment: String())
         let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
         let directions = NSLocalizedString("Button.Directions", comment: String())
@@ -105,8 +105,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyDataSource.reloadTable()
     }
     
-    func editContentDidTap() {
-        self.showEditContentMenu()
+    func editContentDidTap(storyPointId: Int) {
+        self.showEditContentMenu(storyPointId)
     }
 }
 

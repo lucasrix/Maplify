@@ -68,7 +68,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yb-sj-PM0">
                                         <rect key="frame" x="62" y="0.0" width="126" height="42"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                         <state key="normal" title="Capture" image="icoTabLocationDefault">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         </state>
@@ -85,7 +86,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-SM-Tyt">
                                         <rect key="frame" x="188" y="0.0" width="125" height="42"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                         <state key="normal" title="Discover" image="icoTabDiscoverDefault">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         </state>
@@ -341,9 +343,24 @@
                     <view key="view" contentMode="scaleToFill" id="yrH-fK-Py7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-Ei-g8z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8PV-TE-TWM" firstAttribute="top" secondItem="yWh-Ei-g8z" secondAttribute="bottom" id="ifA-76-975"/>
+                            <constraint firstItem="yWh-Ei-g8z" firstAttribute="leading" secondItem="yrH-fK-Py7" secondAttribute="leading" id="k8q-uB-IZK"/>
+                            <constraint firstItem="yWh-Ei-g8z" firstAttribute="top" secondItem="yrH-fK-Py7" secondAttribute="top" id="wNd-s6-8gl"/>
+                            <constraint firstAttribute="trailing" secondItem="yWh-Ei-g8z" secondAttribute="trailing" id="xML-Ip-dyr"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="yWh-Ei-g8z" id="m61-ln-mfg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhE-am-QEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -495,8 +512,8 @@
                                     <constraint firstItem="yR8-4H-4ll" firstAttribute="centerY" secondItem="7BE-5q-eJy" secondAttribute="centerY" id="fNt-Aj-aqE"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TpD-2L-g93">
-                                <rect key="frame" x="9" y="0.0" width="375" height="637"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TpD-2L-g93">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

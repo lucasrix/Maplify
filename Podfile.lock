@@ -45,6 +45,9 @@ PODS:
     - RSKPlaceholderTextView (= 1.0.0)
   - RSKKeyboardAnimationObserver (1.0.0)
   - RSKPlaceholderTextView (1.0.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SimpleAuth/Core (0.3.9):
     - CMDQueryStringSerialization
     - ReactiveCocoa
@@ -76,6 +79,7 @@ DEPENDENCIES:
   - RealmSwift (~> 0.98)
   - RSKGrowingTextView (~> 1.0)
   - RSKKeyboardAnimationObserver (~> 1.0)
+  - SDWebImage (~> 3.7)
   - SimpleAuth/Facebook (from `https://github.com/adamjmcgrath/SimpleAuth-1.git`,
     branch `facebook-2.4-breaking-changes`)
   - SimpleAuth/FacebookWeb (from `https://github.com/adamjmcgrath/SimpleAuth-1.git`,
@@ -124,6 +128,7 @@ SPEC CHECKSUMS:
   RSKGrowingTextView: 585888654fb5007e13089a71923ce78e53a6f0d4
   RSKKeyboardAnimationObserver: 0bdbc5235a96ce6d1e6143998214160c7f7c9b37
   RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5

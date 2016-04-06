@@ -20,6 +20,7 @@ class Story: Model {
         self.init()
         
         self.id <- map.property("id")
+        self.user <- map.relationOrNil("user")
         self.title <- map.property("name")
         self.storyDescription <- map.property("description")
         self.discoverable <- map.property("discoverable")

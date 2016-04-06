@@ -92,6 +92,10 @@
 "Button.Add" = "Add";
 "Button.CreateStory" = "Create story";
 "Button.CreateStoryPlaceholder" = "Create one now.";
+"Button.EditPost" = "Edit post";
+"Button.DeletePost" = "Delete post";
+"Button.Directions" = "Directions";
+"Button.SharePost" = "Share post";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

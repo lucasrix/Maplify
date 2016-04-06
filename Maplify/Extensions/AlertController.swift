@@ -44,12 +44,12 @@ extension UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func showActionSheet(title: String!, message: String, cancel: String, destructive: String!,
+    func showActionSheet(title: String!, message: String!, cancel: String, destructive: String!,
         buttons: [String], handle: buttonClosure) {
             self.showController(title, message: message, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
     }
     
-    private func showController(title: String!, message: String, cancel: String!, destructive: String!,
+    private func showController(title: String!, message: String!, cancel: String!, destructive: String!,
         buttons: [String], style: UIAlertControllerStyle, handle: buttonClosure) {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
             

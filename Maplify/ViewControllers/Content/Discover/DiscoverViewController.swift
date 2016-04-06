@@ -8,6 +8,13 @@
 
 import RealmSwift
 
+enum EditContentOption: Int {
+    case EditPost
+    case DeletePost
+    case Directions
+    case SharePost
+}
+
 let discoverStoryPointCell = "DiscoverStoryPointCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
@@ -69,6 +76,26 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyDataSource.reloadTable()
     }
     
+    // MARK: - actions
+    func showEditContentMenu() {
+        let editPost = NSLocalizedString("Button.EditPost", comment: String())
+        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
+        let directions = NSLocalizedString("Button.Directions", comment: String())
+        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttons = [editPost, deletePost, directions, sharePost]
+        
+        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
+                if buttonIndex == EditContentOption.EditPost.rawValue {
+                    //TODO: -
+                } else if buttonIndex == EditContentOption.DeletePost.rawValue {
+                    //TODO: -
+                }
+            }
+        )
+
+    }
+    
     // MARK: - DiscoverStoryPointCellDelegate
     func reloadTable(storyPointId: Int) {
         let storyPointIndex = self.storyPoints.indexOf({$0.id == storyPointId})
@@ -76,6 +103,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let cellDataModel = self.storyActiveModel.cellData(indexPath)
         self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
         self.storyDataSource.reloadTable()
+    }
+    
+    func editContentDidTap() {
+        self.showEditContentMenu()
     }
 }
 

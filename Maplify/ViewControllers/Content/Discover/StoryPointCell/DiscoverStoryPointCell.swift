@@ -117,6 +117,10 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.delegate?.reloadTable(self.storyPointId)
     }
     
+    @IBAction func editContentTapped(sender: AnyObject) {
+        self.delegate?.editContentDidTap()
+    }
+    
     // MARK: - class func
     class func contentHeightForStoryPoint(cellData: CSCellData) -> CGFloat {
         let storyPoint = cellData.model as! StoryPoint
@@ -155,4 +159,5 @@ class DiscoverStoryPointCell: CSTableViewCell {
 
 protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
+    func editContentDidTap()
 }

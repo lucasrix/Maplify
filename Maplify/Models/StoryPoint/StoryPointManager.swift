@@ -34,4 +34,21 @@ class StoryPointManager: ModelManager {
         let realm = try! Realm()
         return realm.objectForPrimaryKey(StoryPoint.self, key: storyPointId)
     }
+    
+    class func delete(storyPointId: Int) {
+        let realm = try! Realm()
+        let storyPoint = realm.objectForPrimaryKey(StoryPoint.self, key: storyPointId)
+        if storyPoint != nil {
+            try! realm.write {
+                realm.delete(storyPoint!)
+            }
+        }
+    }
+    
+    class func delete(storyPoint: StoryPoint) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(storyPoint)
+        }
+    }
 }

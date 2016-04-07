@@ -33,6 +33,11 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         self.setupNavigationBar()
         self.setupEditStoryPointInfoViewController()
         self.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.setupContent()
     }
     
@@ -56,7 +61,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     
     func setupContent() {
         let storyPoint = StoryPointManager.find(self.storyPointId)
-        if storyPoint.attachment != nil {
+        if (storyPoint != nil) && (storyPoint.attachment != nil) {
             let attachmentUrl = NSURL(string: storyPoint.attachment.file_url)
             self.storyPointImageView.sd_setImageWithURL(attachmentUrl)
         }

@@ -19,7 +19,7 @@ let discoverStoryPointCell = "DiscoverStoryPointCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 
-class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate {
+class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: DiscoverTableDataSource! = nil
@@ -70,6 +70,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func loadItemsFromDB() {
         let realm = try! Realm()
+        self.storyActiveModel.removeData()
         self.storyPoints = Array(realm.objects(StoryPoint))
         self.storyActiveModel.addItems(storyPoints, cellIdentifier: discoverStoryPointCell, sectionTitle: nil, delegate: self)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
@@ -89,7 +90,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 if buttonIndex == EditContentOption.EditPost.rawValue {
                     self?.routesOpenStoryPointEditController(storyPointId)
                 } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                    //TODO: -
+                    self?.showProgressHUD()
+                    ApiClient.sharedClient.deleteStoryPoint(storyPointId,
+                        success: { [weak self] (response) in
+                            let storyPoint = StoryPointManager.find(storyPointId)
+                            if storyPoint != nil {
+                                StoryPointManager.delete(storyPointId)
+                            }
+                            self?.hideProgressHUD()
+                            self?.loadItemsFromDB()
+                        },
+                        failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                            self?.hideProgressHUD()
+                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                        }
+                    )
                 }
             }
         )
@@ -107,6 +122,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func editContentDidTap(storyPointId: Int) {
         self.showEditContentMenu(storyPointId)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }
 

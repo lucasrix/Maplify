@@ -176,6 +176,10 @@ class ApiClient {
         self.patchRequest("story_points/\(storyPointId)", params: params, manager: StoryPointManager(), success: success, failure: failure)
     }
     
+    func deleteStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("story_points/\(storyPointId)", params: nil, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }

@@ -65,7 +65,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     override func navigationBarColor() -> UIColor {
-        return UIColor.darkBlueGrey()
+        return UIColor.darkGreyBlue()
     }
     
     func loadItemsFromDB() {
@@ -87,7 +87,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
                 if buttonIndex == EditContentOption.EditPost.rawValue {
-                    //TODO: -
+                    self?.routesOpenStoryPointEditController(storyPointId)
                 } else if buttonIndex == EditContentOption.DeletePost.rawValue {
                     //TODO: -
                 }

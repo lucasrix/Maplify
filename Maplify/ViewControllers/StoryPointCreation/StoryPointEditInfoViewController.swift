@@ -12,6 +12,7 @@ import RealmSwift
 import Haneke
 import CoreLocation
 import Haneke
+import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
 class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
@@ -23,6 +24,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     @IBOutlet weak var isPartOfStoryLabel: UILabel!
     @IBOutlet weak var addToStoryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId = ""
@@ -32,6 +34,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     var selectedStories = [Story]()
     var selectedStoriesActiveModel: CSActiveModel! = nil
     var selectedStoriesDataSoure: CSBaseTableDataSource! = nil
+    var storyPointId: Int = 0
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -68,6 +71,16 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.addToStoryButton.setTitle(buttonTitle, forState: .Normal)
     }
     
+    func configure(storyPointId: Int) {
+        self.keyboardAvoidingScrollView.scrollEnabled = false
+        
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint != nil {
+            self.captionTextField.text = storyPoint.caption
+        }
+        
+    }
+    
     // MARK: - navigation bar
     override func navigationBarIsTranlucent() -> Bool {
         return false
@@ -79,15 +92,18 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     
     // MARK: - location
     func retrieveCurrentPlace() {
-        let geocoder = GMSGeocoder()
-        geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
-            if error != nil {
-                print(error)
-            } else {
-                let address = response?.firstResult()
-                self?.placeOrLocationTextField.text = address?.thoroughfare
-            }
-        })
+        if self.location != nil {
+            let geocoder = GMSGeocoder()
+            geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    let address = response?.firstResult()
+                    self?.placeOrLocationTextField.text = address?.thoroughfare
+                }
+            })
+        }
+        
     }
     
     func showSelectedStories(selectedStories: [Story]) {

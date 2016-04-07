@@ -48,6 +48,7 @@
 "Controller.Video.Title" = "Video";
 "Controller.AddToStory.Title" = "Add to Story";
 "Controller.RecommendedSettings.Title" = "Recommended Settings";
+"Controller.EditPost.Title" = "Edit Post";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -96,6 +97,7 @@
 "Button.DeletePost" = "Delete post";
 "Button.Directions" = "Directions";
 "Button.SharePost" = "Share post";
+"Button.Save" = "Save";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

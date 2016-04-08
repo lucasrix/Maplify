@@ -9,14 +9,10 @@
 import UIKit
 import SDWebImage.UIImageView_WebCache
 
-let kHeightUserInfoView: CGFloat = 66
-let kHeightStoryPointInfoView: CGFloat = 60
-let kHeightDescriptionLabel: CGFloat = 17
-let kHeightDescriptionTop: CGFloat = 13
-let kHeightActionsView: CGFloat = 46
-let kHeightBottomConstraint: CGFloat = 24
-let kDescriptionLeftRightMargin: CGFloat = 16
-let kDescriptionLabelFontSize: CGFloat = 14
+let kStoryPointCellDescriptionDefaultHeight: CGFloat = 17
+let kStoryPointDescriptionOpened: Int = 0
+let kStoryPointDescriptionClosed: Int = 1
+
 let kShadowOpacity: Float = 0.15
 let kShadowRadius: CGFloat = 3
 
@@ -30,7 +26,6 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var storyPointAddressImageView: UIImageView!
     @IBOutlet weak var attachmentImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
     @IBOutlet weak var backShadowView: UIView!
@@ -41,20 +36,19 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
-        self.setupViews()
-        
         self.cellData = cellData
         self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
         let storyPoint = cellData.model as! StoryPoint
         self.storyPointId = storyPoint.id
         
+        self.addShadow()
         self.populateUserViews(storyPoint)
         self.populateStoryPointInfoViews(storyPoint)
         self.populateAttachment(storyPoint)
         self.populateDescriptionLabel(cellData)
     }
     
-    func setupViews() {
+    func addShadow() {
         self.backShadowView.layer.shadowColor = UIColor.blackColor().CGColor
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
@@ -64,15 +58,13 @@ class DiscoverStoryPointCell: CSTableViewCell {
     func populateUserViews(storyPoint: StoryPoint) {
         let user = storyPoint.user as User
         let profile = user.profile as Profile
-        if profile.photo.length > 0 {
-            let userPhotoUrl:NSURL? = NSURL(string: profile.photo)
-            self.thumbImageView.hnk_setImageFromURL(userPhotoUrl!)
-        } else {
-            self.thumbImageView.image = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
-        }
+        
+        let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
+        self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
-        self.userAddressLabel.text = profile.city
+        self.userAddressLabel.text = profile.city != "" ? profile.city : "Washington DC"
     }
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
@@ -96,19 +88,21 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func populateDescriptionLabel(cellData: CSCellData) {
+        self.descriptionLabel.numberOfLines = cellData.selected ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         let storyPoint = cellData.model as! StoryPoint
-        self.descriptionLabel.text = storyPoint.text
+        
+        let rrr = "okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc "
+        self.descriptionLabel.text = rrr//storyPoint.text
+        
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
-            self.descriptionViewHeightConstraint.constant = DiscoverStoryPointCell.textHeight(cellData) + kHeightDescriptionTop
         } else {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
-            self.descriptionViewHeightConstraint.constant = kHeightDescriptionLabel + kHeightDescriptionTop
         }
-        self.showHideDescriptionLabel.hidden = DiscoverStoryPointCell.textHeight(cellData) <= kHeightDescriptionLabel
-        self.showHideDescriptionButton.hidden = DiscoverStoryPointCell.textHeight(cellData) <= kHeightDescriptionLabel
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(rrr)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(rrr)
     }
     
     // MARK: - actions
@@ -147,13 +141,30 @@ class DiscoverStoryPointCell: CSTableViewCell {
         let text = storyPoint.text
         let font = UIFont.systemFontOfSize(kDescriptionLabelFontSize)
         let textWidth: CGFloat = UIScreen().screenWidth() - 2 * kDescriptionLeftRightMargin
+    }
+
+    // MARK: - private
+    func showHideButtonHidden(text: String) -> Bool {
+        let font = self.descriptionLabel.font
+        let textWidth: CGFloat = CGRectGetWidth(self.descriptionLabel.frame)
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
-        let textHeight = CGFloat(ceil(Double(textSize.height)))
-        if textHeight > kHeightDescriptionLabel {
-            return textHeight
-        }
-        return kHeightDescriptionLabel
+        return textSize.height <= kStoryPointCellDescriptionDefaultHeight
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
+        // need to use to set the preferredMaxLayoutWidth below.
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
+        
+        // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
+        // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
+        self.usernameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.usernameLabel.frame)
+        self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
+        self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
     }
 }
 

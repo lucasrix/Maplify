@@ -9,14 +9,16 @@
 import UIKit
 
 class DiscoverTableDataSource: CSBaseTableDataSource {
-    var cell = DiscoverStoryCell()
+    var storyCell = DiscoverStoryCell()
+    var storyPointCell = DiscoverStoryPointCell()
     
     override init(tableView: UITableView, activeModel: CSActiveModel, delegate: AnyObject) {
         super.init(tableView: tableView, activeModel: activeModel, delegate: delegate)
         
         var token: dispatch_once_t = 0
         dispatch_once(&token) {
-            self.cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell)) as! DiscoverStoryCell
+            self.storyCell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell)) as! DiscoverStoryCell
+            self.storyPointCell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryPointCell)) as! DiscoverStoryPointCell
         }
     }
     
@@ -39,16 +41,21 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         let model = cellData.model
         var itemHeight: CGFloat = 0
         if model is StoryPoint {
-            itemHeight = DiscoverStoryPointCell.contentHeightForStoryPoint(cellData)
+            self.storyPointCell.configure(cellData)
+            itemHeight = self.heightForCell(self.storyPointCell, bounds: tableView.bounds)
+            let storyPoint = model as! StoryPoint
+            if storyPoint.kind != StoryPointKind.Text.rawValue {
+                itemHeight += UIScreen().screenWidth()
+            }
         } else if model is Story {
-            self.cell.configure(cellData)
-            itemHeight = self.heightForCell(self.cell, bounds: tableView.bounds)
-            itemHeight += self.cell.collectionView.contentSize.height
+            self.storyCell.configure(cellData)
+            itemHeight = self.heightForCell(self.storyCell, bounds: tableView.bounds)
+            itemHeight += self.storyCell.collectionView.contentSize.height
         }
         return itemHeight
     }
     
-    func heightForCell(cell: DiscoverStoryCell, bounds: CGRect) -> CGFloat {
+    func heightForCell(cell: CSTableViewCell, bounds: CGRect) -> CGFloat {
         
         cell.setNeedsUpdateConstraints()
         cell.updateConstraintsIfNeeded()

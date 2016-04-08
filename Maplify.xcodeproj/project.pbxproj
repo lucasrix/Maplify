@@ -123,7 +123,6 @@
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
 		A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD364D1CAAA9EA00281574 /* StoryManager.swift */; };
-		CD0BB2AB1CB285B000E3E66B /* DiscoverStoryPointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD0BB2AA1CB285B000E3E66B /* DiscoverStoryPointCell.xib */; };
 		CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
@@ -276,7 +275,6 @@
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
-		CD0BB2AA1CB285B000E3E66B /* DiscoverStoryPointCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscoverStoryPointCell.xib; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
@@ -770,7 +768,6 @@
 			isa = PBXGroup;
 			children = (
 				CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */,
-				CD0BB2AA1CB285B000E3E66B /* DiscoverStoryPointCell.xib */,
 			);
 			path = StoryPointCell;
 			sourceTree = "<group>";
@@ -939,7 +936,6 @@
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
-				CD0BB2AB1CB285B000E3E66B /* DiscoverStoryPointCell.xib in Resources */,
 				CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */,

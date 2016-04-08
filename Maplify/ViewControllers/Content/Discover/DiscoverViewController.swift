@@ -45,11 +45,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupTableView()
-    }
-    
-    func setupTableView() {
-        self.tableView.registerNib(UINib(nibName: discoverStoryPointCell, bundle: nil), forCellReuseIdentifier: discoverStoryPointCell)
     }
     
     func setupNavigationBar() {

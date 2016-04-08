@@ -45,6 +45,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateStoryInfoViews(story)
         self.populateDescriptionLabel(cellData)
         self.setupCollectionView(story)
+        self.setupSwipe()
     }
     
     func addShadow() {
@@ -74,7 +75,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryDescriptionOpened : kStoryDescriptionClosed
         let story = cellData.model as! Story
         
-        self.descriptionLabel.text = story.storyDescription
+        let uuu = "unf uwufuwhfuwqufuwqhfuhqwuhfuihqwuihfuiqhwufuhqh ufhwyuq hfuy hwuy fguw qghfgwhj egfhjweg hwgef"
+        self.descriptionLabel.text = uuu//story.storyDescription
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -84,8 +86,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story.storyDescription)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story.storyDescription)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(uuu)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(uuu)
     }
     
     func setupCollectionView(story: Story) {
@@ -101,6 +103,17 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let itemsOverlimit = story.storyPoints.count - self.numberOfStoryPointInCollectionView()
         self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
+    }
+    
+    func setupSwipe() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleDetailSwipe(_:)))
+        swipeGesture.direction = .Left
+        self.contentView.addGestureRecognizer(swipeGesture)
+    }
+    
+    func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
+        // TODO:
+        print(sender.direction)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -119,6 +132,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textWidth: CGFloat = CGRectGetWidth(self.descriptionLabel.frame)
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
+        print(textSize.height)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
     }
     

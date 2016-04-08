@@ -129,4 +129,21 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     func menuDidSelectItem(actionString:String) {
         self.performSelector(Selector(actionString))
     }
+    
+    func signOut() {
+        SessionHelper.sharedManager.removeSessionData()
+        SessionHelper.sharedManager.removeSessionAuthCookies()
+        SessionHelper.sharedManager.removeDatabaseData()
+        
+        self.showProgressHUD()
+        ApiClient.sharedClient.signOut({ [weak self] (response) in
+                self?.hideProgressHUD()
+                RootViewController.navigationController().routesSetLandingController()
+            },
+            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                RootViewController.navigationController().routesSetLandingController()
+            }
+        )
+    }
 }

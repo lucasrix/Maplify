@@ -7,9 +7,10 @@
 //
 
 import Locksmith
+import RealmSwift
 
-class SessionManager {
-    static let sharedManager = SessionManager()
+class SessionHelper {
+    static let sharedManager = SessionHelper()
     
     // MARK: - app launch management
     func trackUserAppLaunch() {
@@ -54,6 +55,20 @@ class SessionManager {
             try Locksmith.deleteDataForUserAccount(Config.localUserAccount)
         } catch let error {
             print(error)
+        }
+    }
+    
+    func removeDatabaseData() {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
+    
+    func removeSessionAuthCookies() {
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in storage.cookies! {
+            storage.deleteCookie(cookie)
         }
     }
     

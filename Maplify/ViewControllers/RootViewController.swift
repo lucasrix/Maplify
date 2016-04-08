@@ -12,10 +12,15 @@ class RootViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if SessionManager.sharedManager.isSesstionTokenExists() {
+        if SessionHelper.sharedManager.isSesstionTokenExists() {
             self.routesSetContentController()
         } else {
             self.routesSetLandingController()
         }
+    }
+    
+    class func navigationController() -> NavigationViewController {
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.window!.rootViewController as! NavigationViewController
     }
 }

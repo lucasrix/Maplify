@@ -18,7 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.setupFabric()
         self.setupGoogleServices()
+        FacebookHelper.setupFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FacebookHelper.openUrl(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        FacebookHelper.activateApp()
     }
     
     func setupFabric() {

@@ -8,7 +8,6 @@
 
 import UIKit
 import TTTAttributedLabel
-import SimpleAuth
 
 let kLoginActiveLink = "login"
 let kTermsActiveLink = "terms"
@@ -19,7 +18,7 @@ let kEmailButtonImageInset: CGFloat = 68
 let kLabelFontSize: CGFloat = 15
 let kLoginButtonsFontSize: CGFloat = 18
 
-class LandingViewController: ViewController, TTTAttributedLabelDelegate {
+class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var emailButton: RoundedButton!
     @IBOutlet weak var facebookButton: RoundedButton!
     @IBOutlet weak var loginLabel: TTTAttributedLabel!
@@ -82,29 +81,23 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        SimpleAuth.facebookAuthorize { [weak self] (response, error) -> () in
-            if error != nil {
-                if error.code != Network.simpleAuthCancelCode {
-                    self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
+        self.showProgressHUD()
+        FacebookHelper.facebookAuthorize({ [weak self] (token) in
+            ApiClient.sharedClient.facebookAuth(token,
+                success: { (response) -> () in
+                    self?.hideProgressHUD()
+                    self?.routesOpenSignUpUpdateProfileViewController(response as! User)
+                },
+                failure: { (statusCode, errors, localDescription, messages) -> () in
+                    self?.hideProgressHUD()
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 }
-            } else {
-                self?.showProgressHUD()
-
-                let credentials = (response as! [String: AnyObject])["credentials"]
-                let token = (credentials as! [String: AnyObject])["token"] as! String
-                
-                ApiClient.sharedClient.facebookAuth(token,
-                    success: { (response) -> () in
-                        self?.hideProgressHUD()
-                        self?.routesOpenSignUpUpdateProfileViewController(response as! User)
-                    },
-                    failure: { (statusCode, errors, localDescription, messages) -> () in
-                        self?.hideProgressHUD()
-                        print(errors)
-                    }
-                )
-
-            }
+            )
+            }) { [weak self] (error) in
+                self?.hideProgressHUD()
+                if error != nil {
+                     self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
+                }
         }
     }
 
@@ -121,5 +114,12 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate {
         } else if url.absoluteString == kPolicyActiveLink {
             self.routesOpenPolicyViewController()
         }
+    }
+    
+    //MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

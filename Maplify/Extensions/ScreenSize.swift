@@ -29,4 +29,8 @@ extension UIScreen {
     func isIPhoneScreenSize5_5() -> Bool {
         return UIScreen.mainScreen().bounds.height == iPhoneScreenSizeHeight5_5
     }
+    
+    func screenWidth() -> CGFloat {
+        return UIScreen.mainScreen().bounds.width
+    }
 }

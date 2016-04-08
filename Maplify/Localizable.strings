@@ -48,6 +48,7 @@
 "Controller.Video.Title" = "Video";
 "Controller.AddToStory.Title" = "Add to Story";
 "Controller.RecommendedSettings.Title" = "Recommended Settings";
+"Controller.EditPost.Title" = "Edit Post";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -63,6 +64,8 @@
 "Label.Switch.Location" = "Use my location";
 "Label.Switch.LocationDescription" = "We'll use your location to show you people's stories around you, where you are. It also makes it easier to create a new geotagged story. We will only use your location while in the app.";
 "Label.Alert.Details" = "If these sound good, next you'll get a popup asking for permission. Tap OK once it appears.";
+"Label.ShowDescription" = "Show description";
+"Label.HideDescription" = "Hide description";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -70,6 +73,8 @@
 
 //Buttons
 "Button.Ok" = "OK";
+"Button.Yes" = "Yes";
+"Button.No" = "No";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
@@ -90,6 +95,12 @@
 "Button.Add" = "Add";
 "Button.CreateStory" = "Create story";
 "Button.CreateStoryPlaceholder" = "Create one now.";
+"Button.EditPost" = "Edit post";
+"Button.DeletePost" = "Delete post";
+"Button.Directions" = "Directions";
+"Button.SharePost" = "Share post";
+"Button.Save" = "Save";
+"Button.ReportAbuse" = "Report abuse";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -105,6 +116,7 @@
 "Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
 "Alert.Title.CreateStory" = "Create a new story";
 "Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
+"Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

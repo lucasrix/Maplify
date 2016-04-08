@@ -26,7 +26,7 @@ class ApiClient {
     }
     
     private func baseRequest(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionManager.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
@@ -34,7 +34,7 @@ class ApiClient {
     }
     
     private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionManager.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
             multipartFormData: { (multipartFormData) -> () in
@@ -69,10 +69,11 @@ class ApiClient {
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
-            SessionManager.sharedManager.setSessionData(headersDictionary)
+            SessionHelper.sharedManager.setSessionData(headersDictionary)
         }
         
         var payload = data.jsonDictionary()
+        
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)
             let htmlDict = ["html": str!] as NSDictionary
@@ -84,19 +85,26 @@ class ApiClient {
                 dispatch_async(dispatch_get_main_queue()) {
                     success?(response: manager?.manageResponse(dataDictionary as! [String : AnyObject]))
                 }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    success?(response: nil)
+                }
             }
         } else {
-            self.handleError(payload! as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+            if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+                self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
+                }
+            }
         }
     }
     
-    private func handleError(payload: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let errorDict = payload["error"] as! [String: AnyObject]
-        let details = errorDict["details"] as! [String: AnyObject]
-        let messages = errorDict["error_messages"] as! [String]
-        
+    private func manageError(dict: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let details = dict["details"] as! [String: AnyObject]
+        let messages = dict["error_messages"] as! [String]
         let errors = ApiError.parseErrors(details, messages: messages)
-        
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }
@@ -117,8 +125,13 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
+    func patchRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+        let config = RequestConfig(type: .PATCH, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
+    }
+    
     func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .DELETE, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        let config = RequestConfig(type: .DELETE, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -129,17 +142,17 @@ class ApiClient {
         if (photo != nil) {
             data = ["photo": photo]
         }
-        self.postRequest("auth", params: params, data: data, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth", params: params, data: data, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func signIn(email: String, password: String, success: successClosure!, failure: failureClosure!) {
         let params = ["email": email, "password": password]
-        self.postRequest("auth/sign_in", params: params, data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth/sign_in", params: params, data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func facebookAuth(token: String, success: successClosure!, failure: failureClosure!) {
         let params = ["facebook_access_token": token]
-        self.postRequest("auth/provider_sessions", params:params , data: nil, manager: UserManager(), progress: nil, success: success, failure: failure)
+        self.postRequest("auth/provider_sessions", params:params , data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
     func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
@@ -159,6 +172,14 @@ class ApiClient {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
     
+    func updateStoryPoint(storyPointId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.patchRequest("story_points/\(storyPointId)", params: params, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
+    func deleteStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("story_points/\(storyPointId)", params: nil, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
@@ -169,7 +190,7 @@ class ApiClient {
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
-        self.deleteRequest("auth/sign_out", params: nil, manager:nil, success: success, failure: failure)
+        self.deleteRequest("auth/sign_out", params: nil, manager: SessionManager(), success: success, failure: failure)
     }
     
     func postAttachment(file: NSData!, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {

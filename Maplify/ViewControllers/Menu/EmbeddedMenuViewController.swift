@@ -22,6 +22,8 @@ public enum MenuItem: Int {
     case SectionCopyright
 }
 
+let kSignOutAction = "signOut"
+
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
     
@@ -73,7 +75,7 @@ class EmbeddedMenuViewController: UITableViewController {
             break
             
         case MenuItem.SectionLogOut.rawValue:
-            self.logOutDidSelect()
+            self.sendAction(kSignOutAction)
             
         default:
             break
@@ -81,12 +83,9 @@ class EmbeddedMenuViewController: UITableViewController {
     }
     
     func sendAction(actionString: String) {
-        self.delegate?.menuDidSelectItem(actionString)
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func logOutDidSelect() {
-        // TODO:
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: { [weak self] () in
+            self?.delegate?.menuDidSelectItem(actionString)
+        })
     }
 }
 

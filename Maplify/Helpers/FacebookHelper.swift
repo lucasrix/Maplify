@@ -68,7 +68,7 @@ class FacebookHelper {
                     completion: { (granted, error) -> Void in
                         if (error != nil) {
                             dispatch_async(dispatch_get_main_queue(), {
-                                self.loginByFacebookSDK(success, failure: failure)
+                                FacebookHelper.loginByFacebookSDK(success, failure: failure)
                             })
                         } else {
                             let accountExist = Bool(accountStore.accountsWithAccountType(accountType).count)
@@ -78,7 +78,7 @@ class FacebookHelper {
                                 success(token: fbToken)
                             } else {
                                 dispatch_async(dispatch_get_main_queue(), {
-                                    self.loginByFacebookSDK(success, failure: failure)
+                                    FacebookHelper.loginByFacebookSDK(success, failure: failure)
                                 })
                             }
                         }

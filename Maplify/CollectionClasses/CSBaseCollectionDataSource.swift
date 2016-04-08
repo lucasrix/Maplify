@@ -58,7 +58,7 @@ class CSBaseCollectionDataSource: NSObject, UICollectionViewDataSource, UICollec
     
     // MARK: - UICollectionViewDataSource
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        self.delegate?.scrollViewDidEndDecelerating!(scrollView)
+        self.delegate?.scrollViewDidEndDecelerating?(scrollView)
     }
     
     // MARK: - Actions

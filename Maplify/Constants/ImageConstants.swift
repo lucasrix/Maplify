@@ -91,4 +91,7 @@ struct CellImages {
     static let textStoryPoint = "textStoryPoint"
     static let audioStoryPoint = "audioStoryPoint"
     static let videoStoryPoint = "videoStoryPoint"
+    static let discoverStoryPointDetailIconText = "CreateStoryPopintIcoText"
+    static let discoverStoryPointDetailIconAudio = "DiscoverDetailAmbient"
+    static let discoverStoryPointDetailIconVideo = "DiscoverDetailVideo"
 }

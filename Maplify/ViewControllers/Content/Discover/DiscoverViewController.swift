@@ -50,7 +50,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func setupTableView() {
         self.tableView.registerNib(UINib(nibName: discoverStoryPointCell, bundle: nil), forCellReuseIdentifier: discoverStoryPointCell)
-        self.tableView.registerNib(UINib(nibName: discoverStoryCell, bundle: nil), forCellReuseIdentifier: discoverStoryCell)
     }
     
     func setupNavigationBar() {
@@ -174,6 +173,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let cellDataModel = self.storyActiveModel.cellData(indexPath)
         self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
         self.storyDataSource.reloadTable()
+    }
+    
+    func didSelectStoryPoint(storyPointId: Int) {
+        // TODO:
+    }
+    
+    func didSelectMap() {
+        // TODO:
     }
 
     // MARK: - ErrorHandlingProtocol

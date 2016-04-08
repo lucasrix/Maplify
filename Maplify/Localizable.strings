@@ -70,6 +70,7 @@
 //Subsrtings
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
+"Substring.Points" = "points";
 
 //Buttons
 "Button.Ok" = "OK";

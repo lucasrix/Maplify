@@ -13,7 +13,6 @@ class MenuViewController: ViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let nextController = segue.destinationViewController as! EmbeddedMenuViewController
-        print(nextController)
         nextController.delegate = self.delegate
     }
     

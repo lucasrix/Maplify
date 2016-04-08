@@ -12,7 +12,7 @@ let kStoryCellDescriptionDefaultHeight: CGFloat = 17
 let kStoryDescriptionOpened: Int = 0
 let kStoryDescriptionClosed: Int = 1
 
-class DiscoverStoryCell: CSTableViewCell {
+class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -22,11 +22,16 @@ class DiscoverStoryCell: CSTableViewCell {
     @IBOutlet weak var backShadowView: UIView!
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
-    @IBOutlet weak var collttt: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var storyPointsPlusView: UIView!
+    @IBOutlet weak var storyPointPlusLabel: UILabel!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryCellDelegate! = nil
     var storyId: Int = 0
+    
+    var storyPointDataSource: DiscoverStoryCollectionDataSource! = nil
+    var storyPointActiveModel = CSActiveModel()
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
@@ -39,7 +44,7 @@ class DiscoverStoryCell: CSTableViewCell {
         self.populateUserViews(story)
         self.populateStoryInfoViews(story)
         self.populateDescriptionLabel(cellData)
-        
+        self.setupCollectionView(story)
     }
     
     func addShadow() {
@@ -83,6 +88,25 @@ class DiscoverStoryCell: CSTableViewCell {
         self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story.storyDescription)
     }
     
+    func setupCollectionView(story: Story) {
+        self.updateCollectionViewData(story)
+    }
+    
+    func updateCollectionViewData(story: Story) {
+        let storyPoints: [StoryPoint] = Array(story.storyPoints)
+        let itemsToShow: [AnyObject] = [story] + storyPoints
+        self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self)
+        self.storyPointDataSource = DiscoverStoryCollectionDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
+        
+        let itemsOverlimit = story.storyPoints.count - self.numberOfStoryPointInCollectionView()
+        self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
+        self.storyPointsPlusView.hidden = itemsOverlimit == 0
+    }
+    
+    func numberOfStoryPointInCollectionView() -> Int {
+        return self.collectionView.numberOfItemsInSection(0) - 1
+    }
+    
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
         self.cellData.selected = !self.cellData.selected
@@ -112,8 +136,20 @@ class DiscoverStoryCell: CSTableViewCell {
         self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
         self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
     }
+    
+    // MARK: - CSBaseCollectionDataSourceDelegate
+    func didSelectModel(model: AnyObject, indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            self.delegate?.didSelectMap()
+        } else {
+            let storyPoint = model as! StoryPoint
+            self.delegate?.didSelectStoryPoint(storyPoint.id)
+        }
+    }
 }
 
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
+    func didSelectStoryPoint(storyPointId: Int)
+    func didSelectMap()
 }

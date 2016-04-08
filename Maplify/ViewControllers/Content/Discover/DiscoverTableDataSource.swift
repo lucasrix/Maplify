@@ -30,7 +30,7 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         } else if model is Story {
             self.cell.configure(cellData)
             itemHeight = self.heightForCell(self.cell, bounds: tableView.bounds)
-
+            itemHeight += self.cell.collectionView.contentSize.height
         }
         return itemHeight
     }

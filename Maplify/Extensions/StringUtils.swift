@@ -18,7 +18,7 @@ extension String {
     func size(font: UIFont, boundingRect: CGRect) -> CGSize {
         if self.length > 0 {
             let attributedText = NSAttributedString(string: self, attributes: [NSFontAttributeName : font])
-            let rect = attributedText.boundingRectWithSize(CGSizeMake(boundingRect.size.width, CGFloat.max), options: .UsesLineFragmentOrigin, context: nil)
+            let rect = attributedText.boundingRectWithSize(CGSizeMake(boundingRect.size.width, CGFloat.max), options: [.UsesLineFragmentOrigin, .UsesFontLeading], context: nil)
             return rect.size
         }
         return CGSizeZero

@@ -125,6 +125,11 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
+    func patchRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+        let config = RequestConfig(type: .PATCH, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+        self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
+    }
+    
     func deleteRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
         let config = RequestConfig(type: .DELETE, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: nil)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
@@ -165,6 +170,14 @@ class ApiClient {
     
     func createStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func updateStoryPoint(storyPointId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.patchRequest("story_points/\(storyPointId)", params: params, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
+    func deleteStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("story_points/\(storyPointId)", params: nil, manager: StoryPointManager(), success: success, failure: failure)
     }
     
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {

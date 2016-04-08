@@ -11,8 +11,6 @@ target 'Maplify' do
   pod 'Tailor', '~> 0.4'
   pod 'AFImageHelper', '~> 3.0'
   pod 'TPKeyboardAvoiding', '~> 1.2'
-  pod 'SimpleAuth/Facebook', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
-  pod 'SimpleAuth/FacebookWeb', :git => 'https://github.com/adamjmcgrath/SimpleAuth-1.git', :branch => 'facebook-2.4-breaking-changes'
   pod 'INTULocationManager', '~> 4.1'
   pod 'GoogleMaps', '~> 1.12'
   pod 'GooglePlaces', '~> 1.0'
@@ -24,4 +22,7 @@ target 'Maplify' do
   pod 'LLSimpleCamera', '~> 4.2'
   pod 'INSPullToRefresh', '~> 1.1'
   pod 'SDWebImage', '~> 3.7'
+  pod 'FBSDKCoreKit',  '~> 4.1.0'
+  pod 'FBSDKLoginKit', '~> 4.1.0'
+  pod 'FBSDKShareKit', '~> 4.1.0'
 end

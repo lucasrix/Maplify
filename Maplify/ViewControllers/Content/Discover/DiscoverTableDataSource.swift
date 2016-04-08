@@ -16,8 +16,21 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         
         var token: dispatch_once_t = 0
         dispatch_once(&token) {
-            let identifier = "DiscoverStoryCell"
-            self.cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! DiscoverStoryCell
+            self.cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell)) as! DiscoverStoryCell
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellData = self.activeModel.cellData(indexPath)
+        let model = cellData.model
+        if model is StoryPoint {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryPointCell), forIndexPath: indexPath) as! DiscoverStoryPointCell
+            cell.configure(cellData)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell), forIndexPath: indexPath) as! DiscoverStoryCell
+            cell.configure(cellData)
+            return cell
         }
     }
 

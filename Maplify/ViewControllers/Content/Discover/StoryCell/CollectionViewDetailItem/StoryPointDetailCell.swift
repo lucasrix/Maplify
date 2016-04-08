@@ -25,7 +25,8 @@ class StoryPointDetailCell: CSCollectionViewCell {
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
             let attachment = storyPoint.attachment as Attachment
             let attachmentUrl = NSURL(string: attachment.file_url)
-            self.backgroundImageView.sd_setImageWithURL(attachmentUrl)
+            let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
+            self.backgroundImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage)
         } else {
             self.downloadMapImage(storyPoint.location)
         }

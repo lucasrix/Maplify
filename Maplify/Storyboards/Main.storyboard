@@ -474,7 +474,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z8g-ou-9zN">
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscoverPlaceholderAttachment" translatesAutoresizingMaskIntoConstraints="NO" id="Z8g-ou-9zN">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                             </imageView>
                                                                             <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8P-tm-rrE" userLabel="Color View">
@@ -491,7 +491,7 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
-                                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="Z8g-ou-9zN" secondAttribute="trailing" id="8NF-JE-8IM"/>
                                                                         <constraint firstAttribute="trailing" secondItem="r8P-tm-rrE" secondAttribute="trailing" id="ASp-UN-Rmw"/>
@@ -1645,6 +1645,7 @@
         <image name="DiscoverAdd" width="24" height="24"/>
         <image name="DiscoverLike" width="25" height="23"/>
         <image name="DiscoverMore" width="5" height="18"/>
+        <image name="DiscoverPlaceholderAttachment" width="55" height="76"/>
         <image name="DiscoverShare" width="17" height="25"/>
         <image name="DiscoverShowHideDescriptionDown" width="24" height="24"/>
         <image name="DiscoverStoryPointPlusCount" width="51" height="51"/>

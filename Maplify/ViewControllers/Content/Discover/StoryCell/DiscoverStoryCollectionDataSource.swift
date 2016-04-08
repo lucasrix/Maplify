@@ -33,13 +33,11 @@ class DiscoverStoryCollectionDataSource: CSBaseCollectionDataSource {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cellData = self.activeModel.cellData(indexPath)
         if indexPath.row == kDiscoverStoryDataSourceStoryInfoRowNumber {
-            let identifier = "StoryInfoCell"
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! StoryInfoCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(StoryInfoCell), forIndexPath: indexPath) as! StoryInfoCell
             cell.configure(cellData)
             return cell
         } else {
-            let identifier = "StoryPointDetailCell"
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! StoryPointDetailCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(StoryPointDetailCell), forIndexPath: indexPath) as! StoryPointDetailCell
             cell.configure(cellData)
             return cell
         }

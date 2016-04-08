@@ -68,6 +68,8 @@ struct ButtonImages {
     static let discoverShowHideDescriptionUp = "DiscoverShowHideDescriptionUp"
     static let icoTop = "icoTop"
     static let icoBottom = "icoBottom"
+    static let icoSearch = "icoSearch"
+    static let icoGps = "icoGps"
 }
 
 struct MediaButtons {

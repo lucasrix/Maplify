@@ -54,9 +54,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
-    func routesOpenStoryPointEditController(storyPointId: Int) {
+    func routesOpenStoryPointEditController(storyPointId: Int, storyPointUpdateHandler: () -> ()) {
         let storyPointEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditController) as! StoryPointEditViewController
         storyPointEditViewController.storyPointId = storyPointId
+        storyPointEditViewController.storyPointUpdateHandler = storyPointUpdateHandler
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
     }
     

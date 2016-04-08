@@ -90,9 +90,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.showEditContentActionSheet(storyPointId)
         } else {
             self.showDefaultContentActionSheet(storyPointId)
-        }
-        
-       
+        }       
     }
     
     func showEditContentActionSheet(storyPointId: Int) {
@@ -105,7 +103,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
             if buttonIndex == EditContentOption.EditPost.rawValue {
-                self?.routesOpenStoryPointEditController(storyPointId)
+                self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
+                    self?.storyDataSource.reloadTable()
+                })
             } else if buttonIndex == EditContentOption.DeletePost.rawValue {
                 self?.deleteStoryPoint(storyPointId)
             }

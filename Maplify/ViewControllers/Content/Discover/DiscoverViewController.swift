@@ -15,6 +15,12 @@ enum EditContentOption: Int {
     case SharePost
 }
 
+enum DefaultContentOption: Int {
+    case Directions
+    case SharePost
+    case ReportAbuse
+}
+
 let discoverStoryPointCell = "DiscoverStoryPointCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
@@ -79,6 +85,17 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - actions
     func showEditContentMenu(storyPointId: Int) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
+            self.showEditContentActionSheet(storyPointId)
+        } else {
+            self.showDefaultContentActionSheet(storyPointId)
+        }
+        
+       
+    }
+    
+    func showEditContentActionSheet(storyPointId: Int) {
         let editPost = NSLocalizedString("Button.EditPost", comment: String())
         let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
         let directions = NSLocalizedString("Button.Directions", comment: String())
@@ -87,28 +104,51 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let buttons = [editPost, deletePost, directions, sharePost]
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
-                if buttonIndex == EditContentOption.EditPost.rawValue {
-                    self?.routesOpenStoryPointEditController(storyPointId)
-                } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                    self?.showProgressHUD()
-                    ApiClient.sharedClient.deleteStoryPoint(storyPointId,
-                        success: { [weak self] (response) in
-                            let storyPoint = StoryPointManager.find(storyPointId)
-                            if storyPoint != nil {
-                                StoryPointManager.delete(storyPointId)
-                            }
-                            self?.hideProgressHUD()
-                            self?.loadItemsFromDB()
-                        },
-                        failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                            self?.hideProgressHUD()
-                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                        }
-                    )
-                }
+            if buttonIndex == EditContentOption.EditPost.rawValue {
+                self?.routesOpenStoryPointEditController(storyPointId)
+            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
+                self?.deleteStoryPoint(storyPointId)
+            }
             }
         )
+    }
+    
+    func showDefaultContentActionSheet(storyPointId: Int) {
+        let directions = NSLocalizedString("Button.Directions", comment: String())
+        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
+        let reportAbuse = NSLocalizedString("Button.ReportAbuse", comment: String())
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttons = [directions, sharePost]
+        
+        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: reportAbuse, buttons: buttons, handle: { (buttonIndex) in
+                //TODO: -
+            }
+        )
+    }
 
+    func deleteStoryPoint(storyPointId: Int) {
+        let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
+        let yesButton = NSLocalizedString("Button.Yes", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: yesButton, buttons: [noButton]) { (buttonIndex) in
+            if buttonIndex != 0 {
+                self.showProgressHUD()
+                ApiClient.sharedClient.deleteStoryPoint(storyPointId,
+                                                        success: { [weak self] (response) in
+                                                            let storyPoint = StoryPointManager.find(storyPointId)
+                                                            if storyPoint != nil {
+                                                                StoryPointManager.delete(storyPointId)
+                                                            }
+                                                            self?.hideProgressHUD()
+                                                            self?.loadItemsFromDB()
+                                                        },
+                                                        failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                            self?.hideProgressHUD()
+                                                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                        }
+                )
+            }
+        }
     }
     
     // MARK: - DiscoverStoryPointCellDelegate

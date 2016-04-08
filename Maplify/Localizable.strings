@@ -73,6 +73,8 @@
 
 //Buttons
 "Button.Ok" = "OK";
+"Button.Yes" = "Yes";
+"Button.No" = "No";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
@@ -98,6 +100,7 @@
 "Button.Directions" = "Directions";
 "Button.SharePost" = "Share post";
 "Button.Save" = "Save";
+"Button.ReportAbuse" = "Report abuse";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -113,6 +116,7 @@
 "Alert.Camera.Permissions.Message" = "Open settings. Enable camera";
 "Alert.Title.CreateStory" = "Create a new story";
 "Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
+"Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

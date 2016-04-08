@@ -8,7 +8,6 @@
 
 import UIKit
 import TTTAttributedLabel
-import SimpleAuth
 
 let kLoginActiveLink = "login"
 let kTermsActiveLink = "terms"

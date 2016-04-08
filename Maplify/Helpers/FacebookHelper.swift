@@ -65,7 +65,7 @@ class FacebookHelper {
         let accountStore = ACAccountStore()
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
         accountStore.requestAccessToAccountsWithType(accountType, options: accountOptions as [NSObject : AnyObject],
-                    completion: { (granted, error) -> Void in
+                    completion: { (granted, error) -> () in
                         if (error != nil) {
                             dispatch_async(dispatch_get_main_queue(), {
                                 FacebookHelper.loginByFacebookSDK(success, failure: failure)

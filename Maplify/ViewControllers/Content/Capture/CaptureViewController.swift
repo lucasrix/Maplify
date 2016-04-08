@@ -38,9 +38,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setupNavigationBar()
+    }
+    
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.checkLocationEnabled()
         self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
@@ -48,6 +53,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: "locationButtonTapped")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: "searchButtonTapped")
     }
     
     func setupMapDataSource() {
@@ -68,7 +75,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         } else {
             self.setupMap(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
         }
-        
     }
     
     func setupMap(location: CLLocation) {
@@ -97,10 +103,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkBlueGrey().colorWithAlphaComponent(NavigationBar.defaultOpacity)
-    }
-    
-    override func backButtonHidden() -> Bool {
-        return true
     }
     
     func loadItemsFromDB() {
@@ -163,6 +165,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
             self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
         }
+    }
+ 
+    func locationButtonTapped() {
+        self.googleMapService.moveToDefaultRegion()
+    }
+    
+    func searchButtonTapped() {
+        // TODO: -
     }
     
     // MARK: - CSBaseCollectionDataSourceDelegate

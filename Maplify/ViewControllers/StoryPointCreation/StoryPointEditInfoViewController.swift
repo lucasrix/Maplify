@@ -96,14 +96,15 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
             let geocoder = GMSGeocoder()
             geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
                 if error != nil {
-                    print(error)
+                    let title = NSLocalizedString("Alert.Error", comment: String())
+                    let cancel = NSLocalizedString("Button.Ok", comment: String())
+                    self?.showMessageAlert(title, message: (error?.description)!, cancel: cancel)
                 } else {
                     let address = response?.firstResult()
                     self?.placeOrLocationTextField.text = address?.thoroughfare
                 }
             })
         }
-        
     }
     
     func showSelectedStories(selectedStories: [Story]) {

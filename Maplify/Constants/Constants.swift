@@ -54,6 +54,7 @@ struct Controllers {
     static let addStoryViewController = "AddStoryViewController"
     static let recommendedSettingsController = "RecommendedSettingsController"
     static let storyPointEditController = "StoryPointEditController"
+    static let storyDetailViewController = "StoryDetailViewController"
 }
 
 struct AppIDs {

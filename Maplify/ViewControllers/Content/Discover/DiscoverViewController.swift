@@ -170,8 +170,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyDataSource.reloadTable()
     }
     
-    func didSelectStoryPoint(storyPointId: Int) {
-        // TODO:
+    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int) {
+        self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex)
     }
     
     func didSelectMap() {

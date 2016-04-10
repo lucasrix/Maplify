@@ -148,6 +148,11 @@
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */; };
+		F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */; };
+		F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */; };
+		F03507F91CBB044000CFAA05 /* PageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F81CBB044000CFAA05 /* PageDetailViewController.swift */; };
+		F03507FA1CBB04FB00CFAA05 /* PageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F81CBB044000CFAA05 /* PageDetailViewController.swift */; };
+		F03507FB1CBB053000CFAA05 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */; };
 		F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */; };
 		F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */; };
 		F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0419C211CA6147600AB83C0 /* Assets.xcassets */; };
@@ -297,6 +302,9 @@
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
+		F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
+		F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailItemViewController.swift; sourceTree = "<group>"; };
+		F03507F81CBB044000CFAA05 /* PageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDetailViewController.swift; sourceTree = "<group>"; };
 		F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryQuickCreationCell.swift; sourceTree = "<group>"; };
 		F0419C211CA6147600AB83C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -747,6 +755,7 @@
 		A5D7AB011CA03F5100A94C4F /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				F03507F31CBAF98F00CFAA05 /* StoryDetailViewController */,
 				CD0BB2BB1CB54A1E00E3E66B /* StoryCell */,
 				CD0BB2A91CB2859500E3E66B /* StoryPointCell */,
 				A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */,
@@ -828,6 +837,16 @@
 				F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		F03507F31CBAF98F00CFAA05 /* StoryDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */,
+				F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */,
+				F03507F81CBB044000CFAA05 /* PageDetailViewController.swift */,
+			);
+			path = StoryDetailViewController;
 			sourceTree = "<group>";
 		};
 		F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */ = {
@@ -1029,6 +1048,7 @@
 				CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
+				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
 				8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
@@ -1122,11 +1142,13 @@
 				A5728A1A1C88860100C6DA7E /* SignupPhotoController.swift in Sources */,
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
 				CD8A10AD1CB68F5500B58396 /* Converter.swift in Sources */,
+				F03507F91CBB044000CFAA05 /* PageDetailViewController.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
+				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
@@ -1142,6 +1164,7 @@
 				A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */,
 				1FB706071C9D9D1800FC3496 /* ImageConstants.swift in Sources */,
 				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
+				F03507FA1CBB04FB00CFAA05 /* PageDetailViewController.swift in Sources */,
 				1F2E33881C8099EF00D3B446 /* ViewController.swift in Sources */,
 				A58A52D71C7F135700443C06 /* CSActiveModelTest.swift in Sources */,
 				CD451B6A1CAD530400EBCC7A /* VideoViewController.swift in Sources */,
@@ -1151,6 +1174,7 @@
 				CD8A10A81CB66AA700B58396 /* StoryPointDetailCell.swift in Sources */,
 				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				1FB706081C9D9DF000FC3496 /* ProgressHUD.swift in Sources */,
+				F03507FB1CBB053000CFAA05 /* StoryDetailViewController.swift in Sources */,
 				A58A52CF1C7F133C00443C06 /* CSActiveModel.swift in Sources */,
 				1FB70B331C9DB19500FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 			);

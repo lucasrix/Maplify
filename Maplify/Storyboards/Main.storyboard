@@ -1144,6 +1144,62 @@
             </objects>
             <point key="canvasLocation" x="1395.5" y="1228.5"/>
         </scene>
+        <!--Story Detail View Controller-->
+        <scene sceneID="AVR-db-SFT">
+            <objects>
+                <viewController storyboardIdentifier="StoryDetailViewController" id="Fww-me-186" customClass="StoryDetailViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wU7-7d-bhL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tr9-fk-L2c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hh9-fn-vib">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcB-iU-CR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1395.5" y="1205.5"/>
+        </scene>
+        <!--Page Detail View Controller-->
+        <scene sceneID="Oui-ry-whD">
+            <objects>
+                <pageViewController storyboardIdentifier="PageDetailViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="PageDetailViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="puo-wr-7Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1832.5" y="1205.5"/>
+        </scene>
+        <!--Story Detail Item View Controller-->
+        <scene sceneID="n8N-yX-gww">
+            <objects>
+                <viewController storyboardIdentifier="StoryDetailItemViewController" id="Oew-o6-10W" customClass="StoryDetailItemViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8lF-Uo-PLg"/>
+                        <viewControllerLayoutGuide type="bottom" id="xHB-0U-Afm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="krC-zL-4qb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Om-lvk">
+                                <rect key="frame" x="28" y="122" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iax-Fe-Gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1832.5" y="1952.5"/>
+        </scene>
         <!--Story Point Creation Popup View Controller-->
         <scene sceneID="jQo-hW-7kB">
             <objects>

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kMapImageDownloadCompletedAlpha: CGFloat = 0.5
+
 class StoryPointDetailCell: CSCollectionViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
@@ -18,19 +20,24 @@ class StoryPointDetailCell: CSCollectionViewCell {
     override func configure(cellData: CSCellData) {
         let storyPoint = cellData.model as! StoryPoint
         self.populateBackgroundImage(storyPoint)
-        self.populateKindImage(storyPoint)
     }
 
     func populateBackgroundImage(storyPoint: StoryPoint) {
+        var attachmentUrl: NSURL! = nil
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
+        
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
             let attachment = storyPoint.attachment as Attachment
-            let attachmentUrl = NSURL(string: attachment.file_url)
-            let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
-            self.backgroundImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage)
+            attachmentUrl = NSURL(string: attachment.file_url)
         } else {
-            self.downloadMapImage(storyPoint.location)
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude)
         }
-        self.colorView.hidden = storyPoint.kind == StoryPointKind.Photo.rawValue
+        self.backgroundImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if !(error != nil) {
+                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.populateKindImage(storyPoint)
+            }
+        }
     }
     
     func populateKindImage(storyPoint: StoryPoint) {
@@ -43,11 +50,5 @@ class StoryPointDetailCell: CSCollectionViewCell {
         } else if storyPoint.kind == StoryPointKind.Video.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
         }
-    }
-    
-    func downloadMapImage(location: Location) {
-        let imageUrl = StaticMap.staticMapUrl(location.latitude, longitude: location.longitude)
-        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
-        self.backgroundImageView.sd_setImageWithURL(imageUrl, placeholderImage: placeholderImage)
     }
 }

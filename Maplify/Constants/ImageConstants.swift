@@ -26,7 +26,8 @@ struct InputTextFieldImages {
 struct PlaceholderImages {
     static let setPhotoPlaceholder = "photoAddPlaceholder"
     static let discoverUserEmptyAva = "DiscoverUserEmptyAva"
-    static let discoverPlaceholderAttachment = "DiscoverPlaceholderAttachment"    
+    static let discoverPlaceholderAttachment = "DiscoverPlaceholderAttachment"
+    static let discoverPlaceholder = "DiscoverPlaceholder"
 }
 
 struct BarButtonImages {

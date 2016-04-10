@@ -75,8 +75,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryDescriptionOpened : kStoryDescriptionClosed
         let story = cellData.model as! Story
         
-        let uuu = "unf uwufuwhfuwqufuwqhfuhqwuhfuihqwuihfuiqhwufuhqh ufhwyuq hfuy hwuy fguw qghfgwhj egfhjweg hwgef"
-        self.descriptionLabel.text = uuu//story.storyDescription
+        self.descriptionLabel.text = story.storyDescription
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -86,8 +85,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(uuu)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(uuu)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story.storyDescription)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story.storyDescription)
     }
     
     func setupCollectionView(story: Story) {
@@ -113,7 +112,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
         // TODO:
-        print(sender.direction)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -132,7 +130,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textWidth: CGFloat = CGRectGetWidth(self.descriptionLabel.frame)
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
-        print(textSize.height)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
     }
     

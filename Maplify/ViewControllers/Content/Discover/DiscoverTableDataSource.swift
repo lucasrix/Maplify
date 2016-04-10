@@ -43,10 +43,6 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         if model is StoryPoint {
             self.storyPointCell.configure(cellData)
             itemHeight = self.heightForCell(self.storyPointCell, bounds: tableView.bounds)
-            let storyPoint = model as! StoryPoint
-            if storyPoint.kind != StoryPointKind.Text.rawValue {
-                itemHeight += UIScreen().screenWidth()
-            }
         } else if model is Story {
             self.storyCell.configure(cellData)
             itemHeight = self.heightForCell(self.storyCell, bounds: tableView.bounds)

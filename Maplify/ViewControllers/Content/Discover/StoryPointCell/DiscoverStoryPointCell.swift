@@ -29,6 +29,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
     @IBOutlet weak var backShadowView: UIView!
+    @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
@@ -72,18 +73,16 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func populateAttachment(storyPoint: StoryPoint) {
-        
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            
-            if storyPoint.attachment.file_url.length > 0 {
-                self.attachmentImageView.sd_setImageWithURL(storyPoint.attachment.file_url.url)
-            } else {
-                self.attachmentImageView.image = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
-            }
+            self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
+            self.attachmentImageView.sd_setImageWithURL(storyPoint.attachment.file_url.url, placeholderImage: placeholderImage)
         } else if storyPoint.kind == StoryPointKind.Text.rawValue {
+            self.attachmentHeightConstraint.constant = 0.0
             self.attachmentImageView.image = nil
         } else {
-            self.attachmentImageView.image = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
+            self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
+            self.attachmentImageView.image = placeholderImage
         }
     }
     
@@ -91,8 +90,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         let storyPoint = cellData.model as! StoryPoint
         
-        let rrr = "okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc okcoekcoekokc "
-        self.descriptionLabel.text = rrr//storyPoint.text
+        self.descriptionLabel.text = storyPoint.text
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -101,8 +99,8 @@ class DiscoverStoryPointCell: CSTableViewCell {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(rrr)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(rrr)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint.text)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint.text)
     }
     
     // MARK: - actions

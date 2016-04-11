@@ -8,7 +8,9 @@
 
 import UIKit
 
-class StoryDetailItemViewController: ViewController {
+let kStoryDetailScrollViewExpandHeight: CGFloat = 44
+
+class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAddressLabel: UILabel!
@@ -20,10 +22,13 @@ class StoryDetailItemViewController: ViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
+    @IBOutlet weak var firstBackShadowView: UIView!
     @IBOutlet weak var backShadowView: UIView!
     @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var jumpToFeedButton: UIButton!
     
     var itemIndex: Int = 0
     var storyPoint: StoryPoint! = nil
@@ -38,13 +43,9 @@ class StoryDetailItemViewController: ViewController {
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.addShadow()
         self.setupData()
-    }
-    
-    func setupNavigationBar() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.setupScrollView()
     }
     
     func addShadow() {
@@ -52,6 +53,11 @@ class StoryDetailItemViewController: ViewController {
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
         self.backShadowView.layer.shadowRadius = kShadowRadius
+        
+        self.firstBackShadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.firstBackShadowView.layer.shadowOpacity = kShadowOpacity
+        self.firstBackShadowView.layer.shadowOffset = CGSizeZero
+        self.firstBackShadowView.layer.shadowRadius = kShadowRadius
     }
     
     func setupData() {
@@ -59,6 +65,11 @@ class StoryDetailItemViewController: ViewController {
         self.populateStoryPointInfoViews()
         self.populateAttachment()
         self.populateDescriptionLabel()
+    }
+    
+    func setupScrollView() {
+        self.scrollView.delegate = self
+        self.jumpToFeedButton.setTitle(NSLocalizedString("Button.JumpToDiscoverFeed", comment: String()), forState: .Normal)
     }
     
     func populateUserViews() {
@@ -133,6 +144,10 @@ class StoryDetailItemViewController: ViewController {
         self.view.layoutIfNeeded()
     }
     
+    @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
+        self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+    }
+    
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {
         let font = self.descriptionLabel.font
@@ -149,5 +164,12 @@ class StoryDetailItemViewController: ViewController {
     
     override func navigationBarColor() -> UIColor {
         return UIColor.grapePurple()
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 0.0 && scrollView.contentOffset.y > -kStoryDetailScrollViewExpandHeight {
+            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: -scrollView.contentOffset.y, right: 0)
+        }
     }
 }

@@ -1155,8 +1155,9 @@
                     <view key="view" contentMode="scaleToFill" id="Hh9-fn-vib">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcB-iU-CR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1185,9 +1186,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4f-cN-XcZ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4f-cN-XcZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxE-6Y-m3V" userLabel="Jump to Feed View">
+                                        <rect key="frame" x="0.0" y="-44" width="375" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKI-tt-Xwa">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Jump to feed" image="DiscoverJumpToFeedEarth">
+                                                    <color key="titleColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="jumpToDiscoverFeedTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="Giy-Ca-dsy"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.078431372549019607" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="uKI-tt-Xwa" secondAttribute="bottom" id="4XG-s4-i6f"/>
+                                            <constraint firstAttribute="trailing" secondItem="uKI-tt-Xwa" secondAttribute="trailing" id="6xW-oR-CcX"/>
+                                            <constraint firstItem="uKI-tt-Xwa" firstAttribute="leading" secondItem="zxE-6Y-m3V" secondAttribute="leading" id="Q63-0L-8bQ"/>
+                                            <constraint firstAttribute="height" constant="44" id="S6U-lY-5wt"/>
+                                            <constraint firstItem="uKI-tt-Xwa" firstAttribute="top" secondItem="zxE-6Y-m3V" secondAttribute="top" id="pxz-Kg-6gb"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOp-eV-ffe" userLabel="First Back Shadow View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
+                                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOw-s2-3fQ" userLabel="Back Shadow View">
                                         <rect key="frame" x="0.0" y="66" width="375" height="511"/>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1406,21 +1436,28 @@
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="T5J-Ah-e1x" firstAttribute="top" secondItem="qKJ-fr-Kyl" secondAttribute="bottom" id="0Ir-3H-JUy"/>
+                                    <constraint firstAttribute="trailing" secondItem="jOp-eV-ffe" secondAttribute="trailing" id="2bc-2n-odg"/>
                                     <constraint firstItem="vfr-em-Dhu" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="3Fo-Xk-fRr"/>
                                     <constraint firstAttribute="trailing" secondItem="unC-Sr-fsy" secondAttribute="trailing" id="6NU-SA-Zua"/>
                                     <constraint firstItem="vfr-em-Dhu" firstAttribute="top" secondItem="x4f-cN-XcZ" secondAttribute="top" id="85s-6w-SIS"/>
+                                    <constraint firstAttribute="trailing" secondItem="zxE-6Y-m3V" secondAttribute="trailing" id="8Mp-9S-ST0"/>
                                     <constraint firstAttribute="trailing" secondItem="qKJ-fr-Kyl" secondAttribute="trailing" id="BZZ-Rl-t8P"/>
                                     <constraint firstItem="qKJ-fr-Kyl" firstAttribute="top" secondItem="unC-Sr-fsy" secondAttribute="bottom" id="DF2-Co-QSl"/>
+                                    <constraint firstItem="vfr-em-Dhu" firstAttribute="top" secondItem="zxE-6Y-m3V" secondAttribute="bottom" id="DOs-xE-aA0"/>
                                     <constraint firstAttribute="trailing" secondItem="vfr-em-Dhu" secondAttribute="trailing" id="Dn3-6M-BfJ"/>
                                     <constraint firstAttribute="bottom" secondItem="0tA-uk-9vU" secondAttribute="bottom" id="EqV-8h-LU6"/>
                                     <constraint firstItem="IOw-s2-3fQ" firstAttribute="width" secondItem="x4f-cN-XcZ" secondAttribute="width" id="L9S-Iw-32o"/>
                                     <constraint firstItem="0tA-uk-9vU" firstAttribute="top" secondItem="T5J-Ah-e1x" secondAttribute="bottom" id="Ps5-eW-aOx"/>
                                     <constraint firstAttribute="trailing" secondItem="0tA-uk-9vU" secondAttribute="trailing" id="UBs-ax-mVh"/>
+                                    <constraint firstItem="jOp-eV-ffe" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="Xmo-yb-KAC"/>
                                     <constraint firstItem="0tA-uk-9vU" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="ZdJ-Qm-sFi"/>
                                     <constraint firstItem="qKJ-fr-Kyl" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="bga-Ln-Vjd"/>
+                                    <constraint firstItem="jOp-eV-ffe" firstAttribute="top" secondItem="x4f-cN-XcZ" secondAttribute="top" id="byd-Jk-7v8"/>
                                     <constraint firstAttribute="trailing" secondItem="IOw-s2-3fQ" secondAttribute="trailing" id="fva-TE-vB2"/>
                                     <constraint firstItem="unC-Sr-fsy" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="lqg-7h-B5l"/>
                                     <constraint firstItem="unC-Sr-fsy" firstAttribute="top" secondItem="vfr-em-Dhu" secondAttribute="bottom" id="oHO-R4-MFs"/>
+                                    <constraint firstItem="zxE-6Y-m3V" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="qCh-b0-Ub9"/>
+                                    <constraint firstItem="T5J-Ah-e1x" firstAttribute="top" secondItem="jOp-eV-ffe" secondAttribute="bottom" id="qOj-6W-KjP"/>
                                     <constraint firstItem="T5J-Ah-e1x" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="wSj-zc-kil"/>
                                     <constraint firstAttribute="trailing" secondItem="T5J-Ah-e1x" secondAttribute="trailing" id="we9-ad-ldn"/>
                                     <constraint firstItem="IOw-s2-3fQ" firstAttribute="leading" secondItem="x4f-cN-XcZ" secondAttribute="leading" id="xd7-nG-mSi"/>
@@ -1438,6 +1475,7 @@
                             <constraint firstItem="xHB-0U-Afm" firstAttribute="top" secondItem="x4f-cN-XcZ" secondAttribute="bottom" id="grw-8U-Llz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="UiI-mW-aoF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="attachmentHeightConstraint" destination="ejg-J8-ddI" id="bgb-6t-H5w"/>
@@ -1446,7 +1484,10 @@
                         <outlet property="captionLabel" destination="pJg-KV-OlQ" id="8XK-Gj-NWm"/>
                         <outlet property="colorView" destination="5ST-MB-ROn" id="kOm-xo-hdm"/>
                         <outlet property="descriptionLabel" destination="Le8-Cj-SpJ" id="O5p-rN-UR5"/>
+                        <outlet property="firstBackShadowView" destination="jOp-eV-ffe" id="Y8d-bN-A7P"/>
                         <outlet property="followButton" destination="Hxx-Tb-zfg" id="sS5-d8-JNl"/>
+                        <outlet property="jumpToFeedButton" destination="uKI-tt-Xwa" id="QLk-Pf-0Cl"/>
+                        <outlet property="scrollView" destination="x4f-cN-XcZ" id="spr-UN-nLn"/>
                         <outlet property="showHideDescriptionButton" destination="sDQ-XZ-vdk" id="E2e-kO-Dpx"/>
                         <outlet property="showHideDescriptionLabel" destination="2XP-Yp-chs" id="dQ1-vU-bIG"/>
                         <outlet property="storyPointAddressImageView" destination="M58-0x-hov" id="ONb-9B-s3I"/>
@@ -1459,7 +1500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iax-Fe-Gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1832.5" y="1952.5"/>
+            <point key="canvasLocation" x="1832.5" y="1972.5"/>
         </scene>
         <!--Story Point Creation Popup View Controller-->
         <scene sceneID="jQo-hW-7kB">
@@ -2196,6 +2237,7 @@
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>
         <image name="DiscoverAdd" width="24" height="24"/>
+        <image name="DiscoverJumpToFeedEarth" width="24" height="24"/>
         <image name="DiscoverLike" width="25" height="23"/>
         <image name="DiscoverMore" width="5" height="18"/>
         <image name="DiscoverPlaceholder" width="375" height="375"/>

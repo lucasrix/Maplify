@@ -51,11 +51,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
         
         // add shadow
-        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor();
-        self.navigationController!.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
-        self.navigationController!.navigationBar.layer.shadowOffset = CGSizeZero;
-        self.navigationController!.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
-        self.navigationController!.navigationBar.layer.masksToBounds = false;
+        self.navigationController?.navigationBar.backgroundColor = UIColor.blackColor();
+        self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
+        self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
+        self.navigationController?.navigationBar.layer.masksToBounds = false;
     }
     
     // MARK: - navigation bar
@@ -170,8 +170,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyDataSource.reloadTable()
     }
     
-    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int) {
-        self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex)
+    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+        self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle)
     }
     
     func didSelectMap() {

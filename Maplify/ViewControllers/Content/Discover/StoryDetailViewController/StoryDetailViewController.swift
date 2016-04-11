@@ -8,10 +8,13 @@
 
 import UIKit
 
+let kPageIndicatorTintColorAlpha: CGFloat = 0.5
+
 class StoryDetailViewController: ViewController, UIPageViewControllerDataSource {
     var storyPoints: [StoryPoint]! = nil
     var selectedIndex: Int = 0
     var pageViewController: StoryPageViewController! = nil
+    var storyTitle = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -24,16 +27,24 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     func setup() {
         self.setupNavigationBar()
         self.setupPageIndicator()
-        self.setupPageController()
+        self.setupPageController()        
     }
     
     func setupNavigationBar() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        // add shadow
+        self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
+        self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
+        self.navigationController?.navigationBar.layer.masksToBounds = false;
+        
+        self.title = self.storyTitle
     }
     
     func setupPageIndicator() {
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorTintColorAlpha)
         pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
         pageControl.backgroundColor = UIColor.grapePurple()
     }
@@ -56,6 +67,10 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
         return UIColor.grapePurple()
     }
     
+    override func backButtonHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let itemController = viewController as! StoryDetailItemViewController
@@ -74,7 +89,6 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     }
     
     private func getItemController(itemIndex: Int) -> StoryDetailItemViewController? {
-        
         if itemIndex < self.storyPoints.count {
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Controllers.storyDetailItemViewController) as! StoryDetailItemViewController
             pageItemController.itemIndex = itemIndex

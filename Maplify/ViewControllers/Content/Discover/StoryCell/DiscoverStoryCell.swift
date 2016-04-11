@@ -112,7 +112,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
         let story = self.cellData.model as! Story
-        self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: 0)
+        self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: 0, storyTitle: story.title)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -155,13 +155,13 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             self.delegate?.didSelectMap()
         } else {
             let story = self.cellData.model as! Story
-            self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: indexPath.row - 1)
+            self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story.title)
         }
     }
 }
 
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
-    func didSelectStoryPoint(storyPointIds: [StoryPoint], selectedIndex: Int)
+    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
     func didSelectMap()
 }

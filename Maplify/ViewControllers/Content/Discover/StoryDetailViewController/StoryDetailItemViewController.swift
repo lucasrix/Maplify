@@ -15,6 +15,28 @@ class StoryDetailItemViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("StoryDetailItemViewController")
+        self.setup()
+    }
+    
+    func setup() {
+        self.setupNavigationBar()
+        self.setupViews()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func setupViews() {
+        
+    }
+    
+    // MARK: - navigation bar
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
+    }
+    
+    override func navigationBarColor() -> UIColor {
+        return UIColor.grapePurple()
     }
 }

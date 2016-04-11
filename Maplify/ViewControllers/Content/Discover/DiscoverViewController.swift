@@ -171,7 +171,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int) {
-        self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex)
+        self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex)
     }
     
     func didSelectMap() {

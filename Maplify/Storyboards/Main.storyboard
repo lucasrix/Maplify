@@ -1163,10 +1163,10 @@
             </objects>
             <point key="canvasLocation" x="1395.5" y="1205.5"/>
         </scene>
-        <!--Page Detail View Controller-->
+        <!--Story Page View Controller-->
         <scene sceneID="Oui-ry-whD">
             <objects>
-                <pageViewController storyboardIdentifier="PageDetailViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="PageDetailViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puo-wr-7Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1185,6 +1185,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjp-AM-wTN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Om-lvk">
                                 <rect key="frame" x="28" y="122" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1193,6 +1197,12 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mjp-AM-wTN" firstAttribute="top" secondItem="krC-zL-4qb" secondAttribute="top" id="HmZ-i5-CxQ"/>
+                            <constraint firstItem="mjp-AM-wTN" firstAttribute="leading" secondItem="krC-zL-4qb" secondAttribute="leading" id="ITL-Ha-Ott"/>
+                            <constraint firstItem="xHB-0U-Afm" firstAttribute="top" secondItem="mjp-AM-wTN" secondAttribute="bottom" constant="47" id="JRS-pZ-S9q"/>
+                            <constraint firstAttribute="trailing" secondItem="mjp-AM-wTN" secondAttribute="trailing" id="Vjm-XJ-JzE"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

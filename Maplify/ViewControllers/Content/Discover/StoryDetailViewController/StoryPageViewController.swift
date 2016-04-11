@@ -1,5 +1,5 @@
 //
-//  PageDetailViewController.swift
+//  StoryPageViewController.swift
 //  Maplify
 //
 //  Created by - Jony - on 4/11/16.
@@ -8,11 +8,15 @@
 
 import UIKit
 
-class PageDetailViewController: UIPageViewController {
+class StoryPageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("PageDetailViewController")
+        self.setup()
+    }
+    
+    func setup() {
+        // TODO:
     }
 }

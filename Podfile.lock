@@ -55,6 +55,7 @@ PODS:
   - Sugar (1.0.5)
   - Tailor (0.4.5):
     - Sugar
+  - TLYShyNavBar (1.0.0)
   - TPCircularBuffer (1.1)
   - TPKeyboardAvoiding (1.2.11)
   - TTTAttributedLabel (1.13.4)
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - RSKKeyboardAnimationObserver (~> 1.0)
   - SDWebImage (~> 3.7)
   - Tailor (~> 0.4)
+  - TLYShyNavBar (~> 1.0)
   - TPKeyboardAvoiding (~> 1.2)
   - TTTAttributedLabel (~> 1.13)
 
@@ -121,6 +123,7 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
   Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5
+  TLYShyNavBar: d313a1c50c58cb7af744829120eaa33ca8a998ce
   TPCircularBuffer: 4960a919e667280f7f38963d771f45871b64fe62
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f

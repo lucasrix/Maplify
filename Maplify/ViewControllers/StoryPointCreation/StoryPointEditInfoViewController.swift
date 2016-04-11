@@ -177,7 +177,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         }
         
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
-            
             let realm = try! Realm()
             try! realm.write {
                 realm.add(response as! StoryPoint)

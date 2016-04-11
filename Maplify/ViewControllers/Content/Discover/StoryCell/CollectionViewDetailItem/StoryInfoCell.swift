@@ -24,7 +24,7 @@ class StoryInfoCell: CSCollectionViewCell {
     
     func populateBackgroundImage(story: Story) {
         let storyPoint: StoryPoint = story.storyPoints.first!
-        let imageUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+        let imageUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
         self.backgroundImageView.sd_setImageWithURL(imageUrl)
     }
 }

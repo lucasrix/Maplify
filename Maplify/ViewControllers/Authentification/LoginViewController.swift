@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import TPKeyboardAvoiding
 
 class LoginViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -21,9 +23,14 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupDoneButton()        
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        self.keyboardAvoidingScrollView.setAvoidingEnabled(UIScreen.mainScreen().smallerThanIPhoneSixSize())
     }
     
     func setupLabels() {

@@ -7,6 +7,7 @@
 //
 
 import GoogleMaps
+import TPKeyboardAvoiding
 
 let kMaxAboutTextLength = 500
 
@@ -15,6 +16,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     @IBOutlet weak var urlInputField: InputTextField!
     @IBOutlet weak var aboutInputField: InputTextView!
     @IBOutlet weak var aboutFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var user: User! = nil
     var placesClient: GMSPlacesClient! = nil
@@ -40,9 +42,14 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupNextButton()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        self.keyboardAvoidingScrollView.setAvoidingEnabled(UIScreen.mainScreen().smallerThanIPhoneSixSize())
     }
     
     func setupLabels() {

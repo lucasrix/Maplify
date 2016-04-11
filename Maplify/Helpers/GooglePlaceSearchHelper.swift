@@ -64,14 +64,14 @@ class GooglePlaceSearchHelper: NSObject, GMSAutocompleteViewControllerDelegate, 
     
     // MARK: - actions
     func showGooglePlaceSearchController() {
-        if self.controllerVisible != true {
+        if self.controllerVisible == false {
             self.controllerVisible = true
             self.parentView.hidden = false
         }
     }
     
     func hideGooglePlaceSearchController() {
-        if self.controllerVisible != false {
+        if self.controllerVisible == true {
             self.controllerVisible = false
             self.parentView.hidden = true
         }

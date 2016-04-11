@@ -321,6 +321,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addStoryPointImageView" destination="phB-fB-F1H" id="Hpq-gb-CM1"/>

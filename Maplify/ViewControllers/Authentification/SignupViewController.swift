@@ -6,11 +6,14 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import TPKeyboardAvoiding
+
 class SignupViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
     @IBOutlet weak var imageView: UIImageView!
-    
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
+
     var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     var photoImage: UIImage! = nil
     var user: User! = nil
@@ -24,10 +27,17 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupNextButton()
         self.setupImageView()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {

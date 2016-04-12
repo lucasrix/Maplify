@@ -8,6 +8,7 @@
 
 import UIKit
 import AFImageHelper
+import TPKeyboardAvoiding
 
 enum ActionSheetButtonType: Int {
     case ExistingPhotoType = 0
@@ -21,6 +22,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     @IBOutlet weak var setPhotoLabel: UILabel!
     @IBOutlet weak var setPhotoImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var user: User! = nil
     var imagePicker: UIImagePickerController! = nil
@@ -35,11 +37,18 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupPhotoLabelView()
         self.setupImageView()
         self.setupNextButton()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {

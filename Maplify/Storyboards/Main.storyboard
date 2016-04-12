@@ -793,6 +793,9 @@
                                                                 <constraint firstAttribute="width" constant="35" id="ro8-ih-zwk"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverMore"/>
+                                                            <connections>
+                                                                <action selector="editContentTapped:" destination="k3W-Z4-0sj" eventType="touchUpInside" id="hPu-Cc-2Wh"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label sPoint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="F94-gn-wch">
                                                             <rect key="frame" x="16" y="5" width="334" height="21"/>

@@ -64,7 +64,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
 
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
-        self.userAddressLabel.text = profile.city != "" ? profile.city : "Washington DC"
+        self.userAddressLabel.text = profile.city != String() ? profile.city : String()
     }
     
     func populateStoryInfoViews(story: Story) {

@@ -65,7 +65,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
-        self.userAddressLabel.text = profile.city != "" ? profile.city : "Washington DC"
+        self.userAddressLabel.text = profile.city != String() ? profile.city : String()
     }
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
@@ -111,34 +111,6 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     @IBAction func editContentTapped(sender: AnyObject) {
         self.delegate?.editContentDidTap(self.storyPointId)
-    }
-    
-    // MARK: - class func
-    class func contentHeightForStoryPoint(cellData: CSCellData) -> CGFloat {
-        let storyPoint = cellData.model as! StoryPoint
-        var cellHeight: CGFloat = 0
-        cellHeight += kHeightUserInfoView
-        cellHeight += kHeightStoryPointInfoView
-        cellHeight += kHeightActionsView
-        if storyPoint.kind != StoryPointKind.Text.rawValue {
-            cellHeight += UIScreen.mainScreen().bounds.width
-        }
-        if cellData.selected {
-            cellHeight += self.textHeight(cellData)
-        } else {
-            cellHeight += kHeightDescriptionLabel
-        }
-        cellHeight += kHeightDescriptionTop
-        cellHeight += kHeightBottomConstraint
-        
-        return cellHeight
-    }
-    
-    class func textHeight(cellData: CSCellData) -> CGFloat {
-        let storyPoint = cellData.model as! StoryPoint
-        let text = storyPoint.text
-        let font = UIFont.systemFontOfSize(kDescriptionLabelFontSize)
-        let textWidth: CGFloat = UIScreen().screenWidth() - 2 * kDescriptionLeftRightMargin
     }
 
     // MARK: - private

@@ -72,8 +72,6 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
         self.locationInputField.setupTextField(locationPlaceholder, defaultIconName: InputTextFieldImages.locationIconDefault, highlitedIconName: InputTextFieldImages.locationIconActive)
         self.locationInputField.descriptionLabel.text = locationDescription
         self.locationInputField.delegate = self
-        
-//        self.locationInputField.textField.suggestions = ["AAA", "Bicycle", "Carthage"]
         self.locationInputField.textField.completionColor = UIColor.lightGrayColor()
     }
     
@@ -126,6 +124,8 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
                 self?.user.profile = response as! Profile  
                 self?.hideProgressHUD()
                 SessionManager.saveCurrentUser((self?.user)!)
+                let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0 , longitude: DefaultLocation.washingtonDC.1)
+                SessionHelper.sharedManager.updateUserLastLocationIfNeeded(defaultLocation)
                 self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
@@ -140,12 +140,12 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
         let filter = GMSAutocompleteFilter()
         filter.type = .NoFilter
         GMSPlacesClient.sharedClient().autocompleteQuery(string, bounds: nil, filter: filter,
-                                                         callback: { [weak self] (predictions, error) in
-                                                            if predictions?.count > 0 {
-                                                                let predictionTitles = (predictions! as [GMSAutocompletePrediction]).map({$0.attributedFullText})
-                                                                let location = (predictionTitles.first?.string)! as String
-                                                                self?.locationInputField.textField.suggestions = [location]
-                                                            }
+                                                callback: { [weak self] (predictions, error) in
+                                                    if predictions?.count > 0 {
+                                                        let predictionTitles = (predictions! as [GMSAutocompletePrediction]).map({$0.attributedFullText})
+                                                        let location = (predictionTitles.first?.string)! as String
+                                                        self?.locationInputField.textField.suggestions = [location]
+                                                    }
             }
         )
     }

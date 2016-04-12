@@ -17,6 +17,8 @@ struct Config {
     static let userAppLaunch = "userAppLaunch"
     static let locationEnabled = "locationEnabled"
     static let pushNotificationsEnabled = "pushNotificationsEnabled"
+    static let userLocationLatitude = "userLocationLatitude"
+    static let userLocationLongitude = "userLocationLongitude"
 }
 
 struct FileType {
@@ -57,6 +59,7 @@ struct Controllers {
     static let storyDetailViewController = "StoryDetailViewController"
     static let storyPageViewController = "StoryPageViewController"
     static let storyDetailItemViewController = "StoryDetailItemViewController"
+    static let profileController = "ProfileController"
 }
 
 struct AppIDs {

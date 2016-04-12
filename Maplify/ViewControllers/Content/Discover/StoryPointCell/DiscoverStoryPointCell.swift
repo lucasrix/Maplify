@@ -30,6 +30,8 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var showHideDescriptionButton: UIButton!
     @IBOutlet weak var backShadowView: UIView!
     @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var storyPointKindImageView: UIImageView!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
@@ -65,7 +67,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
-        self.userAddressLabel.text = profile.city != String() ? profile.city : String()
+        self.userAddressLabel.text = profile.city
     }
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
@@ -73,16 +75,35 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func populateAttachment(storyPoint: StoryPoint) {
+        var attachmentUrl: NSURL! = nil
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            self.attachmentImageView.sd_setImageWithURL(storyPoint.attachment.file_url.url, placeholderImage: placeholderImage)
+            attachmentUrl = storyPoint.attachment.file_url.url
         } else if storyPoint.kind == StoryPointKind.Text.rawValue {
             self.attachmentHeightConstraint.constant = 0.0
-            self.attachmentImageView.image = nil
+            attachmentUrl = nil
         } else {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            self.attachmentImageView.image = placeholderImage
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        }
+        self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.populateKindImage(storyPoint)
+            }
+        }
+    }
+    
+    func populateKindImage(storyPoint: StoryPoint) {
+        if storyPoint.kind == StoryPointKind.Text.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconText)
+        } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            self.storyPointKindImageView.image = UIImage()
+        } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
+        } else if storyPoint.kind == StoryPointKind.Video.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
         }
     }
     

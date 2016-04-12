@@ -91,7 +91,6 @@ class ApiClient {
                 }
             }
         } else {
-            print(payload)
             if let dataDictionary = (payload as! [String : AnyObject])["error"] {
                 self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
             } else {
@@ -143,7 +142,6 @@ class ApiClient {
         if (photo != nil) {
             data = ["photo": photo]
         }
-        print(params)
         self.postRequest("auth", params: params, data: data, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     

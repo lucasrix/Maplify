@@ -9,14 +9,5 @@
 import UIKit
 
 class StoryPageViewController: UIPageViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.setup()
-    }
     
-    func setup() {
-        // TODO:
-    }
 }

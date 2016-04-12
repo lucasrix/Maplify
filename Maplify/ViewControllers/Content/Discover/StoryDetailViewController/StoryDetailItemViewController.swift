@@ -81,7 +81,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
-        self.userAddressLabel.text = profile.city != String() ? profile.city : String()
+        self.userAddressLabel.text = profile.city
     }
     
     func populateStoryPointInfoViews() {
@@ -102,7 +102,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
-            if !(error != nil) {
+            if error == nil {
                 self?.colorView.alpha = self?.storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
                 self?.populateKindImage()
             }

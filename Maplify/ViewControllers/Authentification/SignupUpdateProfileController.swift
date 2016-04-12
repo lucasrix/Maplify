@@ -11,7 +11,7 @@ import TPKeyboardAvoiding
 
 let kMaxAboutTextLength = 500
 
-class SignupUpdateProfileController: ViewController, InputTextViewDelegate, ErrorHandlingProtocol {
+class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, InputTextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var locationInputField: InputTextField!
     @IBOutlet weak var urlInputField: InputTextField!
     @IBOutlet weak var aboutInputField: InputTextView!
@@ -20,6 +20,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     
     var user: User! = nil
     var placesClient: GMSPlacesClient! = nil
+    var suspender = Suspender()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -70,6 +71,10 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         
         self.locationInputField.setupTextField(locationPlaceholder, defaultIconName: InputTextFieldImages.locationIconDefault, highlitedIconName: InputTextFieldImages.locationIconActive)
         self.locationInputField.descriptionLabel.text = locationDescription
+        self.locationInputField.delegate = self
+        
+//        self.locationInputField.textField.suggestions = ["AAA", "Bicycle", "Carthage"]
+        self.locationInputField.textField.completionColor = UIColor.lightGrayColor()
     }
     
     func setupURLInputField() {
@@ -100,7 +105,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     }
     
     // MARK: - InputTextViewDelegate
-    func editingChanged(inputTextView: InputTextView) {
+    func textEditingChanged(inputTextView: InputTextView) {
         let height = inputTextView.textView.frame.height
         self.aboutFieldHeightConstraint.constant = height
     }
@@ -130,7 +135,22 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         )
     }
     
-    //MARK: - ErrorHandlingProtocol
+    // MARK: - InputTextFieldDelegate
+    func shouldChangeCharacters(inputTextField: InputTextField, replacementString string: String) {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .NoFilter
+        GMSPlacesClient.sharedClient().autocompleteQuery(string, bounds: nil, filter: filter,
+                                                         callback: { [weak self] (predictions, error) in
+                                                            if predictions?.count > 0 {
+                                                                let predictionTitles = (predictions! as [GMSAutocompletePrediction]).map({$0.attributedFullText})
+                                                                let location = (predictionTitles.first?.string)! as String
+                                                                self?.locationInputField.textField.suggestions = [location]
+                                                            }
+            }
+        )
+    }
+    
+    // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())
         let cancel = NSLocalizedString("Button.Ok", comment: String())

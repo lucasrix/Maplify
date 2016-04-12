@@ -23,7 +23,7 @@ class InputTextField : UIView, UITextFieldDelegate {
     @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var iconHighlitedImageView: UIImageView!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: AutocompleteField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -92,7 +92,7 @@ class InputTextField : UIView, UITextFieldDelegate {
         }
     }
     
-    // MARK: UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     @IBAction func editingDidBegin(sender: UITextField) {
         self.setHiglitedState()
         self.delegate?.editingBegin?(self)
@@ -108,7 +108,18 @@ class InputTextField : UIView, UITextFieldDelegate {
         self.delegate?.editingChanged?(self)
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let updatedString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        self.delegate?.shouldChangeCharacters!(self, replacementString: updatedString)
+        return true
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let autocompleteTextField = textField as! AutocompleteField
+        if autocompleteTextField.suggestions.count > 0 {
+            autocompleteTextField.text = autocompleteTextField.suggestion
+        }
+        
         self.delegate?.didPressReturnKey?(self)
         return true
     }
@@ -119,4 +130,5 @@ class InputTextField : UIView, UITextFieldDelegate {
     optional func editingEnd(inputTextField: InputTextField)
     optional func editingChanged(inputTextField: InputTextField)
     optional func didPressReturnKey(inputTextField: InputTextField)
+    optional func shouldChangeCharacters(inputTextField: InputTextField, replacementString string: String)
 }

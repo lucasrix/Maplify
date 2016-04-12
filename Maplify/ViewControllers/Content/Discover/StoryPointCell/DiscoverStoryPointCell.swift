@@ -76,6 +76,8 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
         self.captionLabel.text = storyPoint.caption
+        self.storyPointAddressLabel.text = storyPoint.location.city
+        self.storyPointAddressImageView.hidden = storyPoint.location.city == String()
     }
     
     func populateAttachment(storyPoint: StoryPoint) {

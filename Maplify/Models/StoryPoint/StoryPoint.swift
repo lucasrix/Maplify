@@ -26,7 +26,8 @@ class StoryPoint: Model {
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
-                
+        
+        print(map)
         self.id <- map.property("id")
         self.user <- map.relationOrNil("user")
         self.location <- map.relationOrNil("location")

@@ -6,7 +6,12 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import INTULocationManager
 import RealmSwift
+import INSPullToRefresh.UIScrollView_INSPullToRefresh
+
+let kDiscoverItemsInPage = 25
+let kDiscoverFirstPage = 1
 
 enum EditContentOption: Int {
     case EditPost
@@ -21,8 +26,13 @@ enum DefaultContentOption: Int {
     case ReportAbuse
 }
 
-let discoverStoryPointCell = "DiscoverStoryPointCell"
-let discoverStoryCell = "DiscoverStoryCell"
+enum RequestState: Int {
+    case Ready
+    case Loading
+}
+
+//let discoverStoryPointCell = "DiscoverStoryPointCell"
+//let discoverStoryCell = "DiscoverStoryCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 
@@ -34,12 +44,20 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     var storyPoints: [StoryPoint]! = nil
     var stories: [Story]! = nil
     var discoverShowProfileClosure: ((userId: Int) -> ())! = nil
+    var canLoadMore: Bool = true
+    var page: Int = kDiscoverFirstPage
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.loadItemsFromDB()
+        self.loadRemoteData()
+    }
+    
+    deinit {
+        self.tableView.ins_removePullToRefresh()
+        self.tableView.ins_endInfinityScroll()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,6 +69,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.setupTableView()
     }
     
     func setupNavigationBar() {
@@ -61,6 +80,36 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
         self.navigationController?.navigationBar.layer.masksToBounds = false;
+    }
+    
+    func setupTableView() {
+        self.setupPullToRefresh()
+        self.setupInfinityScroll()
+    }
+    
+    func setupPullToRefresh() {
+        self.tableView.ins_addPullToRefreshWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+            self?.page = kDiscoverFirstPage
+            self?.loadRemoteData()
+        }
+        
+        let pullToRefresh = INSDefaultPullToRefresh(frame: Frame.pullToRefreshFrame, backImage: nil, frontImage: nil)
+        self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = false
+        self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+        self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
+    }
+    
+    func setupInfinityScroll() {
+        self.tableView.ins_setInfinityScrollEnabled(true)
+        self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+            self?.page += 1
+            self?.loadRemoteData()
+        }
+        
+        let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
+        self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
+        self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
+        indicator.startAnimating()
     }
     
     // MARK: - navigation bar
@@ -80,9 +129,43 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let realm = try! Realm()
         self.storyActiveModel.removeData()
         self.storyPoints = Array(realm.objects(StoryPoint))
-        self.storyActiveModel.addItems(storyPoints, cellIdentifier: discoverStoryPointCell, sectionTitle: nil, delegate: self)
+        self.storyActiveModel.addItems(storyPoints, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
+    }
+    
+    // MARK: - remote
+    func loadRemoteData() {
+        // get current location
+        if SessionHelper.sharedManager.locationEnabled() {
+            INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
+                if location != nil {
+                    self?.retrieveDiscoverList(location)
+                }
+            }
+        } else {
+            self.retrieveDiscoverList(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
+        }
+    }
+    
+    func retrieveDiscoverList(location: CLLocation) {
+        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 10000000, page: 1, success: { (response) in
+            // success
+            print(response)
+            let items = response as! [AnyObject]
+            self.tableView.ins_endInfinityScroll()
+            self.tableView.ins_endPullToRefresh()
+            self.tableView.ins_setInfinityScrollEnabled(items.count == kDiscoverItemsInPage)
+            
+            self.storyActiveModel.removeData()
+            self.storyActiveModel.addItems(response as! [AnyObject], cellIdentifier: String(), sectionTitle: nil, delegate: self)
+            self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+            self.storyDataSource.reloadTable()
+            
+            }) { (statusCode, errors, localDescription, messages) in
+                // TODO:
+                print(messages)
+        }
     }
     
     // MARK: - actions

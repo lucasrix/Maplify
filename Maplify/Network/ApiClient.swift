@@ -218,6 +218,16 @@ class ApiClient {
         let params = ["email": email]
         self.putRequest("user", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
     }
+
+    func retrieveDiscoverList(latitude: Double, longitude: Double, radius: CGFloat, page: Int, success: successClosure!, failure: failureClosure!) {
+        let params: [String: AnyObject] = ["page": page,
+                      "radius": radius,
+                      "location[latitude]": latitude,
+                      "location[longitude]": longitude
+                      ]
+        
+        self.getRequest("discover", params: params, manager: DiscoverListModelManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

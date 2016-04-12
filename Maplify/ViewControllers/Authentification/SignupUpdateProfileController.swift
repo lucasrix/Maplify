@@ -49,7 +49,9 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     }
     
     func setupKeyboardAvoidingScrollView() {
-        self.keyboardAvoidingScrollView.setAvoidingEnabled(UIScreen.mainScreen().smallerThanIPhoneSixSize())
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {

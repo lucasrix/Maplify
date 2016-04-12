@@ -9,10 +9,8 @@
 import TPKeyboardAvoiding
 
 extension TPKeyboardAvoidingScrollView {
-    func setAvoidingEnabled(enabled: Bool) {
-        if enabled == false {
-            self.scrollEnabled = false
-            NSNotificationCenter.defaultCenter().removeObserver(self)
-        }
+    func disableKeyboardAvoiding() {
+        self.scrollEnabled = false
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

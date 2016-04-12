@@ -70,6 +70,7 @@
 //Subsrtings
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
+"Substring.Points" = "points";
 
 //Buttons
 "Button.Ok" = "OK";
@@ -101,6 +102,7 @@
 "Button.SharePost" = "Share post";
 "Button.Save" = "Save";
 "Button.ReportAbuse" = "Report abuse";
+"Button.JumpToDiscoverFeed" = "Jump to Discover feed";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

@@ -22,15 +22,17 @@ enum DefaultContentOption: Int {
 }
 
 let discoverStoryPointCell = "DiscoverStoryPointCell"
+let discoverStoryCell = "DiscoverStoryCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 
-class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, ErrorHandlingProtocol {
+class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: DiscoverTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
     var storyPoints: [StoryPoint]! = nil
+    var stories: [Story]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -43,22 +45,17 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupTableView()
-    }
-    
-    func setupTableView() {
-        self.tableView.registerNib(UINib(nibName: discoverStoryPointCell, bundle: nil), forCellReuseIdentifier: discoverStoryPointCell)
     }
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
         
         // add shadow
-        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor();
-        self.navigationController!.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
-        self.navigationController!.navigationBar.layer.shadowOffset = CGSizeZero;
-        self.navigationController!.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
-        self.navigationController!.navigationBar.layer.masksToBounds = false;
+        self.navigationController?.navigationBar.backgroundColor = UIColor.blackColor();
+        self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
+        self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
+        self.navigationController?.navigationBar.layer.masksToBounds = false;
     }
     
     // MARK: - navigation bar
@@ -163,7 +160,24 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func editContentDidTap(storyPointId: Int) {
         self.showEditContentMenu(storyPointId)
     }
+
+    // MARK: - DiscoverStoryCellDelegate
+    func didSelectStory(storyId: Int) {
+        let storyIndex = self.stories.indexOf({$0.id == storyId})
+        let indexPath = NSIndexPath(forRow: storyIndex!, inSection: 0)
+        let cellDataModel = self.storyActiveModel.cellData(indexPath)
+        self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
+        self.storyDataSource.reloadTable()
+    }
     
+    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+        self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle)
+    }
+    
+    func didSelectMap() {
+        // TODO:
+    }
+
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())

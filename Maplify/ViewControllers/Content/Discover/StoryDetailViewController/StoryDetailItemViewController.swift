@@ -1,22 +1,16 @@
 //
-//  DiscoverStoryPointCell.swift
+//  StoryDetailItemViewController.swift
 //  Maplify
 //
-//  Created by Evgeniy Antonoff on 4/4/16.
+//  Created by - Jony - on 4/11/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
 import UIKit
-import SDWebImage.UIImageView_WebCache
 
-let kStoryPointCellDescriptionDefaultHeight: CGFloat = 17
-let kStoryPointDescriptionOpened: Int = 0
-let kStoryPointDescriptionClosed: Int = 1
+let kStoryDetailScrollViewExpandHeight: CGFloat = 44
 
-let kShadowOpacity: Float = 0.15
-let kShadowRadius: CGFloat = 3
-
-class DiscoverStoryPointCell: CSTableViewCell {
+class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAddressLabel: UILabel!
@@ -28,27 +22,30 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
+    @IBOutlet weak var firstBackShadowView: UIView!
     @IBOutlet weak var backShadowView: UIView!
     @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var jumpToFeedButton: UIButton!
     
-    var cellData: CSCellData! = nil
-    var delegate: DiscoverStoryPointCellDelegate! = nil
-    var storyPointId: Int = 0
+    var itemIndex: Int = 0
+    var storyPoint: StoryPoint! = nil
+    var descriptionOpened: Bool = false
+
+    // MARK: - view controller life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setup()
+    }
     
     // MARK: - setup
-    override func configure(cellData: CSCellData) {
-        self.cellData = cellData
-        self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
-        let storyPoint = cellData.model as! StoryPoint
-        self.storyPointId = storyPoint.id
-        
+    func setup() {
         self.addShadow()
-        self.populateUserViews(storyPoint)
-        self.populateStoryPointInfoViews(storyPoint)
-        self.populateAttachment(storyPoint)
-        self.populateDescriptionLabel(cellData)
+        self.setupData()
+        self.setupScrollView()
     }
     
     func addShadow() {
@@ -56,10 +53,27 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
         self.backShadowView.layer.shadowRadius = kShadowRadius
+        
+        self.firstBackShadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.firstBackShadowView.layer.shadowOpacity = kShadowOpacity
+        self.firstBackShadowView.layer.shadowOffset = CGSizeZero
+        self.firstBackShadowView.layer.shadowRadius = kShadowRadius
     }
     
-    func populateUserViews(storyPoint: StoryPoint) {
-        let user = storyPoint.user as User
+    func setupData() {
+        self.populateUserViews()
+        self.populateStoryPointInfoViews()
+        self.populateAttachment()
+        self.populateDescriptionLabel()
+    }
+    
+    func setupScrollView() {
+        self.scrollView.delegate = self
+        self.jumpToFeedButton.setTitle(NSLocalizedString("Button.JumpToDiscoverFeed", comment: String()), forState: .Normal)
+    }
+    
+    func populateUserViews() {
+        let user = self.storyPoint.user as User
         let profile = user.profile as Profile
         
         let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
@@ -70,17 +84,17 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.userAddressLabel.text = profile.city
     }
     
-    func populateStoryPointInfoViews(storyPoint: StoryPoint) {
-        self.captionLabel.text = storyPoint.caption
+    func populateStoryPointInfoViews() {
+        self.captionLabel.text = storyPoint.text
     }
     
-    func populateAttachment(storyPoint: StoryPoint) {
+    func populateAttachment() {
         var attachmentUrl: NSURL! = nil
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
-        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+        if self.storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            attachmentUrl = storyPoint.attachment.file_url.url
-        } else if storyPoint.kind == StoryPointKind.Text.rawValue {
+            attachmentUrl = self.storyPoint.attachment.file_url.url
+        } else if self.storyPoint.kind == StoryPointKind.Text.rawValue {
             self.attachmentHeightConstraint.constant = 0.0
             attachmentUrl = nil
         } else {
@@ -89,51 +103,51 @@ class DiscoverStoryPointCell: CSTableViewCell {
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
-                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
-                self?.populateKindImage(storyPoint)
+                self?.colorView.alpha = self?.storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.populateKindImage()
             }
         }
     }
     
-    func populateKindImage(storyPoint: StoryPoint) {
-        if storyPoint.kind == StoryPointKind.Text.rawValue {
+    func populateKindImage() {
+        if self.storyPoint.kind == StoryPointKind.Text.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconText)
-        } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
+        } else if self.storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.storyPointKindImageView.image = UIImage()
-        } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
+        } else if self.storyPoint.kind == StoryPointKind.Audio.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
-        } else if storyPoint.kind == StoryPointKind.Video.rawValue {
+        } else if self.storyPoint.kind == StoryPointKind.Video.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
         }
     }
     
-    func populateDescriptionLabel(cellData: CSCellData) {
-        self.descriptionLabel.numberOfLines = cellData.selected ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
-        let storyPoint = cellData.model as! StoryPoint
+    func populateDescriptionLabel() {
+        self.descriptionLabel.text = self.storyPoint.text
+        self.descriptionLabel.numberOfLines = self.descriptionOpened ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         
-        self.descriptionLabel.text = storyPoint.text
-        
-        if cellData.selected {
+        if self.descriptionOpened {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
         } else {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint.text)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint.text)
+        
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(self.storyPoint.text)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(self.storyPoint.text)
     }
     
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
-        self.cellData.selected = !self.cellData.selected
-        self.delegate?.reloadTable(self.storyPointId)
+        self.descriptionOpened = !self.descriptionOpened
+        self.populateDescriptionLabel()
+        self.view.layoutIfNeeded()
     }
     
-    @IBAction func editContentTapped(sender: AnyObject) {
-        self.delegate?.editContentDidTap(self.storyPointId)
+    @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
+        self.parentViewController?.navigationController?.popViewControllerAnimated(true)
     }
-
+    
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {
         let font = self.descriptionLabel.font
@@ -143,23 +157,19 @@ class DiscoverStoryPointCell: CSTableViewCell {
         return textSize.height <= kStoryPointCellDescriptionDefaultHeight
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
-        // need to use to set the preferredMaxLayoutWidth below.
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
-        
-        // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
-        // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
-        self.usernameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.usernameLabel.frame)
-        self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
-        self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
+    // MARK: - navigation bar
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
     }
-}
-
-protocol DiscoverStoryPointCellDelegate {
-    func reloadTable(storyPointId: Int)
-    func editContentDidTap(storyPointId: Int)
+    
+    override func navigationBarColor() -> UIColor {
+        return UIColor.grapePurple()
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 0.0 && scrollView.contentOffset.y > -kStoryDetailScrollViewExpandHeight {
+            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: -scrollView.contentOffset.y, right: 0)
+        }
+    }
 }

@@ -108,6 +108,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
+    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+        let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
+        storyDetailViewController.storyPoints = storyPoints
+        storyDetailViewController.selectedIndex = selectedIndex
+        storyDetailViewController.storyTitle = storyTitle
+        self.navigationController?.pushViewController(storyDetailViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController

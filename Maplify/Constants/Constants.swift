@@ -54,6 +54,9 @@ struct Controllers {
     static let addStoryViewController = "AddStoryViewController"
     static let recommendedSettingsController = "RecommendedSettingsController"
     static let storyPointEditController = "StoryPointEditController"
+    static let storyDetailViewController = "StoryDetailViewController"
+    static let storyPageViewController = "StoryPageViewController"
+    static let storyDetailItemViewController = "StoryDetailItemViewController"
 }
 
 struct AppIDs {
@@ -62,4 +65,10 @@ struct AppIDs {
 
 struct DefaultLocation {
     static let washingtonDC = (38.889931, -77.009003)
+}
+
+struct StaticMapSize {
+    static let widthSmall = 200
+    static let widthMedium = 400
+    static let widthLarge = 600
 }

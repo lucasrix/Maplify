@@ -8,8 +8,9 @@
 
 import Foundation
 
+let kProfileButtonBorderWidth: CGFloat = 0.5
+
 class ProfileViewController: ViewController {
-   
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -25,6 +26,7 @@ class ProfileViewController: ViewController {
     @IBOutlet weak var aboutLabelHeightConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
+    var user: User! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -35,6 +37,7 @@ class ProfileViewController: ViewController {
     
     // MARK: - setup
     func setup() {
+        self.loadItemFromDB()
         self.setupNavigationBar()
         self.setupLabels()
         self.setupButtons()
@@ -46,25 +49,45 @@ class ProfileViewController: ViewController {
     
     func setupLabels() {
         self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
+        self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
+        
+        if self.user.profile.city.length > 0 {
+            self.locationLabel.text = self.user.profile.city
+        }
+        
+        if self.user.profile.url.length > 0 {
+            self.urlLabel.text = self.user.profile.url
+        }
+        
+        if self.user.profile.about.length > 0 {
+            self.aboutLabel.text = self.user.profile.about
+        }
     }
     
     func setupButtons() {
         if self.profileId == SessionManager.currentUser().id {
             self.editButton.hidden = false
             self.editButton.layer.borderColor = UIColor.whiteColor().CGColor
-            self.editButton.layer.borderWidth = 0.5
+            self.editButton.layer.borderWidth = kProfileButtonBorderWidth
             self.editButton.layer.cornerRadius = CornerRadius.defaultRadius
 
         } else {
             self.followButton.hidden = false
             self.followButton.layer.borderColor = UIColor.whiteColor().CGColor
-            self.followButton.layer.borderWidth = 0.5
+            self.followButton.layer.borderWidth = kProfileButtonBorderWidth
             self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         }
     }
     
-    // MARK: - actions
+    func loadItemFromDB() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.user = SessionManager.currentUser()
+        } else {
+            self.user = SessionManager.findUser(self.profileId)
+        }
+    }
     
+    // MARK: - actions
     @IBAction func expandButtonTapped(sender: AnyObject) {
         self.expandButton.selected = !self.expandButton.selected
     }

@@ -27,6 +27,11 @@ class SessionManager: ModelManager {
         }
     }
     
+    class func findUser(userId: Int) -> User! {
+        let realm = try! Realm()
+        return realm.objectForPrimaryKey(User.self, key: userId)
+    }
+    
     class func currentUser() -> CurrentUser {
         let realm = try! Realm()
         return Array(realm.objects(CurrentUser)).last!

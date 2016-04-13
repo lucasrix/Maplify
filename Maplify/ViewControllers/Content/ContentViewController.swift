@@ -110,6 +110,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
+        let currentUserId = SessionManager.currentUser().id
+        self.routesOpenProfileController(currentUserId)
     } 
     
     // MARK: - storyPointCreationPopupDelegate

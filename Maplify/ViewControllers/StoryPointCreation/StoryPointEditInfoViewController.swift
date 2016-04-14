@@ -14,6 +14,8 @@ import CoreLocation
 import Haneke
 import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
+let kLocationInputFieldRightMargin: CGFloat = 30
+
 class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var placeOrLocationLabel: UILabel!
@@ -59,6 +61,10 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         
         self.captionTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterBriefCaption", comment: String())
         self.placeOrLocationTextField.placeholder = NSLocalizedString("Text.Placeholder.EveryPostMustBeGeotagged", comment: String())
+        
+        let view = UIView(frame: CGRectMake(0, 0, kLocationInputFieldRightMargin, self.placeOrLocationTextField.frame.size.height))
+        self.placeOrLocationTextField.rightViewMode = .Always
+        self.placeOrLocationTextField.rightView = view
         self.tagsTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterTag", comment: String())
         
         self.setupStoryAttachmentLabels()
@@ -78,7 +84,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         if storyPoint != nil {
             self.captionTextField.text = storyPoint.caption
         }
-        
     }
     
     // MARK: - navigation bar

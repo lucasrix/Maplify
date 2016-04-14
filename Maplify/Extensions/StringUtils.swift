@@ -47,6 +47,11 @@ extension String {
         return (self.length >= kPasswordMinLength)
     }
     
+    var isNonWhiteSpace: Bool {
+        let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+        return !self.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty
+    }
+    
     func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {
         return self.toDate(format, dateTimeZone: NSTimeZone.defaultTimeZone())
     }

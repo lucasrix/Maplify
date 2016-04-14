@@ -107,7 +107,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
         self.firstNameField.textField.endEditing(true)
         self.lastNameField.textField.endEditing(true)
         
-        if self.firstNameField.textField.text!.length > 0 {
+        if (self.firstNameField.textField.text!.length > 0) && (self.firstNameField.textField.text!.isNonWhiteSpace) {
             self.user = User()
             self.user.profile = Profile()
             self.user.profile.firstName = self.firstNameField.textField.text!

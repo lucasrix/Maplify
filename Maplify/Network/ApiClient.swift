@@ -186,7 +186,7 @@ class ApiClient {
     
     func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {
         let params = ["page": page]
-        self.getRequest("stories/my_stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
+        self.getRequest("user/stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {

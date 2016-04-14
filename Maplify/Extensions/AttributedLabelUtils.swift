@@ -21,8 +21,8 @@ extension TTTAttributedLabel {
         self.setText(attributedString)
     }
     
-    func setupLinkAttributes(linkColor: UIColor) {
-        let underlineStyle = NSUnderlineStyle.StyleNone.rawValue
+    func setupLinkAttributes(linkColor: UIColor, underlined: Bool) {
+        let underlineStyle = underlined ? NSUnderlineStyle.StyleSingle.rawValue : NSUnderlineStyle.StyleNone.rawValue
 
         let linkAttributes = [
             NSForegroundColorAttributeName: linkColor,

@@ -126,3 +126,4 @@
 "Error.InvalidPassword" = "Please enter password";
 "Error.EnterName" = "Please enter your name.";
 "Error.InvalidPassword" = "Password must be at least 6 characters.";
+"Error.EmptyFirstName" = "First Name can't be blank";

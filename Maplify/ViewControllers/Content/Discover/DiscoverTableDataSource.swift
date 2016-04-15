@@ -42,7 +42,7 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         let model = cellData.model
         let item = model as! DiscoverItem
         var itemHeight: CGFloat = 0
-        if item.type ==  DiscoverItemType.StoryPoint.rawValue {
+        if item.type == DiscoverItemType.StoryPoint.rawValue {
             self.storyPointCell.configure(cellData)
             itemHeight = self.heightForCell(self.storyPointCell, bounds: tableView.bounds)
         } else if item.type ==  DiscoverItemType.Story.rawValue {

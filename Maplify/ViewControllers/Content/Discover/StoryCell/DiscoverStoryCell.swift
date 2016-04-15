@@ -42,10 +42,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.storyId = story!.id
         
         self.addShadow()
+        self.setupCollectionView(story!)
         self.populateUserViews(story!)
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
-        self.setupCollectionView(story!)
         self.setupSwipe()
     }
     
@@ -77,9 +77,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     func populateDescriptionLabel(cellData: CSCellData) {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryDescriptionOpened : kStoryDescriptionClosed
-        let story = cellData.model as! Story
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
         
-        self.descriptionLabel.text = story.storyDescription
+        self.descriptionLabel.text = story!.storyDescription
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -89,8 +90,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story.storyDescription)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story.storyDescription)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story!.storyDescription)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story!.storyDescription)
     }
     
     func setupCollectionView(story: Story) {
@@ -115,8 +116,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
-        let story = self.cellData.model as! Story
-        self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: 0, storyTitle: story.title)
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: 0, storyTitle: story!.title)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -163,8 +165,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         if indexPath.row == 0 {
             self.delegate?.didSelectMap()
         } else {
-            let story = self.cellData.model as! Story
-            self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story.title)
+            let item = cellData.model as! DiscoverItem
+            let story = item.story
+            self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story!.title)
         }
     }
 }

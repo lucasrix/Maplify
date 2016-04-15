@@ -336,23 +336,23 @@
         <!--Discover View Controller-->
         <scene sceneID="o3c-WA-wRi">
             <objects>
-                <viewController storyboardIdentifier="DiscoverController" id="Aar-Mj-88C" customClass="DiscoverViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverController" autoresizesArchivedViewToFullSize="NO" id="Aar-Mj-88C" customClass="DiscoverViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hit-ja-Hef"/>
                         <viewControllerLayoutGuide type="bottom" id="8PV-TE-TWM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yrH-fK-Py7">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="yrH-fK-Py7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-Ei-g8z">
+                            <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-Ei-g8z">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryCell" rowHeight="472" id="2su-9Q-baY" customClass="DiscoverStoryCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryCell" rowHeight="472" id="2su-9Q-baY" customClass="DiscoverStoryCell" customModule="Maplify" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="472"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2su-9Q-baY" id="RTh-xe-Y4B">
+                                        <tableViewCellContentView key="contentView" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2su-9Q-baY" id="RTh-xe-Y4B" userLabel="IContent View">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="472"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -397,6 +397,7 @@
                                                         <constraint firstItem="m3X-9c-1Zn" firstAttribute="centerY" secondItem="wio-Zr-3qk" secondAttribute="centerY" id="D3X-63-c95"/>
                                                         <constraint firstItem="ffN-zK-wHX" firstAttribute="leading" secondItem="MwM-aI-Lvs" secondAttribute="trailing" constant="8" id="JdE-if-bxv"/>
                                                         <constraint firstAttribute="bottom" secondItem="MwM-aI-Lvs" secondAttribute="bottom" constant="14" id="OTM-gT-BQI"/>
+                                                        <constraint firstAttribute="height" constant="66" id="Psx-bN-d4P"/>
                                                         <constraint firstItem="m3X-9c-1Zn" firstAttribute="leading" secondItem="wio-Zr-3qk" secondAttribute="leading" constant="8" id="SMU-g8-ArN"/>
                                                         <constraint firstItem="MwM-aI-Lvs" firstAttribute="top" secondItem="fCD-0Q-Edv" secondAttribute="bottom" constant="4" id="Zvj-W0-xdG"/>
                                                         <constraint firstItem="fCD-0Q-Edv" firstAttribute="top" secondItem="wio-Zr-3qk" secondAttribute="top" constant="11" id="jho-a0-62b"/>
@@ -453,10 +454,10 @@
                                                         <constraint firstItem="pxK-ZH-JVe" firstAttribute="top" secondItem="1vq-k3-wKC" secondAttribute="top" constant="5" id="v75-2T-ORQ"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfc-mZ-wlx" userLabel="Storypoints View">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfc-mZ-wlx" userLabel="Storypoints View">
                                                     <rect key="frame" x="0.0" y="126" width="375" height="246"/>
                                                     <subviews>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-7J-ggn">
+                                                        <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-7J-ggn">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="kFg-LF-9Jj">
@@ -1064,14 +1065,14 @@
                                                             <constraint firstAttribute="height" constant="21" id="oMq-4I-mZJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7e-3A-K5d">
                                                         <rect key="frame" x="13" y="44" width="349" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D7-EA-Lqn">

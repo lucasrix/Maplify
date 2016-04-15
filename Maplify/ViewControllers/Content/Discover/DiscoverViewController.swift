@@ -55,7 +55,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadRemoteData()
+//        self.loadRemoteData()
     }
     
     deinit {
@@ -136,14 +136,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyActiveModel.removeData()
         let itemsCount = self.itemsCountToShow()
         let allItems = realm.objects(DiscoverItem).sorted("nearMePosition")
-        print(allItems)
         if allItems.count >=  itemsCount {
             self.discoverItems = Array(allItems[0..<itemsCount])
         } else {
             self.discoverItems = Array(allItems)
         }
-//        self.discoverItems = Array(realm.objects(DiscoverItem).sorted("nearMePosition")[0..<itemsCount])
-//        print(self.discoverItems)
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
@@ -169,23 +166,16 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func retrieveDiscoverList(location: CLLocation) {
         self.requestState = RequestState.Loading
-        print(self.page)
         ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 10000000, page: self.page, success: { [weak self] (response) in
-//            print(response)
+            
             DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage)
             
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
-            
             self?.tableView.ins_setInfinityScrollEnabled(response.count == kDiscoverItemsInPage)
             self?.requestState = RequestState.Ready
             
             self?.loadItemsFromDB()
-            
-            /*
-            self?.storyActiveModel.addItems(response as! [AnyObject], cellIdentifier: String(), sectionTitle: nil, delegate: self!)
-            self?.storyDataSource = DiscoverTableDataSource(tableView: (self?.tableView)!, activeModel: (self?.storyActiveModel)!, delegate: self!)
-            self?.storyDataSource.reloadTable()*/
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.requestState = RequestState.Ready

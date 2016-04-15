@@ -17,18 +17,19 @@ class DiscoverItemManager: ModelManager {
     class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int) {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
-        var savedItems: [AnyObject] = []
         
         for item in list {
             let discoverItem = DiscoverItem()
             if item["type"] as! String == String(StoryPoint) {
                 let dict = item as! [String: AnyObject]
                 let storyPoint = StoryPoint(dict)
+                discoverItem.type = DiscoverItemType.StoryPoint.rawValue
                 StoryPointManager.saveStoryPoint(storyPoint)
                 discoverItem.storyPoint = storyPoint
             } else if item["type"] as! String == String(Story) {
                 let dict = item as! [String: AnyObject]
                 let story = Story(dict)
+                discoverItem.type = DiscoverItemType.Story.rawValue
                 StoryManager.saveStory(story)
                 discoverItem.story = story
             }
@@ -39,10 +40,6 @@ class DiscoverItemManager: ModelManager {
             
             currentPosition += 1
         }
-        
-        let realm = try! Realm()
-        let www = realm.objects(DiscoverItem)
-        print(www)
     }
     
     class func saveItem(item: DiscoverItem) {

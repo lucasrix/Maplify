@@ -21,6 +21,7 @@ class MCMapDataSource {
     var delegate: AnyObject! = nil
     
     func reloadMapView<T: MCMapItem>(type: T.Type) {
+        /*
         if self.mapService != nil {
             self.mapService.removeAllItems()
             
@@ -33,6 +34,6 @@ class MCMapDataSource {
                     self.mapService.placeItem(mapItem)
                 }
             }
-        }
+        }*/
     }
 }

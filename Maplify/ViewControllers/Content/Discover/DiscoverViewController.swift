@@ -38,8 +38,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setup()
         self.loadItemsFromDB()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setup()
     }
     
     // MARK: - setup
@@ -51,7 +56,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
         
         // add shadow
-        self.navigationController?.navigationBar.backgroundColor = UIColor.blackColor();
         self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
@@ -160,6 +164,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func editContentDidTap(storyPointId: Int) {
         self.showEditContentMenu(storyPointId)
     }
+    
+    func profileImageTapped(userId: Int) {
+        self.routesOpenProfileController(userId)
+    }
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
@@ -176,6 +184,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func didSelectMap() {
         // TODO:
+    }
+    
+    func storyProfileImageTapped(userId: Int) {
+        self.routesOpenProfileController(userId)
     }
 
     // MARK: - ErrorHandlingProtocol

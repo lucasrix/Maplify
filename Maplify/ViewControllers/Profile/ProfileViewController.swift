@@ -8,11 +8,13 @@
 
 import TTTAttributedLabel
 import SDWebImage
+import AFImageHelper
 
 let kDefaultStatsViewHeight: CGFloat = 259
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
+let kShadowYOffset: CGFloat = -3
 
 class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var editButton: UIButton!
@@ -53,6 +55,13 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     
     func setupNavigationBar() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0
+
+    }
+    
+    override func navigationBarColor() -> UIColor {
+        return UIColor.darkGreyBlue()
     }
     
     func setupLabels() {

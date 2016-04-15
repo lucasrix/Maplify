@@ -41,13 +41,14 @@ class DiscoverStoryPointCell: CSTableViewCell {
     override func configure(cellData: CSCellData) {
         self.cellData = cellData
         self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
-        let storyPoint = cellData.model as! StoryPoint
-        self.storyPointId = storyPoint.id
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        self.storyPointId = storyPoint!.id
         
         self.addShadow()
-        self.populateUserViews(storyPoint)
-        self.populateStoryPointInfoViews(storyPoint)
-        self.populateAttachment(storyPoint)
+        self.populateUserViews(storyPoint!)
+        self.populateStoryPointInfoViews(storyPoint!)
+        self.populateAttachment(storyPoint!)
         self.populateDescriptionLabel(cellData)
         
     }
@@ -103,7 +104,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func populateKindImage(storyPoint: StoryPoint) {
         if storyPoint.kind == StoryPointKind.Text.rawValue {
-            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconText)
+            self.storyPointKindImageView.image = UIImage()
         } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.storyPointKindImageView.image = UIImage()
         } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
@@ -115,9 +116,10 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func populateDescriptionLabel(cellData: CSCellData) {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
-        let storyPoint = cellData.model as! StoryPoint
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
         
-        self.descriptionLabel.text = storyPoint.text
+        self.descriptionLabel.text = storyPoint!.text
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -126,8 +128,8 @@ class DiscoverStoryPointCell: CSTableViewCell {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint.text)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint.text)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint!.text)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint!.text)
     }
     
     // MARK: - actions

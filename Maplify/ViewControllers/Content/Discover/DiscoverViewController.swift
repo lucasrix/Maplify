@@ -31,8 +31,6 @@ enum RequestState: Int {
     case Loading
 }
 
-//let discoverStoryPointCell = "DiscoverStoryPointCell"
-//let discoverStoryCell = "DiscoverStoryCell"
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 
@@ -41,17 +39,22 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     var storyDataSource: DiscoverTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
-    var storyPoints: [StoryPoint]! = nil
-    var stories: [Story]! = nil
     var discoverShowProfileClosure: ((userId: Int) -> ())! = nil
     var canLoadMore: Bool = true
+    var discoverItems: [DiscoverItem]! = nil
     var page: Int = kDiscoverFirstPage
+    var requestState: RequestState = RequestState.Ready
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.loadItemsFromDB()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadRemoteData()
     }
     
@@ -102,8 +105,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func setupInfinityScroll() {
         self.tableView.ins_setInfinityScrollEnabled(true)
         self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
-            self?.page += 1
-            self?.loadRemoteData()
+            if self?.requestState == RequestState.Ready {
+                self?.page += 1
+                self?.loadRemoteData()
+            }
         }
         
         let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
@@ -127,11 +132,25 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func loadItemsFromDB() {
         let realm = try! Realm()
+        
         self.storyActiveModel.removeData()
-        self.storyPoints = Array(realm.objects(StoryPoint))
-        self.storyActiveModel.addItems(storyPoints, cellIdentifier: String(), sectionTitle: nil, delegate: self)
+        let itemsCount = self.itemsCountToShow()
+        let allItems = realm.objects(DiscoverItem).sorted("nearMePosition")
+        print(allItems)
+        if allItems.count >=  itemsCount {
+            self.discoverItems = Array(allItems[0..<itemsCount])
+        } else {
+            self.discoverItems = Array(allItems)
+        }
+//        self.discoverItems = Array(realm.objects(DiscoverItem).sorted("nearMePosition")[0..<itemsCount])
+//        print(self.discoverItems)
+        self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
+    }
+    
+    func itemsCountToShow() -> Int{
+        return self.page * kDiscoverItemsInPage
     }
     
     // MARK: - remote
@@ -149,22 +168,28 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func retrieveDiscoverList(location: CLLocation) {
-        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 10000000, page: 1, success: { (response) in
-            // success
-            print(response)
-            let items = response as! [AnyObject]
-            self.tableView.ins_endInfinityScroll()
-            self.tableView.ins_endPullToRefresh()
-            self.tableView.ins_setInfinityScrollEnabled(items.count == kDiscoverItemsInPage)
+        self.requestState = RequestState.Loading
+        print(self.page)
+        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 10000000, page: self.page, success: { [weak self] (response) in
+//            print(response)
+            DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage)
             
-            self.storyActiveModel.removeData()
-            self.storyActiveModel.addItems(response as! [AnyObject], cellIdentifier: String(), sectionTitle: nil, delegate: self)
-            self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
-            self.storyDataSource.reloadTable()
+            self?.tableView.ins_endInfinityScroll()
+            self?.tableView.ins_endPullToRefresh()
             
-            }) { (statusCode, errors, localDescription, messages) in
-                // TODO:
-                print(messages)
+            self?.tableView.ins_setInfinityScrollEnabled(response.count == kDiscoverItemsInPage)
+            self?.requestState = RequestState.Ready
+            
+            self?.loadItemsFromDB()
+            
+            /*
+            self?.storyActiveModel.addItems(response as! [AnyObject], cellIdentifier: String(), sectionTitle: nil, delegate: self!)
+            self?.storyDataSource = DiscoverTableDataSource(tableView: (self?.tableView)!, activeModel: (self?.storyActiveModel)!, delegate: self!)
+            self?.storyDataSource.reloadTable()*/
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.requestState = RequestState.Ready
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     
@@ -238,7 +263,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverStoryPointCellDelegate
     func reloadTable(storyPointId: Int) {
-        let storyPointIndex = self.storyPoints.indexOf({$0.id == storyPointId})
+        let storyPointIndex = self.discoverItems.indexOf({$0.id == storyPointId})
         let indexPath = NSIndexPath(forRow: storyPointIndex!, inSection: 0)
         let cellDataModel = self.storyActiveModel.cellData(indexPath)
         self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
@@ -255,8 +280,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
-        let storyIndex = self.stories.indexOf({$0.id == storyId})
-        let indexPath = NSIndexPath(forRow: storyIndex!, inSection: 0)
+        let itemIndex = self.discoverItems.indexOf({$0.id == storyId})
+        let indexPath = NSIndexPath(forRow: itemIndex!, inSection: 0)
         let cellDataModel = self.storyActiveModel.cellData(indexPath)
         self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
         self.storyDataSource.reloadTable()

@@ -7,6 +7,7 @@
 //
 
 import Tailor
+import RealmSwift
 
 public enum StoryPointKind: String {
     case Audio = "audio"
@@ -23,11 +24,13 @@ class StoryPoint: Model {
     dynamic var kind = ""
     dynamic var caption = ""
     dynamic var text = ""
+    var discoverItem: DiscoverItem? {
+        return self.linkingObjects(DiscoverItem.self, forProperty: "storyPoint").first
+    }
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
         
-        print(map)
         self.id <- map.property("id")
         self.user <- map.relationOrNil("user")
         self.location <- map.relationOrNil("location")

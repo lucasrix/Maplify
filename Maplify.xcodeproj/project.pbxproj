@@ -134,6 +134,7 @@
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverListModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverListModelManager.swift */; };
+		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
 		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
 		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
@@ -299,6 +300,7 @@
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverListModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverListModelManager.swift; sourceTree = "<group>"; };
+		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
 		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
@@ -835,6 +837,7 @@
 			isa = PBXGroup;
 			children = (
 				CD340CF91CBD200A00461015 /* DiscoverListModelManager.swift */,
+				CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */,
 			);
 			path = DiscoverList;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
+				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,

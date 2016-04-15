@@ -6,19 +6,51 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class DiscoverListModelManager: ModelManager {
+import RealmSwift
+
+class DiscoverItemManager: ModelManager {
+    
     override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        var mutArray: [AnyObject] = []
+        return response
+    }
+    
+    class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int) {
+        let list: NSArray = discoverItems["discovered"] as! NSArray
+        var currentPosition = (pageNumber - 1) * itemsCountInPage
+        var savedItems: [AnyObject] = []
         
-        if let discoveredArray = response["discovered"] as? [AnyObject] {
-            for item in discoveredArray {
-                if item["type"] as! String == "StoryPoint" {
-                    mutArray.append(StoryPoint(item as! [String : AnyObject]))
-                } else if item["type"] as! String == "Story" {
-                    mutArray.append(Story(item as! [String : AnyObject]))
-                }
+        for item in list {
+            let discoverItem = DiscoverItem()
+            if item["type"] as! String == String(StoryPoint) {
+                let dict = item as! [String: AnyObject]
+                let storyPoint = StoryPoint(dict)
+                StoryPointManager.saveStoryPoint(storyPoint)
+                discoverItem.storyPoint = storyPoint
+            } else if item["type"] as! String == String(Story) {
+                let dict = item as! [String: AnyObject]
+                let story = Story(dict)
+                StoryManager.saveStory(story)
+                discoverItem.story = story
             }
+            
+            discoverItem.nearMePosition = currentPosition
+            discoverItem.id = currentPosition
+            DiscoverItemManager.saveItem(discoverItem)
+            
+            currentPosition += 1
         }
-        return mutArray
+        
+        let realm = try! Realm()
+        let www = realm.objects(DiscoverItem)
+        print(www)
+    }
+    
+    class func saveItem(item: DiscoverItem) {
+        let realm = try! Realm()
+        
+        let recordExists = (realm.objectForPrimaryKey(DiscoverItem.self, key: item.id) != nil)
+        try! realm.write {
+            realm.add(item, update: recordExists)
+        }
     }
 }

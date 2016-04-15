@@ -37,14 +37,15 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     override func configure(cellData: CSCellData) {
         self.cellData = cellData
         self.delegate = cellData.delegate as! DiscoverStoryCellDelegate
-        let story = cellData.model as! Story
-        self.storyId = story.id
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.storyId = story!.id
         
         self.addShadow()
-        self.populateUserViews(story)
-        self.populateStoryInfoViews(story)
+        self.populateUserViews(story!)
+        self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
-        self.setupCollectionView(story)
+        self.setupCollectionView(story!)
         self.setupSwipe()
     }
     

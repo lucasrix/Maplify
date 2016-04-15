@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupFabric()
         self.setupGoogleServices()
         FacebookHelper.setupFacebook(application, didFinishLaunchingWithOptions: launchOptions)
+        print(ConfigHepler.databasePath())
         return true
     }
     

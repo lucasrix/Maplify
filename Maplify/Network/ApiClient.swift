@@ -226,7 +226,7 @@ class ApiClient {
                       "location[longitude]": longitude
                       ]
         
-        self.getRequest("discover", params: params, manager: DiscoverListModelManager(), success: success, failure: failure)
+        self.getRequest("discover", params: params, manager: DiscoverItemManager(), success: success, failure: failure)
     }
 }
 

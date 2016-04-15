@@ -21,6 +21,20 @@ class StoryPointManager: ModelManager {
         }
     }
     
+    class func saveStoryPointsAndReturn(storyPoints: [StoryPoint]!) -> [StoryPoint] {
+        var items: [StoryPoint] = []
+        for storyPoint in storyPoints {
+            self.saveStoryPoint(storyPoint)
+            items.append(self.find(storyPoint.id))
+        }
+        return items
+    }
+    
+    class func saveStoryPointAndReturn(storyPoint: StoryPoint!) -> StoryPoint {
+        self.saveStoryPoint(storyPoint)
+        return self.find(storyPoint.id)
+    }
+    
     class func saveStoryPoint(storyPoint: StoryPoint) {
         let realm = try! Realm()
 

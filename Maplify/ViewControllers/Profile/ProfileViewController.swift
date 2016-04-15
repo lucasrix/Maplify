@@ -44,20 +44,24 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
         self.setup()
     }
     
-    // MARK: - setup
-    func setup() {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadItemFromDB()
-        self.setupNavigationBar()
         self.setupLabels()
         self.setupButtons()
         self.setupImage()
+    }
+    
+    // MARK: - setup
+    func setup() {
+        self.setupNavigationBar()
     }
     
     func setupNavigationBar() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0
-
     }
     
     override func navigationBarColor() -> UIColor {

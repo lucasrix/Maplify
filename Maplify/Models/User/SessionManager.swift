@@ -21,7 +21,7 @@ class SessionManager: ModelManager {
     
     class func saveUser(user: User) {
         let realm = try! Realm()
-
+        
         let recordExists = (realm.objectForPrimaryKey(User.self, key: user.id) != nil)
         try! realm.write {
             realm.add(user, update: recordExists)
@@ -31,6 +31,7 @@ class SessionManager: ModelManager {
     class func saveCurrentUser(user: User) {
         let realm = try! Realm()
         try! realm.write {
+            realm.delete(realm.objects(CurrentUser))
             let currentUser = realm.create(CurrentUser.self, value: user, update: false)
             realm.add(currentUser)
         }

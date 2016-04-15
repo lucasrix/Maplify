@@ -155,8 +155,8 @@ class ApiClient {
         self.postRequest("auth/provider_sessions", params:params , data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
-    func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
-        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
+    func updateProfile(user: User, success: successClosure!, failure: failureClosure!) {
+        let params = ["city": user.profile.city, "url": user.profile.url, "about": user.profile.about, "first_name": user.profile.firstName, "last_name": user.profile.lastName, "email": user.email]
         self.putRequest("profile", params: params, manager: ProfileManager(), success: success, failure: failure)
     }
     

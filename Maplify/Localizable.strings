@@ -50,6 +50,7 @@
 "Controller.RecommendedSettings.Title" = "Recommended Settings";
 "Controller.EditPost.Title" = "Edit Post";
 "Controller.Profile.Title" = "Profile";
+"Controller.EditProfile" = "Edit Profile";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -127,3 +128,5 @@
 "Error.EnterName" = "Please enter your name.";
 "Error.InvalidPassword" = "Password must be at least 6 characters.";
 "Error.EmptyFirstName" = "First Name can't be blank";
+"Error.InvalidFirstName" = "Enter First Name and/or Last Name";
+"Error.EnterValidEmail" = "Enter valid email address";

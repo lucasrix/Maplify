@@ -125,7 +125,7 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
                 self?.hideProgressHUD()
                 SessionManager.saveCurrentUser((self?.user)!)
                 let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0 , longitude: DefaultLocation.washingtonDC.1)
-                SessionHelper.sharedManager.updateUserLastLocationIfNeeded(defaultLocation)
+                SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(defaultLocation)
                 self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in

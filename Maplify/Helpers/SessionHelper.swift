@@ -11,7 +11,7 @@ import RealmSwift
 import CoreLocation
 
 class SessionHelper {
-    static let sharedManager = SessionHelper()
+    static let sharedHelper = SessionHelper()
     
     // MARK: - app launch management
     func trackUserAppLaunch() {
@@ -46,7 +46,7 @@ class SessionHelper {
         return (dictionary != nil) ? dictionary : [NSObject : AnyObject]()
     }
     
-    func isSesstionTokenExists() -> Bool {
+    func isSessionTokenExists() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(Network.isUserLogin)
     }
     

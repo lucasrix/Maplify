@@ -83,7 +83,6 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
             self.editButton.layer.borderColor = UIColor.whiteColor().CGColor
             self.editButton.layer.borderWidth = kProfileButtonBorderWidth
             self.editButton.layer.cornerRadius = CornerRadius.defaultRadius
-
         } else {
             self.followButton.hidden = false
             self.followButton.layer.borderColor = UIColor.whiteColor().CGColor
@@ -129,7 +128,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     }
     
     @IBAction func editButtonTapped(sender: AnyObject) {
-        //TODO: -
+        self.routesOpenEditProfileController(self.profileId)
     }
     
     // MARK: - TTTAttributedLabelDelegate

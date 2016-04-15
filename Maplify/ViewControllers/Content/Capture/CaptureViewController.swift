@@ -47,7 +47,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
-        self.setupMap(SessionHelper.sharedManager.userLastLocation())
+        self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
     }
@@ -72,10 +72,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
 
     func checkLocationEnabled() {
-        if SessionHelper.sharedManager.locationEnabled() {
+        if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
-                    SessionHelper.sharedManager.updateUserLastLocationIfNeeded(location)
+                    SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
                     self?.setupMap(location)
                 }
             }

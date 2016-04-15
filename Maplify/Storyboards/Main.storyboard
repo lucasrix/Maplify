@@ -1767,6 +1767,25 @@
             </objects>
             <point key="canvasLocation" x="2271.5" y="1972.5"/>
         </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="syU-eT-VwG">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileController" id="Vbw-xM-rxS" customClass="EditProfileViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hd5-CN-aec"/>
+                        <viewControllerLayoutGuide type="bottom" id="S4v-og-ZLg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F8v-a8-dfq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3GA-3A-NAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708.5" y="1966.5"/>
+        </scene>
         <!--Story Point Creation Popup View Controller-->
         <scene sceneID="jQo-hW-7kB">
             <objects>
@@ -2486,7 +2505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPI-KT-ZcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2708.5" y="1228.5"/>
+            <point key="canvasLocation" x="2708.5" y="1205.5"/>
         </scene>
     </scenes>
     <resources>

@@ -12,7 +12,7 @@ class RootViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if SessionHelper.sharedManager.isSesstionTokenExists() {
+        if SessionHelper.sharedHelper.isSessionTokenExists() {
             self.routesSetContentController()
         } else {
             self.routesSetLandingController()

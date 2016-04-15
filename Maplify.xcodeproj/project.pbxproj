@@ -47,6 +47,7 @@
 		85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159C1CBE8D710041182F /* PrivateStatsView.xib */; };
 		85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9159E1CBE93220041182F /* PublicStatsView.swift */; };
 		85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915A01CBE93BA0041182F /* PrivateStatsView.swift */; };
+		85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
@@ -209,6 +210,7 @@
 		85E9159C1CBE8D710041182F /* PrivateStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateStatsView.xib; sourceTree = "<group>"; };
 		85E9159E1CBE93220041182F /* PublicStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicStatsView.swift; sourceTree = "<group>"; };
 		85E915A01CBE93BA0041182F /* PrivateStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateStatsView.swift; sourceTree = "<group>"; };
+		85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesHelper.swift; sourceTree = "<group>"; };
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 			children = (
 				85E915991CBE8BD60041182F /* StatsViews */,
 				85E915971CBD3DC10041182F /* ProfileViewController.swift */,
+				85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1083,6 +1086,7 @@
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
 				CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */,
 				85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */,
+				85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
 				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,

@@ -26,7 +26,7 @@ class ApiClient {
     }
     
     private func baseRequest(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
@@ -34,7 +34,7 @@ class ApiClient {
     }
     
     private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
             multipartFormData: { (multipartFormData) -> () in
@@ -69,7 +69,7 @@ class ApiClient {
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
-            SessionHelper.sharedManager.setSessionData(headersDictionary)
+            SessionHelper.sharedHelper.setSessionData(headersDictionary)
         }
         
         var payload = data.jsonDictionary()

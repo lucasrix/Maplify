@@ -60,6 +60,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
+    func routesOpenEditProfileController(profileId: Int) {
+        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
+        profileViewController.profileId = profileId
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
     func routesOpenStoryPointEditController(storyPointId: Int, storyPointUpdateHandler: () -> ()) {
         let storyPointEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditController) as! StoryPointEditViewController
         storyPointEditViewController.storyPointId = storyPointId

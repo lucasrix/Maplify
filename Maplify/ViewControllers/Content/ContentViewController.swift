@@ -45,7 +45,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
         
-        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController)
+        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
+        discoverController.discoverShowProfileClosure = { (userId) in
+            self.routesOpenProfileController(userId)
+        }
         self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
 
         self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)

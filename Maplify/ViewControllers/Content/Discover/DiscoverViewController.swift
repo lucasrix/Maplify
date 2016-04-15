@@ -33,6 +33,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     var storyActiveModel = CSActiveModel()
     var storyPoints: [StoryPoint]! = nil
     var stories: [Story]! = nil
+    var discoverShowProfileClosure: ((userId: Int) -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -166,7 +167,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func profileImageTapped(userId: Int) {
-        self.routesOpenProfileController(userId)
+        self.discoverShowProfileClosure(userId: userId)
     }
 
     // MARK: - DiscoverStoryCellDelegate
@@ -187,7 +188,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func storyProfileImageTapped(userId: Int) {
-        self.routesOpenProfileController(userId)
+        self.discoverShowProfileClosure(userId: userId)
     }
 
     // MARK: - ErrorHandlingProtocol

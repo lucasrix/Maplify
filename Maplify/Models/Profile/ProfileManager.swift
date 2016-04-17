@@ -15,7 +15,7 @@ class ProfileManager: ModelManager {
         return Profile(dictionary)
     }
     
-    func saveProfile(profile: Profile) {
+    class func saveProfile(profile: Profile) {
         let realm = try! Realm()
         
         let recordExists = (realm.objectForPrimaryKey(Profile.self, key: profile.id) != nil)

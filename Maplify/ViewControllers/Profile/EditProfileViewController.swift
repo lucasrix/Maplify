@@ -121,18 +121,19 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
         profile.url = self.urlTextField.text!
         profile.city = self.homeCityTextField.text!
         profile.about = self.aboutTextView.text
-        
-        let user = User()
+        self.user.profile = profile
         
         if firstNameValid && emailValid! {
-            user.email = self.emailTextField.text!
+            self.user.email = self.emailTextField.text!
             profile.firstName = self.firstNameTextField.text!
             self.navigationController?.popViewControllerAnimated(true)
 
             self.showProgressHUD()
             ApiClient.sharedClient.updateProfile(self.user,
                    success: { [weak self] (response) in
-                        SessionManager.saveCurrentUser((self?.user)!)
+                    let profile = response as! Profile
+                    self?.user.profile = profile
+                    ProfileManager.saveProfile(profile)
                         self?.hideProgressHUD()
                         self?.navigationController?.popViewControllerAnimated(true)
                    },

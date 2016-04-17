@@ -16,7 +16,7 @@ let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
 let kShadowYOffset: CGFloat = -3
 
-class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
+class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -36,6 +36,10 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     
     var profileId: Int = 0
     var user: User! = nil
+    var imagePicker: UIImagePickerController! = nil
+    var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
+    var publicStatsView: PublicStatsView! = nil
+    var privateStatsView: PrivateStatsView! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -47,21 +51,48 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadItemFromDB()
         self.setupLabels()
         self.setupButtons()
-        self.setupImage()
+        self.setupImageView()
     }
     
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.loadItemFromDB()
+        self.setupDetailStatsView()
     }
     
     func setupNavigationBar() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0
+    }
+    
+    func setupDetailStatsView() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.setupPrivateStatsView()
+        } else {
+            self.setupPublicStatsView()
+        }
+    }
+    
+    func setupPublicStatsView() {
+        self.publicStatsView = NSBundle.mainBundle().loadNibNamed(String(PublicStatsView), owner: self, options: nil).first as? PublicStatsView
+        self.publicStatsView.frame = self.statsParentView.bounds
+        self.publicStatsView.storiesLabel.text = NSLocalizedString("Label.Stories", comment: String())
+        self.publicStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
+        self.publicStatsView.addSubview(self.publicStatsView)
+    }
+    
+    func setupPrivateStatsView() {
+        self.privateStatsView = NSBundle.mainBundle().loadNibNamed(String(PrivateStatsView), owner: self, options: nil).first as? PrivateStatsView
+        self.privateStatsView.frame = self.statsParentView.bounds
+        self.publicStatsView.storiesLabel.text = NSLocalizedString("Label.Stories", comment: String())
+        self.privateStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
+        self.privateStatsView.followersLabel.text = NSLocalizedString("Label.Followers", comment: String())
+        self.privateStatsView.followinfLabel.text = NSLocalizedString("Label.Following", comment: String())
+        self.statsParentView.addSubview(self.privateStatsView)
     }
     
     override func navigationBarColor() -> UIColor {
@@ -106,10 +137,15 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
         self.expandButton.hidden = !(self.user.profile.about.length > 0)
     }
     
-    func setupImage() {
+    func setupImageView() {
         let url = NSURL(string: self.user.profile.photo)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, completed: nil)
+        
+        if self.profileId == SessionManager.currentUser().id {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.imageViewDidTap))
+            self.userImageView.addGestureRecognizer(tapGesture)
+        }
     }
     
     func loadItemFromDB() {
@@ -121,6 +157,37 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     }
     
     // MARK: - actions
+    func imageViewDidTap() {
+        self.showPhotoActionSheet()
+    }
+    
+    func showPhotoActionSheet() {
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let message = NSLocalizedString("Alert.SetPhoto", comment: String())
+        let existingPhoto = NSLocalizedString("Button.ExistingPhoto", comment: String())
+        let takePhoto = NSLocalizedString("Button.TakePhoto", comment: String())
+        
+        self.showActionSheet(nil, message: message, cancel: cancel, destructive: nil, buttons: [existingPhoto, takePhoto],
+                             handle: { [weak self] (buttonIndex) -> () in
+                                if ActionSheetButtonType(rawValue: buttonIndex) == .ExistingPhotoType {
+                                    self?.showImagePicker(.PhotoLibrary)
+                                } else if ActionSheetButtonType(rawValue: buttonIndex) == .TakeNewPhotoType {
+                                    self?.showImagePicker(.Camera)
+                                }
+            })
+    }
+    
+    func showImagePicker(sourceType: UIImagePickerControllerSourceType) {
+        if (self.imagePicker == nil) {
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.allowsEditing = true
+        }
+        self.imagePicker.sourceType = sourceType
+        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+    }
+
+    
     @IBAction func expandButtonTapped(sender: AnyObject) {
         self.expandButton.selected = !self.expandButton.selected
         if self.expandButton.selected {
@@ -142,6 +209,14 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate {
     
     @IBAction func editButtonTapped(sender: AnyObject) {
         self.routesOpenEditProfileController(self.profileId)
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
+            self.userImageView.image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - TTTAttributedLabelDelegate

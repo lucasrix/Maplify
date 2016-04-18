@@ -97,6 +97,7 @@ class InputTextView: UIView, UITextViewDelegate {
     }
     
     private func updateViewWithAnimation(highlitedImageShow: Bool, errorShow: Bool, separatrorColor: UIColor) {
+        self.delegate?.contentSizeWillChange?(self.textView.contentSize)
         UIView.animateWithDuration(kSeparatorLineViewAnimationDuration) { () -> () in
             self.lineView.backgroundColor = separatrorColor
             
@@ -154,4 +155,5 @@ class InputTextView: UIView, UITextViewDelegate {
     optional func textEditingEnd(inputTextView: InputTextView)
     optional func textEditingChanged(inputTextView: InputTextView)
     optional func textDidPressReturnKey(inputTextView: InputTextView)
+    optional func contentSizeWillChange(contentSize: CGSize)
 }

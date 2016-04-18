@@ -181,7 +181,7 @@ class ApiClient {
     }
     
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
-        self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
+        self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
     func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {

@@ -41,6 +41,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         super.viewWillAppear(animated)
         
         self.setupNavigationBar()
+        self.loadItemsFromDB()
     }
     
     // MARK: - setup
@@ -48,7 +49,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
         self.setupMap(SessionHelper.sharedHelper.userLastLocation())
-        self.loadItemsFromDB()
         self.setupAddStoryPointImageView()
     }
     

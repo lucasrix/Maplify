@@ -24,11 +24,8 @@ class StoryPointManager: ModelManager {
     class func saveStoryPoint(storyPoint: StoryPoint) {
         let realm = try! Realm()
 
-        SessionManager.saveUser(storyPoint.user)
-
-        let recordExists = (realm.objectForPrimaryKey(StoryPoint.self, key: storyPoint.id) != nil)
         try! realm.write {
-            realm.add(storyPoint, update: recordExists)
+            realm.add(storyPoint, update: true)
         }
     }
     

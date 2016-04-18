@@ -131,11 +131,16 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         self.hideKeyboard()
-        self.showProgressHUD()
-        if self.storyPointKind == StoryPointKind.Text {
-            self.remotePostStoryPoint(0)
+        
+        if self.placeOrLocationTextField.text?.length > 0 {
+            self.showProgressHUD()
+            if self.storyPointKind == StoryPointKind.Text {
+                self.remotePostStoryPoint(0)
+            } else {
+                self.remotePostAttachment()
+            }
         } else {
-            self.remotePostAttachment()
+            self.showMessageAlert(nil, message: NSLocalizedString("Alert.AddPlaceOrLocation", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     

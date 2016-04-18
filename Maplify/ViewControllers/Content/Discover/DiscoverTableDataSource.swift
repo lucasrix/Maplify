@@ -9,18 +9,6 @@
 import UIKit
 
 class DiscoverTableDataSource: CSBaseTableDataSource {
-    var storyCell = DiscoverStoryCell()
-    var storyPointCell = DiscoverStoryPointCell()
-    
-    override init(tableView: UITableView, activeModel: CSActiveModel, delegate: AnyObject) {
-        super.init(tableView: tableView, activeModel: activeModel, delegate: delegate)
-        
-        var token: dispatch_once_t = 0
-        dispatch_once(&token) {
-            self.storyCell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell)) as! DiscoverStoryCell
-            self.storyPointCell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryPointCell)) as! DiscoverStoryPointCell
-        }
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellData = self.activeModel.cellData(indexPath)
@@ -42,13 +30,11 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         let model = cellData.model
         let item = model as! DiscoverItem
         var itemHeight: CGFloat = 0
+        
         if item.type == DiscoverItemType.StoryPoint.rawValue {
-            self.storyPointCell.configure(cellData)
-            itemHeight = self.heightForCell(self.storyPointCell, bounds: tableView.bounds)
+            itemHeight = DiscoverStoryPointCell.contentSize(cellData).height
         } else if item.type ==  DiscoverItemType.Story.rawValue {
-            self.storyCell.configure(cellData)
-            itemHeight = self.heightForCell(self.storyCell, bounds: tableView.bounds)
-            itemHeight += self.storyCell.collectionView.contentSize.height
+            itemHeight = 300
         }
         return itemHeight
     }

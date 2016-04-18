@@ -55,7 +55,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.loadRemoteData()
+        self.loadRemoteData()
     }
     
     deinit {
@@ -141,7 +141,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         } else {
             self.discoverItems = Array(allItems)
         }
-        self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self)
+        self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
     }
@@ -253,6 +253,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverStoryPointCellDelegate
     func reloadTable(storyPointId: Int) {
+        print(storyPointId)
         let storyPointIndex = self.discoverItems.indexOf({$0.id == storyPointId})
         let indexPath = NSIndexPath(forRow: storyPointIndex!, inSection: 0)
         let cellDataModel = self.storyActiveModel.cellData(indexPath)

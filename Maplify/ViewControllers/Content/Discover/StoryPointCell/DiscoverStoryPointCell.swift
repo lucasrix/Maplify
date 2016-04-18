@@ -16,6 +16,12 @@ let kStoryPointDescriptionClosed: Int = 1
 let kShadowOpacity: Float = 0.15
 let kShadowRadius: CGFloat = 3
 
+let kTopInfoViewHeight: CGFloat = 126
+let kBottomInfoView: CGFloat = 70
+let kStoryPointTextFontSize: CGFloat = 14
+let kStoryPointTextHorizontalMargin: CGFloat = 16
+let kStoryPointTextVerticalMargin: CGFloat = 13
+
 class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -32,6 +38,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
@@ -43,7 +50,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
         let item = cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
-        self.storyPointId = storyPoint!.id
+        self.storyPointId = item.id
         
         self.addShadow()
         self.populateUserViews(storyPoint!)
@@ -124,7 +131,9 @@ class DiscoverStoryPointCell: CSTableViewCell {
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
+            self.textHeightConstraint.constant = DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: cellData.boundingSize.width)
         } else {
+            self.textHeightConstraint.constant = kStoryPointCellDescriptionDefaultHeight
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
@@ -156,19 +165,31 @@ class DiscoverStoryPointCell: CSTableViewCell {
         return textSize.height <= kStoryPointCellDescriptionDefaultHeight
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    // MARK: - content height
+    class func contentSize(cellData: CSCellData) -> CGSize {
+        let contentWidth: CGFloat = cellData.boundingSize.width
+        var contentHeight: CGFloat = kTopInfoViewHeight + kBottomInfoView
         
-        // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
-        // need to use to set the preferredMaxLayoutWidth below.
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        if storyPoint?.kind != StoryPointKind.Text.rawValue {
+            contentHeight += cellData.boundingSize.width
+        }
+
+        if cellData.selected {
+            contentHeight += DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: contentWidth)
+        } else {
+            contentHeight += kStoryPointCellDescriptionDefaultHeight
+        }
         
-        // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
-        // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
-        self.usernameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.usernameLabel.frame)
-        self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
-        self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
+        contentHeight += kStoryPointTextVerticalMargin
+        return CGSizeMake(contentWidth, contentHeight)
+    }
+    
+    class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
+        let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
+        let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
+        return text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height
     }
 }
 

@@ -27,10 +27,14 @@ class StoryPointDetailCell: CSCollectionViewCell {
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            let attachment = storyPoint.attachment as Attachment
-            attachmentUrl = NSURL(string: attachment.file_url)
+            if storyPoint.attachment != nil {
+                let attachment = storyPoint.attachment as Attachment
+                attachmentUrl = NSURL(string: attachment.file_url)
+            }
         } else {
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+            if storyPoint.location != nil {
+                attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+            }
         }
         self.backgroundImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if !(error != nil) {

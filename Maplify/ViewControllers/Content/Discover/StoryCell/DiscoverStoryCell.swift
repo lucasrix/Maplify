@@ -42,11 +42,20 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.storyId = story!.id
         
         self.addShadow()
-        self.setupCollectionView(story!)
+        self.setupCollectionView(cellData)
         self.populateUserViews(story!)
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.setupSwipe()
+        
+        self.storyPointDataSource.reloadCollectionView()
+        self.collectionView.layoutIfNeeded()
+        
+        let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize()
+        print(contentSize)
+        print(self.frame.size)
+        
+        cellData.contentSize = self.frame.size
     }
     
     func addShadow() {
@@ -94,17 +103,19 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story!.storyDescription)
     }
     
-    func setupCollectionView(story: Story) {
-        self.updateCollectionViewData(story)
+    func setupCollectionView(cellData: CSCellData) {
+        self.updateCollectionViewData(cellData)
     }
     
-    func updateCollectionViewData(story: Story) {
-        let storyPoints: [StoryPoint] = Array(story.storyPoints)
-        let itemsToShow: [AnyObject] = [story] + storyPoints
+    func updateCollectionViewData(cellData: CSCellData) {
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        let storyPoints: [StoryPoint] = Array(story!.storyPoints)
+        let itemsToShow: [AnyObject] = [story!] + storyPoints
         self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyPointDataSource = DiscoverStoryCollectionDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
-        
-        let itemsOverlimit = story.storyPoints.count - self.numberOfStoryPointInCollectionView()
+    
+        let itemsOverlimit = story!.storyPoints.count - self.numberOfStoryPointInCollectionView()
         self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
     }
@@ -143,21 +154,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
-        // need to use to set the preferredMaxLayoutWidth below.
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
-        
-        // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
-        // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
-        self.userNameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.userNameLabel.frame)
-        self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
-        self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
     }
     
     // MARK: - CSBaseCollectionDataSourceDelegate

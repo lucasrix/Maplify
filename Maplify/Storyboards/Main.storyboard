@@ -460,6 +460,9 @@
                                                         <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-7J-ggn">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="246" id="RBd-5i-Ude"/>
+                                                            </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="kFg-LF-9Jj">
                                                                 <size key="itemSize" width="150" height="150"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -836,11 +839,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0Z-Kz-zG9">
                                                     <rect key="frame" x="0.0" y="126" width="375" height="375"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-WL-gqf">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-WL-gqf">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="375" id="iW3-Ak-3O6"/>
-                                                            </constraints>
                                                         </imageView>
                                                         <view alpha="0.23000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSC-qw-JMC">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -863,6 +863,7 @@
                                                         <constraint firstItem="Hbe-WL-gqf" firstAttribute="top" secondItem="f0Z-Kz-zG9" secondAttribute="top" id="jKL-Sp-obL"/>
                                                         <constraint firstAttribute="bottom" secondItem="PSC-qw-JMC" secondAttribute="bottom" id="nhU-Ac-mGm"/>
                                                         <constraint firstItem="bCx-5y-hAi" firstAttribute="centerX" secondItem="f0Z-Kz-zG9" secondAttribute="centerX" id="nig-fJ-Vh6"/>
+                                                        <constraint firstAttribute="height" constant="375" id="qr6-vp-KWV"/>
                                                         <constraint firstAttribute="trailing" secondItem="Hbe-WL-gqf" secondAttribute="trailing" id="wLb-1i-DvU"/>
                                                         <constraint firstItem="PSC-qw-JMC" firstAttribute="top" secondItem="f0Z-Kz-zG9" secondAttribute="top" id="ypg-Tl-dEk"/>
                                                         <constraint firstAttribute="trailing" secondItem="PSC-qw-JMC" secondAttribute="trailing" id="yrk-pr-CPH"/>
@@ -873,6 +874,9 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="Bxi-pv-mIf">
                                                             <rect key="frame" x="16" y="13" width="343" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="17" id="QHx-wo-i6y"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -978,7 +982,7 @@
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
-                                            <outlet property="attachmentHeightConstraint" destination="iW3-Ak-3O6" id="cl5-ev-xjc"/>
+                                            <outlet property="attachmentHeightConstraint" destination="qr6-vp-KWV" id="uSh-FD-m3K"/>
                                             <outlet property="attachmentImageView" destination="Hbe-WL-gqf" id="1Mo-W7-vDS"/>
                                             <outlet property="backShadowView" destination="DRS-53-3N7" id="ISg-2I-CgT"/>
                                             <outlet property="captionLabel" destination="F94-gn-wch" id="3KL-ac-OIB"/>
@@ -990,6 +994,7 @@
                                             <outlet property="storyPointAddressImageView" destination="HHW-xs-3dF" id="z05-bd-ei5"/>
                                             <outlet property="storyPointAddressLabel" destination="4dr-Fd-k9M" id="gAs-0W-pKe"/>
                                             <outlet property="storyPointKindImageView" destination="bCx-5y-hAi" id="jbg-3x-7kF"/>
+                                            <outlet property="textHeightConstraint" destination="QHx-wo-i6y" id="Oja-8f-hOr"/>
                                             <outlet property="thumbImageView" destination="vmo-t5-Dcg" id="vV4-Lo-6fc"/>
                                             <outlet property="userAddressLabel" destination="3wB-ew-EK6" id="A00-dw-jLy"/>
                                             <outlet property="usernameLabel" destination="T4f-qU-DZI" id="2Sy-7v-vQu"/>

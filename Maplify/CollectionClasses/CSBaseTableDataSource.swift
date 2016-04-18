@@ -37,7 +37,7 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3//self.activeModel.numberOfItems(section)
+        return self.activeModel.numberOfItems(section)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

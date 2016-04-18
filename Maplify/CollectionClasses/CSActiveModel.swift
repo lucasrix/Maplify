@@ -27,7 +27,7 @@ class CSActiveModel {
         
         var array = self.sectionsArray?[section]
         
-        var cellData = CSCellData()
+        let cellData = CSCellData()
         cellData.model = model
         cellData.cellIdentifier = cellIdentifier
         cellData.sectionTitle = sectionTitle
@@ -39,14 +39,19 @@ class CSActiveModel {
     }
     
     func addItems(array: [AnyObject], cellIdentifier: String, sectionTitle: String!, delegate: AnyObject!) {
+        self.addItems(array, cellIdentifier: cellIdentifier, sectionTitle: sectionTitle, delegate: delegate, boundingSize: CGSizeZero)
+    }
+    
+    func addItems(array: [AnyObject], cellIdentifier: String, sectionTitle: String!, delegate: AnyObject!, boundingSize: CGSize) {
         var dataArray = [CSCellData]()
         
         for model in array {
-            var cellData = CSCellData()
+            let cellData = CSCellData()
             cellData.model = model
             cellData.cellIdentifier = cellIdentifier
             cellData.sectionTitle = sectionTitle
             cellData.delegate = delegate
+            cellData.boundingSize = boundingSize
             dataArray.append(cellData)
         }
         
@@ -65,7 +70,7 @@ class CSActiveModel {
             
             var rowCount = 0
             for item in array {
-                var cellData = CSCellData()
+                let cellData = CSCellData()
                 cellData.model = item
                 cellData.cellIdentifier = cellIdentifier
                 cellData.sectionTitle = sectionTitle
@@ -111,8 +116,8 @@ class CSActiveModel {
         return (self.numberOfSections() > section) ? (self.sectionsArray?[section].count)! : 0
     }
     
-    func cellData(indexPath: NSIndexPath) -> CSCellData {
-        return self.sectionsArray![indexPath.section][indexPath.row]
+    func cellData(indexPath: NSIndexPath) -> CSCellData! {
+        return (self.sectionsArray![indexPath.section].count > 0) ? self.sectionsArray![indexPath.section][indexPath.row] : nil
     }
     
     func cellIdentifier(indexPath: NSIndexPath) -> String {
@@ -156,7 +161,7 @@ class CSActiveModel {
     
     private func performSelection(selection: Bool) {
         for dataArray in self.sectionsArray! {
-            for var cellData in dataArray {
+            for cellData in dataArray {
                 cellData.selected = true
             }
         }
@@ -179,7 +184,7 @@ class CSActiveModel {
     }
     
     func provideSelection(indexPath: NSIndexPath) {
-        var cellData = self.sectionsArray![indexPath.section][indexPath.row]
+        let cellData = self.sectionsArray![indexPath.section][indexPath.row]
         cellData.selected = !cellData.selected
     }
     

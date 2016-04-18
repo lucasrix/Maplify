@@ -47,15 +47,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.setupSwipe()
-        
-        self.storyPointDataSource.reloadCollectionView()
-        self.collectionView.layoutIfNeeded()
-        
-        let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize()
-        print(contentSize)
-        print(self.frame.size)
-        
-        cellData.contentSize = self.frame.size
     }
     
     func addShadow() {
@@ -112,9 +103,11 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let story = item.story
         let storyPoints: [StoryPoint] = Array(story!.storyPoints)
         let itemsToShow: [AnyObject] = [story!] + storyPoints
+        self.storyPointActiveModel.removeData()
         self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyPointDataSource = DiscoverStoryCollectionDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
-    
+        self.storyPointDataSource.reloadCollectionView()
+        
         let itemsOverlimit = story!.storyPoints.count - self.numberOfStoryPointInCollectionView()
         self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
@@ -164,6 +157,55 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             let item = cellData.model as! DiscoverItem
             let story = item.story
             self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story!.title)
+        }
+    }
+    
+    // MARK: - content height
+    class func contentSize(cellData: CSCellData) -> CGSize {
+        let contentWidth: CGFloat = cellData.boundingSize.width
+        var contentHeight: CGFloat = kTopInfoViewHeight + kBottomInfoView
+        
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        
+        let cellWidth = DiscoverStoryCell.cellWidth((story?.storyPoints.count)!)
+        let rowsCount = DiscoverStoryCell.itemsCountToShow((story?.storyPoints.count)! + 1).1        
+        contentHeight += (cellWidth * CGFloat(rowsCount))
+        
+        if cellData.selected {
+            contentHeight += DiscoverStoryCell.textDescriptionHeight((story?.storyDescription)!, width: contentWidth)
+        } else {
+            contentHeight += kStoryPointCellDescriptionDefaultHeight
+        }
+        
+        contentHeight += kStoryPointTextVerticalMargin
+        return CGSizeMake(contentWidth, contentHeight)
+    }
+    
+    class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
+        let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
+        let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
+        return text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height
+    }
+    
+    class  func cellWidth(itemsCount: Int) -> CGFloat {
+        let numberOfColumn = self.itemsCountToShow(itemsCount + 1).0 == kDiscoverStoryDataNumberOfItemsInColumnTwo ? kDiscoverStoryDataNumberOfItemsInColumnTwo : kDiscoverStoryDataNumberOfItemsInColumnThree
+        let totalCellsLayer: CGFloat = (CGFloat(numberOfColumn) - 1) * kDiscoverStoryDataSourceCellsLayerWidth
+        return (UIScreen.mainScreen().bounds.size.width - totalCellsLayer) / CGFloat(numberOfColumn)
+    }
+    
+    class func itemsCountToShow(itemsCount: Int) -> (Int, Int) {
+        switch itemsCount {
+        case 1:
+            return (kDiscoverStoryDataSourceItemsCountToShowOne, 1)
+        case 2:
+            return (kDiscoverStoryDataSourceItemsCountToShowTwo, 1)
+        case 3, 4, 5:
+            return (kDiscoverStoryDataSourceItemsCountToShowThree, 1)
+        case 6, 7, 8:
+            return (kDiscoverStoryDataSourceItemsCountToShowSix, 2)
+        default:
+            return (kDiscoverStoryDataSourceItemsCountToShowNine, 3)
         }
     }
 }

@@ -34,24 +34,8 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         if item.type == DiscoverItemType.StoryPoint.rawValue {
             itemHeight = DiscoverStoryPointCell.contentSize(cellData).height
         } else if item.type ==  DiscoverItemType.Story.rawValue {
-            itemHeight = 300
+            itemHeight = DiscoverStoryCell.contentSize(cellData).height
         }
         return itemHeight
     }
-    
-    func heightForCell(cell: CSTableViewCell, bounds: CGRect) -> CGFloat {
-        
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
-        
-        cell.bounds = CGRectMake(0.0, 0.0, CGRectGetWidth(bounds), CGRectGetHeight(cell.bounds));
-        
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        let height: CGFloat = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-        
-        return height
-    }
-
 }

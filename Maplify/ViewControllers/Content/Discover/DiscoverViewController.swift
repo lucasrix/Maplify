@@ -141,6 +141,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         } else {
             self.discoverItems = Array(allItems)
         }
+                
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()

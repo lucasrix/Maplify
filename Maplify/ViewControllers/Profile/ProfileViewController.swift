@@ -82,13 +82,13 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         self.publicStatsView.frame = self.statsParentView.bounds
         self.publicStatsView.storiesLabel.text = NSLocalizedString("Label.Stories", comment: String())
         self.publicStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
-        self.publicStatsView.addSubview(self.publicStatsView)
+        self.statsParentView.addSubview(self.publicStatsView)
     }
     
     func setupPrivateStatsView() {
         self.privateStatsView = NSBundle.mainBundle().loadNibNamed(String(PrivateStatsView), owner: self, options: nil).first as? PrivateStatsView
         self.privateStatsView.frame = self.statsParentView.bounds
-        self.publicStatsView.storiesLabel.text = NSLocalizedString("Label.Stories", comment: String())
+        self.privateStatsView.storiesLabel.text = NSLocalizedString("Label.Stories", comment: String())
         self.privateStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
         self.privateStatsView.followersLabel.text = NSLocalizedString("Label.Followers", comment: String())
         self.privateStatsView.followinfLabel.text = NSLocalizedString("Label.Following", comment: String())

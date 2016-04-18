@@ -10,6 +10,9 @@ import UIKit
 
 let kStoryDetailScrollViewExpandHeight: CGFloat = 44
 
+let kStoryPointDescriptionOpened: Int = 0
+let kStoryPointDescriptionClosed: Int = 1
+
 class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!

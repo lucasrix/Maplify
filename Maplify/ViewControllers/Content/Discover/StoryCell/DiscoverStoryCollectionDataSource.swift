@@ -14,12 +14,6 @@ let kDiscoverStoryDataSourceCellsLayerWidth: CGFloat = 1
 let kDiscoverStoryDataNumberOfItemsInColumnTwo = 2
 let kDiscoverStoryDataNumberOfItemsInColumnThree = 3
 
-let kDiscoverStoryDataSourceItemsCountToShowOne = 1
-let kDiscoverStoryDataSourceItemsCountToShowTwo = 2
-let kDiscoverStoryDataSourceItemsCountToShowThree = 3
-let kDiscoverStoryDataSourceItemsCountToShowSix = 6
-let kDiscoverStoryDataSourceItemsCountToShowNine = 9
-
 class DiscoverStoryCollectionDataSource: CSBaseCollectionDataSource {
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -27,7 +21,7 @@ class DiscoverStoryCollectionDataSource: CSBaseCollectionDataSource {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.itemsCountToShow(self.activeModel.numberOfItems(section))
+        return DiscoverStoryCell.itemsCountToShow(self.activeModel.numberOfItems(section)).0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -50,23 +44,8 @@ class DiscoverStoryCollectionDataSource: CSBaseCollectionDataSource {
     
     private  func cellWidth() -> CGFloat {
         let itemsAllCount = self.activeModel.numberOfItems(0)
-        let numberOfColumn = self.itemsCountToShow(itemsAllCount) == kDiscoverStoryDataNumberOfItemsInColumnTwo ? kDiscoverStoryDataNumberOfItemsInColumnTwo : kDiscoverStoryDataNumberOfItemsInColumnThree
+        let numberOfColumn = DiscoverStoryCell.itemsCountToShow(itemsAllCount).0 == kDiscoverStoryDataNumberOfItemsInColumnTwo ? kDiscoverStoryDataNumberOfItemsInColumnTwo : kDiscoverStoryDataNumberOfItemsInColumnThree
         let totalCellsLayer: CGFloat = (CGFloat(numberOfColumn) - 1) * kDiscoverStoryDataSourceCellsLayerWidth
         return (UIScreen.mainScreen().bounds.size.width - totalCellsLayer) / CGFloat(numberOfColumn)
-    }
-    
-    private func itemsCountToShow(itemsCount: Int) -> Int {
-        switch itemsCount {
-        case 1:
-            return kDiscoverStoryDataSourceItemsCountToShowOne
-        case 2:
-            return kDiscoverStoryDataSourceItemsCountToShowTwo
-        case 3, 4, 5:
-            return kDiscoverStoryDataSourceItemsCountToShowThree
-        case 6, 7, 8:
-            return kDiscoverStoryDataSourceItemsCountToShowSix
-        default:
-            return kDiscoverStoryDataSourceItemsCountToShowNine
-        }
     }
 }

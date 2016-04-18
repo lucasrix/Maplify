@@ -15,6 +15,10 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     var selectedIndex: Int = 0
     var pageViewController: StoryPageViewController! = nil
     var storyTitle = String()
+  
+    @IBOutlet weak var cont: UIView!
+    @IBOutlet weak var pageControlBackView: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -27,7 +31,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     func setup() {
         self.setupNavigationBar()
         self.setupPageIndicator()
-        self.setupPageController()        
+        self.setupPageController()
     }
     
     func setupNavigationBar() {
@@ -44,9 +48,14 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     
     func setupPageIndicator() {
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorTintColorAlpha)
-        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
-        pageControl.backgroundColor = UIColor.grapePurple()
+        pageControl.pageIndicatorTintColor = UIColor.clearColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.clearColor()
+        pageControl.backgroundColor = UIColor.whiteFour()
+        
+        self.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        self.pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorTintColorAlpha)
+        self.pageControl.backgroundColor = UIColor.clearColor()
+        self.pageControl.numberOfPages = self.storyPoints.count
     }
     
     func setupPageController() {
@@ -55,7 +64,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
         
         let startViewController = self.getItemController(self.selectedIndex)
         self.pageViewController.setViewControllers([startViewController!] , direction: .Forward, animated: true, completion: nil)
-        self.configureChildViewController(self.pageViewController, onView: self.view)
+        self.configureChildViewController(self.pageViewController, onView: self.cont)
     }
     
     // MARK: - navigation bar
@@ -103,6 +112,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        self.pageControl.currentPage = self.selectedIndex
         return self.selectedIndex
     }
 }

@@ -12,6 +12,16 @@ let kStoryCellDescriptionDefaultHeight: CGFloat = 17
 let kStoryDescriptionOpened: Int = 0
 let kStoryDescriptionClosed: Int = 1
 
+let kDiscoverStoryDataSourceItemsCountToShowOne = 1
+let kDiscoverStoryDataSourceItemsCountToShowTwo = 2
+let kDiscoverStoryDataSourceItemsCountToShowThree = 3
+let kDiscoverStoryDataSourceItemsCountToShowSix = 6
+let kDiscoverStoryDataSourceItemsCountToShowNine = 9
+
+let kDiscoverStoryDataSourceNumberOfRowsOne = 1
+let kDiscoverStoryDataSourceNumberOfRowsTwo = 2
+let kDiscoverStoryDataSourceNumberOfRowsThree = 3
+
 class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     @IBOutlet weak var thumbImageView: UIImageView!
@@ -197,15 +207,15 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     class func itemsCountToShow(itemsCount: Int) -> (Int, Int) {
         switch itemsCount {
         case 1:
-            return (kDiscoverStoryDataSourceItemsCountToShowOne, 1)
+            return (kDiscoverStoryDataSourceItemsCountToShowOne, kDiscoverStoryDataSourceNumberOfRowsOne)
         case 2:
-            return (kDiscoverStoryDataSourceItemsCountToShowTwo, 1)
+            return (kDiscoverStoryDataSourceItemsCountToShowTwo, kDiscoverStoryDataSourceNumberOfRowsOne)
         case 3, 4, 5:
-            return (kDiscoverStoryDataSourceItemsCountToShowThree, 1)
+            return (kDiscoverStoryDataSourceItemsCountToShowThree, kDiscoverStoryDataSourceNumberOfRowsOne)
         case 6, 7, 8:
-            return (kDiscoverStoryDataSourceItemsCountToShowSix, 2)
+            return (kDiscoverStoryDataSourceItemsCountToShowSix, kDiscoverStoryDataSourceNumberOfRowsTwo)
         default:
-            return (kDiscoverStoryDataSourceItemsCountToShowNine, 3)
+            return (kDiscoverStoryDataSourceItemsCountToShowNine, kDiscoverStoryDataSourceNumberOfRowsThree)
         }
     }
 }

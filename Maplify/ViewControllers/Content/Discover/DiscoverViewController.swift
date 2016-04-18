@@ -50,11 +50,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         super.viewDidLoad()
         
         self.loadItemsFromDB()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         self.loadRemoteData()
     }
     
@@ -72,7 +67,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupTableView()
+        self.setupTableView()        
     }
     
     func setupNavigationBar() {
@@ -88,6 +83,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func setupTableView() {
         self.setupPullToRefresh()
         self.setupInfinityScroll()
+        self.tableView.contentInset = UIEdgeInsetsZero
     }
     
     func setupPullToRefresh() {
@@ -141,7 +137,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         } else {
             self.discoverItems = Array(allItems)
         }
-                
+        
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
@@ -158,6 +154,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
                     self?.retrieveDiscoverList(location)
+                } else {
+                    self?.retrieveDiscoverList(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
                 }
             }
         } else {
@@ -179,6 +177,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.loadItemsFromDB()
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.tableView.ins_endInfinityScroll()
+                self?.tableView.ins_endPullToRefresh()
                 self?.requestState = RequestState.Ready
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }

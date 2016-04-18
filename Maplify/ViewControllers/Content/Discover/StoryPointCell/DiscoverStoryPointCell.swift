@@ -10,8 +10,6 @@ import UIKit
 import SDWebImage.UIImageView_WebCache
 
 let kStoryPointCellDescriptionDefaultHeight: CGFloat = 17
-let kStoryPointDescriptionOpened: Int = 0
-let kStoryPointDescriptionClosed: Int = 1
 
 let kShadowOpacity: Float = 0.15
 let kShadowRadius: CGFloat = 3
@@ -42,6 +40,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
+    var discoverItemId: Int = 0
     var storyPointId: Int = 0
     
     // MARK: - setup
@@ -50,7 +49,8 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
         let item = cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
-        self.storyPointId = item.id
+        self.discoverItemId = item.id
+        self.storyPointId = storyPoint!.id
         
         self.addShadow()
         self.populateUserViews(storyPoint!)
@@ -90,13 +90,14 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func populateAttachment(storyPoint: StoryPoint) {
         var attachmentUrl: NSURL! = nil
-        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
+        var placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
             attachmentUrl = storyPoint.attachment.file_url.url
         } else if storyPoint.kind == StoryPointKind.Text.rawValue {
             self.attachmentHeightConstraint.constant = 0.0
             attachmentUrl = nil
+            placeholderImage = nil
         } else {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
@@ -104,31 +105,31 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
                 self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
-                self?.populateKindImage(storyPoint)
             }
+            self?.populateKindImage(storyPoint)
         }
     }
     
     func populateKindImage(storyPoint: StoryPoint) {
         if storyPoint.kind == StoryPointKind.Text.rawValue {
-            self.storyPointKindImageView.image = UIImage()
+            self.storyPointKindImageView.image = nil
         } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            self.storyPointKindImageView.image = UIImage()
+            self.storyPointKindImageView.image = nil
         } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
         } else if storyPoint.kind == StoryPointKind.Video.rawValue {
             self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
         }
+        self.storyPointKindImageView.hidden = storyPoint.kind == StoryPointKind.Text.rawValue || storyPoint.kind == StoryPointKind.Photo.rawValue
     }
     
     func populateDescriptionLabel(cellData: CSCellData) {
-        self.descriptionLabel.numberOfLines = cellData.selected ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         let item = cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
         
         self.descriptionLabel.text = storyPoint!.text
         
-        if cellData.selected {
+        if cellData.selected || storyPoint?.kind == StoryPointKind.Text.rawValue {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
             self.textHeightConstraint.constant = DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: cellData.boundingSize.width)
@@ -137,14 +138,13 @@ class DiscoverStoryPointCell: CSTableViewCell {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint!.text)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint!.text)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint!.text) || storyPoint?.kind == StoryPointKind.Text.rawValue
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint!.text) || storyPoint?.kind == StoryPointKind.Text.rawValue
     }
     
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
-        self.cellData.selected = !self.cellData.selected
-        self.delegate?.reloadTable(self.storyPointId)
+        self.delegate?.reloadTable(self.discoverItemId)
     }
     
     @IBAction func editContentTapped(sender: AnyObject) {
@@ -176,7 +176,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
             contentHeight += cellData.boundingSize.width
         }
 
-        if cellData.selected {
+        if cellData.selected || storyPoint?.kind == StoryPointKind.Text.rawValue {
             contentHeight += DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: contentWidth)
         } else {
             contentHeight += kStoryPointCellDescriptionDefaultHeight
@@ -189,7 +189,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
         let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
         let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
-        return text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height
+        return CGFloat(ceil(text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height))
     }
 }
 

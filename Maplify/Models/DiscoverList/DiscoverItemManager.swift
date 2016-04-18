@@ -1,5 +1,5 @@
 //
-//  DiscoverListModelManager.swift
+//  DiscoverItemManager.swift
 //  Maplify
 //
 //  Created by Evgeniy Antonoff on 4/12/16.
@@ -40,6 +40,11 @@ class DiscoverItemManager: ModelManager {
             
             currentPosition += 1
         }
+    }
+    
+    class func find(DiscoverItemId: Int) -> DiscoverItem! {
+        let realm = try! Realm()
+        return realm.objectForPrimaryKey(DiscoverItem.self, key: DiscoverItemId)
     }
     
     class func saveItem(item: DiscoverItem) {

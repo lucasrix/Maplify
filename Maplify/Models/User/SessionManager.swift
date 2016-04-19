@@ -30,9 +30,15 @@ class SessionManager: ModelManager {
     class func saveCurrentUser(user: User) {
         let realm = try! Realm()
         try! realm.write {
-            realm.delete(realm.objects(CurrentUser))
-            let currentUser = realm.create(CurrentUser.self, value: user, update: false)
-            realm.add(currentUser)
+            let currentUser = realm.create(CurrentUser.self, value: user, update: true)
+            realm.add(currentUser, update: true)
+        }
+    }
+    
+    class func updateProfileForCurrrentUser(profile: Profile) {
+        let realm = try! Realm()
+        try! realm.write {
+           SessionManager.currentUser().profile = profile
         }
     }
     

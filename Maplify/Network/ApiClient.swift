@@ -120,8 +120,8 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .URL, success: success, failure: failure)
     }
     
-    func putRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+    func putRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+        let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -155,9 +155,17 @@ class ApiClient {
         self.postRequest("auth/provider_sessions", params:params , data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
-    func updateProfile(user: User, success: successClosure!, failure: failureClosure!) {
-        let params = ["city": user.profile.city, "url": user.profile.url, "about": user.profile.about, "first_name": user.profile.firstName, "last_name": user.profile.lastName, "email": user.email]
-        self.putRequest("profile", params: params, manager: ProfileManager(), success: success, failure: failure)
+    func getProfileInfo(profileId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("profiles/\(profileId)", params: nil, manager: ProfileManager(), success: success, failure: failure)
+    }
+    
+    func updateProfile(profile: Profile, photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName, "mimeType": "image/png", "fileName": "photo.png"]
+        var data: [String: AnyObject]! = nil
+        if (photo != nil) {
+            data = ["photo": photo]
+        }
+        self.putRequest("profile", params: params, data: data,  manager: ProfileManager(), success: success, failure: failure)
     }
     
     func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
@@ -204,6 +212,11 @@ class ApiClient {
     func createStory(name: String, discoverable: Bool, success: successClosure!, failure: failureClosure!) {
         let params = ["name": name, "discoverable": discoverable]
         self.postRequest("stories", params: (params as! [String : AnyObject]), data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func updateUser(email: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email]
+        self.putRequest("user", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
     }
 }
 

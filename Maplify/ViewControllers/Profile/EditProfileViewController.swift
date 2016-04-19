@@ -9,8 +9,9 @@
 import TPKeyboardAvoiding
 
 let kAboutFieldBorderWidth: CGFloat = 1
+let kAboutFieldCharactersLimit = 500
 
-class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandlingProtocol {
+class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var avoidingKeyboardScrollView: TPKeyboardAvoidingScrollView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -26,9 +27,11 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var firstNameErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var charsNumberLabel: UILabel!
     
     var profileId: Int = 0
     var user: User! = nil
+    var updatedImage: UIImage! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -55,6 +58,14 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
         self.aboutYouLabel.text = NSLocalizedString("Text.Placeholder.AboutYou", comment: String())
         self.firstNameErrorLabel.text = NSLocalizedString("Error.InvalidFirstName", comment: String())
         self.emailLabel.text = NSLocalizedString("Error.EnterValidEmail", comment: String())
+        
+        self.showTextLengthLimit(self.user.profile.about.length)
+    }
+    
+    func showTextLengthLimit(charactersCount: Int) {
+        let substringOf = NSLocalizedString("Substring.Of", comment: String())
+        let substringChars = NSLocalizedString("Substring.Chars", comment: String())
+        self.charsNumberLabel.text = "\(charactersCount) " + substringOf + " \(kAboutFieldCharactersLimit) " + substringChars
     }
     
     func setupButtons() {
@@ -64,6 +75,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
     func setupTextFields() {
         self.firstNameTextField.delegate = self
         self.emailTextField.delegate = self
+        self.aboutTextView.delegate = self
         
         self.emailTextField.layer.borderWidth = kAboutFieldBorderWidth
         self.emailTextField.layer.cornerRadius = CornerRadius.defaultRadius
@@ -121,26 +133,37 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
         profile.url = self.urlTextField.text!
         profile.city = self.homeCityTextField.text!
         profile.about = self.aboutTextView.text
-        self.user.profile = profile
         
         if firstNameValid && emailValid! {
-            self.user.email = self.emailTextField.text!
             profile.firstName = self.firstNameTextField.text!
-            self.navigationController?.popViewControllerAnimated(true)
-
             self.showProgressHUD()
-            ApiClient.sharedClient.updateProfile(self.user,
-                   success: { [weak self] (response) in
-                    let profile = response as! Profile
-                    self?.user.profile = profile
-                    ProfileManager.saveProfile(profile)
-                        self?.hideProgressHUD()
-                        self?.navigationController?.popViewControllerAnimated(true)
-                   },
-                   failure: { [weak self] (statusCode, errors, localDescription, messages) in
+            
+            let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
+
+            ApiClient.sharedClient.updateUser(self.emailTextField.text!,
+                    success: { [weak self] (response) in
+                        let user = response as! User
+                        SessionManager.saveCurrentUser(user)
+                        ApiClient.sharedClient.updateProfile(profile, photo: photo,
+                            success: {  (response) in
+                                self?.hideProgressHUD()
+                                
+                                let profile = response as! Profile
+                                ProfileManager.saveProfile(profile)
+                                SessionManager.updateProfileForCurrrentUser(profile)
+
+                                self?.navigationController?.popViewControllerAnimated(true)
+                            },
+                            failure: { (statusCode, errors, localDescription, messages) in
+                                self?.hideProgressHUD()
+                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                            }
+                        )
+                    },
+                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
                         self?.hideProgressHUD()
                         self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                   }
+                    }
             )
         }
     }
@@ -157,6 +180,16 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, ErrorHandl
         } else if textField == self.firstNameTextField {
             self.firstNameErrorLabel.hidden = true
         }
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultCharactersCount = (self.aboutTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
+        if resultCharactersCount <= kAboutFieldCharactersLimit {
+            self.showTextLengthLimit(resultCharactersCount)
+            return true
+        }
+        return false
     }
 
     // MARK: - ErrorHandlingProtocol

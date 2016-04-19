@@ -60,10 +60,11 @@ extension UIViewController {
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
-    func routesOpenEditProfileController(profileId: Int) {
-        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
-        profileViewController.profileId = profileId
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+    func routesOpenEditProfileController(profileId: Int, photo: UIImage!) {
+        let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
+        editProfileViewController.profileId = profileId
+        editProfileViewController.updatedImage = photo
+        self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
     func routesOpenStoryPointEditController(storyPointId: Int, storyPointUpdateHandler: () -> ()) {

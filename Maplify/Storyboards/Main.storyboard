@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1905,12 +1905,22 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="HsV-la-WtF">
-                                                        <rect key="frame" x="15" y="388" width="345" height="15"/>
+                                                        <rect key="frame" x="15" y="388" width="232" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="GHY-C8-T8F"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="501 of 500 chars" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="16L-1f-tAq">
+                                                        <rect key="frame" x="247" y="388" width="120" height="15"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="120" id="5tu-GW-Ou1"/>
+                                                            <constraint firstAttribute="height" constant="15" id="tGq-XC-dph"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="1" green="0.0" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1937,6 +1947,7 @@
                                                     <constraint firstItem="A2v-cS-BEP" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="15" id="No7-8C-mKa"/>
                                                     <constraint firstItem="lrT-9Q-Hfb" firstAttribute="top" secondItem="qWR-Ak-LJy" secondAttribute="bottom" constant="46" id="Od8-Uj-JXO"/>
                                                     <constraint firstItem="gz8-LJ-0vc" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="8" id="P7W-wb-cgM"/>
+                                                    <constraint firstItem="16L-1f-tAq" firstAttribute="top" secondItem="oX2-Lq-nDQ" secondAttribute="bottom" constant="28" id="Qkv-5f-sQ4"/>
                                                     <constraint firstItem="zps-3o-5a3" firstAttribute="top" secondItem="Asu-D0-cu0" secondAttribute="top" constant="9" id="RWy-tV-A6s"/>
                                                     <constraint firstItem="noE-u3-49q" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="8" id="Rgu-yE-gos"/>
                                                     <constraint firstAttribute="trailing" secondItem="A2v-cS-BEP" secondAttribute="trailing" constant="15" id="Rib-PB-i9n"/>
@@ -1946,6 +1957,7 @@
                                                     <constraint firstItem="z8I-OO-3rw" firstAttribute="leading" secondItem="gz8-LJ-0vc" secondAttribute="trailing" constant="-32" id="VLX-B2-0Jy"/>
                                                     <constraint firstAttribute="trailing" secondItem="oX2-Lq-nDQ" secondAttribute="trailing" constant="8" id="VgY-Kr-dkZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="KnS-5M-x0o" secondAttribute="trailing" constant="15" id="VxD-rd-bhC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="16L-1f-tAq" secondAttribute="trailing" constant="8" id="XEm-Im-md0"/>
                                                     <constraint firstAttribute="trailing" secondItem="1Ux-J1-xRF" secondAttribute="trailing" constant="15" id="ZKc-xu-qe9"/>
                                                     <constraint firstAttribute="trailing" secondItem="gz8-LJ-0vc" secondAttribute="trailing" constant="8" id="bR4-UX-ZX4"/>
                                                     <constraint firstItem="gz8-LJ-0vc" firstAttribute="top" secondItem="lrT-9Q-Hfb" secondAttribute="bottom" constant="46" id="dn7-lk-a4R"/>
@@ -1955,6 +1967,7 @@
                                                     <constraint firstItem="1Ux-J1-xRF" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="15" id="mtc-ie-f5L"/>
                                                     <constraint firstItem="Ile-P4-8rY" firstAttribute="top" secondItem="gz8-LJ-0vc" secondAttribute="bottom" constant="29" id="n47-Xl-tOG"/>
                                                     <constraint firstItem="Ile-P4-8rY" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="15" id="o4a-dA-in4"/>
+                                                    <constraint firstItem="16L-1f-tAq" firstAttribute="leading" secondItem="HsV-la-WtF" secondAttribute="trailing" id="o5q-Y7-x7L"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ile-P4-8rY" secondAttribute="trailing" constant="15" id="qaH-Ka-2ht"/>
                                                     <constraint firstAttribute="trailing" secondItem="zps-3o-5a3" secondAttribute="trailing" constant="15" id="r58-C1-PiM"/>
                                                     <constraint firstItem="OGW-uJ-3Be" firstAttribute="leading" secondItem="Asu-D0-cu0" secondAttribute="leading" constant="15" id="tMQ-eD-dZQ"/>
@@ -1966,6 +1979,7 @@
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="ToV-re-8bZ"/>
+                                                        <exclude reference="NGK-n6-ky8"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -2003,6 +2017,7 @@
                         <outlet property="aboutTextView" destination="u3T-dB-i27" id="6xb-o8-qcD"/>
                         <outlet property="aboutYouLabel" destination="HsV-la-WtF" id="VGV-mt-ju2"/>
                         <outlet property="avoidingKeyboardScrollView" destination="Y4e-AE-wrR" id="pLj-rA-UOV"/>
+                        <outlet property="charsNumberLabel" destination="16L-1f-tAq" id="bf2-ih-q2f"/>
                         <outlet property="emailErrorLabel" destination="OGW-uJ-3Be" id="6TQ-Sl-Efn"/>
                         <outlet property="emailLabel" destination="A2v-cS-BEP" id="EEN-4t-Iaz"/>
                         <outlet property="emailTextField" destination="lrT-9Q-Hfb" id="ZkE-w2-nmr"/>

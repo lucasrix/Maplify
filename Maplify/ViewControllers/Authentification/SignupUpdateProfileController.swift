@@ -113,7 +113,7 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
         self.user.profile.about = self.aboutInputField.textView.text
         
         self.showProgressHUD()
-        ApiClient.sharedClient.updateProfile(self.user,
+        ApiClient.sharedClient.updateProfile(self.user.profile, photo: nil,
             success: { [weak self] (response) -> () in
                 self?.user.profile = response as! Profile  
                 self?.hideProgressHUD()

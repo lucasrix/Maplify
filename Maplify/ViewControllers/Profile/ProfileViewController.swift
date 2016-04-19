@@ -46,20 +46,21 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         super.viewDidLoad()
         
         self.setup()
+        self.setupImageView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.loadItemFromDB()
         self.setupLabels()
         self.setupButtons()
-        self.setupImageView()
+        self.loadRemoteData()
     }
     
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.loadItemFromDB()
         self.setupDetailStatsView()
     }
     
@@ -138,9 +139,9 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     }
     
     func setupImageView() {
-        let url = NSURL(string: self.user.profile.photo)
+        let url = NSURL(string: SessionManager.currentUser().profile.photo)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
-        self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, completed: nil)
+        self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         
         if self.profileId == SessionManager.currentUser().id {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.imageViewDidTap))
@@ -154,6 +155,15 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         } else {
             self.user = SessionManager.findUser(self.profileId)
         }
+    }
+    
+    func loadRemoteData() {
+        ApiClient.sharedClient.getProfileInfo(self.user.profile.id, success: { [weak self] (response) in
+            let profile = response as! Profile
+            ProfileManager.saveProfile(profile)
+            self?.loadItemFromDB()
+            self?.setupLabels()
+            }, failure: nil)
     }
     
     // MARK: - actions
@@ -208,7 +218,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     }
     
     @IBAction func editButtonTapped(sender: AnyObject) {
-        self.routesOpenEditProfileController(self.profileId)
+        self.routesOpenEditProfileController(self.profileId, photo: self.userImageView.image)
     }
     
     // MARK: - UIImagePickerControllerDelegate

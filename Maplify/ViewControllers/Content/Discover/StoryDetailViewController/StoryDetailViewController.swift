@@ -47,15 +47,11 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     }
     
     func setupPageIndicator() {
-        let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.clearColor()
-        pageControl.currentPageIndicatorTintColor = UIColor.clearColor()
-        pageControl.backgroundColor = UIColor.whiteFour()
-        
         self.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
         self.pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorTintColorAlpha)
         self.pageControl.backgroundColor = UIColor.clearColor()
         self.pageControl.numberOfPages = self.storyPoints.count
+        self.pageControlBackView.layer.cornerRadius = self.pageControlBackView.frame.size.height / 2
     }
     
     func setupPageController() {
@@ -98,6 +94,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
     }
     
     private func getItemController(itemIndex: Int) -> StoryDetailItemViewController? {
+        self.pageControl.currentPage = itemIndex
         if itemIndex < self.storyPoints.count {
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Controllers.storyDetailItemViewController) as! StoryDetailItemViewController
             pageItemController.itemIndex = itemIndex

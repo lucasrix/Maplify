@@ -1195,7 +1195,7 @@
                                 <rect key="frame" x="8" y="647" width="359" height="16"/>
                                 <color key="backgroundColor" red="0.31372549019607843" green="0.070588235294117646" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-cj-Dom">
+                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-cj-Dom">
                                 <rect key="frame" x="14" y="643" width="347" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="QJu-JD-M5f"/>
@@ -1235,7 +1235,7 @@
         <!--Story Page View Controller-->
         <scene sceneID="Oui-ry-whD">
             <objects>
-                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" doubleSided="YES" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puo-wr-7Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2808,6 +2808,10 @@
         <scene sceneID="RHl-bk-bUr">
             <objects>
                 <viewController id="hzH-fN-Owv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uyS-iJ-ccB"/>
+                        <viewControllerLayoutGuide type="bottom" id="W1K-2j-p0g"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ax0-Sh-uwR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

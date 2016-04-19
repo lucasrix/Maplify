@@ -38,6 +38,8 @@ class StoryPoint: Model {
         self.caption <- map.property("caption")
         self.attachment <- map.relationOrNil("attachment")
         self.text <- map.property("text")
+        self.created_at <- map.property("created_at")
+        self.updated_at <- map.property("updated_at")
     }
     
     override class func primaryKey() -> String {

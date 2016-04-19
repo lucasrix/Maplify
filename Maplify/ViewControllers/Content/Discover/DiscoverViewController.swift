@@ -54,8 +54,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     deinit {
-        self.tableView.ins_removePullToRefresh()
-        self.tableView.ins_endInfinityScroll()
+        if self.tableView != nil {
+            self.tableView.ins_removePullToRefresh()
+            self.tableView.ins_endInfinityScroll()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -177,10 +179,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.loadItemsFromDB()
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.tableView.ins_endInfinityScroll()
-                self?.tableView.ins_endPullToRefresh()
-                self?.requestState = RequestState.Ready
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+//                self?.tableView.ins_endInfinityScroll()
+//                self?.tableView.ins_endPullToRefresh()
+//                self?.requestState = RequestState.Ready
+//                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     
@@ -254,7 +256,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverStoryPointCellDelegate
     func reloadTable(storyPointId: Int) {
-        print(storyPointId)
         let storyPointIndex = self.discoverItems.indexOf({$0.id == storyPointId})
         let indexPath = NSIndexPath(forRow: storyPointIndex!, inSection: 0)
         let cellDataModel = self.storyActiveModel.cellData(indexPath)

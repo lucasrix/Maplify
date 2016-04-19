@@ -119,7 +119,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped(location: MCMapCoordinate) {
-        self.routesOpenAudioStoryPointController()
+        self.routesOpenAudioStoryPointController(location)
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {

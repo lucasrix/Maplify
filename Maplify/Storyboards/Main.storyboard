@@ -1195,7 +1195,7 @@
                                 <rect key="frame" x="8" y="647" width="359" height="16"/>
                                 <color key="backgroundColor" red="0.31372549019607843" green="0.070588235294117646" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-cj-Dom">
+                            <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-cj-Dom">
                                 <rect key="frame" x="14" y="643" width="347" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="QJu-JD-M5f"/>
@@ -1224,7 +1224,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cont" destination="Llc-QT-UkJ" id="7yw-qh-g8r"/>
-                        <outlet property="pageControl" destination="Ehf-cj-Dom" id="gRl-ST-ZEy"/>
+                        <outlet property="pageControl" destination="Ehf-cj-Dom" id="Sv1-Ls-BHO"/>
                         <outlet property="pageControlBackView" destination="pQ5-vS-wU9" id="aWm-jx-kam"/>
                     </connections>
                 </viewController>
@@ -1235,7 +1235,7 @@
         <!--Story Page View Controller-->
         <scene sceneID="Oui-ry-whD">
             <objects>
-                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" doubleSided="YES" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puo-wr-7Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2670,7 +2670,7 @@
                                             <constraint firstAttribute="height" constant="72" id="heI-7H-6IB"/>
                                         </constraints>
                                         <state key="normal" image="ButtonShotDefault"/>
-                                        <state key="highlighted" image="ButtonShotFocus"/>
+                                        <state key="highlighted" image="ButtonShotHighlited"/>
                                         <connections>
                                             <action selector="recordTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="awq-Iv-KMo"/>
                                         </connections>
@@ -2830,7 +2830,7 @@
         <image name="AddMediaScreenVideoOff" width="32" height="17"/>
         <image name="AddMediaScreenVideoOn" width="32" height="17"/>
         <image name="ButtonShotDefault" width="72" height="72"/>
-        <image name="ButtonShotFocus" width="72" height="72"/>
+        <image name="ButtonShotHighlited" width="72" height="72"/>
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>

@@ -10,12 +10,12 @@ import UIKit
 
 let kPageIndicatorTintColorAlpha: CGFloat = 0.5
 
-class StoryDetailViewController: ViewController, UIPageViewControllerDataSource {
+class StoryDetailViewController: ViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate {
     var storyPoints: [StoryPoint]! = nil
     var selectedIndex: Int = 0
     var pageViewController: StoryPageViewController! = nil
     var storyTitle = String()
-  
+    
     @IBOutlet weak var cont: UIView!
     @IBOutlet weak var pageControlBackView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -54,13 +54,40 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource 
         self.pageControlBackView.layer.cornerRadius = self.pageControlBackView.frame.size.height / 2
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        for subView in self.pageViewController.view.subviews {
+            if subView is UIScrollView {
+                subView.frame = self.view.bounds
+            } else if subView is UIPageControl {
+                self.setupPageControl(subView as! UIPageControl)
+            }
+        }
+        super.viewDidLayoutSubviews()
+    }
+    
+    func setupPageControl(pageControl: UIPageControl) {
+        pageControl.frame.origin.y += 30
+        pageControl.backgroundColor = UIColor.redColor()
+        pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorColorAlpha)
+        pageControl.currentPageIndicatorTintColor = UIColor.dodgerBlue()
+        self.view.bringSubviewToFront(pageControl)
+    }
+    
     func setupPageController() {
         self.pageViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPageViewController) as! StoryPageViewController
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
         
         let startViewController = self.getItemController(self.selectedIndex)
         self.pageViewController.setViewControllers([startViewController!] , direction: .Forward, animated: true, completion: nil)
         self.configureChildViewController(self.pageViewController, onView: self.cont)
+        
+        for view in self.pageViewController.view.subviews {
+            if let scrollView = view as? UIScrollView {
+                scrollView.delegate = self
+            }
+        }
     }
     
     // MARK: - navigation bar

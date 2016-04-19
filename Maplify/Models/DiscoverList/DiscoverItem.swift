@@ -22,12 +22,7 @@ class DiscoverItem: Model {
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
-        
-//        if map.property("type") == String(StoryPoint) {
-//            self.type = DiscoverItemType.StoryPoint.rawValue
-//        } else if map.property("type") == String(Story) {
-//            self.type = DiscoverItemType.Story.rawValue
-//        }
+
     }
     
     override class func primaryKey() -> String {

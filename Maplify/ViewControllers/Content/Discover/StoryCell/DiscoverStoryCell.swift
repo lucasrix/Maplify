@@ -146,8 +146,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     func profileImageTapped() {
-        let story = cellData.model as! Story
-        self.delegate?.storyProfileImageTapped(story.user.id)
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.delegate?.storyProfileImageTapped(story!.user.id)
     }
     
     // MARK: - private

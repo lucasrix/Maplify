@@ -33,6 +33,7 @@ enum RequestState: Int {
 
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
+let kDiscoverSearchingRadius: CGFloat = 10000000
 
 class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var tableView: UITableView!
@@ -167,7 +168,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func retrieveDiscoverList(location: CLLocation) {
         self.requestState = RequestState.Loading
-        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 10000000, page: self.page, success: { [weak self] (response) in
+        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: kDiscoverSearchingRadius, page: self.page, success: { [weak self] (response) in
             
             DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage)
             

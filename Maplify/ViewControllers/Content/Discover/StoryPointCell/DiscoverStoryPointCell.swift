@@ -152,8 +152,9 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func profileImageTapped() {
-        let storyPoint = cellData.model as! StoryPoint
-        self.delegate?.profileImageTapped(storyPoint.user.id)
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        self.delegate?.profileImageTapped(storyPoint!.user.id)
     }
 
     // MARK: - private

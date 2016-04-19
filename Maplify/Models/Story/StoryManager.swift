@@ -18,13 +18,8 @@ class StoryManager: ModelManager {
         let realm = try! Realm()
         
         for story in stories {
-            // TODO: delete after backend fix
-            let curUser = SessionManager.currentUser()
-            story.user = curUser
-            //
-            let recordExists = (realm.objectForPrimaryKey(Story.self, key: story.id) != nil)
             try! realm.write {
-                realm.add(story, update: recordExists)
+                realm.add(story, update: true)
             }
         }
     }

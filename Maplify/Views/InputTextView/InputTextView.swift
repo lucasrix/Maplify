@@ -97,13 +97,14 @@ class InputTextView: UIView, UITextViewDelegate {
     }
     
     private func updateViewWithAnimation(highlitedImageShow: Bool, errorShow: Bool, separatrorColor: UIColor) {
-        UIView.animateWithDuration(kSeparatorLineViewAnimationDuration) { () -> () in
-            self.lineView.backgroundColor = separatrorColor
+        self.delegate?.contentSizeWillChange?(self.textView.contentSize)
+        UIView.animateWithDuration(kSeparatorLineViewAnimationDuration) { [weak self] () -> () in
+            self?.lineView.backgroundColor = separatrorColor
             
             let iconAlpha: CGFloat = highlitedImageShow == true ? kInputTextViewAlphaMax : kInputTextViewAlphaMin
             let iconAlphaAnother: CGFloat = highlitedImageShow == false ? kInputTextViewAlphaMax : kInputTextViewAlphaMin
-            self.iconImageView.alpha = iconAlphaAnother
-            self.iconHighlightedImageView.alpha = iconAlpha
+            self?.iconImageView.alpha = iconAlphaAnother
+            self?.iconHighlightedImageView.alpha = iconAlpha
         }
     }
     
@@ -127,7 +128,7 @@ class InputTextView: UIView, UITextViewDelegate {
         if resultCharactersCount <= maxCharLength {
             self.showTextLengthLimitIfNeeded(resultCharactersCount)
             self.setHighlightedState()
-            self.delegate?.editingChanged?(self)
+            self.delegate?.textEditingChanged?(self)
             return true
         }
         return false
@@ -135,23 +136,24 @@ class InputTextView: UIView, UITextViewDelegate {
     
     func textViewDidBeginEditing(textView: UITextView) {
         self.setHighlightedState()
-        self.delegate?.editingBegin?(self)
+        self.delegate?.textEditingBegin?(self)
     }
     
     func textViewDidEndEditing(textView: UITextView) {
         self.setDefaultState()
-        self.delegate?.editingEnd?(self)
+        self.delegate?.textEditingEnd?(self)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.delegate?.didPressReturnKey?(self)
+        self.delegate?.textDidPressReturnKey?(self)
         return true
     }
 }
 
 @objc protocol InputTextViewDelegate {
-    optional func editingBegin(inputTextView: InputTextView)
-    optional func editingEnd(inputTextView: InputTextView)
-    optional func editingChanged(inputTextView: InputTextView)
-    optional func didPressReturnKey(inputTextView: InputTextView)
+    optional func textEditingBegin(inputTextView: InputTextView)
+    optional func textEditingEnd(inputTextView: InputTextView)
+    optional func textEditingChanged(inputTextView: InputTextView)
+    optional func textDidPressReturnKey(inputTextView: InputTextView)
+    optional func contentSizeWillChange(contentSize: CGSize)
 }

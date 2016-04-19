@@ -12,7 +12,7 @@ import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
-let kStoryPointsRequestSuspendInterval: NSTimeInterval = 2
+let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
 let kStoryPointsFindingRadius: CGFloat = 10
 let kDefaulMapZoom: Float = 13
 
@@ -41,13 +41,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         super.viewWillAppear(animated)
         
         self.setupNavigationBar()
+        self.loadItemsFromDB()
     }
     
     // MARK: - setup
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
-        self.loadItemsFromDB()
+        self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.setupAddStoryPointImageView()
     }
     
@@ -71,14 +72,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
 
     func checkLocationEnabled() {
-        if SessionHelper.sharedManager.locationEnabled() {
+        if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
+                    SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
                     self?.setupMap(location)
                 }
             }
-        } else {
-            self.setupMap(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
         }
     }
     

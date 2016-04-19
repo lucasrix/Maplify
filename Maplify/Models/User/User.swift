@@ -26,4 +26,8 @@ class User: Model {
         self.uid <- map.property("uid")
         self.profile <- map.relationOrNil("profile")
     }
+    
+    override class func primaryKey() -> String {
+        return "id"
+    }
 }

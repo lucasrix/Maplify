@@ -49,6 +49,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.populateStoryPointInfoViews(storyPoint)
         self.populateAttachment(storyPoint)
         self.populateDescriptionLabel(cellData)
+        
     }
     
     func addShadow() {
@@ -65,6 +66,9 @@ class DiscoverStoryPointCell: CSTableViewCell {
         let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DiscoverStoryPointCell.profileImageTapped))
+        self.thumbImageView.addGestureRecognizer(tapGesture)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
         self.userAddressLabel.text = profile.city
@@ -133,6 +137,11 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBAction func editContentTapped(sender: AnyObject) {
         self.delegate?.editContentDidTap(self.storyPointId)
     }
+    
+    func profileImageTapped() {
+        let storyPoint = cellData.model as! StoryPoint
+        self.delegate?.profileImageTapped(storyPoint.user.id)
+    }
 
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {
@@ -162,4 +171,5 @@ class DiscoverStoryPointCell: CSTableViewCell {
 protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
     func editContentDidTap(storyPointId: Int)
+    func profileImageTapped(userId: Int)
 }

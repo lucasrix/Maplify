@@ -27,4 +27,8 @@ class Profile: Model {
         self.url <- map.property("url")
         self.photo <- map.property("photo_url")
     }
+    
+    override class func primaryKey() -> String {
+        return "id"
+    }
 }

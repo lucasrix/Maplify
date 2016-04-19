@@ -45,7 +45,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
         
-        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController)
+        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
+        discoverController.discoverShowProfileClosure = { [weak self] (userId) in
+            self!.routesOpenProfileController(userId)
+        }
         self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
 
         self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)
@@ -110,6 +113,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
+        let currentUserId = SessionManager.currentUser().id
+        self.routesOpenProfileController(currentUserId)
     } 
     
     // MARK: - storyPointCreationPopupDelegate
@@ -131,9 +136,9 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func signOut() {
-        SessionHelper.sharedManager.removeSessionData()
-        SessionHelper.sharedManager.removeSessionAuthCookies()
-        SessionHelper.sharedManager.removeDatabaseData()
+        SessionHelper.sharedHelper.removeSessionData()
+        SessionHelper.sharedHelper.removeSessionAuthCookies()
+        SessionHelper.sharedHelper.removeDatabaseData()
         
         self.showProgressHUD()
         ApiClient.sharedClient.signOut({ [weak self] (response) in

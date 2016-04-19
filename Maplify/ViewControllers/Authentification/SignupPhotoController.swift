@@ -104,7 +104,10 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     override func rightBarButtonItemDidTap() {
-        if self.firstNameField.textField.text!.length > 0 || self.lastNameField.textField.text!.length > 0 {
+        self.firstNameField.textField.endEditing(true)
+        self.lastNameField.textField.endEditing(true)
+                
+        if (self.firstNameField.textField.text!.length > 0) && (self.firstNameField.textField.text!.isNonWhiteSpace) {
             self.user = User()
             self.user.profile = Profile()
             self.user.profile.firstName = self.firstNameField.textField.text!
@@ -112,8 +115,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
             self.showPhotoProposalAlertIfNeeded()
         } else {
             self.firstNameField.setErrorState(String())
-            self.lastNameField.setErrorState(String())
-            self.showMessageAlert(nil, message: NSLocalizedString("Error.EnterName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
+            self.showMessageAlert(nil, message: NSLocalizedString("Error.EmptyFirstName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     

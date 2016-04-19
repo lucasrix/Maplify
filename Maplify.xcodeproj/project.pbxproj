@@ -41,6 +41,13 @@
 		8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */; };
 		8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
 		8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
+		85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915941CBD22540041182F /* AutocompleteTextField.swift */; };
+		85E915981CBD3DC10041182F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915971CBD3DC10041182F /* ProfileViewController.swift */; };
+		85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159A1CBE8BF00041182F /* PublicStatsView.xib */; };
+		85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159C1CBE8D710041182F /* PrivateStatsView.xib */; };
+		85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9159E1CBE93220041182F /* PublicStatsView.swift */; };
+		85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915A01CBE93BA0041182F /* PrivateStatsView.swift */; };
+		85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
@@ -197,6 +204,13 @@
 		8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
 		8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceSearchHelper.swift; sourceTree = "<group>"; };
+		85E915941CBD22540041182F /* AutocompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTextField.swift; sourceTree = "<group>"; };
+		85E915971CBD3DC10041182F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		85E9159A1CBE8BF00041182F /* PublicStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicStatsView.xib; sourceTree = "<group>"; };
+		85E9159C1CBE8D710041182F /* PrivateStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateStatsView.xib; sourceTree = "<group>"; };
+		85E9159E1CBE93220041182F /* PublicStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicStatsView.swift; sourceTree = "<group>"; };
+		85E915A01CBE93BA0041182F /* PrivateStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateStatsView.swift; sourceTree = "<group>"; };
+		85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesHelper.swift; sourceTree = "<group>"; };
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +362,7 @@
 			children = (
 				1F2E337A1C80652E00D3B446 /* InputTextField.xib */,
 				1F2E33791C80652E00D3B446 /* InputTextField.swift */,
+				85E915941CBD22540041182F /* AutocompleteTextField.swift */,
 			);
 			path = InputTextField;
 			sourceTree = "<group>";
@@ -427,6 +442,27 @@
 				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		85E915961CBD3DB00041182F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				85E915991CBE8BD60041182F /* StatsViews */,
+				85E915971CBD3DC10041182F /* ProfileViewController.swift */,
+				85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		85E915991CBE8BD60041182F /* StatsViews */ = {
+			isa = PBXGroup;
+			children = (
+				85E9159C1CBE8D710041182F /* PrivateStatsView.xib */,
+				85E9159A1CBE8BF00041182F /* PublicStatsView.xib */,
+				85E9159E1CBE93220041182F /* PublicStatsView.swift */,
+				85E915A01CBE93BA0041182F /* PrivateStatsView.swift */,
+			);
+			path = StatsViews;
 			sourceTree = "<group>";
 		};
 		8C3575D81CB3D8870039828A /* StoryPointEdit */ = {
@@ -539,6 +575,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				85E915961CBD3DB00041182F /* Profile */,
 				8C9094D21CAD5BE4002F26A9 /* Settings */,
 				F01A89531CA75114008B8702 /* Menu */,
 				1FB705B21C9C20C500FC3496 /* Onboarding */,
@@ -948,12 +985,14 @@
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
+				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
+				85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
 				CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
@@ -1046,6 +1085,8 @@
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
 				CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */,
+				85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */,
+				85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
 				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,
@@ -1144,6 +1185,8 @@
 				CD8A10AD1CB68F5500B58396 /* Converter.swift in Sources */,
 				F03507F91CBB044000CFAA05 /* StoryPageViewController.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
+				85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */,
+				85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
@@ -1152,6 +1195,7 @@
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
+				85E915981CBD3DC10041182F /* ProfileViewController.swift in Sources */,
 				A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */,
 				A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */,
 			);

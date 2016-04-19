@@ -54,6 +54,19 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
+    func routesOpenProfileController(profileId: Int) {
+        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
+        profileViewController.profileId = profileId
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    func routesOpenEditProfileController(profileId: Int, photo: UIImage!) {
+        let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
+        editProfileViewController.profileId = profileId
+        editProfileViewController.updatedImage = photo
+        self.navigationController?.pushViewController(editProfileViewController, animated: true)
+    }
+    
     func routesOpenStoryPointEditController(storyPointId: Int, storyPointUpdateHandler: () -> ()) {
         let storyPointEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditController) as! StoryPointEditViewController
         storyPointEditViewController.storyPointId = storyPointId

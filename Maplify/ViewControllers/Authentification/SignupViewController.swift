@@ -77,6 +77,18 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
         } else {
             self.signup()
         }
+        
+        self.markInputFieldsWithErrorIfNeeded()
+    }
+    
+    func markInputFieldsWithErrorIfNeeded() {
+        if self.emailInputField.textField.text?.isEmail == false {
+            self.emailInputField.setErrorState(NSLocalizedString("Error.InvalidEmail", comment: String()))
+        }
+        
+        if self.passwordInputField.textField.text?.isValidPassword == false {
+            self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
+        }
     }
     
     func signup() {

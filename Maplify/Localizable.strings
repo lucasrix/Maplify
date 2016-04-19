@@ -49,6 +49,8 @@
 "Controller.AddToStory.Title" = "Add to Story";
 "Controller.RecommendedSettings.Title" = "Recommended Settings";
 "Controller.EditPost.Title" = "Edit Post";
+"Controller.Profile.Title" = "Profile";
+"Controller.EditProfile" = "Edit Profile";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -66,6 +68,13 @@
 "Label.Alert.Details" = "If these sound good, next you'll get a popup asking for permission. Tap OK once it appears.";
 "Label.ShowDescription" = "Show description";
 "Label.HideDescription" = "Hide description";
+"Label.Post" = "post";
+"Label.Posts" = "posts";
+"Label.Story" = "story";
+"Label.Stories" = "stories";
+"Label.Following" = "following";
+"Label.Followers" = "followers";
+"Label.Follower" = "follower";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -119,9 +128,13 @@
 "Alert.Title.CreateStory" = "Create a new story";
 "Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
 "Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
+"Alert.AddPlaceOrLocation" = "Please add place or location!";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";
 "Error.InvalidPassword" = "Please enter password";
 "Error.EnterName" = "Please enter your name.";
 "Error.InvalidPassword" = "Password must be at least 6 characters.";
+"Error.EmptyFirstName" = "First Name can't be blank";
+"Error.InvalidFirstName" = "Enter First Name and/or Last Name";
+"Error.EnterValidEmail" = "Enter valid email address";

@@ -62,7 +62,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
-
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.profileImageTapped))
+        self.thumbImageView.addGestureRecognizer(tapGesture)
+        
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
         self.userAddressLabel.text = profile.city
     }
@@ -125,6 +128,11 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.delegate?.didSelectStory(self.storyId)
     }
     
+    func profileImageTapped() {
+        let story = cellData.model as! Story
+        self.delegate?.storyProfileImageTapped(story.user.id)
+    }
+    
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {
         let font = self.descriptionLabel.font
@@ -164,4 +172,5 @@ protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
     func didSelectMap()
+    func storyProfileImageTapped(userId: Int)
 }

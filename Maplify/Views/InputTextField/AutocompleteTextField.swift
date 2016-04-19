@@ -25,7 +25,7 @@ public enum AutocompleteType {
     @IBInspectable public var completionColor : UIColor = UIColor(white: 0, alpha: 0.22)
     
     // Array of suggestions
-    public var suggestions : [String] = [""]
+    public var suggestions : [String] = [String()]
     
     // The current suggestion shown. Can also be used to force a suggestion
     public var suggestion : String? {
@@ -148,7 +148,7 @@ public enum AutocompleteType {
      Set content of the suggestion label.
      - parameter text: Suggestion text
      */
-    private func setLabelContent(inputText : String = "")
+    private func setLabelContent(inputText : String = String())
     {
         var text = inputText
         
@@ -163,7 +163,7 @@ public enum AutocompleteType {
         {
             let words = self.text!.componentsSeparatedByString(" ")
             let suggestionWords = text.componentsSeparatedByString(" ")
-            var string: String = ""
+            var string: String = String()
             for i in 0..<words.count {
                 string = string.stringByAppendingString(suggestionWords[i]) + " "
             }
@@ -206,7 +206,7 @@ public enum AutocompleteType {
      */
     private func suggestionToShow(searchTerm : String) -> String
     {
-        var returnString = ""
+        var returnString = String()
         for suggestion in self.suggestions
         {
             // Search the suggestion array. User lowercase on both to get a match.

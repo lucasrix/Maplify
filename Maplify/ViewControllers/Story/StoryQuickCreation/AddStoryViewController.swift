@@ -40,8 +40,10 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     }
     
     deinit {
-        self.tableView.ins_removePullToRefresh()
-        self.tableView.ins_endInfinityScroll()
+        if self.tableView != nil {
+            self.tableView.ins_removePullToRefresh()
+            self.tableView.ins_endInfinityScroll()
+        }
     }
     
     // MARK: - setup

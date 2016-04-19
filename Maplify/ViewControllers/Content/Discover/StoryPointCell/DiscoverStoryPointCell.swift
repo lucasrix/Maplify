@@ -9,16 +9,16 @@
 import UIKit
 import SDWebImage.UIImageView_WebCache
 
-let kHeightUserInfoView: CGFloat = 66
-let kHeightStoryPointInfoView: CGFloat = 60
-let kHeightDescriptionLabel: CGFloat = 17
-let kHeightDescriptionTop: CGFloat = 13
-let kHeightActionsView: CGFloat = 46
-let kHeightBottomConstraint: CGFloat = 24
-let kDescriptionLeftRightMargin: CGFloat = 16
-let kDescriptionLabelFontSize: CGFloat = 14
+let kStoryPointCellDescriptionDefaultHeight: CGFloat = 17
+
 let kShadowOpacity: Float = 0.15
 let kShadowRadius: CGFloat = 3
+
+let kTopInfoViewHeight: CGFloat = 126
+let kBottomInfoView: CGFloat = 70
+let kStoryPointTextFontSize: CGFloat = 14
+let kStoryPointTextHorizontalMargin: CGFloat = 16
+let kStoryPointTextVerticalMargin: CGFloat = 13
 
 class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
@@ -30,31 +30,37 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var storyPointAddressImageView: UIImageView!
     @IBOutlet weak var attachmentImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var showHideDescriptionLabel: UILabel!
     @IBOutlet weak var showHideDescriptionButton: UIButton!
     @IBOutlet weak var backShadowView: UIView!
+    @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
+    var discoverItemId: Int = 0
     var storyPointId: Int = 0
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
-        self.setupViews()
-        
         self.cellData = cellData
         self.delegate = cellData.delegate as! DiscoverStoryPointCellDelegate
-        let storyPoint = cellData.model as! StoryPoint
-        self.storyPointId = storyPoint.id
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        self.discoverItemId = item.id
+        self.storyPointId = storyPoint!.id
         
-        self.populateUserViews(storyPoint)
-        self.populateStoryPointInfoViews(storyPoint)
-        self.populateAttachment(storyPoint)
+        self.addShadow()
+        self.populateUserViews(storyPoint!)
+        self.populateStoryPointInfoViews(storyPoint!)
+        self.populateAttachment(storyPoint!)
         self.populateDescriptionLabel(cellData)
+        
     }
     
-    func setupViews() {
+    func addShadow() {
         self.backShadowView.layer.shadowColor = UIColor.blackColor().CGColor
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
@@ -64,12 +70,13 @@ class DiscoverStoryPointCell: CSTableViewCell {
     func populateUserViews(storyPoint: StoryPoint) {
         let user = storyPoint.user as User
         let profile = user.profile as Profile
-        if profile.photo.length > 0 {
-            let userPhotoUrl:NSURL? = NSURL(string: profile.photo)
-            self.thumbImageView.hnk_setImageFromURL(userPhotoUrl!)
-        } else {
-            self.thumbImageView.image = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
-        }
+        
+        let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
+        self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DiscoverStoryPointCell.profileImageTapped))
+        self.thumbImageView.addGestureRecognizer(tapGesture)
         
         self.usernameLabel.text = profile.firstName + " " + profile.lastName
         self.userAddressLabel.text = profile.city
@@ -77,87 +84,118 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
         self.captionLabel.text = storyPoint.caption
+        self.storyPointAddressLabel.text = storyPoint.location.city
+        self.storyPointAddressImageView.hidden = storyPoint.location.city == String()
     }
     
     func populateAttachment(storyPoint: StoryPoint) {
-        
+        var attachmentUrl: NSURL! = nil
+        var placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            
-            if storyPoint.attachment.file_url.length > 0 {
-                self.attachmentImageView.sd_setImageWithURL(storyPoint.attachment.file_url.url)
-            } else {
-                self.attachmentImageView.image = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
-            }
+            self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
+            attachmentUrl = storyPoint.attachment.file_url.url
         } else if storyPoint.kind == StoryPointKind.Text.rawValue {
-            self.attachmentImageView.image = nil
+            self.attachmentHeightConstraint.constant = 0.0
+            attachmentUrl = nil
+            placeholderImage = nil
         } else {
-            self.attachmentImageView.image = UIImage(named: PlaceholderImages.discoverPlaceholderAttachment)
+            self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        }
+        self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+            }
+            self?.populateKindImage(storyPoint)
         }
     }
     
+    func populateKindImage(storyPoint: StoryPoint) {
+        if storyPoint.kind == StoryPointKind.Text.rawValue {
+            self.storyPointKindImageView.image = nil
+        } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            self.storyPointKindImageView.image = nil
+        } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
+        } else if storyPoint.kind == StoryPointKind.Video.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
+        }
+        self.storyPointKindImageView.hidden = storyPoint.kind == StoryPointKind.Text.rawValue || storyPoint.kind == StoryPointKind.Photo.rawValue
+    }
+    
     func populateDescriptionLabel(cellData: CSCellData) {
-        let storyPoint = cellData.model as! StoryPoint
-        self.descriptionLabel.text = storyPoint.text
-        if cellData.selected {
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        
+        self.descriptionLabel.text = storyPoint!.text
+        
+        if cellData.selected || storyPoint?.kind == StoryPointKind.Text.rawValue {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
-            self.descriptionViewHeightConstraint.constant = DiscoverStoryPointCell.textHeight(cellData) + kHeightDescriptionTop
+            self.textHeightConstraint.constant = DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: cellData.boundingSize.width)
         } else {
+            self.textHeightConstraint.constant = kStoryPointCellDescriptionDefaultHeight
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
-            self.descriptionViewHeightConstraint.constant = kHeightDescriptionLabel + kHeightDescriptionTop
         }
-        self.showHideDescriptionLabel.hidden = DiscoverStoryPointCell.textHeight(cellData) <= kHeightDescriptionLabel
-        self.showHideDescriptionButton.hidden = DiscoverStoryPointCell.textHeight(cellData) <= kHeightDescriptionLabel
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(storyPoint!.text) || storyPoint?.kind == StoryPointKind.Text.rawValue
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint!.text) || storyPoint?.kind == StoryPointKind.Text.rawValue
     }
     
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
-        self.cellData.selected = !self.cellData.selected
-        self.delegate?.reloadTable(self.storyPointId)
+        self.delegate?.reloadTable(self.discoverItemId)
     }
     
     @IBAction func editContentTapped(sender: AnyObject) {
         self.delegate?.editContentDidTap(self.storyPointId)
     }
     
-    // MARK: - class func
-    class func contentHeightForStoryPoint(cellData: CSCellData) -> CGFloat {
-        let storyPoint = cellData.model as! StoryPoint
-        var cellHeight: CGFloat = 0
-        cellHeight += kHeightUserInfoView
-        cellHeight += kHeightStoryPointInfoView
-        cellHeight += kHeightActionsView
-        if storyPoint.kind != StoryPointKind.Text.rawValue {
-            cellHeight += UIScreen.mainScreen().bounds.width
-        }
-        if cellData.selected {
-            cellHeight += self.textHeight(cellData)
-        } else {
-            cellHeight += kHeightDescriptionLabel
-        }
-        cellHeight += kHeightDescriptionTop
-        cellHeight += kHeightBottomConstraint
-        
-        return cellHeight
+    func profileImageTapped() {
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        self.delegate?.profileImageTapped(storyPoint!.user.id)
     }
-    
-    class func textHeight(cellData: CSCellData) -> CGFloat {
-        let storyPoint = cellData.model as! StoryPoint
-        let text = storyPoint.text
-        let font = UIFont.systemFontOfSize(kDescriptionLabelFontSize)
-        let textWidth: CGFloat = UIScreen().screenWidth() - 2 * kDescriptionLeftRightMargin
+
+    // MARK: - private
+    func showHideButtonHidden(text: String) -> Bool {
+        let font = self.descriptionLabel.font
+        let textWidth: CGFloat = CGRectGetWidth(self.descriptionLabel.frame)
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
-        let textHeight = CGFloat(ceil(Double(textSize.height)))
-        if textHeight > kHeightDescriptionLabel {
-            return textHeight
+        return textSize.height <= kStoryPointCellDescriptionDefaultHeight
+    }
+    
+    // MARK: - content height
+    class func contentSize(cellData: CSCellData) -> CGSize {
+        let contentWidth: CGFloat = cellData.boundingSize.width
+        var contentHeight: CGFloat = kTopInfoViewHeight + kBottomInfoView
+        
+        let item = cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        if storyPoint?.kind != StoryPointKind.Text.rawValue {
+            contentHeight += cellData.boundingSize.width
         }
-        return kHeightDescriptionLabel
+
+        if cellData.selected || storyPoint?.kind == StoryPointKind.Text.rawValue {
+            contentHeight += DiscoverStoryPointCell.textDescriptionHeight((storyPoint?.text)!, width: contentWidth)
+        } else {
+            contentHeight += kStoryPointCellDescriptionDefaultHeight
+        }
+        
+        contentHeight += kStoryPointTextVerticalMargin
+        return CGSizeMake(contentWidth, contentHeight)
+    }
+    
+    class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
+        let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
+        let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
+        return CGFloat(ceil(text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height))
     }
 }
 
 protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
     func editContentDidTap(storyPointId: Int)
+    func profileImageTapped(userId: Int)
 }

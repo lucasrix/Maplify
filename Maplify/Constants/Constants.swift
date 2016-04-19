@@ -17,6 +17,8 @@ struct Config {
     static let userAppLaunch = "userAppLaunch"
     static let locationEnabled = "locationEnabled"
     static let pushNotificationsEnabled = "pushNotificationsEnabled"
+    static let userLocationLatitude = "userLocationLatitude"
+    static let userLocationLongitude = "userLocationLongitude"
 }
 
 struct FileType {
@@ -54,6 +56,11 @@ struct Controllers {
     static let addStoryViewController = "AddStoryViewController"
     static let recommendedSettingsController = "RecommendedSettingsController"
     static let storyPointEditController = "StoryPointEditController"
+    static let storyDetailViewController = "StoryDetailViewController"
+    static let storyPageViewController = "StoryPageViewController"
+    static let storyDetailItemViewController = "StoryDetailItemViewController"
+    static let profileController = "ProfileController"
+    static let editProfileController = "EditProfileController"
 }
 
 struct AppIDs {
@@ -62,4 +69,10 @@ struct AppIDs {
 
 struct DefaultLocation {
     static let washingtonDC = (38.889931, -77.009003)
+}
+
+struct StaticMapSize {
+    static let widthSmall = 200
+    static let widthMedium = 400
+    static let widthLarge = 600
 }

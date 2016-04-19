@@ -8,6 +8,7 @@
 
 import UIKit
 import AFImageHelper
+import TPKeyboardAvoiding
 
 enum ActionSheetButtonType: Int {
     case ExistingPhotoType = 0
@@ -21,6 +22,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     @IBOutlet weak var setPhotoLabel: UILabel!
     @IBOutlet weak var setPhotoImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var user: User! = nil
     var imagePicker: UIImagePickerController! = nil
@@ -35,11 +37,18 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupPhotoLabelView()
         self.setupImageView()
         self.setupNextButton()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {
@@ -95,7 +104,10 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
     }
     
     override func rightBarButtonItemDidTap() {
-        if self.firstNameField.textField.text!.length > 0 || self.lastNameField.textField.text!.length > 0 {
+        self.firstNameField.textField.endEditing(true)
+        self.lastNameField.textField.endEditing(true)
+                
+        if (self.firstNameField.textField.text!.length > 0) && (self.firstNameField.textField.text!.isNonWhiteSpace) {
             self.user = User()
             self.user.profile = Profile()
             self.user.profile.firstName = self.firstNameField.textField.text!
@@ -103,8 +115,7 @@ class SignupPhotoController: ViewController, InputTextFieldDelegate, UIImagePick
             self.showPhotoProposalAlertIfNeeded()
         } else {
             self.firstNameField.setErrorState(String())
-            self.lastNameField.setErrorState(String())
-            self.showMessageAlert(nil, message: NSLocalizedString("Error.EnterName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
+            self.showMessageAlert(nil, message: NSLocalizedString("Error.EmptyFirstName", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     

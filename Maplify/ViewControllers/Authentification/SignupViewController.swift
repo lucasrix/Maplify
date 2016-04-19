@@ -6,11 +6,14 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import TPKeyboardAvoiding
+
 class SignupViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
     @IBOutlet weak var imageView: UIImageView!
-    
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
+
     var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     var photoImage: UIImage! = nil
     var user: User! = nil
@@ -24,10 +27,17 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupNextButton()
         self.setupImageView()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {
@@ -66,6 +76,18 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
             self.showMessageAlert(nil, message: NSLocalizedString("Error.InvalidPassword", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         } else {
             self.signup()
+        }
+        
+        self.markInputFieldsWithErrorIfNeeded()
+    }
+    
+    func markInputFieldsWithErrorIfNeeded() {
+        if self.emailInputField.textField.text?.isEmail == false {
+            self.emailInputField.setErrorState(NSLocalizedString("Error.InvalidEmail", comment: String()))
+        }
+        
+        if self.passwordInputField.textField.text?.isValidPassword == false {
+            self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
         }
     }
     

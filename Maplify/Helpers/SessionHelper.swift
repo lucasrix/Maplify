@@ -8,9 +8,10 @@
 
 import Locksmith
 import RealmSwift
+import CoreLocation
 
 class SessionHelper {
-    static let sharedManager = SessionHelper()
+    static let sharedHelper = SessionHelper()
     
     // MARK: - app launch management
     func trackUserAppLaunch() {
@@ -45,7 +46,7 @@ class SessionHelper {
         return (dictionary != nil) ? dictionary : [NSObject : AnyObject]()
     }
     
-    func isSesstionTokenExists() -> Bool {
+    func isSessionTokenExists() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(Network.isUserLogin)
     }
     
@@ -96,6 +97,23 @@ class SessionHelper {
         }
         
         return sessionDictionary
+    }
+    
+    // MARK: - location
+    func updateUserLastLocationIfNeeded(location: CLLocation) {
+        let latitude = NSUserDefaults.standardUserDefaults().doubleForKey(Config.userLocationLatitude)
+        let longitude = NSUserDefaults.standardUserDefaults().doubleForKey(Config.userLocationLongitude)
+        
+        if (latitude != location.coordinate.latitude) || (longitude != location.coordinate.longitude) {
+            NSUserDefaults.standardUserDefaults().setDouble(location.coordinate.latitude, forKey: Config.userLocationLatitude)
+            NSUserDefaults.standardUserDefaults().setDouble(location.coordinate.longitude, forKey: Config.userLocationLongitude)
+        }
+    }
+    
+    func userLastLocation() -> CLLocation {
+        let latitude = NSUserDefaults.standardUserDefaults().doubleForKey(Config.userLocationLatitude)
+        let longitude = NSUserDefaults.standardUserDefaults().doubleForKey(Config.userLocationLongitude)
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
     
     // MARK: - permissions

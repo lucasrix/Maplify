@@ -43,19 +43,19 @@ class RecommendedSettingsViewController: ViewController {
     }
     
     func setupDefaultSettings() {
-        SessionHelper.sharedManager.setPushNotificationsEnabled(true)
-        SessionHelper.sharedManager.setLocationEnabled(true)
+        SessionHelper.sharedHelper.setPushNotificationsEnabled(true)
+        SessionHelper.sharedHelper.setLocationEnabled(true)
     }
     
     //MARK: - actions
     @IBAction func pushNotificationSwitchDidChangeValue(sender: AnyObject) {
         let enabled = self.pushNotificationsSwitch.on
-        SessionHelper.sharedManager.setPushNotificationsEnabled(enabled)
+        SessionHelper.sharedHelper.setPushNotificationsEnabled(enabled)
     }
     
     @IBAction func locationSwitchDidChangeValue(sender: AnyObject) {
         let enabled = self.locationSwitch.on
-        SessionHelper.sharedManager.setLocationEnabled(enabled)
+        SessionHelper.sharedHelper.setLocationEnabled(enabled)
     }
     
     override func rightBarButtonItemDidTap() {

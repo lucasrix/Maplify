@@ -26,7 +26,8 @@ struct InputTextFieldImages {
 struct PlaceholderImages {
     static let setPhotoPlaceholder = "photoAddPlaceholder"
     static let discoverUserEmptyAva = "DiscoverUserEmptyAva"
-    static let discoverPlaceholderAttachment = "DiscoverPlaceholderAttachment"    
+    static let discoverPlaceholderAttachment = "DiscoverPlaceholderAttachment"
+    static let discoverPlaceholder = "DiscoverPlaceholder"
 }
 
 struct BarButtonImages {
@@ -68,6 +69,8 @@ struct ButtonImages {
     static let discoverShowHideDescriptionUp = "DiscoverShowHideDescriptionUp"
     static let icoTop = "icoTop"
     static let icoBottom = "icoBottom"
+    static let icoSearch = "icoSearch"
+    static let icoGps = "icoGps"
 }
 
 struct MediaButtons {
@@ -89,4 +92,7 @@ struct CellImages {
     static let textStoryPoint = "textStoryPoint"
     static let audioStoryPoint = "audioStoryPoint"
     static let videoStoryPoint = "videoStoryPoint"
+    static let discoverStoryPointDetailIconText = "CreateStoryPopintIcoText"
+    static let discoverStoryPointDetailIconAudio = "DiscoverDetailAmbient"
+    static let discoverStoryPointDetailIconVideo = "DiscoverDetailVideo"
 }

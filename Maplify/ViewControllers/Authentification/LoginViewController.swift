@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import TPKeyboardAvoiding
 
 class LoginViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -21,9 +23,16 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - setup
     func setup() {
+        self.setupKeyboardAvoidingScrollView()
         self.setupLabels()
         self.setupTextFields()
         self.setupDoneButton()        
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if UIScreen.mainScreen().smallerThanIPhoneSixSize() == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupLabels() {
@@ -53,6 +62,8 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
         
         ApiClient.sharedClient.signIn(self.emailInputField.textField.text!, password: self.passwordInputField.textField.text!,
             success: { [weak self] (response) -> () in
+                let user = response as! User
+                SessionManager.saveCurrentUser(user)
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
             },

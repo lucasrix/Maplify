@@ -12,11 +12,11 @@ import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
-let kStoryPointsRequestSuspendInterval: NSTimeInterval = 2
+let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
 let kStoryPointsFindingRadius: CGFloat = 10
 let kDefaulMapZoom: Float = 13
 
-class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, ErrorHandlingProtocol {
+class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var addStoryPointImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,12 +24,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
     var suspender = Suspender()
-    
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel = CSActiveModel()
-    
     var mapActiveModel = MCMapActiveModel()
     var mapDataSource: MCMapDataSource! = nil
+    var placeSearchHelper: GooglePlaceSearchHelper! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -38,16 +37,30 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setupNavigationBar()
+        self.loadItemsFromDB()
+    }
+    
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
+        self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
-        self.loadItemsFromDB()
+        self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.setupAddStoryPointImageView()
+    }
+    
+    func setupPlaceSearchHelper() {
+        self.placeSearchHelper = GooglePlaceSearchHelper(parentViewController: self)
+        self.placeSearchHelper.delegate = self
     }
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: #selector(CaptureViewController.locationButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(CaptureViewController.searchButtonTapped))
     }
     
     func setupMapDataSource() {
@@ -57,18 +70,16 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.mapService = self.googleMapService
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
-
+    
     func checkLocationEnabled() {
-        if SessionHelper.sharedManager.locationEnabled() {
+        if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
+                    SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
                     self?.setupMap(location)
                 }
             }
-        } else {
-            self.setupMap(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
         }
-        
     }
     
     func setupMap(location: CLLocation) {
@@ -99,13 +110,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         return UIColor.darkBlueGrey().colorWithAlphaComponent(NavigationBar.defaultOpacity)
     }
     
-    override func backButtonHidden() -> Bool {
-        return true
-    }
-    
     func loadItemsFromDB() {
         let realm = try! Realm()
-        let storyPoints = Array(realm.objects(StoryPoint))
+        let userId = SessionManager.currentUser().id
+        let storyPoints = Array(realm.objects(StoryPoint).filter("user.id == \(userId)").sorted("created_at", ascending: false))
+        
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
@@ -121,14 +130,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let locationDict: [String: AnyObject] = ["latitude": CGFloat(location.latitude), "longitude": CGFloat(location.longitude)]
         let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
         ApiClient.sharedClient.getStoryPoints(params,
-            success: { [weak self] (response) in
-                if let storyPoints = response {
-                    StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
-                    self?.loadItemsFromDB()
-                }
+                                              success: { [weak self] (response) in
+                                                if let storyPoints = response {
+                                                    StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
+                                                    self?.loadItemsFromDB()
+                                                }
             },
-            failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                              failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
     }
@@ -165,6 +174,18 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func locationButtonTapped() {
+        self.googleMapService.moveToDefaultRegion()
+    }
+    
+    func searchButtonTapped() {
+        if self.placeSearchHelper.controllerVisible {
+            self.placeSearchHelper.hideGooglePlaceSearchController()
+        } else {
+            self.placeSearchHelper.showGooglePlaceSearchController()
+        }
+    }
+    
     // MARK: - CSBaseCollectionDataSourceDelegate
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
@@ -173,6 +194,30 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         
         let region = MCMapRegion(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
         self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+    }
+    
+    // MARK - GooglePlaceSearchHelperDelegate
+    func viewController(viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: NSError) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: error.description, cancel: cancel)
+    }
+    
+    func resultsController(resultsController: GMSAutocompleteResultsViewController, didAutocompleteWithPlace place: GMSPlace) {
+        let region = MCMapRegion(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        self.placeSearchHelper.hideGooglePlaceSearchController()
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+    }
+    
+    func resultsController(resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: NSError) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: error.description, cancel: cancel)
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.placeSearchHelper.hideGooglePlaceSearchController()
     }
     
     // MARK: - ErrorHandlingProtocol

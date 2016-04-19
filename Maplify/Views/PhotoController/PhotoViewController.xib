@@ -35,8 +35,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akh-Bh-PsO" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="375" width="375" height="292"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-Zq-sNV">
-                            <rect key="frame" x="152" y="66" width="73" height="73"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-Zq-sNV">
+                            <rect key="frame" x="151" y="66" width="73" height="73"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="73" id="JTG-9s-lD8"/>
                                 <constraint firstAttribute="width" constant="73" id="zR8-DO-dcg"/>
@@ -48,8 +48,8 @@
                                 <action selector="shotTapped:" destination="-1" eventType="touchUpInside" id="MjG-VG-a68"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8h-6S-Y8y">
-                            <rect key="frame" x="42" y="78" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8h-6S-Y8y">
+                            <rect key="frame" x="41" y="78" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="3s6-cH-ryJ"/>
                                 <constraint firstAttribute="width" constant="50" id="d16-Ir-IF8"/>
@@ -59,8 +59,8 @@
                                 <action selector="cameraModeTapped:" destination="-1" eventType="touchUpInside" id="MCd-bm-ONM"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRN-bg-MP5">
-                            <rect key="frame" x="285" y="78" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRN-bg-MP5">
+                            <rect key="frame" x="284" y="78" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="ABc-E0-Hlr"/>
                                 <constraint firstAttribute="height" constant="50" id="oA9-dL-ZS5"/>

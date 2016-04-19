@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
 class ConfigHepler {
     
@@ -37,5 +37,11 @@ class ConfigHepler {
     // MARK: - screen settings
     class func screenSmallerThanIPhoneSixSize() -> Bool {
         return UIScreen.mainScreen().bounds.size.height < ScreenSize.iPhoneSixScreenPointsHeight
+    }
+    
+    // MARK: - path
+    class func databasePath() -> String! {
+        let realm = try! Realm()
+        return realm.configuration.path
     }
 }

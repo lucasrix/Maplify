@@ -13,7 +13,7 @@ class MCMapActiveModel : CSActiveModel {
         var dataArray = [CSCellData]()
         
         for model in array {
-            var cellData = CSCellData()
+            let cellData = CSCellData()
             cellData.model = model
             dataArray.append(cellData)
         }

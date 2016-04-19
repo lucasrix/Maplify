@@ -14,6 +14,10 @@ import CoreLocation
 import Haneke
 import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
+let kLocationInputFieldRightMargin: CGFloat = 30
+let kEditInfoTopViewHeight: CGFloat = 281
+let kStoryCellHeight: CGFloat = 44
+
 class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var placeOrLocationLabel: UILabel!
@@ -59,6 +63,10 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         
         self.captionTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterBriefCaption", comment: String())
         self.placeOrLocationTextField.placeholder = NSLocalizedString("Text.Placeholder.EveryPostMustBeGeotagged", comment: String())
+        
+        let view = UIView(frame: CGRectMake(0, 0, kLocationInputFieldRightMargin, self.placeOrLocationTextField.frame.size.height))
+        self.placeOrLocationTextField.rightViewMode = .Always
+        self.placeOrLocationTextField.rightView = view
         self.tagsTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterTag", comment: String())
         
         self.setupStoryAttachmentLabels()
@@ -78,7 +86,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         if storyPoint != nil {
             self.captionTextField.text = storyPoint.caption
         }
-        
     }
     
     // MARK: - navigation bar
@@ -126,11 +133,16 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         self.hideKeyboard()
-        self.showProgressHUD()
-        if self.storyPointKind == StoryPointKind.Text {
-            self.remotePostStoryPoint(0)
+        
+        if self.placeOrLocationTextField.text?.length > 0 {
+            self.showProgressHUD()
+            if self.storyPointKind == StoryPointKind.Text {
+                self.remotePostStoryPoint(0)
+            } else {
+                self.remotePostAttachment()
+            }
         } else {
-            self.remotePostAttachment()
+            self.showMessageAlert(nil, message: NSLocalizedString("Alert.AddPlaceOrLocation", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     
@@ -152,7 +164,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
             file = NSData(contentsOfURL: url!)
             params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
         }
-       
         ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
             self?.remotePostStoryPoint((response as! Attachment).id)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
@@ -171,7 +182,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         if self.storyPointKind != StoryPointKind.Text {
             storyPointDict["attachment_id"] = attachmentId
         }
-        
         if self.selectedStories.count > 0 {
             storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
         }
@@ -179,7 +189,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
             let realm = try! Realm()
             try! realm.write {
-                realm.add(response as! StoryPoint)
+                realm.add(response as! StoryPoint, update: true)
             }
             self?.hideProgressHUD()
             self?.navigationController?.popToRootViewControllerAnimated(true)
@@ -193,6 +203,10 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.captionTextField.endEditing(true)
         self.placeOrLocationTextField.endEditing(true)
         self.tagsTextField.endEditing(true)
+    }
+    
+    func contentHeight() -> CGFloat {
+        return kEditInfoTopViewHeight + CGFloat(self.selectedStories.count) * kStoryCellHeight
     }
     
     // MARK: - SelectedStoryCellProtocol

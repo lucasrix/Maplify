@@ -100,7 +100,6 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         return false
     }
     
-    // MARK: - private
     func updateCharactersCountLabel(charactersCount: Int) {
         let substringOf = NSLocalizedString("Substring.Of", comment: String())
         let substringChars = NSLocalizedString("Substring.Chars", comment: String())

@@ -11,6 +11,7 @@ import Tailor
 class Location: Model {
     dynamic var latitude: Double = 0
     dynamic var longitude: Double = 0
+    dynamic var city = ""
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
@@ -18,5 +19,6 @@ class Location: Model {
         self.id <- map.property("id")
         self.latitude <- map.property("latitude")
         self.longitude <- map.property("longitude")
+        self.city <- map.property("city")
     }
 }

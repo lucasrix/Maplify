@@ -60,7 +60,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
         let loginRangeStr = NSLocalizedString("Controller.Landing.RangeLogin", comment: String())
         let font = UIFont.systemFontOfSize(kLabelFontSize)
         self.loginLabel.setupDefaultAttributes(loginStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
-        self.loginLabel.setupLinkAttributes(UIColor.whiteColor())
+        self.loginLabel.setupLinkAttributes(UIColor.whiteColor(), underlined: false)
         self.loginLabel.addURLLink(kLoginActiveLink, str: loginStr, rangeStr: loginRangeStr)
     }
     
@@ -70,7 +70,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
         let policyRangeStr = NSLocalizedString("Controller.Landing.RangePolicy", comment: String())
         let font = UIFont.systemFontOfSize(kLabelFontSize)
         self.termsLabel.setupDefaultAttributes(termsStr, textColor: UIColor.warmGrey(), font: font, delegate: self)
-        self.termsLabel.setupLinkAttributes(UIColor.whiteColor())
+        self.termsLabel.setupLinkAttributes(UIColor.whiteColor(), underlined: false)
         self.termsLabel.addURLLink(kTermsActiveLink, str: termsStr, rangeStr: termsRangeStr)
         self.termsLabel.addURLLink(kPolicyActiveLink, str: termsStr, rangeStr: policyRangeStr)
     }
@@ -85,8 +85,15 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
         FacebookHelper.facebookAuthorize({ [weak self] (token) in
             ApiClient.sharedClient.facebookAuth(token,
                 success: { (response) -> () in
+                    let user = response as! User
+                    SessionManager.saveCurrentUser(user)
                     self?.hideProgressHUD()
-                    self?.routesOpenSignUpUpdateProfileViewController(response as! User)
+
+                    if (user.profile.city.length > 0) || (user.profile.url.length > 0) || (user.profile.about.length > 0) {
+                        self?.routesSetContentController()
+                    } else {
+                        self?.routesOpenSignUpUpdateProfileViewController(user)
+                    }
                 },
                 failure: { (statusCode, errors, localDescription, messages) -> () in
                     self?.hideProgressHUD()

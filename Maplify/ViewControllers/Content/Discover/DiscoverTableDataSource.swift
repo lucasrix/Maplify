@@ -9,14 +9,32 @@
 import UIKit
 
 class DiscoverTableDataSource: CSBaseTableDataSource {
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellData = self.activeModel.cellData(indexPath)
+        let model = cellData.model
+        let item = model as! DiscoverItem
+        if item.type ==  DiscoverItemType.StoryPoint.rawValue {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryPointCell), forIndexPath: indexPath) as! DiscoverStoryPointCell
+            cell.configure(cellData)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryCell), forIndexPath: indexPath) as! DiscoverStoryCell
+            cell.configure(cellData)
+            return cell
+        }
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cellData = self.activeModel.cellData(indexPath)
         let model = cellData.model
+        let item = model as! DiscoverItem
         var itemHeight: CGFloat = 0
-        if model is StoryPoint {
-            itemHeight = DiscoverStoryPointCell.contentHeightForStoryPoint(cellData)
-        } else if model is Story {
-            // TODO:
+        
+        if item.type == DiscoverItemType.StoryPoint.rawValue {
+            itemHeight = DiscoverStoryPointCell.contentSize(cellData).height
+        } else if item.type ==  DiscoverItemType.Story.rawValue {
+            itemHeight = DiscoverStoryCell.contentSize(cellData).height
         }
         return itemHeight
     }

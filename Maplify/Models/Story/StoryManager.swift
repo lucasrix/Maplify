@@ -18,10 +18,25 @@ class StoryManager: ModelManager {
         let realm = try! Realm()
         
         for story in stories {
-            let recordExists = (realm.objectForPrimaryKey(Story.self, key: story.id) != nil)
             try! realm.write {
-                realm.add(story, update: recordExists)
+                realm.add(story, update: true)
             }
         }
+    } 
+    
+    class func saveStory(story: Story) {
+        let realm = try! Realm()
+        
+        let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+        StoryPointManager.saveStoryPoints(storyPoints)
+        
+        try! realm.write {
+            realm.add(story, update: true)
+        }
+    }
+    
+    class func find(storyId: Int) -> Story! {
+        let realm = try! Realm()
+        return realm.objectForPrimaryKey(Story.self, key: storyId)
     }
 }

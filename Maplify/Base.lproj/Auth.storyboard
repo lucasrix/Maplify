@@ -132,7 +132,7 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-hD-QbE">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-hD-QbE" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNi-S9-tbB">
@@ -197,6 +197,7 @@ Terms &amp; Privacy Policy.</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="emailInputField" destination="2o0-1q-vkB" id="Dp7-0q-wJ5"/>
+                        <outlet property="keyboardAvoidingScrollView" destination="pbM-hD-QbE" id="nSQ-fo-akx"/>
                         <outlet property="passwordInputField" destination="9Uo-IS-PB8" id="nnm-VA-g26"/>
                     </connections>
                 </viewController>
@@ -257,7 +258,7 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5c8-2Q-K42">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5c8-2Q-K42" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZp-T4-Sts" userLabel="MainView">
@@ -386,6 +387,7 @@ Terms &amp; Privacy Policy.</string>
                     <connections>
                         <outlet property="descriptionLabel" destination="LVU-CR-5oU" id="oIk-Re-Aj9"/>
                         <outlet property="firstNameField" destination="8tp-ew-vSU" id="Fi2-rl-g1E"/>
+                        <outlet property="keyboardAvoidingScrollView" destination="5c8-2Q-K42" id="OQD-jt-3nB"/>
                         <outlet property="lastNameField" destination="Gt0-AQ-HVu" id="GMO-9A-hxx"/>
                         <outlet property="setPhotoImage" destination="5dD-1x-XlR" id="7Us-Ss-SBb"/>
                         <outlet property="setPhotoLabel" destination="BKr-9h-V6V" id="zFe-2X-khj"/>
@@ -408,7 +410,7 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1f-xF-y3j">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1f-xF-y3j" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUp-V4-P63">
@@ -471,6 +473,7 @@ Terms &amp; Privacy Policy.</string>
                     <connections>
                         <outlet property="emailInputField" destination="g9W-bi-ZGK" id="YWR-CX-NZ8"/>
                         <outlet property="imageView" destination="Ekg-Vm-btB" id="19n-yU-ara"/>
+                        <outlet property="keyboardAvoidingScrollView" destination="r1f-xF-y3j" id="8k4-h8-q8h"/>
                         <outlet property="passwordInputField" destination="tts-oW-0Oq" id="AjV-uJ-xOb"/>
                     </connections>
                 </viewController>
@@ -490,7 +493,7 @@ Terms &amp; Privacy Policy.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbL-eh-MWx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbL-eh-MWx" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkv-xw-lrN">
@@ -554,6 +557,7 @@ Terms &amp; Privacy Policy.</string>
                     <connections>
                         <outlet property="aboutFieldHeightConstraint" destination="3i8-IV-ydF" id="f12-HD-fAD"/>
                         <outlet property="aboutInputField" destination="yzt-gF-De0" id="O0y-FX-IWd"/>
+                        <outlet property="keyboardAvoidingScrollView" destination="AbL-eh-MWx" id="YYM-yy-59b"/>
                         <outlet property="locationInputField" destination="Q1T-Kp-Fwj" id="IFL-ME-niY"/>
                         <outlet property="urlInputField" destination="uDK-0y-r7D" id="kDj-BG-bov"/>
                     </connections>

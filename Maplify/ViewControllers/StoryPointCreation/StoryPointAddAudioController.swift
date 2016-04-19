@@ -20,6 +20,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     var microphone: EZMicrophone!
     var audioRecorder = AudioRecorderHelper()
+    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -119,9 +120,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
             self.hideProgressHUD()
-            //TODO: 
-            let location = MCMapCoordinate(latitude: 0, longitude: 0)
-            self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath, location: location)
+            self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath, location: self.pickedLocation)
         } else {
             // TODO:
         }

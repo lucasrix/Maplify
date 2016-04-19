@@ -45,13 +45,22 @@ extension UIViewController {
     func routesOpenOnboardController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.onboardController)
     }
-    
-    func routesOpenAudioStoryPointController() {
-        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyPointAddAudioController)
-    }
 
     func routesOpenRecommendedSettingsController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
+    }
+    
+    func routesOpenProfileController(profileId: Int) {
+        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
+        profileViewController.profileId = profileId
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    func routesOpenEditProfileController(profileId: Int, photo: UIImage!) {
+        let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
+        editProfileViewController.profileId = profileId
+        editProfileViewController.updatedImage = photo
+        self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
     func routesOpenStoryPointEditController(storyPointId: Int, storyPointUpdateHandler: () -> ()) {
@@ -96,6 +105,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
     }
     
+    func routesOpenAudioStoryPointController(pickedLocation: MCMapCoordinate) {
+        let storyPointAddAudioViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddAudioController) as! StoryPointAddAudioController
+        storyPointAddAudioViewController.pickedLocation = pickedLocation
+        self.navigationController?.pushViewController(storyPointAddAudioViewController, animated: true)
+    }
+    
     func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate) {
         let storyPointAddPhotoVideoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddPhotoVideoViewController) as! StoryPointAddPhotoVideoViewController
         storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
@@ -106,6 +121,14 @@ extension UIViewController {
         let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
         addStoryViewController.updatedStoryIds = updateStoryHandle
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
+    }
+    
+    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+        let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
+        storyDetailViewController.storyPoints = storyPoints
+        storyDetailViewController.selectedIndex = selectedIndex
+        storyDetailViewController.storyTitle = storyTitle
+        self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
     // MARK: - open as popup controllers

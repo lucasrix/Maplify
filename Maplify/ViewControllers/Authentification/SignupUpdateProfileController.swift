@@ -7,17 +7,21 @@
 //
 
 import GoogleMaps
+import TPKeyboardAvoiding
 
 let kMaxAboutTextLength = 500
+let kTopControlsHeight: CGFloat = 200
 
-class SignupUpdateProfileController: ViewController, InputTextViewDelegate, ErrorHandlingProtocol {
+class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, InputTextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var locationInputField: InputTextField!
     @IBOutlet weak var urlInputField: InputTextField!
     @IBOutlet weak var aboutInputField: InputTextView!
     @IBOutlet weak var aboutFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var user: User! = nil
     var placesClient: GMSPlacesClient! = nil
+    var suspender = Suspender()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -61,6 +65,8 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         
         self.locationInputField.setupTextField(locationPlaceholder, defaultIconName: InputTextFieldImages.locationIconDefault, highlitedIconName: InputTextFieldImages.locationIconActive)
         self.locationInputField.descriptionLabel.text = locationDescription
+        self.locationInputField.delegate = self
+        self.locationInputField.textField.completionColor = UIColor.lightGrayColor()
     }
     
     func setupURLInputField() {
@@ -91,7 +97,7 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
     }
     
     // MARK: - InputTextViewDelegate
-    func editingChanged(inputTextView: InputTextView) {
+    func textEditingChanged(inputTextView: InputTextView) {
         let height = inputTextView.textView.frame.height
         self.aboutFieldHeightConstraint.constant = height
     }
@@ -107,11 +113,13 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         self.user.profile.about = self.aboutInputField.textView.text
         
         self.showProgressHUD()
-        ApiClient.sharedClient.updateProfile(self.user.profile,
+        ApiClient.sharedClient.updateProfile(self.user.profile, photo: nil,
             success: { [weak self] (response) -> () in
                 self?.user.profile = response as! Profile  
                 self?.hideProgressHUD()
                 SessionManager.saveCurrentUser((self?.user)!)
+                let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0 , longitude: DefaultLocation.washingtonDC.1)
+                SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(defaultLocation)
                 self?.routesOpenOnboardController()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
@@ -121,7 +129,29 @@ class SignupUpdateProfileController: ViewController, InputTextViewDelegate, Erro
         )
     }
     
-    //MARK: - ErrorHandlingProtocol
+    // MARK: - InputTextFieldDelegate
+    func shouldChangeCharacters(inputTextField: InputTextField, replacementString string: String) {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .NoFilter
+        GMSPlacesClient.sharedClient().autocompleteQuery(string, bounds: nil, filter: filter,
+                                                callback: { [weak self] (predictions, error) in
+                                                    if predictions?.count > 0 {
+                                                        let predictionTitles = (predictions! as [GMSAutocompletePrediction]).map({$0.attributedFullText})
+                                                        let location = (predictionTitles.first?.string)! as String
+                                                        self?.locationInputField.textField.suggestions = [location]
+                                                    }
+            }
+        )
+    }
+    
+    func contentSizeWillChange(contentSize: CGSize) {
+        let contentWidth = self.view.frame.size.width
+        let updatedContentHeight = contentSize.height + kTopControlsHeight
+        self.keyboardAvoidingScrollView.contentSize = CGSizeMake(contentWidth, updatedContentHeight)
+        self.keyboardAvoidingScrollView.scrollRectToVisible(CGRectMake(0, 0, contentWidth, updatedContentHeight), animated: true)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())
         let cancel = NSLocalizedString("Button.Ok", comment: String())

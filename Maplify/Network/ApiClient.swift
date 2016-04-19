@@ -26,7 +26,7 @@ class ApiClient {
     }
     
     private func baseRequest(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
                 self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
@@ -34,7 +34,7 @@ class ApiClient {
     }
     
     private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
-        let headers = SessionHelper.sharedManager.sessionData() as! [String: String]
+        let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
             multipartFormData: { (multipartFormData) -> () in
@@ -69,7 +69,7 @@ class ApiClient {
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
-            SessionHelper.sharedManager.setSessionData(headersDictionary)
+            SessionHelper.sharedHelper.setSessionData(headersDictionary)
         }
         
         var payload = data.jsonDictionary()
@@ -120,8 +120,8 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .URL, success: success, failure: failure)
     }
     
-    func putRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+    func putRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+        let config = RequestConfig(type: .PUT, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -155,9 +155,17 @@ class ApiClient {
         self.postRequest("auth/provider_sessions", params:params , data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
     }
     
-    func updateProfile(profile: Profile, success: successClosure!, failure: failureClosure!) {
-        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
-        self.putRequest("profile", params: params, manager: ProfileManager(), success: success, failure: failure)
+    func getProfileInfo(profileId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("profiles/\(profileId)", params: nil, manager: ProfileManager(), success: success, failure: failure)
+    }
+    
+    func updateProfile(profile: Profile, photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName, "mimeType": "image/png", "fileName": "photo.png"]
+        var data: [String: AnyObject]! = nil
+        if (photo != nil) {
+            data = ["photo": photo]
+        }
+        self.putRequest("profile", params: params, data: data,  manager: ProfileManager(), success: success, failure: failure)
     }
     
     func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
@@ -181,12 +189,12 @@ class ApiClient {
     }
     
     func getStoryPoints(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
-        self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
+        self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
     func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {
         let params = ["page": page]
-        self.getRequest("stories/my_stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
+        self.getRequest("user/stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
@@ -204,6 +212,20 @@ class ApiClient {
     func createStory(name: String, discoverable: Bool, success: successClosure!, failure: failureClosure!) {
         let params = ["name": name, "discoverable": discoverable]
         self.postRequest("stories", params: (params as! [String : AnyObject]), data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func updateUser(email: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email]
+        self.putRequest("user", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
+    }
+
+    func retrieveDiscoverList(latitude: Double, longitude: Double, radius: CGFloat, page: Int, success: successClosure!, failure: failureClosure!) {
+        let params: [String: AnyObject] = ["page": page,
+                      "radius": radius,
+                      "location[latitude]": latitude,
+                      "location[longitude]": longitude
+                      ]
+        self.getRequest("discover", params: params, manager: DiscoverItemManager(), success: success, failure: failure)
     }
 }
 

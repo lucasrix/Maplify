@@ -112,7 +112,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadItemsFromDB() {
         let realm = try! Realm()
-        let storyPoints = Array(realm.objects(StoryPoint))
+        let userId = SessionManager.currentUser().id
+        let storyPoints = Array(realm.objects(StoryPoint).filter("user.id == \(userId)"))
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()

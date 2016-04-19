@@ -98,13 +98,13 @@ class InputTextView: UIView, UITextViewDelegate {
     
     private func updateViewWithAnimation(highlitedImageShow: Bool, errorShow: Bool, separatrorColor: UIColor) {
         self.delegate?.contentSizeWillChange?(self.textView.contentSize)
-        UIView.animateWithDuration(kSeparatorLineViewAnimationDuration) { () -> () in
-            self.lineView.backgroundColor = separatrorColor
+        UIView.animateWithDuration(kSeparatorLineViewAnimationDuration) { [weak self] () -> () in
+            self?.lineView.backgroundColor = separatrorColor
             
             let iconAlpha: CGFloat = highlitedImageShow == true ? kInputTextViewAlphaMax : kInputTextViewAlphaMin
             let iconAlphaAnother: CGFloat = highlitedImageShow == false ? kInputTextViewAlphaMax : kInputTextViewAlphaMin
-            self.iconImageView.alpha = iconAlphaAnother
-            self.iconHighlightedImageView.alpha = iconAlpha
+            self?.iconImageView.alpha = iconAlphaAnother
+            self?.iconHighlightedImageView.alpha = iconAlpha
         }
     }
     

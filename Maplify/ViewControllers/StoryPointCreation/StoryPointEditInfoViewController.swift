@@ -15,6 +15,8 @@ import Haneke
 import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
 let kLocationInputFieldRightMargin: CGFloat = 30
+let kEditInfoTopViewHeight: CGFloat = 281
+let kStoryCellHeight: CGFloat = 44
 
 class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
     @IBOutlet weak var captionLabel: UILabel!
@@ -201,6 +203,10 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.captionTextField.endEditing(true)
         self.placeOrLocationTextField.endEditing(true)
         self.tagsTextField.endEditing(true)
+    }
+    
+    func contentHeight() -> CGFloat {
+        return kEditInfoTopViewHeight + CGFloat(self.selectedStories.count) * kStoryCellHeight
     }
     
     // MARK: - SelectedStoryCellProtocol

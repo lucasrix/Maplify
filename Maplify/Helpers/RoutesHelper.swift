@@ -45,10 +45,6 @@ extension UIViewController {
     func routesOpenOnboardController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.onboardController)
     }
-    
-    func routesOpenAudioStoryPointController() {
-        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyPointAddAudioController)
-    }
 
     func routesOpenRecommendedSettingsController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
@@ -107,6 +103,12 @@ extension UIViewController {
         storyPointEditInfoViewController.location = location
         storyPointEditInfoViewController.storyPointAttachmentId = storyPointAttachmentId
         self.navigationController?.pushViewController(storyPointEditInfoViewController, animated: true)
+    }
+    
+    func routesOpenAudioStoryPointController(pickedLocation: MCMapCoordinate) {
+        let storyPointAddAudioViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddAudioController) as! StoryPointAddAudioController
+        storyPointAddAudioViewController.pickedLocation = pickedLocation
+        self.navigationController?.pushViewController(storyPointAddAudioViewController, animated: true)
     }
     
     func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate) {

@@ -22,5 +22,21 @@ class StoryManager: ModelManager {
                 realm.add(story, update: true)
             }
         }
+    } 
+    
+    class func saveStory(story: Story) {
+        let realm = try! Realm()
+        
+        let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+        StoryPointManager.saveStoryPoints(storyPoints)
+        
+        try! realm.write {
+            realm.add(story, update: true)
+        }
+    }
+    
+    class func find(storyId: Int) -> Story! {
+        let realm = try! Realm()
+        return realm.objectForPrimaryKey(Story.self, key: storyId)
     }
 }

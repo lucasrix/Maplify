@@ -89,4 +89,8 @@ extension UIColor {
     class func inactiveGrey() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.1)
     }
+
+    class func whiteFour() -> UIColor {
+        return UIColor(red: 247, green: 246, blue: 246)
+    }
 }

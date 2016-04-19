@@ -8,11 +8,12 @@
 
 import UIKit
 
-struct CSCellData {
+class CSCellData {
     var model: AnyObject! = nil
     var selected: Bool = false
     var cellIdentifier: String! = nil
     var sectionTitle: String! = nil
     var delegate: AnyObject! = nil
     var contentSize: CGSize = CGSizeZero
+    var boundingSize: CGSize = CGSizeZero
 }

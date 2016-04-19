@@ -162,7 +162,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
             file = NSData(contentsOfURL: url!)
             params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
         }
-       
         ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
             self?.remotePostStoryPoint((response as! Attachment).id)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
@@ -181,7 +180,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         if self.storyPointKind != StoryPointKind.Text {
             storyPointDict["attachment_id"] = attachmentId
         }
-        
         if self.selectedStories.count > 0 {
             storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
         }

@@ -12,6 +12,16 @@ let kStoryCellDescriptionDefaultHeight: CGFloat = 17
 let kStoryDescriptionOpened: Int = 0
 let kStoryDescriptionClosed: Int = 1
 
+let kDiscoverStoryDataSourceItemsCountToShowOne = 1
+let kDiscoverStoryDataSourceItemsCountToShowTwo = 2
+let kDiscoverStoryDataSourceItemsCountToShowThree = 3
+let kDiscoverStoryDataSourceItemsCountToShowSix = 6
+let kDiscoverStoryDataSourceItemsCountToShowNine = 9
+
+let kDiscoverStoryDataSourceNumberOfRowsOne = 1
+let kDiscoverStoryDataSourceNumberOfRowsTwo = 2
+let kDiscoverStoryDataSourceNumberOfRowsThree = 3
+
 class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     @IBOutlet weak var thumbImageView: UIImageView!
@@ -37,14 +47,15 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     override func configure(cellData: CSCellData) {
         self.cellData = cellData
         self.delegate = cellData.delegate as! DiscoverStoryCellDelegate
-        let story = cellData.model as! Story
-        self.storyId = story.id
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.storyId = story!.id
         
         self.addShadow()
-        self.populateUserViews(story)
-        self.populateStoryInfoViews(story)
+        self.setupCollectionView(cellData)
+        self.populateUserViews(story!)
+        self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
-        self.setupCollectionView(story)
         self.setupSwipe()
     }
     
@@ -76,9 +87,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     func populateDescriptionLabel(cellData: CSCellData) {
         self.descriptionLabel.numberOfLines = cellData.selected ? kStoryDescriptionOpened : kStoryDescriptionClosed
-        let story = cellData.model as! Story
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
         
-        self.descriptionLabel.text = story.storyDescription
+        self.descriptionLabel.text = story!.storyDescription
         
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -88,21 +100,25 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story.storyDescription)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story.storyDescription)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(story!.storyDescription)
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(story!.storyDescription)
     }
     
-    func setupCollectionView(story: Story) {
-        self.updateCollectionViewData(story)
+    func setupCollectionView(cellData: CSCellData) {
+        self.updateCollectionViewData(cellData)
     }
     
-    func updateCollectionViewData(story: Story) {
-        let storyPoints: [StoryPoint] = Array(story.storyPoints)
-        let itemsToShow: [AnyObject] = [story] + storyPoints
+    func updateCollectionViewData(cellData: CSCellData) {
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        let storyPoints: [StoryPoint] = Array(story!.storyPoints)
+        let itemsToShow: [AnyObject] = [story!] + storyPoints
+        self.storyPointActiveModel.removeData()
         self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self)
         self.storyPointDataSource = DiscoverStoryCollectionDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
+        self.storyPointDataSource.reloadCollectionView()
         
-        let itemsOverlimit = story.storyPoints.count - self.numberOfStoryPointInCollectionView()
+        let itemsOverlimit = story!.storyPoints.count - self.numberOfStoryPointInCollectionView()
         self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
     }
@@ -114,8 +130,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
-        let story = self.cellData.model as! Story
-        self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: 0, storyTitle: story.title)
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: 0, storyTitle: story!.title)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -129,8 +146,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     func profileImageTapped() {
-        let story = cellData.model as! Story
-        self.delegate?.storyProfileImageTapped(story.user.id)
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        self.delegate?.storyProfileImageTapped(story!.user.id)
     }
     
     // MARK: - private
@@ -142,28 +160,63 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         return textSize.height <= kStoryCellDescriptionDefaultHeight
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
-        // need to use to set the preferredMaxLayoutWidth below.
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
-        
-        // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
-        // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
-        self.userNameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.userNameLabel.frame)
-        self.captionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.captionLabel.frame)
-        self.descriptionLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.descriptionLabel.frame)
-    }
-    
     // MARK: - CSBaseCollectionDataSourceDelegate
     func didSelectModel(model: AnyObject, indexPath: NSIndexPath) {
         if indexPath.row == 0 {
             self.delegate?.didSelectMap()
         } else {
-            let story = self.cellData.model as! Story
-            self.delegate?.didSelectStoryPoint(Array(story.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story.title)
+            let item = cellData.model as! DiscoverItem
+            let story = item.story
+            self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story!.title)
+        }
+    }
+    
+    // MARK: - content height
+    class func contentSize(cellData: CSCellData) -> CGSize {
+        let contentWidth: CGFloat = cellData.boundingSize.width
+        var contentHeight: CGFloat = kTopInfoViewHeight + kBottomInfoView
+        
+        let item = cellData.model as! DiscoverItem
+        let story = item.story
+        
+        let cellWidth = DiscoverStoryCell.cellWidth((story?.storyPoints.count)!)
+        let rowsCount = DiscoverStoryCell.itemsCountToShow((story?.storyPoints.count)! + 1).1        
+        contentHeight += (cellWidth * CGFloat(rowsCount))
+        
+        if cellData.selected {
+            contentHeight += DiscoverStoryCell.textDescriptionHeight((story?.storyDescription)!, width: contentWidth)
+        } else {
+            contentHeight += kStoryPointCellDescriptionDefaultHeight
+        }
+        
+        contentHeight += kStoryPointTextVerticalMargin
+        return CGSizeMake(contentWidth, contentHeight)
+    }
+    
+    class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
+        let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
+        let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
+        return text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height
+    }
+    
+    class  func cellWidth(itemsCount: Int) -> CGFloat {
+        let numberOfColumn = self.itemsCountToShow(itemsCount + 1).0 == kDiscoverStoryDataNumberOfItemsInColumnTwo ? kDiscoverStoryDataNumberOfItemsInColumnTwo : kDiscoverStoryDataNumberOfItemsInColumnThree
+        let totalCellsLayer: CGFloat = (CGFloat(numberOfColumn) - 1) * kDiscoverStoryDataSourceCellsLayerWidth
+        return (UIScreen.mainScreen().bounds.size.width - totalCellsLayer) / CGFloat(numberOfColumn)
+    }
+    
+    class func itemsCountToShow(itemsCount: Int) -> (Int, Int) {
+        switch itemsCount {
+        case 1:
+            return (kDiscoverStoryDataSourceItemsCountToShowOne, kDiscoverStoryDataSourceNumberOfRowsOne)
+        case 2:
+            return (kDiscoverStoryDataSourceItemsCountToShowTwo, kDiscoverStoryDataSourceNumberOfRowsOne)
+        case 3, 4, 5:
+            return (kDiscoverStoryDataSourceItemsCountToShowThree, kDiscoverStoryDataSourceNumberOfRowsOne)
+        case 6, 7, 8:
+            return (kDiscoverStoryDataSourceItemsCountToShowSix, kDiscoverStoryDataSourceNumberOfRowsTwo)
+        default:
+            return (kDiscoverStoryDataSourceItemsCountToShowNine, kDiscoverStoryDataSourceNumberOfRowsThree)
         }
     }
 }

@@ -9,6 +9,8 @@
 import Haneke
 import UIKit
 
+let kVideoDurationSecondsMax: Double = 20
+
 class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate, VideoControllerDelagate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var galleryButton: UIButton!
@@ -95,7 +97,29 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         let videoViewController = VideoViewController()
         videoViewController.delegate = self
         self.showController(videoViewController)
+    }
+    
+    // MARK: - remote
+    func remotePostAttachment(storyPointKind: StoryPointKind, fileData: NSData) {
+        self.showProgressHUD()
+        var params: [String: AnyObject]! = nil
+        if storyPointKind == StoryPointKind.Photo {
+                params = ["mimeType": "image/png", "fileName": "photo.png"]
+        } else if storyPointKind == StoryPointKind.Video {
+            params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
+        }
         
+        ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
+            
+            self?.hideProgressHUD()
+            let attachmentID = (response as! Attachment).id
+            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+            
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
     }
     
     // MARK: - private
@@ -152,25 +176,27 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         }
     }
     
-    func createPhotoStoryPoint(image: UIImage) {
-        let cache = Shared.imageCache
-        let uniqeId = NSUUID().UUIDString
-        cache.set(value: image, key: uniqeId)
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Photo, storyPointAttachmentId: uniqeId, location: self.pickedLocation)
-    }
-    
     // MARK: - CameraRollDelegate
-    func imageDidSelect(image: UIImage) {
-        self.createPhotoStoryPoint(image)
+    func imageDidSelect(imageData: NSData) {
+        self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
     }
     
     func cameraRollUnauthorized() {
         self.showGalleryPermissionsError()
     }
     
+    func videoDidSelect(videoData: NSData, duration: Double) {
+        if duration < kVideoDurationSecondsMax {
+            self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
+        } else {
+            // TODO:
+            print("error duration \(duration)")
+        }
+    }
+    
     // MARK: - PhotoControllerDelegate
-    func photoDidTake(image: UIImage) {
-        self.createPhotoStoryPoint(image)
+    func photoDidTake(imageData: NSData) {
+        self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
     }
     
     func photoCameraUnauthorized() {
@@ -178,11 +204,18 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - VideoControllerDelagate
-    func videoDidWrite(url: String) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Video, storyPointAttachmentId: url, location: self.pickedLocation)
+    func videoDidWrite(videoData: NSData) {
+        self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
     }
     
     func videoCameraUnauthorized() {
         self.showCameraPermissionsError()
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

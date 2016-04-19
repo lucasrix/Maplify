@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="collectionView" destination="Qye-TF-5X4" id="0cS-tW-JEl"/>
                 <outlet property="imageCropView" destination="Qzx-u1-5j0" id="0Pi-G7-eEW"/>
+                <outlet property="videoImageView" destination="Ezc-wK-bMr" id="EWd-I4-Hml"/>
+                <outlet property="videoView" destination="ZcR-ip-pfO" id="oAz-4G-RKD"/>
                 <outlet property="view" destination="iN0-l3-epB" id="AbA-nJ-jHI"/>
             </connections>
         </placeholder>
@@ -22,7 +24,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Qzx-u1-5j0" secondAttribute="height" multiplier="125:125" id="ILq-On-G4W"/>
+                        <constraint firstAttribute="width" secondItem="Qzx-u1-5j0" secondAttribute="height" multiplier="1:1" id="ILq-On-G4W"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcR-ip-pfO">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ezc-wK-bMr">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Ezc-wK-bMr" firstAttribute="leading" secondItem="ZcR-ip-pfO" secondAttribute="leading" id="0dT-tM-hbL"/>
+                        <constraint firstAttribute="trailing" secondItem="Ezc-wK-bMr" secondAttribute="trailing" id="ElD-D8-Bgr"/>
+                        <constraint firstAttribute="width" secondItem="ZcR-ip-pfO" secondAttribute="height" multiplier="1:1" id="Fx6-QG-fUq"/>
+                        <constraint firstItem="Ezc-wK-bMr" firstAttribute="top" secondItem="ZcR-ip-pfO" secondAttribute="top" id="Q4Y-gE-sZ4"/>
+                        <constraint firstAttribute="bottom" secondItem="Ezc-wK-bMr" secondAttribute="bottom" id="nZ4-o4-ZJC"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Qye-TF-5X4">
@@ -41,6 +59,9 @@
                 <constraint firstAttribute="bottom" secondItem="Qye-TF-5X4" secondAttribute="bottom" id="6XI-zt-boZ"/>
                 <constraint firstAttribute="trailing" secondItem="Qzx-u1-5j0" secondAttribute="trailing" id="8iE-hf-eKH"/>
                 <constraint firstItem="Qye-TF-5X4" firstAttribute="top" secondItem="Qzx-u1-5j0" secondAttribute="bottom" constant="1" id="E8o-TJ-EB8"/>
+                <constraint firstItem="ZcR-ip-pfO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Kui-j0-6fv"/>
+                <constraint firstAttribute="trailing" secondItem="ZcR-ip-pfO" secondAttribute="trailing" id="Uqr-qz-gFB"/>
+                <constraint firstItem="ZcR-ip-pfO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WPW-oO-3Hd"/>
                 <constraint firstItem="Qye-TF-5X4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gcn-ln-16e"/>
                 <constraint firstAttribute="trailing" secondItem="Qye-TF-5X4" secondAttribute="trailing" id="keL-pX-5Jf"/>
                 <constraint firstItem="Qzx-u1-5j0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zYU-rw-fVh"/>

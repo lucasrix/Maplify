@@ -26,6 +26,12 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setupSelectedButton()
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
@@ -87,6 +93,15 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     override func backButtonHidden() -> Bool {
         return true
+    }
+    
+    func setupSelectedButton() {
+        if self.currentChildViewController == self.tabCaptureNavigationController {
+            self.captureTabButton.selected = true
+        } else {
+            self.discoverTabButton.selected = true
+        }
+        self.profileTabButton.selected = false
     }
 
     // MARK: - actions

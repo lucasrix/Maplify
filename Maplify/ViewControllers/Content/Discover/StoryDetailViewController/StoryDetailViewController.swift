@@ -16,9 +16,8 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     var pageViewController: StoryPageViewController! = nil
     var storyTitle = String()
     
-    @IBOutlet weak var cont: UIView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var pageControlBackView: UIView!
-    @IBOutlet weak var pageControl: UIPageControl!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -30,7 +29,6 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.setupPageIndicator()
         self.setupPageController()
     }
     
@@ -46,14 +44,22 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
         self.title = self.storyTitle
     }
     
-    func setupPageIndicator() {
-        self.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
-        self.pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorTintColorAlpha)
-        self.pageControl.backgroundColor = UIColor.clearColor()
-        self.pageControl.numberOfPages = self.storyPoints.count
-        self.pageControlBackView.layer.cornerRadius = self.pageControlBackView.frame.size.height / 2
-    }
     
+    func setupPageController() {
+        self.pageViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPageViewController) as! StoryPageViewController
+        self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
+        
+        let startViewController = self.getItemController(self.selectedIndex)
+        self.pageViewController.setViewControllers([startViewController!] , direction: .Forward, animated: true, completion: nil)
+        self.configureChildViewController(self.pageViewController, onView: self.containerView)
+        
+        for view in self.pageViewController.view.subviews {
+            if let scrollView = view as? UIScrollView {
+                scrollView.delegate = self
+            }
+        }
+    }
     
     override func viewDidLayoutSubviews() {
         for subView in self.pageViewController.view.subviews {
@@ -67,27 +73,12 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     }
     
     func setupPageControl(pageControl: UIPageControl) {
-        pageControl.frame.origin.y += 30
-        pageControl.backgroundColor = UIColor.redColor()
+        pageControl.backgroundColor = UIColor.clearColor()
         pageControl.pageIndicatorTintColor = UIColor.whiteColor().colorWithAlphaComponent(kPageIndicatorColorAlpha)
-        pageControl.currentPageIndicatorTintColor = UIColor.dodgerBlue()
+        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        self.pageControlBackView.layer.cornerRadius = self.pageControlBackView.frame.size.height / 2
+        self.view.bringSubviewToFront(self.pageControlBackView)
         self.view.bringSubviewToFront(pageControl)
-    }
-    
-    func setupPageController() {
-        self.pageViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPageViewController) as! StoryPageViewController
-        self.pageViewController.dataSource = self
-        self.pageViewController.delegate = self
-        
-        let startViewController = self.getItemController(self.selectedIndex)
-        self.pageViewController.setViewControllers([startViewController!] , direction: .Forward, animated: true, completion: nil)
-        self.configureChildViewController(self.pageViewController, onView: self.cont)
-        
-        for view in self.pageViewController.view.subviews {
-            if let scrollView = view as? UIScrollView {
-                scrollView.delegate = self
-            }
-        }
     }
     
     // MARK: - navigation bar
@@ -121,7 +112,6 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     }
     
     private func getItemController(itemIndex: Int) -> StoryDetailItemViewController? {
-        self.pageControl.currentPage = itemIndex
         if itemIndex < self.storyPoints.count {
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Controllers.storyDetailItemViewController) as! StoryDetailItemViewController
             pageItemController.itemIndex = itemIndex
@@ -136,7 +126,6 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        self.pageControl.currentPage = self.selectedIndex
         return self.selectedIndex
     }
 }

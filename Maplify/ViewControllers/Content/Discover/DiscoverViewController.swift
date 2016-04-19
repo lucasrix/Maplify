@@ -152,7 +152,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - remote
     func loadRemoteData() {
         // get current location
-        if SessionHelper.sharedManager.locationEnabled() {
+        if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
                     self?.retrieveDiscoverList(location)
@@ -179,10 +179,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.loadItemsFromDB()
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-//                self?.tableView.ins_endInfinityScroll()
-//                self?.tableView.ins_endPullToRefresh()
-//                self?.requestState = RequestState.Ready
-//                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                self?.tableView.ins_endInfinityScroll()
+                self?.tableView.ins_endPullToRefresh()
+                self?.requestState = RequestState.Ready
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     

@@ -50,9 +50,8 @@ class DiscoverItemManager: ModelManager {
     class func saveItem(item: DiscoverItem) {
         let realm = try! Realm()
         
-        let recordExists = (realm.objectForPrimaryKey(DiscoverItem.self, key: item.id) != nil)
         try! realm.write {
-            realm.add(item, update: recordExists)
+            realm.add(item, update: true)
         }
     }
 }

@@ -1188,43 +1188,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Llc-QT-UkJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="643"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-vS-wU9">
+                                        <rect key="frame" x="8" y="640" width="359" height="17"/>
+                                        <color key="backgroundColor" red="0.31372549019607843" green="0.070588235294117646" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="zdc-4i-bGa"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-vS-wU9">
-                                <rect key="frame" x="8" y="647" width="359" height="16"/>
-                                <color key="backgroundColor" red="0.31372549019607843" green="0.070588235294117646" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-cj-Dom">
-                                <rect key="frame" x="14" y="643" width="347" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="QJu-JD-M5f"/>
+                                    <constraint firstAttribute="bottom" secondItem="pQ5-vS-wU9" secondAttribute="bottom" constant="10" id="Alq-1K-5Yj"/>
+                                    <constraint firstItem="pQ5-vS-wU9" firstAttribute="leading" secondItem="Llc-QT-UkJ" secondAttribute="leading" constant="8" id="Vcm-W3-YKA"/>
+                                    <constraint firstAttribute="trailing" secondItem="pQ5-vS-wU9" secondAttribute="trailing" constant="8" id="hdX-Gd-Ljk"/>
                                 </constraints>
-                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </pageControl>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Llc-QT-UkJ" firstAttribute="top" secondItem="Hh9-fn-vib" secondAttribute="top" id="5D7-6N-0Zi"/>
-                            <constraint firstItem="Ehf-cj-Dom" firstAttribute="leading" secondItem="Hh9-fn-vib" secondAttribute="leading" constant="14" id="65m-ze-YfJ"/>
-                            <constraint firstAttribute="trailing" secondItem="pQ5-vS-wU9" secondAttribute="trailing" constant="8" id="BPu-yx-uUS"/>
-                            <constraint firstAttribute="trailing" secondItem="Ehf-cj-Dom" secondAttribute="trailing" constant="14" id="GPP-wC-mfO"/>
-                            <constraint firstItem="pQ5-vS-wU9" firstAttribute="leading" secondItem="Hh9-fn-vib" secondAttribute="leading" constant="8" id="LOR-yf-seB"/>
-                            <constraint firstItem="Tr9-fk-L2c" firstAttribute="top" secondItem="Ehf-cj-Dom" secondAttribute="bottom" id="N4o-5I-bvL"/>
-                            <constraint firstItem="pQ5-vS-wU9" firstAttribute="top" secondItem="Llc-QT-UkJ" secondAttribute="bottom" constant="4" id="VcR-Ua-vHq"/>
+                            <constraint firstItem="Tr9-fk-L2c" firstAttribute="top" secondItem="Llc-QT-UkJ" secondAttribute="bottom" id="MSl-8r-qB7"/>
                             <constraint firstItem="Llc-QT-UkJ" firstAttribute="leading" secondItem="Hh9-fn-vib" secondAttribute="leading" id="a0D-3G-nkf"/>
-                            <constraint firstItem="Tr9-fk-L2c" firstAttribute="top" secondItem="Llc-QT-UkJ" secondAttribute="bottom" constant="24" id="c8J-MZ-y7h"/>
-                            <constraint firstItem="Tr9-fk-L2c" firstAttribute="top" secondItem="pQ5-vS-wU9" secondAttribute="bottom" constant="4" id="dSp-14-7Yx"/>
-                            <constraint firstItem="Ehf-cj-Dom" firstAttribute="top" secondItem="Llc-QT-UkJ" secondAttribute="bottom" id="mrs-9g-igO"/>
                             <constraint firstAttribute="trailing" secondItem="Llc-QT-UkJ" secondAttribute="trailing" id="wta-m3-roA"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="cont" destination="Llc-QT-UkJ" id="7yw-qh-g8r"/>
-                        <outlet property="pageControl" destination="Ehf-cj-Dom" id="Sv1-Ls-BHO"/>
+                        <outlet property="containerView" destination="Llc-QT-UkJ" id="Col-qJ-rGl"/>
                         <outlet property="pageControlBackView" destination="pQ5-vS-wU9" id="aWm-jx-kam"/>
                     </connections>
                 </viewController>

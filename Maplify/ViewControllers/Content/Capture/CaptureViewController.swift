@@ -59,8 +59,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: "locationButtonTapped")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: "searchButtonTapped")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: #selector(CaptureViewController.locationButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(CaptureViewController.searchButtonTapped))
     }
     
     func setupMapDataSource() {
@@ -70,7 +70,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.mapService = self.googleMapService
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
-
+    
     func checkLocationEnabled() {
         if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
@@ -128,14 +128,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let locationDict: [String: AnyObject] = ["latitude": CGFloat(location.latitude), "longitude": CGFloat(location.longitude)]
         let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
         ApiClient.sharedClient.getStoryPoints(params,
-            success: { [weak self] (response) in
-                if let storyPoints = response {
-                    StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
-                    self?.loadItemsFromDB()
-                }
+                                              success: { [weak self] (response) in
+                                                if let storyPoints = response {
+                                                    StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
+                                                    self?.loadItemsFromDB()
+                                                }
             },
-            failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                              failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
     }
@@ -171,7 +171,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
         }
     }
- 
+    
     func locationButtonTapped() {
         self.googleMapService.moveToDefaultRegion()
     }

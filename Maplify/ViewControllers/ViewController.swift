@@ -10,7 +10,7 @@ import UIKit
 import AFImageHelper
 
 class ViewController: UIViewController {
-    private var currentChildViewController: UIViewController! = nil
+    var currentChildViewController: UIViewController! = nil
     private let progressHud = ProgressHUD()
     
     // MARK: - view controller life cycle

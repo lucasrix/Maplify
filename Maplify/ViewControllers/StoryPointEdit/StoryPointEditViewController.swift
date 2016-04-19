@@ -75,6 +75,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         let identifier = Controllers.storyPointEditInfoViewController
         self.editInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(identifier) as! StoryPointEditInfoViewController
         self.configureChildViewController(self.editInfoViewController, onView: self.storyView)
+        self.editInfoViewController.tableView.scrollEnabled = false
         self.editInfoViewController.configure(self.storyPointId)
     }
     
@@ -103,16 +104,16 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         self.descriptionView.hidden = true
         self.descriptionViewTopConstraint.constant = -kDefaultDescriptionViewHeight
         self.editDescriptionViewController.descriptionTextView.text = storyPoint.text
+        self.editDescriptionViewController.updateCharactersCountLabel(storyPoint.text.length)
     }
     
     func setupContentHeight() {
-        let updatedHeight = CGRectGetHeight(self.editInfoViewController.view.frame) + self.contentScrollView.contentSize.height
+        let descriptionHeight = self.editDescriptionViewController.view.frame.size.height
+        let infoHeight = self.editInfoViewController.contentHeight()
+        let storyTableViewHeight = self.editInfoViewController.tableView.contentSize.height
+        let updatedHeight = descriptionHeight + infoHeight + storyTableViewHeight
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, updatedHeight)
         self.contentViewHeightConstraint.constant = updatedHeight
-    }
-    
-    func adjustContentHeight(addHeight addHeight: CGFloat) {
-        self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, self.contentScrollView.contentSize.height + addHeight)
     }
     
     // MARK: - navigation bar
@@ -138,9 +139,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         
         if self.descriptionButton.selected {
             self.descriptionViewHeightConstraint.constant = self.descriptionView.frame.size.height + textHeight
-            self.adjustContentHeight(addHeight: textHeight)
         } else {
-            self.adjustContentHeight(addHeight: -textHeight)
             self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight
             self.descriptionLabel.text = String()
         }

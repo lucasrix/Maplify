@@ -73,12 +73,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
-        self.showProgressHUD()
         self.audioRecorder.finishRecording()
     }
     
     // MARK: - actions
-    
     @IBAction func recordTapped(sender: UIButton) {
         self.audioRecorder.toggleStartPauseRecording()
     }
@@ -138,7 +136,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     // MARK: - AudioRecorderDelegate
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
-            self.hideProgressHUD()
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
             self.remotePostAttachment(audioData!)
         } else {

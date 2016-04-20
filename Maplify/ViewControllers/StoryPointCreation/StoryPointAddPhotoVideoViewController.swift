@@ -189,9 +189,15 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         if duration < kVideoDurationSecondsMax {
             self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
         } else {
-            // TODO:
-            print("error duration \(duration)")
+            self.showVideoDurationError()
         }
+    }
+    
+    func showVideoDurationError() {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        let message = NSLocalizedString("Label.VideoDurationError", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancel)
     }
     
     // MARK: - PhotoControllerDelegate

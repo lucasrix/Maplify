@@ -9,12 +9,17 @@
 import UIKit
 import Photos
 
+let kTimeBackVieweCrRadius: CGFloat = 3
+
 class AlbumViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeBackView: UIView!
     
     var image: UIImage? {
         didSet {
             self.imageView.image = image
+            self.timeBackView.layer.cornerRadius = kTimeBackVieweCrRadius
         }
     }
 }

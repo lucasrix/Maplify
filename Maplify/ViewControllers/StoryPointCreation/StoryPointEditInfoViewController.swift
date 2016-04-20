@@ -135,7 +135,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.hideKeyboard()
         
         if self.placeOrLocationTextField.text?.length > 0 {
-            self.showProgressHUD()
             self.remotePostStoryPoint()
         } else {
             self.showMessageAlert(nil, message: NSLocalizedString("Alert.AddPlaceOrLocation", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))

@@ -75,6 +75,7 @@
 "Label.Following" = "following";
 "Label.Followers" = "followers";
 "Label.Follower" = "follower";
+"Label.VideoDurationError" = "Videos can be up to 20 seconds. Please trim before adding";
 
 //Subsrtings
 "Substring.Of" = "of";

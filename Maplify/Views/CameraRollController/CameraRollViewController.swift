@@ -18,6 +18,8 @@ let nibNameCameraRollView = "CameraRollView"
 let nibNameAlbumViewCell = "AlbumViewCell"
 let kNumberOfColumnInCollectionView: CGFloat = 4
 let kItemMarginInCollectionView: CGFloat = 1
+let kTime60: Double = 60
+let kVideoTimeBackViewCornerRadius: CGFloat = 3
 
 class CameraRollViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver
 {
@@ -25,6 +27,8 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var videoImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeBackView: UIView!
     
     var images: PHFetchResult!
     var imageManager: PHCachingImageManager?
@@ -51,8 +55,13 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     
     // MARK: - setup
     func setup() {
+        self.setupViews()
         self.setupCollectionView()
         self.checkPhotoAuth()
+    }
+    
+    func setupViews() {
+        self.timeBackView.layer.cornerRadius = kVideoTimeBackViewCornerRadius
     }
     
     func setupCollectionView() {
@@ -120,17 +129,27 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
         cell.tag = currentTag
         
         let asset = self.images[indexPath.item] as! PHAsset
-        self.imageManager?.requestImageForAsset(asset,
-                                                targetSize: cellSize,
-                                                contentMode: .AspectFill,
-                                                options: nil) {
-                                                    result, info in
-                                                    
-                                                    if cell.tag == currentTag {
-                                                        cell.image = result
-                                                    }
+        self.imageManager?.requestImageForAsset(asset, targetSize: cellSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
+            
+            if cell.tag == currentTag {
+                cell.image = result
+                cell.timeLabel.hidden = asset.mediaType != .Video
+                cell.timeBackView.hidden = asset.mediaType != .Video
+                if asset.mediaType == .Video {
+                    let timeText = self?.durationToTimeString(asset.duration)
+                    cell.timeLabel.text = timeText
+                }
+            }
         }
         return cell
+    }
+    
+    func durationToTimeString(duration: NSTimeInterval) -> String {
+        let minutes = Int(duration / kTime60)
+        let minutesString = String("\(minutes)")
+        let seconds = Int(duration) - minutes * Int(kTime60)
+        let secondsString = seconds >= 10 ? String(":\(seconds)") : String(":0\(seconds)")
+        return minutesString + secondsString
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -223,15 +242,11 @@ private extension CameraRollViewController {
             let options = PHImageRequestOptions()
             options.networkAccessAllowed = true
             
-            self.imageManager?.requestImageForAsset(asset,
-                targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
-                contentMode: .AspectFill,
-            options: options) {
-                result, info in
+            self.imageManager?.requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFill, options: options) { [weak self] (result, info) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.videoView.hidden = true
-                    self.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-                    self.imageCropView.image = result
+                    self?.videoView.hidden = true
+                    self?.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+                    self?.imageCropView.image = result
                 })
             }
         })
@@ -264,27 +279,25 @@ private extension CameraRollViewController {
             let options = PHVideoRequestOptions()
             options.networkAccessAllowed = true
             
-            self.imageManager?.requestAVAssetForVideo(asset, options: options, resultHandler: { (avAsset, audioMix, info) -> () in
+            self.imageManager?.requestAVAssetForVideo(asset, options: options, resultHandler: { [weak self] (avAsset, audioMix, info) -> () in
 
                 dispatch_async(dispatch_get_main_queue(), {
                     
                     let fileAsset = avAsset as? AVURLAsset
-                    self.selectedVideoData = NSData(contentsOfURL: fileAsset!.URL)
-                    self.selectedVideoDuration = (avAsset?.duration.seconds)!
+                    self?.selectedVideoData = NSData(contentsOfURL: fileAsset!.URL)
+                    self?.selectedVideoDuration = (avAsset?.duration.seconds)!
                     
-                    self.videoView.hidden = false
+                    self?.videoView.hidden = false
+                    let timeText = self?.durationToTimeString(asset.duration)
+                    self?.timeLabel.text = timeText
                 })
             })
             
             // video preview
             let imageOptions = PHImageRequestOptions()
-            self.imageManager?.requestImageForAsset(asset,
-                targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
-                contentMode: .AspectFill,
-            options: imageOptions) {
-                result, info in
+            self.imageManager?.requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFill, options: imageOptions) { [weak self] (result, info) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.videoImageView.image = result
+                    self?.videoImageView.image = result
                 })
             }
         })

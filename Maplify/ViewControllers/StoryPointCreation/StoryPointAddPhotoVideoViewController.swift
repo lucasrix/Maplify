@@ -74,6 +74,11 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         }
     }
     
+    override func backTapped() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
+    }
+    
     // MARK: - actions
     @IBAction func galleryTapped(sender: UIButton) {
         self.updateControllerTitle(NSLocalizedString("Controller.CameraRoll.Title", comment: String()))

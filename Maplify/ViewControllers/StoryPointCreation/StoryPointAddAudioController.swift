@@ -76,6 +76,11 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.audioRecorder.finishRecording()
     }
     
+    override func backTapped() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
+    }
+    
     // MARK: - actions
     @IBAction func recordTapped(sender: UIButton) {
         self.audioRecorder.toggleStartPauseRecording()

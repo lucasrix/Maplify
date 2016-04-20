@@ -10,7 +10,7 @@ import TTTAttributedLabel
 import SDWebImage
 import AFImageHelper
 
-let kDefaultStatsViewHeight: CGFloat = 259
+let kDefaultStatsViewHeight: CGFloat = 265
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
@@ -31,8 +31,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var locationLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var locationLogoHeight: NSLayoutConstraint!
-    @IBOutlet weak var urlLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var aboutLabelHeight: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -42,26 +42,22 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     var privateStatsView: PrivateStatsView! = nil
     
     // MARK: - view controller life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.setup()
-        self.setupImageView()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadItemFromDB()
-        self.setupLabels()
-        self.setupButtons()
-        self.loadRemoteData()
+        self.setup()
     }
     
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.loadItemFromDB()
+        self.setupImageView()
+        self.setupLabels()
+        self.setupButtons()
+        self.loadRemoteData()
         self.setupDetailStatsView()
+        self.setupDetailedLabels()
     }
     
     func setupNavigationBar() {
@@ -117,8 +113,21 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)
             self.profileUrlLabel.addURLLink(kOpenProfileUrl, str: self.user.profile.url, rangeStr: self.user.profile.url)
+        }
+    }
+    
+    func setupDetailedLabels() {
+        self.likesLabel.text = String(self.user.profile.likes_count)
+        self.plusLabel.text = String(self.user.profile.saves_count)
+        
+        if self.profileId == SessionManager.currentUser().id {
+            self.privateStatsView.followersNumberLabel.text = String(self.user.profile.followers_count)
+            self.privateStatsView.followingNumberLabel.text = String(self.user.profile.followings_count)
+            self.privateStatsView.storiesNumberLabel.text = String(self.user.profile.stories_count)
+            self.privateStatsView.postsNumberLabel.text = String(self.user.profile.story_points_count)
         } else {
-            self.urlLabelHeight.constant = 0
+            self.publicStatsView.postsNumberLabel.text = String(self.user.profile.story_points_count)
+            self.publicStatsView.stortiesNumberLabel.text = String(self.user.profile.stories_count)
         }
     }
     
@@ -139,8 +148,9 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     }
     
     func setupImageView() {
-        let url = NSURL(string: SessionManager.currentUser().profile.photo)
+        let url = NSURL(string: self.user.profile.photo)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
+        
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         
         if self.profileId == SessionManager.currentUser().id {
@@ -213,9 +223,11 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.aboutLabel.text = self.user.profile.about
             self.contentViewHeight.constant = kDefaultStatsViewHeight + textHeight + 2 * kAboutLabelMargin
             self.profileUrlLabel.hidden = false
+            self.aboutLabelHeight.constant = textHeight
         } else {
             self.contentViewHeight.constant = kDefaultStatsViewHeight
             self.profileUrlLabel.hidden = true
+            self.aboutLabelHeight.constant = 0
         }
     }
     

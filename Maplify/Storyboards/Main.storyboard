@@ -1707,11 +1707,11 @@
                                                     <constraint firstAttribute="width" constant="24" id="oG6-4n-aQk"/>
                                                 </constraints>
                                             </imageView>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.test.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnM-n7-tiN" customClass="TTTAttributedLabel">
-                                                <rect key="frame" x="138" y="193" width="99" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.test.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnM-n7-tiN" customClass="TTTAttributedLabel">
+                                                <rect key="frame" x="5" y="193" width="365" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="VtY-cv-gm0"/>
+                                                    <constraint firstAttribute="height" constant="40" id="VtY-cv-gm0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1740,7 +1740,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAm-4B-0Vf">
-                                                <rect key="frame" x="22" y="219" width="330" height="0.0"/>
+                                                <rect key="frame" x="22" y="242" width="330" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="Tkb-pb-GUv"/>
@@ -1763,6 +1763,7 @@
                                             <constraint firstItem="ALu-ae-20w" firstAttribute="leading" secondItem="jo0-q3-cUN" secondAttribute="leading" constant="40" id="9gI-V2-vtq"/>
                                             <constraint firstItem="tOp-8K-XYK" firstAttribute="leading" secondItem="Bly-w9-Imu" secondAttribute="trailing" constant="28" id="Akb-Xa-O5Q"/>
                                             <constraint firstItem="0mc-YT-L7K" firstAttribute="top" secondItem="jo0-q3-cUN" secondAttribute="top" constant="58" id="Bms-08-vO5"/>
+                                            <constraint firstAttribute="trailing" secondItem="JnM-n7-tiN" secondAttribute="trailing" constant="5" id="CgD-WA-Sxx"/>
                                             <constraint firstItem="Bly-w9-Imu" firstAttribute="centerY" secondItem="jo0-q3-cUN" secondAttribute="centerY" constant="-40" id="CmZ-FW-7Xn"/>
                                             <constraint firstItem="cAm-4B-0Vf" firstAttribute="top" secondItem="JnM-n7-tiN" secondAttribute="bottom" constant="9" id="GYL-fZ-Lib"/>
                                             <constraint firstItem="hpT-pJ-4ZX" firstAttribute="top" secondItem="fax-AU-rvP" secondAttribute="bottom" constant="8" id="HQF-ka-KMz"/>
@@ -1780,6 +1781,7 @@
                                             <constraint firstItem="Bly-w9-Imu" firstAttribute="leading" secondItem="1RX-gN-i5S" secondAttribute="trailing" constant="8" id="YyO-V9-PLf"/>
                                             <constraint firstItem="Bly-w9-Imu" firstAttribute="top" secondItem="jo0-q3-cUN" secondAttribute="top" constant="25" id="dYg-7k-4YP"/>
                                             <constraint firstAttribute="trailing" secondItem="cAm-4B-0Vf" secondAttribute="trailing" constant="23" id="dfq-jG-ttB"/>
+                                            <constraint firstItem="JnM-n7-tiN" firstAttribute="leading" secondItem="jo0-q3-cUN" secondAttribute="leading" constant="5" id="djK-Yg-U53"/>
                                             <constraint firstItem="cAm-4B-0Vf" firstAttribute="leading" secondItem="jo0-q3-cUN" secondAttribute="leading" constant="22" id="igb-zO-LOY"/>
                                             <constraint firstItem="ElS-2C-5a3" firstAttribute="top" secondItem="cAm-4B-0Vf" secondAttribute="bottom" id="iik-gv-nY8"/>
                                             <constraint firstItem="3wh-hy-gAl" firstAttribute="top" secondItem="1RX-gN-i5S" secondAttribute="bottom" constant="16" id="ijI-ig-AMq"/>
@@ -1801,13 +1803,13 @@
                                             <mask key="constraints">
                                                 <exclude reference="CmZ-FW-7Xn"/>
                                                 <exclude reference="oP5-cK-HHO"/>
+                                                <exclude reference="iik-gv-nY8"/>
                                                 <exclude reference="1JF-Mw-64U"/>
                                                 <exclude reference="Hsd-d5-JhR"/>
                                                 <exclude reference="mdk-9g-Zgq"/>
                                                 <exclude reference="uJI-Y9-Y9h"/>
                                                 <exclude reference="pj2-Yg-5xs"/>
                                                 <exclude reference="wq9-Nh-676"/>
-                                                <exclude reference="iik-gv-nY8"/>
                                             </mask>
                                         </variation>
                                     </view>

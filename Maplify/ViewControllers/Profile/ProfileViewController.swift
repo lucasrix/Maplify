@@ -99,7 +99,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     func setupLabels() {
         self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
-        
+        self.aboutLabel.text = self.user.profile.about
+
         if self.user.profile.city.length > 0 {
             self.locationLabel.text = self.user.profile.city
         } else {
@@ -113,6 +114,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)
             self.profileUrlLabel.addURLLink(kOpenProfileUrl, str: self.user.profile.url, rangeStr: self.user.profile.url)
+        } else {
+            self.profileUrlLabel.text = String()
         }
     }
     
@@ -223,7 +226,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.aboutLabel.text = self.user.profile.about
             self.contentViewHeight.constant = kDefaultStatsViewHeight + textHeight + 2 * kAboutLabelMargin
             self.profileUrlLabel.hidden = false
-            self.aboutLabelHeight.constant = textHeight
+            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight)))
         } else {
             self.contentViewHeight.constant = kDefaultStatsViewHeight
             self.profileUrlLabel.hidden = true

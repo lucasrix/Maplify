@@ -142,7 +142,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location)
     }
     
     // MARK: - MenuDelegate

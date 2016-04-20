@@ -31,7 +31,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
     var storyPointKind: StoryPointKind! = nil
-    var storyPointAttachmentId = ""
+    var storyPointAttachmentId: Int = 0
     var storyPointDescription = ""
     var placesClient: GMSPlacesClient! = nil
     var location: MCMapCoordinate! = nil
@@ -135,44 +135,15 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.hideKeyboard()
         
         if self.placeOrLocationTextField.text?.length > 0 {
-            self.showProgressHUD()
-            if self.storyPointKind == StoryPointKind.Text {
-                self.remotePostStoryPoint(0)
-            } else {
-                self.remotePostAttachment()
-            }
+            self.remotePostStoryPoint()
         } else {
             self.showMessageAlert(nil, message: NSLocalizedString("Alert.AddPlaceOrLocation", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
         }
     }
     
     // MARK: - private
-    func remotePostAttachment() {
-        var file: NSData! = nil
-        var params: [String: AnyObject]! = nil
-        if self.storyPointKind == StoryPointKind.Photo {
-            let cache = Shared.imageCache
-            cache.fetch(key: self.storyPointAttachmentId).onSuccess { data in
-                file = UIImagePNGRepresentation(data)
-                params = ["mimeType": "image/png", "fileName": "photo.png"]
-            }
-        } else if self.storyPointKind == StoryPointKind.Audio {
-            file = NSFileManager.defaultManager().contentsAtPath(self.storyPointAttachmentId)
-            params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
-        } else if self.storyPointKind == StoryPointKind.Video {
-            let url = NSURL(string: self.storyPointAttachmentId)
-            file = NSData(contentsOfURL: url!)
-            params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
-        }
-        ApiClient.sharedClient.postAttachment(file, params: params, success: { [weak self] (response) -> () in
-            self?.remotePostStoryPoint((response as! Attachment).id)
-            }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-                self?.hideProgressHUD()
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-        }
-    }
-    
-    func remotePostStoryPoint(attachmentId: Int) {
+    func remotePostStoryPoint() {
+        self.showProgressHUD()
         let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
         let kind = self.storyPointKind.rawValue
         var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
@@ -180,7 +151,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
                                             "text":self.storyPointDescription,
                                         "location":locationDict]
         if self.storyPointKind != StoryPointKind.Text {
-            storyPointDict["attachment_id"] = attachmentId
+            storyPointDict["attachment_id"] = self.storyPointAttachmentId
         }
         if self.selectedStories.count > 0 {
             storyPointDict["story_ids"] = self.selectedStories.map({$0.id})

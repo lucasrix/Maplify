@@ -73,14 +73,31 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
-        self.showProgressHUD()
         self.audioRecorder.finishRecording()
     }
     
     // MARK: - actions
-    
     @IBAction func recordTapped(sender: UIButton) {
         self.audioRecorder.toggleStartPauseRecording()
+    }
+    
+    // MARK: - remote
+    func remotePostAttachment(fileData: NSData) {
+        self.showProgressHUD()
+        
+        let params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
+        
+        ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
+            
+            self?.hideProgressHUD()
+            let attachmentID = (response as! Attachment).id
+            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+            
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
     }
     
     // MARK: - private
@@ -119,8 +136,8 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     // MARK: - AudioRecorderDelegate
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
-            self.hideProgressHUD()
-            self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: filePath, location: self.pickedLocation)
+            let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
+            self.remotePostAttachment(audioData!)
         } else {
             // TODO:
         }
@@ -142,5 +159,12 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         if !success {
             self.showAudioPermissionsError()
         }
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

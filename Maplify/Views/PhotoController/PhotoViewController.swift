@@ -144,12 +144,13 @@ class PhotoViewController: UIViewController {
     
     func donePressed() {
         if !self.previewImageView.hidden {
-            self.delegate?.photoDidTake(self.previewImageView.image!)
+            let imageData = UIImagePNGRepresentation(self.previewImageView.image!)
+            self.delegate?.photoDidTake(imageData!)
         }
     }
 }
 
 protocol PhotoControllerDelegate {
-    func photoDidTake(image: UIImage)
+    func photoDidTake(imageData: NSData)
     func photoCameraUnauthorized()
 }

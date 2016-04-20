@@ -16,7 +16,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var storyPointKind: StoryPointKind! = nil
-    var storyPointAttachmentId = ""
+    var storyPointAttachmentId: Int = 0
     var location: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle

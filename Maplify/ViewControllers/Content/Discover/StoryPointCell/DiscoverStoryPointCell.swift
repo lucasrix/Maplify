@@ -20,7 +20,7 @@ let kStoryPointTextFontSize: CGFloat = 14
 let kStoryPointTextHorizontalMargin: CGFloat = 16
 let kStoryPointTextVerticalMargin: CGFloat = 13
 
-class DiscoverStoryPointCell: CSTableViewCell {
+class DiscoverStoryPointCell: CSTableViewCell, PlayerHelperDelegate {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAddressLabel: UILabel!
@@ -37,6 +37,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var attachmentContentView: UIView!
     
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryPointCellDelegate! = nil
@@ -57,7 +58,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.populateStoryPointInfoViews(storyPoint!)
         self.populateAttachment(storyPoint!)
         self.populateDescriptionLabel(cellData)
-        
+        self.setupGestures()
     }
     
     func addShadow() {
@@ -142,6 +143,11 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.showHideDescriptionButton.hidden = self.showHideButtonHidden(storyPoint!.text) || storyPoint?.kind == StoryPointKind.Text.rawValue
     }
     
+    func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DiscoverStoryPointCell.openContentTapHandler(_:)))
+        self.attachmentContentView.addGestureRecognizer(tapGesture)
+    }
+    
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
         self.delegate?.reloadTable(self.discoverItemId)
@@ -152,9 +158,21 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func profileImageTapped() {
-        let item = cellData.model as! DiscoverItem
+        let item = self.cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
         self.delegate?.profileImageTapped(storyPoint!.user.id)
+    }
+    
+    // MARK: - gestures
+    func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
+        let item = self.cellData.model as! DiscoverItem
+        let storyPoint = item.storyPoint
+        if storyPoint?.kind == StoryPointKind.Video.rawValue {
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView, delegate: self)
+        } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView, delegate: self)
+        }
+        
     }
 
     // MARK: - private

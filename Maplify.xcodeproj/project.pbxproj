@@ -130,6 +130,7 @@
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
 		A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD364D1CAAA9EA00281574 /* StoryManager.swift */; };
+		CD003E8E1CC7BB7800026B1B /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */; };
 		CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
@@ -295,6 +296,7 @@
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
+		CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 				8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */,
 				CD8A10AC1CB68F5500B58396 /* Converter.swift */,
 				CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */,
+				CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1167,6 +1170,7 @@
 				1FC781051CA151E900C50C23 /* Attachment.swift in Sources */,
 				A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
+				CD003E8E1CC7BB7800026B1B /* PlayerHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,

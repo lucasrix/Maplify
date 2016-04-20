@@ -839,31 +839,42 @@
                                                         <constraint firstItem="4dr-Fd-k9M" firstAttribute="leading" secondItem="HHW-xs-3dF" secondAttribute="trailing" constant="7" id="ybl-v9-KAc"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0Z-Kz-zG9">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0Z-Kz-zG9">
                                                     <rect key="frame" x="0.0" y="126" width="375" height="375"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-WL-gqf">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-WL-gqf">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                         </imageView>
                                                         <view alpha="0.23000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSC-qw-JMC">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                             <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCx-5y-hAi">
+                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCx-5y-hAi">
                                                             <rect key="frame" x="125" y="125" width="125" height="125"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="125" id="YyY-97-P9y"/>
                                                                 <constraint firstAttribute="height" constant="125" id="kH1-aj-ZyS"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgk-T9-l9F">
+                                                            <rect key="frame" x="0.0" y="-146" width="375" height="667"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="cgk-T9-l9F" secondAttribute="height" multiplier="9:16" id="u1y-P6-pku"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="bCx-5y-hAi" firstAttribute="centerY" secondItem="f0Z-Kz-zG9" secondAttribute="centerY" id="60W-ru-eKY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Hbe-WL-gqf" secondAttribute="bottom" id="6jM-EH-nF7"/>
+                                                        <constraint firstItem="cgk-T9-l9F" firstAttribute="centerY" secondItem="f0Z-Kz-zG9" secondAttribute="centerY" id="DIh-eA-Owf"/>
                                                         <constraint firstItem="PSC-qw-JMC" firstAttribute="leading" secondItem="f0Z-Kz-zG9" secondAttribute="leading" id="LZ6-mF-4N0"/>
                                                         <constraint firstItem="Hbe-WL-gqf" firstAttribute="leading" secondItem="f0Z-Kz-zG9" secondAttribute="leading" id="NJp-QX-zLw"/>
+                                                        <constraint firstItem="cgk-T9-l9F" firstAttribute="leading" secondItem="f0Z-Kz-zG9" secondAttribute="leading" id="VpG-Wh-uzh"/>
                                                         <constraint firstItem="Hbe-WL-gqf" firstAttribute="top" secondItem="f0Z-Kz-zG9" secondAttribute="top" id="jKL-Sp-obL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cgk-T9-l9F" secondAttribute="trailing" id="jtg-R9-Jg3"/>
                                                         <constraint firstAttribute="bottom" secondItem="PSC-qw-JMC" secondAttribute="bottom" id="nhU-Ac-mGm"/>
                                                         <constraint firstItem="bCx-5y-hAi" firstAttribute="centerX" secondItem="f0Z-Kz-zG9" secondAttribute="centerX" id="nig-fJ-Vh6"/>
                                                         <constraint firstAttribute="height" constant="375" id="qr6-vp-KWV"/>
@@ -985,6 +996,7 @@
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
+                                            <outlet property="attachmentContentView" destination="cgk-T9-l9F" id="Wkm-rR-OHA"/>
                                             <outlet property="attachmentHeightConstraint" destination="qr6-vp-KWV" id="uSh-FD-m3K"/>
                                             <outlet property="attachmentImageView" destination="Hbe-WL-gqf" id="1Mo-W7-vDS"/>
                                             <outlet property="backShadowView" destination="DRS-53-3N7" id="ISg-2I-CgT"/>

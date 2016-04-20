@@ -50,4 +50,11 @@ class StoryPointManager: ModelManager {
             realm.delete(storyPoint)
         }
     }
+    
+    class func userStoryPoints(sorted: String, ascending: Bool) -> [StoryPoint] {
+        let realm = try! Realm()
+        let userId = SessionManager.currentUser().id
+        let storyPoints = Array(realm.objects(StoryPoint).filter("user.id == \(userId)").sorted(sorted, ascending: ascending))
+        return storyPoints
+    }
 }

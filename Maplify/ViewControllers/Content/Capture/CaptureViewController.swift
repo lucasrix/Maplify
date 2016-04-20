@@ -8,12 +8,11 @@
 
 import INTULocationManager
 import GoogleMaps
-import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
 let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
-let kStoryPointsFindingRadius: CGFloat = 10
+let kStoryPointsFindingRadius: CGFloat = 10000000
 let kDefaulMapZoom: Float = 13
 
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
@@ -23,12 +22,12 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
-    var suspender = Suspender()
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel = CSActiveModel()
     var mapActiveModel = MCMapActiveModel()
     var mapDataSource: MCMapDataSource! = nil
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
+    var userLastStoryPoint: StoryPoint! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -42,6 +41,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         
         self.setupNavigationBar()
         self.loadItemsFromDB()
+        self.movetoLastStoryPointIfNeeded()
+        self.loadDataFromRemote()
     }
     
     // MARK: - setup
@@ -50,6 +51,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.checkLocationEnabled()
         self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.setupAddStoryPointImageView()
+        self.setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        self.collectionView.hidden = true
     }
     
     func setupPlaceSearchHelper() {
@@ -111,13 +117,18 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func loadItemsFromDB() {
-        let realm = try! Realm()
-        let userId = SessionManager.currentUser().id
-        let storyPoints = Array(realm.objects(StoryPoint).filter("user.id == \(userId)").sorted("created_at", ascending: false))
+        let storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
+        print(storyPoints)
         
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
+    }
+    
+    func loadDataFromRemote() {
+        let clLocation = SessionHelper.sharedHelper.userLastLocation()
+        let location = MCMapCoordinate(latitude: clLocation.coordinate.latitude, longitude: clLocation.coordinate.longitude)
+        self.retrieveStoryPoints(location, radius: kStoryPointsFindingRadius)
     }
     
     func updateMapActiveModel(storyPoints: [StoryPoint]) {
@@ -134,12 +145,23 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                                                 if let storyPoints = response {
                                                     StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
                                                     self?.loadItemsFromDB()
+                                                    self?.movetoLastStoryPointIfNeeded()
                                                 }
             },
                                               failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             }
         )
+    }
+    
+    func movetoLastStoryPointIfNeeded() {
+        let storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
+        if (self.userLastStoryPoint == nil) && (storyPoints.count > 0) {
+            self.userLastStoryPoint = storyPoints.first
+            let location = self.userLastStoryPoint.location
+            let region = MCMapRegion(latitude: location.latitude, longitude: location.longitude)
+            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+        }
     }
     
     // MARK: - actions
@@ -150,28 +172,28 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     // MARK: - MCMapServiceDelegate
-    func willMoveMapView(mapView: UIView, willMove: Bool) {
-        self.suspender.suspendEvent()
-    }
-    
-    func didMoveMapView(mapView: UIView, target: AnyObject) {
-        let clLocation = (target as! GMSCameraPosition).target
-        let location = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
-        self.suspender.executeEvent(kStoryPointsRequestSuspendInterval) { [weak self] () in
-            self?.retrieveStoryPoints(location, radius: kStoryPointsFindingRadius)
-        }
-    }
-    
     func didTapMapView(mapView: UIView, itemObject: AnyObject) {
         let clLocation = (itemObject as! GMSMarker).position
         let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
         let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
+        
         if storyPointIndex != NSNotFound {
             let indexPath = NSIndexPath(forRow: storyPointIndex, inSection: 0)
             self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
             let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
             self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            
+            self.mapActiveModel.selectPinAtIndex(storyPointIndex)
+            self.mapDataSource.reloadMapView(StoryPointMapItem)
         }
+        
+        self.collectionView.hidden = false
+    }
+    
+    func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
+        self.collectionView.hidden = true
+        self.mapActiveModel.deselectAll()
+        self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
     
     func locationButtonTapped() {
@@ -190,6 +212,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
+        
+        self.mapActiveModel.selectPinAtIndex(currentIndex)
+        self.mapDataSource.reloadMapView(StoryPointMapItem)
+        
         let storyPoint = self.mapActiveModel.storyPoint(indexPath)
         
         let region = MCMapRegion(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)

@@ -10,7 +10,7 @@ import TTTAttributedLabel
 import SDWebImage
 import AFImageHelper
 
-let kDefaultStatsViewHeight: CGFloat = 265
+let kDefaultStatsViewHeight: CGFloat = 285
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
@@ -33,6 +33,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     @IBOutlet weak var locationLogoHeight: NSLayoutConstraint!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var aboutLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var urlLabelHeightConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -110,11 +111,11 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         
         if self.user.profile.url.length > 0 {
             self.profileUrlLabel.text = self.user.profile.url
-            
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)
             self.profileUrlLabel.addURLLink(kOpenProfileUrl, str: self.user.profile.url, rangeStr: self.user.profile.url)
         } else {
+            self.urlLabelHeightConstraint.constant = 0
             self.profileUrlLabel.text = String()
         }
     }
@@ -225,11 +226,9 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
             self.aboutLabel.text = self.user.profile.about
             self.contentViewHeight.constant = kDefaultStatsViewHeight + textHeight + 2 * kAboutLabelMargin
-            self.profileUrlLabel.hidden = false
             self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight)))
         } else {
             self.contentViewHeight.constant = kDefaultStatsViewHeight
-            self.profileUrlLabel.hidden = true
             self.aboutLabelHeight.constant = 0
         }
     }

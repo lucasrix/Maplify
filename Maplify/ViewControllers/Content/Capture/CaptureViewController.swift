@@ -39,6 +39,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setupCollectionView()
         self.setupNavigationBar()
         self.loadItemsFromDB()
         self.movetoLastStoryPointIfNeeded()
@@ -51,7 +52,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.checkLocationEnabled()
         self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.setupAddStoryPointImageView()
-        self.setupCollectionView()
     }
     
     func setupCollectionView() {
@@ -118,7 +118,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadItemsFromDB() {
         let storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
-        print(storyPoints)
         
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)

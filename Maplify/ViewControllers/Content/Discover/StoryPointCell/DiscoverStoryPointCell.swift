@@ -172,7 +172,7 @@ class DiscoverStoryPointCell: CSTableViewCell, PlayerHelperDelegate {
         } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
             PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView, delegate: self)
         }
-        
+        self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
 
     // MARK: - private

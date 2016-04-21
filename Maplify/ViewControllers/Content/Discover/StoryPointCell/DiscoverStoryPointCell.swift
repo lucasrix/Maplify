@@ -20,7 +20,7 @@ let kStoryPointTextFontSize: CGFloat = 14
 let kStoryPointTextHorizontalMargin: CGFloat = 16
 let kStoryPointTextVerticalMargin: CGFloat = 13
 
-class DiscoverStoryPointCell: CSTableViewCell, PlayerHelperDelegate {
+class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAddressLabel: UILabel!
@@ -168,9 +168,9 @@ class DiscoverStoryPointCell: CSTableViewCell, PlayerHelperDelegate {
         let item = self.cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
         if storyPoint?.kind == StoryPointKind.Video.rawValue {
-            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView, delegate: self)
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView)
         } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
-            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView, delegate: self)
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
         }
         self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }

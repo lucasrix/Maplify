@@ -1305,7 +1305,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="sT8-Ak-kbM"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxx-Tb-zfg">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxx-Tb-zfg">
                                                 <rect key="frame" x="277" y="19" width="90" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="DwM-OW-kuf"/>
@@ -1388,7 +1388,7 @@
                                             <constraint firstItem="Wsq-RE-WGe" firstAttribute="trailing" secondItem="pJg-KV-OlQ" secondAttribute="trailing" id="rna-pJ-XhF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-fr-Kyl">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-fr-Kyl">
                                         <rect key="frame" x="0.0" y="126" width="375" height="375"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jmV-UR-UQ7">
@@ -1397,6 +1397,10 @@
                                                     <constraint firstAttribute="height" constant="375" id="ejg-J8-ddI"/>
                                                 </constraints>
                                             </imageView>
+                                            <view alpha="0.23000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-MB-ROn">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Rj-3L-v4y">
                                                 <rect key="frame" x="125" y="125" width="125" height="125"/>
                                                 <constraints>
@@ -1404,9 +1408,16 @@
                                                     <constraint firstAttribute="height" constant="125" id="kjB-Ra-zHb"/>
                                                 </constraints>
                                             </imageView>
-                                            <view alpha="0.23000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-MB-ROn">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="oA4-Ap-Vxd">
+                                                <rect key="frame" x="0.0" y="-146" width="375" height="667"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="oA4-Ap-Vxd" secondAttribute="height" multiplier="9:16" id="mTh-xE-rbf"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="oRe-aK-oc5" appends="YES" id="SSr-gs-scD"/>
+                                                </connections>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1415,12 +1426,15 @@
                                             <constraint firstItem="jmV-UR-UQ7" firstAttribute="top" secondItem="qKJ-fr-Kyl" secondAttribute="top" id="4yl-bX-fDs"/>
                                             <constraint firstAttribute="trailing" secondItem="jmV-UR-UQ7" secondAttribute="trailing" id="Duq-lU-Mzw"/>
                                             <constraint firstItem="jmV-UR-UQ7" firstAttribute="leading" secondItem="qKJ-fr-Kyl" secondAttribute="leading" id="Pd7-uZ-aIV"/>
+                                            <constraint firstItem="oA4-Ap-Vxd" firstAttribute="leading" secondItem="qKJ-fr-Kyl" secondAttribute="leading" id="XYa-jg-L5g"/>
                                             <constraint firstAttribute="bottom" secondItem="5ST-MB-ROn" secondAttribute="bottom" id="cUf-oh-kiI"/>
                                             <constraint firstItem="2Rj-3L-v4y" firstAttribute="centerX" secondItem="qKJ-fr-Kyl" secondAttribute="centerX" id="fH3-xA-lXt"/>
                                             <constraint firstItem="5ST-MB-ROn" firstAttribute="leading" secondItem="qKJ-fr-Kyl" secondAttribute="leading" id="fxJ-J4-51l"/>
                                             <constraint firstItem="2Rj-3L-v4y" firstAttribute="centerY" secondItem="qKJ-fr-Kyl" secondAttribute="centerY" id="iRA-p0-voA"/>
                                             <constraint firstAttribute="trailing" secondItem="5ST-MB-ROn" secondAttribute="trailing" id="lPr-lV-R0Q"/>
                                             <constraint firstAttribute="bottom" secondItem="jmV-UR-UQ7" secondAttribute="bottom" id="mxv-HP-JOJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="oA4-Ap-Vxd" secondAttribute="trailing" id="szi-00-ezd"/>
+                                            <constraint firstItem="oA4-Ap-Vxd" firstAttribute="centerY" secondItem="qKJ-fr-Kyl" secondAttribute="centerY" id="tJa-OX-i01"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5J-Ah-e1x" userLabel="Description View">
@@ -1551,6 +1565,7 @@
                     <navigationItem key="navigationItem" id="UiI-mW-aoF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="attachmentContentView" destination="oA4-Ap-Vxd" id="Din-U2-z5u"/>
                         <outlet property="attachmentHeightConstraint" destination="ejg-J8-ddI" id="bgb-6t-H5w"/>
                         <outlet property="attachmentImageView" destination="jmV-UR-UQ7" id="zBs-dG-bLF"/>
                         <outlet property="backShadowView" destination="IOw-s2-3fQ" id="Gqw-tc-yDn"/>
@@ -1572,6 +1587,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iax-Fe-Gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oRe-aK-oc5">
+                    <connections>
+                        <action selector="openContentTapped:" destination="Oew-o6-10W" id="6hP-x9-pUM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1832.5" y="1972.5"/>
         </scene>

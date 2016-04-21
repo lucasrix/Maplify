@@ -25,7 +25,7 @@ class PlayerHelper: NSObject, PlayerDelegate, AudioPlayerDelegate {
     }
     
     // MARK: - video player
-    func playVideo(urlString: String, onView: UIView, delegate: PlayerHelperDelegate) {
+    func playVideo(urlString: String, onView: UIView) {
         self.audioPlayer?.stop()
         self.removeVideoPlayerIfNedded()
         self.setupVideoPlayer(onView)
@@ -56,7 +56,7 @@ class PlayerHelper: NSObject, PlayerDelegate, AudioPlayerDelegate {
         self.audioPlayer.delegate = self
     }
     
-    func playAudio(urlString: String, onView: UIView, delegate: PlayerHelperDelegate) {
+    func playAudio(urlString: String, onView: UIView) {
         self.removeVideoPlayerIfNedded()
         self.audioPlayerItem = AudioItem(highQualitySoundURL: NSURL(string: urlString))
         self.audioPlayer.playItem(self.audioPlayerItem!)
@@ -136,8 +136,4 @@ class PlayerHelper: NSObject, PlayerDelegate, AudioPlayerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem) {
         // required protocol method
     }
-}
-
-protocol PlayerHelperDelegate {
-    
 }

@@ -38,4 +38,13 @@ class MCMapActiveModel : CSActiveModel {
         }
         return NSNotFound
     }
+    
+    func selectPinAtIndex(index: Int) {
+        if index != NSNotFound {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            let cellData = self.cellData(indexPath)
+            self.deselectAll()
+            cellData.selected = !cellData.selected
+        }
+    }
 }

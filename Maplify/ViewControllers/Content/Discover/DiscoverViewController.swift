@@ -239,9 +239,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self.showProgressHUD()
                 ApiClient.sharedClient.deleteStoryPoint(storyPointId,
                                                         success: { [weak self] (response) in
+                                                            let discoverItem = DiscoverItemManager.findWithStoryPoint(storyPointId)
                                                             let storyPoint = StoryPointManager.find(storyPointId)
-                                                            if storyPoint != nil {
-                                                                StoryPointManager.delete(storyPointId)
+                                                            if (storyPoint != nil) && (discoverItem != nil) {
+                                                                DiscoverItemManager.delete(discoverItem)
+                                                                StoryPointManager.delete(storyPoint)
                                                             }
                                                             self?.hideProgressHUD()
                                                             self?.loadItemsFromDB()

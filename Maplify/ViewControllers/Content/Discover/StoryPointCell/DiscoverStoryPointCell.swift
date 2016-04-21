@@ -62,10 +62,10 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func addShadow() {
-        self.backShadowView.layer.shadowColor = UIColor.blackColor().CGColor
-        self.backShadowView.layer.shadowOpacity = kShadowOpacity
-        self.backShadowView.layer.shadowOffset = CGSizeZero
-        self.backShadowView.layer.shadowRadius = kShadowRadius
+        self.backShadowView?.layer.shadowColor = UIColor.blackColor().CGColor
+        self.backShadowView?.layer.shadowOpacity = kShadowOpacity
+        self.backShadowView?.layer.shadowOffset = CGSizeZero
+        self.backShadowView?.layer.shadowRadius = kShadowRadius
     }
     
     func populateUserViews(storyPoint: StoryPoint) {
@@ -145,7 +145,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     
     func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DiscoverStoryPointCell.openContentTapHandler(_:)))
-        self.attachmentContentView.addGestureRecognizer(tapGesture)
+        self.attachmentContentView?.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - actions

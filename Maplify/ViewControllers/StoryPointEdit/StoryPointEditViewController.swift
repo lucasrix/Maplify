@@ -42,7 +42,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.setupContentHeight()
+        self.setupContentHeight(false)
     }
     
     // MARK: - setup
@@ -107,12 +107,30 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         self.editDescriptionViewController.updateCharactersCountLabel(storyPoint.text.length)
     }
     
-    func setupContentHeight() {
-        let descriptionHeight = self.editDescriptionViewController.view.frame.size.height
+    func contentHeight(expanded: Bool) -> CGFloat {
+        var textHeight: CGFloat = 0
+        if expanded {
+            let storyPoint = StoryPointManager.find(self.storyPointId)
+            self.descriptionLabel.text = storyPoint.text
+            let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
+            textHeight += storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
+        }
+        return self.storyPointImageView.frame.size.height + kDefaultDescriptionViewHeight + textHeight
+    }
+    
+    func setupContentHeight(expanded: Bool) {
+        var descriptionHeight: CGFloat = 0
+        if self.editDescriptionViewController != nil {
+            descriptionHeight += self.editDescriptionViewController.view.frame.size.height
+        } else {
+            descriptionHeight += self.contentHeight(expanded)
+        }
+        
         let infoHeight = self.editInfoViewController.contentHeight()
         let storyTableViewHeight = self.editInfoViewController.tableView.contentSize.height
         let updatedHeight = descriptionHeight + infoHeight + storyTableViewHeight
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, updatedHeight)
+        
         self.contentViewHeightConstraint.constant = updatedHeight
     }
     
@@ -134,15 +152,17 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     func showStoryPointDescription() {
         let storyPoint = StoryPointManager.find(self.storyPointId)
         self.descriptionLabel.text = storyPoint.text
-        let boundingRect = CGRectMake(0, 0, self.descriptionLabel.frame.size.width , CGFloat.max)
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
         let textHeight = storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
         
         if self.descriptionButton.selected {
-            self.descriptionViewHeightConstraint.constant = self.descriptionView.frame.size.height + textHeight
+            self.descriptionViewHeightConstraint.constant = CGRectGetHeight(self.descriptionView.frame) + textHeight
         } else {
             self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight
             self.descriptionLabel.text = String()
         }
+        
+        self.setupContentHeight(self.descriptionButton.selected)
     }
 
     override func rightBarButtonItemDidTap() {

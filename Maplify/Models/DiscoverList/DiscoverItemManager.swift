@@ -47,11 +47,33 @@ class DiscoverItemManager: ModelManager {
         return realm.objectForPrimaryKey(DiscoverItem.self, key: DiscoverItemId)
     }
     
+    class func findWithStoryPoint(storyPointId: Int) -> DiscoverItem! {
+        let realm = try! Realm()
+        return realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPointId)").first
+    }
+    
     class func saveItem(item: DiscoverItem) {
         let realm = try! Realm()
         
         try! realm.write {
             realm.add(item, update: true)
+        }
+    }
+    
+    class func delete(discoverItemId: Int) {
+        let realm = try! Realm()
+        let discoverItem = realm.objectForPrimaryKey(DiscoverItem.self, key: discoverItemId)
+        if discoverItem != nil {
+            try! realm.write {
+                realm.delete(discoverItem!)
+            }
+        }
+    }
+    
+    class func delete(discoverItem: DiscoverItem) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(discoverItem)
         }
     }
 }

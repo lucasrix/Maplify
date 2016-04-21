@@ -20,6 +20,7 @@ protocol MCMapServiceProtocol {
     optional func didTapMapView(mapView: UIView, itemObject: AnyObject)
     optional func didMoveMapView(mapView: UIView, target: AnyObject)
     optional func willMoveMapView(mapView: UIView, willMove: Bool)
+    optional func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double)
 }
 
 class MCMapService: NSObject, MCMapServiceProtocol {

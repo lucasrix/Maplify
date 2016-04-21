@@ -66,7 +66,7 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     
     // MARK: - GMSMapViewDelegate
     func mapView(mapView: GMSMapView, willMove gesture: Bool) {
-        self.delegate?.willMoveMapView!(mapView, willMove: gesture)
+        self.delegate?.willMoveMapView?(mapView, willMove: gesture)
     }
     
     func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
@@ -76,5 +76,9 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         self.delegate?.didTapMapView?(mapView, itemObject: marker)
         return true
+    }
+    
+    func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        self.delegate?.didTapCoordinateMapView?(mapView, latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
 }

@@ -35,7 +35,7 @@ let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 let kDiscoverSearchingRadius: CGFloat = 10000000
 
-class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol {
+class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol, DiscoverChangeLocationDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: DiscoverTableDataSource! = nil
@@ -70,6 +70,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.setupNavigationBarButtonItems()
         self.setupTableView()        
     }
     
@@ -81,6 +82,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
         self.navigationController?.navigationBar.layer.masksToBounds = false;
+    }
+    
+    func setupNavigationBarButtonItems() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.searchButtonTapped))
     }
     
     func setupTableView() {
@@ -255,6 +260,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 )
             }
         }
+    }
+    
+    func searchButtonTapped() {
+        self.routerShowDiscoverChangeLocationPopupController(self)
     }
     
     // MARK: - DiscoverStoryPointCellDelegate

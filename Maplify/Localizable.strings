@@ -51,6 +51,7 @@
 "Controller.EditPost.Title" = "Edit Post";
 "Controller.Profile.Title" = "Profile";
 "Controller.EditProfile" = "Edit Profile";
+"Controller.DiscoverChangeLocation" = "Change location";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";

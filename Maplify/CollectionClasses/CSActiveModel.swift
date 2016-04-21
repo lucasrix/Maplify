@@ -162,7 +162,7 @@ class CSActiveModel {
     private func performSelection(selection: Bool) {
         for dataArray in self.sectionsArray! {
             for cellData in dataArray {
-                cellData.selected = true
+                cellData.selected = selection
             }
         }
     }

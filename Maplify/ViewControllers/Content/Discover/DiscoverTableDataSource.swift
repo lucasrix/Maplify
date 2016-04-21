@@ -38,4 +38,13 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         }
         return itemHeight
     }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let cellData = self.activeModel.cellData(indexPath)
+        let model = cellData.model
+        let item = model as! DiscoverItem
+        if item.type == DiscoverItemType.StoryPoint.rawValue {
+            (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
+        }
+    }
 }

@@ -31,7 +31,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -76,6 +76,11 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: self.storyPointKind, storyPointAttachmentId: self.storyPointAttachmentId, location: self.location)
+    }
+    
+    override func backTapped() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
     }
     
     // MARK: - keyboard notification

@@ -32,6 +32,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var jumpToFeedButton: UIButton!
+    @IBOutlet weak var attachmentContentView: UIView!
     
     var itemIndex: Int = 0
     var storyPoint: StoryPoint! = nil
@@ -149,6 +150,15 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     
     @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
         self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func openContentTapped(sender: UITapGestureRecognizer) {
+        if self.storyPoint.kind == StoryPointKind.Video.rawValue {
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView)
+        } else if self.storyPoint.kind == StoryPointKind.Audio.rawValue {
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
+        }
+        self.attachmentContentView.hidden = self.storyPoint.kind == StoryPointKind.Text.rawValue || self.storyPoint.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - private

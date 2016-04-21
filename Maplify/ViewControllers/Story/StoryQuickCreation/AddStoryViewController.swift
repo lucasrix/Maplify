@@ -137,7 +137,8 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     func loadItemsFromDB() {
         let realm = try! Realm()
-        let stories = Array(realm.objects(Story))
+        let userId = SessionManager.currentUser().id
+        let stories = Array(realm.objects(Story).filter("user.id == \(userId)").sorted("created_at", ascending: false))
         self.updateStoryPointDetails(stories)
     }
     
@@ -188,7 +189,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     // MARK: - CSBaseTableDataSourceDelegate
     func didSelectModel(model: AnyObject, selection: Bool, indexPath: NSIndexPath) {
-        self.storyActiveModel.selectModel(indexPath, selected: !selection)
+        self.storyActiveModel.selectModel(indexPath, selected: selection)
         self.storyDataSource.reloadTable()
     }
     

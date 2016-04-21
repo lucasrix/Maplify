@@ -166,6 +166,12 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             }, failure: nil)
     }
     
+    // MARK: - navigation bar item actions
+    override func backTapped() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
+    }
+    
     // MARK: - actions
     func imageViewDidTap() {
         self.showPhotoActionSheet()

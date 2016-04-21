@@ -127,7 +127,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     
     func populateDescriptionLabel() {
         self.descriptionLabel.text = self.storyPoint.text
-        self.descriptionLabel.numberOfLines = self.descriptionOpened ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
+        self.descriptionLabel.numberOfLines = self.descriptionOpened || self.storyPoint.kind == StoryPointKind.Text.rawValue ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         
         if self.descriptionOpened {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -137,8 +137,8 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(self.storyPoint.text)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(self.storyPoint.text)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(self.storyPoint.text) || self.storyPoint.kind == StoryPointKind.Text.rawValue
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(self.storyPoint.text) || self.storyPoint.kind == StoryPointKind.Text.rawValue
     }
     
     // MARK: - actions

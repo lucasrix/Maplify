@@ -35,13 +35,11 @@ class PlayerHelper: NSObject, PlayerDelegate, AudioPlayerDelegate {
     }
     
     func removeVideoPlayerIfNedded() {
-        self.videoPlayer?.view?.superview?.backgroundColor = UIColor.clearColor()
         self.videoPlayer?.pause()
         self.videoPlayer?.view.removeFromSuperview()
     }
     
     func setupVideoPlayer(parentView: UIView) {
-        parentView.backgroundColor = UIColor.blackColor()
         self.videoPlayer = Player()
         self.videoPlayer.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(videoTapHandler(_:)))

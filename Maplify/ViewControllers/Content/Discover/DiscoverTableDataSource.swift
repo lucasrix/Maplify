@@ -45,7 +45,6 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         let item = model as! DiscoverItem
         if item.type == DiscoverItemType.StoryPoint.rawValue {
             (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
-            
         }
     }
 }

@@ -174,6 +174,10 @@ class DiscoverStoryPointCell: CSTableViewCell, PlayerHelperDelegate {
         }
         self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
+    
+    func cellDidEndDiplaying() {
+        PlayerHelper.sharedPlayer.removeVideoPlayerIfNedded()
+    }
 
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {

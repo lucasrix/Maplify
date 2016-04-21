@@ -219,12 +219,7 @@ class ApiClient {
         self.putRequest("user", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
     }
 
-    func retrieveDiscoverList(latitude: Double, longitude: Double, radius: CGFloat, page: Int, success: successClosure!, failure: failureClosure!) {
-        let params: [String: AnyObject] = ["page": page,
-                      "radius": radius,
-                      "location[latitude]": latitude,
-                      "location[longitude]": longitude
-                      ]
+    func retrieveDiscoverList(page: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("discover", params: params, manager: DiscoverItemManager(), success: success, failure: failure)
     }
 }

@@ -1058,9 +1058,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="All over the world" image="DiscoverChangeLocationAllOver">
+                                <state key="normal" title="AllOverTheWorld" image="DiscoverChangeLocationAllOver">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="allOverTheWorldTapped:" destination="RPX-q7-fRw" eventType="touchUpInside" id="2NP-GK-oYh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCH-sV-1ZR">
                                 <rect key="frame" x="0.0" y="46" width="375" height="45"/>
@@ -1070,10 +1073,13 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="All over" image="DiscoverChangeLocationNearMe">
+                                <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="NearMe" image="DiscoverChangeLocationNearMe">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nearMeTapped:" destination="RPX-q7-fRw" eventType="touchUpInside" id="dBZ-DY-0Nc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -1087,6 +1093,10 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="allOverTheWorldButton" destination="wfA-1w-eb7" id="xCa-TN-xIv"/>
+                        <outlet property="nearMeButton" destination="cCH-sV-1ZR" id="aCd-2I-6dB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-Gt-GHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1859,15 +1869,15 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="CmZ-FW-7Xn"/>
-                                                <exclude reference="oP5-cK-HHO"/>
-                                                <exclude reference="quI-Us-tnZ"/>
                                                 <exclude reference="pj2-Yg-5xs"/>
                                                 <exclude reference="wq9-Nh-676"/>
+                                                <exclude reference="oP5-cK-HHO"/>
+                                                <exclude reference="quI-Us-tnZ"/>
                                                 <exclude reference="1JF-Mw-64U"/>
-                                                <exclude reference="iik-gv-nY8"/>
                                                 <exclude reference="Hsd-d5-JhR"/>
                                                 <exclude reference="mdk-9g-Zgq"/>
                                                 <exclude reference="uJI-Y9-Y9h"/>
+                                                <exclude reference="iik-gv-nY8"/>
                                             </mask>
                                         </variation>
                                     </view>

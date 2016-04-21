@@ -841,8 +841,8 @@
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
 			isa = PBXGroup;
 			children = (
-				CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */,
 				CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */,
+				CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */,
 			);
 			path = DiscoverList;
 			sourceTree = "<group>";

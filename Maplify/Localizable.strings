@@ -114,6 +114,8 @@
 "Button.Save" = "Save";
 "Button.ReportAbuse" = "Report abuse";
 "Button.JumpToDiscoverFeed" = "Jump to Discover feed";
+"Button.AllOverTheWorld" = "All over the world";
+"Button.NearMe" = "Near me";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

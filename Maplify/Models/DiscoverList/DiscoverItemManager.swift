@@ -14,28 +14,36 @@ class DiscoverItemManager: ModelManager {
         return response
     }
     
-    class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int) {
+    class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int, searchLocationParameter: SearchLocationParameter) {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
         
         for item in list {
-            let discoverItem = DiscoverItem()
+            var discoverItem: DiscoverItem! = nil
             if item["type"] as! String == String(StoryPoint) {
                 let dict = item as! [String: AnyObject]
+                
                 let storyPoint = StoryPoint(dict)
-                discoverItem.type = DiscoverItemType.StoryPoint.rawValue
-                StoryPointManager.saveStoryPoint(storyPoint)
-                discoverItem.storyPoint = storyPoint
+                discoverItem = findOrCreateWithStoryPoint(storyPoint)
+            
             } else if item["type"] as! String == String(Story) {
                 let dict = item as! [String: AnyObject]
+
                 let story = Story(dict)
-                discoverItem.type = DiscoverItemType.Story.rawValue
-                StoryManager.saveStory(story)
-                discoverItem.story = story
+                discoverItem = findOrCreateWithStory(story)
             }
             
-            discoverItem.nearMePosition = currentPosition
-            discoverItem.id = currentPosition
+            let realm = try! Realm()
+            realm.beginWrite()
+            if searchLocationParameter == SearchLocationParameter.NearMe {
+                discoverItem.nearMePosition = currentPosition
+            } else if searchLocationParameter == SearchLocationParameter.AllOverTheWorld {
+                discoverItem.allOverTheWorldPosition = currentPosition
+            } else if searchLocationParameter == SearchLocationParameter.ChoosenPlace {
+                discoverItem.choosenPlacePosition = currentPosition
+            }
+            try! realm.commitWrite()
+            
             DiscoverItemManager.saveItem(discoverItem)
             
             currentPosition += 1
@@ -50,6 +58,42 @@ class DiscoverItemManager: ModelManager {
     class func findWithStoryPoint(storyPointId: Int) -> DiscoverItem! {
         let realm = try! Realm()
         return realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPointId)").first
+    }
+    
+    class func findOrCreateWithStoryPoint(storyPoint: StoryPoint) -> DiscoverItem! {
+        let realm = try! Realm()
+        if let foundedObject = realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPoint.id)").first {
+            print("old sPoint")
+            print(foundedObject.id)
+            return foundedObject
+        } else {
+            print("new sPoint")
+            let newObject = DiscoverItem()
+            newObject.type = DiscoverItemType.StoryPoint.rawValue
+            StoryPointManager.saveStoryPoint(storyPoint)
+            newObject.storyPoint = storyPoint
+            newObject.id = newObject.nextId()
+            print(newObject.id)
+            return newObject
+        }
+    }
+    
+    class func findOrCreateWithStory(story: Story) -> DiscoverItem! {
+        let realm = try! Realm()
+        if let foundedObject = realm.objects(DiscoverItem).filter("story.id == \(story.id)").first {
+            print("old story")
+            print(foundedObject.id)
+            return foundedObject
+        } else {
+            print("new story")
+            let newObject = DiscoverItem()
+            newObject.type = DiscoverItemType.Story.rawValue
+            StoryManager.saveStory(story)
+            newObject.story = story
+            newObject.id = newObject.nextId()
+            print(newObject.id)
+            return newObject
+        }
     }
     
     class func saveItem(item: DiscoverItem) {

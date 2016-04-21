@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 class DiscoverChangeLocationPopupViewController: ViewController {
+    @IBOutlet weak var allOverTheWorldButton: UIButton!
+    @IBOutlet weak var nearMeButton: UIButton!
+    
     var delegate: DiscoverChangeLocationDelegate! = nil
     
     // MARK: - view controller life cycle
@@ -22,6 +26,7 @@ class DiscoverChangeLocationPopupViewController: ViewController {
     func setup() {
         self.setupNavigationBar()
         self.setupNavigationBarButtonItems()
+        self.setupButtons()
     }
     
     func setupNavigationBar() {
@@ -36,6 +41,11 @@ class DiscoverChangeLocationPopupViewController: ViewController {
     
     func setupNavigationBarButtonItems() {
         self.addRightBarItem(NSLocalizedString("Button.Cancel", comment: String()))
+    }
+    
+    func setupButtons() {
+        self.allOverTheWorldButton.setTitle(NSLocalizedString("Button.AllOverTheWorld", comment: String()), forState: .Normal)
+        self.nearMeButton.setTitle(NSLocalizedString("Button.NearMe", comment: String()), forState: .Normal)
     }
     
     // MARK: - navigation bar
@@ -55,8 +65,23 @@ class DiscoverChangeLocationPopupViewController: ViewController {
     override func rightBarButtonItemDidTap() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - actions
+    @IBAction func allOverTheWorldTapped(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: { [weak self] () -> Void in
+            self?.delegate?.didSelectAllOverTheWorldLocation()
+        })
+    }
+    
+    @IBAction func nearMeTapped(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: { [weak self] () -> Void in
+            self?.delegate?.didSelectNearMePosition()
+        })
+    }
 }
 
 protocol DiscoverChangeLocationDelegate {
-    // TODO:
+    func didSelectAllOverTheWorldLocation()
+    func didSelectNearMePosition()
+    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D)
 }

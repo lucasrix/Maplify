@@ -112,7 +112,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         if expanded {
             let storyPoint = StoryPointManager.find(self.storyPointId)
             self.descriptionLabel.text = storyPoint.text
-            let boundingRect = CGRectMake(0, 0, self.descriptionLabel.frame.size.width , CGFloat.max)
+            let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
             textHeight += storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
         }
         return self.storyPointImageView.frame.size.height + kDefaultDescriptionViewHeight + textHeight
@@ -152,11 +152,11 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     func showStoryPointDescription() {
         let storyPoint = StoryPointManager.find(self.storyPointId)
         self.descriptionLabel.text = storyPoint.text
-        let boundingRect = CGRectMake(0, 0, self.descriptionLabel.frame.size.width , CGFloat.max)
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
         let textHeight = storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
         
         if self.descriptionButton.selected {
-            self.descriptionViewHeightConstraint.constant = self.descriptionView.frame.size.height + textHeight
+            self.descriptionViewHeightConstraint.constant = CGRectGetHeight(self.descriptionView.frame) + textHeight
         } else {
             self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight
             self.descriptionLabel.text = String()

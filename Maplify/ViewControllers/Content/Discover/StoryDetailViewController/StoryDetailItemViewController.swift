@@ -149,7 +149,8 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
-        self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
     }
     
     @IBAction func openContentTapped(sender: UITapGestureRecognizer) {

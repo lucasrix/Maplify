@@ -51,6 +51,8 @@
 "Controller.EditPost.Title" = "Edit Post";
 "Controller.Profile.Title" = "Profile";
 "Controller.EditProfile" = "Edit Profile";
+"Controller.DiscoverChangeLocation" = "Change location";
+"Controller.DiscoverTitle.AllTheWorld" = "All the world";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -113,6 +115,8 @@
 "Button.Save" = "Save";
 "Button.ReportAbuse" = "Report abuse";
 "Button.JumpToDiscoverFeed" = "Jump to Discover feed";
+"Button.AllOverTheWorld" = "All over the world";
+"Button.NearMe" = "Near me";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

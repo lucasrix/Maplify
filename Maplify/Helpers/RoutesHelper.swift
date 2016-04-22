@@ -145,4 +145,11 @@ extension UIViewController {
         menuController.delegate = delegate
         self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
     }
+    
+    func routerShowDiscoverChangeLocationPopupController(delegate: DiscoverChangeLocationDelegate) {
+        let discoverChangeLocationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverChangeLocationPopupViewController) as! DiscoverChangeLocationPopupViewController
+        discoverChangeLocationPopupController.delegate = delegate
+        let nav = NavigationViewController(rootViewController: discoverChangeLocationPopupController)
+        self.navigationController?.presentViewController(nav, animated: true, completion: nil)
+    }
 }

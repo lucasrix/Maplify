@@ -19,6 +19,9 @@ class DiscoverItem: Model {
     dynamic var storyPoint: StoryPoint? = nil
     dynamic var story: Story? = nil
     dynamic var nearMePosition: Int = 0
+    dynamic var allOverTheWorldPosition: Int = 0
+    dynamic var choosenPlacePosition: Int = 0
+    
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()

@@ -1037,6 +1037,71 @@
             </objects>
             <point key="canvasLocation" x="956.5" y="1228"/>
         </scene>
+        <!--Discover Change Location Popup View Controller-->
+        <scene sceneID="Ir1-ex-WUa">
+            <objects>
+                <viewController storyboardIdentifier="DiscoverChangeLocationPopupViewController" id="RPX-q7-fRw" customClass="DiscoverChangeLocationPopupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eJq-61-MeJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="rBL-ub-ggz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vKb-y9-Whb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfA-1w-eb7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1lr-f3-CVm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="AllOverTheWorld" image="DiscoverChangeLocationAllOver">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="allOverTheWorldTapped:" destination="RPX-q7-fRw" eventType="touchUpInside" id="2NP-GK-oYh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCH-sV-1ZR">
+                                <rect key="frame" x="0.0" y="46" width="375" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2Nx-4m-7e5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="NearMe" image="DiscoverChangeLocationNearMe">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nearMeTapped:" destination="RPX-q7-fRw" eventType="touchUpInside" id="dBZ-DY-0Nc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cCH-sV-1ZR" firstAttribute="leading" secondItem="vKb-y9-Whb" secondAttribute="leading" id="8Cn-dp-qE1"/>
+                            <constraint firstItem="cCH-sV-1ZR" firstAttribute="top" secondItem="wfA-1w-eb7" secondAttribute="bottom" constant="1" id="Dxr-TY-LqD"/>
+                            <constraint firstItem="wfA-1w-eb7" firstAttribute="top" secondItem="vKb-y9-Whb" secondAttribute="top" id="kjG-NW-MyG"/>
+                            <constraint firstAttribute="trailing" secondItem="cCH-sV-1ZR" secondAttribute="trailing" id="kuo-Bf-mCx"/>
+                            <constraint firstAttribute="trailing" secondItem="wfA-1w-eb7" secondAttribute="trailing" id="sT4-k7-2xZ"/>
+                            <constraint firstItem="wfA-1w-eb7" firstAttribute="leading" secondItem="vKb-y9-Whb" secondAttribute="leading" id="wi3-1F-bkH"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="allOverTheWorldButton" destination="wfA-1w-eb7" id="xCa-TN-xIv"/>
+                        <outlet property="nearMeButton" destination="cCH-sV-1ZR" id="aCd-2I-6dB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-Gt-GHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956.5" y="2251.5"/>
+        </scene>
         <!--Story Point Edit View Controller-->
         <scene sceneID="rcc-rR-UfO">
             <objects>
@@ -1804,15 +1869,15 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="CmZ-FW-7Xn"/>
-                                                <exclude reference="oP5-cK-HHO"/>
-                                                <exclude reference="quI-Us-tnZ"/>
                                                 <exclude reference="pj2-Yg-5xs"/>
                                                 <exclude reference="wq9-Nh-676"/>
+                                                <exclude reference="oP5-cK-HHO"/>
+                                                <exclude reference="quI-Us-tnZ"/>
                                                 <exclude reference="1JF-Mw-64U"/>
-                                                <exclude reference="iik-gv-nY8"/>
                                                 <exclude reference="Hsd-d5-JhR"/>
                                                 <exclude reference="mdk-9g-Zgq"/>
                                                 <exclude reference="uJI-Y9-Y9h"/>
+                                                <exclude reference="iik-gv-nY8"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -2835,23 +2900,6 @@
             </objects>
             <point key="canvasLocation" x="2708.5" y="1205.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="RHl-bk-bUr">
-            <objects>
-                <viewController id="hzH-fN-Owv" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uyS-iJ-ccB"/>
-                        <viewControllerLayoutGuide type="bottom" id="W1K-2j-p0g"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ax0-Sh-uwR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BBS-6y-1eT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="AddMediaScreenGalleryOff" width="25" height="25"/>
@@ -2866,6 +2914,8 @@
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>
         <image name="DiscoverAdd" width="24" height="24"/>
+        <image name="DiscoverChangeLocationAllOver" width="25" height="25"/>
+        <image name="DiscoverChangeLocationNearMe" width="20" height="20"/>
         <image name="DiscoverJumpToFeedEarth" width="24" height="24"/>
         <image name="DiscoverLike" width="25" height="23"/>
         <image name="DiscoverMore" width="5" height="18"/>

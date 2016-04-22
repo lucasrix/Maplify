@@ -31,11 +31,23 @@ enum RequestState: Int {
     case Loading
 }
 
+enum SearchLocationParameter: Int {
+    case AllOverTheWorld
+    case NearMe
+    case ChoosenPlace
+}
+
+enum DiscoverItemSortParameter: String {
+    case nearMe = "nearMePosition"
+    case allOverTheWorld = "allOverTheWorldPosition"
+    case choosenPlace = "choosenPlacePosition"
+}
+
 let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 let kDiscoverSearchingRadius: CGFloat = 10000000
 
-class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol {
+class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol, DiscoverChangeLocationDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: DiscoverTableDataSource! = nil
@@ -45,11 +57,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     var discoverItems: [DiscoverItem]! = nil
     var page: Int = kDiscoverFirstPage
     var requestState: RequestState = RequestState.Ready
+    var searchLocationParameter: SearchLocationParameter! = .NearMe
+    var searchParamChoosenLocation: CLLocationCoordinate2D! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupNavigationBar()
         self.loadItemsFromDB()
         self.loadRemoteData()
     }
@@ -69,7 +84,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
+        self.setupNavigationBarButtonItems()
         self.setupTableView()        
     }
     
@@ -81,6 +96,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
         self.navigationController?.navigationBar.layer.masksToBounds = false;
+    }
+    
+    func setupNavigationBarButtonItems() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.searchButtonTapped))
     }
     
     func setupTableView() {
@@ -134,7 +153,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.storyActiveModel.removeData()
         let itemsCount = self.itemsCountToShow()
-        let allItems = realm.objects(DiscoverItem).sorted("nearMePosition")
+        let sortRaram = self.sortedString()
+        let allItems = realm.objects(DiscoverItem).sorted(sortRaram)
         if allItems.count >=  itemsCount {
             self.discoverItems = Array(allItems[0..<itemsCount])
         } else {
@@ -146,35 +166,78 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyDataSource.reloadTable()
     }
     
+    func sortedString() -> String {
+        if self.searchLocationParameter == SearchLocationParameter.NearMe {
+            return DiscoverItemSortParameter.nearMe.rawValue
+        } else if self.searchLocationParameter == SearchLocationParameter.AllOverTheWorld {
+            return DiscoverItemSortParameter.allOverTheWorld.rawValue
+        } else if self.searchLocationParameter == SearchLocationParameter.ChoosenPlace {
+            return DiscoverItemSortParameter.choosenPlace.rawValue
+        }
+        return String()
+    }
+    
     func itemsCountToShow() -> Int{
         return self.page * kDiscoverItemsInPage
     }
     
     // MARK: - remote
     func loadRemoteData() {
+        if self.searchLocationParameter == SearchLocationParameter.NearMe {
+            self.loadRemoteDataNearMe()
+        } else if self.searchLocationParameter == SearchLocationParameter.AllOverTheWorld {
+            self.loadRemoteDataAllOverTheWorld()
+        } else if self.searchLocationParameter == SearchLocationParameter.ChoosenPlace {
+            self.loadRemoteDataChoosenPlace()
+        }
+    }
+    
+    // MARK: - all over the world searching
+    func loadRemoteDataAllOverTheWorld() {
+        let params: [String: AnyObject] = ["page": self.page]
+        self.retrieveDiscoverList(params)
+    }
+    
+    func loadRemoteDataChoosenPlace() {
+        self.retrieveDiscoverListWithLocation(self.searchParamChoosenLocation.latitude, longitude: self.searchParamChoosenLocation.longitude)
+    }
+    
+    // MARK: - near me searching
+    func loadRemoteDataNearMe() {
         // get current location
         if SessionHelper.sharedHelper.locationEnabled() {
             INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
                 if location != nil {
-                    self?.retrieveDiscoverList(location)
+                    self?.retrieveDiscoverListWithLocation(location.coordinate.latitude, longitude: location.coordinate.longitude)
                 } else {
-                    self?.retrieveDiscoverList(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
+                    self?.retrieveDiscoverListWithLocation(DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
                 }
             }
         } else {
-            self.retrieveDiscoverList(CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1))
+            self.retrieveDiscoverListWithLocation(DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
         }
     }
     
-    func retrieveDiscoverList(location: CLLocation) {
+    func retrieveDiscoverListWithLocation(latitude: Double, longitude: Double) {
+        let params: [String: AnyObject] = ["page": self.page,
+                                           "radius": kDiscoverSearchingRadius,
+                                           "location[latitude]": latitude,
+                                           "location[longitude]": longitude
+        ]
+        self.retrieveDiscoverList(params)
+    }
+    
+    func retrieveDiscoverList(params: [String: AnyObject]) {
         self.requestState = RequestState.Loading
-        ApiClient.sharedClient.retrieveDiscoverList(location.coordinate.latitude, longitude: location.coordinate.longitude, radius: kDiscoverSearchingRadius, page: self.page, success: { [weak self] (response) in
+        ApiClient.sharedClient.retrieveDiscoverList(self.page, params: params, success: { [weak self] (response) in
             
-            DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage)
+            DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage, searchLocationParameter: (self?.searchLocationParameter)!)
             
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
-            self?.tableView.ins_setInfinityScrollEnabled(response.count == kDiscoverItemsInPage)
+            
+            let list: NSArray = response["discovered"] as! NSArray
+            self?.tableView.ins_setInfinityScrollEnabled(list.count == kDiscoverItemsInPage)
             self?.requestState = RequestState.Ready
             
             self?.loadItemsFromDB()
@@ -257,6 +320,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    func searchButtonTapped() {
+        self.routerShowDiscoverChangeLocationPopupController(self)
+    }
+    
     // MARK: - DiscoverStoryPointCellDelegate
     func reloadTable(storyPointId: Int) {
         let storyPointIndex = self.discoverItems.indexOf({$0.id == storyPointId})
@@ -301,5 +368,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
+    
+    // MARK: - DiscoverChangeLocationDelegate
+    func didSelectAllOverTheWorldLocation() {
+        self.title = NSLocalizedString("Controller.DiscoverTitle.AllTheWorld", comment: String())
+        self.updateData(SearchLocationParameter.AllOverTheWorld)
+    }
+    
+    func didSelectNearMePosition() {
+        self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+        self.updateData(SearchLocationParameter.NearMe)
+    }
+    
+    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D, placeName: String) {
+        self.title = placeName
+        self.searchParamChoosenLocation = coordinates
+        self.updateData(SearchLocationParameter.ChoosenPlace)
+    }
+    
+    func updateData(searchLocationParameter: SearchLocationParameter) {
+        self.tableView.setContentOffset(CGPointZero, animated: false)
+        self.searchLocationParameter = searchLocationParameter
+        self.page = kDiscoverFirstPage
+        self.loadItemsFromDB()
+        self.loadRemoteData()
+    }
 }
-

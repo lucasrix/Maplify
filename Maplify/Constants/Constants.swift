@@ -61,6 +61,7 @@ struct Controllers {
     static let storyDetailItemViewController = "StoryDetailItemViewController"
     static let profileController = "ProfileController"
     static let editProfileController = "EditProfileController"
+    static let discoverChangeLocationPopupViewController = "DiscoverChangeLocationPopupViewController"
 }
 
 struct AppIDs {

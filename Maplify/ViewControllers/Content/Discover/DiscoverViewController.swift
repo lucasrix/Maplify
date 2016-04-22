@@ -57,14 +57,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     var discoverItems: [DiscoverItem]! = nil
     var page: Int = kDiscoverFirstPage
     var requestState: RequestState = RequestState.Ready
+    
     var searchLocationParameter: SearchLocationParameter! = .NearMe
     var searchParamChoosenLocation: CLLocationCoordinate2D! = nil
+
+    var userProfileId: Int = 0
+    var supportUserProfile: Bool = false
+    var profileViewController: ProfileViewController! = nil
+    var profileContainerView = ProfileContainerView()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupNavigationBar()
+        self.setupProfileViewControllerIfNeeded()
         self.loadItemsFromDB()
         self.loadRemoteData()
     }
@@ -85,17 +92,32 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - setup
     func setup() {
         self.setupNavigationBarButtonItems()
-        self.setupTableView()        
+        self.setupTableView()
+    }
+    
+    func setupProfileViewControllerIfNeeded() {
+        if self.supportUserProfile {
+            self.profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
+            self.profileViewController.profileId = self.userProfileId
+            self.configureChildViewController(self.profileViewController, onView: self.profileContainerView)
+            self.profileContainerView.configure(self.profileViewController)
+        }
     }
     
     func setupNavigationBar() {
-        self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
-        
-        // add shadow
-        self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
-        self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
-        self.navigationController?.navigationBar.layer.masksToBounds = false;
+        if self.supportUserProfile {
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
+            self.navigationController?.navigationBar.layer.shadowOpacity = 0
+        } else {
+            self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+            
+            // add shadow
+            self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
+            self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
+            self.navigationController?.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
+            self.navigationController?.navigationBar.layer.masksToBounds = false;
+        }
     }
     
     func setupNavigationBarButtonItems() {
@@ -106,6 +128,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.setupPullToRefresh()
         self.setupInfinityScroll()
         self.tableView.contentInset = UIEdgeInsetsZero
+        if self.supportUserProfile {
+            self.tableView.backgroundColor = UIColor.darkGreyBlue()
+        }
     }
     
     func setupPullToRefresh() {
@@ -163,6 +188,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+
+        self.storyDataSource.profileView = self.profileContainerView
+        
         self.storyDataSource.reloadTable()
     }
     

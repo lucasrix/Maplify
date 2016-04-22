@@ -43,6 +43,12 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     var privateStatsView: PrivateStatsView! = nil
     
     // MARK: - view controller life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.setup()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,7 +57,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
+        self.loadItemFromDB()
+//        self.setupNavigationBar()
         self.loadItemFromDB()
         self.setupImageView()
         self.setupLabels()
@@ -62,7 +69,6 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     }
     
     func setupNavigationBar() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0
     }
@@ -186,6 +192,10 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         super.backTapped()
     }
     
+    func contentHeight() -> CGFloat {
+        return self.contentViewHeight.constant
+    }
+    
     // MARK: - actions
     func imageViewDidTap() {
         self.showPhotoActionSheet()
@@ -232,6 +242,11 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.aboutLabelHeight.constant = 0
         }
     }
+
+    @IBAction func backButtonDidTap(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     @IBAction func followButtonTapped(sender: AnyObject) {
         //TODO: -

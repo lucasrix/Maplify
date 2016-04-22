@@ -46,6 +46,11 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.setupLabels()
         self.setupButtons()
         self.setupTextFields()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func setupLabels() {

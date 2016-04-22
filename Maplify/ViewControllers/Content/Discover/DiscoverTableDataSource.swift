@@ -9,6 +9,7 @@
 import UIKit
 
 class DiscoverTableDataSource: CSBaseTableDataSource {
+    var profileView: ProfileContainerView! = nil
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellData = self.activeModel.cellData(indexPath)
@@ -48,5 +49,16 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
             }
         }
         
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if (self.profileView != nil) && (self.profileView.childView() != nil) {
+            return self.profileView.childView()
+        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (self.profileView != nil) ? self.profileView.contentHeight() : 0
     }
 }

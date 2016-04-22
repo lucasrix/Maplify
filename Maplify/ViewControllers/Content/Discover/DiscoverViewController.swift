@@ -64,6 +64,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupNavigationBar()
         self.loadItemsFromDB()
         self.loadRemoteData()
     }
@@ -83,7 +84,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.setupNavigationBarButtonItems()
         self.setupTableView()        
     }
@@ -372,14 +372,17 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverChangeLocationDelegate
     func didSelectAllOverTheWorldLocation() {
+        self.title = NSLocalizedString("Controller.DiscoverTitle.AllTheWorld", comment: String())
         self.updateData(SearchLocationParameter.AllOverTheWorld)
     }
     
     func didSelectNearMePosition() {
+        self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
         self.updateData(SearchLocationParameter.NearMe)
     }
     
-    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D) {
+    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D, placeName: String) {
+        self.title = placeName
         self.searchParamChoosenLocation = coordinates
         self.updateData(SearchLocationParameter.ChoosenPlace)
     }

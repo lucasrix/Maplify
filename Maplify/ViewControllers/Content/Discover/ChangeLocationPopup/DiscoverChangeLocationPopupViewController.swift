@@ -81,5 +81,5 @@ class DiscoverChangeLocationPopupViewController: ViewController {
 protocol DiscoverChangeLocationDelegate {
     func didSelectAllOverTheWorldLocation()
     func didSelectNearMePosition()
-    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D)
+    func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D, placeName: String)
 }

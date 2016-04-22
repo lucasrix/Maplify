@@ -53,6 +53,7 @@
 "Controller.EditProfile" = "Edit Profile";
 "Controller.DiscoverChangeLocation" = "Change location";
 "Controller.DiscoverTitle.AllTheWorld" = "All the world";
+"Controller.EditStory" = "Edit Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";

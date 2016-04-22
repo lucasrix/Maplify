@@ -10,7 +10,7 @@ import RealmSwift
 import Tailor
 
 public enum DiscoverItemType : Int {
-    case StoryPoint = 0
+    case StoryPoint
     case Story
 }
 

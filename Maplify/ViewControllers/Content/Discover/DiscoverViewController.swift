@@ -405,6 +405,40 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    // MARK: - story
+    func showEditStoryContentMenu(storyId: Int) {
+        let story = StoryManager.find(storyId)
+        if story.user.profile.id == SessionManager.currentUser().profile.id {
+            self.showEditStoryContentActionSheet(storyId)
+        } else {
+            self.showDefaultContentActionSheet(storyId)
+        }
+    }
+    
+    func showEditStoryContentActionSheet(storyId: Int) {
+        let editPost = NSLocalizedString("Button.EditPost", comment: String())
+        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
+        let directions = NSLocalizedString("Button.Directions", comment: String())
+        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttons = [editPost, deletePost, directions, sharePost]
+        
+        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
+            if buttonIndex == EditContentOption.EditPost.rawValue {
+                self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
+                    self?.storyDataSource.reloadTable()
+                })
+            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
+                self?.deleteStory(storyId)
+            }
+            }
+        )
+    }
+    
+    func deleteStory(storyId: Int) {
+        print("delete")
+    }
+    
     func searchButtonTapped() {
         self.routerShowDiscoverChangeLocationPopupController(self)
     }
@@ -447,6 +481,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.discoverShowProfileClosure(userId: userId)
     }
     
+    func editStoryContentDidTap(storyId: Int) {
+        self.showEditStoryContentMenu(storyId)
+    }
+
     // MARK: - ProfileViewDelegate
     func followButtonDidTap() {
         //TODO:

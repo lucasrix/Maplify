@@ -73,6 +73,13 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
     }
     
+    func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: () -> ()) {
+        let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
+        storyEditViewController.storyId = storyId
+        storyEditViewController.storyUpdateHandler = storyUpdateHandler
+        self.navigationController?.pushViewController(storyEditViewController, animated: true)
+    }
+    
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)

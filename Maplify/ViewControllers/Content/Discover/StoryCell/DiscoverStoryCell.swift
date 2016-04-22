@@ -145,6 +145,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.delegate?.didSelectStory(self.storyId)
     }
     
+    @IBAction func editContentTapped(sender: UIButton) {
+        self.delegate?.editStoryContentDidTap(self.storyId)
+    }
+    
     func profileImageTapped() {
         let item = cellData.model as! DiscoverItem
         let story = item.story
@@ -226,4 +230,5 @@ protocol DiscoverStoryCellDelegate {
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
     func didSelectMap()
     func storyProfileImageTapped(userId: Int)
+    func editStoryContentDidTap(storyId: Int)
 }

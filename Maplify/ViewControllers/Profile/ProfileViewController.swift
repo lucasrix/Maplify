@@ -41,6 +41,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     var publicStatsView: PublicStatsView! = nil
     var privateStatsView: PrivateStatsView! = nil
+    var updateContentClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -58,7 +59,6 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     // MARK: - setup
     func setup() {
         self.loadItemFromDB()
-//        self.setupNavigationBar()
         self.loadItemFromDB()
         self.setupImageView()
         self.setupLabels()
@@ -68,12 +68,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         self.setupDetailedLabels()
     }
     
-    func setupNavigationBar() {
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0
-    }
-    
     func setupDetailStatsView() {
+        self.statsParentView.subviews.forEach({ $0.removeFromSuperview() })
         if self.profileId == SessionManager.currentUser().id {
             self.setupPrivateStatsView()
         } else {
@@ -103,8 +99,11 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         return UIColor.darkGreyBlue()
     }
     
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
+    }
+    
     func setupLabels() {
-        self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
         self.aboutLabel.text = self.user.profile.about
 
@@ -229,6 +228,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
 
     
     @IBAction func expandButtonTapped(sender: AnyObject) {
+        self.updateContentClosure()
+        
         self.expandButton.selected = !self.expandButton.selected
         if self.expandButton.selected {
             let font = self.aboutLabel.font

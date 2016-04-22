@@ -63,6 +63,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
 
     var userProfileId: Int = 0
     var supportUserProfile: Bool = false
+    var stackSupport: Bool = false
     var profileViewController: ProfileViewController! = nil
     var profileContainerView = ProfileContainerView()
     
@@ -70,7 +71,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupNavigationBar()
+        self.setupTitle()
         self.setupProfileViewControllerIfNeeded()
         self.loadItemsFromDB()
         self.loadRemoteData()
@@ -91,14 +92,22 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - setup
     func setup() {
+        self.setupNavigationBar()
         self.setupNavigationBarButtonItems()
         self.setupTableView()
+    }
+    
+    func setupTitle() {
+        self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
     }
     
     func setupProfileViewControllerIfNeeded() {
         if self.supportUserProfile {
             self.profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
             self.profileViewController.profileId = self.userProfileId
+            self.profileViewController.updateContentClosure = { [weak self] () in
+                self?.tableView.reloadData()
+            }
             self.configureChildViewController(self.profileViewController, onView: self.profileContainerView)
             self.profileContainerView.configure(self.profileViewController)
         }
@@ -109,8 +118,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.navigationController?.setNavigationBarHidden(false, animated: false)
             self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
             self.navigationController?.navigationBar.layer.shadowOpacity = 0
+            self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
         } else {
-            self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
             
             // add shadow
             self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
@@ -121,7 +130,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func setupNavigationBarButtonItems() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.searchButtonTapped))
+        if self.supportUserProfile == false {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.searchButtonTapped))
+        }
     }
     
     func setupTableView() {
@@ -162,7 +173,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - navigation bar
     override func backButtonHidden() -> Bool {
-        return true
+        return !self.supportUserProfile
+    }
+    
+    override func backTapped() {
+        if self.stackSupport == false {
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        super.backTapped()
     }
     
     override func navigationBarIsTranlucent() -> Bool {
@@ -366,7 +384,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func profileImageTapped(userId: Int) {
-        self.discoverShowProfileClosure(userId: userId)
+        self.routesOpenDiscoverControlelr(userId, supportUserProfile: true, stackSupport: true)
     }
 
     // MARK: - DiscoverStoryCellDelegate
@@ -379,7 +397,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
-        self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle)
+        if self.stackSupport {
+            self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: true)
+        } else {
+            self.parentViewController?.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: false)
+        }
     }
     
     func didSelectMap() {

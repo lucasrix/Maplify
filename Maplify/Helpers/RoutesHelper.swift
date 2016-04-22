@@ -50,10 +50,11 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
-    func routesOpenDiscoverControlelr(userProfileId: Int, supportUserProfile: Bool) {
+    func routesOpenDiscoverControlelr(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
         let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverViewController.userProfileId = userProfileId
         discoverViewController.supportUserProfile = supportUserProfile
+        discoverViewController.stackSupport = stackSupport
         self.navigationController?.pushViewController(discoverViewController, animated: true)
     }
     
@@ -130,11 +131,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
-    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String, stackSupport: Bool) {
         let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
         storyDetailViewController.storyPoints = storyPoints
         storyDetailViewController.selectedIndex = selectedIndex
         storyDetailViewController.storyTitle = storyTitle
+        storyDetailViewController.stackSupport = stackSupport
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     

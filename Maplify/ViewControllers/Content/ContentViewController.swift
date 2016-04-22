@@ -53,7 +53,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         
         let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverController.discoverShowProfileClosure = { [weak self] (userId) in
-            self!.routesOpenDiscoverControlelr(userId, supportUserProfile: true)
+            self!.routesOpenDiscoverControlelr(userId, supportUserProfile: true, stackSupport: false)
         }
         self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
 
@@ -129,7 +129,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
         let currentUserId = SessionManager.currentUser().id
-        self.routesOpenDiscoverControlelr(currentUserId, supportUserProfile: true)
+        self.routesOpenDiscoverControlelr(currentUserId, supportUserProfile: true, stackSupport: false)
     } 
     
     // MARK: - storyPointCreationPopupDelegate

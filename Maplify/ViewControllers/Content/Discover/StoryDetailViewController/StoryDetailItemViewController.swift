@@ -37,6 +37,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     var itemIndex: Int = 0
     var storyPoint: StoryPoint! = nil
     var descriptionOpened: Bool = false
+    var stackSupport: Bool = false
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -149,7 +150,9 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        if stackSupport == false {
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        }
         super.backTapped()
     }
     

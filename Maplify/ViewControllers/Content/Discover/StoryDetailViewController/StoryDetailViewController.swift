@@ -15,6 +15,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     var selectedIndex: Int = 0
     var pageViewController: StoryPageViewController! = nil
     var storyTitle = String()
+    var stackSupport: Bool = false
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var pageControlBackView: UIView!
@@ -116,6 +117,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Controllers.storyDetailItemViewController) as! StoryDetailItemViewController
             pageItemController.itemIndex = itemIndex
             pageItemController.storyPoint = self.storyPoints[itemIndex]
+            pageItemController.stackSupport = self.stackSupport
             return pageItemController
         }
         return nil

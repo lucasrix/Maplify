@@ -321,7 +321,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func searchButtonTapped() {
-//        self.tableView.setContentOffset(CGPointZero, animated: false)
         self.routerShowDiscoverChangeLocationPopupController(self)
     }
     

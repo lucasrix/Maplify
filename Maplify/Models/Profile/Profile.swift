@@ -21,7 +21,7 @@ class Profile: Model {
     dynamic var followings_count: Int = 0
     dynamic var likes_count: Int = 0
     dynamic var saves_count: Int = 0
-
+    dynamic var location: Location! = nil
 
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
@@ -39,6 +39,7 @@ class Profile: Model {
         self.followings_count <- map.property("followings_count")
         self.likes_count <- map.property("likes_count")
         self.saves_count <- map.property("saves_count")
+        self.location <- map.relationOrNil("location")
     }
     
     override class func primaryKey() -> String {

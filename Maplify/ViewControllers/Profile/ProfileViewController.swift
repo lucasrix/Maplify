@@ -34,6 +34,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var aboutLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var urlLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapImageView: UIImageView!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -66,6 +67,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         self.loadRemoteData()
         self.setupDetailStatsView()
         self.setupDetailedLabels()
+        self.setupBackgroundMap()
     }
     
     func setupDetailStatsView() {
@@ -122,6 +124,19 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         } else {
             self.urlLabelHeightConstraint.constant = 0
             self.profileUrlLabel.text = String()
+        }
+    }
+    
+    func setupBackgroundMap() {
+        let location = self.user.profile.location
+        print(location)
+        let attachmentUrl = StaticMap.staticMapUrl(location.latitude, longitude: location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        print(attachmentUrl)
+        print(self.mapImageView)
+        self.mapImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.mapImageView.image = image
+            }
         }
     }
     

@@ -1675,8 +1675,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaW-lx-AOa" userLabel="UserContentView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="285"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-fw-7sC">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-fw-7sC">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="186" id="UU4-Xa-4r3"/>
                                         </constraints>
@@ -1926,6 +1927,7 @@
                         <outlet property="locationLabelHeight" destination="Hqm-LM-4SZ" id="BB5-ar-ogF"/>
                         <outlet property="locationLogo" destination="mfw-9D-qMb" id="B1L-b0-sET"/>
                         <outlet property="locationLogoHeight" destination="cBg-Za-D9V" id="4lV-kD-Vx5"/>
+                        <outlet property="mapImageView" destination="IlY-fw-7sC" id="BwE-ex-M1h"/>
                         <outlet property="plusLabel" destination="3wh-hy-gAl" id="raG-Sx-FpM"/>
                         <outlet property="profileUrlLabel" destination="JnM-n7-tiN" id="1BK-WE-xX5"/>
                         <outlet property="statsParentView" destination="ElS-2C-5a3" id="gGu-Jv-Whs"/>

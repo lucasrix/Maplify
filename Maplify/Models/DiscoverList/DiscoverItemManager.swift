@@ -43,7 +43,6 @@ class DiscoverItemManager: ModelManager {
                 discoverItem.choosenPlacePosition = currentPosition
             }
             try! realm.commitWrite()
-            
             DiscoverItemManager.saveItem(discoverItem)
             
             currentPosition += 1
@@ -63,17 +62,13 @@ class DiscoverItemManager: ModelManager {
     class func findOrCreateWithStoryPoint(storyPoint: StoryPoint) -> DiscoverItem! {
         let realm = try! Realm()
         if let foundedObject = realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPoint.id)").first {
-            print("old sPoint")
-            print(foundedObject.id)
             return foundedObject
         } else {
-            print("new sPoint")
             let newObject = DiscoverItem()
             newObject.type = DiscoverItemType.StoryPoint.rawValue
             StoryPointManager.saveStoryPoint(storyPoint)
             newObject.storyPoint = storyPoint
             newObject.id = newObject.nextId()
-            print(newObject.id)
             return newObject
         }
     }
@@ -81,17 +76,13 @@ class DiscoverItemManager: ModelManager {
     class func findOrCreateWithStory(story: Story) -> DiscoverItem! {
         let realm = try! Realm()
         if let foundedObject = realm.objects(DiscoverItem).filter("story.id == \(story.id)").first {
-            print("old story")
-            print(foundedObject.id)
             return foundedObject
         } else {
-            print("new story")
             let newObject = DiscoverItem()
             newObject.type = DiscoverItemType.Story.rawValue
             StoryManager.saveStory(story)
             newObject.story = story
             newObject.id = newObject.nextId()
-            print(newObject.id)
             return newObject
         }
     }

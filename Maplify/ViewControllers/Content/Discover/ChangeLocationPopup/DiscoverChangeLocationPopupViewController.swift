@@ -68,15 +68,13 @@ class DiscoverChangeLocationPopupViewController: ViewController {
     
     // MARK: - actions
     @IBAction func allOverTheWorldTapped(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: { [weak self] () -> Void in
-            self?.delegate?.didSelectAllOverTheWorldLocation()
-        })
+        self.delegate?.didSelectAllOverTheWorldLocation()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func nearMeTapped(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: { [weak self] () -> Void in
-            self?.delegate?.didSelectNearMePosition()
-        })
+        self.delegate?.didSelectNearMePosition()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

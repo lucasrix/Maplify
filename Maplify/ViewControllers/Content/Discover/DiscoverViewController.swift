@@ -229,7 +229,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func retrieveDiscoverList(params: [String: AnyObject]) {
         self.requestState = RequestState.Loading
-        print(self.page)
         ApiClient.sharedClient.retrieveDiscoverList(self.page, params: params, success: { [weak self] (response) in
             
             DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage, searchLocationParameter: (self?.searchLocationParameter)!)
@@ -238,7 +237,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.tableView.ins_endPullToRefresh()
             
             let list: NSArray = response["discovered"] as! NSArray
-            print(list.count)
             self?.tableView.ins_setInfinityScrollEnabled(list.count == kDiscoverItemsInPage)
             self?.requestState = RequestState.Ready
             
@@ -323,6 +321,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func searchButtonTapped() {
+//        self.tableView.setContentOffset(CGPointZero, animated: false)
         self.routerShowDiscoverChangeLocationPopupController(self)
     }
     
@@ -373,25 +372,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverChangeLocationDelegate
     func didSelectAllOverTheWorldLocation() {
-        print("all over")
-        self.searchLocationParameter = SearchLocationParameter.AllOverTheWorld
-        self.page = kDiscoverFirstPage
-        self.loadItemsFromDB()
-        self.loadRemoteData()
+        self.updateData(SearchLocationParameter.AllOverTheWorld)
     }
     
     func didSelectNearMePosition() {
-        print("near me")
-        self.searchLocationParameter = SearchLocationParameter.NearMe
-        self.page = kDiscoverFirstPage
-        self.loadItemsFromDB()
-        self.loadRemoteData()
+        self.updateData(SearchLocationParameter.NearMe)
     }
     
     func didSelectChoosenPlace(coordinates: CLLocationCoordinate2D) {
-        print("chosen place")
-        self.searchLocationParameter = SearchLocationParameter.ChoosenPlace
         self.searchParamChoosenLocation = coordinates
+        self.updateData(SearchLocationParameter.ChoosenPlace)
+    }
+    
+    func updateData(searchLocationParameter: SearchLocationParameter) {
+        self.tableView.setContentOffset(CGPointZero, animated: false)
+        self.searchLocationParameter = searchLocationParameter
         self.page = kDiscoverFirstPage
         self.loadItemsFromDB()
         self.loadRemoteData()

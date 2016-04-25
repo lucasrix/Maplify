@@ -1147,7 +1147,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="De0-UY-yCM">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="De0-UY-yCM" customClass="SZTextView">
                                                 <rect key="frame" x="8" y="103" width="359" height="254"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1214,7 +1214,7 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Of chars" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="CSE-KT-6ri">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 of 1500 chars" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="CSE-KT-6ri">
                                                 <rect key="frame" x="191" y="86" width="176" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="AkM-0i-iQX"/>
@@ -1274,7 +1274,7 @@
                         <outlet property="addPostsButton" destination="VSw-bB-3Wh" id="6Gb-LO-21T"/>
                         <outlet property="descriptionCharsNumberLabel" destination="CSE-KT-6ri" id="vIP-rz-sCG"/>
                         <outlet property="descriptionLabel" destination="uDf-8E-SkA" id="nhi-QS-zFa"/>
-                        <outlet property="descriptionTextView" destination="De0-UY-yCM" id="i85-hf-p5f"/>
+                        <outlet property="descriptionTextView" destination="De0-UY-yCM" id="Oil-fY-b7n"/>
                         <outlet property="pointsInStoryLabel" destination="R23-xx-32u" id="xB1-V0-5eH"/>
                         <outlet property="storyNameLabel" destination="cGb-sy-8bo" id="MfQ-hL-Qh9"/>
                         <outlet property="storyNameTextField" destination="fET-35-SZ8" id="es0-eq-5XM"/>

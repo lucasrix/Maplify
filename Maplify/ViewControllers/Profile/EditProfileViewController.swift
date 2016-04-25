@@ -8,7 +8,6 @@
 
 import TPKeyboardAvoiding
 
-let kAboutFieldBorderWidth: CGFloat = 1
 let kAboutFieldCharactersLimit = 500
 
 class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
@@ -83,29 +82,29 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.emailTextField.delegate = self
         self.aboutTextView.delegate = self
         
-        self.emailTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.emailTextField.layer.borderWidth = Border.defaultBorderWidth
         self.emailTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.emailTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.firstNameTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.firstNameTextField.layer.borderWidth = Border.defaultBorderWidth
         self.firstNameTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.firstNameTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.lastNameTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.lastNameTextField.layer.borderWidth = Border.defaultBorderWidth
         self.lastNameTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.lastNameTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.homeCityTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.homeCityTextField.layer.borderWidth = Border.defaultBorderWidth
         self.homeCityTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.homeCityTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.urlTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.urlTextField.layer.borderWidth = Border.defaultBorderWidth
         self.urlTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.urlTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
         self.aboutTextView.layer.cornerRadius = CornerRadius.defaultRadius
         self.aboutTextView.clipsToBounds = true
-        self.aboutTextView.layer.borderWidth = kAboutFieldBorderWidth
+        self.aboutTextView.layer.borderWidth = Border.defaultBorderWidth
         self.aboutTextView.layer.borderColor = UIColor.inactiveGrey().CGColor
         
         let view = UIView(frame: CGRectMake(0, 0, kLocationInputFieldRightMargin, self.homeCityTextField.frame.size.height))

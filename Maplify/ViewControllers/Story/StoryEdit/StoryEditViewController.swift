@@ -18,6 +18,9 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var storyDataSource: CSBaseTableDataSource! = nil
+    var storyActiveModel = CSActiveModel()
+    
     var storyId: Int = 0
     var storyUpdateHandler: (() -> ())! = nil
     
@@ -32,6 +35,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
         super.viewWillAppear(animated)
         
         self.populateViews()
+        self.loadDataFromDB()
     }
     
     // MARK: - setup
@@ -63,7 +67,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
         self.descriptionTextView.delegate = self
         self.descriptionTextView.layer.cornerRadius = CornerRadius.defaultRadius
         self.descriptionTextView.clipsToBounds = true
-        self.descriptionTextView.layer.borderWidth = kAboutFieldBorderWidth
+        self.descriptionTextView.layer.borderWidth = Border.defaultBorderWidth
         self.descriptionTextView.layer.borderColor = UIColor.inactiveGrey().CGColor
     }
     
@@ -76,6 +80,15 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
         let story = StoryManager.find(self.storyId)
         self.storyNameTextField.text = story.title
         self.descriptionTextView.text = story.storyDescription
+    }
+    
+    func loadDataFromDB() {
+        self.storyActiveModel.removeData()
+        let story = StoryManager.find(self.storyId)
+        let items = Array(story.storyPoints)
+        self.storyActiveModel.addItems(items, cellIdentifier: String(StoryEditPointCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
+        self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+        self.storyDataSource.reloadTable()
     }
 
     // MARK: - navigation bar

@@ -10,9 +10,8 @@ import UIKit
 import TTTAttributedLabel
 import SDWebImage
 
-let kDefaultContentHeight: CGFloat = 350
+let kDefaultContentHeight: CGFloat = 420
 let kMapGradientOpacity: CGFloat = 0.85
-let kDefaultStatsViewHeight: CGFloat = 285
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
@@ -21,6 +20,7 @@ let kShadowYOffset: CGFloat = -3
 protocol ProfileViewDelegate {
     func followButtonDidTap()
     func editButtonDidTap()
+    func createStoryButtonDidTap()
 }
 
 class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -38,10 +38,10 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var locationLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var locationLogoHeight: NSLayoutConstraint!
-    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var aboutLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var urlLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var mapImageView: UIImageView!
+    @IBOutlet weak var createStoryButton: UIButton!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -52,7 +52,8 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     var updateContentClosure: (() -> ())! = nil
     var parentViewController: UIViewController! = nil
     var delegate: ProfileViewDelegate! = nil
-
+    var contentHeightValue: CGFloat = kDefaultContentHeight
+    
     func setupWithUser(profileId: Int, parentViewController: UIViewController) {
         self.profileId = profileId
         self.parentViewController = parentViewController
@@ -166,7 +167,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.followButton.layer.borderWidth = kProfileButtonBorderWidth
             self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         }
-        
+        self.createStoryButton.layer.cornerRadius = CornerRadius.defaultRadius
         self.expandButton.hidden = !(self.user.profile.about.length > 0)
     }
     
@@ -200,7 +201,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func contentHeight() -> CGFloat {
-        return kDefaultContentHeight
+        return self.contentHeightValue
     }
     
     // MARK: - actions
@@ -235,21 +236,25 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     
+    @IBAction func createStoryButtonTapped(sender: AnyObject) {
+        self.delegate?.createStoryButtonDidTap()
+    }
+    
     @IBAction func expandButtonTapped(sender: AnyObject) {
-        self.updateContentClosure()
-        
         self.expandButton.selected = !self.expandButton.selected
         if self.expandButton.selected {
             let font = self.aboutLabel.font
             let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
             let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
             self.aboutLabel.text = self.user.profile.about
-            self.contentViewHeight.constant = kDefaultStatsViewHeight + textHeight + 2 * kAboutLabelMargin
-            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight)))
+            self.contentHeightValue = kDefaultContentHeight + CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
+            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
         } else {
-            self.contentViewHeight.constant = kDefaultStatsViewHeight
+            self.contentHeightValue = kDefaultContentHeight
             self.aboutLabelHeight.constant = 0
         }
+        
+        self.updateContentClosure()
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {

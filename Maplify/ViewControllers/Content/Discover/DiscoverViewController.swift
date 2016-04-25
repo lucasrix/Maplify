@@ -430,6 +430,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         //TODO:
     }
     
+    func createStoryButtonDidTap() {
+        //TODO:
+    }
+    
     func editButtonDidTap() {
         self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
             self?.configureProfileViewIfNeeded()

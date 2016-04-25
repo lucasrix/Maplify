@@ -12,6 +12,7 @@ import INSPullToRefresh.UIScrollView_INSPullToRefresh
 
 let kDiscoverItemsInPage = 25
 let kDiscoverFirstPage = 1
+let kDiscoverBarMinLimitOpacity: CGFloat = 0.2
 
 enum EditContentOption: Int {
     case EditPost
@@ -445,7 +446,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let alphaMin = NavigationBar.navigationBarAlphaMin
         let alphaMax = NavigationBar.defaultOpacity
         if (contentOffset.y > profileViewHeight * alphaMin && contentOffset.y <= profileViewHeight * alphaMax) {
-            let alpha: CGFloat = contentOffset.y / profileViewHeight
+            var alpha: CGFloat = contentOffset.y / profileViewHeight
+            if alpha < kDiscoverBarMinLimitOpacity {
+                alpha = 0
+            }
             self.setNavigationBarTransparentWithAlpha(alpha)
         } else if (contentOffset.y > profileViewHeight) {
             self.setNavigationBarTransparentWithAlpha(alphaMax)

@@ -47,14 +47,14 @@ let kDiscoverNavigationBarShadowOpacity: Float = 0.8
 let kDiscoverNavigationBarShadowRadius: CGFloat = 3
 let kDiscoverSearchingRadius: CGFloat = 10000000
 
-class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol, DiscoverChangeLocationDelegate {
+class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, DiscoverStoryPointCellDelegate, DiscoverTableDataSourceDelegate, DiscoverStoryCellDelegate, ErrorHandlingProtocol, DiscoverChangeLocationDelegate, ProfileViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: DiscoverTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
     var discoverShowProfileClosure: ((userId: Int) -> ())! = nil
     var canLoadMore: Bool = true
-    var discoverItems: [DiscoverItem]! = nil
+    var discoverItems = [DiscoverItem]()
     var page: Int = kDiscoverFirstPage
     var requestState: RequestState = RequestState.Ready
     
@@ -64,17 +64,17 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     var userProfileId: Int = 0
     var supportUserProfile: Bool = false
     var stackSupport: Bool = false
-    var profileViewController: ProfileViewController! = nil
-    var profileContainerView = ProfileContainerView()
+    
+    var profileView: ProfileView! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTitle()
-        self.setupProfileViewControllerIfNeeded()
-        self.loadItemsFromDB()
-        self.loadRemoteData()
+        self.setupProfileViewIfNeeded()
+        self.configureProfileViewIfNeeded()
+        self.setupDataSource()
     }
     
     deinit {
@@ -95,21 +95,35 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.setupNavigationBar()
         self.setupNavigationBarButtonItems()
         self.setupTableView()
+        self.loadItemsFromDB()
+        self.loadRemoteData()
+        self.setupNavigationBarColorWithContentOffset(self.tableView.contentOffset)
+    }
+    
+    func setupDataSource() {
+        self.storyActiveModel = CSActiveModel()
+        self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+        self.storyDataSource.scrollDelegate = self
+        self.storyDataSource.profileView = self.profileView
     }
     
     func setupTitle() {
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
     }
     
-    func setupProfileViewControllerIfNeeded() {
+    func setupProfileViewIfNeeded() {
         if self.supportUserProfile {
-            self.profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
-            self.profileViewController.profileId = self.userProfileId
-            self.profileViewController.updateContentClosure = { [weak self] () in
+            self.profileView = NSBundle.mainBundle().loadNibNamed("ProfileView", owner: nil, options: nil).last as! ProfileView
+            self.profileView.updateContentClosure = { [weak self] () in
                 self?.tableView.reloadData()
             }
-            self.configureChildViewController(self.profileViewController, onView: self.profileContainerView)
-            self.profileContainerView.configure(self.profileViewController)
+            self.profileView.delegate = self
+        }
+    }
+    
+    func configureProfileViewIfNeeded() {
+        if self.supportUserProfile {
+            self.profileView.setupWithUser(self.userProfileId, parentViewController: self)
         }
     }
     
@@ -120,7 +134,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.navigationController?.navigationBar.layer.shadowOpacity = 0
             self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
         } else {
-            
             // add shadow
             self.navigationController?.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
             self.navigationController?.navigationBar.layer.shadowOffset = CGSizeZero;
@@ -136,24 +149,27 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func setupTableView() {
-        self.setupPullToRefresh()
+        self.setupPullToRefreshIfNeeded()
         self.setupInfinityScroll()
+
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
             self.tableView.backgroundColor = UIColor.darkGreyBlue()
         }
     }
     
-    func setupPullToRefresh() {
-        self.tableView.ins_addPullToRefreshWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
-            self?.page = kDiscoverFirstPage
-            self?.loadRemoteData()
+    func setupPullToRefreshIfNeeded() {
+        if self.supportUserProfile == false {
+            self.tableView.ins_addPullToRefreshWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+                self?.page = kDiscoverFirstPage
+                self?.loadRemoteData()
+            }
+            
+            let pullToRefresh = INSDefaultPullToRefresh(frame: Frame.pullToRefreshFrame, backImage: nil, frontImage: nil)
+            self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = false
+            self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+            self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
         }
-        
-        let pullToRefresh = INSDefaultPullToRefresh(frame: Frame.pullToRefreshFrame, backImage: nil, frontImage: nil)
-        self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = false
-        self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
-        self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
     }
     
     func setupInfinityScroll() {
@@ -184,11 +200,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     override func navigationBarIsTranlucent() -> Bool {
-        return false
+        return self.supportUserProfile ? true : false
     }
     
     override func navigationBarColor() -> UIColor {
-        return UIColor.darkGreyBlue()
+        return self.supportUserProfile ? UIColor.clearColor() : UIColor.darkGreyBlue()
     }
     
     func loadItemsFromDB() {
@@ -205,10 +221,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
         
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
-        self.storyDataSource = DiscoverTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
-
-        self.storyDataSource.profileView = self.profileContainerView
-        
         self.storyDataSource.reloadTable()
     }
     
@@ -223,7 +235,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         return String()
     }
     
-    func itemsCountToShow() -> Int{
+    func itemsCountToShow() -> Int {
         return self.page * kDiscoverItemsInPage
     }
     
@@ -288,11 +300,11 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             
             self?.loadItemsFromDB()
             
-            }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.tableView.ins_endInfinityScroll()
-                self?.tableView.ins_endPullToRefresh()
-                self?.requestState = RequestState.Ready
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.tableView.ins_endInfinityScroll()
+            self?.tableView.ins_endPullToRefresh()
+            self?.requestState = RequestState.Ready
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     
@@ -410,6 +422,40 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func storyProfileImageTapped(userId: Int) {
         self.discoverShowProfileClosure(userId: userId)
+    }
+    
+    // MARK: - ProfileViewDelegate
+    func followButtonDidTap() {
+        //TODO:
+    }
+    
+    func editButtonDidTap() {
+        self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
+            self?.configureProfileViewIfNeeded()
+        }
+    }
+    
+    // MARK: - DiscoverTableDataSourceDelegate
+    func discoverTableDidScroll(scrollView: UIScrollView) {
+        self.setupNavigationBarColorWithContentOffset(scrollView.contentOffset)
+    }
+    
+    func setupNavigationBarColorWithContentOffset(contentOffset: CGPoint) {
+        let profileViewHeight = self.profileView.contentHeight()
+        let alphaMin = NavigationBar.navigationBarAlphaMin
+        let alphaMax = NavigationBar.defaultOpacity
+        if (contentOffset.y > profileViewHeight * alphaMin && contentOffset.y <= profileViewHeight * alphaMax) {
+            let alpha: CGFloat = contentOffset.y / profileViewHeight
+            self.setNavigationBarTransparentWithAlpha(alpha)
+        } else if (contentOffset.y > profileViewHeight) {
+            self.setNavigationBarTransparentWithAlpha(alphaMax)
+        }
+    }
+    
+    func setNavigationBarTransparentWithAlpha(alpha: CGFloat) {
+        let color = UIColor.darkBlueGrey().colorWithAlphaComponent(alpha)
+        let image = UIImage(color: color)!
+        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
     }
 
     // MARK: - ErrorHandlingProtocol

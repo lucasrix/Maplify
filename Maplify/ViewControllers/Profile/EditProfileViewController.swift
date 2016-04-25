@@ -32,6 +32,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     var profileId: Int = 0
     var user: User! = nil
     var updatedImage: UIImage! = nil
+    var updateContentClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {

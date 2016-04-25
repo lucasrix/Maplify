@@ -34,9 +34,9 @@ class DiscoverItem: Model {
 }
 
 extension DiscoverItem {
-    func nextId() -> Int{
+    func nextId() -> Int {
         let realm = try! Realm()
-        var nextId: Int = 0
+        var nextId: Int = 1
         let objects = realm.objects(DiscoverItem).sorted("id")
         if objects.count > 0 {
             let lastId: Int = objects.last!.id

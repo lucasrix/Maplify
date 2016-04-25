@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class StoryEditViewController: ViewController, UITextViewDelegate {
+class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditDataSourceDelegate {
     @IBOutlet weak var storyNameLabel: UILabel!
     @IBOutlet weak var storyNameTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -18,11 +19,12 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var storyDataSource: CSBaseTableDataSource! = nil
+    var storyDataSource: StoryEditTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
     
     var storyId: Int = 0
     var storyUpdateHandler: (() -> ())! = nil
+    var storyPoints = [StoryPoint]()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -86,8 +88,12 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
         self.storyActiveModel.removeData()
         let story = StoryManager.find(self.storyId)
         let items = Array(story.storyPoints)
+        self.storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+//        let a = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+
         self.storyActiveModel.addItems(items, cellIdentifier: String(StoryEditPointCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
-        self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+        self.storyDataSource = StoryEditTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
+        self.storyDataSource.storyEditDelegate = self
         self.storyDataSource.reloadTable()
     }
 
@@ -98,6 +104,35 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    // MARK: - navigation bar actions
+    override func rightBarButtonItemDidTap() {
+        if self.storyNameLabel.text != String() {
+            self.updateStory()
+        }
+    }
+    
+    func updateStory() {
+        self.showProgressHUD()
+        let params: [String: AnyObject] = ["name": self.storyNameTextField.text!, "description": self.descriptionTextView.text, "discoverable": true, "story_point_ids": self.storyPoints.map({$0.id})]
+        print(params)
+        ApiClient.sharedClient.updateStory(self.storyId, params: params, success: { [weak self] (response) in
+            StoryManager.saveStory(response as! Story)
+            self?.loadDataFromDB()
+            self?.hideProgressHUD()
+            self?.backTapped()
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
     
     // MARK: - UITextViewDelegate
@@ -114,5 +149,14 @@ class StoryEditViewController: ViewController, UITextViewDelegate {
         let substringOf = NSLocalizedString("Substring.Of", comment: String())
         let substringChars = NSLocalizedString("Substring.Chars", comment: String())
         self.descriptionCharsNumberLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
+    }
+    
+    // MARK: - StoryEditDataSourceDelegate
+    func didRemoveItem(indexPath: NSIndexPath) {
+        let cellData = self.storyActiveModel.cellData(indexPath)
+        let storyPointToDelete = cellData.model as! StoryPoint
+        let index = self.storyPoints.indexOf({$0.id == storyPointToDelete.id})
+        self.storyPoints.removeAtIndex(index!)
+        self.storyDataSource.removeRow(indexPath)
     }
 }

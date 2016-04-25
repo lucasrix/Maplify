@@ -19,6 +19,7 @@ class DiscoverItemManager: ModelManager {
         var currentPosition = (pageNumber - 1) * itemsCountInPage
         
         for item in list {
+            currentPosition += 1
             var discoverItem: DiscoverItem! = nil
             if item["type"] as! String == String(StoryPoint) {
                 let dict = item as! [String: AnyObject]
@@ -44,8 +45,6 @@ class DiscoverItemManager: ModelManager {
             }
             try! realm.commitWrite()
             DiscoverItemManager.saveItem(discoverItem)
-            
-            currentPosition += 1
         }
     }
     

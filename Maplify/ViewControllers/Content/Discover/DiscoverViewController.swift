@@ -214,7 +214,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.storyActiveModel.removeData()
         let itemsCount = self.itemsCountToShow()
         let sortRaram = self.sortedString()
-        let allItems = realm.objects(DiscoverItem).sorted(sortRaram)
+        let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
+//        print(allItems)
         if allItems.count >=  itemsCount {
             self.discoverItems = Array(allItems[0..<itemsCount])
         } else {

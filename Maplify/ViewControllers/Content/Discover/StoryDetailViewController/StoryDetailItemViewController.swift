@@ -150,7 +150,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
-        if stackSupport == false {
+        if self.stackSupport == false {
             self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
         super.backTapped()

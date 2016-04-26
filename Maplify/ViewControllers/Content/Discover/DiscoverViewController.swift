@@ -201,7 +201,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     override func navigationBarIsTranlucent() -> Bool {
-        return self.supportUserProfile ? true : false
+        return self.supportUserProfile
     }
     
     override func navigationBarColor() -> UIColor {

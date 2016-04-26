@@ -8,20 +8,7 @@
 
 import Foundation
 
-class UserRequestHelper {
-    class func retrieveUserData(userId: Int, success: successClosure!, failure: failureClosure!) {
-        ApiClient.sharedClient.getUserStoryPoints(userId,
-            success: { (response) in
-                let storyPoints = response as! [StoryPoint]
-                ApiClient.sharedClient.getUserStories(userId, success: { (response) in
-                    let stories = response as! [Story]
-                    let mergedArray = UserRequestHelper.sortAndMerge(storyPoints, stories: stories)
-                    success(response: mergedArray)
-                    }, failure: failure)
-            },
-            failure: failure)
-    }
-    
+class UserRequestResponseHelper {
     class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) -> [AnyObject]! {
         var mergedArray = [AnyObject]()
         for storyPoint in storyPoints {

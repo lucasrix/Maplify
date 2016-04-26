@@ -250,12 +250,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func loadUserDiscoverData() {
-        UserRequestHelper.retrieveUserData(self.userProfileId, success: { (response) in
-            //print(response)
-            //TODO:
-            }) { (statusCode, errors, localDescription, messages) in
-                self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-        }
+        ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
+            success: { [weak self] (response) in
+                let storyPoints = response as! [StoryPoint]
+                ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { (response) in
+                    let stories = response as! [Story]
+                    let mergedArray = UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
+                    //TODO:
+                    },
+                failure: { (statusCode, errors, localDescription, messages) in
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                })
+            },
+            failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            })
     }
     
     func loadDiscoverRemoteData() {
@@ -414,7 +423,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func profileImageTapped(userId: Int) {
-        self.routesOpenDiscoverControlelr(userId, supportUserProfile: true, stackSupport: true)
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
     }
 
     // MARK: - DiscoverStoryCellDelegate

@@ -22,6 +22,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         super.viewDidLoad()
         
         self.setup()
+        self.loadRemoteData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,6 +76,17 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         }
     }
     
+    // MARK: - remote
+    func loadRemoteData() {
+        let userId = SessionManager.currentUser().id
+        ApiClient.sharedClient.getUserStoryPoints(userId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoints(response as! [StoryPoint])
+            self?.loadDataFromDB()
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
         self.updateStory()
@@ -87,6 +99,13 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
 
         self.delegate?.didSelectStoryPoints(selectedStoryPoints)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
     
     // MARK: - StoryAddPostsDelegate

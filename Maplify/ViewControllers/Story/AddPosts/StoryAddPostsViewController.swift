@@ -76,7 +76,24 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        // TODO:
+        self.updateStory()
+        self.backTapped()
+    }
+    
+    // MARK: - private
+    func updateStory() {
+        let selectedCellData = self.storyActiveModel.selectedModels()
+        let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
+        
+        let story = StoryManager.find(self.storyId)
+        let realm = try! Realm()
+        try! realm.write {
+            story.storyPoints.removeAll()
+            for storyPoint in selectedStoryPoints {
+                story.storyPoints.append(storyPoint)
+            }
+        }
+        
     }
     
     // MARK: - StoryAddPostsDelegate

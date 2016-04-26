@@ -10,7 +10,8 @@ import UIKit
 import TTTAttributedLabel
 import SDWebImage
 
-let kDefaultContentHeight: CGFloat = 420
+let kDefaultContentHeight: CGFloat = 360
+let kDefaultContentWithButtonHeight: CGFloat = 420
 let kMapGradientOpacity: CGFloat = 0.85
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
@@ -42,6 +43,8 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     @IBOutlet weak var urlLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var mapImageView: UIImageView!
     @IBOutlet weak var createStoryButton: UIButton!
+    @IBOutlet weak var createStoryButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var createStoryButtonTop: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -52,7 +55,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     var updateContentClosure: (() -> ())! = nil
     var parentViewController: UIViewController! = nil
     var delegate: ProfileViewDelegate! = nil
-    var contentHeightValue: CGFloat = kDefaultContentHeight
+    var contentHeightValue: CGFloat = 0
     
     func setupWithUser(profileId: Int, parentViewController: UIViewController) {
         self.profileId = profileId
@@ -65,10 +68,12 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.setupImageView()
         self.setupLabels()
         self.setupButtons()
+        self.setupCreateButton()
         self.loadRemoteData()
         self.setupDetailStatsView()
         self.setupDetailedLabels()
         self.setupBackgroundMap()
+        self.setupInitialContentHeight()
     }
     
     func setupDetailStatsView() {
@@ -167,8 +172,17 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.followButton.layer.borderWidth = kProfileButtonBorderWidth
             self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         }
-        self.createStoryButton.layer.cornerRadius = CornerRadius.defaultRadius
         self.expandButton.hidden = !(self.user.profile.about.length > 0)
+    }
+    
+    func setupCreateButton() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.createStoryButton.layer.cornerRadius = CornerRadius.defaultRadius
+        } else {
+            self.createStoryButtonHeight.constant = 0
+            self.createStoryButtonTop.constant = 0
+            self.createStoryButton.hidden = true
+        }
     }
     
     func setupImageView() {
@@ -181,6 +195,10 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileView.imageViewDidTap))
             self.userImageView.addGestureRecognizer(tapGesture)
         }
+    }
+    
+    func setupInitialContentHeight() {
+        self.contentHeightValue = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
     }
     
     func loadItemFromDB() {
@@ -242,15 +260,18 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     @IBAction func expandButtonTapped(sender: AnyObject) {
         self.expandButton.selected = !self.expandButton.selected
+        
+        let baseContentHeight = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
+        
         if self.expandButton.selected {
             let font = self.aboutLabel.font
             let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
             let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
             self.aboutLabel.text = self.user.profile.about
-            self.contentHeightValue = kDefaultContentHeight + CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
+            self.contentHeightValue = baseContentHeight + CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
             self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
         } else {
-            self.contentHeightValue = kDefaultContentHeight
+            self.contentHeightValue = baseContentHeight
             self.aboutLabelHeight.constant = 0
         }
         

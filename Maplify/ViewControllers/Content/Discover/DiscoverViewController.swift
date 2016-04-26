@@ -98,7 +98,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.setupTableView()
         self.loadItemsFromDB()
         self.loadRemoteData()
-        self.setupNavigationBarColorWithContentOffset(self.tableView.contentOffset)
+        self.setupNavigationBarColorWithContentOffsetIfNeeded(self.tableView.contentOffset)
     }
     
     func setupDataSource() {
@@ -442,21 +442,23 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - DiscoverTableDataSourceDelegate
     func discoverTableDidScroll(scrollView: UIScrollView) {
-        self.setupNavigationBarColorWithContentOffset(scrollView.contentOffset)
+        self.setupNavigationBarColorWithContentOffsetIfNeeded(scrollView.contentOffset)
     }
     
-    func setupNavigationBarColorWithContentOffset(contentOffset: CGPoint) {
-        let profileViewHeight = self.profileView.contentHeight()
-        let alphaMin = NavigationBar.navigationBarAlphaMin
-        let alphaMax = NavigationBar.defaultOpacity
-        if (contentOffset.y > profileViewHeight * alphaMin && contentOffset.y <= profileViewHeight * alphaMax) {
-            var alpha: CGFloat = contentOffset.y / profileViewHeight
-            if alpha < kDiscoverBarMinLimitOpacity {
-                alpha = 0
+    func setupNavigationBarColorWithContentOffsetIfNeeded(contentOffset: CGPoint) {
+        if self.supportUserProfile {
+            let profileViewHeight = self.profileView.contentHeight()
+            let alphaMin = NavigationBar.navigationBarAlphaMin
+            let alphaMax = NavigationBar.defaultOpacity
+            if (contentOffset.y > profileViewHeight * alphaMin && contentOffset.y <= profileViewHeight * alphaMax) {
+                var alpha: CGFloat = contentOffset.y / profileViewHeight
+                if alpha < kDiscoverBarMinLimitOpacity {
+                    alpha = 0
+                }
+                self.setNavigationBarTransparentWithAlpha(alpha)
+            } else if (contentOffset.y > profileViewHeight) {
+                self.setNavigationBarTransparentWithAlpha(alphaMax)
             }
-            self.setNavigationBarTransparentWithAlpha(alpha)
-        } else if (contentOffset.y > profileViewHeight) {
-            self.setNavigationBarTransparentWithAlpha(alphaMax)
         }
     }
     

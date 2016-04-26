@@ -142,9 +142,10 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
-    func routesOpenStoryAddPostsViewController(storyId: Int) {
+    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
         storyAddPostsViewController.storyId = storyId
+        storyAddPostsViewController.delegate = delegate
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditDataSourceDelegate {
+class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditDataSourceDelegate, AddPostsDelegate {
     @IBOutlet weak var storyNameLabel: UILabel!
     @IBOutlet weak var storyNameTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -31,6 +31,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         super.viewDidLoad()
         
         self.setup()
+        self.setupData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,6 +56,11 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         self.setupStoryNameViews()
         self.setupStoryDescriptionViews()
         self.setupStoryPointsView()
+    }
+    
+    func setupData() {
+        let story = StoryManager.find(self.storyId)
+        self.storyPoints = Array(story.storyPoints)
     }
     
     func setupStoryNameViews() {
@@ -86,12 +92,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     func loadDataFromDB() {
         self.storyActiveModel.removeData()
-        let story = StoryManager.find(self.storyId)
-        let items = Array(story.storyPoints)
-        self.storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-//        let a = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-
-        self.storyActiveModel.addItems(items, cellIdentifier: String(StoryEditPointCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
+        self.storyActiveModel.addItems(self.storyPoints, cellIdentifier: String(StoryEditPointCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         self.storyDataSource = StoryEditTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.storyEditDelegate = self
         self.storyDataSource.reloadTable()
@@ -115,15 +116,15 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     // MARK: - actions
     @IBAction func addPostsTapped(sender: UIButton) {
-        self.routesOpenStoryAddPostsViewController(self.storyId)
+        self.routesOpenStoryAddPostsViewController(self.storyId, delegate: self)
     }
     
     func updateStory() {
         self.showProgressHUD()
         let params: [String: AnyObject] = ["name": self.storyNameTextField.text!, "description": self.descriptionTextView.text, "discoverable": true, "story_point_ids": self.storyPoints.map({$0.id})]
-        print(params)
         ApiClient.sharedClient.updateStory(self.storyId, params: params, success: { [weak self] (response) in
             StoryManager.saveStory(response as! Story)
+            self?.setupData()
             self?.loadDataFromDB()
             self?.hideProgressHUD()
             self?.backTapped()
@@ -163,5 +164,11 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         let index = self.storyPoints.indexOf({$0.id == storyPointToDelete.id})
         self.storyPoints.removeAtIndex(index!)
         self.storyDataSource.removeRow(indexPath)
+    }
+    
+    // MARK: - AddPostsDelegate
+    func didSelectStoryPoints(storyPoints: [StoryPoint]) {
+        self.storyPoints = storyPoints
+        self.loadDataFromDB()
     }
 }

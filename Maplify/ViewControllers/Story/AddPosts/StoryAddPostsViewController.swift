@@ -13,6 +13,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyId: Int = 0
+    var delegate: AddPostsDelegate! = nil
     var storyDataSource: CSBaseTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
     
@@ -84,20 +85,16 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     func updateStory() {
         let selectedCellData = self.storyActiveModel.selectedModels()
         let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
-        
-        let story = StoryManager.find(self.storyId)
-        let realm = try! Realm()
-        try! realm.write {
-            story.storyPoints.removeAll()
-            for storyPoint in selectedStoryPoints {
-                story.storyPoints.append(storyPoint)
-            }
-        }
-        
+
+        self.delegate?.didSelectStoryPoints(selectedStoryPoints)
     }
     
     // MARK: - StoryAddPostsDelegate
     func reloadData() {
         self.storyDataSource.reloadTable()
     }
+}
+
+protocol AddPostsDelegate {
+    func didSelectStoryPoints(storyPoints: [StoryPoint])
 }

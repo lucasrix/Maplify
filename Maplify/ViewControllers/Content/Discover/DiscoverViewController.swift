@@ -242,6 +242,23 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - remote
     func loadRemoteData() {
+        if self.supportUserProfile {
+            self.loadUserDiscoverData()
+        } else {
+            self.loadDiscoverRemoteData()
+        }
+    }
+    
+    func loadUserDiscoverData() {
+        UserRequestHelper.retrieveUserData(self.userProfileId, success: { (response) in
+            //print(response)
+            //TODO:
+            }) { (statusCode, errors, localDescription, messages) in
+                self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    func loadDiscoverRemoteData() {
         if self.searchLocationParameter == SearchLocationParameter.NearMe {
             self.loadRemoteDataNearMe()
         } else if self.searchLocationParameter == SearchLocationParameter.AllOverTheWorld {

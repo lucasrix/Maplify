@@ -49,6 +49,7 @@
 		85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */; };
 		85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E551CCE4C6B00439761 /* ProfileView.swift */; };
 		85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FB7E571CCE4C7600439761 /* ProfileView.xib */; };
+		85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E591CCF57B900439761 /* UserRequestHelper.swift */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
@@ -216,6 +217,7 @@
 		85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		85FB7E551CCE4C6B00439761 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		85FB7E571CCE4C7600439761 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		85FB7E591CCF57B900439761 /* UserRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestHelper.swift; sourceTree = "<group>"; };
 		8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesHelper.swift; sourceTree = "<group>"; };
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				CD8A10AC1CB68F5500B58396 /* Converter.swift */,
 				CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */,
 				CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */,
+				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
+				85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */,
 				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,

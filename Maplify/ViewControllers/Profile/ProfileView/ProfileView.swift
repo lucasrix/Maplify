@@ -1,22 +1,30 @@
 //
-//  ProfileViewController.swift
+//  ProfileView.swift
 //  Maplify
 //
-//  Created by Sergei on 12/04/16.
+//  Created by Sergei on 25/04/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import UIKit
 import TTTAttributedLabel
 import SDWebImage
-import AFImageHelper
 
-let kDefaultStatsViewHeight: CGFloat = 285
+let kDefaultContentHeight: CGFloat = 360
+let kDefaultContentWithButtonHeight: CGFloat = 420
+let kMapGradientOpacity: CGFloat = 0.85
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
 let kShadowYOffset: CGFloat = -3
 
-class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+protocol ProfileViewDelegate {
+    func followButtonDidTap()
+    func editButtonDidTap()
+    func createStoryButtonDidTap()
+}
+
+class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -31,9 +39,12 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var locationLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var locationLogoHeight: NSLayoutConstraint!
-    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var aboutLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var urlLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapImageView: UIImageView!
+    @IBOutlet weak var createStoryButton: UIButton!
+    @IBOutlet weak var createStoryButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var createStoryButtonTop: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -41,33 +52,32 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
     var placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
     var publicStatsView: PublicStatsView! = nil
     var privateStatsView: PrivateStatsView! = nil
+    var updateContentClosure: (() -> ())! = nil
+    var parentViewController: UIViewController! = nil
+    var delegate: ProfileViewDelegate! = nil
+    var contentHeightValue: CGFloat = 0
     
-    // MARK: - view controller life cycle
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func setupWithUser(profileId: Int, parentViewController: UIViewController) {
+        self.profileId = profileId
+        self.parentViewController = parentViewController
         self.setup()
     }
     
-    // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.loadItemFromDB()
         self.setupImageView()
         self.setupLabels()
         self.setupButtons()
+        self.setupCreateButton()
         self.loadRemoteData()
         self.setupDetailStatsView()
         self.setupDetailedLabels()
-    }
-    
-    func setupNavigationBar() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0, kShadowYOffset)
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0
+        self.setupBackgroundMap()
+        self.setupInitialContentHeight()
     }
     
     func setupDetailStatsView() {
+        self.statsParentView.subviews.forEach({ $0.removeFromSuperview() })
         if self.profileId == SessionManager.currentUser().id {
             self.setupPrivateStatsView()
         } else {
@@ -93,15 +103,10 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         self.statsParentView.addSubview(self.privateStatsView)
     }
     
-    override func navigationBarColor() -> UIColor {
-        return UIColor.darkGreyBlue()
-    }
-    
     func setupLabels() {
-        self.title = NSLocalizedString("Controller.Profile.Title", comment: String())
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
         self.aboutLabel.text = self.user.profile.about
-
+        
         if self.user.profile.city.length > 0 {
             self.locationLabel.text = self.user.profile.city
         } else {
@@ -118,6 +123,26 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.urlLabelHeightConstraint.constant = 0
             self.profileUrlLabel.text = String()
         }
+    }
+    
+    func setupBackgroundMap() {
+        let location = self.user.profile.location
+        let attachmentUrl = StaticMap.staticMapUrl(location.latitude, longitude: location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        
+        self.mapImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: nil) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.mapImageView.image = image
+                self?.addMapGradient()
+            }
+        }
+    }
+    
+    func addMapGradient() {
+        self.mapImageView.layer.sublayers = nil
+        let gradient = CAGradientLayer()
+        gradient.frame = self.mapImageView.bounds
+        gradient.colors = [UIColor.darkGreyBlue().colorWithAlphaComponent(kMapGradientOpacity).CGColor, UIColor.darkerGreyBlue().CGColor]
+        self.mapImageView.layer.addSublayer(gradient)
     }
     
     func setupDetailedLabels() {
@@ -147,8 +172,17 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.followButton.layer.borderWidth = kProfileButtonBorderWidth
             self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         }
-        
         self.expandButton.hidden = !(self.user.profile.about.length > 0)
+    }
+    
+    func setupCreateButton() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.createStoryButton.layer.cornerRadius = CornerRadius.defaultRadius
+        } else {
+            self.createStoryButtonHeight.constant = 0
+            self.createStoryButtonTop.constant = 0
+            self.createStoryButton.hidden = true
+        }
     }
     
     func setupImageView() {
@@ -158,9 +192,13 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         
         if self.profileId == SessionManager.currentUser().id {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.imageViewDidTap))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileView.imageViewDidTap))
             self.userImageView.addGestureRecognizer(tapGesture)
         }
+    }
+    
+    func setupInitialContentHeight() {
+        self.contentHeightValue = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
     }
     
     func loadItemFromDB() {
@@ -180,10 +218,8 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             }, failure: nil)
     }
     
-    // MARK: - navigation bar item actions
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
+    func contentHeight() -> CGFloat {
+        return self.contentHeightValue
     }
     
     // MARK: - actions
@@ -197,7 +233,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         let existingPhoto = NSLocalizedString("Button.ExistingPhoto", comment: String())
         let takePhoto = NSLocalizedString("Button.TakePhoto", comment: String())
         
-        self.showActionSheet(nil, message: message, cancel: cancel, destructive: nil, buttons: [existingPhoto, takePhoto],
+        self.parentViewController.showActionSheet(nil, message: message, cancel: cancel, destructive: nil, buttons: [existingPhoto, takePhoto],
                              handle: { [weak self] (buttonIndex) -> () in
                                 if ActionSheetButtonType(rawValue: buttonIndex) == .ExistingPhotoType {
                                     self?.showImagePicker(.PhotoLibrary)
@@ -214,31 +250,40 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
             self.imagePicker.allowsEditing = true
         }
         self.imagePicker.sourceType = sourceType
-        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        self.parentViewController.presentViewController(self.imagePicker, animated: true, completion: nil)
     }
-
+    
+    
+    @IBAction func createStoryButtonTapped(sender: AnyObject) {
+        self.delegate?.createStoryButtonDidTap()
+    }
     
     @IBAction func expandButtonTapped(sender: AnyObject) {
         self.expandButton.selected = !self.expandButton.selected
+        
+        let baseContentHeight = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
+        
         if self.expandButton.selected {
             let font = self.aboutLabel.font
             let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
             let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
             self.aboutLabel.text = self.user.profile.about
-            self.contentViewHeight.constant = kDefaultStatsViewHeight + textHeight + 2 * kAboutLabelMargin
-            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight)))
+            self.contentHeightValue = baseContentHeight + CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
+            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
         } else {
-            self.contentViewHeight.constant = kDefaultStatsViewHeight
+            self.contentHeightValue = baseContentHeight
             self.aboutLabelHeight.constant = 0
         }
+        
+        self.updateContentClosure()
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {
-        //TODO: -
+        self.delegate?.followButtonDidTap()
     }
     
     @IBAction func editButtonTapped(sender: AnyObject) {
-        self.routesOpenEditProfileController(self.profileId, photo: self.userImageView.image)
+        self.delegate?.editButtonDidTap()
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -246,7 +291,7 @@ class ProfileViewController: ViewController, TTTAttributedLabelDelegate, UIImage
         if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
             self.userImageView.image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        self.parentViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - TTTAttributedLabelDelegate

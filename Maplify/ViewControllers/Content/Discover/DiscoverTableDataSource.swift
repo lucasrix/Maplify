@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol DiscoverTableDataSourceDelegate {
+    func discoverTableDidScroll(scrollView: UIScrollView)
+}
+
 class DiscoverTableDataSource: CSBaseTableDataSource {
-    
+    var profileView: ProfileView! = nil
+    var scrollDelegate: DiscoverTableDataSourceDelegate! = nil
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellData = self.activeModel.cellData(indexPath)
         let model = cellData.model
@@ -47,6 +53,18 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
                 (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
             }
         }
-        
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.profileView
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (self.profileView != nil) ? self.profileView.contentHeight() : 0
+    }
+    
+    //MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.scrollDelegate?.discoverTableDidScroll(scrollView)
     }
 }

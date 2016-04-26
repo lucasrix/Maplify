@@ -32,6 +32,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     var profileId: Int = 0
     var user: User! = nil
     var updatedImage: UIImage! = nil
+    var updateContentClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -46,6 +47,11 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.setupLabels()
         self.setupButtons()
         self.setupTextFields()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func setupLabels() {

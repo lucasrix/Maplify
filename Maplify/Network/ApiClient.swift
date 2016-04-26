@@ -192,6 +192,17 @@ class ApiClient {
         self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
+    func getUserStoryPoints(userId: Int, success: successClosure!, failure: failureClosure!) {
+        let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
+                                           "location[latitude]": 0,
+                                           "location[longitude]": 0]
+        self.getRequest("users/\(userId)/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
+    }
+    
+    func getUserStories(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("users/\(userId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
+    }
+    
     func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {
         let params = ["page": page]
         self.getRequest("user/stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)

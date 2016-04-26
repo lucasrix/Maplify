@@ -50,16 +50,19 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
-    func routesOpenProfileController(profileId: Int) {
-        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
-        profileViewController.profileId = profileId
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+    func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
+        let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
+        discoverViewController.userProfileId = userProfileId
+        discoverViewController.supportUserProfile = supportUserProfile
+        discoverViewController.stackSupport = stackSupport
+        self.navigationController?.pushViewController(discoverViewController, animated: true)
     }
     
-    func routesOpenEditProfileController(profileId: Int, photo: UIImage!) {
+    func routesOpenEditProfileController(profileId: Int, photo: UIImage!, updateContentClosure: (() -> ())!) {
         let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
         editProfileViewController.profileId = profileId
         editProfileViewController.updatedImage = photo
+        editProfileViewController.updateContentClosure = updateContentClosure
         self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
@@ -123,11 +126,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
-    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String, stackSupport: Bool) {
         let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
         storyDetailViewController.storyPoints = storyPoints
         storyDetailViewController.selectedIndex = selectedIndex
         storyDetailViewController.storyTitle = storyTitle
+        storyDetailViewController.stackSupport = stackSupport
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     

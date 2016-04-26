@@ -54,6 +54,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         self.setupShowDescriptionButton()
         self.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
         self.setupGesture()
+        self.setupStories()
     }
     
     func setupGesture() {
@@ -96,13 +97,24 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
             } else {
                 self.setupDescriptionInputField(storyPoint)
             }
-
+            
             if storyPoint.text.length > 0 {
                 let ofStr = NSLocalizedString("Substring.Of", comment: String())
                 let charsStr = NSLocalizedString("Substring.Chars", comment: String())
                 self.charsNumberLabel.text = "\(storyPoint.text.length) " + ofStr + " \(kDescriptionTextViewMaxCharactersCount) " + charsStr
             }
         }
+    }
+    
+    func setupStories() {
+        print(self.storyPointId)
+        ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in
+                let stories = response as! [Story]
+                self?.editInfoViewController.configureSelectedStories(stories)
+            },
+            failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            })
     }
     
     func setupDescriptionInputField(storyPoint: StoryPoint) {

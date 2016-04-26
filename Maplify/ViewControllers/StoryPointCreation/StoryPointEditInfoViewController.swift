@@ -124,10 +124,14 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
         self.routesOpenAddToStoryController { [weak self] (selectedStories) in
-            self?.selectedStories = selectedStories
-            self?.setupStoryAttachmentLabels()
-            self?.showSelectedStories((self?.selectedStories)!)
+            self?.configureSelectedStories(selectedStories)
         }
+    }
+    
+    func configureSelectedStories(selectedStories: [Story]) {
+        self.selectedStories = selectedStories
+        self.setupStoryAttachmentLabels()
+        self.showSelectedStories(self.selectedStories)
     }
     
     // MARK: - navigation bar item actions

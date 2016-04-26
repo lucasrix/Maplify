@@ -159,6 +159,7 @@
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
+		CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
@@ -330,6 +331,7 @@
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
+		CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsTableViewCell.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 			isa = PBXGroup;
 			children = (
 				CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */,
+				CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */,
 			);
 			path = AddPosts;
 			sourceTree = "<group>";
@@ -1240,6 +1243,7 @@
 				CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */,
 				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
+				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,

@@ -215,7 +215,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let itemsCount = self.itemsCountToShow()
         let sortRaram = self.sortedString()
         let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
-//        print(allItems)
         if allItems.count >=  itemsCount {
             self.discoverItems = Array(allItems[0..<itemsCount])
         } else {
@@ -437,7 +436,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func deleteStory(storyId: Int) {
-        print("delete")
+        // TODO: delete
     }
     
     func searchButtonTapped() {

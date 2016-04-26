@@ -113,6 +113,11 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         }
     }
     
+    // MARK: - actions
+    @IBAction func addPostsTapped(sender: UIButton) {
+        self.routesOpenStoryAddPostsViewController(self.storyId)
+    }
+    
     func updateStory() {
         self.showProgressHUD()
         let params: [String: AnyObject] = ["name": self.storyNameTextField.text!, "description": self.descriptionTextView.text, "discoverable": true, "story_point_ids": self.storyPoints.map({$0.id})]

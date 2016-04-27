@@ -57,6 +57,7 @@
 "Controller.DiscoverTitle.AllTheWorld" = "All the world";
 "Controller.EditStory" = "Edit Story";
 "Controller.AddPosts" = "Add Posts";
+"Controller.NewStory" = "New Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";

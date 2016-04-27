@@ -501,7 +501,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func createStoryButtonDidTap() {
-        //TODO:
+        self.routesOpenStoryCreateController()
     }
     
     func editButtonDidTap() {

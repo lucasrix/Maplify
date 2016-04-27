@@ -50,6 +50,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
+    func routesOpenStoryCreateController() {
+        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyCreateViewController)
+    }
+    
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
         let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverViewController.userProfileId = userProfileId

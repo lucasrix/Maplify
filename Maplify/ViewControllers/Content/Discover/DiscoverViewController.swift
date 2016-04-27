@@ -36,6 +36,7 @@ enum SearchLocationParameter: Int {
     case AllOverTheWorld
     case NearMe
     case ChoosenPlace
+    case CurrentUser
 }
 
 enum DiscoverItemSortParameter: String {
@@ -151,7 +152,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func setupTableView() {
         self.setupPullToRefreshIfNeeded()
-        self.setupInfinityScroll()
+        self.setupInfinityScrollIfNeeded()
 
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
@@ -173,19 +174,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
-    func setupInfinityScroll() {
-        self.tableView.ins_setInfinityScrollEnabled(true)
-        self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
-            if self?.requestState == RequestState.Ready {
-                self?.page += 1
-                self?.loadRemoteData()
+    func setupInfinityScrollIfNeeded() {
+        if self.supportUserProfile == false {
+            self.tableView.ins_setInfinityScrollEnabled(true)
+            self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+                if self?.requestState == RequestState.Ready {
+                    self?.page += 1
+                    self?.loadRemoteData()
+                }
             }
+            
+            let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
+            self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
+            self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
+            indicator.startAnimating()
         }
-        
-        let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
-        self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
-        self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
-        indicator.startAnimating()
     }
     
     // MARK: - navigation bar
@@ -212,13 +215,19 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let realm = try! Realm()
         
         self.storyActiveModel.removeData()
-        let itemsCount = self.itemsCountToShow()
-        let sortRaram = self.sortedString()
-        let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
-        if allItems.count >=  itemsCount {
-            self.discoverItems = Array(allItems[0..<itemsCount])
-        } else {
+        if self.supportUserProfile {
+            let currentUserId = SessionManager.currentUser().id
+            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at")
             self.discoverItems = Array(allItems)
+        } else {
+            let itemsCount = self.itemsCountToShow()
+            let sortRaram = self.sortedString()
+            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
+            if allItems.count >=  itemsCount {
+                self.discoverItems = Array(allItems[0..<itemsCount])
+            } else {
+                self.discoverItems = Array(allItems)
+            }
         }
         
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
@@ -253,10 +262,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
             success: { [weak self] (response) in
                 let storyPoints = response as! [StoryPoint]
-                ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { (response) in
+                ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { [weak self] (response) in
                     let stories = response as! [Story]
-                    let mergedArray = UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
-                    //TODO:
+                    UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
+                    self?.loadItemsFromDB()
                     },
                 failure: { (statusCode, errors, localDescription, messages) in
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

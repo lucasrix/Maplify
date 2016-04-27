@@ -9,19 +9,18 @@
 import RealmSwift
 import Tailor
 
-public enum DiscoverItemType : Int {
-    case StoryPoint = 0
-    case Story = 1
+public enum DiscoverItemType : String {
+    case StoryPoint = "StoryPoint"
+    case Story = "Story"
 }
 
 class DiscoverItem: Model {
-    dynamic var type: Int = 0
+    dynamic var type: String = String()
     dynamic var storyPoint: StoryPoint? = nil
     dynamic var story: Story? = nil
     dynamic var nearMePosition: Int = 0
     dynamic var allOverTheWorldPosition: Int = 0
     dynamic var choosenPlacePosition: Int = 0
-    
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()

@@ -9,16 +9,19 @@
 import Foundation
 
 class UserRequestResponseHelper {
-    class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) -> [AnyObject]! {
+    class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) {
         var mergedArray = [AnyObject]()
-        for storyPoint in storyPoints {
-            mergedArray.append(storyPoint)
-        }
         
         for story in stories {
-            mergedArray.append(story)
+            let discoverItem = DiscoverItemManager.findOrCreateWithStory(story)
+            DiscoverItemManager.saveItem(discoverItem)
+            mergedArray.append(discoverItem)
         }
         
-        return mergedArray.sort({ ($0 as! Model).created_at.compare(($1 as! Model).created_at) == NSComparisonResult.OrderedDescending })
+        for storyPoint in storyPoints {
+            let discoverItem = DiscoverItemManager.findOrCreateWithStoryPoint(storyPoint)
+            DiscoverItemManager.saveItem(discoverItem)
+            mergedArray.append(discoverItem)
+        }
     }
 }

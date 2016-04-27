@@ -17,7 +17,6 @@ class DiscoverItemManager: ModelManager {
     class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int, searchLocationParameter: SearchLocationParameter) {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
-        
         for item in list {
             currentPosition += 1
             var discoverItem: DiscoverItem! = nil

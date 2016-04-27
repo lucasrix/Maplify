@@ -28,7 +28,7 @@ class PolicyViewController: ViewController, ErrorHandlingProtocol, UIWebViewDele
     }
     
     func loadRemoteData() {
-        self.showProgressHUD(self.webView)
+        self.showProgressHUD(self.view)
         ApiClient.sharedClient.retrievePrivacyPolicy({ [weak self] (response) -> () in
             let htmlString = (response as! WebContent).html
             self?.webView.loadHTMLString(htmlString, baseURL: nil)

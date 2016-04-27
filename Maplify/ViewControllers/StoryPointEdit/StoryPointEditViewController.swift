@@ -108,7 +108,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     func setupStories() {
         ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in
                 let stories = response as! [Story]
-            print(stories.map({$0.id}))
                 self?.editInfoViewController.configureSelectedStories(stories)
                 self?.setupContentHeight(false)
             },
@@ -187,7 +186,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
         storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
         
-        print(storyPointDict)
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
             self?.hideProgressHUD()
@@ -198,8 +196,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
-    
-
     
     // MARK: - UITextViewDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

@@ -16,7 +16,7 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
         self.setup()
         self.loadRemoteData()
     }
-    
+
     // MARK: - setup
     func setup() {        
         self.title = NSLocalizedString("Controller.Terms.Title", comment: String())
@@ -28,7 +28,7 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
     }
     
     func loadRemoteData() {
-        self.showProgressHUD(self.webView)
+        self.showProgressHUD(self.view)
         ApiClient.sharedClient.retrieveTermsOfUse({ [weak self] (response) -> () in
             let htmlString = (response as! WebContent).html
             self?.webView.loadHTMLString(htmlString, baseURL: nil)

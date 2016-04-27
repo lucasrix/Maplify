@@ -50,8 +50,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
-    func routesOpenStoryCreateController() {
-        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.storyCreateViewController)
+    func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
+        let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
+        storyCreateController.createStoryClosure = createStoryClosure
+        self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
@@ -147,13 +149,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
-    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String) {
+    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, storyCreateClosure: (() -> ())!) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
         storyAddPostsViewController.storyId = storyId
         storyAddPostsViewController.delegate = delegate
         storyAddPostsViewController.isStoryModeCreation = storyModeCreation
         storyAddPostsViewController.storyName = storyName
         storyAddPostsViewController.storyDescription = storyDescription
+        storyAddPostsViewController.createStoryClosure = storyCreateClosure
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     

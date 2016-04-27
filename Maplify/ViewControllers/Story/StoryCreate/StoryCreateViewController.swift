@@ -16,6 +16,8 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    var createStoryClosure: (() -> ())! = nil
+    
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +79,7 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
         if self.storyNameTextField.text != String() {
-            self.routesOpenStoryAddPostsViewController(0, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text)
+            self.routesOpenStoryAddPostsViewController(0, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text, storyCreateClosure: self.createStoryClosure)
         }
     }
     

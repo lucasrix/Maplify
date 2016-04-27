@@ -463,9 +463,6 @@
                                                         <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-7J-ggn">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="246" id="RBd-5i-Ude"/>
-                                                            </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="kFg-LF-9Jj">
                                                                 <size key="itemSize" width="150" height="150"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -995,6 +992,11 @@
                                                 <constraint firstItem="tQQ-UL-9Wz" firstAttribute="top" secondItem="aVs-LQ-31D" secondAttribute="bottom" id="rnz-tg-Z4h"/>
                                                 <constraint firstItem="tQQ-UL-9Wz" firstAttribute="leading" secondItem="Y4O-Kb-qau" secondAttribute="leading" id="soy-kM-cuJ"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="D0q-5r-XR1"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
@@ -1110,7 +1112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-Gt-GHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956.5" y="2251.5"/>
+            <point key="canvasLocation" x="948.5" y="2504.5"/>
         </scene>
         <!--Story Edit View Controller-->
         <scene sceneID="PQQ-hc-LyZ">

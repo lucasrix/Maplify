@@ -233,6 +233,10 @@ class ApiClient {
     func retrieveDiscoverList(page: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("discover", params: params, manager: DiscoverItemManager(), success: success, failure: failure)
     }
+    
+    func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

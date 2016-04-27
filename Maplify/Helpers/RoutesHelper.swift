@@ -73,6 +73,13 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
     }
     
+    func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: () -> ()) {
+        let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
+        storyEditViewController.storyId = storyId
+        storyEditViewController.storyUpdateHandler = storyUpdateHandler
+        self.navigationController?.pushViewController(storyEditViewController, animated: true)
+    }
+    
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -133,6 +140,13 @@ extension UIViewController {
         storyDetailViewController.storyTitle = storyTitle
         storyDetailViewController.stackSupport = stackSupport
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
+    }
+    
+    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate) {
+        let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
+        storyAddPostsViewController.storyId = storyId
+        storyAddPostsViewController.delegate = delegate
+        self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     
     // MARK: - open as popup controllers

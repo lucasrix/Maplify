@@ -17,8 +17,8 @@ class DiscoverItemManager: ModelManager {
     class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int, searchLocationParameter: SearchLocationParameter) {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
-        
         for item in list {
+            currentPosition += 1
             var discoverItem: DiscoverItem! = nil
             if item["type"] as! String == String(StoryPoint) {
                 let dict = item as! [String: AnyObject]
@@ -44,8 +44,6 @@ class DiscoverItemManager: ModelManager {
             }
             try! realm.commitWrite()
             DiscoverItemManager.saveItem(discoverItem)
-            
-            currentPosition += 1
         }
     }
     
@@ -69,6 +67,7 @@ class DiscoverItemManager: ModelManager {
             StoryPointManager.saveStoryPoint(storyPoint)
             newObject.storyPoint = storyPoint
             newObject.id = newObject.nextId()
+            newObject.created_at = storyPoint.created_at
             return newObject
         }
     }
@@ -83,6 +82,7 @@ class DiscoverItemManager: ModelManager {
             StoryManager.saveStory(story)
             newObject.story = story
             newObject.id = newObject.nextId()
+            newObject.created_at = story.created_at
             return newObject
         }
     }

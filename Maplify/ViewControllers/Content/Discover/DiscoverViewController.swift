@@ -151,7 +151,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func setupTableView() {
         self.setupPullToRefreshIfNeeded()
-        self.setupInfinityScroll()
+        self.setupInfinityScrollIfNeeded()
 
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
@@ -173,19 +173,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
-    func setupInfinityScroll() {
-        self.tableView.ins_setInfinityScrollEnabled(true)
-        self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
-            if self?.requestState == RequestState.Ready {
-                self?.page += 1
-                self?.loadRemoteData()
+    func setupInfinityScrollIfNeeded() {
+        if self.supportUserProfile == false {
+            self.tableView.ins_setInfinityScrollEnabled(true)
+            self.tableView.ins_addInfinityScrollWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+                if self?.requestState == RequestState.Ready {
+                    self?.page += 1
+                    self?.loadRemoteData()
+                }
             }
+            
+            let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
+            self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
+            self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
+            indicator.startAnimating()
         }
-        
-        let indicator = INSDefaultInfiniteIndicator(frame: Frame.pullToRefreshFrame)
-        self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = false
-        self.tableView.ins_infiniteScrollBackgroundView.addSubview(indicator)
-        indicator.startAnimating()
     }
     
     // MARK: - navigation bar
@@ -212,13 +214,19 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let realm = try! Realm()
         
         self.storyActiveModel.removeData()
-        let itemsCount = self.itemsCountToShow()
-        let sortRaram = self.sortedString()
-        let allItems = realm.objects(DiscoverItem).sorted(sortRaram)
-        if allItems.count >=  itemsCount {
-            self.discoverItems = Array(allItems[0..<itemsCount])
-        } else {
+        if self.supportUserProfile {
+            let currentUserId = SessionManager.currentUser().id
+            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
+        } else {
+            let itemsCount = self.itemsCountToShow()
+            let sortRaram = self.sortedString()
+            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
+            if allItems.count >=  itemsCount {
+                self.discoverItems = Array(allItems[0..<itemsCount])
+            } else {
+                self.discoverItems = Array(allItems)
+            }
         }
         
         self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
@@ -253,10 +261,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
             success: { [weak self] (response) in
                 let storyPoints = response as! [StoryPoint]
-                ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { (response) in
+                ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { [weak self] (response) in
                     let stories = response as! [Story]
-                    let mergedArray = UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
-                    //TODO:
+                    UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
+                    self?.loadItemsFromDB()
                     },
                 failure: { (statusCode, errors, localDescription, messages) in
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -405,6 +413,40 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    // MARK: - story
+    func showEditStoryContentMenu(storyId: Int) {
+        let story = StoryManager.find(storyId)
+        if story.user.profile.id == SessionManager.currentUser().profile.id {
+            self.showEditStoryContentActionSheet(storyId)
+        } else {
+            self.showDefaultContentActionSheet(storyId)
+        }
+    }
+    
+    func showEditStoryContentActionSheet(storyId: Int) {
+        let editPost = NSLocalizedString("Button.EditPost", comment: String())
+        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
+        let directions = NSLocalizedString("Button.Directions", comment: String())
+        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttons = [editPost, deletePost, directions, sharePost]
+        
+        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
+            if buttonIndex == EditContentOption.EditPost.rawValue {
+                self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
+                    self?.storyDataSource.reloadTable()
+                })
+            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
+                self?.deleteStory(storyId)
+            }
+            }
+        )
+    }
+    
+    func deleteStory(storyId: Int) {
+        // TODO: delete
+    }
+    
     func searchButtonTapped() {
         self.routerShowDiscoverChangeLocationPopupController(self)
     }
@@ -447,6 +489,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.discoverShowProfileClosure(userId: userId)
     }
     
+    func editStoryContentDidTap(storyId: Int) {
+        self.showEditStoryContentMenu(storyId)
+    }
+
     // MARK: - ProfileViewDelegate
     func followButtonDidTap() {
         //TODO:

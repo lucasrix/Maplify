@@ -257,8 +257,8 @@
                                                                 <constraint firstAttribute="width" secondItem="2Nj-57-fDk" secondAttribute="height" multiplier="1:1" id="wkp-lL-JoW"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-C3-Ero">
-                                                            <rect key="frame" x="19" y="19" width="45" height="45"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-C3-Ero">
+                                                            <rect key="frame" x="19" y="18" width="45" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="45" id="NgX-0u-iTa"/>
                                                                 <constraint firstAttribute="height" constant="45" id="iXH-Ur-Qd0"/>
@@ -2645,15 +2645,28 @@
                                             <action selector="textTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="VGU-Yd-c8w"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIB-za-Y8F">
+                                        <rect key="frame" x="328" y="13" width="39" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="39" id="ZLv-tH-TNh"/>
+                                            <constraint firstAttribute="height" constant="39" id="uxe-9u-VzR"/>
+                                        </constraints>
+                                        <state key="normal" image="icoCancel"/>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="bRy-R7-0N3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6SM-gk-ccV" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="4Yc-WE-Mpv"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="6SM-gk-ccV" secondAttribute="height" id="7Gk-Yd-aEn"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" multiplier="1.08" id="HI2-Ws-mDX"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="top" secondItem="6SM-gk-ccV" secondAttribute="bottom" constant="10" id="L19-13-fJI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bIB-za-Y8F" secondAttribute="trailing" constant="8" id="OHC-kD-R2y"/>
                                     <constraint firstItem="Usv-9f-scE" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" id="UVl-JE-Kus"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="top" secondItem="Usv-9f-scE" secondAttribute="bottom" constant="60" id="WSe-ki-90I"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="gJ8-Yf-bEx" secondAttribute="height" id="Wg6-zv-jmc"/>
+                                    <constraint firstItem="bIB-za-Y8F" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="top" constant="13" id="ZFj-Fj-VJx"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" id="ZWh-OA-W3s"/>
                                     <constraint firstItem="6SM-gk-ccV" firstAttribute="top" secondItem="ysw-b6-S8l" secondAttribute="bottom" constant="10" id="Zn4-2C-I59"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="a5S-2f-kNv"/>

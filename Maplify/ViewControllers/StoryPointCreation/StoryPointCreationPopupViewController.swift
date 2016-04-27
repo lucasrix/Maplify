@@ -68,6 +68,10 @@ class StoryPointCreationPopupViewController: ViewController {
             self?.delegate?.textDidTapped((self?.location)!)
         }
     }
+    
+    @IBAction func cancelTapped(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 protocol StoryPointCreationPopupDelegate {

@@ -97,11 +97,8 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        
         let selectedCellData = self.storyActiveModel.selectedModels()
         let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
-        
-        
         
         if self.isStoryModeCreation == true {
             self.createStory(selectedStoryPoints)

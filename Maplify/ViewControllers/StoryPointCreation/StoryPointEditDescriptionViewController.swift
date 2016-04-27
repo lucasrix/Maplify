@@ -89,9 +89,9 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
         
-        UIView.animateWithDuration(duration, animations: { [weak self] () -> Void in
-            self!.bottomConstraint.constant = keyboardFrame.size.height
-            self!.view.layoutIfNeeded()
+        UIView.animateWithDuration(duration, animations: { [weak self] () -> () in
+            self?.bottomConstraint.constant = keyboardFrame.size.height
+            self?.view.layoutIfNeeded()
         })
     }
     

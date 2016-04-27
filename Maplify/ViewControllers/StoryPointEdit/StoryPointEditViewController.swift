@@ -66,7 +66,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         self.title = NSLocalizedString("Controller.EditPost.Title", comment: String())
         
         // add shadow
-        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor();
         self.navigationController!.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
         self.navigationController!.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController!.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;

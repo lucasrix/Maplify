@@ -167,6 +167,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
                 realm.add(response as! StoryPoint, update: true)
             }
             self?.hideProgressHUD()
+            self?.navigationController?.setNavigationBarHidden(true, animated: false)
             self?.navigationController?.popToRootViewControllerAnimated(true)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

@@ -3159,11 +3159,28 @@
                                             <action selector="recordTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="awq-Iv-KMo"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLY-lN-6QL">
+                                        <rect key="frame" x="127" y="122" width="120" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="QMr-tS-vsc"/>
+                                            <constraint firstAttribute="width" constant="120" id="fDW-wX-3BM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="2" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                        <state key="normal" title="Delete" image="icoCancel"/>
+                                        <connections>
+                                            <action selector="deleteTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="4HF-X3-lSK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="jYF-8W-iSH" firstAttribute="centerX" secondItem="lhB-HF-bea" secondAttribute="centerX" id="7tr-3b-k0V"/>
                                     <constraint firstItem="jYF-8W-iSH" firstAttribute="top" secondItem="lhB-HF-bea" secondAttribute="top" constant="35" id="ads-pc-scU"/>
+                                    <constraint firstItem="wLY-lN-6QL" firstAttribute="top" secondItem="jYF-8W-iSH" secondAttribute="bottom" constant="15" id="bXz-ex-KsO"/>
+                                    <constraint firstItem="wLY-lN-6QL" firstAttribute="centerX" secondItem="lhB-HF-bea" secondAttribute="centerX" id="e7Q-Y3-4gi"/>
                                 </constraints>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-yP-LkD">
@@ -3199,6 +3216,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="audioPlot" destination="CCK-Ng-tHv" id="P8i-mn-ZlQ"/>
+                        <outlet property="deleteButton" destination="wLY-lN-6QL" id="BFr-hS-g6O"/>
                         <outlet property="progressBar" destination="qGa-yP-LkD" id="qXm-U9-JIr"/>
                         <outlet property="progressBarHeightConstraint" destination="hVa-9o-x9f" id="1wf-vQ-LIU"/>
                         <outlet property="recordButton" destination="jYF-8W-iSH" id="J4n-u1-fhe"/>
@@ -3315,6 +3333,7 @@
         <image name="empty-circle" width="31" height="31"/>
         <image name="fill1" width="14" height="17"/>
         <image name="icoBottom" width="29" height="29"/>
+        <image name="icoCancel" width="16" height="16"/>
         <image name="icoCircleChecked" width="29" height="29"/>
         <image name="icoCreatePoint" width="93" height="93"/>
         <image name="icoMinus" width="29" height="29"/>

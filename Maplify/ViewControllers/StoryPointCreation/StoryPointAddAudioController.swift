@@ -17,6 +17,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var microphone: EZMicrophone!
     var audioRecorder = AudioRecorderHelper()
@@ -86,6 +87,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.audioRecorder.toggleStartPauseRecording()
     }
     
+    @IBAction func deleteTapped(sender: UIButton) {
+        self.audioRecorder.reloadRecording()
+    }
+    
     // MARK: - remote
     func remotePostAttachment(fileData: NSData) {
         self.showProgressHUD()
@@ -122,6 +127,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStopDefault), forState: .Normal)
         self.recordButton.setImage(UIImage(named: ButtonImages.recordButtonShotStopHighlited), forState: .Highlighted)
         self.progressBar.progressTintColor = UIColor.cherryRed()
+        self.deleteButton.hidden = true
     }
     
     private func showAudioPermissionsError() {
@@ -158,6 +164,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     func audioRecordDidPause() {
         self.setupStartRecordUI()
+        self.deleteButton.hidden = false
     }
     
     func audioRecordDidCheckedPermissions(success: Bool) {

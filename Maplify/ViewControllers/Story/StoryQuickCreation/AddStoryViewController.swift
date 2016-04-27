@@ -157,7 +157,8 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     func createStoryPoint(name: String) {
         self.showProgressHUD()
-        ApiClient.sharedClient.createStory(name, discoverable: false,
+        let params: [String: AnyObject] = ["name": name, "discoverable": false]
+        ApiClient.sharedClient.createStory(params,
                 success: { [weak self] (response) in
                     StoryManager.saveStories([response as! Story])
                     self?.hideProgressHUD()

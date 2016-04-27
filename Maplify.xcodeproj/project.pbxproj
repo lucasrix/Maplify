@@ -160,6 +160,7 @@
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
 		CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
+		CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
@@ -332,6 +333,7 @@
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
 		CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsTableViewCell.swift; sourceTree = "<group>"; };
+		CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateViewController.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 		1FE6D5AF1CA57B470052B412 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				CDF164F31CD0E74500E38C7A /* StoryCreate */,
 				CDF164EE1CCF623E00E38C7A /* AddPosts */,
 				CD45672C1CCA74D500961A7A /* StoryEdit */,
 				F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */,
@@ -939,6 +942,14 @@
 			path = AddPosts;
 			sourceTree = "<group>";
 		};
+		CDF164F31CD0E74500E38C7A /* StoryCreate */ = {
+			isa = PBXGroup;
+			children = (
+				CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */,
+			);
+			path = StoryCreate;
+			sourceTree = "<group>";
+		};
 		F01A89531CA75114008B8702 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1262,7 @@
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
+				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,
 				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* SessionManager.swift in Sources */,
 				8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */,

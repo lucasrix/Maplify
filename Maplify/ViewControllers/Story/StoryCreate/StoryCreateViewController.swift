@@ -1,23 +1,22 @@
 //
-//  StoryPointEditDescriptionViewController.swift
+//  StoryCreateViewController.swift
 //  Maplify
 //
-//  Created by Antonoff Evgeniy on 3/21/16.
+//  Created by Evgeniy Antonoff on 4/27/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
 import UIKit
 
-let kDescriptionTextViewMaxCharactersCount = 1500
-
-class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegate {
-    @IBOutlet weak var descriptionTextView: UITextView!
+class StoryCreateViewController: ViewController, UITextViewDelegate {
+    @IBOutlet weak var storyNameLabel: UILabel!
+    @IBOutlet weak var storyNameTextField: UITextField!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var charactersCountLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var storyPointKind: StoryPointKind! = nil
-    var storyPointAttachmentId: Int = 0
-    var location: MCMapCoordinate! = nil
+    var createStoryClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -26,38 +25,42 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.descriptionTextView.becomeFirstResponder()
-    }
-    
     deinit {
         self.unsubscribeNotifications()
     }
     
     // MARK: - setup
     func setup() {
-        self.setupViews()
+        self.setupNavigationBar()
         self.subscribeNotifications()
-        self.descriptionTextView.delegate = self
+        self.setupStoryNameViews()
+        self.setupStoryDescriptionViews()
     }
     
-    func setupViews() {
-        self.title = NSLocalizedString("Controller.StoryPointEditDescription.Title", comment: String())
+    func setupNavigationBar() {
+        self.title = NSLocalizedString("Controller.NewStory", comment: String())
         self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
-        self.updateCharactersCountLabel(0 as Int)
+    }
+    
+    func setupStoryNameViews() {
+        self.storyNameLabel.text = NSLocalizedString("Label.StoryName", comment: String())
+        self.storyNameTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterBriefTitle", comment: String())
+    }
+    
+    func setupStoryDescriptionViews() {
+        self.descriptionLabel.text = NSLocalizedString("Label.Description", comment: String())
+        self.updateCharactersCountLabel((self.descriptionTextView.text?.length)!)
+        
+        self.descriptionTextView.delegate = self
+        self.descriptionTextView.layer.cornerRadius = CornerRadius.defaultRadius
+        self.descriptionTextView.clipsToBounds = true
+        self.descriptionTextView.layer.borderWidth = Border.defaultBorderWidth
+        self.descriptionTextView.layer.borderColor = UIColor.inactiveGrey().CGColor
     }
     
     // MARK: - notifications/observers
     func subscribeNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StoryPointEditDescriptionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StoryCreateViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
     }
     
     func unsubscribeNotifications() {
@@ -73,14 +76,11 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         return UIColor.darkGreyBlue()
     }
     
-    // MARK: - navigation bar item actions
+    // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: self.storyPointKind, storyPointAttachmentId: self.storyPointAttachmentId, location: self.location)
-    }
-    
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
+        if self.storyNameTextField.text != String() {
+            self.routesOpenStoryAddPostsViewController(0, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text, storyCreateClosure: self.createStoryClosure)
+        }
     }
     
     // MARK: - keyboard notification
@@ -92,7 +92,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         UIView.animateWithDuration(duration, animations: { [weak self] () -> () in
             self?.bottomConstraint.constant = keyboardFrame.size.height
             self?.view.layoutIfNeeded()
-        })
+            })
     }
     
     // MARK: - UITextViewDelegate

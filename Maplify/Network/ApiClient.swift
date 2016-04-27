@@ -224,9 +224,8 @@ class ApiClient {
         self.postRequest("attachments", params: params, data: data, manager: AttachmentManager(), progress: nil, success: success, failure: failure)
     }
     
-    func createStory(name: String, discoverable: Bool, success: successClosure!, failure: failureClosure!) {
-        let params = ["name": name, "discoverable": discoverable]
-        self.postRequest("stories", params: (params as! [String : AnyObject]), data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    func createStory(params: [String : AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories", params: params, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
     }
     
     func updateUser(email: String, success: successClosure!, failure: failureClosure!) {

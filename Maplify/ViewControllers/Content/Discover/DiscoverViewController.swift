@@ -36,7 +36,6 @@ enum SearchLocationParameter: Int {
     case AllOverTheWorld
     case NearMe
     case ChoosenPlace
-    case CurrentUser
 }
 
 enum DiscoverItemSortParameter: String {

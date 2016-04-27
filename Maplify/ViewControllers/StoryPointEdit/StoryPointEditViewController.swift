@@ -106,10 +106,10 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func setupStories() {
-        print(self.storyPointId)
         ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in
                 let stories = response as! [Story]
                 self?.editInfoViewController.configureSelectedStories(stories)
+                self?.setupContentHeight(false)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

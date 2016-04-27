@@ -24,6 +24,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     var storyActiveModel = CSActiveModel()
     var updatedStoryIds: updateStoryClosure! = nil
     var selectedIndexPathes: [NSIndexPath]! = nil
+    var selectedIds: [Int]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -132,7 +133,19 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.storyActiveModel.selectModels(self.selectedIndexPathes)
         self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.allowMultipleSelection = true
+        self.selectStories(stories)
+        
         self.storyDataSource.reloadTable()
+    }
+    
+    func selectStories(stories: [Story]) {
+        for storyId in self.selectedIds {
+            let index = stories.indexOf({$0.id == storyId})
+            if index != NSNotFound {
+                let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+                self.storyActiveModel.selectModel(indexPath, selected: true)
+            }
+        }
     }
     
     func loadItemsFromDB() {

@@ -53,7 +53,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         
         let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverController.discoverShowProfileClosure = { [weak self] (userId) in
-            self!.routesOpenProfileController(userId)
+            self?.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: false)
         }
         self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
 
@@ -129,7 +129,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     @IBAction func profileButtonDidTap(sender: AnyObject) {
         self.selectTabButton(sender as! UIButton)
         let currentUserId = SessionManager.currentUser().id
-        self.routesOpenProfileController(currentUserId)
+        self.routesOpenDiscoverController(currentUserId, supportUserProfile: true, stackSupport: false)
     } 
     
     // MARK: - storyPointCreationPopupDelegate
@@ -142,7 +142,7 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: "", location: location)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location)
     }
     
     // MARK: - MenuDelegate

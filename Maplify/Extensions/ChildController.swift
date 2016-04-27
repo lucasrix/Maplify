@@ -10,6 +10,7 @@ import Foundation
 
 extension UIViewController {
     func configureChildViewController(childController: UIViewController, onView: UIView?) {
+        self.removeChildController(childController)
         var holderView = self.view
         if let onView = onView {
             holderView = onView

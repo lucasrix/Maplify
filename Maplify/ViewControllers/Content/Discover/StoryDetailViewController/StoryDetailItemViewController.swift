@@ -32,10 +32,12 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var jumpToFeedButton: UIButton!
+    @IBOutlet weak var attachmentContentView: UIView!
     
     var itemIndex: Int = 0
     var storyPoint: StoryPoint! = nil
     var descriptionOpened: Bool = false
+    var stackSupport: Bool = false
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -126,7 +128,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     
     func populateDescriptionLabel() {
         self.descriptionLabel.text = self.storyPoint.text
-        self.descriptionLabel.numberOfLines = self.descriptionOpened ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
+        self.descriptionLabel.numberOfLines = self.descriptionOpened || self.storyPoint.kind == StoryPointKind.Text.rawValue ? kStoryPointDescriptionOpened : kStoryPointDescriptionClosed
         
         if self.descriptionOpened {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
@@ -136,8 +138,8 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
         
-        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(self.storyPoint.text)
-        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(self.storyPoint.text)
+        self.showHideDescriptionLabel.hidden = self.showHideButtonHidden(self.storyPoint.text) || self.storyPoint.kind == StoryPointKind.Text.rawValue
+        self.showHideDescriptionButton.hidden = self.showHideButtonHidden(self.storyPoint.text) || self.storyPoint.kind == StoryPointKind.Text.rawValue
     }
     
     // MARK: - actions
@@ -148,7 +150,19 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     @IBAction func jumpToDiscoverFeedTapped(sender: UIButton) {
-        self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+        if self.stackSupport == false {
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        super.backTapped()
+    }
+    
+    @IBAction func openContentTapped(sender: UITapGestureRecognizer) {
+        if self.storyPoint.kind == StoryPointKind.Video.rawValue {
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView)
+        } else if self.storyPoint.kind == StoryPointKind.Audio.rawValue {
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
+        }
+        self.attachmentContentView.hidden = self.storyPoint.kind == StoryPointKind.Text.rawValue || self.storyPoint.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - private

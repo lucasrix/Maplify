@@ -117,7 +117,7 @@ class CSActiveModel {
     }
     
     func cellData(indexPath: NSIndexPath) -> CSCellData! {
-        return (self.sectionsArray![indexPath.section].count > 0) ? self.sectionsArray![indexPath.section][indexPath.row] : nil
+        return (self.sectionsArray![indexPath.section].count > 0) && (indexPath.row < self.numberOfItems(indexPath.section)) ? self.sectionsArray![indexPath.section][indexPath.row] : nil
     }
     
     func cellIdentifier(indexPath: NSIndexPath) -> String {
@@ -162,7 +162,7 @@ class CSActiveModel {
     private func performSelection(selection: Bool) {
         for dataArray in self.sectionsArray! {
             for cellData in dataArray {
-                cellData.selected = true
+                cellData.selected = selection
             }
         }
     }

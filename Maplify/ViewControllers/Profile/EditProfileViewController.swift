@@ -8,8 +8,8 @@
 
 import TPKeyboardAvoiding
 
-let kAboutFieldBorderWidth: CGFloat = 1
 let kAboutFieldCharactersLimit = 500
+let kEmailProviderType = "email"
 
 class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var avoidingKeyboardScrollView: TPKeyboardAvoidingScrollView!
@@ -32,6 +32,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     var profileId: Int = 0
     var user: User! = nil
     var updatedImage: UIImage! = nil
+    var updateContentClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -46,6 +47,11 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.setupLabels()
         self.setupButtons()
         self.setupTextFields()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func setupLabels() {
@@ -77,29 +83,29 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.emailTextField.delegate = self
         self.aboutTextView.delegate = self
         
-        self.emailTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.emailTextField.layer.borderWidth = Border.defaultBorderWidth
         self.emailTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.emailTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.firstNameTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.firstNameTextField.layer.borderWidth = Border.defaultBorderWidth
         self.firstNameTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.firstNameTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.lastNameTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.lastNameTextField.layer.borderWidth = Border.defaultBorderWidth
         self.lastNameTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.lastNameTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.homeCityTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.homeCityTextField.layer.borderWidth = Border.defaultBorderWidth
         self.homeCityTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.homeCityTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        self.urlTextField.layer.borderWidth = kAboutFieldBorderWidth
+        self.urlTextField.layer.borderWidth = Border.defaultBorderWidth
         self.urlTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.urlTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
         self.aboutTextView.layer.cornerRadius = CornerRadius.defaultRadius
         self.aboutTextView.clipsToBounds = true
-        self.aboutTextView.layer.borderWidth = kAboutFieldBorderWidth
+        self.aboutTextView.layer.borderWidth = Border.defaultBorderWidth
         self.aboutTextView.layer.borderColor = UIColor.inactiveGrey().CGColor
         
         let view = UIView(frame: CGRectMake(0, 0, kLocationInputFieldRightMargin, self.homeCityTextField.frame.size.height))
@@ -124,9 +130,16 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         let emailValid = self.emailTextField.text?.isEmail
         
         self.firstNameErrorLabel.hidden = firstNameValid
-        self.emailErrorLabel.hidden = emailValid!
+        
+        if (self.user.provider == kEmailProviderType) {
+            self.emailErrorLabel.hidden = emailValid!
+        }
+        
         self.firstNameTextField.layer.borderColor = firstNameValid ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
+        
+        if (self.user.provider == kEmailProviderType) {
+            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
+        }
         
         let profile = Profile()
         profile.lastName = self.lastNameTextField.text!
@@ -134,38 +147,45 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         profile.city = self.homeCityTextField.text!
         profile.about = self.aboutTextView.text
         
-        if firstNameValid && emailValid! {
+        if firstNameValid {
             profile.firstName = self.firstNameTextField.text!
             self.showProgressHUD()
-            
-            let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
 
-            ApiClient.sharedClient.updateUser(self.emailTextField.text!,
-                    success: { [weak self] (response) in
-                        let user = response as! User
-                        SessionManager.saveCurrentUser(user)
-                        ApiClient.sharedClient.updateProfile(profile, photo: photo,
-                            success: {  (response) in
-                                self?.hideProgressHUD()
-                                
-                                let profile = response as! Profile
-                                ProfileManager.saveProfile(profile)
-                                SessionManager.updateProfileForCurrrentUser(profile)
-
-                                self?.navigationController?.popViewControllerAnimated(true)
-                            },
-                            failure: { (statusCode, errors, localDescription, messages) in
-                                self?.hideProgressHUD()
-                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                            }
-                        )
+            if (emailValid!) && (self.user.provider == kEmailProviderType) {                
+                ApiClient.sharedClient.updateUser(self.emailTextField.text!,
+                                                  success: { [weak self] (response) in
+                                                    let user = response as! User
+                                                    SessionManager.saveCurrentUser(user)
+                                                    self?.updateProfile(profile)
                     },
-                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                        self?.hideProgressHUD()
-                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                  failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                    self?.hideProgressHUD()
+                                                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                     }
-            )
+                )
+            } else {
+               self.updateProfile(profile)
+            }
         }
+    }
+    
+    func updateProfile(profile: Profile) {
+        let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
+        ApiClient.sharedClient.updateProfile(profile, photo: photo,
+                                             success: { [weak self] (response) in
+                                                self?.hideProgressHUD()
+                                                
+                                                let profile = response as! Profile
+                                                ProfileManager.saveProfile(profile)
+                                                SessionManager.updateProfileForCurrrentUser(profile)
+                                                
+                                                self?.navigationController?.popViewControllerAnimated(true)
+                                             },
+                                             failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                self?.hideProgressHUD()
+                                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                             }
+        )
     }
     
     func loadItemFromDB() {

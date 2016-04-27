@@ -143,7 +143,9 @@ class VideoViewController: UIViewController {
     
     func donePressed() {
         if self.cameraState == CameraState.Finished {
-            self.delegate?.videoDidWrite(self.fileUrl)
+            let url = NSURL(string: self.fileUrl)
+            let file = NSData(contentsOfURL: url!)
+            self.delegate?.videoDidWrite(file!)
         }
     }
     
@@ -194,6 +196,6 @@ class VideoViewController: UIViewController {
 }
 
 protocol VideoControllerDelagate {
-    func videoDidWrite(url: String)
+    func videoDidWrite(videoData: NSData)
     func videoCameraUnauthorized()
 }

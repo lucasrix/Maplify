@@ -21,5 +21,5 @@ class StoryQuickCreationCell: CSTableViewCell {
         self.titleLabel.text = story.title
         self.storyPointsCountLabel.text = String(story.storyPoints.count)
         self.selectionImageView.image = (cellData.selected) ? UIImage(named: CellImages.selectedCircle) : UIImage(named: CellImages.emptyCircle)
-    }
+    }    
 }

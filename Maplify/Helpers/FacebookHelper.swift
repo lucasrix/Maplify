@@ -32,6 +32,7 @@ class FacebookHelper {
 
     class func loginByFacebookSDK(success: successFbAuth, failure: failureFbAuth) {
             let facebookReadPermissions = ["public_profile", "email", "user_friends"]
+            FBSDKLoginManager().logOut()
             FBSDKLoginManager().logInWithReadPermissions(facebookReadPermissions, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
                 if error != nil {
                     FBSDKLoginManager().logOut()

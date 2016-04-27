@@ -25,6 +25,8 @@ class Story: Model {
         self.storyDescription <- map.property("description")
         self.discoverable <- map.property("discoverable")
         self.storyPoints <- Converter.arrayToList(map.relations("story_points"), type: StoryPoint.self)
+        self.created_at <- map.property("created_at")
+        self.updated_at <- map.property("updated_at")
     }
     
     override class func primaryKey() -> String {

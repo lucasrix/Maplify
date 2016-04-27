@@ -16,7 +16,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var storyPointKind: StoryPointKind! = nil
-    var storyPointAttachmentId = ""
+    var storyPointAttachmentId: Int = 0
     var location: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
@@ -31,7 +31,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -78,15 +78,20 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: self.storyPointKind, storyPointAttachmentId: self.storyPointAttachmentId, location: self.location)
     }
     
+    override func backTapped() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        super.backTapped()
+    }
+    
     // MARK: - keyboard notification
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
         
-        UIView.animateWithDuration(duration, animations: { [weak self] () -> Void in
-            self!.bottomConstraint.constant = keyboardFrame.size.height
-            self!.view.layoutIfNeeded()
+        UIView.animateWithDuration(duration, animations: { [weak self] () -> () in
+            self?.bottomConstraint.constant = keyboardFrame.size.height
+            self?.view.layoutIfNeeded()
         })
     }
     

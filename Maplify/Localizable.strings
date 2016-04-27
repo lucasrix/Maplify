@@ -17,6 +17,8 @@
 "Text.Placeholder.EnterBriefCaption" = "Enter a brief caption";
 "Text.Placeholder.EveryPostMustBeGeotagged" = "Every post must be geotagged";
 "Text.Placeholder.EnterTag" = "Enter tag";
+"Text.Placeholder.EnterBriefTitle" = "Enter a brief title";
+"Text.Placeholder.WhatsYourStoryAbout" = "What's your story about?";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -51,6 +53,11 @@
 "Controller.EditPost.Title" = "Edit Post";
 "Controller.Profile.Title" = "Profile";
 "Controller.EditProfile" = "Edit Profile";
+"Controller.DiscoverChangeLocation" = "Change location";
+"Controller.DiscoverTitle.AllTheWorld" = "All the world";
+"Controller.EditStory" = "Edit Story";
+"Controller.AddPosts" = "Add Posts";
+"Controller.NewStory" = "New Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -75,6 +82,12 @@
 "Label.Following" = "following";
 "Label.Followers" = "followers";
 "Label.Follower" = "follower";
+"Label.VideoDurationError" = "Videos can be up to 20 seconds. Please trim before adding";
+"Label.StoryName" = "Story Name";
+"Label.Description" = "Description";
+"Label.PostsInThisStory" = "Posts in this story";
+"Label.MyPosts" = "My Posts";
+
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -112,6 +125,9 @@
 "Button.Save" = "Save";
 "Button.ReportAbuse" = "Report abuse";
 "Button.JumpToDiscoverFeed" = "Jump to Discover feed";
+"Button.AllOverTheWorld" = "All over the world";
+"Button.NearMe" = "Near me";
+"Button.AddPosts" = "Add Posts";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

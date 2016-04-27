@@ -8,28 +8,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumViewCell" id="xyV-m5-VJN" customClass="AlbumViewCell" customModule="Maplify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="148" height="141"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="148" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eyB-Pn-Cz7">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="148" height="141"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeG-3v-QU5">
+                        <rect key="frame" x="103" y="116" width="42" height="23"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="gQk-nk-CLc">
+                                <rect key="frame" x="5" y="3" width="32" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="vDU-MX-bJX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gQk-nk-CLc" firstAttribute="leading" secondItem="BeG-3v-QU5" secondAttribute="leading" constant="5" id="4WJ-gL-To5"/>
+                            <constraint firstItem="gQk-nk-CLc" firstAttribute="top" secondItem="BeG-3v-QU5" secondAttribute="top" constant="3" id="95e-xZ-025"/>
+                            <constraint firstAttribute="trailing" secondItem="gQk-nk-CLc" secondAttribute="trailing" constant="5" id="krw-C1-Agh"/>
+                            <constraint firstAttribute="bottom" secondItem="gQk-nk-CLc" secondAttribute="bottom" constant="3" id="sg7-gY-27u"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="BeG-3v-QU5" secondAttribute="trailing" constant="3" id="06h-U0-Dii"/>
                 <constraint firstAttribute="bottom" secondItem="eyB-Pn-Cz7" secondAttribute="bottom" id="7nt-Ev-pzc"/>
                 <constraint firstItem="eyB-Pn-Cz7" firstAttribute="leading" secondItem="xyV-m5-VJN" secondAttribute="leading" id="Tri-pb-OD8"/>
                 <constraint firstAttribute="trailing" secondItem="eyB-Pn-Cz7" secondAttribute="trailing" id="hLc-zq-PCS"/>
                 <constraint firstItem="eyB-Pn-Cz7" firstAttribute="top" secondItem="xyV-m5-VJN" secondAttribute="top" id="unD-44-W5K"/>
+                <constraint firstAttribute="bottom" secondItem="BeG-3v-QU5" secondAttribute="bottom" constant="2" id="zXB-FS-OuA"/>
             </constraints>
+            <size key="customSize" width="148" height="141"/>
             <connections>
                 <outlet property="imageView" destination="eyB-Pn-Cz7" id="OJW-qf-zy1"/>
+                <outlet property="timeBackView" destination="BeG-3v-QU5" id="1Js-qR-tAd"/>
+                <outlet property="timeLabel" destination="gQk-nk-CLc" id="OQX-Rc-hSw"/>
             </connections>
-            <point key="canvasLocation" x="252" y="306"/>
+            <point key="canvasLocation" x="301" y="351.5"/>
         </collectionViewCell>
     </objects>
 </document>

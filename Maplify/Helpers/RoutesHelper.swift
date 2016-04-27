@@ -50,16 +50,25 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
-    func routesOpenProfileController(profileId: Int) {
-        let profileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.profileController) as! ProfileViewController
-        profileViewController.profileId = profileId
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+    func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
+        let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
+        storyCreateController.createStoryClosure = createStoryClosure
+        self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
-    func routesOpenEditProfileController(profileId: Int, photo: UIImage!) {
+    func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
+        let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
+        discoverViewController.userProfileId = userProfileId
+        discoverViewController.supportUserProfile = supportUserProfile
+        discoverViewController.stackSupport = stackSupport
+        self.navigationController?.pushViewController(discoverViewController, animated: true)
+    }
+    
+    func routesOpenEditProfileController(profileId: Int, photo: UIImage!, updateContentClosure: (() -> ())!) {
         let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
         editProfileViewController.profileId = profileId
         editProfileViewController.updatedImage = photo
+        editProfileViewController.updateContentClosure = updateContentClosure
         self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
@@ -68,6 +77,13 @@ extension UIViewController {
         storyPointEditViewController.storyPointId = storyPointId
         storyPointEditViewController.storyPointUpdateHandler = storyPointUpdateHandler
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
+    }
+    
+    func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: () -> ()) {
+        let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
+        storyEditViewController.storyId = storyId
+        storyEditViewController.storyUpdateHandler = storyUpdateHandler
+        self.navigationController?.pushViewController(storyEditViewController, animated: true)
     }
     
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {
@@ -88,7 +104,7 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.storyPointKind = storyPointKind
         storyPointEditDescriptionController.location = location
@@ -96,7 +112,7 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
-    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: String, location: MCMapCoordinate) {
+    func routesOpenStoryPointEditInfoController(storyPointDescription: String, storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate) {
         let storyPointEditInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditInfoViewController) as! StoryPointEditInfoViewController
         storyPointEditInfoViewController.storyPointDescription = storyPointDescription
         storyPointEditInfoViewController.storyPointKind = storyPointKind
@@ -117,18 +133,31 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
     }
 
-    func routesOpenAddToStoryController(updateStoryHandle: updateStoryClosure) {
+    func routesOpenAddToStoryController(selectedIds: [Int], updateStoryHandle: updateStoryClosure) {
         let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
         addStoryViewController.updatedStoryIds = updateStoryHandle
+        addStoryViewController.selectedIds = selectedIds
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
-    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
+    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String, stackSupport: Bool) {
         let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
         storyDetailViewController.storyPoints = storyPoints
         storyDetailViewController.selectedIndex = selectedIndex
         storyDetailViewController.storyTitle = storyTitle
+        storyDetailViewController.stackSupport = stackSupport
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
+    }
+    
+    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, storyCreateClosure: (() -> ())!) {
+        let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
+        storyAddPostsViewController.storyId = storyId
+        storyAddPostsViewController.delegate = delegate
+        storyAddPostsViewController.isStoryModeCreation = storyModeCreation
+        storyAddPostsViewController.storyName = storyName
+        storyAddPostsViewController.storyDescription = storyDescription
+        storyAddPostsViewController.createStoryClosure = storyCreateClosure
+        self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     
     // MARK: - open as popup controllers
@@ -144,5 +173,12 @@ extension UIViewController {
         let menuController = UIStoryboard.menuStoryboard().instantiateViewControllerWithIdentifier(Controllers.menuViewController) as! MenuViewController
         menuController.delegate = delegate
         self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
+    }
+    
+    func routerShowDiscoverChangeLocationPopupController(delegate: DiscoverChangeLocationDelegate) {
+        let discoverChangeLocationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverChangeLocationPopupViewController) as! DiscoverChangeLocationPopupViewController
+        discoverChangeLocationPopupController.delegate = delegate
+        let nav = NavigationViewController(rootViewController: discoverChangeLocationPopupController)
+        self.navigationController?.presentViewController(nav, animated: true, completion: nil)
     }
 }

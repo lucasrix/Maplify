@@ -42,12 +42,14 @@
 		8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
 		8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
 		85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915941CBD22540041182F /* AutocompleteTextField.swift */; };
-		85E915981CBD3DC10041182F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915971CBD3DC10041182F /* ProfileViewController.swift */; };
 		85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159A1CBE8BF00041182F /* PublicStatsView.xib */; };
 		85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159C1CBE8D710041182F /* PrivateStatsView.xib */; };
 		85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9159E1CBE93220041182F /* PublicStatsView.swift */; };
 		85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915A01CBE93BA0041182F /* PrivateStatsView.swift */; };
 		85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */; };
+		85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E551CCE4C6B00439761 /* ProfileView.swift */; };
+		85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FB7E571CCE4C7600439761 /* ProfileView.xib */; };
+		85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E591CCF57B900439761 /* UserRequestHelper.swift */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
@@ -130,6 +132,7 @@
 		A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
 		A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
 		A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD364D1CAAA9EA00281574 /* StoryManager.swift */; };
+		CD003E8E1CC7BB7800026B1B /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */; };
 		CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
@@ -147,12 +150,19 @@
 		CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
 		CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */; };
 		CD451B6A1CAD530400EBCC7A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
+		CD45672B1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */; };
+		CD45672E1CCA74E700961A7A /* StoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */; };
 		CD8A10A61CB6646200B58396 /* StoryPointDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */; };
 		CD8A10A81CB66AA700B58396 /* StoryPointDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */; };
 		CD8A10AD1CB68F5500B58396 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AC1CB68F5500B58396 /* Converter.swift */; };
 		CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
+		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
+		CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
+		CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
+		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
+		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -206,12 +216,14 @@
 		8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
 		8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceSearchHelper.swift; sourceTree = "<group>"; };
 		85E915941CBD22540041182F /* AutocompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTextField.swift; sourceTree = "<group>"; };
-		85E915971CBD3DC10041182F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		85E9159A1CBE8BF00041182F /* PublicStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicStatsView.xib; sourceTree = "<group>"; };
 		85E9159C1CBE8D710041182F /* PrivateStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateStatsView.xib; sourceTree = "<group>"; };
 		85E9159E1CBE93220041182F /* PublicStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicStatsView.swift; sourceTree = "<group>"; };
 		85E915A01CBE93BA0041182F /* PrivateStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateStatsView.swift; sourceTree = "<group>"; };
 		85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		85FB7E551CCE4C6B00439761 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		85FB7E571CCE4C7600439761 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		85FB7E591CCF57B900439761 /* UserRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestHelper.swift; sourceTree = "<group>"; };
 		8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesHelper.swift; sourceTree = "<group>"; };
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +307,7 @@
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
+		CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
@@ -311,11 +324,18 @@
 		CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImage.swift; sourceTree = "<group>"; };
 		CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverChangeLocationPopupViewController.swift; sourceTree = "<group>"; };
+		CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditViewController.swift; sourceTree = "<group>"; };
 		CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDetailCell.swift; sourceTree = "<group>"; };
 		CD8A10AC1CB68F5500B58396 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCollectionDataSource.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
+		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
+		CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsTableViewCell.swift; sourceTree = "<group>"; };
+		CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateViewController.swift; sourceTree = "<group>"; };
+		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
+		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +453,9 @@
 		1FE6D5AF1CA57B470052B412 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				CDF164F31CD0E74500E38C7A /* StoryCreate */,
+				CDF164EE1CCF623E00E38C7A /* AddPosts */,
+				CD45672C1CCA74D500961A7A /* StoryEdit */,
 				F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */,
 			);
 			path = Story;
@@ -450,8 +473,8 @@
 		85E915961CBD3DB00041182F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				85FB7E521CCE4C2D00439761 /* ProfileView */,
 				85E915991CBE8BD60041182F /* StatsViews */,
-				85E915971CBD3DC10041182F /* ProfileViewController.swift */,
 				85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
@@ -466,6 +489,15 @@
 				85E915A01CBE93BA0041182F /* PrivateStatsView.swift */,
 			);
 			path = StatsViews;
+			sourceTree = "<group>";
+		};
+		85FB7E521CCE4C2D00439761 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				85FB7E551CCE4C6B00439761 /* ProfileView.swift */,
+				85FB7E571CCE4C7600439761 /* ProfileView.xib */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 		8C3575D81CB3D8870039828A /* StoryPointEdit */ = {
@@ -683,6 +715,8 @@
 				8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */,
 				CD8A10AC1CB68F5500B58396 /* Converter.swift */,
 				CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */,
+				CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */,
+				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -796,6 +830,7 @@
 		A5D7AB011CA03F5100A94C4F /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				CD4567291CC9008400961A7A /* ChangeLocationPopup */,
 				F03507F31CBAF98F00CFAA05 /* StoryDetailViewController */,
 				CD0BB2BB1CB54A1E00E3E66B /* StoryCell */,
 				CD0BB2A91CB2859500E3E66B /* StoryPointCell */,
@@ -835,8 +870,8 @@
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
 			isa = PBXGroup;
 			children = (
-				CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */,
 				CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */,
+				CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */,
 			);
 			path = DiscoverList;
 			sourceTree = "<group>";
@@ -871,6 +906,24 @@
 			path = VideoController;
 			sourceTree = "<group>";
 		};
+		CD4567291CC9008400961A7A /* ChangeLocationPopup */ = {
+			isa = PBXGroup;
+			children = (
+				CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */,
+			);
+			path = ChangeLocationPopup;
+			sourceTree = "<group>";
+		};
+		CD45672C1CCA74D500961A7A /* StoryEdit */ = {
+			isa = PBXGroup;
+			children = (
+				CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */,
+				CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */,
+				CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */,
+			);
+			path = StoryEdit;
+			sourceTree = "<group>";
+		};
 		CD8A10A31CB6637300B58396 /* CollectionViewDetailItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,6 +931,23 @@
 				CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */,
 			);
 			path = CollectionViewDetailItem;
+			sourceTree = "<group>";
+		};
+		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
+			isa = PBXGroup;
+			children = (
+				CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */,
+				CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */,
+			);
+			path = AddPosts;
+			sourceTree = "<group>";
+		};
+		CDF164F31CD0E74500E38C7A /* StoryCreate */ = {
+			isa = PBXGroup;
+			children = (
+				CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */,
+			);
+			path = StoryCreate;
 			sourceTree = "<group>";
 		};
 		F01A89531CA75114008B8702 /* Menu */ = {
@@ -1010,6 +1080,7 @@
 				CD451B5F1CABFEDC00EBCC7A /* PhotoViewController.xib in Resources */,
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */,
+				85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1094,6 +1165,7 @@
 				A5728A1C1C88887400C6DA7E /* NavigationViewController.swift in Sources */,
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
 				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
+				CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */,
 				8C3575DC1CB3FB240039828A /* FacebookHelper.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
@@ -1143,6 +1215,7 @@
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
 				CD8A10A61CB6646200B58396 /* StoryPointDetailCell.swift in Sources */,
+				CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,
 				A5C3D0AE1C89F1B700765F61 /* AttributedLabelUtils.swift in Sources */,
 				8C3575DA1CB3D8A40039828A /* StoryPointEditViewController.swift in Sources */,
@@ -1167,10 +1240,12 @@
 				1FC781051CA151E900C50C23 /* Attachment.swift in Sources */,
 				A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
+				CD003E8E1CC7BB7800026B1B /* PlayerHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
+				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
@@ -1179,6 +1254,7 @@
 				CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */,
 				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
+				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
@@ -1186,9 +1262,11 @@
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
+				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,
 				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* SessionManager.swift in Sources */,
 				8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */,
+				CD45672B1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift in Sources */,
 				8C130A291C8CD5A10005DF12 /* SignupViewController.swift in Sources */,
 				A52E099A1C8D8D6000706F9C /* Integer.swift in Sources */,
 				1FB705BF1C9D4E9A00FC3496 /* ScreenSize.swift in Sources */,
@@ -1199,6 +1277,7 @@
 				A5C584BD1C905A720036064A /* RoundedButton.swift in Sources */,
 				CD8A10AD1CB68F5500B58396 /* Converter.swift in Sources */,
 				F03507F91CBB044000CFAA05 /* StoryPageViewController.swift in Sources */,
+				CD45672E1CCA74E700961A7A /* StoryEditViewController.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */,
 				85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */,
@@ -1206,11 +1285,12 @@
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
+				85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */,
 				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
+				CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */,
 				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
-				85E915981CBD3DC10041182F /* ProfileViewController.swift in Sources */,
 				A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */,
 				A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */,
 			);
@@ -1369,6 +1449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1387,6 +1468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;

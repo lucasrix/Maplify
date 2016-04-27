@@ -192,9 +192,24 @@ class ApiClient {
         self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
+    func getUserStoryPoints(userId: Int, success: successClosure!, failure: failureClosure!) {
+        let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
+                                           "location[latitude]": 0,
+                                           "location[longitude]": 0]
+        self.getRequest("users/\(userId)/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
+    }
+    
+    func getUserStories(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("users/\(userId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
+    }
+    
     func getCurrentUserStories(page: Int, success: successClosure!, failure: failureClosure!) {
         let params = ["page": page]
         self.getRequest("user/stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
+    }
+    
+    func getStoryPointStories(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("story_points/\(storyPointId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
@@ -209,9 +224,8 @@ class ApiClient {
         self.postRequest("attachments", params: params, data: data, manager: AttachmentManager(), progress: nil, success: success, failure: failure)
     }
     
-    func createStory(name: String, discoverable: Bool, success: successClosure!, failure: failureClosure!) {
-        let params = ["name": name, "discoverable": discoverable]
-        self.postRequest("stories", params: (params as! [String : AnyObject]), data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    func createStory(params: [String : AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories", params: params, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
     }
     
     func updateUser(email: String, success: successClosure!, failure: failureClosure!) {
@@ -219,13 +233,12 @@ class ApiClient {
         self.putRequest("user", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
     }
 
-    func retrieveDiscoverList(latitude: Double, longitude: Double, radius: CGFloat, page: Int, success: successClosure!, failure: failureClosure!) {
-        let params: [String: AnyObject] = ["page": page,
-                      "radius": radius,
-                      "location[latitude]": latitude,
-                      "location[longitude]": longitude
-                      ]
+    func retrieveDiscoverList(page: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.getRequest("discover", params: params, manager: DiscoverItemManager(), success: success, failure: failure)
+    }
+    
+    func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
+        self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
     }
 }
 

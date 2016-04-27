@@ -9,7 +9,7 @@
 let kDefaultDescriptionViewHeight: CGFloat = 45
 let kDescriptionHorizontalPadding: CGFloat = 10
 
-class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
+class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var storyView: UIView!
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var storyPointImageView: UIImageView!
@@ -20,9 +20,11 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var descriptionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var detailEditView: UIView!
+    @IBOutlet weak var charactersCountLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var editInfoViewController: StoryPointEditInfoViewController! = nil
-    var editDescriptionViewController: StoryPointEditDescriptionViewController! = nil
     var storyPointId: Int = 0
     var storyPointUpdateHandler: (() -> ())! = nil
     
@@ -42,7 +44,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.setupContentHeight()
+        self.setupContentHeight(false)
     }
     
     // MARK: - setup
@@ -51,13 +53,19 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         self.setupEditStoryPointInfoViewController()
         self.setupShowDescriptionButton()
         self.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
+        self.setupGesture()
+        self.setupStories()
+    }
+    
+    func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointEditViewController.dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.EditPost.Title", comment: String())
         
         // add shadow
-        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor();
         self.navigationController!.navigationBar.layer.shadowOpacity = kDiscoverNavigationBarShadowOpacity;
         self.navigationController!.navigationBar.layer.shadowOffset = CGSizeZero;
         self.navigationController!.navigationBar.layer.shadowRadius = kDiscoverNavigationBarShadowRadius;
@@ -88,7 +96,7 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
             } else {
                 self.setupDescriptionInputField(storyPoint)
             }
-
+            
             if storyPoint.text.length > 0 {
                 let ofStr = NSLocalizedString("Substring.Of", comment: String())
                 let charsStr = NSLocalizedString("Substring.Chars", comment: String())
@@ -97,18 +105,38 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
         }
     }
     
-    func setupDescriptionInputField(storyPoint: StoryPoint) {
-        let identifier = Controllers.storyPointEditDescriptionViewController
-        self.editDescriptionViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(identifier) as! StoryPointEditDescriptionViewController
-        self.configureChildViewController(self.editDescriptionViewController, onView: self.storyPointImageView)
-        self.descriptionView.hidden = true
-        self.descriptionViewTopConstraint.constant = -kDefaultDescriptionViewHeight
-        self.editDescriptionViewController.descriptionTextView.text = storyPoint.text
-        self.editDescriptionViewController.updateCharactersCountLabel(storyPoint.text.length)
+    func setupStories() {
+        ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in
+                let stories = response as! [Story]
+                self?.editInfoViewController.configureSelectedStories(stories)
+                self?.setupContentHeight(false)
+            },
+            failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            })
     }
     
-    func setupContentHeight() {
-        let descriptionHeight = self.editDescriptionViewController.view.frame.size.height
+    func setupDescriptionInputField(storyPoint: StoryPoint) {
+        self.detailEditView.hidden = false
+        self.descriptionView.hidden = true
+        self.descriptionTextView.delegate = self
+        self.descriptionTextView.text = storyPoint.text
+        self.updateCharactersCountLabel(storyPoint.text.length)
+    }
+    
+    func contentHeight(expanded: Bool) -> CGFloat {
+        var textHeight: CGFloat = 0
+        if expanded {
+            let storyPoint = StoryPointManager.find(self.storyPointId)
+            self.descriptionLabel.text = storyPoint.text
+            let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
+            textHeight += storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
+        }
+        return self.storyPointImageView.frame.size.height + kDefaultDescriptionViewHeight + textHeight
+    }
+    
+    func setupContentHeight(expanded: Bool) {
+        let descriptionHeight = self.contentHeight(expanded)
         let infoHeight = self.editInfoViewController.contentHeight()
         let storyTableViewHeight = self.editInfoViewController.tableView.contentSize.height
         let updatedHeight = descriptionHeight + infoHeight + storyTableViewHeight
@@ -126,6 +154,10 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     }
 
     // MARK: - actions
+    func dismissKeyboard() {
+        self.descriptionTextView.resignFirstResponder()
+    }
+    
     @IBAction func showDescriptionButtonTapped(sender: AnyObject) {
         self.descriptionButton.selected = !self.descriptionButton.selected
         self.showStoryPointDescription()
@@ -134,21 +166,25 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
     func showStoryPointDescription() {
         let storyPoint = StoryPointManager.find(self.storyPointId)
         self.descriptionLabel.text = storyPoint.text
-        let boundingRect = CGRectMake(0, 0, self.descriptionLabel.frame.size.width , CGFloat.max)
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
         let textHeight = storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
         
         if self.descriptionButton.selected {
-            self.descriptionViewHeightConstraint.constant = self.descriptionView.frame.size.height + textHeight
+            self.descriptionViewHeightConstraint.constant = CGRectGetHeight(self.descriptionView.frame) + textHeight
         } else {
             self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight
             self.descriptionLabel.text = String()
         }
+        
+        self.setupContentHeight(self.descriptionButton.selected)
     }
 
     override func rightBarButtonItemDidTap() {
         self.showProgressHUD()
         
-        let storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!, "text": self.editDescriptionViewController.descriptionTextView.text]
+        var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!, "text": self.descriptionTextView.text]
+        let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
+        storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
         
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
@@ -159,6 +195,22 @@ class StoryPointEditViewController: ViewController, ErrorHandlingProtocol {
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
+        if resultCharactersCount <= kDescriptionTextViewMaxCharactersCount {
+            self.updateCharactersCountLabel(resultCharactersCount)
+            return true
+        }
+        return false
+    }
+    
+    func updateCharactersCountLabel(charactersCount: Int) {
+        let substringOf = NSLocalizedString("Substring.Of", comment: String())
+        let substringChars = NSLocalizedString("Substring.Chars", comment: String())
+        self.charactersCountLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
     }
    
     // MARK: - ErrorHandlingProtocol

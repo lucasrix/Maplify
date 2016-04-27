@@ -24,6 +24,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     var storyActiveModel = CSActiveModel()
     var updatedStoryIds: updateStoryClosure! = nil
     var selectedIndexPathes: [NSIndexPath]! = nil
+    var selectedIds: [Int]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -132,18 +133,32 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.storyActiveModel.selectModels(self.selectedIndexPathes)
         self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.allowMultipleSelection = true
+        self.selectStories(stories)
+        
         self.storyDataSource.reloadTable()
+    }
+    
+    func selectStories(stories: [Story]) {
+        for storyId in self.selectedIds {
+            let index = stories.indexOf({$0.id == storyId})
+            if index != NSNotFound {
+                let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+                self.storyActiveModel.selectModel(indexPath, selected: true)
+            }
+        }
     }
     
     func loadItemsFromDB() {
         let realm = try! Realm()
-        let stories = Array(realm.objects(Story))
+        let userId = SessionManager.currentUser().id
+        let stories = Array(realm.objects(Story).filter("user.id == \(userId)").sorted("created_at", ascending: false))
         self.updateStoryPointDetails(stories)
     }
     
     func createStoryPoint(name: String) {
         self.showProgressHUD()
-        ApiClient.sharedClient.createStory(name, discoverable: false,
+        let params: [String: AnyObject] = ["name": name, "discoverable": false]
+        ApiClient.sharedClient.createStory(params,
                 success: { [weak self] (response) in
                     StoryManager.saveStories([response as! Story])
                     self?.hideProgressHUD()
@@ -188,7 +203,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     // MARK: - CSBaseTableDataSourceDelegate
     func didSelectModel(model: AnyObject, selection: Bool, indexPath: NSIndexPath) {
-        self.storyActiveModel.selectModel(indexPath, selected: !selection)
+        self.storyActiveModel.selectModel(indexPath, selected: selection)
         self.storyDataSource.reloadTable()
     }
     

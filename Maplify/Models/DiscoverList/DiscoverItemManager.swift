@@ -14,31 +14,36 @@ class DiscoverItemManager: ModelManager {
         return response
     }
     
-    class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int) {
+    class func saveDiscoverListItems(discoverItems: [String: AnyObject], pageNumber: Int, itemsCountInPage: Int, searchLocationParameter: SearchLocationParameter) {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
-        
         for item in list {
-            let discoverItem = DiscoverItem()
+            currentPosition += 1
+            var discoverItem: DiscoverItem! = nil
             if item["type"] as! String == String(StoryPoint) {
                 let dict = item as! [String: AnyObject]
+                
                 let storyPoint = StoryPoint(dict)
-                discoverItem.type = DiscoverItemType.StoryPoint.rawValue
-                StoryPointManager.saveStoryPoint(storyPoint)
-                discoverItem.storyPoint = storyPoint
+                discoverItem = findOrCreateWithStoryPoint(storyPoint)
+            
             } else if item["type"] as! String == String(Story) {
                 let dict = item as! [String: AnyObject]
+
                 let story = Story(dict)
-                discoverItem.type = DiscoverItemType.Story.rawValue
-                StoryManager.saveStory(story)
-                discoverItem.story = story
+                discoverItem = findOrCreateWithStory(story)
             }
             
-            discoverItem.nearMePosition = currentPosition
-            discoverItem.id = currentPosition
+            let realm = try! Realm()
+            realm.beginWrite()
+            if searchLocationParameter == SearchLocationParameter.NearMe {
+                discoverItem.nearMePosition = currentPosition
+            } else if searchLocationParameter == SearchLocationParameter.AllOverTheWorld {
+                discoverItem.allOverTheWorldPosition = currentPosition
+            } else if searchLocationParameter == SearchLocationParameter.ChoosenPlace {
+                discoverItem.choosenPlacePosition = currentPosition
+            }
+            try! realm.commitWrite()
             DiscoverItemManager.saveItem(discoverItem)
-            
-            currentPosition += 1
         }
     }
     
@@ -47,11 +52,63 @@ class DiscoverItemManager: ModelManager {
         return realm.objectForPrimaryKey(DiscoverItem.self, key: DiscoverItemId)
     }
     
+    class func findWithStoryPoint(storyPointId: Int) -> DiscoverItem! {
+        let realm = try! Realm()
+        return realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPointId)").first
+    }
+    
+    class func findOrCreateWithStoryPoint(storyPoint: StoryPoint) -> DiscoverItem! {
+        let realm = try! Realm()
+        if let foundedObject = realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPoint.id)").first {
+            return foundedObject
+        } else {
+            let newObject = DiscoverItem()
+            newObject.type = DiscoverItemType.StoryPoint.rawValue
+            StoryPointManager.saveStoryPoint(storyPoint)
+            newObject.storyPoint = storyPoint
+            newObject.id = newObject.nextId()
+            newObject.created_at = storyPoint.created_at
+            return newObject
+        }
+    }
+    
+    class func findOrCreateWithStory(story: Story) -> DiscoverItem! {
+        let realm = try! Realm()
+        if let foundedObject = realm.objects(DiscoverItem).filter("story.id == \(story.id)").first {
+            return foundedObject
+        } else {
+            let newObject = DiscoverItem()
+            newObject.type = DiscoverItemType.Story.rawValue
+            StoryManager.saveStory(story)
+            newObject.story = story
+            newObject.id = newObject.nextId()
+            newObject.created_at = story.created_at
+            return newObject
+        }
+    }
+    
     class func saveItem(item: DiscoverItem) {
         let realm = try! Realm()
         
         try! realm.write {
             realm.add(item, update: true)
+        }
+    }
+    
+    class func delete(discoverItemId: Int) {
+        let realm = try! Realm()
+        let discoverItem = realm.objectForPrimaryKey(DiscoverItem.self, key: discoverItemId)
+        if discoverItem != nil {
+            try! realm.write {
+                realm.delete(discoverItem!)
+            }
+        }
+    }
+    
+    class func delete(discoverItem: DiscoverItem) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(discoverItem)
         }
     }
 }

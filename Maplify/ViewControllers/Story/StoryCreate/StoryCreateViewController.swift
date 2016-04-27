@@ -76,8 +76,8 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        if self.storyNameLabel.text != String() {
-            // TODO:
+        if self.storyNameTextField.text != String() {
+            self.routesOpenStoryAddPostsViewController(0, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text)
         }
     }
     

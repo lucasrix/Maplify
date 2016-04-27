@@ -11,11 +11,15 @@ import UIKit
 
 class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var myPostsLabel: UILabel!
     
     var storyId: Int = 0
     var delegate: AddPostsDelegate! = nil
     var storyDataSource: CSBaseTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
+    var isStoryModeCreation = false
+    var storyName = String()
+    var storyDescription = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -34,6 +38,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.myPostsLabel.text = NSLocalizedString("Label.MyPosts", comment: String())
     }
     
     func setupNavigationBar() {
@@ -57,7 +62,9 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         
         self.storyActiveModel.addItems(foundedStoryPoints, cellIdentifier: String(StoryAddPostsTableViewCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         
-        self.updateSelectedStoryPoints(foundedStoryPoints)
+        if self.isStoryModeCreation == false {
+            self.updateSelectedStoryPoints(foundedStoryPoints)
+        }
         
         self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.reloadTable()
@@ -89,16 +96,41 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        self.updateStory()
-        self.backTapped()
+        
+        let selectedCellData = self.storyActiveModel.selectedModels()
+        let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
+        
+        
+        
+        if self.isStoryModeCreation == true {
+            self.createStory(selectedStoryPoints)
+        } else {
+            self.updateStory(selectedStoryPoints)
+            self.backTapped()
+        }
     }
     
     // MARK: - private
-    func updateStory() {
-        let selectedCellData = self.storyActiveModel.selectedModels()
-        let selectedStoryPoints = selectedCellData.map({$0.model as! StoryPoint})
-
+    func updateStory(selectedStoryPoints: [StoryPoint]) {
         self.delegate?.didSelectStoryPoints(selectedStoryPoints)
+    }
+    
+    func createStory(selectedStoryPoints: [StoryPoint]) {
+        self.showProgressHUD()
+        let storyPointIds = selectedStoryPoints.map({$0.id})
+        var params: [String: AnyObject] = ["name": self.storyName, "discoverable": false, "story_point_ids": storyPointIds]
+        if self.storyDescription != String() {
+            params["description"] = self.storyDescription
+        }
+        
+        ApiClient.sharedClient.createStory(params, success: { [weak self] (response) in
+            // TODO:
+            print("created")
+            self?.hideProgressHUD()
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

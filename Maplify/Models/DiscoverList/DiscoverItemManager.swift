@@ -67,6 +67,7 @@ class DiscoverItemManager: ModelManager {
             StoryPointManager.saveStoryPoint(storyPoint)
             newObject.storyPoint = storyPoint
             newObject.id = newObject.nextId()
+            newObject.created_at = storyPoint.created_at
             return newObject
         }
     }
@@ -81,6 +82,7 @@ class DiscoverItemManager: ModelManager {
             StoryManager.saveStory(story)
             newObject.story = story
             newObject.id = newObject.nextId()
+            newObject.created_at = story.created_at
             return newObject
         }
     }

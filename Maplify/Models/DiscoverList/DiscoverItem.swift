@@ -15,7 +15,7 @@ public enum DiscoverItemType : String {
 }
 
 class DiscoverItem: Model {
-    dynamic var type: String = String()
+    dynamic var type = String()
     dynamic var storyPoint: StoryPoint? = nil
     dynamic var story: Story? = nil
     dynamic var nearMePosition: Int = 0
@@ -24,7 +24,6 @@ class DiscoverItem: Model {
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
-
     }
     
     override class func primaryKey() -> String {

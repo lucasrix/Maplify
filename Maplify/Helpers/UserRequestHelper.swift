@@ -10,18 +10,15 @@ import Foundation
 
 class UserRequestResponseHelper {
     class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) {
-        var mergedArray = [AnyObject]()
         
         for story in stories {
             let discoverItem = DiscoverItemManager.findOrCreateWithStory(story)
             DiscoverItemManager.saveItem(discoverItem)
-            mergedArray.append(discoverItem)
         }
         
         for storyPoint in storyPoints {
             let discoverItem = DiscoverItemManager.findOrCreateWithStoryPoint(storyPoint)
             DiscoverItemManager.saveItem(discoverItem)
-            mergedArray.append(discoverItem)
         }
     }
 }

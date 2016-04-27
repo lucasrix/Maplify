@@ -75,7 +75,7 @@ class EmbeddedMenuViewController: UITableViewController {
             break
             
         case MenuItem.SectionLogOut.rawValue:
-            self.sendAction(kSignOutAction)
+            self.delegate?.menuDidSelectItem(kSignOutAction)
             
         default:
             break

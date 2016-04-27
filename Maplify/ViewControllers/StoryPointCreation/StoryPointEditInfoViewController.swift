@@ -123,11 +123,16 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
-        self.routesOpenAddToStoryController { [weak self] (selectedStories) in
-            self?.selectedStories = selectedStories
-            self?.setupStoryAttachmentLabels()
-            self?.showSelectedStories((self?.selectedStories)!)
+        let selectedIds = self.selectedStories.map({$0.id})
+        self.routesOpenAddToStoryController(selectedIds) { [weak self] (selectedStories) in
+            self?.configureSelectedStories(selectedStories)
         }
+    }
+    
+    func configureSelectedStories(selectedStories: [Story]) {
+        self.selectedStories = selectedStories
+        self.setupStoryAttachmentLabels()
+        self.showSelectedStories(self.selectedStories)
     }
     
     // MARK: - navigation bar item actions
@@ -163,6 +168,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
                 realm.add(response as! StoryPoint, update: true)
             }
             self?.hideProgressHUD()
+            self?.navigationController?.setNavigationBarHidden(true, animated: false)
             self?.navigationController?.popToRootViewControllerAnimated(true)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

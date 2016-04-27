@@ -13,6 +13,8 @@ class StorypointCell: CSCollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var roundedView: UIView!
     @IBOutlet weak var storyImage: UIImageView!
+    @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var colorView: UIView!
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
@@ -21,12 +23,15 @@ class StorypointCell: CSCollectionViewCell {
         let storyPoint = cellData.model as! StoryPoint
         self.setupLabels(storyPoint)
         self.setupStoryImage(storyPoint)
-        self.setupStoryPointImage(storyPoint)
+        self.populateImageView(storyPoint)
     }
     
     func setupRoundedView() {
         self.roundedView.layer.cornerRadius = CornerRadius.defaultRadius
         self.roundedView.layer.masksToBounds = true
+        
+        self.colorView.layer.cornerRadius = CornerRadius.defaultRadius
+        self.colorView.clipsToBounds = true
     }
     
     func setupImageView(image: UIImage!) {
@@ -46,15 +51,37 @@ class StorypointCell: CSCollectionViewCell {
         self.storyImage.hidden = !(storyPoint.story != nil)
     }
     
-    func setupStoryPointImage(storyPoint: StoryPoint) {
+    func populateImageView(storyPoint: StoryPoint) {
+        var attachmentUrl: NSURL! = nil
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
+        
+        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            if storyPoint.attachment != nil {
+                let attachment = storyPoint.attachment as Attachment
+                attachmentUrl = NSURL(string: attachment.file_url)
+            }
+        } else {
+            if storyPoint.location != nil {
+                attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+            }
+        }
+        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if !(error != nil) {
+                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.populateKindImage(storyPoint)
+            }
+        }
+    }
+    
+    func populateKindImage(storyPoint: StoryPoint) {
         if storyPoint.kind == StoryPointKind.Text.rawValue {
-            self.storyPointImageView.image = UIImage(named: CellImages.textStoryPoint)
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconText)
         } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
-            self.storyPointImageView.image = UIImage(named: CellImages.audioStoryPoint)
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
         } else if storyPoint.kind == StoryPointKind.Video.rawValue {
-            self.storyPointImageView.image = UIImage(named: CellImages.videoStoryPoint)
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
         } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            self.storyPointImageView.image = UIImage(contentsOfFile: storyPoint.attachment.file_url)
+            self.storyPointKindImageView.image = UIImage()
         }
         self.storyPointImageView.layer.cornerRadius = CornerRadius.defaultRadius
     }

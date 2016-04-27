@@ -9,6 +9,7 @@
 import TPKeyboardAvoiding
 
 let kAboutFieldCharactersLimit = 500
+let kEmailProviderType = "email"
 
 class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var avoidingKeyboardScrollView: TPKeyboardAvoidingScrollView!
@@ -129,9 +130,16 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         let emailValid = self.emailTextField.text?.isEmail
         
         self.firstNameErrorLabel.hidden = firstNameValid
-        self.emailErrorLabel.hidden = emailValid!
+        
+        if (self.user.provider == kEmailProviderType) {
+            self.emailErrorLabel.hidden = emailValid!
+        }
+        
         self.firstNameTextField.layer.borderColor = firstNameValid ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
+        
+        if (self.user.provider == kEmailProviderType) {
+            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
+        }
         
         let profile = Profile()
         profile.lastName = self.lastNameTextField.text!
@@ -139,38 +147,45 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         profile.city = self.homeCityTextField.text!
         profile.about = self.aboutTextView.text
         
-        if firstNameValid && emailValid! {
+        if firstNameValid {
             profile.firstName = self.firstNameTextField.text!
             self.showProgressHUD()
-            
-            let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
 
-            ApiClient.sharedClient.updateUser(self.emailTextField.text!,
-                    success: { [weak self] (response) in
-                        let user = response as! User
-                        SessionManager.saveCurrentUser(user)
-                        ApiClient.sharedClient.updateProfile(profile, photo: photo,
-                            success: {  (response) in
-                                self?.hideProgressHUD()
-                                
-                                let profile = response as! Profile
-                                ProfileManager.saveProfile(profile)
-                                SessionManager.updateProfileForCurrrentUser(profile)
-
-                                self?.navigationController?.popViewControllerAnimated(true)
-                            },
-                            failure: { (statusCode, errors, localDescription, messages) in
-                                self?.hideProgressHUD()
-                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                            }
-                        )
+            if (emailValid!) && (self.user.provider == kEmailProviderType) {                
+                ApiClient.sharedClient.updateUser(self.emailTextField.text!,
+                                                  success: { [weak self] (response) in
+                                                    let user = response as! User
+                                                    SessionManager.saveCurrentUser(user)
+                                                    self?.updateProfile(profile)
                     },
-                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                        self?.hideProgressHUD()
-                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                  failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                    self?.hideProgressHUD()
+                                                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                     }
-            )
+                )
+            } else {
+               self.updateProfile(profile)
+            }
         }
+    }
+    
+    func updateProfile(profile: Profile) {
+        let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
+        ApiClient.sharedClient.updateProfile(profile, photo: photo,
+                                             success: { [weak self] (response) in
+                                                self?.hideProgressHUD()
+                                                
+                                                let profile = response as! Profile
+                                                ProfileManager.saveProfile(profile)
+                                                SessionManager.updateProfileForCurrrentUser(profile)
+                                                
+                                                self?.navigationController?.popViewControllerAnimated(true)
+                                             },
+                                             failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                self?.hideProgressHUD()
+                                                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                             }
+        )
     }
     
     func loadItemFromDB() {

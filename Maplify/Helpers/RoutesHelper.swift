@@ -127,9 +127,10 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
     }
 
-    func routesOpenAddToStoryController(updateStoryHandle: updateStoryClosure) {
+    func routesOpenAddToStoryController(selectedIds: [Int], updateStoryHandle: updateStoryClosure) {
         let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
         addStoryViewController.updatedStoryIds = updateStoryHandle
+        addStoryViewController.selectedIds = selectedIds
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     

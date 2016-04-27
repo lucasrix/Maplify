@@ -215,7 +215,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.storyActiveModel.removeData()
         if self.supportUserProfile {
-            let currentUserId = SessionManager.currentUser().id
+            let currentUserId = self.userProfileId
             let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
@@ -465,7 +465,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func profileImageTapped(userId: Int) {
-        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+        if self.supportUserProfile == false {
+            self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+        }
     }
 
     // MARK: - DiscoverStoryCellDelegate

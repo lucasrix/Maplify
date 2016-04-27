@@ -44,6 +44,7 @@ class ProgressHUD {
     
     func placeSpinner(view: UIView) {
         view.addSubview(self.spinner)
+        view.bringSubviewToFront(self.spinner)
         self.spinner.startAnimating()
     }
     

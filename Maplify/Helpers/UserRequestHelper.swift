@@ -12,8 +12,10 @@ class UserRequestResponseHelper {
     class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) {
         
         for story in stories {
-            let discoverItem = DiscoverItemManager.findOrCreateWithStory(story)
-            DiscoverItemManager.saveItem(discoverItem)
+            if story.storyPoints.count > 0 {
+                let discoverItem = DiscoverItemManager.findOrCreateWithStory(story)
+                DiscoverItemManager.saveItem(discoverItem)
+            }
         }
         
         for storyPoint in storyPoints {

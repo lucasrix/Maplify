@@ -207,6 +207,10 @@ class ApiClient {
         let params = ["page": page]
         self.getRequest("user/stories", params: params, manager: ArrayStoryManager(), success: success, failure: failure)
     }
+    
+    func getStoryPointStories(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("story_points/\(storyPointId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
+    }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("auth/sign_out", params: nil, manager: SessionManager(), success: success, failure: failure)

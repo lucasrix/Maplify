@@ -64,6 +64,7 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
             success: { [weak self] (response) -> () in
                 let user = response as! User
                 SessionManager.saveCurrentUser(user)
+                SessionHelper.sharedHelper.setupDefaultSettings()
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
             },

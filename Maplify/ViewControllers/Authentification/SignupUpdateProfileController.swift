@@ -97,9 +97,16 @@ class SignupUpdateProfileController: ViewController, InputTextFieldDelegate, Inp
     }
     
     // MARK: - InputTextViewDelegate
-    func textEditingChanged(inputTextView: InputTextView) {
+    func textEditingChanged(inputTextView: InputTextView, replacedText: String) {
         let height = inputTextView.textView.frame.height
         self.aboutFieldHeightConstraint.constant = height
+        
+        if replacedText.length == 0 {
+            self.locationInputField.textField.becomeFirstResponder()
+            self.keyboardAvoidingScrollView.scrollToActiveTextField()
+            self.locationInputField.textField.resignFirstResponder()
+            self.aboutInputField.setDefaultState()
+        }
     }
     
     // MARK: - actions

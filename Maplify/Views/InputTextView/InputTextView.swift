@@ -124,11 +124,11 @@ class InputTextView: UIView, UITextViewDelegate {
     
     // MARK: - UITextViewDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let resultCharactersCount = (self.textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
-        if resultCharactersCount <= maxCharLength {
-            self.showTextLengthLimitIfNeeded(resultCharactersCount)
+        let resultCharacters = (self.textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        self.delegate?.textEditingChanged?(self, replacedText: resultCharacters)
+        if resultCharacters.length <= maxCharLength {
+            self.showTextLengthLimitIfNeeded(resultCharacters.length)
             self.setHighlightedState()
-            self.delegate?.textEditingChanged?(self)
             return true
         }
         return false
@@ -153,7 +153,7 @@ class InputTextView: UIView, UITextViewDelegate {
 @objc protocol InputTextViewDelegate {
     optional func textEditingBegin(inputTextView: InputTextView)
     optional func textEditingEnd(inputTextView: InputTextView)
-    optional func textEditingChanged(inputTextView: InputTextView)
+    optional func textEditingChanged(inputTextView: InputTextView, replacedText: String)
     optional func textDidPressReturnKey(inputTextView: InputTextView)
     optional func contentSizeWillChange(contentSize: CGSize)
 }

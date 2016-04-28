@@ -98,13 +98,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         let params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
         
         ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
-            
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
             self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
-            
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-            
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
@@ -112,9 +109,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     // MARK: - private
     func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
-        dispatch_async(dispatch_get_main_queue(), { () -> () in
-            self.audioPlot?.updateBuffer(buffer[0], withBufferSize: bufferSize);
-        });
+        self.audioPlot?.updateBuffer(buffer[0], withBufferSize: bufferSize);
     }
     
     private func setupStartRecordUI() {
@@ -171,6 +166,10 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         if !success {
             self.showAudioPermissionsError()
         }
+    }
+    
+    func audioRecordDidReload() {
+        self.deleteButton.hidden = true
     }
     
     // MARK: - ErrorHandlingProtocol

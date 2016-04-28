@@ -166,7 +166,7 @@ extension UIViewController {
         storyPointCreationPopupController.delegate = delegate
         storyPointCreationPopupController.location = location
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
-        self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
+        self.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
     }
     
     func routerShowMenuController(delegate: MenuDelegate) {

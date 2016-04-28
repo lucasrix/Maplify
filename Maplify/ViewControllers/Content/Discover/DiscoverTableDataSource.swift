@@ -49,7 +49,7 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
         if let cellData = self.activeModel.cellData(indexPath) {
             let model = cellData.model
             let item = model as! DiscoverItem
-            if item.type == DiscoverItemType.StoryPoint.rawValue {
+            if (item.type == DiscoverItemType.StoryPoint.rawValue) && (cell is DiscoverStoryPointCell) {
                 (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
             }
         }

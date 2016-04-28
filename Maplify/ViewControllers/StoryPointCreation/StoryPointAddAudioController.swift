@@ -34,12 +34,12 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.setupAudioPlot()
     }
     
     // MARK: - setup
     func setup() {
         self.setupViews()
-        self.setupAudioPlot()
         self.setupAudioRecording()
     }
     

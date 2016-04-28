@@ -132,4 +132,9 @@ class SessionHelper {
     func pushNotificationsEnabled() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(Config.pushNotificationsEnabled)
     }
+    
+    func setupDefaultSettings() {
+        SessionHelper.sharedHelper.setPushNotificationsEnabled(true)
+        SessionHelper.sharedHelper.setLocationEnabled(true)
+    }
 }

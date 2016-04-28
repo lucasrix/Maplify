@@ -42,15 +42,12 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setupCollectionView()
         self.setupNavigationBar()
         self.loadItemsFromDB()
-        self.movetoLastStoryPointIfNeeded()
-        self.loadDataFromRemote()
     }
     
     // MARK: - setup
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
-        self.setupMap(SessionHelper.sharedHelper.userLastLocation())
         self.setupAddStoryPointImageView()
     }
     
@@ -83,6 +80,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                 if location != nil {
                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
                     self?.setupMap(location)
+                } else {
+                    self?.setupMap(SessionHelper.sharedHelper.userLastLocation())
                 }
             }
         }
@@ -94,6 +93,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.googleMapService.setMapType(kGMSTypeNormal)
         self.googleMapService.delegate = self
         self.mapView.service = self.googleMapService
+        
+        self.loadDataFromRemote()
     }
     
     func setupAddStoryPointImageView() {
@@ -158,7 +159,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.userLastStoryPoint = storyPoints.first
             let location = self.userLastStoryPoint.location
             let region = MCMapRegion(latitude: location.latitude, longitude: location.longitude)
-            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            self.googleMapService?.moveTo(region, zoom: (self.googleMapService?.currentZoom())!)
         }
     }
     
@@ -166,8 +167,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
         if touchGesture.state == .Began {
             let point = touchGesture.locationInView(self.mapView)
-            let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
-            self.addStoryPointButtonTapped(location: location)
+            let location = self.googleMapService?.locationFromTouch(self.mapView, point: point)
+            self.addStoryPointButtonTapped(location: location!)
         }
     }
     

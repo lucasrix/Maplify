@@ -27,7 +27,7 @@ class RecommendedSettingsViewController: ViewController {
     func setup() {
         self.setupLabels()
         self.setupDoneButton()
-        self.setupDefaultSettings()
+        SessionHelper.sharedHelper.setupDefaultSettings()
     }
     
     func setupLabels() {
@@ -40,11 +40,6 @@ class RecommendedSettingsViewController: ViewController {
     
     func setupDoneButton() {
         self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
-    }
-    
-    func setupDefaultSettings() {
-        SessionHelper.sharedHelper.setPushNotificationsEnabled(true)
-        SessionHelper.sharedHelper.setLocationEnabled(true)
     }
     
     //MARK: - actions

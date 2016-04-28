@@ -178,7 +178,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
                                                 let profile = response as! Profile
                                                 ProfileManager.saveProfile(profile)
                                                 SessionManager.updateProfileForCurrrentUser(profile)
-                                                
+                                                self?.updateContentClosure()
                                                 self?.navigationController?.popViewControllerAnimated(true)
                                              },
                                              failure: { [weak self] (statusCode, errors, localDescription, messages) in

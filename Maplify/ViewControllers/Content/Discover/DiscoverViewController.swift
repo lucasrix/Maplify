@@ -155,7 +155,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
 
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
-            self.tableView.backgroundColor = UIColor.darkGreyBlue()
+            self.tableView.backgroundColor = UIColor.darkerGreyBlue()
         }
     }
     

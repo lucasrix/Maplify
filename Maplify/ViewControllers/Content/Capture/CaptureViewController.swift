@@ -108,7 +108,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.storyPointDataSource = StoryPointDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
         let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumLineSpacing = kMinimumLineSpacing
-        self.collectionView.layoutIfNeeded()
         self.storyPointDataSource.reloadCollectionView()
     }
     
@@ -165,9 +164,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - actions
     func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
-        let point = touchGesture.locationInView(self.mapView)
-        let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
-        self.addStoryPointButtonTapped(location: location)
+        if touchGesture.state == .Began {
+            let point = touchGesture.locationInView(self.mapView)
+            let location = self.googleMapService.locationFromTouch(self.mapView, point: point)
+            self.addStoryPointButtonTapped(location: location)
+        }
     }
     
     // MARK: - MCMapServiceDelegate

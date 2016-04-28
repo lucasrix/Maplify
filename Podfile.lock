@@ -30,7 +30,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.1.0):
     - FBSDKCoreKit
-  - GoogleMaps (1.12.3)
+  - GoogleMaps (1.13.0)
   - GooglePlaces (1.0.4):
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.1.0)
   - FBSDKLoginKit (~> 4.1.0)
   - FBSDKShareKit (~> 4.1.0)
-  - GoogleMaps (~> 1.12)
+  - GoogleMaps (~> 1.13)
   - GooglePlaces (~> 1.0)
   - HanekeSwift (~> 0.10)
   - INSPullToRefresh (~> 1.1)
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 469ed167195f860dbd2b4c4bbaa33d2e90598db9
   FBSDKLoginKit: ff6224762732e3698f30942e4544321b8c7a23e6
   FBSDKShareKit: 8002faf0c564ff3625eadd16e506b0b0fbf3adef
-  GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
+  GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
   GooglePlaces: af82dff8b6699dd59fdbf8ec9b3ad170e5f2217a
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47

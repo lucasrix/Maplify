@@ -60,7 +60,7 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (self.profileView != nil) ? self.profileView.contentHeight() : 0
+        return (self.profileView != nil) ? self.profileView.contentHeight() : 0.00001
     }
     
     //MARK: - UIScrollViewDelegate

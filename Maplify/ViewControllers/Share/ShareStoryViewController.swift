@@ -76,7 +76,8 @@ class ShareStoryViewController: ViewController {
     }
     
     func populateStoryPointsCount(story: Story) {
-        self.storyPointsCountLabel.text = "\(story.storyPoints.count) " + NSLocalizedString("Substring.Points", comment: String())
+        let substringPoints = story.storyPoints.count % 10 == 1 ? NSLocalizedString("Substring.Point", comment: String()) : NSLocalizedString("Substring.Points", comment: String())
+        self.storyPointsCountLabel.text = "\(story.storyPoints.count) " + substringPoints
     }
     
     func populateBackgroundImage(story: Story) {
@@ -93,6 +94,8 @@ class ShareStoryViewController: ViewController {
     
     func populateAddress(story: Story) {
         // TODO:
+        let substringPoints = story.storyPoints.count % 10 == 1 ? NSLocalizedString("Substring.Point", comment: String()) : NSLocalizedString("Substring.Points", comment: String())
+        self.storyAddressLabel.text = "\(story.storyPoints.count) " + substringPoints
     }
     
     func populateUserName(story: Story) {

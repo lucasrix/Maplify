@@ -95,6 +95,7 @@
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
 "Substring.Points" = "points";
+"Substring.Point" = "point";
 
 //Buttons
 "Button.Ok" = "OK";

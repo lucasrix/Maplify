@@ -109,6 +109,17 @@ class AudioRecorderHelper: NSObject {
         self.delegate?.audioRecordDidFinishRecording(true, filePath: filePath())
     }
     
+    // MARK: - reload audio recording
+    func reloadRecording() {
+        self.pauseRecording()
+        audioRecorder.stop()
+        audioRecorder = nil
+        self.delegate.audioRecordDidUpdateProgress(0)
+        self.recordProgress = 0
+        self.isRecording = false
+        self.setupRecord()
+    }
+    
     // MARK: - private
     private func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)

@@ -257,8 +257,8 @@
                                                                 <constraint firstAttribute="width" secondItem="2Nj-57-fDk" secondAttribute="height" multiplier="1:1" id="wkp-lL-JoW"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-C3-Ero">
-                                                            <rect key="frame" x="19" y="19" width="45" height="45"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-C3-Ero">
+                                                            <rect key="frame" x="19" y="18" width="45" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="45" id="NgX-0u-iTa"/>
                                                                 <constraint firstAttribute="height" constant="45" id="iXH-Ur-Qd0"/>
@@ -2645,15 +2645,28 @@
                                             <action selector="textTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="VGU-Yd-c8w"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIB-za-Y8F">
+                                        <rect key="frame" x="328" y="13" width="39" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="39" id="ZLv-tH-TNh"/>
+                                            <constraint firstAttribute="height" constant="39" id="uxe-9u-VzR"/>
+                                        </constraints>
+                                        <state key="normal" image="icoCancel"/>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="ESY-vW-ls9" eventType="touchUpInside" id="bRy-R7-0N3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6SM-gk-ccV" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="4Yc-WE-Mpv"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="6SM-gk-ccV" secondAttribute="height" id="7Gk-Yd-aEn"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" multiplier="1.08" id="HI2-Ws-mDX"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="top" secondItem="6SM-gk-ccV" secondAttribute="bottom" constant="10" id="L19-13-fJI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bIB-za-Y8F" secondAttribute="trailing" constant="8" id="OHC-kD-R2y"/>
                                     <constraint firstItem="Usv-9f-scE" firstAttribute="centerX" secondItem="GpZ-vu-ZtS" secondAttribute="centerX" id="UVl-JE-Kus"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="top" secondItem="Usv-9f-scE" secondAttribute="bottom" constant="60" id="WSe-ki-90I"/>
                                     <constraint firstItem="ysw-b6-S8l" firstAttribute="height" secondItem="gJ8-Yf-bEx" secondAttribute="height" id="Wg6-zv-jmc"/>
+                                    <constraint firstItem="bIB-za-Y8F" firstAttribute="top" secondItem="GpZ-vu-ZtS" secondAttribute="top" constant="13" id="ZFj-Fj-VJx"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="trailing" secondItem="ysw-b6-S8l" secondAttribute="trailing" id="ZWh-OA-W3s"/>
                                     <constraint firstItem="6SM-gk-ccV" firstAttribute="top" secondItem="ysw-b6-S8l" secondAttribute="bottom" constant="10" id="Zn4-2C-I59"/>
                                     <constraint firstItem="gJ8-Yf-bEx" firstAttribute="leading" secondItem="ysw-b6-S8l" secondAttribute="leading" id="a5S-2f-kNv"/>
@@ -3159,11 +3172,28 @@
                                             <action selector="recordTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="awq-Iv-KMo"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLY-lN-6QL">
+                                        <rect key="frame" x="127" y="122" width="120" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="QMr-tS-vsc"/>
+                                            <constraint firstAttribute="width" constant="120" id="fDW-wX-3BM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="2" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                        <state key="normal" title="Delete" image="icoCancel"/>
+                                        <connections>
+                                            <action selector="deleteTapped:" destination="odW-8k-yjr" eventType="touchUpInside" id="4HF-X3-lSK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="jYF-8W-iSH" firstAttribute="centerX" secondItem="lhB-HF-bea" secondAttribute="centerX" id="7tr-3b-k0V"/>
                                     <constraint firstItem="jYF-8W-iSH" firstAttribute="top" secondItem="lhB-HF-bea" secondAttribute="top" constant="35" id="ads-pc-scU"/>
+                                    <constraint firstItem="wLY-lN-6QL" firstAttribute="top" secondItem="jYF-8W-iSH" secondAttribute="bottom" constant="15" id="bXz-ex-KsO"/>
+                                    <constraint firstItem="wLY-lN-6QL" firstAttribute="centerX" secondItem="lhB-HF-bea" secondAttribute="centerX" id="e7Q-Y3-4gi"/>
                                 </constraints>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-yP-LkD">
@@ -3199,6 +3229,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="audioPlot" destination="CCK-Ng-tHv" id="P8i-mn-ZlQ"/>
+                        <outlet property="deleteButton" destination="wLY-lN-6QL" id="BFr-hS-g6O"/>
                         <outlet property="progressBar" destination="qGa-yP-LkD" id="qXm-U9-JIr"/>
                         <outlet property="progressBarHeightConstraint" destination="hVa-9o-x9f" id="1wf-vQ-LIU"/>
                         <outlet property="recordButton" destination="jYF-8W-iSH" id="J4n-u1-fhe"/>
@@ -3315,6 +3346,7 @@
         <image name="empty-circle" width="31" height="31"/>
         <image name="fill1" width="14" height="17"/>
         <image name="icoBottom" width="29" height="29"/>
+        <image name="icoCancel" width="16" height="16"/>
         <image name="icoCircleChecked" width="29" height="29"/>
         <image name="icoCreatePoint" width="93" height="93"/>
         <image name="icoMinus" width="29" height="29"/>

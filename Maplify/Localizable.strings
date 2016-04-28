@@ -133,6 +133,8 @@
 "Button.EditStory" = "Edit story";
 "Button.DeleteStory" = "Delete story";
 "Button.ShareStory" = "Share story";
+"Button.ShareToFacebook" = "Share to Facebook";
+"Button.CopyLink" = "Copy Link";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

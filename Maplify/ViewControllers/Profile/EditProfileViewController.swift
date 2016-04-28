@@ -31,7 +31,6 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     
     var profileId: Int = 0
     var user: User! = nil
-    var updatedImage: UIImage! = nil
     var updateContentClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
@@ -170,8 +169,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     }
     
     func updateProfile(profile: Profile) {
-        let photo = (self.updatedImage != nil) ? UIImagePNGRepresentation(self.updatedImage) : nil
-        ApiClient.sharedClient.updateProfile(profile, photo: photo,
+        ApiClient.sharedClient.updateProfile(profile, photo: nil,
                                              success: { [weak self] (response) in
                                                 self?.hideProgressHUD()
                                                 

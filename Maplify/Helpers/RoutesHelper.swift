@@ -67,7 +67,6 @@ extension UIViewController {
     func routesOpenEditProfileController(profileId: Int, photo: UIImage!, updateContentClosure: (() -> ())!) {
         let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
         editProfileViewController.profileId = profileId
-        editProfileViewController.updatedImage = photo
         editProfileViewController.updateContentClosure = updateContentClosure
         self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }

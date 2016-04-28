@@ -161,6 +161,9 @@
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
 		CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
 		CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
+		CDF6D8971CD26007001387EC /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
+		CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
+		CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
@@ -334,6 +337,9 @@
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
 		CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsTableViewCell.swift; sourceTree = "<group>"; };
 		CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateViewController.swift; sourceTree = "<group>"; };
+		CDF6D8961CD26007001387EC /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
+		CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryPointViewController.swift; sourceTree = "<group>"; };
+		CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryViewController.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -610,6 +616,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDF6D8981CD2846C001387EC /* Share */,
 				85E915961CBD3DB00041182F /* Profile */,
 				8C9094D21CAD5BE4002F26A9 /* Settings */,
 				F01A89531CA75114008B8702 /* Menu */,
@@ -698,6 +705,7 @@
 				CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */,
 				8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */,
 				8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */,
+				CDF6D8961CD26007001387EC /* ShareController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -948,6 +956,15 @@
 				CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */,
 			);
 			path = StoryCreate;
+			sourceTree = "<group>";
+		};
+		CDF6D8981CD2846C001387EC /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */,
+				CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		F01A89531CA75114008B8702 /* Menu */ = {
@@ -1248,11 +1265,14 @@
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */,
+				CDF6D8971CD26007001387EC /* ShareController.swift in Sources */,
 				CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */,
 				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
+				CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,

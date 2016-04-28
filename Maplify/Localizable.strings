@@ -58,6 +58,8 @@
 "Controller.EditStory" = "Edit Story";
 "Controller.AddPosts" = "Add Posts";
 "Controller.NewStory" = "New Story";
+"Controller.SharePost" = "Share Post";
+"Controller.ShareStory" = "Share Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -128,6 +130,9 @@
 "Button.AllOverTheWorld" = "All over the world";
 "Button.NearMe" = "Near me";
 "Button.AddPosts" = "Add Posts";
+"Button.EditStory" = "Edit story";
+"Button.DeleteStory" = "Delete story";
+"Button.ShareStory" = "Share story";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

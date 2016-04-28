@@ -65,6 +65,8 @@ struct Controllers {
     static let storyEditController = "StoryEditController"
     static let storyAddPostsViewController = "StoryAddPostsViewController"
     static let storyCreateViewController = "StoryCreateViewController"
+    static let shareStoryPointViewController = "ShareStoryPointViewController"
+    static let shareStoryViewController = "ShareStoryViewController"
 }
 
 struct AppIDs {

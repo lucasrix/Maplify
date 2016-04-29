@@ -25,6 +25,8 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var detailEditViewHeight: NSLayoutConstraint!
     @IBOutlet weak var charactersNumberLabelViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var storyPointKindImageView: UIImageView!
+    @IBOutlet weak var colorView: UIView!
     
     var editInfoViewController: StoryPointEditInfoViewController! = nil
     var storyPointId: Int = 0
@@ -105,11 +107,12 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         let storyPoint = StoryPointManager.find(self.storyPointId)
         if storyPoint != nil {
             if  storyPoint.attachment != nil {
-                let attachmentUrl = NSURL(string: storyPoint.attachment.file_url)
-                self.storyPointImageView.sd_setImageWithURL(attachmentUrl)
+                self.populateAttachment(storyPoint)
                 self.charactersNumberLabelViewHeight.constant = 0
                 self.charactersCountLabel.hidden = true
             } else {
+                self.colorView.hidden = true
+                self.storyPointImageView.hidden = true
                 self.storyPointImageView.hidden = true
                 self.setupDescriptionInputField(storyPoint)
             }
@@ -122,6 +125,38 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         }
     }
     
+    func populateAttachment(storyPoint: StoryPoint) {
+        var attachmentUrl: NSURL! = nil
+        var placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
+        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            attachmentUrl = storyPoint.attachment.file_url.url
+        } else if storyPoint.kind == StoryPointKind.Text.rawValue {
+            attachmentUrl = nil
+            placeholderImage = nil
+        } else {
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        }
+        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+            }
+            self?.populateKindImage(storyPoint)
+        }
+    }
+    
+    func populateKindImage(storyPoint: StoryPoint) {
+        if storyPoint.kind == StoryPointKind.Text.rawValue {
+            self.storyPointKindImageView.image = nil
+        } else if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            self.storyPointKindImageView.image = nil
+        } else if storyPoint.kind == StoryPointKind.Audio.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
+        } else if storyPoint.kind == StoryPointKind.Video.rawValue {
+            self.storyPointKindImageView.image = UIImage(named: CellImages.discoverStoryPointDetailIconVideo)
+        }
+        self.storyPointKindImageView.hidden = storyPoint.kind == StoryPointKind.Text.rawValue || storyPoint.kind == StoryPointKind.Photo.rawValue
+    }
+
     func setupStories() {
         self.showProgressHUD(self.editInfoViewController.tableView)
         ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in

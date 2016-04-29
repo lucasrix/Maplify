@@ -2166,6 +2166,17 @@
                                                             </mask>
                                                         </variation>
                                                     </imageView>
+                                                    <view alpha="0.23000000417232513" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-QY-CTC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dt4-O5-Jb1">
+                                                        <rect key="frame" x="125" y="125" width="125" height="125"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="125" id="KgQ-lO-zLL"/>
+                                                            <constraint firstAttribute="width" constant="125" id="Lmg-8a-SLO"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="0.73670031390000001" blue="0.82033866710000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -2173,14 +2184,20 @@
                                                     <constraint firstItem="bP9-NY-9im" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="1CP-T2-h93"/>
                                                     <constraint firstAttribute="trailing" secondItem="bP9-NY-9im" secondAttribute="trailing" id="1yB-dl-wZ9"/>
                                                     <constraint firstAttribute="bottom" secondItem="Dlu-dp-LAJ" secondAttribute="bottom" id="982-Ei-HjC"/>
+                                                    <constraint firstItem="dt4-O5-Jb1" firstAttribute="centerX" secondItem="fs7-sO-daw" secondAttribute="centerX" id="BWz-Zz-v3x"/>
+                                                    <constraint firstItem="QZf-QY-CTC" firstAttribute="leading" secondItem="fs7-sO-daw" secondAttribute="leading" id="DVl-zc-kaI"/>
+                                                    <constraint firstItem="QZf-QY-CTC" firstAttribute="trailing" secondItem="fs7-sO-daw" secondAttribute="trailing" id="HsV-Gp-PQR"/>
                                                     <constraint firstItem="fs7-sO-daw" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="Ja0-dY-1ey"/>
                                                     <constraint firstAttribute="bottom" secondItem="fs7-sO-daw" secondAttribute="bottom" id="KnO-hd-tEb"/>
                                                     <constraint firstItem="Dlu-dp-LAJ" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="VZw-n0-jua"/>
                                                     <constraint firstAttribute="trailing" secondItem="fs7-sO-daw" secondAttribute="trailing" id="Wla-TN-wzj"/>
+                                                    <constraint firstItem="QZf-QY-CTC" firstAttribute="bottom" secondItem="fs7-sO-daw" secondAttribute="bottom" id="Xtu-oo-mDU"/>
                                                     <constraint firstItem="bP9-NY-9im" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="top" id="bDt-hF-bZA"/>
                                                     <constraint firstAttribute="height" constant="375" id="iNo-z1-m0L"/>
+                                                    <constraint firstItem="dt4-O5-Jb1" firstAttribute="centerY" secondItem="fs7-sO-daw" secondAttribute="centerY" id="msU-LV-1JP"/>
                                                     <constraint firstItem="fs7-sO-daw" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="top" id="qWj-8p-Idc"/>
                                                     <constraint firstAttribute="trailing" secondItem="Dlu-dp-LAJ" secondAttribute="trailing" id="r1e-mo-Vy8"/>
+                                                    <constraint firstItem="QZf-QY-CTC" firstAttribute="top" secondItem="fs7-sO-daw" secondAttribute="top" id="y6G-2b-f9O"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -2229,6 +2246,7 @@
                         <outlet property="charactersCountLabel" destination="uRd-Kv-4fy" id="f2H-RF-YSQ"/>
                         <outlet property="charactersNumberLabelViewHeight" destination="KfL-un-RlP" id="e6I-c8-vw9"/>
                         <outlet property="charsNumberLabel" destination="8D7-EA-Lqn" id="118-dn-QOx"/>
+                        <outlet property="colorView" destination="QZf-QY-CTC" id="GTx-aO-TLK"/>
                         <outlet property="contentScrollView" destination="r1g-rn-3fF" id="9du-aF-JOa"/>
                         <outlet property="contentViewHeightConstraint" destination="4W4-kl-eZK" id="Mkp-iv-0NY"/>
                         <outlet property="descriptionButton" destination="fyf-UK-pF3" id="dIB-4D-c19"/>
@@ -2239,6 +2257,7 @@
                         <outlet property="detailEditView" destination="zcQ-hV-A8g" id="flU-G9-Y34"/>
                         <outlet property="detailEditViewHeight" destination="iNo-z1-m0L" id="mwR-Za-zbn"/>
                         <outlet property="storyPointImageView" destination="fs7-sO-daw" id="JEV-4a-CUK"/>
+                        <outlet property="storyPointKindImageView" destination="dt4-O5-Jb1" id="twj-QS-FYV"/>
                         <outlet property="storyView" destination="6xo-ig-u7Y" id="Axg-iA-F5h"/>
                     </connections>
                 </viewController>

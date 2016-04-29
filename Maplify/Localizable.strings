@@ -58,6 +58,8 @@
 "Controller.EditStory" = "Edit Story";
 "Controller.AddPosts" = "Add Posts";
 "Controller.NewStory" = "New Story";
+"Controller.SharePost" = "Share Post";
+"Controller.ShareStory" = "Share Story";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -93,6 +95,7 @@
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
 "Substring.Points" = "points";
+"Substring.Point" = "point";
 
 //Buttons
 "Button.Ok" = "OK";
@@ -128,6 +131,11 @@
 "Button.AllOverTheWorld" = "All over the world";
 "Button.NearMe" = "Near me";
 "Button.AddPosts" = "Add Posts";
+"Button.EditStory" = "Edit story";
+"Button.DeleteStory" = "Delete story";
+"Button.ShareStory" = "Share story";
+"Button.ShareToFacebook" = "Share to Facebook";
+"Button.CopyLink" = "Copy Link";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -146,6 +154,7 @@
 "Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
 "Alert.AddPlaceOrLocation" = "Please add place or location!";
 "Alert.EnterDescription" = "Please enter a description";
+"Alert.SharingError" = "Some error occured during sharing";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

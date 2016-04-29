@@ -159,6 +159,20 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     
+    func routesOpenShareStoryPointViewController(storyPointId: Int, completion: (() -> ())!) {
+        let shareStoryPointViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.shareStoryPointViewController) as! ShareStoryPointViewController
+        shareStoryPointViewController.storyPointId = storyPointId
+        shareStoryPointViewController.completion = completion
+        self.navigationController?.pushViewController(shareStoryPointViewController, animated: true)
+    }
+    
+    func routesOpenShareStoryViewController(storyId: Int, completion: (() -> ())!) {
+        let shareStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.shareStoryViewController) as! ShareStoryViewController
+        shareStoryViewController.storyId = storyId
+        shareStoryViewController.completion = completion
+        self.navigationController?.pushViewController(shareStoryViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController

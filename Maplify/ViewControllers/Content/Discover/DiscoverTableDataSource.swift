@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kTableViewHeaderFooterHeightMin: CGFloat = 0.0001
+
 protocol DiscoverTableDataSourceDelegate {
     func discoverTableDidScroll(scrollView: UIScrollView)
 }
@@ -60,7 +62,11 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (self.profileView != nil) ? self.profileView.contentHeight() : 0.00001
+        return (self.profileView != nil) ? self.profileView.contentHeight() : kTableViewHeaderFooterHeightMin
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return kTableViewHeaderFooterHeightMin
     }
     
     //MARK: - UIScrollViewDelegate

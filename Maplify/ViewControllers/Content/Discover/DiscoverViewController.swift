@@ -14,19 +14,6 @@ let kDiscoverItemsInPage = 25
 let kDiscoverFirstPage = 1
 let kDiscoverBarMinLimitOpacity: CGFloat = 0.2
 
-enum EditContentOption: Int {
-    case EditPost
-    case DeletePost
-    case Directions
-    case SharePost
-}
-
-enum DefaultContentOption: Int {
-    case Directions
-    case SharePost
-    case ReportAbuse
-}
-
 enum RequestState: Int {
     case Ready
     case Loading
@@ -371,45 +358,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func showEditContentMenu(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
-            self.showEditContentActionSheet(storyPointId)
+            
+            self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
+                
+                if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
+                    self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
+                        self?.storyDataSource.reloadTable()
+                        })
+                } else if selectedIndex == StoryPointEditContentOption.DeletePost.rawValue {
+                    self?.deleteStoryPoint(storyPointId)
+                } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                }
+            })
         } else {
-            self.showDefaultContentActionSheet(storyPointId)
+            self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                
+                if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                }
+            })
         }       
     }
     
-    func showEditContentActionSheet(storyPointId: Int) {
-        let editPost = NSLocalizedString("Button.EditPost", comment: String())
-        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [editPost, deletePost, directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
-            if buttonIndex == EditContentOption.EditPost.rawValue {
-                self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
-                    self?.storyDataSource.reloadTable()
-                })
-            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                self?.deleteStoryPoint(storyPointId)
-            }
-            }
-        )
-    }
-    
-    func showDefaultContentActionSheet(storyPointId: Int) {
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let reportAbuse = NSLocalizedString("Button.ReportAbuse", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: reportAbuse, buttons: buttons, handle: { (buttonIndex) in
-                //TODO: -
-            }
-        )
-    }
-
     func deleteStoryPoint(storyPointId: Int) {
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
         let yesButton = NSLocalizedString("Button.Yes", comment: String())
@@ -437,38 +408,44 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    func shareStoryPoint(storyPointId: Int) {
+        self.routesOpenShareStoryPointViewController(storyPointId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
     // MARK: - story
     func showEditStoryContentMenu(storyId: Int) {
         let story = StoryManager.find(storyId)
         if story.user.profile.id == SessionManager.currentUser().profile.id {
-            self.showEditStoryContentActionSheet(storyId)
+            self.showEditStoryContentActionSheet({ [weak self] (selectedIndex) in
+                if selectedIndex == StoryEditContentOption.EditStory.rawValue {
+                    self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
+                        self?.storyDataSource.reloadTable()
+                        })
+                } else if selectedIndex == StoryEditContentOption.DeleteStory.rawValue {
+                    self?.deleteStory(storyId)
+                } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                }
+            })
         } else {
-            self.showDefaultContentActionSheet(storyId)
+            self.showStoryDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                if selectedIndex == StoryDefaultContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                }
+            })
         }
-    }
-    
-    func showEditStoryContentActionSheet(storyId: Int) {
-        let editPost = NSLocalizedString("Button.EditPost", comment: String())
-        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [editPost, deletePost, directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
-            if buttonIndex == EditContentOption.EditPost.rawValue {
-                self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
-                    self?.storyDataSource.reloadTable()
-                })
-            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                self?.deleteStory(storyId)
-            }
-            }
-        )
     }
     
     func deleteStory(storyId: Int) {
         // TODO: delete
+    }
+    
+    func shareStory(storyId: Int) {
+        self.routesOpenShareStoryViewController(storyId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     func searchButtonTapped() {

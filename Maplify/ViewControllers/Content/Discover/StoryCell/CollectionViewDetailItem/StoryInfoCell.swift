@@ -19,7 +19,8 @@ class StoryInfoCell: CSCollectionViewCell {
     }
     
     func populateStoryPointsCount(story: Story) {
-        self.storyPointsCountLabel.text = "\(story.storyPoints.count) " + NSLocalizedString("Substring.Points", comment: String())
+        let localizedString = NSString.localizedStringWithFormat(NSLocalizedString("Count.Storypoints", comment: String()), story.storyPoints.count)
+        self.storyPointsCountLabel.text = String(localizedString)
     }
     
     func populateBackgroundImage(story: Story) {

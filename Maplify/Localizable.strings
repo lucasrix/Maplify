@@ -155,6 +155,7 @@
 "Alert.AddPlaceOrLocation" = "Please add place or location!";
 "Alert.EnterDescription" = "Please enter a description";
 "Alert.SharingError" = "Some error occured during sharing";
+"Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

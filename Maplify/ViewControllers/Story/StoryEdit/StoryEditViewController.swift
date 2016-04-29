@@ -109,7 +109,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        if self.storyNameLabel.text != String() {
+        if self.storyNameTextField.text != String() {
             self.updateStory()
         }
     }

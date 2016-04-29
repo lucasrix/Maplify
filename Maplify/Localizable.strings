@@ -89,7 +89,7 @@
 "Label.Description" = "Description";
 "Label.PostsInThisStory" = "Posts in this story";
 "Label.MyPosts" = "My Posts";
-
+"Label.PressAndHold" = "Press & hold anywhere";
 
 //Subsrtings
 "Substring.Of" = "of";

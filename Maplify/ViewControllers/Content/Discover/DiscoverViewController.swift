@@ -206,6 +206,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.storyActiveModel.removeData()
         if self.supportUserProfile {
+            self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
             let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)

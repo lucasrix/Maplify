@@ -243,9 +243,17 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
-            self?.hideProgressHUD()
-            self?.storyPointUpdateHandler()
-            self?.navigationController?.popViewControllerAnimated(true)
+            
+            ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
+                success: { [weak self] (response) in
+                    StoryManager.saveStories(response as! [Story])
+                    self?.hideProgressHUD()
+                    self?.storyPointUpdateHandler()
+                    self?.navigationController?.popViewControllerAnimated(true)
+                }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                })
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

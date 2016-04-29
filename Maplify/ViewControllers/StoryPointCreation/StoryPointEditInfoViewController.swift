@@ -180,9 +180,17 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
                 try! realm.write {
                     realm.add(response as! StoryPoint, update: true)
                 }
-                self?.hideProgressHUD()
-                self?.navigationController?.setNavigationBarHidden(true, animated: false)
-                self?.navigationController?.popToRootViewControllerAnimated(true)
+                
+                ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
+                    success: { [weak self] (response) in
+                        StoryManager.saveStories(response as! [Story])
+                        self?.hideProgressHUD()
+                        self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                        self?.navigationController?.popToRootViewControllerAnimated(true)
+                    }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                        self?.hideProgressHUD()
+                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                    })
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

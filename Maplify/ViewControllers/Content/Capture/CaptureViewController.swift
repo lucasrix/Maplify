@@ -17,7 +17,6 @@ let kDefaulMapZoom: Float = 13
 
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
-    @IBOutlet weak var addStoryPointImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
@@ -48,7 +47,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
-        self.setupAddStoryPointImageView()
     }
     
     func setupCollectionView() {
@@ -93,14 +91,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.googleMapService.setMapType(kGMSTypeNormal)
         self.googleMapService.delegate = self
         self.mapView.service = self.googleMapService
-        
-        self.loadDataFromRemote()
-    }
     
-    func setupAddStoryPointImageView() {
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(CaptureViewController.addStoryPointImageDidTap(_:)))
-        gesture.minimumPressDuration = kMinimumPressDuration
-        self.addStoryPointImageView.addGestureRecognizer(gesture)
+        self.loadDataFromRemote()
     }
     
     func updateStoryPointDetails(storyPoints: [StoryPoint]) {
@@ -164,11 +156,15 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     // MARK: - actions
-    func addStoryPointImageDidTap(touchGesture: UITapGestureRecognizer) {
-        if touchGesture.state == .Began {
-            let point = touchGesture.locationInView(self.mapView)
-            let location = self.googleMapService?.locationFromTouch(self.mapView, point: point)
-            self.addStoryPointButtonTapped(location: location!)
+    func locationButtonTapped() {
+        self.googleMapService.moveToDefaultRegion()
+    }
+    
+    func searchButtonTapped() {
+        if self.placeSearchHelper.controllerVisible {
+            self.placeSearchHelper.hideGooglePlaceSearchController()
+        } else {
+            self.placeSearchHelper.showGooglePlaceSearchController()
         }
     }
     
@@ -197,16 +193,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
     
-    func locationButtonTapped() {
-        self.googleMapService.moveToDefaultRegion()
-    }
-    
-    func searchButtonTapped() {
-        if self.placeSearchHelper.controllerVisible {
-            self.placeSearchHelper.hideGooglePlaceSearchController()
-        } else {
-            self.placeSearchHelper.showGooglePlaceSearchController()
-        }
+    func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
+        let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
+        self.addStoryPointButtonTapped(location: coordinate)
     }
     
     // MARK: - CSBaseCollectionDataSourceDelegate

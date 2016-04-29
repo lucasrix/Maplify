@@ -165,6 +165,9 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
             } else {
                self.updateProfile(profile)
             }
+        } else {
+            self.firstNameTextField.becomeFirstResponder()
+            self.avoidingKeyboardScrollView.scrollToActiveTextField()
         }
     }
     

@@ -89,7 +89,7 @@
 "Label.Description" = "Description";
 "Label.PostsInThisStory" = "Posts in this story";
 "Label.MyPosts" = "My Posts";
-
+"Label.PressAndHold" = "Press & hold anywhere";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -155,6 +155,7 @@
 "Alert.AddPlaceOrLocation" = "Please add place or location!";
 "Alert.EnterDescription" = "Please enter a description";
 "Alert.SharingError" = "Some error occured during sharing";
+"Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";
@@ -165,3 +166,5 @@
 "Error.InvalidFirstName" = "Enter First Name and/or Last Name";
 "Error.EnterValidEmail" = "Enter valid email address";
 "Error.EnterValidPassword" = "Please enter valid password";
+"Error.EmptyStoryName" = "Name can't be blank";
+"Error.InternalServerError" = "Internal server error";

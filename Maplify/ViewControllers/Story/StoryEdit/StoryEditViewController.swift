@@ -60,7 +60,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     func setupData() {
         let story = StoryManager.find(self.storyId)
-        self.storyPoints = Array(story.storyPoints)
+        self.storyPoints = Array(story.storyPoints.sorted("created_at", ascending: false))
     }
     
     func setupStoryNameViews() {
@@ -109,7 +109,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        if self.storyNameLabel.text != String() {
+        if self.storyNameTextField.text != String() {
             self.updateStory()
         }
     }

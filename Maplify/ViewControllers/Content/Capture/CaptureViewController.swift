@@ -18,7 +18,9 @@ let kDefaulMapZoom: Float = 13
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var pressAndHoldLabel: UILabel!
+    @IBOutlet weak var pressAndHoldView: UIView!
+
     var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
     var storyPointDataSource: StoryPointDataSource! = nil
@@ -47,6 +49,12 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
+        self.setupPressAndHoldView()
+    }
+    
+    func setupPressAndHoldView() {
+        self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
+        self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
     }
     
     func setupCollectionView() {
@@ -194,6 +202,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
+        self.pressAndHoldView.hidden = true
+        self.pressAndHoldLabel.hidden = true
         let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
         self.addStoryPointButtonTapped(location: coordinate)
     }

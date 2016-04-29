@@ -61,8 +61,8 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
     }
     
     func populateAddress(storyPoint: StoryPoint) {
-        self.storyPointAddressLabel.text = storyPoint.location.city
-        self.storyPointAddressImageView.hidden = storyPoint.location.city == String()
+        self.storyPointAddressLabel.text = storyPoint.location.address
+        self.storyPointAddressImageView.hidden = storyPoint.location.address == String()
     }
     
     func populateUserName(storyPoint: StoryPoint) {

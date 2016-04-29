@@ -56,9 +56,6 @@
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Py5-Yk-Qp4" customClass="AutocompleteField" customModule="Maplify" customModuleProvider="target">
                     <rect key="frame" x="68" y="0.0" width="373" height="37"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="37" id="F7k-DW-J72"/>
-                    </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -82,6 +79,7 @@
                 <constraint firstAttribute="bottom" secondItem="200-cW-2dz" secondAttribute="bottom" id="CBs-QN-3Bz"/>
                 <constraint firstItem="e6w-ck-M78" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="IcE-Ld-GHX"/>
                 <constraint firstItem="200-cW-2dz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="JYg-Wx-PQu"/>
+                <constraint firstItem="Py5-Yk-Qp4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LDU-qh-9qo"/>
                 <constraint firstItem="U7G-fz-nwr" firstAttribute="top" secondItem="200-cW-2dz" secondAttribute="top" id="LSm-GM-Jut"/>
                 <constraint firstItem="200-cW-2dz" firstAttribute="top" secondItem="Ybd-5P-2BZ" secondAttribute="bottom" constant="3" id="Pj1-m0-d27"/>
                 <constraint firstItem="Ybd-5P-2BZ" firstAttribute="top" secondItem="Py5-Yk-Qp4" secondAttribute="bottom" id="f8K-Cb-Vgd"/>

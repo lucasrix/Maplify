@@ -91,11 +91,17 @@ class ApiClient {
                 }
             }
         } else {
-            if let dataDictionary = (payload as! [String : AnyObject])["error"] {
-                self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
-            } else {
+            if statusCode == Network.failureStatuCode500 {
                 dispatch_async(dispatch_get_main_queue()) {
-                    failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
+                    failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
+                }
+            } else {
+                if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+                    self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
+                    }
                 }
             }
         }

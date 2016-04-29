@@ -154,6 +154,7 @@
 "Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
 "Alert.AddPlaceOrLocation" = "Please add place or location!";
 "Alert.EnterDescription" = "Please enter a description";
+"Alert.SharingError" = "Some error occured during sharing";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

@@ -17,11 +17,11 @@ class FacebookShareHelper: NSObject {
     
     func shareContent(controller: UIViewController, title: String, description: String, imageUrl: NSURL!, callback: ((success: Bool) -> ())!) {
         self.callback = callback
-        self.checkPermissions { (success) in
-            if success == true {
-                self.post(controller, title: title, description: description, imageUrl: imageUrl)
+        self.checkPermissions { [weak self] (success) in
+            if success {
+                self?.post(controller, title: title, description: description, imageUrl: imageUrl)
             } else {
-                self.callback(success: false)
+                self?.callback(success: false)
             }
         }
     }

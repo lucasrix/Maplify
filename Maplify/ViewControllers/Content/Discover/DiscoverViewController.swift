@@ -9,6 +9,7 @@
 import INTULocationManager
 import RealmSwift
 import INSPullToRefresh.UIScrollView_INSPullToRefresh
+import Tailor
 
 let kDiscoverItemsInPage = 25
 let kDiscoverFirstPage = 1
@@ -321,7 +322,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
             
-            let list: NSArray = response["discovered"] as! NSArray
+            let list: [DiscoverItem] = (response as! [String: AnyObject]).relations("discovered")!
             self?.tableView.ins_setInfinityScrollEnabled(list.count == kDiscoverItemsInPage)
             self?.requestState = RequestState.Ready
             

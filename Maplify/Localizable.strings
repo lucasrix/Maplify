@@ -145,6 +145,7 @@
 "Alert.CreateStory.Description" = "Give your story a name. e.g. Trip to Mumbai or My favorite things in Soho or How did I get here";
 "Alert.DeleteStoryPoint" = "Are you sure you want to delete?";
 "Alert.AddPlaceOrLocation" = "Please add place or location!";
+"Alert.EnterDescription" = "Please enter a description";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

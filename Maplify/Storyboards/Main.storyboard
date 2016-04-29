@@ -2986,6 +2986,7 @@
                         <outlet property="placeOrLocationLabel" destination="xZI-Lj-zz9" id="mOM-ku-jSq"/>
                         <outlet property="placeOrLocationTextField" destination="hqi-Df-0wE" id="QtH-IT-94T"/>
                         <outlet property="tableView" destination="NQp-Ck-Jn8" id="K2U-XN-uy7"/>
+                        <outlet property="tableViewHeightConstraint" destination="Ksz-Vr-b31" id="dX6-35-5Qv"/>
                         <outlet property="tagsLabel" destination="xeO-2E-9cH" id="VKU-Xw-qrz"/>
                         <outlet property="tagsTextField" destination="0GQ-2O-Ozp" id="Oeg-Ut-fbW"/>
                     </connections>

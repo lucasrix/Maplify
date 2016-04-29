@@ -92,6 +92,10 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     func setupEditStoryPointInfoViewController() {
         let identifier = Controllers.storyPointEditInfoViewController
         self.editInfoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(identifier) as! StoryPointEditInfoViewController
+        self.editInfoViewController.updateContentClosure = { [weak self] () in
+            self?.setupContentHeight((self?.descriptionButton.selected)!)
+        }
+        self.editInfoViewController.keyboardAvoidingModeEnabled = false
         self.configureChildViewController(self.editInfoViewController, onView: self.storyView)
         self.editInfoViewController.tableView.scrollEnabled = false
         self.editInfoViewController.configure(self.storyPointId)
@@ -138,8 +142,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     
     func setupContentHeight(expanded: Bool) {
         let infoHeight = self.editInfoViewController.contentHeight()
-        let storyTableViewHeight = self.editInfoViewController.tableView.contentSize.height
-        let updatedHeight = 0 + infoHeight + storyTableViewHeight + self.detailEditViewHeight.constant + self.detailsViewContentHeight()
+        let updatedHeight = infoHeight + self.detailEditViewHeight.constant + self.detailsViewContentHeight()
         self.detailEditViewHeight.constant = self.detailsViewContentHeight()
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, updatedHeight)
         self.contentViewHeightConstraint.constant = updatedHeight
@@ -198,7 +201,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         
         var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!, "text": self.descriptionTextView.text]
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
-        storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : ["nil"]
+        storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
         
         print(storyPointDict)
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in

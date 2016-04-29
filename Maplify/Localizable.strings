@@ -166,3 +166,4 @@
 "Error.InvalidFirstName" = "Enter First Name and/or Last Name";
 "Error.EnterValidEmail" = "Enter valid email address";
 "Error.EnterValidPassword" = "Please enter valid password";
+"Error.EmptyStoryName" = "Name can't be blank";

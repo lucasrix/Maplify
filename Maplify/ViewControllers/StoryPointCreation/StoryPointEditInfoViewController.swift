@@ -29,6 +29,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     @IBOutlet weak var addToStoryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId: Int = 0
@@ -39,6 +40,8 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     var selectedStoriesActiveModel: CSActiveModel! = nil
     var selectedStoriesDataSoure: CSBaseTableDataSource! = nil
     var storyPointId: Int = 0
+    var updateContentClosure: (() -> ())! = nil
+    var keyboardAvoidingModeEnabled: Bool = true
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -51,6 +54,13 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - setup
     func setup() {
         self.setupViews()
+        self.setupKeyboardAvoidingScrollView()
+    }
+    
+    func setupKeyboardAvoidingScrollView() {
+        if self.keyboardAvoidingModeEnabled == false {
+            self.keyboardAvoidingScrollView.disableKeyboardAvoiding()
+        }
     }
     
     func setupViews() {
@@ -85,6 +95,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint != nil {
             self.captionTextField.text = storyPoint.caption
+            self.placeOrLocationTextField.text = storyPoint.location.address
         }
     }
     
@@ -118,6 +129,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.selectedStoriesActiveModel = CSActiveModel()
         self.selectedStoriesActiveModel.addItems(selectedStories, cellIdentifier: String(SelectedStoryCell), sectionTitle: nil, delegate: self)
         self.selectedStoriesDataSoure = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.selectedStoriesActiveModel, delegate: self)
+        self.tableViewHeightConstraint.constant = CGFloat(self.selectedStories.count) * kStoryCellHeight
         self.selectedStoriesDataSoure.reloadTable()
     }
     
@@ -148,31 +160,37 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     
     // MARK: - private
     func remotePostStoryPoint() {
-        self.showProgressHUD()
-        let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
-        let kind = self.storyPointKind.rawValue
-        var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
-                                            "kind":kind,
-                                            "text":self.storyPointDescription,
-                                        "location":locationDict]
-        if self.storyPointKind != StoryPointKind.Text {
-            storyPointDict["attachment_id"] = self.storyPointAttachmentId
-        }
-        if self.selectedStories.count > 0 {
-            storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
-        }
-        
-        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
-            let realm = try! Realm()
-            try! realm.write {
-                realm.add(response as! StoryPoint, update: true)
+        if self.storyPointDescription.length > 0 {
+            self.showProgressHUD()
+            let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude, "address": self.placeOrLocationTextField.text!]
+            let kind = self.storyPointKind.rawValue
+            var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
+                                                       "kind":kind,
+                                                       "text":self.storyPointDescription,
+                                                       "location":locationDict]
+            if self.storyPointKind != StoryPointKind.Text {
+                storyPointDict["attachment_id"] = self.storyPointAttachmentId
             }
-            self?.hideProgressHUD()
-            self?.navigationController?.setNavigationBarHidden(true, animated: false)
-            self?.navigationController?.popToRootViewControllerAnimated(true)
+            if self.selectedStories.count > 0 {
+                storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
+            }
+            
+            ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.add(response as! StoryPoint, update: true)
+                }
+                self?.hideProgressHUD()
+                self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                self?.navigationController?.popToRootViewControllerAnimated(true)
             }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            }
+        } else {
+            let messasge = NSLocalizedString("Alert.EnterDescription", comment: String())
+            let cancel = NSLocalizedString("Button.Ok", comment: String())
+            self.showMessageAlert(nil, message: messasge, cancel: cancel)
         }
     }
     
@@ -192,6 +210,9 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.selectedStories.removeAtIndex(storyIndex!)
         self.showSelectedStories(self.selectedStories)
         self.setupStoryAttachmentLabels()
+        if self.updateContentClosure != nil {
+            self.updateContentClosure()
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

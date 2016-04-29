@@ -17,6 +17,7 @@ let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
 let kOpenProfileUrl = "openProfileUrl"
 let kShadowYOffset: CGFloat = -3
+let kDefaultLabelHeight: CGFloat = 36
 
 protocol ProfileViewDelegate {
     func followButtonDidTap()
@@ -110,12 +111,14 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         
         if self.user.profile.city.length > 0 {
             self.locationLabel.text = self.user.profile.city
+            self.locationLabelHeight.constant = kDefaultLabelHeight
         } else {
             self.locationLabelHeight.constant = 0
             self.locationLogo.hidden = true
         }
         
         if self.user.profile.url.length > 0 {
+            self.urlLabelHeightConstraint.constant = kDefaultLabelHeight
             self.profileUrlLabel.text = self.user.profile.url
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)

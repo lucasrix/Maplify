@@ -35,10 +35,12 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var storyPointsPlusView: UIView!
     @IBOutlet weak var storyPointPlusLabel: UILabel!
-    
+    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryCellDelegate! = nil
     var storyId: Int = 0
+    var discoverItemId: Int = 0
     
     var storyPointDataSource: DiscoverStoryCollectionDataSource! = nil
     var storyPointActiveModel = CSActiveModel()
@@ -50,6 +52,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let item = cellData.model as! DiscoverItem
         let story = item.story
         self.storyId = story!.id
+        self.discoverItemId = item.id
         
         self.addShadow()
         self.setupCollectionView(cellData)
@@ -95,7 +98,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         if cellData.selected {
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.HideDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionUp), forState: .Normal)
+            self.textHeightConstraint.constant = DiscoverStoryCell.textDescriptionHeight((story?.storyDescription)!, width: cellData.boundingSize.width)
         } else {
+            self.textHeightConstraint.constant = kStoryPointCellDescriptionDefaultHeight
             self.showHideDescriptionLabel.text = NSLocalizedString("Label.ShowDescription", comment: String())
             self.showHideDescriptionButton.setImage(UIImage(named: ButtonImages.discoverShowHideDescriptionDown), forState: .Normal)
         }
@@ -141,8 +146,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     // MARK: - actions
     @IBAction func showHideTapped(sender: UIButton) {
-        self.cellData.selected = !self.cellData.selected
-        self.delegate?.didSelectStory(self.storyId)
+        self.delegate?.didSelectStory(self.discoverItemId)
     }
     
     @IBAction func editContentTapped(sender: UIButton) {

@@ -44,7 +44,7 @@ class StorypointCell: CSCollectionViewCell {
         let profile = storyPoint.user.profile
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
         
-        self.addressLabel.text = storyPoint.location.city
+        self.addressLabel.text = storyPoint.location.address
     }
     
     func setupStoryImage(storyPoint: StoryPoint) {

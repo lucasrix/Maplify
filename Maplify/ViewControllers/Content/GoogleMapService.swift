@@ -81,4 +81,8 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         self.delegate?.didTapCoordinateMapView?(mapView, latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
+    
+    func mapView(mapView: GMSMapView, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+        self.delegate?.didLongTapMapView?(mapView, latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
 }

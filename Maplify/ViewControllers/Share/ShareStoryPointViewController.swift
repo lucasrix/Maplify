@@ -1,14 +1,16 @@
 //
-//  StoryAddPostsTableViewCell.swift
+//  ShareStoryPointViewController.swift
 //  Maplify
 //
-//  Created by Evgeniy Antonoff on 4/26/16.
+//  Created by Evgeniy Antonoff on 4/28/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
-class StoryAddPostsTableViewCell: CSTableViewCell {
+class ShareStoryPointViewController: ViewController {
+    
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var attachmentImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
@@ -17,19 +19,28 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
     @IBOutlet weak var storyPointAddressLabel: UILabel!
     @IBOutlet weak var storyPointAddressImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var addToStoryButton: UIButton!
+    @IBOutlet weak var shareToFacebookButton: UIButton!
+    @IBOutlet weak var copyLinkButton: UIButton!
     
-    var storyAddPostsDelegate: StoryAddPostsDelegate! = nil
-    var cellData: CSCellData! = nil
+    var storyPointId: Int = 0
+    var completion: (() -> ())! = nil
+    
+    // MARK: - view controller life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setup()
+    }
     
     // MARK: - setup
-    override func configure(cellData: CSCellData) {
-        let storyPoint = cellData.model as! StoryPoint
-        self.storyAddPostsDelegate = cellData.delegate as! StoryAddPostsDelegate
-        self.cellData = cellData
+    func setup() {
+        self.setupNavigationBar()
         self.setupViews()
-        self.populateViews(storyPoint)
-        self.populateAddToStoryButton(cellData)
+        self.populateViews()
+    }
+    
+    func setupNavigationBar() {
+        self.title = NSLocalizedString("Controller.SharePost", comment: String())
     }
     
     func setupViews() {
@@ -47,9 +58,16 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
         self.colorView.clipsToBounds = true
         self.colorView.layer.borderWidth = Border.defaultBorderWidth
         self.colorView.layer.borderColor = UIColor.inactiveGrey().CGColor
+        
+        self.shareToFacebookButton.layer.cornerRadius = CornerRadius.defaultRadius
+        self.shareToFacebookButton.setTitle(NSLocalizedString("Button.ShareToFacebook", comment: String()), forState: .Normal)
+        
+        self.copyLinkButton.layer.cornerRadius = CornerRadius.defaultRadius
+        self.copyLinkButton.setTitle(NSLocalizedString("Button.CopyLink", comment: String()), forState: .Normal)
     }
     
-    func populateViews(storyPoint: StoryPoint) {
+    func populateViews() {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
         self.populateTitle(storyPoint)
         self.populateAddress(storyPoint)
         self.populateUserName(storyPoint)
@@ -61,8 +79,8 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
     }
     
     func populateAddress(storyPoint: StoryPoint) {
-        self.storyPointAddressLabel.text = storyPoint.location.address
-        self.storyPointAddressImageView.hidden = storyPoint.location.address == String()
+        self.storyPointAddressLabel.text = storyPoint.location.city
+        self.storyPointAddressImageView.hidden = storyPoint.location.city == String()
     }
     
     func populateUserName(storyPoint: StoryPoint) {
@@ -70,19 +88,10 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
     }
     
     func populateImageView(storyPoint: StoryPoint) {
-        var attachmentUrl: NSURL! = nil
+        
+        let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         
-        if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            if storyPoint.attachment != nil {
-                let attachment = storyPoint.attachment as Attachment
-                attachmentUrl = NSURL(string: attachment.file_url)
-            }
-        } else {
-            if storyPoint.location != nil {
-                attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
-            }
-        }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if !(error != nil) {
                 self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
@@ -103,17 +112,47 @@ class StoryAddPostsTableViewCell: CSTableViewCell {
         }
     }
     
-    func populateAddToStoryButton(cellData: CSCellData) {
-        self.addToStoryButton.selected = cellData.selected
+    // MARK: - navigation bar
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
+    }
+    
+    override func navigationBarColor() -> UIColor {
+        return UIColor.darkGreyBlue()
     }
     
     // MARK: - actions
-    @IBAction func addToStoryTapped(sender: UIButton) {
-        self.cellData.selected = !self.cellData.selected
-        self.storyAddPostsDelegate?.reloadData()
+    @IBAction func shareToFacebookTapped(sender: UIButton) {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
+        
+        let facebookShareHelper = FacebookShareHelper()
+        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl) { (success) in
+            if success == false {
+                let title = NSLocalizedString("Alert.Error", comment: String())
+                let message = NSLocalizedString("Alert.SharingError", comment: String())
+                let cancelButton = NSLocalizedString("Button.Ok", comment: String())
+                self.showMessageAlert(title, message: message, cancel: cancelButton)
+            }
+        }
     }
-}
-
-protocol StoryAddPostsDelegate {
-    func reloadData()
+    
+    @IBAction func copyLinkTapped(sender: UIButton) {
+        UIPasteboard.generalPasteboard().string = Links.landingLink
+    }
+    
+    // MARK: - private
+    func attachmentUrlForStoryPoint(storyPoint: StoryPoint) -> NSURL! {
+        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            if storyPoint.attachment != nil {
+                let attachment = storyPoint.attachment as Attachment
+                return NSURL(string: attachment.file_url)!
+            }
+        } else {
+            if storyPoint.location != nil {
+                return StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+            }
+        }
+        return nil
+    }
 }

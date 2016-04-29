@@ -28,6 +28,7 @@ struct FileType {
 struct Network {
     static let isUserLogin = "isUserLogin"
     static let successStatusCodes = [200, 201]
+    static let failureStatuCode500: Int = 500
     static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
 }
@@ -65,10 +66,16 @@ struct Controllers {
     static let storyEditController = "StoryEditController"
     static let storyAddPostsViewController = "StoryAddPostsViewController"
     static let storyCreateViewController = "StoryCreateViewController"
+    static let shareStoryPointViewController = "ShareStoryPointViewController"
+    static let shareStoryViewController = "ShareStoryViewController"
 }
 
 struct AppIDs {
     static let facebookAppID = "1569818663334609"
+}
+
+struct Links {
+    static let landingLink = "http://www.maplifyapp.com"
 }
 
 struct DefaultLocation {

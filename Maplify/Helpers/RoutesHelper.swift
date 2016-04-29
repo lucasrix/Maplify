@@ -67,7 +67,6 @@ extension UIViewController {
     func routesOpenEditProfileController(profileId: Int, photo: UIImage!, updateContentClosure: (() -> ())!) {
         let editProfileViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editProfileController) as! EditProfileViewController
         editProfileViewController.profileId = profileId
-        editProfileViewController.updatedImage = photo
         editProfileViewController.updateContentClosure = updateContentClosure
         self.navigationController?.pushViewController(editProfileViewController, animated: true)
     }
@@ -160,13 +159,27 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     
+    func routesOpenShareStoryPointViewController(storyPointId: Int, completion: (() -> ())!) {
+        let shareStoryPointViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.shareStoryPointViewController) as! ShareStoryPointViewController
+        shareStoryPointViewController.storyPointId = storyPointId
+        shareStoryPointViewController.completion = completion
+        self.navigationController?.pushViewController(shareStoryPointViewController, animated: true)
+    }
+    
+    func routesOpenShareStoryViewController(storyId: Int, completion: (() -> ())!) {
+        let shareStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.shareStoryViewController) as! ShareStoryViewController
+        shareStoryViewController.storyId = storyId
+        shareStoryViewController.completion = completion
+        self.navigationController?.pushViewController(shareStoryViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController
         storyPointCreationPopupController.delegate = delegate
         storyPointCreationPopupController.location = location
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
-        self.navigationController?.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
+        self.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
     }
     
     func routerShowMenuController(delegate: MenuDelegate) {

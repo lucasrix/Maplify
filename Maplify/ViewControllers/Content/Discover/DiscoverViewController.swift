@@ -9,23 +9,11 @@
 import INTULocationManager
 import RealmSwift
 import INSPullToRefresh.UIScrollView_INSPullToRefresh
+import Tailor
 
 let kDiscoverItemsInPage = 25
 let kDiscoverFirstPage = 1
 let kDiscoverBarMinLimitOpacity: CGFloat = 0.2
-
-enum EditContentOption: Int {
-    case EditPost
-    case DeletePost
-    case Directions
-    case SharePost
-}
-
-enum DefaultContentOption: Int {
-    case Directions
-    case SharePost
-    case ReportAbuse
-}
 
 enum RequestState: Int {
     case Ready
@@ -118,6 +106,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.profileView.updateContentClosure = { [weak self] () in
                 self?.tableView.reloadData()
             }
+            
+            self.profileView.didChangeImageClosure = { [weak self] () in
+                self?.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
+            }
             self.profileView.delegate = self
         }
     }
@@ -155,7 +147,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
 
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
-            self.tableView.backgroundColor = UIColor.darkGreyBlue()
+            self.tableView.backgroundColor = UIColor.darkerGreyBlue()
         }
     }
     
@@ -215,6 +207,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         
         self.storyActiveModel.removeData()
         if self.supportUserProfile {
+            self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
             let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
@@ -329,7 +322,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
             
-            let list: NSArray = response["discovered"] as! NSArray
+            let list: [DiscoverItem] = (response as! [String: AnyObject]).relations("discovered")!
             self?.tableView.ins_setInfinityScrollEnabled(list.count == kDiscoverItemsInPage)
             self?.requestState = RequestState.Ready
             
@@ -344,48 +337,52 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     // MARK: - actions
+    override func rightBarButtonItemDidTap() {
+        let photo = (self.profileView.userImageView.image != nil) ? UIImagePNGRepresentation(self.profileView.userImageView.image!) : nil
+        self.showProgressHUD()
+        
+        ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, photo: photo,
+            success: { [weak self] (response) in
+                self?.hideProgressHUD()
+                self?.navigationItem.rightBarButtonItem = nil
+                
+                let profile = response as! Profile
+                ProfileManager.saveProfile(profile)
+                SessionManager.updateProfileForCurrrentUser(profile)
+            },
+            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        })
+
+    }
+    
     func showEditContentMenu(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
-            self.showEditContentActionSheet(storyPointId)
+            
+            self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
+                
+                if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
+                    self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
+                        self?.storyDataSource.reloadTable()
+                        })
+                } else if selectedIndex == StoryPointEditContentOption.DeletePost.rawValue {
+                    self?.deleteStoryPoint(storyPointId)
+                } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                }
+            })
         } else {
-            self.showDefaultContentActionSheet(storyPointId)
+            self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                
+                if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                }
+            })
         }       
     }
     
-    func showEditContentActionSheet(storyPointId: Int) {
-        let editPost = NSLocalizedString("Button.EditPost", comment: String())
-        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [editPost, deletePost, directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
-            if buttonIndex == EditContentOption.EditPost.rawValue {
-                self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
-                    self?.storyDataSource.reloadTable()
-                })
-            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                self?.deleteStoryPoint(storyPointId)
-            }
-            }
-        )
-    }
-    
-    func showDefaultContentActionSheet(storyPointId: Int) {
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let reportAbuse = NSLocalizedString("Button.ReportAbuse", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: reportAbuse, buttons: buttons, handle: { (buttonIndex) in
-                //TODO: -
-            }
-        )
-    }
-
     func deleteStoryPoint(storyPointId: Int) {
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
         let yesButton = NSLocalizedString("Button.Yes", comment: String())
@@ -413,38 +410,44 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    func shareStoryPoint(storyPointId: Int) {
+        self.routesOpenShareStoryPointViewController(storyPointId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
     // MARK: - story
     func showEditStoryContentMenu(storyId: Int) {
         let story = StoryManager.find(storyId)
         if story.user.profile.id == SessionManager.currentUser().profile.id {
-            self.showEditStoryContentActionSheet(storyId)
+            self.showEditStoryContentActionSheet({ [weak self] (selectedIndex) in
+                if selectedIndex == StoryEditContentOption.EditStory.rawValue {
+                    self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
+                        self?.storyDataSource.reloadTable()
+                        })
+                } else if selectedIndex == StoryEditContentOption.DeleteStory.rawValue {
+                    self?.deleteStory(storyId)
+                } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                }
+            })
         } else {
-            self.showDefaultContentActionSheet(storyId)
+            self.showStoryDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                if selectedIndex == StoryDefaultContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                }
+            })
         }
-    }
-    
-    func showEditStoryContentActionSheet(storyId: Int) {
-        let editPost = NSLocalizedString("Button.EditPost", comment: String())
-        let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
-        let directions = NSLocalizedString("Button.Directions", comment: String())
-        let sharePost = NSLocalizedString("Button.SharePost", comment: String())
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [editPost, deletePost, directions, sharePost]
-        
-        self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { [weak self] (buttonIndex) in
-            if buttonIndex == EditContentOption.EditPost.rawValue {
-                self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
-                    self?.storyDataSource.reloadTable()
-                })
-            } else if buttonIndex == EditContentOption.DeletePost.rawValue {
-                self?.deleteStory(storyId)
-            }
-            }
-        )
     }
     
     func deleteStory(storyId: Int) {
         // TODO: delete
+    }
+    
+    func shareStory(storyId: Int) {
+        self.routesOpenShareStoryViewController(storyId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     func searchButtonTapped() {
@@ -473,10 +476,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
         let itemIndex = self.discoverItems.indexOf({$0.id == storyId})
-        let indexPath = NSIndexPath(forRow: itemIndex!, inSection: 0)
-        let cellDataModel = self.storyActiveModel.cellData(indexPath)
-        self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
-        self.storyDataSource.reloadTable()
+        if itemIndex != NSNotFound {
+            let indexPath = NSIndexPath(forRow: itemIndex!, inSection: 0)
+            let cellDataModel = self.storyActiveModel.cellData(indexPath)
+            self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
+            self.storyDataSource.reloadTable()
+        }
     }
     
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {

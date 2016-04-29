@@ -96,17 +96,29 @@ class AudioRecorderHelper: NSObject {
     
     // MARK: - pause record
     private func pauseRecording() {
-        self.audioRecorder.pause()
+        self.audioRecorder?.pause()
         self.stopTimer()
         self.delegate?.audioRecordDidPause()
     }
 
     // MARK: - stop record
     func finishRecording() {
+        if self.recordProgress > 0 {
+            self.pauseRecording()
+            self.audioRecorder?.stop()
+            self.delegate?.audioRecordDidFinishRecording(true, filePath: filePath())
+        }
+    }
+    
+    // MARK: - reload audio recording
+    func reloadRecording() {
         self.pauseRecording()
-        audioRecorder.stop()
-        audioRecorder = nil
-        self.delegate?.audioRecordDidFinishRecording(true, filePath: filePath())
+        self.audioRecorder?.stop()
+        self.delegate.audioRecordDidUpdateProgress(0)
+        self.recordProgress = 0
+        self.isRecording = false
+        self.setupRecord()
+        self.delegate?.audioRecordDidReload()
     }
     
     // MARK: - private
@@ -131,4 +143,5 @@ protocol AudioRecorderDelegate {
     func audioRecordDidStart()
     func audioRecordDidPause()
     func audioRecordDidCheckedPermissions(success: Bool)
+    func audioRecordDidReload()
 }

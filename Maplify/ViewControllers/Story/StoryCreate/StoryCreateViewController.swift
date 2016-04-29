@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kMaxStoryNameLength: Int = 25
+
 class StoryCreateViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var storyNameLabel: UILabel!
     @IBOutlet weak var storyNameTextField: UITextField!
@@ -78,8 +80,18 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
     
     // MARK: - navigation bar actions
     override func rightBarButtonItemDidTap() {
-        if self.storyNameTextField.text != String() {
+        if self.storyNameTextField.text?.length > kMaxStoryNameLength {
+            let message = NSLocalizedString("Alert.StoryNameTooLong", comment: String())
+            let title = NSLocalizedString("Alert.Error", comment: String())
+            let cancel = NSLocalizedString("Button.Ok", comment: String())
+            self.showMessageAlert(title, message: message, cancel: cancel)
+        } else if (self.storyNameTextField.text?.length > 0) && (self.storyNameTextField.text?.isNonWhiteSpace)! {
             self.routesOpenStoryAddPostsViewController(0, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text, storyCreateClosure: self.createStoryClosure)
+        } else {
+            let message = NSLocalizedString("Error.EmptyStoryName", comment: String())
+            let title = NSLocalizedString("Alert.Error", comment: String())
+            let cancel = NSLocalizedString("Button.Ok", comment: String())
+            self.showMessageAlert(title, message: message, cancel: cancel)
         }
     }
     

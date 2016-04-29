@@ -9,6 +9,8 @@
 import UIKit
 import TPKeyboardAvoiding
 
+let kPasswordMinimumLength: Int = 6
+
 class LoginViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var emailInputField: InputTextField!
     @IBOutlet weak var passwordInputField: InputTextField!
@@ -64,6 +66,7 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
             success: { [weak self] (response) -> () in
                 let user = response as! User
                 SessionManager.saveCurrentUser(user)
+                SessionHelper.sharedHelper.setupDefaultSettings()
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
             },
@@ -80,6 +83,10 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
         self.emailInputField.setErrorState(NSLocalizedString("Error.InvalidEmail", comment: String()))
-        self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
+        if self.passwordInputField.textField.text?.length < kPasswordMinimumLength {
+            self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
+        } else {
+            self.passwordInputField.setErrorState(NSLocalizedString("Error.EnterValidPassword", comment: String()))
+        }
     }
 }

@@ -15,6 +15,7 @@ class RecommendedSettingsViewController: ViewController {
     @IBOutlet weak var pushNotificationsDescriptionLabel: UILabel!
     @IBOutlet weak var locationTitleLabel: UILabel!
     @IBOutlet weak var locationDescriptionTitleLabel: UILabel!
+    @IBOutlet weak var additionalDetailsLabel: UILabel!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class RecommendedSettingsViewController: ViewController {
     func setup() {
         self.setupLabels()
         self.setupDoneButton()
-        self.setupDefaultSettings()
+        SessionHelper.sharedHelper.setupDefaultSettings()
     }
     
     func setupLabels() {
@@ -36,15 +37,11 @@ class RecommendedSettingsViewController: ViewController {
         self.pushNotificationsDescriptionLabel.text = NSLocalizedString("Label.Switch.PushNotificationDescription", comment: String())
         self.locationTitleLabel.text = NSLocalizedString("Label.Switch.Location", comment: String())
         self.locationDescriptionTitleLabel.text = NSLocalizedString("Label.Switch.LocationDescription", comment: String())
+        self.additionalDetailsLabel.text = NSLocalizedString("Label.Alert.Details", comment: String())
     }
     
     func setupDoneButton() {
         self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
-    }
-    
-    func setupDefaultSettings() {
-        SessionHelper.sharedHelper.setPushNotificationsEnabled(true)
-        SessionHelper.sharedHelper.setLocationEnabled(true)
     }
     
     //MARK: - actions

@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import Tailor
 
 class DiscoverItemManager: ModelManager {
     
@@ -18,15 +19,18 @@ class DiscoverItemManager: ModelManager {
         let list: NSArray = discoverItems["discovered"] as! NSArray
         var currentPosition = (pageNumber - 1) * itemsCountInPage
         for item in list {
+            let dict = item as! [String: AnyObject]
+            let type: String = dict.property("type")!
+            
             currentPosition += 1
             var discoverItem: DiscoverItem! = nil
-            if item["type"] as! String == String(StoryPoint) {
+            if type == "StoryPoint" {
                 let dict = item as! [String: AnyObject]
                 
                 let storyPoint = StoryPoint(dict)
                 discoverItem = findOrCreateWithStoryPoint(storyPoint)
             
-            } else if item["type"] as! String == String(Story) {
+            } else if type == "Story" {
                 let dict = item as! [String: AnyObject]
 
                 let story = Story(dict)

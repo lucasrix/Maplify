@@ -119,7 +119,7 @@ class ShareStoryViewController: ViewController {
         
         let facebookShareHelper = FacebookShareHelper()
         facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl) { (success) in
-            if success {
+            if success == false {
                 let title = NSLocalizedString("Alert.Error", comment: String())
                 let message = NSLocalizedString("Alert.SharingError", comment: String())
                 let cancelButton = NSLocalizedString("Button.Ok", comment: String())

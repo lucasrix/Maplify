@@ -113,10 +113,19 @@ class ShareStoryViewController: ViewController {
     
     // MARK: - actions
     @IBAction func shareToFacebookTapped(sender: UIButton) {
-        // TODO:
+        let story = StoryManager.find(self.storyId)
+        let firstStoryPoint = story.storyPoints.first
+        let attachmentUrl = StaticMap.staticMapUrl(firstStoryPoint!.location.latitude, longitude: firstStoryPoint!.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        
+        let facebookShareHelper = FacebookShareHelper()
+        facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl) { (success) in
+            if success {
+                // TODO:
+            }
+        }
     }
     
     @IBAction func copyLinkTapped(sender: UIButton) {
-        // TODO:
+        UIPasteboard.generalPasteboard().string = Links.landingLink
     }
 }

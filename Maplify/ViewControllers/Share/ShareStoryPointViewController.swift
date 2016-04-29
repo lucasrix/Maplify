@@ -123,11 +123,10 @@ class ShareStoryPointViewController: ViewController {
     
     // MARK: - actions
     @IBAction func shareToFacebookTapped(sender: UIButton) {
-        
         let storyPoint = StoryPointManager.find(self.storyPointId)
         let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
-        let facebookShareHelper = FacebookShareHelper()
         
+        let facebookShareHelper = FacebookShareHelper()
         facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl) { (success) in
             if success {
                 // TODO:

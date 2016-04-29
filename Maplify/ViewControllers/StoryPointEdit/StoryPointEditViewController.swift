@@ -206,7 +206,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
         storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
         
-        print(storyPointDict)
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
             self?.hideProgressHUD()

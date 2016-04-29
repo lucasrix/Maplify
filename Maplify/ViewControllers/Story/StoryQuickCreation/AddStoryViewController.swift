@@ -31,7 +31,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         super.viewDidLoad()
         
         self.setup()
-        self.loadItemsFromDB()
+        self.loadItemsFromDB(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -111,7 +111,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
                 self?.tableView.ins_endInfinityScroll()
                 StoryManager.saveStories(response as! [Story])
                 self?.storyActiveModel.updatePage()
-                self?.loadItemsFromDB()
+                self?.loadItemsFromDB(false)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.tableView.ins_endPullToRefresh()
@@ -121,7 +121,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         )
     }
     
-    func updateStoryPointDetails(stories: [Story]) {
+    func updateStoryPointDetails(stories: [Story], selectAttachedStories: Bool) {
         self.tableView.hidden = !Bool(stories.count)
         self.placeholderView.hidden = Bool(stories.count)
         
@@ -133,7 +133,10 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         self.storyActiveModel.selectModels(self.selectedIndexPathes)
         self.storyDataSource = CSBaseTableDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.allowMultipleSelection = true
-        self.selectStories(stories)
+        
+        if selectAttachedStories {
+            self.selectStories(stories)
+        }
         
         self.storyDataSource.reloadTable()
     }
@@ -148,11 +151,11 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         }
     }
     
-    func loadItemsFromDB() {
+    func loadItemsFromDB(selectAttachedStories: Bool) {
         let realm = try! Realm()
         let userId = SessionManager.currentUser().id
         let stories = Array(realm.objects(Story).filter("user.id == \(userId)").sorted("created_at", ascending: false))
-        self.updateStoryPointDetails(stories)
+        self.updateStoryPointDetails(stories, selectAttachedStories: selectAttachedStories)
     }
     
     func createStoryPoint(name: String) {
@@ -162,7 +165,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
                 success: { [weak self] (response) in
                     StoryManager.saveStories([response as! Story])
                     self?.hideProgressHUD()
-                    self?.loadItemsFromDB()
+                    self?.loadItemsFromDB(false)
             },
                 failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     self?.hideProgressHUD()

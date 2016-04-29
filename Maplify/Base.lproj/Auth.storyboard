@@ -907,6 +907,7 @@ Tap OK once it appears.</string>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="additionalDetailsLabel" destination="So5-Mr-NJ2" id="VOT-fq-OlG"/>
                         <outlet property="locationDescriptionTitleLabel" destination="ohL-DS-pkS" id="kMA-Wx-bQJ"/>
                         <outlet property="locationSwitch" destination="X9M-UH-X4X" id="WKT-zo-n6n"/>
                         <outlet property="locationTitleLabel" destination="2UM-oe-KTG" id="rOq-6I-png"/>

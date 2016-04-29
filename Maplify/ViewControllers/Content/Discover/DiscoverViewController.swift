@@ -118,6 +118,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.profileView.updateContentClosure = { [weak self] () in
                 self?.tableView.reloadData()
             }
+            
+            self.profileView.didChangeImageClosure = { [weak self] () in
+                self?.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
+            }
             self.profileView.delegate = self
         }
     }
@@ -155,7 +159,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
 
         self.tableView.contentInset = UIEdgeInsetsZero
         if self.supportUserProfile {
-            self.tableView.backgroundColor = UIColor.darkGreyBlue()
+            self.tableView.backgroundColor = UIColor.darkerGreyBlue()
         }
     }
     
@@ -344,6 +348,26 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     // MARK: - actions
+    override func rightBarButtonItemDidTap() {
+        let photo = (self.profileView.userImageView.image != nil) ? UIImagePNGRepresentation(self.profileView.userImageView.image!) : nil
+        self.showProgressHUD()
+        
+        ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, photo: photo,
+            success: { [weak self] (response) in
+                self?.hideProgressHUD()
+                self?.navigationItem.rightBarButtonItem = nil
+                
+                let profile = response as! Profile
+                ProfileManager.saveProfile(profile)
+                SessionManager.updateProfileForCurrrentUser(profile)
+            },
+            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        })
+
+    }
+    
     func showEditContentMenu(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {

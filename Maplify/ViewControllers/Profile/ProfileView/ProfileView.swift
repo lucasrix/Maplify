@@ -53,6 +53,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     var publicStatsView: PublicStatsView! = nil
     var privateStatsView: PrivateStatsView! = nil
     var updateContentClosure: (() -> ())! = nil
+    var didChangeImageClosure: (() -> ())! = nil
     var parentViewController: UIViewController! = nil
     var delegate: ProfileViewDelegate! = nil
     var contentHeightValue: CGFloat = 0
@@ -290,6 +291,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
             self.userImageView.image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
+            self.didChangeImageClosure()
         }
         self.parentViewController.dismissViewControllerAnimated(true, completion: nil)
     }

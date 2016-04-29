@@ -123,12 +123,15 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func setupStories() {
+        self.showProgressHUD(self.editInfoViewController.tableView)
         ApiClient.sharedClient.getStoryPointStories(self.storyPointId, success: { [weak self] (response) in
-                let stories = response as! [Story]
-                self?.editInfoViewController.configureSelectedStories(stories)
-                self?.setupContentHeight(false)
+            self?.hideProgressHUD((self?.editInfoViewController.tableView)!)
+            let stories = response as! [Story]
+            self?.editInfoViewController.configureSelectedStories(stories)
+            self?.setupContentHeight(false)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD((self?.editInfoViewController.tableView)!)
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             })
     }

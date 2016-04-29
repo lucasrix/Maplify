@@ -73,6 +73,10 @@ struct AppIDs {
     static let facebookAppID = "1569818663334609"
 }
 
+struct Links {
+    static let landingLink = "http://www.maplifyapp.com"
+}
+
 struct DefaultLocation {
     static let washingtonDC = (38.889931, -77.009003)
 }

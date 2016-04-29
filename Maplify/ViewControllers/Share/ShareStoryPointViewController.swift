@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 class ShareStoryPointViewController: ViewController {
@@ -87,19 +88,10 @@ class ShareStoryPointViewController: ViewController {
     }
     
     func populateImageView(storyPoint: StoryPoint) {
-        var attachmentUrl: NSURL! = nil
+        
+        let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
         
-        if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            if storyPoint.attachment != nil {
-                let attachment = storyPoint.attachment as Attachment
-                attachmentUrl = NSURL(string: attachment.file_url)
-            }
-        } else {
-            if storyPoint.location != nil {
-                attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
-            }
-        }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if !(error != nil) {
                 self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
@@ -131,10 +123,34 @@ class ShareStoryPointViewController: ViewController {
     
     // MARK: - actions
     @IBAction func shareToFacebookTapped(sender: UIButton) {
-        // TODO:
+        
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
+        let facebookShareHelper = FacebookShareHelper()
+        
+        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl) { (success) in
+            if success {
+                // TODO:
+            }
+        }
     }
     
     @IBAction func copyLinkTapped(sender: UIButton) {
-        // TODO:
+        UIPasteboard.generalPasteboard().string = Links.landingLink
+    }
+    
+    // MARK: - private
+    func attachmentUrlForStoryPoint(storyPoint: StoryPoint) -> NSURL! {
+        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            if storyPoint.attachment != nil {
+                let attachment = storyPoint.attachment as Attachment
+                return NSURL(string: attachment.file_url)!
+            }
+        } else {
+            if storyPoint.location != nil {
+                return StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+            }
+        }
+        return nil
     }
 }

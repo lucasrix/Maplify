@@ -164,6 +164,7 @@
 		CDF6D8971CD26007001387EC /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
 		CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
 		CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
+		CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
@@ -340,6 +341,7 @@
 		CDF6D8961CD26007001387EC /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryPointViewController.swift; sourceTree = "<group>"; };
 		CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryViewController.swift; sourceTree = "<group>"; };
+		CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareHelper.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */,
 				CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */,
 				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
+				CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1272,6 +1275,7 @@
 				CDF6D8971CD26007001387EC /* ShareController.swift in Sources */,
 				CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */,
 				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
+				CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */,
 				CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */,
 				A5C3D0A81C89D1F700765F61 /* LandingViewController.swift in Sources */,
 				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,

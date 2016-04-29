@@ -116,7 +116,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
         if itemIndex < self.storyPoints.count {
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Controllers.storyDetailItemViewController) as! StoryDetailItemViewController
             pageItemController.itemIndex = itemIndex
-            pageItemController.storyPoint = self.storyPoints[itemIndex]
+            pageItemController.storyPointId = self.storyPoints[itemIndex].id
             pageItemController.stackSupport = self.stackSupport
             return pageItemController
         }

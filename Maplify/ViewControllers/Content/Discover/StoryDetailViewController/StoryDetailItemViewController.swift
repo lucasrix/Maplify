@@ -35,6 +35,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var attachmentContentView: UIView!
     
     var itemIndex: Int = 0
+    var storyPointId: Int = 0
     var storyPoint: StoryPoint! = nil
     var descriptionOpened: Bool = false
     var stackSupport: Bool = false
@@ -66,6 +67,8 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     func setupData() {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        self.storyPoint = storyPoint
         self.populateUserViews()
         self.populateStoryPointInfoViews()
         self.populateAttachment()
@@ -154,6 +157,42 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
             self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
         super.backTapped()
+    }
+    
+    @IBAction func editContentTapped(sender: UIButton) {
+        if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
+            
+            self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
+                
+                if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
+                    self?.routesOpenStoryPointEditController((self?.storyPointId)!, storyPointUpdateHandler: { [weak self] in
+                        self?.setupData()
+                        })
+                } else if selectedIndex == StoryPointEditContentOption.DeletePost.rawValue {
+                    self?.deleteStoryPoint()
+                } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint()
+                }
+                })
+        } else {
+            self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                
+                if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint()
+                }
+            })
+        }
+    }
+    
+    // MARK: - private
+    func deleteStoryPoint() {
+        // TODO:
+    }
+    
+    func shareStoryPoint() {
+        self.routesOpenShareStoryPointViewController(self.storyPointId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     @IBAction func openContentTapped(sender: UITapGestureRecognizer) {

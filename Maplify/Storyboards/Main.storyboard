@@ -2410,6 +2410,9 @@
                                                     <constraint firstAttribute="width" constant="35" id="iz1-n6-yFS"/>
                                                 </constraints>
                                                 <state key="normal" image="DiscoverMore"/>
+                                                <connections>
+                                                    <action selector="editContentTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="kgw-U9-zcL"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label sPoint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="pJg-KV-OlQ">
                                                 <rect key="frame" x="16" y="5" width="334" height="21"/>

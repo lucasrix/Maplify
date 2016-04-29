@@ -8,6 +8,7 @@
 
 let kDefaultDescriptionViewHeight: CGFloat = 45
 let kDescriptionHorizontalPadding: CGFloat = 10
+let kCharactersCountLabelHeight: CGFloat = 45
 
 class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var storyView: UIView!
@@ -19,14 +20,15 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     @IBOutlet weak var charsNumberLabel: UILabel!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var descriptionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var detailEditView: UIView!
     @IBOutlet weak var charactersCountLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var detailEditViewHeight: NSLayoutConstraint!
     
     var editInfoViewController: StoryPointEditInfoViewController! = nil
     var storyPointId: Int = 0
     var storyPointUpdateHandler: (() -> ())! = nil
+    var keyboardHeight: CGFloat = 0
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -47,8 +49,13 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         self.setupContentHeight(false)
     }
     
+    deinit {
+        self.unsubscribeNotifications()
+    }
+    
     // MARK: - setup
     func setup() {
+        self.subscribeNotifications()
         self.setupNavigationBar()
         self.setupEditStoryPointInfoViewController()
         self.setupShowDescriptionButton()
@@ -124,22 +131,11 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         self.updateCharactersCountLabel(storyPoint.text.length)
     }
     
-    func contentHeight(expanded: Bool) -> CGFloat {
-        var textHeight: CGFloat = 0
-        if expanded {
-            let storyPoint = StoryPointManager.find(self.storyPointId)
-            self.descriptionLabel.text = storyPoint.text
-            let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
-            textHeight += storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
-        }
-        return self.storyPointImageView.frame.size.height + kDefaultDescriptionViewHeight + textHeight
-    }
-    
     func setupContentHeight(expanded: Bool) {
-        let descriptionHeight = self.contentHeight(expanded)
         let infoHeight = self.editInfoViewController.contentHeight()
         let storyTableViewHeight = self.editInfoViewController.tableView.contentSize.height
-        let updatedHeight = descriptionHeight + infoHeight + storyTableViewHeight
+        let updatedHeight = 0 + infoHeight + storyTableViewHeight + self.detailEditViewHeight.constant + self.detailsViewContentHeight()
+        self.detailEditViewHeight.constant = self.detailsViewContentHeight()
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, updatedHeight)
         self.contentViewHeightConstraint.constant = updatedHeight
     }
@@ -151,6 +147,15 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    // MARK: - notifications/observers
+    func subscribeNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StoryPointEditDescriptionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func unsubscribeNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: - actions
@@ -184,8 +189,9 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         
         var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!, "text": self.descriptionTextView.text]
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
-        storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
+        storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : ["nil"]
         
+        print(storyPointDict)
         ApiClient.sharedClient.updateStoryPoint(self.storyPointId, params: storyPointDict, success: { [weak self] (response) -> () in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
             self?.hideProgressHUD()
@@ -207,10 +213,28 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         return false
     }
     
+    func textViewDidChange(textView: UITextView) {
+        self.detailEditViewHeight.constant = self.detailsViewContentHeight()
+        self.setupContentHeight(self.descriptionButton.selected)
+        self.contentScrollView.scrollRectToVisible(CGRectMake(0, 0, CGRectGetWidth(self.descriptionView.frame), self.detailsViewContentHeight() + self.keyboardHeight), animated: true)
+    }
+    
+    func detailsViewContentHeight() -> CGFloat {
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionTextView.frame), CGFloat.max)
+        return self.descriptionTextView.text.size(self.descriptionTextView.font!, boundingRect: boundingRect).height + kCharactersCountLabelHeight
+    }
+    
     func updateCharactersCountLabel(charactersCount: Int) {
         let substringOf = NSLocalizedString("Substring.Of", comment: String())
         let substringChars = NSLocalizedString("Substring.Chars", comment: String())
         self.charactersCountLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
+    }
+    
+    // MARK: - keyboard notification
+    func keyboardWillShow(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        self.keyboardHeight = keyboardFrame.size.height
     }
    
     // MARK: - ErrorHandlingProtocol

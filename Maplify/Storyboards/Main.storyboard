@@ -1799,12 +1799,6 @@
                                                     <constraint firstItem="fyf-UK-pF3" firstAttribute="leading" secondItem="ic4-ni-Dg0" secondAttribute="leading" constant="13" id="zVZ-lk-NcP"/>
                                                 </constraints>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-sO-daw">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fs7-sO-daw" secondAttribute="height" multiplier="1:1" id="nWv-0X-zi8"/>
-                                                </constraints>
-                                            </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xo-ig-u7Y">
                                                 <rect key="frame" x="0.0" y="420" width="375" height="183"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1830,12 +1824,23 @@
                                                             <constraint firstAttribute="trailing" secondItem="uRd-Kv-4fy" secondAttribute="trailing" constant="8" id="oss-UU-o5n"/>
                                                         </constraints>
                                                     </view>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bP9-NY-9im">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bP9-NY-9im">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="345"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-sO-daw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="fs7-sO-daw" secondAttribute="height" multiplier="1:1" id="nWv-0X-zi8"/>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="nWv-0X-zi8"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1843,8 +1848,13 @@
                                                     <constraint firstItem="bP9-NY-9im" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="1CP-T2-h93"/>
                                                     <constraint firstAttribute="trailing" secondItem="bP9-NY-9im" secondAttribute="trailing" id="1yB-dl-wZ9"/>
                                                     <constraint firstAttribute="bottom" secondItem="Dlu-dp-LAJ" secondAttribute="bottom" id="982-Ei-HjC"/>
+                                                    <constraint firstItem="fs7-sO-daw" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="Ja0-dY-1ey"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fs7-sO-daw" secondAttribute="bottom" id="KnO-hd-tEb"/>
                                                     <constraint firstItem="Dlu-dp-LAJ" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="VZw-n0-jua"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fs7-sO-daw" secondAttribute="trailing" id="Wla-TN-wzj"/>
                                                     <constraint firstItem="bP9-NY-9im" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="top" id="bDt-hF-bZA"/>
+                                                    <constraint firstAttribute="height" constant="375" id="iNo-z1-m0L"/>
+                                                    <constraint firstItem="fs7-sO-daw" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="top" id="qWj-8p-Idc"/>
                                                     <constraint firstAttribute="trailing" secondItem="Dlu-dp-LAJ" secondAttribute="trailing" id="r1e-mo-Vy8"/>
                                                 </constraints>
                                             </view>
@@ -1859,14 +1869,16 @@
                                             <constraint firstAttribute="bottom" secondItem="6xo-ig-u7Y" secondAttribute="bottom" id="F21-Er-h0A"/>
                                             <constraint firstItem="6xo-ig-u7Y" firstAttribute="leading" secondItem="gkU-EM-yyo" secondAttribute="leading" id="IzK-ap-rG7"/>
                                             <constraint firstAttribute="trailing" secondItem="ic4-ni-Dg0" secondAttribute="trailing" id="RnP-Co-ULs"/>
-                                            <constraint firstItem="fs7-sO-daw" firstAttribute="centerX" secondItem="gkU-EM-yyo" secondAttribute="centerX" id="Rqm-Wf-e2F"/>
                                             <constraint firstItem="zcQ-hV-A8g" firstAttribute="top" secondItem="gkU-EM-yyo" secondAttribute="top" id="Rya-tQ-qkC"/>
-                                            <constraint firstItem="ic4-ni-Dg0" firstAttribute="top" secondItem="fs7-sO-daw" secondAttribute="bottom" id="b94-wM-jsK"/>
-                                            <constraint firstItem="fs7-sO-daw" firstAttribute="top" secondItem="gkU-EM-yyo" secondAttribute="top" id="fMN-yz-H0u"/>
                                             <constraint firstItem="6xo-ig-u7Y" firstAttribute="top" secondItem="ic4-ni-Dg0" secondAttribute="bottom" id="gnY-7T-ZiT"/>
-                                            <constraint firstItem="fs7-sO-daw" firstAttribute="width" secondItem="gkU-EM-yyo" secondAttribute="width" id="kW7-M2-Dex"/>
                                             <constraint firstItem="ic4-ni-Dg0" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="bottom" id="ohT-fh-7wU"/>
+                                            <constraint firstItem="ic4-ni-Dg0" firstAttribute="top" secondItem="zcQ-hV-A8g" secondAttribute="bottom" id="yG4-7g-pOg"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ohT-fh-7wU"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1898,8 +1910,8 @@
                         <outlet property="descriptionTextView" destination="bP9-NY-9im" id="QOj-RR-Jd6"/>
                         <outlet property="descriptionView" destination="ic4-ni-Dg0" id="wXF-0b-QAa"/>
                         <outlet property="descriptionViewHeightConstraint" destination="4hV-QC-CPW" id="nK5-ei-JDl"/>
-                        <outlet property="descriptionViewTopConstraint" destination="b94-wM-jsK" id="PbA-UU-j3r"/>
                         <outlet property="detailEditView" destination="zcQ-hV-A8g" id="flU-G9-Y34"/>
+                        <outlet property="detailEditViewHeight" destination="iNo-z1-m0L" id="mwR-Za-zbn"/>
                         <outlet property="storyPointImageView" destination="fs7-sO-daw" id="JEV-4a-CUK"/>
                         <outlet property="storyView" destination="6xo-ig-u7Y" id="Axg-iA-F5h"/>
                     </connections>

@@ -60,7 +60,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     func setupData() {
         let story = StoryManager.find(self.storyId)
-        self.storyPoints = Array(story.storyPoints)
+        self.storyPoints = Array(story.storyPoints.sorted("created_at", ascending: false))
     }
     
     func setupStoryNameViews() {

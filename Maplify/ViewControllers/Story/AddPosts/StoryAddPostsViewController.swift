@@ -59,7 +59,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     func loadDataFromDB() {
         self.storyActiveModel.removeData()
         let realm = try! Realm()
-        let foundedStoryPoints = Array(realm.objects(StoryPoint).filter("user.id == \(SessionManager.currentUser().id)"))
+        let foundedStoryPoints = Array(realm.objects(StoryPoint).filter("user.id == \(SessionManager.currentUser().id)").sorted("created_at", ascending: false))
         
         self.storyActiveModel.addItems(foundedStoryPoints, cellIdentifier: String(StoryAddPostsTableViewCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         

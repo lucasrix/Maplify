@@ -904,6 +904,7 @@
                                             <outlet property="showHideDescriptionLabel" destination="22Z-hU-xsd" id="ba3-bC-WLx"/>
                                             <outlet property="storyPointPlusLabel" destination="K2g-Gc-RSU" id="BwH-xt-mAb"/>
                                             <outlet property="storyPointsPlusView" destination="bIF-xs-txA" id="bf7-mh-ayo"/>
+                                            <outlet property="textHeightConstraint" destination="EcX-cH-op1" id="e2d-og-2b3"/>
                                             <outlet property="thumbImageView" destination="m3X-9c-1Zn" id="p1V-SS-5xb"/>
                                             <outlet property="userAddressLabel" destination="MwM-aI-Lvs" id="EEt-cf-2l0"/>
                                             <outlet property="userNameLabel" destination="fCD-0Q-Edv" id="Ohi-KJ-vLt"/>

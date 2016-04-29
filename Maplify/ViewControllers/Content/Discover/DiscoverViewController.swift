@@ -475,10 +475,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
         let itemIndex = self.discoverItems.indexOf({$0.id == storyId})
-        let indexPath = NSIndexPath(forRow: itemIndex!, inSection: 0)
-        let cellDataModel = self.storyActiveModel.cellData(indexPath)
-        self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
-        self.storyDataSource.reloadTable()
+        if itemIndex != NSNotFound {
+            let indexPath = NSIndexPath(forRow: itemIndex!, inSection: 0)
+            let cellDataModel = self.storyActiveModel.cellData(indexPath)
+            self.storyActiveModel.selectModel(indexPath, selected: !cellDataModel.selected)
+            self.storyDataSource.reloadTable()
+        }
     }
     
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {

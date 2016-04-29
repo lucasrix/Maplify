@@ -1803,7 +1803,7 @@
                                                 <rect key="frame" x="0.0" y="420" width="375" height="183"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-hV-A8g">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-hV-A8g">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlu-dp-LAJ">
@@ -1842,7 +1842,7 @@
                                                         </variation>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="0.73670031390000001" blue="0.82033866710000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="Dlu-dp-LAJ" firstAttribute="top" secondItem="bP9-NY-9im" secondAttribute="bottom" id="10I-R4-Aes"/>
                                                     <constraint firstItem="bP9-NY-9im" firstAttribute="leading" secondItem="zcQ-hV-A8g" secondAttribute="leading" id="1CP-T2-h93"/>
@@ -1902,6 +1902,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="charactersCountLabel" destination="uRd-Kv-4fy" id="f2H-RF-YSQ"/>
+                        <outlet property="charactersNumberLabelViewHeight" destination="KfL-un-RlP" id="e6I-c8-vw9"/>
                         <outlet property="charsNumberLabel" destination="8D7-EA-Lqn" id="118-dn-QOx"/>
                         <outlet property="contentScrollView" destination="r1g-rn-3fF" id="9du-aF-JOa"/>
                         <outlet property="contentViewHeightConstraint" destination="4W4-kl-eZK" id="Mkp-iv-0NY"/>

@@ -24,9 +24,11 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     @IBOutlet weak var charactersCountLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var detailEditViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var charactersNumberLabelViewHeight: NSLayoutConstraint!
     
     var editInfoViewController: StoryPointEditInfoViewController! = nil
     var storyPointId: Int = 0
+    var storyPoint: StoryPoint! = nil
     var storyPointUpdateHandler: (() -> ())! = nil
     var keyboardHeight: CGFloat = 0
     
@@ -55,6 +57,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     
     // MARK: - setup
     func setup() {
+        self.loadItemFromDB()
         self.subscribeNotifications()
         self.setupNavigationBar()
         self.setupEditStoryPointInfoViewController()
@@ -100,7 +103,10 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
             if  storyPoint.attachment != nil {
                 let attachmentUrl = NSURL(string: storyPoint.attachment.file_url)
                 self.storyPointImageView.sd_setImageWithURL(attachmentUrl)
+                self.charactersNumberLabelViewHeight.constant = 0
+                self.charactersCountLabel.hidden = true
             } else {
+                self.storyPointImageView.hidden = true
                 self.setupDescriptionInputField(storyPoint)
             }
             
@@ -124,7 +130,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func setupDescriptionInputField(storyPoint: StoryPoint) {
-        self.detailEditView.hidden = false
         self.descriptionView.hidden = true
         self.descriptionTextView.delegate = self
         self.descriptionTextView.text = storyPoint.text
@@ -147,6 +152,10 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    func loadItemFromDB() {
+        self.storyPoint = StoryPointManager.find(self.storyPointId)
     }
     
     // MARK: - notifications/observers
@@ -220,8 +229,14 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func detailsViewContentHeight() -> CGFloat {
-        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionTextView.frame), CGFloat.max)
-        return self.descriptionTextView.text.size(self.descriptionTextView.font!, boundingRect: boundingRect).height + kCharactersCountLabelHeight
+        var height: CGFloat = 0
+        if self.storyPoint.attachment != nil {
+            height = CGRectGetWidth(self.view.frame)
+        } else {
+            let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionTextView.frame), CGFloat.max)
+            height = self.descriptionTextView.text.size(self.descriptionTextView.font!, boundingRect: boundingRect).height + kCharactersCountLabelHeight + 2 * kDescriptionHorizontalPadding
+        }
+        return height
     }
     
     func updateCharactersCountLabel(charactersCount: Int) {

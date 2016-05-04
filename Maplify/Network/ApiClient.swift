@@ -254,6 +254,14 @@ class ApiClient {
     func unlikeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("story_points/\(storyPointId)/like", params: nil, manager: StoryPointManager(), success: success, failure: failure)
     }
+    
+    func likeStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories/\(storyId)/like", params: nil, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unlikeStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)/like", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

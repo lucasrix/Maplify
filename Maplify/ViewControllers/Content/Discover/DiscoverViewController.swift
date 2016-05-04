@@ -535,8 +535,22 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.showEditStoryContentMenu(storyId)
     }
     
-    func likeStoryDidTap(storyId: Int) {
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
         print(storyId)
+        let story = StoryManager.find(storyId)
+        if story.liked {
+            self.unlikeStory(storyId, completion: completion)
+        } else {
+            self.likeStory(storyId, completion: completion)
+        }
+    }
+    
+    private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        
+    }
+    
+    private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        
     }
 
     // MARK: - ProfileViewDelegate

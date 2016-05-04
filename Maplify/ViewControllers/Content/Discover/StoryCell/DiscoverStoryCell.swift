@@ -154,7 +154,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     @IBAction func likeTapped(sender: UIButton) {
-        self.delegate?.likeStoryDidTap(self.storyId)
+        self.delegate?.likeStoryDidTap(self.storyId, completion: { (success) in
+            print(success)
+            // TODO
+        })
     }
     
     func profileImageTapped() {
@@ -239,5 +242,5 @@ protocol DiscoverStoryCellDelegate {
     func didSelectMap()
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
-    func likeStoryDidTap(storyId: Int)
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
 }

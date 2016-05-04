@@ -60,6 +60,7 @@
 "Controller.NewStory" = "New Story";
 "Controller.SharePost" = "Share Post";
 "Controller.ShareStory" = "Share Story";
+"Controller.ResetPassword" = "Reset Password";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -90,6 +91,7 @@
 "Label.PostsInThisStory" = "Posts in this story";
 "Label.MyPosts" = "My Posts";
 "Label.PressAndHold" = "Press & hold anywhere";
+"Label.ResetPasswordDetails" = "Enter your email and we'll email you a link to reset your password.";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -138,6 +140,7 @@
 "Button.CopyLink" = "Copy Link";
 "Button.PlusFollow" = "+ Follow";
 "Button.Following" = "Following";
+"Button.Reset" = "Reset";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

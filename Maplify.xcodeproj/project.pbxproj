@@ -37,6 +37,8 @@
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
+		853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
+		853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
 		8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */; };
 		8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
 		8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
@@ -218,6 +220,8 @@
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		853A41B01CDA0F4C00922D94 /* PasswordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 		8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
 		8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceSearchHelper.swift; sourceTree = "<group>"; };
@@ -481,6 +485,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		853A41AF1CDA0F3F00922D94 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				853A41B01CDA0F4C00922D94 /* PasswordManager.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
 		85E915961CBD3DB00041182F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +568,7 @@
 				A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */,
 				8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */,
 				A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */,
+				853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -774,6 +787,7 @@
 				A5D7AAF31C9C437F00A94C4F /* User */,
 				A5D7AAF51C9C437F00A94C4F /* WebContent */,
 				A5A0E9901C86FC9B0094FC04 /* Model.swift */,
+				853A41AF1CDA0F3F00922D94 /* Password */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1206,6 +1220,7 @@
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
 				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */,
+				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
@@ -1239,6 +1254,7 @@
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
+				853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */,
 				CD8A10A61CB6646200B58396 /* StoryPointDetailCell.swift in Sources */,
 				CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,

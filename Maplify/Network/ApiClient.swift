@@ -246,6 +246,11 @@ class ApiClient {
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
     }
+    
+    func resetPassword(email: String, redirectUrl: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email, "redirect_url": redirectUrl]
+        self.postRequest("auth/password", params: params, data: nil, manager: PasswordManager(), progress: nil, success: success, failure: failure)
+    }
 
     func likeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points/\(storyPointId)/like", params: nil, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)

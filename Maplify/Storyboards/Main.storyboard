@@ -567,13 +567,16 @@
                                                                 <constraint firstAttribute="height" constant="50" id="n28-ZC-6tB"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffN-zK-wHX">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffN-zK-wHX">
                                                             <rect key="frame" x="277" y="19" width="90" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="QWg-ce-2K2"/>
                                                                 <constraint firstAttribute="width" constant="90" id="tis-IM-gtI"/>
                                                             </constraints>
-                                                            <state key="normal" title="Follow"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <state key="normal" title="Follow">
+                                                                <color key="titleColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="MwM-aI-Lvs">
                                                             <rect key="frame" x="66" y="36" width="203" height="16"/>
@@ -928,6 +931,7 @@
                                             <outlet property="collectionView" destination="CZP-7J-ggn" id="cfe-M5-Btw"/>
                                             <outlet property="descriptionLabel" destination="gbq-hN-SlZ" id="sg6-Wo-iqu"/>
                                             <outlet property="likeButton" destination="HU5-ro-C71" id="NE4-5W-Jzz"/>
+                                            <outlet property="followButton" destination="ffN-zK-wHX" id="Etx-Uy-hvb"/>
                                             <outlet property="showHideDescriptionButton" destination="LaS-Gw-XTb" id="fQ2-Ik-fJG"/>
                                             <outlet property="showHideDescriptionLabel" destination="22Z-hU-xsd" id="ba3-bC-WLx"/>
                                             <outlet property="storyPointPlusLabel" destination="K2g-Gc-RSU" id="BwH-xt-mAb"/>

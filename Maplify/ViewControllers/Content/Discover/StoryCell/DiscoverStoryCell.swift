@@ -36,6 +36,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     @IBOutlet weak var storyPointsPlusView: UIView!
     @IBOutlet weak var storyPointPlusLabel: UILabel!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
 
     var cellData: CSCellData! = nil
@@ -58,6 +59,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.addShadow()
         self.setupCollectionView(cellData)
         self.populateUserViews(story!)
+        self.populateFollowButton(story!)
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.populateLikeButton()
@@ -84,6 +86,19 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
         self.userAddressLabel.text = profile.city
+    }
+    
+    func populateFollowButton(story: Story) {
+        self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
+        self.followButton.layer.borderWidth = Border.defaultBorderWidth
+        self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
+        if  story.followed {
+            self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.darkGreyBlue()
+        } else {
+            self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.clearColor()
+        }
     }
     
     func populateStoryInfoViews(story: Story) {
@@ -177,6 +192,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textSize = text.size(font, boundingRect: textRect)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
     }
+
     func populateLikeButton() {
         let story = StoryManager.find(self.storyId)
         if story.liked {

@@ -14,6 +14,7 @@ class Story: Model {
     dynamic var title = ""
     dynamic var storyDescription = ""
     dynamic var discoverable: Bool = false
+    dynamic var followed: Bool = false
     dynamic var liked: Bool = false
     var storyPoints = List<StoryPoint>()
     
@@ -28,6 +29,7 @@ class Story: Model {
         self.storyPoints <- Converter.arrayToList(map.relations("story_points"), type: StoryPoint.self)
         self.created_at <- map.property("created_at")
         self.updated_at <- map.property("updated_at")
+        self.followed <- map.property("followed")
         self.liked <- map.property("liked")
     }
     

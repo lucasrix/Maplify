@@ -136,6 +136,8 @@
 "Button.ShareStory" = "Share story";
 "Button.ShareToFacebook" = "Share to Facebook";
 "Button.CopyLink" = "Copy Link";
+"Button.PlusFollow" = "+ Follow";
+"Button.Following" = "Following";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

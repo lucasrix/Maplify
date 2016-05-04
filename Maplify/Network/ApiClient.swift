@@ -117,7 +117,7 @@ class ApiClient {
     }
     
     func postRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, progress: progressClosure!, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .POST, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
+        let config = RequestConfig(type: .POST, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: data)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -245,6 +245,14 @@ class ApiClient {
     
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func likeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("story_points/\(storyPointId)/like", params: nil, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unlikeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("story_points/\(storyPointId)/like", params: nil, manager: StoryPointManager(), success: success, failure: failure)
     }
 }
 

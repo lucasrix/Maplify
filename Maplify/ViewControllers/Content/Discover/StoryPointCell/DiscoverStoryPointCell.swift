@@ -163,6 +163,14 @@ class DiscoverStoryPointCell: CSTableViewCell {
         self.delegate?.profileImageTapped(storyPoint!.user.id)
     }
     
+    @IBAction func likeTapped(sender: UIButton) {
+        self.delegate?.likeStoryPointDidDidTap(self.storyPointId, completion: { (success) in
+            if success {
+                // TODO:
+            }
+        })
+    }
+    
     // MARK: - gestures
     func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
         let item = self.cellData.model as! DiscoverItem
@@ -220,4 +228,5 @@ protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
     func editContentDidTap(storyPointId: Int)
     func profileImageTapped(userId: Int)
+    func likeStoryPointDidDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
 }

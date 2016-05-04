@@ -472,6 +472,41 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
         }
     }
+    
+    func likeStoryPointDidDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.liked {
+            self.unlikeStoryPoint(storyPointId, completion: completion)
+        } else {
+            self.likeStoryPoint(storyPointId, completion: completion)
+        }
+    }
+    
+    private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        self.showProgressHUD()
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.hideProgressHUD()
+            completion(success: true)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: true)
+        }
+    }
+    
+    private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        self.showProgressHUD()
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.hideProgressHUD()
+            completion(success: true)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: true)
+        }
+    }
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
@@ -498,6 +533,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func editStoryContentDidTap(storyId: Int) {
         self.showEditStoryContentMenu(storyId)
+    }
+    
+    func likeStoryDidTap(storyId: Int) {
+        print(storyId)
     }
 
     // MARK: - ProfileViewDelegate

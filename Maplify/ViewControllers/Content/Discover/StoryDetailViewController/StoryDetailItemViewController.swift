@@ -95,7 +95,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     func populateStoryPointInfoViews() {
-        self.captionLabel.text = storyPoint.text
+        self.captionLabel.text = self.storyPoint.caption
     }
     
     func populateAttachment() {

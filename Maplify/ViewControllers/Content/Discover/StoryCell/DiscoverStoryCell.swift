@@ -92,12 +92,15 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         self.followButton.layer.borderWidth = Border.defaultBorderWidth
         self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
-        if  story.followed {
-            self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
-            self.followButton.backgroundColor = UIColor.darkGreyBlue()
-        } else {
+        
+        if story.followed == false {
             self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
             self.followButton.backgroundColor = UIColor.clearColor()
+            self.followButton.setTitleColor(UIColor.darkGreyBlue(), forState: .Normal)
+        } else {
+            self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.darkGreyBlue()
+            self.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         }
     }
     
@@ -182,6 +185,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let item = cellData.model as! DiscoverItem
         let story = item.story
         self.delegate?.storyProfileImageTapped(story!.user.id)
+    }
+    
+    @IBAction func followTapped(sender: UIButton) {
+        self.delegate?.followStory(self.storyId)
     }
     
     // MARK: - private
@@ -269,5 +276,9 @@ protocol DiscoverStoryCellDelegate {
     func didSelectMap()
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
+<<<<<<< 09e6df3a6f2db6d31b37e9603be7223fd62a5788
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
+=======
+    func followStory(storyId: Int)
+>>>>>>> Added requests
 }

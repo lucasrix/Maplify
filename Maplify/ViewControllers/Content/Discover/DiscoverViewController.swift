@@ -472,6 +472,36 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
         }
     }
+    
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.liked {
+            self.unlikeStoryPoint(storyPointId, completion: completion)
+        } else {
+            self.likeStoryPoint(storyPointId, completion: completion)
+        }
+    }
+    
+    private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
@@ -498,6 +528,37 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func editStoryContentDidTap(storyId: Int) {
         self.showEditStoryContentMenu(storyId)
+    }
+    
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
+        let story = StoryManager.find(storyId)
+        if story.liked {
+            self.unlikeStory(storyId, completion: completion)
+        } else {
+            self.likeStory(storyId, completion: completion)
+        }
+    }
+    
+    private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
     }
 
     // MARK: - ProfileViewDelegate

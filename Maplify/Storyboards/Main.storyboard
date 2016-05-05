@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -837,6 +837,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="ibb-Iq-EaW"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverLike"/>
+                                                            <connections>
+                                                                <action selector="likeTapped:" destination="2su-9Q-baY" eventType="touchUpInside" id="P0m-ci-YJd"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8z-bq-ar2">
                                                             <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -924,6 +927,7 @@
                                             <outlet property="captionLabel" destination="pxK-ZH-JVe" id="Lur-cE-kaf"/>
                                             <outlet property="collectionView" destination="CZP-7J-ggn" id="cfe-M5-Btw"/>
                                             <outlet property="descriptionLabel" destination="gbq-hN-SlZ" id="sg6-Wo-iqu"/>
+                                            <outlet property="likeButton" destination="HU5-ro-C71" id="NE4-5W-Jzz"/>
                                             <outlet property="showHideDescriptionButton" destination="LaS-Gw-XTb" id="fQ2-Ik-fJG"/>
                                             <outlet property="showHideDescriptionLabel" destination="22Z-hU-xsd" id="ba3-bC-WLx"/>
                                             <outlet property="storyPointPlusLabel" destination="K2g-Gc-RSU" id="BwH-xt-mAb"/>
@@ -1115,6 +1119,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="w9X-8z-qYI"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverLike"/>
+                                                            <connections>
+                                                                <action selector="likeTapped:" destination="k3W-Z4-0sj" eventType="touchUpInside" id="lh0-N5-cxk"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC0-r0-By0">
                                                             <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -1211,6 +1218,7 @@
                                             <outlet property="colorView" destination="PSC-qw-JMC" id="ajf-VM-Lz9"/>
                                             <outlet property="descriptionLabel" destination="Bxi-pv-mIf" id="D3s-R1-Sec"/>
                                             <outlet property="followButton" destination="X5A-gw-5mM" id="KDw-xW-BMa"/>
+                                            <outlet property="likeButton" destination="07c-dU-1xm" id="1Kz-iH-9cP"/>
                                             <outlet property="showHideDescriptionButton" destination="a5P-ag-4K7" id="xeP-CE-u3W"/>
                                             <outlet property="showHideDescriptionLabel" destination="OFB-VM-Xs9" id="WWH-4f-ra4"/>
                                             <outlet property="storyPointAddressImageView" destination="HHW-xs-3dF" id="z05-bd-ei5"/>
@@ -2570,6 +2578,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="VhK-FL-Kqd"/>
                                                 </constraints>
                                                 <state key="normal" image="DiscoverLike"/>
+                                                <connections>
+                                                    <action selector="likeTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="5wM-XF-j26"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV0-eb-gNt">
                                                 <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -2681,6 +2692,7 @@
                         <outlet property="firstBackShadowView" destination="jOp-eV-ffe" id="Y8d-bN-A7P"/>
                         <outlet property="followButton" destination="Hxx-Tb-zfg" id="sS5-d8-JNl"/>
                         <outlet property="jumpToFeedButton" destination="uKI-tt-Xwa" id="QLk-Pf-0Cl"/>
+                        <outlet property="likeButton" destination="Eb2-1s-wVx" id="mec-F5-Hx9"/>
                         <outlet property="scrollView" destination="x4f-cN-XcZ" id="spr-UN-nLn"/>
                         <outlet property="showHideDescriptionButton" destination="sDQ-XZ-vdk" id="E2e-kO-Dpx"/>
                         <outlet property="showHideDescriptionLabel" destination="2XP-Yp-chs" id="dQ1-vU-bIG"/>

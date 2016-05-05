@@ -36,6 +36,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     @IBOutlet weak var storyPointsPlusView: UIView!
     @IBOutlet weak var storyPointPlusLabel: UILabel!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var likeButton: UIButton!
 
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryCellDelegate! = nil
@@ -59,6 +60,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateUserViews(story!)
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
+        self.populateLikeButton()
         self.setupSwipe()
     }
     
@@ -153,6 +155,14 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.delegate?.editStoryContentDidTap(self.storyId)
     }
     
+    @IBAction func likeTapped(sender: UIButton) {
+        self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            if success {
+                self?.populateLikeButton()
+            }
+        })
+    }
+    
     func profileImageTapped() {
         let item = cellData.model as! DiscoverItem
         let story = item.story
@@ -166,6 +176,14 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textRect = CGRectMake(0.0, 0.0, textWidth, 0.0)
         let textSize = text.size(font, boundingRect: textRect)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
+    }
+    func populateLikeButton() {
+        let story = StoryManager.find(self.storyId)
+        if story.liked {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
+        }
     }
     
     // MARK: - CSBaseCollectionDataSourceDelegate
@@ -235,4 +253,5 @@ protocol DiscoverStoryCellDelegate {
     func didSelectMap()
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
 }

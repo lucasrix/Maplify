@@ -561,6 +561,37 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
 
+    func followStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        let story = StoryManager.find(storyId)
+        if story.followed == false {
+            self.followStoryRemote(storyId, completion: completion)
+        } else {
+            self.unfollowStoryRemote(storyId, completion: completion)
+        }
+    }
+    
+    func followStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.followStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
+    }
+    
+    func unfollowStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unfollowStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+
     // MARK: - ProfileViewDelegate
     func followButtonDidTap() {
         //TODO:

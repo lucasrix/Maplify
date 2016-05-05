@@ -15,6 +15,7 @@ class Story: Model {
     dynamic var storyDescription = ""
     dynamic var discoverable: Bool = false
     dynamic var liked: Bool = false
+    dynamic var followed: Bool = false
     var storyPoints = List<StoryPoint>()
     
     convenience required init(_ map: [String : AnyObject]) {
@@ -29,6 +30,7 @@ class Story: Model {
         self.created_at <- map.property("created_at")
         self.updated_at <- map.property("updated_at")
         self.liked <- map.property("liked")
+        self.followed <- map.property("followed")
     }
     
     override class func primaryKey() -> String {

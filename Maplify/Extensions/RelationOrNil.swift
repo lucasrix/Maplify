@@ -20,4 +20,9 @@ public extension Dictionary {
             return nil
         }
     }
+    
+    func boolProperty(name: String) -> Bool {
+        let value = self[name as! Key]
+        return Bool(value as! Int)
+    }
 }

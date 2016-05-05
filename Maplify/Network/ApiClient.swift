@@ -246,11 +246,11 @@ class ApiClient {
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
     }
-    
+
     func likeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points/\(storyPointId)/like", params: nil, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
-    
+
     func unlikeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("story_points/\(storyPointId)/like", params: nil, manager: StoryPointManager(), success: success, failure: failure)
     }
@@ -261,6 +261,14 @@ class ApiClient {
     
     func unlikeStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("stories/\(storyId)/like", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func followStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories/\(storyId)/following", params: nil, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unfollowStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)/following", params: nil, manager: StoryManager(), success: success, failure: failure)
     }
 }
 

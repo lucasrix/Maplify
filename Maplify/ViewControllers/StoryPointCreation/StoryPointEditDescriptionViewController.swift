@@ -75,7 +75,13 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
+        if self.descriptionTextView.text.isNonWhiteSpace {
         self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: self.storyPointKind, storyPointAttachmentId: self.storyPointAttachmentId, location: self.location)
+        } else {
+            let messasge = NSLocalizedString("Alert.EnterDescription", comment: String())
+            let cancel = NSLocalizedString("Button.Ok", comment: String())
+            self.showMessageAlert(nil, message: messasge, cancel: cancel)
+        }
     }
     
     override func backTapped() {

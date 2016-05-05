@@ -530,6 +530,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.showEditStoryContentMenu(storyId)
     }
     
+<<<<<<< 547cae02d587ffa38bae12c82785183d2303ee0a
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
         let story = StoryManager.find(storyId)
         if story.liked {
@@ -562,34 +563,36 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
 
     func followStory(storyId: Int) {
+=======
+    func followStory(storyId: Int, completion: ((success: Bool) -> ())) {
+>>>>>>> Fixed following button populating
         let story = StoryManager.find(storyId)
         if story.followed == false {
-            self.followStoryRemote(storyId)
+            self.followStoryRemote(storyId, completion: completion)
         } else {
-            self.unfollowStoryRemote(storyId)
+            self.unfollowStoryRemote(storyId, completion: completion)
         }
     }
     
-    func followStoryRemote(storyId: Int) {
-        ApiClient.sharedClient.followStory(storyId, success: { [weak self] (response) in
-            
+    func followStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.followStory(storyId, success: { (response) in
             StoryManager.saveStory(response as! Story)
-            print((response as! Story).followed)
-            self?.storyDataSource.reloadTable()
+            completion(success: true)
             
         }) { [weak self] (statusCode, errors, localDescription, messages) in
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
         }
     }
     
-    func unfollowStoryRemote(storyId: Int) {
-        ApiClient.sharedClient.unfollowStory(storyId, success: { [weak self] (response) in
-            
+    func unfollowStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unfollowStory(storyId, success: { (response) in
             StoryManager.saveStory(response as! Story)
-            self?.storyDataSource.reloadTable()
+            completion(success: true)
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
         }
     }
 

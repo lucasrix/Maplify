@@ -56,21 +56,25 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.storyId = story!.id
         self.discoverItemId = item.id
         
-        self.addShadow()
+        self.setupViews()
         self.setupCollectionView(cellData)
         self.populateUserViews(story!)
-        self.populateFollowButton(story!)
+        self.populateFollowButton()
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.populateLikeButton()
         self.setupSwipe()
     }
     
-    func addShadow() {
+    func setupViews() {
         self.backShadowView.layer.shadowColor = UIColor.blackColor().CGColor
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
         self.backShadowView.layer.shadowRadius = kShadowRadius
+        
+        self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
+        self.followButton.layer.borderWidth = Border.defaultBorderWidth
+        self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
     }
     
     func populateUserViews(story: Story) {
@@ -88,19 +92,16 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.userAddressLabel.text = profile.city
     }
     
-    func populateFollowButton(story: Story) {
-        self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
-        self.followButton.layer.borderWidth = Border.defaultBorderWidth
-        self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
-        
-        if story.followed == false {
-            self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
-            self.followButton.backgroundColor = UIColor.clearColor()
-            self.followButton.setTitleColor(UIColor.darkGreyBlue(), forState: .Normal)
-        } else {
+    func populateFollowButton() {
+        let story = StoryManager.find(self.storyId)
+        if story.followed {
             self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
             self.followButton.backgroundColor = UIColor.darkGreyBlue()
             self.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        } else {
+            self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.clearColor()
+            self.followButton.setTitleColor(UIColor.darkGreyBlue(), forState: .Normal)
         }
     }
     
@@ -188,7 +189,11 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     @IBAction func followTapped(sender: UIButton) {
-        self.delegate?.followStory(self.storyId)
+        self.delegate?.followStory(self.storyId, completion: { [weak self] (success) in
+            if success {
+                self?.populateFollowButton()
+            }
+        })
     }
     
     // MARK: - private
@@ -276,9 +281,6 @@ protocol DiscoverStoryCellDelegate {
     func didSelectMap()
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
-<<<<<<< 09e6df3a6f2db6d31b37e9603be7223fd62a5788
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
-=======
-    func followStory(storyId: Int)
->>>>>>> Added requests
+    func followStory(storyId: Int, completion: ((success: Bool) -> ()))
 }

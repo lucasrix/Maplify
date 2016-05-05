@@ -593,8 +593,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
 
     // MARK: - ProfileViewDelegate
-    func followButtonDidTap() {
-        //TODO:
+    func followButtonDidTap(userId: Int, completion: ((success: Bool) -> ())) {
+        let user = SessionManager.findUser(userId)
+        if user.followed {
+            self.unfollowUser(userId, completion: completion)
+        } else {
+            self.followUser(userId, completion: completion)
+        }
     }
     
     func createStoryButtonDidTap() {
@@ -606,6 +611,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func editButtonDidTap() {
         self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
             self?.configureProfileViewIfNeeded()
+        }
+    }
+    
+    // MARK: - private
+    private func followUser(userId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.followUser(userId, success: { (response) in
+            SessionManager.saveUser(response as! User)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unfollowUser(userId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unfollowUser(userId, success: { (response) in
+            SessionManager.saveUser(response as! User)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
         }
     }
     

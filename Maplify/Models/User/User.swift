@@ -14,6 +14,7 @@ class User: Model {
     dynamic var provider = ""
     dynamic var email = ""
     dynamic var profile: Profile! = nil
+    dynamic var followed: Bool = false
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
@@ -25,6 +26,7 @@ class User: Model {
         self.provider <- map.property("provider")
         self.uid <- map.property("uid")
         self.profile <- map.relationOrNil("profile")
+        self.followed <- map.property("followed")
     }
     
     override class func primaryKey() -> String {

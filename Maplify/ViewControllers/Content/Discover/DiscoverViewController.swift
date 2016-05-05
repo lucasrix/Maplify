@@ -530,7 +530,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.showEditStoryContentMenu(storyId)
     }
     
-<<<<<<< 547cae02d587ffa38bae12c82785183d2303ee0a
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
         let story = StoryManager.find(storyId)
         if story.liked {
@@ -562,10 +561,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
 
-    func followStory(storyId: Int) {
-=======
     func followStory(storyId: Int, completion: ((success: Bool) -> ())) {
->>>>>>> Fixed following button populating
         let story = StoryManager.find(storyId)
         if story.followed == false {
             self.followStoryRemote(storyId, completion: completion)

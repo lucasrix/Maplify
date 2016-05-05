@@ -43,6 +43,8 @@ class ResetPasswordViewController: ViewController, ErrorHandlingProtocol {
             self.showProgressHUD()
             ApiClient.sharedClient.resetPassword(self.emailInputField.textField.text!, redirectUrl: "",
                 success: { [weak self] (response) in
+                    let cancel = NSLocalizedString("Button.Ok", comment: String())
+                    self?.showMessageAlert(nil, message: NSLocalizedString("Label.LinkWasSent", comment: String()), cancel: cancel)
                     self?.hideProgressHUD()
                 },
                 failure: { [weak self] (statusCode, errors, localDescription, messages) in

@@ -216,25 +216,21 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     private func likeStoryPoint() {
-        self.showProgressHUD()
         ApiClient.sharedClient.likeStoryPoint(self.storyPointId, success: { [weak self] (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
             self?.populateLikeButton()
-            self?.hideProgressHUD()
+            
         }) { [weak self] (statusCode, errors, localDescription, messages) in
-            self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     
     private func unlikeStoryPoint() {
-        self.showProgressHUD()
         ApiClient.sharedClient.unlikeStoryPoint(self.storyPointId, success: { [weak self] (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
             self?.populateLikeButton()
-            self?.hideProgressHUD()
+            
         }) { [weak self] (statusCode, errors, localDescription, messages) in
-            self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }

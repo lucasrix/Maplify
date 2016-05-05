@@ -483,27 +483,21 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
-        self.showProgressHUD()
-        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { [weak self] (response) in
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
-            self?.hideProgressHUD()
             completion(success: true)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
         }
     }
     
     private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
-        self.showProgressHUD()
-        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { [weak self] (response) in
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
-            self?.hideProgressHUD()
             completion(success: true)
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
         }
@@ -546,28 +540,22 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
-        self.showProgressHUD()
-        ApiClient.sharedClient.likeStory(storyId, success: { [weak self] (response) in
+        ApiClient.sharedClient.likeStory(storyId, success: { (response) in
             StoryManager.saveStory(response as! Story)
-            self?.hideProgressHUD()
             completion(success: true)
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
         }
     }
     
     private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
-        self.showProgressHUD()
-        ApiClient.sharedClient.unlikeStory(storyId, success: { [weak self] (response) in
+        ApiClient.sharedClient.unlikeStory(storyId, success: { (response) in
             StoryManager.saveStory(response as! Story)
-            self?.hideProgressHUD()
             completion(success: true)
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
         }

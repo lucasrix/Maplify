@@ -31,6 +31,7 @@ struct Network {
     static let failureStatuCode500: Int = 500
     static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
+    static let routingPrefix = "maplify:/"
 }
 
 struct Controllers {
@@ -69,6 +70,7 @@ struct Controllers {
     static let shareStoryPointViewController = "ShareStoryPointViewController"
     static let shareStoryViewController = "ShareStoryViewController"
     static let resetPasswordViewController = "ResetPasswordController"
+    static let changePasswordViewController = "ChangePasswordController"
 }
 
 struct AppIDs {

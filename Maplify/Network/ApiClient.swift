@@ -283,6 +283,11 @@ class ApiClient {
     func unfollowUser(userId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("users/\(userId)/following", params: nil, manager: SessionManager(), success: success, failure: failure)
     }
+
+    func changePassword(password: String, confirmPassword: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["password": password, "password_confirmation": confirmPassword]
+        self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

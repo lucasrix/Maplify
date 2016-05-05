@@ -972,6 +972,53 @@ Tap OK once it appears.</string>
             </objects>
             <point key="canvasLocation" x="2276.5" y="1135.5"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="FCT-l2-tYU">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordController" id="4Ph-Zn-7L3" customClass="ChangePasswordViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sRE-Lq-X8r"/>
+                        <viewControllerLayoutGuide type="bottom" id="9xe-2K-NV7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I3g-cV-7CJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGu-v0-Efe" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="YAU-85-nDC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IU-Rf-9al" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="ui3-T1-3JY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7IU-Rf-9al" secondAttribute="trailing" id="Bpf-Wt-s1K"/>
+                            <constraint firstItem="wGu-v0-Efe" firstAttribute="top" secondItem="sRE-Lq-X8r" secondAttribute="bottom" constant="10" id="DGY-TD-Lpu"/>
+                            <constraint firstItem="7IU-Rf-9al" firstAttribute="top" secondItem="wGu-v0-Efe" secondAttribute="bottom" constant="15" id="VdD-mm-bA5"/>
+                            <constraint firstItem="wGu-v0-Efe" firstAttribute="leading" secondItem="I3g-cV-7CJ" secondAttribute="leading" id="l40-4e-uKK"/>
+                            <constraint firstItem="7IU-Rf-9al" firstAttribute="leading" secondItem="I3g-cV-7CJ" secondAttribute="leading" id="vrN-pH-tiy"/>
+                            <constraint firstAttribute="trailing" secondItem="wGu-v0-Efe" secondAttribute="trailing" id="wly-Q8-LGn"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="confirmPasswordInputField" destination="7IU-Rf-9al" id="z9U-Aq-oZY"/>
+                        <outlet property="passwordInputField" destination="wGu-v0-Efe" id="u5g-vz-43r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9SO-U3-60g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739.5" y="1135.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icoEnvelope" width="24" height="19"/>

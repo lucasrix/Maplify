@@ -23,6 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>maplify</string>
 				<string>fb1569818663334609</string>
 			</array>
 		</dict>

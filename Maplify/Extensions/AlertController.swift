@@ -12,7 +12,7 @@ typealias buttonClosure = (buttonIndex: Int) -> ()
 
 extension UIViewController {
     
-    func showAlert(title: String!, message: String, cancel: String!, buttons: [String], handle: buttonClosure) {
+    func showAlert(title: String!, message: String, cancel: String!, buttons: [String]!, handle: buttonClosure) {
         self.showController(title, message: message, cancel: cancel, destructive: nil, buttons: buttons, style: .Alert, handle: handle)
     }
     
@@ -50,7 +50,7 @@ extension UIViewController {
     }
     
     private func showController(title: String!, message: String!, cancel: String!, destructive: String!,
-        buttons: [String], style: UIAlertControllerStyle, handle: buttonClosure) {
+        buttons: [String]!, style: UIAlertControllerStyle, handle: buttonClosure) {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
             
             for title in buttons {

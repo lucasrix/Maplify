@@ -23,7 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FacebookHelper.openUrl(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        if url.absoluteString.containsString(Network.routingPrefix) {
+            self.window?.rootViewController?.routesOpenChangePasswordViewController()
+        } else {
+            return FacebookHelper.openUrl(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        }
+        return true
     }
     
     func applicationDidBecomeActive(application: UIApplication) {

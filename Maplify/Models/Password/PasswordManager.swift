@@ -10,6 +10,6 @@ import Foundation
 
 class PasswordManager: ModelManager {
     override func manageResponse(response: [String : AnyObject]) -> AnyObject! {
-        print(response)
+        return response
     }
 }

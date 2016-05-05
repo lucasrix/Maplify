@@ -19,6 +19,8 @@
 "Text.Placeholder.EnterTag" = "Enter tag";
 "Text.Placeholder.EnterBriefTitle" = "Enter a brief title";
 "Text.Placeholder.WhatsYourStoryAbout" = "What's your story about?";
+"Text.Placeholder.NewPassword" = "New Password";
+"Text.Placeholder.ConfirmNewPassword" = "Confirm new Password";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -93,6 +95,7 @@
 "Label.PressAndHold" = "Press & hold anywhere";
 "Label.ResetPasswordDetails" = "Enter your email and we'll email you a link to reset your password.";
 "Label.LinkWasSent" = "A link to reset your password was sent to your email.";
+"Label.ChangePassword" = "Change Password";
 
 //Subsrtings
 "Substring.Of" = "of";

@@ -42,6 +42,16 @@ class ChangePasswordViewController: ViewController, ErrorHandlingProtocol {
     
     // MARK: - actions
     override func rightBarButtonItemDidTap() {
+        if self.passwordInputField.textField.text?.isValidPassword == false {
+            self.passwordInputField.setErrorState(NSLocalizedString("Error.InvalidPassword", comment: String()))
+        } else if self.passwordInputField.textField.text != self.confirmPasswordInputField.textField.text {
+            self.confirmPasswordInputField.setErrorState(NSLocalizedString("Error.PasswordDoesNotMatch", comment: String()))
+        } else {
+            self.changePassword()
+        }
+    }
+    
+    func changePassword() {
         self.showProgressHUD()
         ApiClient.sharedClient.changePassword(self.passwordInputField.textField.text!, confirmPassword: self.confirmPasswordInputField.textField.text!, success: { [weak self] (response) in
                 self?.hideProgressHUD()

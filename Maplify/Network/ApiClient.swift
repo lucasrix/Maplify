@@ -270,6 +270,14 @@ class ApiClient {
     func unfollowStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("stories/\(storyId)/following", params: nil, manager: StoryManager(), success: success, failure: failure)
     }
+    
+    func followUser(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("users/\(userId)/following", params: nil, data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unfollowUser(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("users/\(userId)/following", params: nil, manager: SessionManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

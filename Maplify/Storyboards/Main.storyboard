@@ -1217,6 +1217,7 @@
                                             <outlet property="colorView" destination="PSC-qw-JMC" id="ajf-VM-Lz9"/>
                                             <outlet property="descriptionLabel" destination="Bxi-pv-mIf" id="D3s-R1-Sec"/>
                                             <outlet property="followButton" destination="X5A-gw-5mM" id="KDw-xW-BMa"/>
+                                            <outlet property="likeButton" destination="07c-dU-1xm" id="1Kz-iH-9cP"/>
                                             <outlet property="showHideDescriptionButton" destination="a5P-ag-4K7" id="xeP-CE-u3W"/>
                                             <outlet property="showHideDescriptionLabel" destination="OFB-VM-Xs9" id="WWH-4f-ra4"/>
                                             <outlet property="storyPointAddressImageView" destination="HHW-xs-3dF" id="z05-bd-ei5"/>

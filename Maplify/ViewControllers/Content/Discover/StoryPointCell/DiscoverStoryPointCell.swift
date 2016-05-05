@@ -166,7 +166,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     @IBAction func likeTapped(sender: UIButton) {
-        self.delegate?.likeStoryPointDidDidTap(self.storyPointId, completion: { [weak self] (success) in
+        self.delegate?.likeStoryPointDidTap(self.storyPointId, completion: { [weak self] (success) in
             if success {
                 self?.populateLikeButton()
             }
@@ -239,5 +239,5 @@ protocol DiscoverStoryPointCellDelegate {
     func reloadTable(storyPointId: Int)
     func editContentDidTap(storyPointId: Int)
     func profileImageTapped(userId: Int)
-    func likeStoryPointDidDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
 }

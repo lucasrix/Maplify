@@ -473,7 +473,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
-    func likeStoryPointDidDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.liked {
             self.unlikeStoryPoint(storyPointId, completion: completion)

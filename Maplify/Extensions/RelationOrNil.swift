@@ -23,7 +23,6 @@ public extension Dictionary {
     
     func boolProperty(name: String) -> Bool {
         let value = self[name as! Key]
-        print("value is \(Bool(value as! Int))")
         return Bool(value as! Int)
     }
 }

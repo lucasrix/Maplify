@@ -537,7 +537,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
-        print(storyId)
         let story = StoryManager.find(storyId)
         if story.liked {
             self.unlikeStory(storyId, completion: completion)
@@ -549,7 +548,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
         self.showProgressHUD()
         ApiClient.sharedClient.likeStory(storyId, success: { [weak self] (response) in
-            print(response as! Story)
             StoryManager.saveStory(response as! Story)
             self?.hideProgressHUD()
             completion(success: true)
@@ -564,7 +562,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
         self.showProgressHUD()
         ApiClient.sharedClient.unlikeStory(storyId, success: { [weak self] (response) in
-            print(response as! Story)
             StoryManager.saveStory(response as! Story)
             self?.hideProgressHUD()
             completion(success: true)

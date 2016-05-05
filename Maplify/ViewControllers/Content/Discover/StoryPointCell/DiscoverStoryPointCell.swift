@@ -166,9 +166,9 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     @IBAction func likeTapped(sender: UIButton) {
-        self.delegate?.likeStoryPointDidDidTap(self.storyPointId, completion: { (success) in
+        self.delegate?.likeStoryPointDidDidTap(self.storyPointId, completion: { [weak self] (success) in
             if success {
-                self.populateLikeButton()
+                self?.populateLikeButton()
             }
         })
     }

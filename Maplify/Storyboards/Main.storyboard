@@ -2578,6 +2578,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="VhK-FL-Kqd"/>
                                                 </constraints>
                                                 <state key="normal" image="DiscoverLike"/>
+                                                <connections>
+                                                    <action selector="likeTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="5wM-XF-j26"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV0-eb-gNt">
                                                 <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -2689,6 +2692,7 @@
                         <outlet property="firstBackShadowView" destination="jOp-eV-ffe" id="Y8d-bN-A7P"/>
                         <outlet property="followButton" destination="Hxx-Tb-zfg" id="sS5-d8-JNl"/>
                         <outlet property="jumpToFeedButton" destination="uKI-tt-Xwa" id="QLk-Pf-0Cl"/>
+                        <outlet property="likeButton" destination="Eb2-1s-wVx" id="mec-F5-Hx9"/>
                         <outlet property="scrollView" destination="x4f-cN-XcZ" id="spr-UN-nLn"/>
                         <outlet property="showHideDescriptionButton" destination="sDQ-XZ-vdk" id="E2e-kO-Dpx"/>
                         <outlet property="showHideDescriptionLabel" destination="2XP-Yp-chs" id="dQ1-vU-bIG"/>

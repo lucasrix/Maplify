@@ -33,6 +33,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var jumpToFeedButton: UIButton!
     @IBOutlet weak var attachmentContentView: UIView!
+    @IBOutlet weak var likeButton: UIButton!
     
     var itemIndex: Int = 0
     var storyPointId: Int = 0
@@ -73,6 +74,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         self.populateStoryPointInfoViews()
         self.populateAttachment()
         self.populateDescriptionLabel()
+        self.populateLikeButton()
     }
     
     func setupScrollView() {
@@ -184,6 +186,15 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         }
     }
     
+    @IBAction func likeTapped(sender: UIButton) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.liked {
+            self.unlikeStoryPoint()
+        } else {
+            self.likeStoryPoint()
+        }
+    }
+    
     // MARK: - private
     func deleteStoryPoint() {
         // TODO:
@@ -204,7 +215,39 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         self.attachmentContentView.hidden = self.storyPoint.kind == StoryPointKind.Text.rawValue || self.storyPoint.kind == StoryPointKind.Photo.rawValue
     }
     
-    // MARK: - private
+    private func likeStoryPoint() {
+        self.showProgressHUD()
+        ApiClient.sharedClient.likeStoryPoint(self.storyPointId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.populateLikeButton()
+            self?.hideProgressHUD()
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    private func unlikeStoryPoint() {
+        self.showProgressHUD()
+        ApiClient.sharedClient.unlikeStoryPoint(self.storyPointId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.populateLikeButton()
+            self?.hideProgressHUD()
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    func populateLikeButton() {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        if storyPoint.liked {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
+        }
+    }
+    
     func showHideButtonHidden(text: String) -> Bool {
         let font = self.descriptionLabel.font
         let textWidth: CGFloat = CGRectGetWidth(self.descriptionLabel.frame)
@@ -227,5 +270,12 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         if scrollView.contentOffset.y <= 0.0 && scrollView.contentOffset.y > -kStoryDetailScrollViewExpandHeight {
             scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: -scrollView.contentOffset.y, right: 0)
         }
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

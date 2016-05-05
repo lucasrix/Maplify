@@ -41,7 +41,7 @@ class ResetPasswordViewController: ViewController, ErrorHandlingProtocol {
     override func rightBarButtonItemDidTap() {
         if self.emailInputField.textField.text?.isEmail == true {
             self.showProgressHUD()
-            ApiClient.sharedClient.resetPassword(self.emailInputField.textField.text!, redirectUrl: "",
+            ApiClient.sharedClient.resetPassword(self.emailInputField.textField.text!, redirectUrl: Network.routingPrefix,
                 success: { [weak self] (response) in
                     let cancel = NSLocalizedString("Button.Ok", comment: String())
                     let message =  NSLocalizedString("Label.LinkWasSent", comment: String())

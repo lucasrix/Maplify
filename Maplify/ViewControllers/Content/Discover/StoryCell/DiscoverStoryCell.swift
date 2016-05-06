@@ -64,6 +64,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateDescriptionLabel(cellData)
         self.populateLikeButton()
         self.setupSwipe()
+        self.setupMapSwipe()
     }
     
     func setupViews() {
@@ -155,10 +156,20 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.contentView.addGestureRecognizer(swipeGesture)
     }
     
+    func setupMapSwipe() {
+        let mapSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleMapSwipe(_:)))
+        mapSwipeGesture.direction = .Right
+        self.contentView.addGestureRecognizer(mapSwipeGesture)
+    }
+    
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
         let item = cellData.model as! DiscoverItem
         let story = item.story
         self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: 0, storyTitle: story!.title)
+    }
+    
+    func handleMapSwipe(sender:UISwipeGestureRecognizer) {
+        self.delegate?.didSelectMap()
     }
     
     func numberOfStoryPointInCollectionView() -> Int {

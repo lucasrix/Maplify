@@ -53,7 +53,8 @@ class ChangePasswordViewController: ViewController, ErrorHandlingProtocol {
     
     func changePassword() {
         self.showProgressHUD()
-        ApiClient.sharedClient.changePassword(self.passwordInputField.textField.text!, confirmPassword: self.confirmPasswordInputField.textField.text!, success: { [weak self] (response) in
+        ApiClient.sharedClient.changePassword(self.passwordInputField.textField.text!, confirmPassword: self.confirmPasswordInputField.textField.text!,
+            success: { [weak self] (response) in
                 self?.hideProgressHUD()
                 SessionManager.saveUser(response as! User)
                 self?.routesSetContentController()

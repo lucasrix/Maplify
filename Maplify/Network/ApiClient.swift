@@ -91,7 +91,7 @@ class ApiClient {
                 }
             }
         } else {
-            if statusCode == Network.failureStatuCode500 {
+            if statusCode == Network.failureStatusCode500 {
                 dispatch_async(dispatch_get_main_queue()) {
                     failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
                 }

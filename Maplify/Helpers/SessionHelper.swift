@@ -41,6 +41,17 @@ class SessionHelper {
         }
     }
     
+    func setSessionData(url: NSURL) {
+        let sessionDictionary = url.queryItems
+        print(sessionDictionary)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Network.isUserLogin)
+        do {
+            try Locksmith.updateData(sessionDictionary, forUserAccount: Config.localUserAccount)
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func sessionData() -> [NSObject : AnyObject]! {
         let dictionary = Locksmith.loadDataForUserAccount(Config.localUserAccount)
         return (dictionary != nil) ? dictionary : [NSObject : AnyObject]()

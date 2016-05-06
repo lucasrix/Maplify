@@ -178,7 +178,7 @@ extension UIViewController {
     }
     
     func routesOpenChangePasswordViewController() {
-        let changePasswordViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.changePasswordViewController) as! ChangePasswordViewController
+        let changePasswordViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.changePasswordViewController) as! ChangePasswordViewController
         self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     

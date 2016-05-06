@@ -39,6 +39,7 @@
 		853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
 		853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
 		853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */; };
+		855567A41CDCBA180096A561 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855567A31CDCBA180096A561 /* NSURL.swift */; };
 		8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */; };
 		8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
 		8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
@@ -222,6 +223,7 @@
 		853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		853A41B01CDA0F4C00922D94 /* PasswordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 		853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		855567A31CDCBA180096A561 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
 		8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceSearchHelper.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */,
 				8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */,
 				CDF6D8961CD26007001387EC /* ShareController.swift */,
+				855567A31CDCBA180096A561 /* NSURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1223,6 +1226,7 @@
 				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
+				855567A41CDCBA180096A561 /* NSURL.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,

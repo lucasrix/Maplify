@@ -25,9 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if url.absoluteString.containsString(Network.routingPrefix) {
             SessionHelper.sharedHelper.setSessionData(url)
-            let navigationController = self.window?.rootViewController as! NavigationViewController
-            let viewController = navigationController.viewControllers.first
-            viewController!.routesOpenChangePasswordViewController()
+            if self.window?.rootViewController is NavigationViewController {
+                let navigationController = self.window?.rootViewController as! NavigationViewController
+                let viewController = navigationController.viewControllers.first
+                viewController!.routesOpenChangePasswordViewController()
+            } else {
+                self.window?.rootViewController?.routesOpenChangePasswordViewController()
+            }
+            
         } else {
             return FacebookHelper.openUrl(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
         }

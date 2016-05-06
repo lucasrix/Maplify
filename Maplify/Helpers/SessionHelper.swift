@@ -42,8 +42,13 @@ class SessionHelper {
     }
     
     func setSessionData(url: NSURL) {
-        let sessionDictionary = url.queryItems
-        print(sessionDictionary)
+        var urlDictionary = url.queryItems
+        var sessionDictionary = [String: String]()
+        sessionDictionary["client"] = urlDictionary["client_id"]
+        sessionDictionary["access-token"] = urlDictionary["token"]
+        sessionDictionary["expiry"] = urlDictionary["expiry"]
+        sessionDictionary["uid"] = urlDictionary["uid"]
+        
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: Network.isUserLogin)
         do {
             try Locksmith.updateData(sessionDictionary, forUserAccount: Config.localUserAccount)

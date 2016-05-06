@@ -90,3 +90,7 @@ struct StaticMapSize {
     static let widthMedium = 400
     static let widthLarge = 600
 }
+
+struct AnimationDurations {
+    static let pushControllerDefault: CFTimeInterval = 0.35
+}

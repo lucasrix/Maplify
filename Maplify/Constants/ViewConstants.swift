@@ -27,6 +27,7 @@ struct ScreenSize {
 
 struct NavigationBar {
     static let defaultOpacity: CGFloat = 0.8
+    static let captureStoryMapOpacity: CGFloat = 0.7
     static let defaultHeight: CGFloat = 64
     static let defaultSearchBarOpacity: CGFloat = 0.97
     static let navigationBarAlphaMin: CGFloat = 0

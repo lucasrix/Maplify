@@ -169,7 +169,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     func handleMapSwipe(sender:UISwipeGestureRecognizer) {
-        self.delegate?.didSelectMap()
+        let story = StoryManager.find(self.storyId)
+        self.delegate?.didSelectMap(story)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -228,7 +229,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     // MARK: - CSBaseCollectionDataSourceDelegate
     func didSelectModel(model: AnyObject, indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            self.delegate?.didSelectMap()
+            let story = StoryManager.find(self.storyId)
+            self.delegate?.didSelectMap(story)
         } else {
             let item = cellData.model as! DiscoverItem
             let story = item.story
@@ -289,7 +291,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
-    func didSelectMap()
+    func didSelectMap(story: Story!)
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))

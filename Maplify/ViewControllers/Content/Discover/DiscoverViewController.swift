@@ -518,8 +518,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: true)
     }
     
-    func didSelectMap() {
-        // TODO:
+    func didSelectMap(story: Story!) {
+        self.routesPushFromLeftCaptureViewController(story)
     }
     
     func storyProfileImageTapped(userId: Int) {

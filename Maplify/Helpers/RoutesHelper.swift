@@ -177,6 +177,22 @@ extension UIViewController {
         self.navigationController?.pushViewController(shareStoryViewController, animated: true)
     }
     
+    // MARK: - push from left
+    func routesPushFromLeftCaptureViewController(story: Story!) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.publicStoryPointsSupport = true
+        captureViewController.publicStory = story
+        
+        let transition = CATransition()
+        transition.duration = AnimationDurations.pushControllerDefault
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromLeft
+        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        transition.timingFunction = timingFunction
+        self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(captureViewController, animated: false)
+    }
+
     func routesOpenChangePasswordViewController() {
         let changePasswordViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.changePasswordViewController) as! ChangePasswordViewController
         self.navigationController?.pushViewController(changePasswordViewController, animated: true)

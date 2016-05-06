@@ -91,7 +91,7 @@ class ApiClient {
                 }
             }
         } else {
-            if statusCode == Network.failureStatuCode500 {
+            if statusCode == Network.failureStatusCode500 {
                 dispatch_async(dispatch_get_main_queue()) {
                     failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
                 }
@@ -246,6 +246,11 @@ class ApiClient {
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
     }
+    
+    func resetPassword(email: String, redirectUrl: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email, "redirect_url": redirectUrl]
+        self.postRequest("auth/password", params: params, data: nil, manager: PasswordManager(), progress: nil, success: success, failure: failure)
+    }
 
     func likeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points/\(storyPointId)/like", params: nil, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
@@ -277,6 +282,11 @@ class ApiClient {
     
     func unfollowUser(userId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("users/\(userId)/following", params: nil, manager: SessionManager(), success: success, failure: failure)
+    }
+
+    func changePassword(password: String, confirmPassword: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["password": password, "password_confirmation": confirmPassword]
+        self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
     }
 }
 

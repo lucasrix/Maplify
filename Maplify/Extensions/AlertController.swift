@@ -12,7 +12,7 @@ typealias buttonClosure = (buttonIndex: Int) -> ()
 
 extension UIViewController {
     
-    func showAlert(title: String!, message: String, cancel: String!, buttons: [String], handle: buttonClosure) {
+    func showAlert(title: String!, message: String, cancel: String!, buttons: [String]!, handle: buttonClosure) {
         self.showController(title, message: message, cancel: cancel, destructive: nil, buttons: buttons, style: .Alert, handle: handle)
     }
     
@@ -50,18 +50,20 @@ extension UIViewController {
     }
     
     private func showController(title: String!, message: String!, cancel: String!, destructive: String!,
-        buttons: [String], style: UIAlertControllerStyle, handle: buttonClosure) {
+        buttons: [String]!, style: UIAlertControllerStyle, handle: buttonClosure) {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-            
-            for title in buttons {
-                let alertAction = UIAlertAction(title: title, style: .Default,
-                    handler: { (action: UIAlertAction) -> () in
-                        let index = buttons.indexOf(action.title!)
-                        handle(buttonIndex: index!)
-                })
-                alertController.addAction(alertAction)
+        
+            if buttons != nil {
+                for title in buttons {
+                    let alertAction = UIAlertAction(title: title, style: .Default,
+                                                    handler: { (action: UIAlertAction) -> () in
+                                                        let index = buttons.indexOf(action.title!)
+                                                        handle(buttonIndex: index!)
+                    })
+                    alertController.addAction(alertAction)
+                }
             }
-            
+        
             if destructive?.length > 0 {
                 let alertAction = UIAlertAction(title: destructive, style: .Destructive,
                     handler: { (action: UIAlertAction) -> () in
@@ -73,7 +75,8 @@ extension UIViewController {
             if cancel?.length > 0 {
                 let alertAction = UIAlertAction(title: cancel, style: .Cancel,
                     handler: { (action: UIAlertAction) -> () in
-                        let index = (style == .Alert || destructive == nil) ? buttons.count : buttons.count + 1
+                        let buttonsCount = (buttons != nil) ? buttons.count : 0
+                        let index = (style == .Alert || destructive == nil) ? buttonsCount : buttonsCount + 1
                         handle(buttonIndex: index)
                 })
                 alertController.addAction(alertAction)

@@ -30,13 +30,16 @@
 		1FC780FF1CA14A0C00C50C23 /* StoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */; };
 		1FC781021CA14C2600C50C23 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781011CA14C2600C50C23 /* Location.swift */; };
 		1FC781051CA151E900C50C23 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781041CA151E900C50C23 /* Attachment.swift */; };
-		1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781061CA171AF00C50C23 /* Dictionary.swift */; };
 		1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
 		1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */; };
 		1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
+		853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
+		853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
+		853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */; };
+		855567A41CDCBA180096A561 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855567A31CDCBA180096A561 /* NSURL.swift */; };
 		8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */; };
 		8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
 		8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
@@ -211,13 +214,16 @@
 		1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointManager.swift; sourceTree = "<group>"; };
 		1FC781011CA14C2600C50C23 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1FC781041CA151E900C50C23 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		1FC781061CA171AF00C50C23 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManager.swift; sourceTree = "<group>"; };
 		1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationOrNil.swift; sourceTree = "<group>"; };
 		1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddAudioController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		853A41B01CDA0F4C00922D94 /* PasswordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
+		853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		855567A31CDCBA180096A561 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
 		8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceSearchHelper.swift; sourceTree = "<group>"; };
@@ -481,6 +487,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		853A41AF1CDA0F3F00922D94 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				853A41B01CDA0F4C00922D94 /* PasswordManager.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
 		85E915961CBD3DB00041182F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +570,8 @@
 				A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */,
 				8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */,
 				A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */,
+				853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */,
+				853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -698,12 +714,12 @@
 				A59A7BBB1CA1628800455E6D /* UIImage.swift */,
 				A59A7BBD1CA1666100455E6D /* NSData.swift */,
 				1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */,
-				1FC781061CA171AF00C50C23 /* Dictionary.swift */,
 				1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */,
 				CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */,
 				8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */,
 				8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */,
 				CDF6D8961CD26007001387EC /* ShareController.swift */,
+				855567A31CDCBA180096A561 /* NSURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -774,6 +790,7 @@
 				A5D7AAF31C9C437F00A94C4F /* User */,
 				A5D7AAF51C9C437F00A94C4F /* WebContent */,
 				A5A0E9901C86FC9B0094FC04 /* Model.swift */,
+				853A41AF1CDA0F3F00922D94 /* Password */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1206,15 +1223,16 @@
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
 				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */,
+				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
+				855567A41CDCBA180096A561 /* NSURL.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
 				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
-				1FC781071CA171AF00C50C23 /* Dictionary.swift in Sources */,
 				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
@@ -1231,6 +1249,7 @@
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
+				853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
@@ -1239,6 +1258,7 @@
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
 				1F6517171CA418EE00E6C7C2 /* AudioRecorderHelper.swift in Sources */,
+				853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */,
 				CD8A10A61CB6646200B58396 /* StoryPointDetailCell.swift in Sources */,
 				CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */,
 				A5A0E9911C86FC9B0094FC04 /* Model.swift in Sources */,

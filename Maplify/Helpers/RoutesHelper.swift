@@ -50,6 +50,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
+    func routesOpenResetPasswordController() {
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.resetPasswordViewController)
+    }
+    
     func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         storyCreateController.createStoryClosure = createStoryClosure
@@ -171,6 +175,11 @@ extension UIViewController {
         shareStoryViewController.storyId = storyId
         shareStoryViewController.completion = completion
         self.navigationController?.pushViewController(shareStoryViewController, animated: true)
+    }
+    
+    func routesOpenChangePasswordViewController() {
+        let changePasswordViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.changePasswordViewController) as! ChangePasswordViewController
+        self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
     // MARK: - open as popup controllers

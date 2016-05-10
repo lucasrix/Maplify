@@ -190,7 +190,7 @@ class CSActiveModel {
     
     // MARK: - helper methods
     func hasData() -> Bool {
-        return (self.sectionsArray?.count > 0)
+        return (self.sectionsArray![0].count > 0)
     }
     
     func indexPathOfModel(model: AnyObject) -> NSIndexPath {

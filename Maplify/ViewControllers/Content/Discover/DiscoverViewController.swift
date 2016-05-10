@@ -251,7 +251,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func loadUserDiscoverData() {
-        self.showProgressHUD()
+        if self.storyActiveModel.hasData() == false {
+            self.showProgressHUD()
+        }
         ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
             success: { [weak self] (response) in
                 let storyPoints = response as! [StoryPoint]
@@ -319,8 +321,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func retrieveDiscoverList(params: [String: AnyObject]) {
         self.requestState = RequestState.Loading
+        
+        if self.storyActiveModel.hasData() == false {
+            self.showProgressHUD()
+        }
+        
         ApiClient.sharedClient.retrieveDiscoverList(self.page, params: params, success: { [weak self] (response) in
-            
+            self?.hideProgressHUD()
             DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage, searchLocationParameter: (self?.searchLocationParameter)!)
             
             self?.tableView.ins_endInfinityScroll()
@@ -333,6 +340,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.loadItemsFromDB()
             
         }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.hideProgressHUD()
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
             self?.requestState = RequestState.Ready

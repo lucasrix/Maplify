@@ -190,6 +190,9 @@ class CSActiveModel {
     
     // MARK: - helper methods
     func hasData() -> Bool {
+        if (self.sectionsArray == nil || self.sectionsArray!.isEmpty) {
+            return false
+        }
         return (self.sectionsArray![0].count > 0)
     }
     

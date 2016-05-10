@@ -45,11 +45,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         super.viewWillAppear(animated)
         
         self.setupContent()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
         self.setupContentHeight(false)
     }
     

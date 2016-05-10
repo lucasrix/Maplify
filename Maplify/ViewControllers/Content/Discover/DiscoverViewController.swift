@@ -251,19 +251,23 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func loadUserDiscoverData() {
+        self.showProgressHUD()
         ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
             success: { [weak self] (response) in
                 let storyPoints = response as! [StoryPoint]
                 ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { [weak self] (response) in
+                    self?.hideProgressHUD()
                     let stories = response as! [Story]
                     UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
                     self?.loadItemsFromDB()
                     },
                 failure: { (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 })
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             })
     }

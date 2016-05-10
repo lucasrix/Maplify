@@ -108,6 +108,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                     self?.setupMap(SessionHelper.sharedHelper.userLastLocation())
                 }
             }
+        } else {
+            let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
+            self.setupMap(defaultLocation)
         }
     }
     

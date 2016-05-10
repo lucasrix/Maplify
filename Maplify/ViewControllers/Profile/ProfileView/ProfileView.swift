@@ -182,7 +182,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     func populateFollowButton() {
         let user = SessionManager.findUser(self.profileId)
-        if user.followed {
+        if user != nil && user.followed {
             self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
         } else {
             self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)

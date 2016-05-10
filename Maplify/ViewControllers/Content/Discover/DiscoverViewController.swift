@@ -209,12 +209,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if self.supportUserProfile {
             self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
-            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
+            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId) AND story.storyPoints.@count > 0").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
             let itemsCount = self.itemsCountToShow()
             let sortRaram = self.sortedString()
-            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
+            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0 AND story.storyPoints.@count > 0").sorted(sortRaram)
             if allItems.count >=  itemsCount {
                 self.discoverItems = Array(allItems[0..<itemsCount])
             } else {

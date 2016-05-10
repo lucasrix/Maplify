@@ -100,14 +100,23 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func checkLocationEnabled() {
         if SessionHelper.sharedHelper.locationEnabled() && self.publicStoryPointsSupport == false {
-            INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in
+            self.retrieveCurrentLocation({ [weak self] (location) in
                 if location != nil {
                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
                     self?.setupMap(location)
                 } else {
                     self?.setupMap(SessionHelper.sharedHelper.userLastLocation())
                 }
-            }
+            })
+        } else {
+            let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
+            self.setupMap(defaultLocation)
+        }
+    }
+    
+    func retrieveCurrentLocation(completion: ((location: CLLocation!) -> ())!) {
+        INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { (location, accuracy, status) -> () in
+            completion(location: location)
         }
     }
     
@@ -197,7 +206,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - actions
     func locationButtonTapped() {
-        self.googleMapService.moveToDefaultRegion()
+        self.retrieveCurrentLocation { [weak self] (location) in
+            var region: MCMapRegion! = nil
+            if location != nil {
+                region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self?.googleMapService?.moveTo(region, zoom: (self?.googleMapService?.currentZoom())!)
+            }
+        }
     }
     
     func searchButtonTapped() {

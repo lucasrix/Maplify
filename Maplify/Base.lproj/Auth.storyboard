@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4WW-e0-Lwt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4WW-e0-Lwt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -161,6 +161,9 @@ Terms &amp; Privacy Policy.</string>
                                                 <state key="normal" title="Reset your password">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resetPasswordButtonTapped:" destination="hqI-qj-OMB" eventType="touchUpInside" id="YnK-UU-z8O"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
@@ -919,6 +922,102 @@ Tap OK once it appears.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSr-Ud-Kn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1855.5" y="1135.5"/>
+        </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="NmC-Km-a0f">
+            <objects>
+                <viewController storyboardIdentifier="ResetPasswordController" id="fA1-9X-tvC" customClass="ResetPasswordViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eiT-OP-kgM"/>
+                        <viewControllerLayoutGuide type="bottom" id="uiO-s7-PlK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D0a-9a-Vuu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email and we'll email you a link to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euX-dO-GIH">
+                                <rect key="frame" x="54" y="30" width="267" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="267" id="Bkf-Z8-Coa"/>
+                                    <constraint firstAttribute="height" constant="64" id="Ngc-tv-Yeq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-LT-zQF" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="108" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="YME-sW-QeS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7lc-LT-zQF" secondAttribute="trailing" id="53l-lU-cGf"/>
+                            <constraint firstItem="7lc-LT-zQF" firstAttribute="top" secondItem="euX-dO-GIH" secondAttribute="bottom" constant="14" id="hC1-q3-9Ju"/>
+                            <constraint firstItem="7lc-LT-zQF" firstAttribute="leading" secondItem="D0a-9a-Vuu" secondAttribute="leading" id="mDX-fX-SNN"/>
+                            <constraint firstItem="euX-dO-GIH" firstAttribute="centerX" secondItem="D0a-9a-Vuu" secondAttribute="centerX" id="weP-ct-D6z"/>
+                            <constraint firstItem="euX-dO-GIH" firstAttribute="top" secondItem="eiT-OP-kgM" secondAttribute="bottom" constant="10" id="whM-IP-F9H"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="detailsLabel" destination="euX-dO-GIH" id="SNA-6K-eLP"/>
+                        <outlet property="emailInputField" destination="7lc-LT-zQF" id="WTP-U7-vWe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mxV-7G-t2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2276.5" y="1135.5"/>
+        </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="FCT-l2-tYU">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordController" id="4Ph-Zn-7L3" customClass="ChangePasswordViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sRE-Lq-X8r"/>
+                        <viewControllerLayoutGuide type="bottom" id="9xe-2K-NV7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I3g-cV-7CJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGu-v0-Efe" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="YAU-85-nDC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IU-Rf-9al" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="375" height="51"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="ui3-T1-3JY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7IU-Rf-9al" secondAttribute="trailing" id="Bpf-Wt-s1K"/>
+                            <constraint firstItem="wGu-v0-Efe" firstAttribute="top" secondItem="sRE-Lq-X8r" secondAttribute="bottom" constant="10" id="DGY-TD-Lpu"/>
+                            <constraint firstItem="7IU-Rf-9al" firstAttribute="top" secondItem="wGu-v0-Efe" secondAttribute="bottom" constant="15" id="VdD-mm-bA5"/>
+                            <constraint firstItem="wGu-v0-Efe" firstAttribute="leading" secondItem="I3g-cV-7CJ" secondAttribute="leading" id="l40-4e-uKK"/>
+                            <constraint firstItem="7IU-Rf-9al" firstAttribute="leading" secondItem="I3g-cV-7CJ" secondAttribute="leading" id="vrN-pH-tiy"/>
+                            <constraint firstAttribute="trailing" secondItem="wGu-v0-Efe" secondAttribute="trailing" id="wly-Q8-LGn"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="confirmPasswordInputField" destination="7IU-Rf-9al" id="z9U-Aq-oZY"/>
+                        <outlet property="passwordInputField" destination="wGu-v0-Efe" id="u5g-vz-43r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9SO-U3-60g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739.5" y="1135.5"/>
         </scene>
     </scenes>
     <resources>

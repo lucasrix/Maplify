@@ -36,6 +36,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     @IBOutlet weak var storyPointsPlusView: UIView!
     @IBOutlet weak var storyPointPlusLabel: UILabel!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
 
     var cellData: CSCellData! = nil
     var delegate: DiscoverStoryCellDelegate! = nil
@@ -54,19 +56,26 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.storyId = story!.id
         self.discoverItemId = item.id
         
-        self.addShadow()
+        self.setupViews()
         self.setupCollectionView(cellData)
         self.populateUserViews(story!)
+        self.populateFollowButton()
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
+        self.populateLikeButton()
         self.setupSwipe()
+        self.setupMapSwipe()
     }
     
-    func addShadow() {
+    func setupViews() {
         self.backShadowView.layer.shadowColor = UIColor.blackColor().CGColor
         self.backShadowView.layer.shadowOpacity = kShadowOpacity
         self.backShadowView.layer.shadowOffset = CGSizeZero
         self.backShadowView.layer.shadowRadius = kShadowRadius
+        
+        self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
+        self.followButton.layer.borderWidth = Border.defaultBorderWidth
+        self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
     }
     
     func populateUserViews(story: Story) {
@@ -82,6 +91,19 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
         self.userAddressLabel.text = profile.city
+    }
+    
+    func populateFollowButton() {
+        let story = StoryManager.find(self.storyId)
+        if story.followed {
+            self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.darkGreyBlue()
+            self.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        } else {
+            self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
+            self.followButton.backgroundColor = UIColor.clearColor()
+            self.followButton.setTitleColor(UIColor.darkGreyBlue(), forState: .Normal)
+        }
     }
     
     func populateStoryInfoViews(story: Story) {
@@ -134,10 +156,21 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.contentView.addGestureRecognizer(swipeGesture)
     }
     
+    func setupMapSwipe() {
+        let mapSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleMapSwipe(_:)))
+        mapSwipeGesture.direction = .Right
+        self.contentView.addGestureRecognizer(mapSwipeGesture)
+    }
+    
     func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
         let item = cellData.model as! DiscoverItem
         let story = item.story
         self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: 0, storyTitle: story!.title)
+    }
+    
+    func handleMapSwipe(sender:UISwipeGestureRecognizer) {
+        let story = StoryManager.find(self.storyId)
+        self.delegate?.didSelectMap(story)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -153,10 +186,26 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.delegate?.editStoryContentDidTap(self.storyId)
     }
     
+    @IBAction func likeTapped(sender: UIButton) {
+        self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            if success {
+                self?.populateLikeButton()
+            }
+        })
+    }
+    
     func profileImageTapped() {
         let item = cellData.model as! DiscoverItem
         let story = item.story
         self.delegate?.storyProfileImageTapped(story!.user.id)
+    }
+    
+    @IBAction func followTapped(sender: UIButton) {
+        self.delegate?.followStory(self.storyId, completion: { [weak self] (success) in
+            if success {
+                self?.populateFollowButton()
+            }
+        })
     }
     
     // MARK: - private
@@ -167,11 +216,21 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let textSize = text.size(font, boundingRect: textRect)
         return textSize.height <= kStoryCellDescriptionDefaultHeight
     }
+
+    func populateLikeButton() {
+        let story = StoryManager.find(self.storyId)
+        if story.liked {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
+        }
+    }
     
     // MARK: - CSBaseCollectionDataSourceDelegate
     func didSelectModel(model: AnyObject, indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            self.delegate?.didSelectMap()
+            let story = StoryManager.find(self.storyId)
+            self.delegate?.didSelectMap(story)
         } else {
             let item = cellData.model as! DiscoverItem
             let story = item.story
@@ -232,7 +291,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
     func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
-    func didSelectMap()
+    func didSelectMap(story: Story!)
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
+    func followStory(storyId: Int, completion: ((success: Bool) -> ()))
 }

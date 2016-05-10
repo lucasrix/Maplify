@@ -45,11 +45,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         super.viewWillAppear(animated)
         
         self.setupContent()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
         self.setupContentHeight(false)
     }
     
@@ -237,7 +232,23 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     override func rightBarButtonItemDidTap() {
         self.showProgressHUD()
         
-        var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!, "text": self.descriptionTextView.text]
+        let locationDict: [String: AnyObject] = ["latitude":self.storyPoint.location.latitude,
+                                                 "longitude": self.storyPoint.location.longitude,
+                                                 "address": self.editInfoViewController.placeOrLocationTextField.text!]
+        let kind = self.storyPoint.kind
+        
+        var text = String()
+        if self.storyPoint.attachment != nil {
+            text = self.storyPoint.text
+        } else {
+            text = self.descriptionTextView.text
+        }
+        
+        var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!,
+                                                   "kind": kind,
+                                                   "text": text,
+                                                   "location":locationDict]
+        
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})
         storyPointDict["story_ids"] = (selectedStoriesIds.count > 0) ? selectedStoriesIds : [Int]()
         

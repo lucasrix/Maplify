@@ -91,10 +91,6 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
         return UIColor.grapePurple()
     }
     
-    override func backButtonHidden() -> Bool {
-        return true
-    }
-    
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let itemController = viewController as! StoryDetailItemViewController

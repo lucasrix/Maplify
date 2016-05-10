@@ -77,6 +77,10 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
         )
     }
     
+    @IBAction func resetPasswordButtonTapped(sender: AnyObject) {
+        self.routesOpenResetPasswordController()
+    }
+    
     // MARK: - ErrorHandlingProtocol 
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())

@@ -20,7 +20,7 @@ let kShadowYOffset: CGFloat = -3
 let kDefaultLabelHeight: CGFloat = 36
 
 protocol ProfileViewDelegate {
-    func followButtonDidTap()
+    func followButtonDidTap(userId: Int, completion: ((success: Bool) -> ()))
     func editButtonDidTap()
     func createStoryButtonDidTap()
 }
@@ -70,6 +70,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.setupImageView()
         self.setupLabels()
         self.setupButtons()
+        self.populateFollowButton()
         self.setupCreateButton()
         self.loadRemoteData()
         self.setupDetailStatsView()
@@ -179,6 +180,15 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.expandButton.hidden = !(self.user.profile.about.length > 0)
     }
     
+    func populateFollowButton() {
+        let user = SessionManager.findUser(self.profileId)
+        if user != nil && user.followed {
+            self.followButton.setTitle(NSLocalizedString("Button.Following", comment: String()), forState: .Normal)
+        } else {
+            self.followButton.setTitle(NSLocalizedString("Button.PlusFollow", comment: String()), forState: .Normal)
+        }
+    }
+    
     func setupCreateButton() {
         if self.profileId == SessionManager.currentUser().id {
             self.createStoryButton.layer.cornerRadius = CornerRadius.defaultRadius
@@ -283,7 +293,11 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {
-        self.delegate?.followButtonDidTap()
+        self.delegate?.followButtonDidTap(self.profileId, completion: { [weak self] (success) in
+            if success {
+                self?.populateFollowButton()
+            }
+        })
     }
     
     @IBAction func editButtonTapped(sender: AnyObject) {

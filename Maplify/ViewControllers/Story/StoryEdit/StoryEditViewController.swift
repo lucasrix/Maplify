@@ -32,12 +32,12 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         
         self.setup()
         self.setupData()
+        self.populateViews()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.populateViews()
         self.loadDataFromDB()
     }
     
@@ -70,7 +70,6 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     func setupStoryDescriptionViews() {
         self.descriptionLabel.text = NSLocalizedString("Label.Description", comment: String())
-        self.updateCharactersCountLabel((self.descriptionTextView.text?.length)!)
         
         self.descriptionTextView.delegate = self
         self.descriptionTextView.layer.cornerRadius = CornerRadius.defaultRadius
@@ -88,6 +87,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
         let story = StoryManager.find(self.storyId)
         self.storyNameTextField.text = story.title
         self.descriptionTextView.text = story.storyDescription
+        self.updateCharactersCountLabel(self.descriptionTextView.text.length)
     }
     
     func loadDataFromDB() {
@@ -116,7 +116,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     // MARK: - actions
     @IBAction func addPostsTapped(sender: UIButton) {
-        self.routesOpenStoryAddPostsViewController(self.storyId, delegate: self, storyModeCreation: false, storyName: String(), storyDescription: String(), storyCreateClosure: nil)
+        self.routesOpenStoryAddPostsViewController(self.storyPoints, delegate: self, storyModeCreation: false, storyName: String(), storyDescription: String(), storyCreateClosure: nil)
     }
     
     func updateStory() {

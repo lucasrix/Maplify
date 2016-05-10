@@ -24,6 +24,7 @@ class StoryPoint: Model {
     dynamic var kind = ""
     dynamic var caption = ""
     dynamic var text = ""
+    dynamic var liked: Bool = false
     var discoverItem: DiscoverItem? {
         return self.linkingObjects(DiscoverItem.self, forProperty: "storyPoint").first
     }
@@ -40,6 +41,7 @@ class StoryPoint: Model {
         self.text <- map.property("text")
         self.created_at <- map.property("created_at")
         self.updated_at <- map.property("updated_at")
+        self.liked <- map.property("liked")
     }
     
     override class func primaryKey() -> String {

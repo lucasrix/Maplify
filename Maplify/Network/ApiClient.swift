@@ -91,7 +91,7 @@ class ApiClient {
                 }
             }
         } else {
-            if statusCode == Network.failureStatuCode500 {
+            if statusCode == Network.failureStatusCode500 {
                 dispatch_async(dispatch_get_main_queue()) {
                     failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
                 }
@@ -117,7 +117,7 @@ class ApiClient {
     }
     
     func postRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, progress: progressClosure!, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .POST, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
+        let config = RequestConfig(type: .POST, uri: uri, params: params, acceptCodes: Network.successStatusCodes, data: data)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -245,6 +245,48 @@ class ApiClient {
     
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func resetPassword(email: String, redirectUrl: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["email": email, "redirect_url": redirectUrl]
+        self.postRequest("auth/password", params: params, data: nil, manager: PasswordManager(), progress: nil, success: success, failure: failure)
+    }
+
+    func likeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("story_points/\(storyPointId)/like", params: nil, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
+
+    func unlikeStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("story_points/\(storyPointId)/like", params: nil, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
+    func likeStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories/\(storyId)/like", params: nil, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unlikeStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)/like", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func followStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("stories/\(storyId)/following", params: nil, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unfollowStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)/following", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func followUser(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.postRequest("users/\(userId)/following", params: nil, data: nil, manager: SessionManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func unfollowUser(userId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("users/\(userId)/following", params: nil, manager: SessionManager(), success: success, failure: failure)
+    }
+
+    func changePassword(password: String, confirmPassword: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["password": password, "password_confirmation": confirmPassword]
+        self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
     }
 }
 

@@ -160,45 +160,39 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     
     // MARK: - private
     func remotePostStoryPoint() {
-        if self.storyPointDescription.length > 0 {
-            self.showProgressHUD()
-            let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude, "address": self.placeOrLocationTextField.text!]
-            let kind = self.storyPointKind.rawValue
-            var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
-                                                       "kind":kind,
-                                                       "text":self.storyPointDescription,
-                                                       "location":locationDict]
-            if self.storyPointKind != StoryPointKind.Text {
-                storyPointDict["attachment_id"] = self.storyPointAttachmentId
-            }
-            if self.selectedStories.count > 0 {
-                storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
+        self.showProgressHUD()
+        let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude, "address": self.placeOrLocationTextField.text!]
+        let kind = self.storyPointKind.rawValue
+        var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
+                                                   "kind":kind,
+                                                   "text":self.storyPointDescription,
+                                                   "location":locationDict]
+        if self.storyPointKind != StoryPointKind.Text {
+            storyPointDict["attachment_id"] = self.storyPointAttachmentId
+        }
+        if self.selectedStories.count > 0 {
+            storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
+        }
+        
+        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(response as! StoryPoint, update: true)
             }
             
-            ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.add(response as! StoryPoint, update: true)
-                }
-                
-                ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
-                    success: { [weak self] (response) in
-                        StoryManager.saveStories(response as! [Story])
-                        self?.hideProgressHUD()
-                        self?.navigationController?.setNavigationBarHidden(true, animated: false)
-                        self?.navigationController?.popToRootViewControllerAnimated(true)
-                    }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                        self?.hideProgressHUD()
-                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                    })
-            }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-                self?.hideProgressHUD()
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-            }
-        } else {
-            let messasge = NSLocalizedString("Alert.EnterDescription", comment: String())
-            let cancel = NSLocalizedString("Button.Ok", comment: String())
-            self.showMessageAlert(nil, message: messasge, cancel: cancel)
+            ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
+                success: { [weak self] (response) in
+                    StoryManager.saveStories(response as! [Story])
+                    self?.hideProgressHUD()
+                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                    self?.navigationController?.popToRootViewControllerAnimated(true)
+                }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                })
+        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     

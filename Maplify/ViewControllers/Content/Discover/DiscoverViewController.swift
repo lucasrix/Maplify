@@ -209,12 +209,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if self.supportUserProfile {
             self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
-            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR story.user.id == \(currentUserId)").sorted("created_at", ascending: false)
+            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND story.storyPoints.@count > 0)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
             let itemsCount = self.itemsCountToShow()
             let sortRaram = self.sortedString()
-            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0").sorted(sortRaram)
+            let allItems = realm.objects(DiscoverItem).filter("\(sortRaram) != 0 AND (story.storyPoints.@count > 0 OR storyPoint != nil)").sorted(sortRaram)
             if allItems.count >=  itemsCount {
                 self.discoverItems = Array(allItems[0..<itemsCount])
             } else {
@@ -251,19 +251,25 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func loadUserDiscoverData() {
+        if self.storyActiveModel.hasData() == false {
+            self.showProgressHUD()
+        }
         ApiClient.sharedClient.getUserStoryPoints(self.userProfileId,
             success: { [weak self] (response) in
                 let storyPoints = response as! [StoryPoint]
                 ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { [weak self] (response) in
+                    self?.hideProgressHUD()
                     let stories = response as! [Story]
                     UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
                     self?.loadItemsFromDB()
                     },
                 failure: { (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 })
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             })
     }
@@ -315,8 +321,13 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func retrieveDiscoverList(params: [String: AnyObject]) {
         self.requestState = RequestState.Loading
+        
+        if self.storyActiveModel.hasData() == false {
+            self.showProgressHUD()
+        }
+        
         ApiClient.sharedClient.retrieveDiscoverList(self.page, params: params, success: { [weak self] (response) in
-            
+            self?.hideProgressHUD()
             DiscoverItemManager.saveDiscoverListItems(response as! [String: AnyObject], pageNumber: self!.page, itemsCountInPage: kDiscoverItemsInPage, searchLocationParameter: (self?.searchLocationParameter)!)
             
             self?.tableView.ins_endInfinityScroll()
@@ -329,6 +340,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self?.loadItemsFromDB()
             
         }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.hideProgressHUD()
             self?.tableView.ins_endInfinityScroll()
             self?.tableView.ins_endPullToRefresh()
             self?.requestState = RequestState.Ready
@@ -472,6 +484,36 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
         }
     }
+    
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.liked {
+            self.unlikeStoryPoint(storyPointId, completion: completion)
+        } else {
+            self.likeStoryPoint(storyPointId, completion: completion)
+        }
+    }
+    
+    private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
@@ -488,8 +530,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: true)
     }
     
-    func didSelectMap() {
-        // TODO:
+    func didSelectMap(story: Story!) {
+        self.routesPushFromLeftCaptureViewController(story)
     }
     
     func storyProfileImageTapped(userId: Int) {
@@ -499,10 +541,77 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func editStoryContentDidTap(storyId: Int) {
         self.showEditStoryContentMenu(storyId)
     }
+    
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
+        let story = StoryManager.find(storyId)
+        if story.liked {
+            self.unlikeStory(storyId, completion: completion)
+        } else {
+            self.likeStory(storyId, completion: completion)
+        }
+    }
+    
+    private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+
+    func followStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        let story = StoryManager.find(storyId)
+        if story.followed == false {
+            self.followStoryRemote(storyId, completion: completion)
+        } else {
+            self.unfollowStoryRemote(storyId, completion: completion)
+        }
+    }
+    
+    func followStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.followStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
+    }
+    
+    func unfollowStoryRemote(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unfollowStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
 
     // MARK: - ProfileViewDelegate
-    func followButtonDidTap() {
-        //TODO:
+    func followButtonDidTap(userId: Int, completion: ((success: Bool) -> ())) {
+        let user = SessionManager.findUser(userId)
+        if user.followed {
+            self.unfollowUser(userId, completion: completion)
+        } else {
+            self.followUser(userId, completion: completion)
+        }
     }
     
     func createStoryButtonDidTap() {
@@ -514,6 +623,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func editButtonDidTap() {
         self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
             self?.configureProfileViewIfNeeded()
+        }
+    }
+    
+    // MARK: - private
+    private func followUser(userId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.followUser(userId, success: { (response) in
+            SessionManager.saveUser(response as! User)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
+        }
+    }
+    
+    private func unfollowUser(userId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unfollowUser(userId, success: { (response) in
+            SessionManager.saveUser(response as! User)
+            completion(success: true)
+            
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
         }
     }
     

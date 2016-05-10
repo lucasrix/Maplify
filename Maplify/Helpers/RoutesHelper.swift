@@ -50,6 +50,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.recommendedSettingsController)
     }
     
+    func routesOpenResetPasswordController() {
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.resetPasswordViewController)
+    }
+    
     func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         storyCreateController.createStoryClosure = createStoryClosure
@@ -148,9 +152,9 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
-    func routesOpenStoryAddPostsViewController(storyId: Int, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, storyCreateClosure: (() -> ())!) {
+    func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, storyCreateClosure: (() -> ())!) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
-        storyAddPostsViewController.storyId = storyId
+        storyAddPostsViewController.selectedStoryPoints = selectedStoryPoints
         storyAddPostsViewController.delegate = delegate
         storyAddPostsViewController.isStoryModeCreation = storyModeCreation
         storyAddPostsViewController.storyName = storyName
@@ -171,6 +175,27 @@ extension UIViewController {
         shareStoryViewController.storyId = storyId
         shareStoryViewController.completion = completion
         self.navigationController?.pushViewController(shareStoryViewController, animated: true)
+    }
+    
+    // MARK: - push from left
+    func routesPushFromLeftCaptureViewController(story: Story!) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.publicStoryPointsSupport = true
+        captureViewController.publicStory = story
+        
+        let transition = CATransition()
+        transition.duration = AnimationDurations.pushControllerDefault
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromLeft
+        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        transition.timingFunction = timingFunction
+        self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(captureViewController, animated: false)
+    }
+
+    func routesOpenChangePasswordViewController() {
+        let changePasswordViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.changePasswordViewController) as! ChangePasswordViewController
+        self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
     // MARK: - open as popup controllers

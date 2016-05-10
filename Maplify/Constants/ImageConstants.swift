@@ -63,6 +63,7 @@ struct ButtonImages {
     static let recordButtonShotStopDefault = "ButtonShotStopDefault"
     static let recordButtonShotStopHighlited = "ButtonShotStopHighlited"
     static let discoverLike = "DiscoverLike"
+    static let discoverLikeHighlited = "DiscoverLikeHighlited"
     static let discoverAdd = "DiscoverAdd"
     static let discoverShare = "DiscoverShare"
     static let discoverShowHideDescriptionDown = "DiscoverShowHideDescriptionDown"
@@ -71,6 +72,7 @@ struct ButtonImages {
     static let icoBottom = "icoBottom"
     static let icoSearch = "icoSearch"
     static let icoGps = "icoGps"
+    static let icoCancel = "icoCancel"
 }
 
 struct MediaButtons {

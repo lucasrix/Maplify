@@ -21,4 +21,15 @@ extension UIViewController {
     func rightBarButtonItemDidTap() {
         
     }
+    
+    func popControllerFromLeft() {
+        let transition = CATransition()
+        transition.duration = AnimationDurations.pushControllerDefault
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        transition.timingFunction = timingFunction
+        self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController?.popViewControllerAnimated(false)
+    }
 }

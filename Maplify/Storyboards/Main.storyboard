@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVD-1K-iUh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -474,25 +474,28 @@
                                     <constraint firstAttribute="trailing" secondItem="lyS-Ka-iW4" secondAttribute="trailing" constant="12" id="vhy-uo-Nys"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usD-fd-n32">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usD-fd-n32">
                                 <rect key="frame" x="45" y="150" width="285" height="55"/>
                                 <color key="backgroundColor" red="0.27058823529411763" green="0.45098039215686275" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Wgc-wf-C60"/>
+                                    <constraint firstAttribute="width" constant="285" id="hBW-Ed-7rm"/>
                                 </constraints>
-                                <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="ShareToFacebook" image="icoFb"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="24" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Share to Facebook" image="icoFb"/>
                                 <connections>
                                     <action selector="shareToFacebookTapped:" destination="FM6-F8-xRd" eventType="touchUpInside" id="tQ8-iG-n29"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuY-b8-XlA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuY-b8-XlA">
                                 <rect key="frame" x="45" y="221" width="285" height="55"/>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="CopyTo" image="ShareCopyToClipboard"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="57" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Copy Link" image="ShareCopyToClipboard"/>
                                 <connections>
                                     <action selector="copyLinkTapped:" destination="FM6-F8-xRd" eventType="touchUpInside" id="Ynf-Rb-Umz"/>
                                 </connections>
@@ -501,18 +504,17 @@
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MuY-b8-XlA" firstAttribute="centerX" secondItem="usD-fd-n32" secondAttribute="centerX" id="2L3-jq-QMe"/>
-                            <constraint firstItem="usD-fd-n32" firstAttribute="leading" secondItem="WcI-U0-BS4" secondAttribute="leading" constant="45" id="3lk-ap-Gnc"/>
                             <constraint firstItem="A5K-Eh-Yef" firstAttribute="width" secondItem="t6y-zf-vDH" secondAttribute="width" id="5LP-UY-MJj"/>
                             <constraint firstAttribute="trailing" secondItem="t6y-zf-vDH" secondAttribute="trailing" constant="8" id="9mO-di-14S"/>
                             <constraint firstItem="A5K-Eh-Yef" firstAttribute="centerY" secondItem="t6y-zf-vDH" secondAttribute="centerY" id="BF4-Z2-qfd"/>
                             <constraint firstItem="t6y-zf-vDH" firstAttribute="leading" secondItem="WcI-U0-BS4" secondAttribute="leading" constant="8" id="CL3-7D-lxh"/>
+                            <constraint firstItem="usD-fd-n32" firstAttribute="centerX" secondItem="WcI-U0-BS4" secondAttribute="centerX" id="LPl-q8-jB4"/>
                             <constraint firstItem="MuY-b8-XlA" firstAttribute="width" secondItem="usD-fd-n32" secondAttribute="width" id="N2E-ut-mcA"/>
                             <constraint firstItem="A5K-Eh-Yef" firstAttribute="centerX" secondItem="t6y-zf-vDH" secondAttribute="centerX" id="OUj-ZH-zrP"/>
                             <constraint firstItem="A5K-Eh-Yef" firstAttribute="height" secondItem="t6y-zf-vDH" secondAttribute="height" id="WbF-Eu-8l2"/>
                             <constraint firstItem="MuY-b8-XlA" firstAttribute="height" secondItem="usD-fd-n32" secondAttribute="height" id="cof-Bg-L8x"/>
                             <constraint firstItem="t6y-zf-vDH" firstAttribute="top" secondItem="WcI-U0-BS4" secondAttribute="top" constant="8" id="oRu-CE-vWR"/>
                             <constraint firstItem="usD-fd-n32" firstAttribute="top" secondItem="t6y-zf-vDH" secondAttribute="bottom" constant="43" id="qPv-69-Szs"/>
-                            <constraint firstAttribute="trailing" secondItem="usD-fd-n32" secondAttribute="trailing" constant="45" id="xBn-ua-zZY"/>
                             <constraint firstItem="MuY-b8-XlA" firstAttribute="top" secondItem="usD-fd-n32" secondAttribute="bottom" constant="16" id="zbj-bk-hfi"/>
                         </constraints>
                     </view>
@@ -567,13 +569,19 @@
                                                                 <constraint firstAttribute="height" constant="50" id="n28-ZC-6tB"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffN-zK-wHX">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffN-zK-wHX">
                                                             <rect key="frame" x="277" y="19" width="90" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="QWg-ce-2K2"/>
                                                                 <constraint firstAttribute="width" constant="90" id="tis-IM-gtI"/>
                                                             </constraints>
-                                                            <state key="normal" title="Follow"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <state key="normal" title="Follow">
+                                                                <color key="titleColor" red="0.21176470588235294" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="followTapped:" destination="2su-9Q-baY" eventType="touchUpInside" id="aVJ-ZW-DMo"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="MwM-aI-Lvs">
                                                             <rect key="frame" x="66" y="36" width="203" height="16"/>
@@ -837,6 +845,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="ibb-Iq-EaW"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverLike"/>
+                                                            <connections>
+                                                                <action selector="likeTapped:" destination="2su-9Q-baY" eventType="touchUpInside" id="P0m-ci-YJd"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8z-bq-ar2">
                                                             <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -924,6 +935,8 @@
                                             <outlet property="captionLabel" destination="pxK-ZH-JVe" id="Lur-cE-kaf"/>
                                             <outlet property="collectionView" destination="CZP-7J-ggn" id="cfe-M5-Btw"/>
                                             <outlet property="descriptionLabel" destination="gbq-hN-SlZ" id="sg6-Wo-iqu"/>
+                                            <outlet property="followButton" destination="ffN-zK-wHX" id="Etx-Uy-hvb"/>
+                                            <outlet property="likeButton" destination="HU5-ro-C71" id="NE4-5W-Jzz"/>
                                             <outlet property="showHideDescriptionButton" destination="LaS-Gw-XTb" id="fQ2-Ik-fJG"/>
                                             <outlet property="showHideDescriptionLabel" destination="22Z-hU-xsd" id="ba3-bC-WLx"/>
                                             <outlet property="storyPointPlusLabel" destination="K2g-Gc-RSU" id="BwH-xt-mAb"/>
@@ -1115,6 +1128,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="w9X-8z-qYI"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverLike"/>
+                                                            <connections>
+                                                                <action selector="likeTapped:" destination="k3W-Z4-0sj" eventType="touchUpInside" id="lh0-N5-cxk"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC0-r0-By0">
                                                             <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -1211,6 +1227,7 @@
                                             <outlet property="colorView" destination="PSC-qw-JMC" id="ajf-VM-Lz9"/>
                                             <outlet property="descriptionLabel" destination="Bxi-pv-mIf" id="D3s-R1-Sec"/>
                                             <outlet property="followButton" destination="X5A-gw-5mM" id="KDw-xW-BMa"/>
+                                            <outlet property="likeButton" destination="07c-dU-1xm" id="1Kz-iH-9cP"/>
                                             <outlet property="showHideDescriptionButton" destination="a5P-ag-4K7" id="xeP-CE-u3W"/>
                                             <outlet property="showHideDescriptionLabel" destination="OFB-VM-Xs9" id="WWH-4f-ra4"/>
                                             <outlet property="storyPointAddressImageView" destination="HHW-xs-3dF" id="z05-bd-ei5"/>
@@ -1432,26 +1449,29 @@
                                     <constraint firstItem="mI0-fG-Zzg" firstAttribute="top" secondItem="W4O-dg-Rp7" secondAttribute="top" constant="10" id="y9a-8q-Zi7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbG-QD-anJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbG-QD-anJ">
                                 <rect key="frame" x="45" y="150" width="285" height="55"/>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.45098039220000002" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="285" id="Xr1-3D-h2K"/>
                                     <constraint firstAttribute="height" constant="55" id="dWc-iW-bn0"/>
                                 </constraints>
-                                <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="ShareToFacebook" image="icoFb"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="24" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Share to Facebook" image="icoFb"/>
                                 <connections>
                                     <action selector="shareToFacebookTapped:" destination="FM6-F8-xRd" eventType="touchUpInside" id="1Ud-n4-V6g"/>
                                     <action selector="shareToFacebookTapped:" destination="EVr-ia-Z7A" eventType="touchUpInside" id="E4e-yq-cS3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TC-rN-Xwo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TC-rN-Xwo">
                                 <rect key="frame" x="45" y="221" width="285" height="55"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="CopyTo" image="ShareCopyToClipboard"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="57" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Copy Link" image="ShareCopyToClipboard"/>
                                 <connections>
                                     <action selector="copyLinkTapped:" destination="FM6-F8-xRd" eventType="touchUpInside" id="NLX-zh-0be"/>
                                     <action selector="copyLinkTapped:" destination="EVr-ia-Z7A" eventType="touchUpInside" id="Tw1-z9-SKf"/>
@@ -1465,13 +1485,12 @@
                             <constraint firstItem="7sD-GC-BXv" firstAttribute="centerY" secondItem="W4O-dg-Rp7" secondAttribute="centerY" id="D6y-hg-fv5"/>
                             <constraint firstItem="7sD-GC-BXv" firstAttribute="width" secondItem="W4O-dg-Rp7" secondAttribute="width" id="LAo-L7-Esd"/>
                             <constraint firstItem="0TC-rN-Xwo" firstAttribute="width" secondItem="jbG-QD-anJ" secondAttribute="width" id="Obz-pX-fKk"/>
-                            <constraint firstAttribute="trailing" secondItem="jbG-QD-anJ" secondAttribute="trailing" constant="45" id="SRJ-0Y-FOK"/>
                             <constraint firstItem="W4O-dg-Rp7" firstAttribute="top" secondItem="NSE-i4-79T" secondAttribute="top" constant="8" id="Yn5-Zn-eGD"/>
-                            <constraint firstItem="jbG-QD-anJ" firstAttribute="leading" secondItem="NSE-i4-79T" secondAttribute="leading" constant="45" id="cYO-1l-ij7"/>
                             <constraint firstItem="W4O-dg-Rp7" firstAttribute="leading" secondItem="NSE-i4-79T" secondAttribute="leading" constant="8" id="g7o-Xr-AWr"/>
                             <constraint firstItem="0TC-rN-Xwo" firstAttribute="height" secondItem="jbG-QD-anJ" secondAttribute="height" id="lIg-Tj-vae"/>
                             <constraint firstItem="7sD-GC-BXv" firstAttribute="centerX" secondItem="W4O-dg-Rp7" secondAttribute="centerX" id="m5o-L6-G8k"/>
                             <constraint firstItem="0TC-rN-Xwo" firstAttribute="top" secondItem="jbG-QD-anJ" secondAttribute="bottom" constant="16" id="rXH-ab-Qw4"/>
+                            <constraint firstItem="jbG-QD-anJ" firstAttribute="centerX" secondItem="NSE-i4-79T" secondAttribute="centerX" id="uZZ-AI-85S"/>
                             <constraint firstItem="0TC-rN-Xwo" firstAttribute="centerX" secondItem="jbG-QD-anJ" secondAttribute="centerX" id="xap-zD-6fx"/>
                             <constraint firstItem="7sD-GC-BXv" firstAttribute="height" secondItem="W4O-dg-Rp7" secondAttribute="height" id="y4M-u3-huj"/>
                         </constraints>
@@ -2570,6 +2589,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="VhK-FL-Kqd"/>
                                                 </constraints>
                                                 <state key="normal" image="DiscoverLike"/>
+                                                <connections>
+                                                    <action selector="likeTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="5wM-XF-j26"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV0-eb-gNt">
                                                 <rect key="frame" x="52" y="0.0" width="48" height="46"/>
@@ -2681,6 +2703,7 @@
                         <outlet property="firstBackShadowView" destination="jOp-eV-ffe" id="Y8d-bN-A7P"/>
                         <outlet property="followButton" destination="Hxx-Tb-zfg" id="sS5-d8-JNl"/>
                         <outlet property="jumpToFeedButton" destination="uKI-tt-Xwa" id="QLk-Pf-0Cl"/>
+                        <outlet property="likeButton" destination="Eb2-1s-wVx" id="mec-F5-Hx9"/>
                         <outlet property="scrollView" destination="x4f-cN-XcZ" id="spr-UN-nLn"/>
                         <outlet property="showHideDescriptionButton" destination="sDQ-XZ-vdk" id="E2e-kO-Dpx"/>
                         <outlet property="showHideDescriptionLabel" destination="2XP-Yp-chs" id="dQ1-vU-bIG"/>

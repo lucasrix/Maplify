@@ -237,7 +237,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
                                                  "address": self.editInfoViewController.placeOrLocationTextField.text!]
         let kind = self.storyPoint.kind
         
-        var text = ""
+        var text = String()
         if self.storyPoint.attachment != nil {
             text = self.storyPoint.text
         } else {

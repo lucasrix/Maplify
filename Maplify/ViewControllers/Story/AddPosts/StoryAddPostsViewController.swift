@@ -13,7 +13,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var myPostsLabel: UILabel!
     
-    var storyId: Int = 0
+    var selectedStoryPoints: [StoryPoint]! = nil
     var delegate: AddPostsDelegate! = nil
     var storyDataSource: CSBaseTableDataSource! = nil
     var storyActiveModel = CSActiveModel()
@@ -73,9 +73,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     
     func updateSelectedStoryPoints(foundedStoryPoints: [StoryPoint]) {
         let foundedStoryPointIds = foundedStoryPoints.map({$0.id})
-        let story = StoryManager.find(self.storyId)
-        let storyPointsInStory = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-        let storyPointsInStoryIds = storyPointsInStory.map({$0.id})
+        let storyPointsInStoryIds = self.selectedStoryPoints.map({$0.id})
         for storyPoint in storyPointsInStoryIds {
             if let index = foundedStoryPointIds.indexOf(storyPoint) {
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)

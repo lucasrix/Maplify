@@ -236,9 +236,17 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
                                                  "longitude": self.storyPoint.location.longitude,
                                                  "address": self.editInfoViewController.placeOrLocationTextField.text!]
         let kind = self.storyPoint.kind
+        
+        var text = ""
+        if self.storyPoint.attachment != nil {
+            text = self.storyPoint.text
+        } else {
+            text = self.descriptionTextView.text
+        }
+        
         var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!,
                                                    "kind": kind,
-                                                   "text": self.descriptionTextView.text,
+                                                   "text": text,
                                                    "location":locationDict]
         
         let selectedStoriesIds = self.editInfoViewController.selectedStories.map({$0.id})

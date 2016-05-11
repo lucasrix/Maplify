@@ -197,7 +197,31 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     
     // MARK: - private
     func deleteStoryPoint() {
-        // TODO:
+        let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
+        let yesButton = NSLocalizedString("Button.Yes", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: yesButton, buttons: [noButton]) { (buttonIndex) in
+            if buttonIndex != 0 {
+                self.showProgressHUD()
+                ApiClient.sharedClient.deleteStoryPoint(self.storyPointId,
+                                                        success: { [weak self] (response) in
+                                                            let storyPoint = StoryPointManager.find((self?.storyPointId)!)
+                                                            if storyPoint != nil {
+                                                                StoryPointManager.delete(storyPoint)
+                                                            }
+                                                            let discoverItem = DiscoverItemManager.findWithStoryPoint((self?.storyPointId)!)
+                                                            if discoverItem != nil {
+                                                                DiscoverItemManager.delete(discoverItem)
+                                                            }
+                                                            self?.hideProgressHUD()
+                                                            self?.backTapped()
+                                                        },
+                                                        failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                            self?.hideProgressHUD()
+                                                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                        })
+            }
+        }
     }
     
     func shareStoryPoint() {

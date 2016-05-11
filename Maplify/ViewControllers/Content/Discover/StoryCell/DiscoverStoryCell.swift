@@ -263,7 +263,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     class func textDescriptionHeight(text: String, width: CGFloat) -> CGFloat {
         let font = UIFont.systemFontOfSize(kStoryPointTextFontSize)
         let textBoundingWidth = width - 2 * kStoryPointTextHorizontalMargin
-        return text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height
+        return CGFloat(ceil(text.size(font, boundingRect: CGRect(x: 0, y: 0, width: textBoundingWidth, height: CGFloat.max)).height))
     }
     
     class  func cellWidth(itemsCount: Int) -> CGFloat {

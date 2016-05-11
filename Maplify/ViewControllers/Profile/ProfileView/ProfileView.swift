@@ -15,7 +15,6 @@ let kDefaultContentWithButtonHeight: CGFloat = 420
 let kMapGradientOpacity: CGFloat = 0.85
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
-let kOpenProfileUrl = "openProfileUrl"
 let kShadowYOffset: CGFloat = -3
 let kDefaultLabelHeight: CGFloat = 36
 
@@ -123,7 +122,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.profileUrlLabel.text = self.user.profile.url
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)
-            self.profileUrlLabel.addURLLink(kOpenProfileUrl, str: self.user.profile.url, rangeStr: self.user.profile.url)
+            self.profileUrlLabel.addURLLink(self.user.profile.url, str: self.user.profile.url, rangeStr: self.user.profile.url)
         } else {
             self.urlLabelHeightConstraint.constant = 0
             self.profileUrlLabel.text = String()
@@ -315,8 +314,10 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     // MARK: - TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        if url.absoluteString == kOpenProfileUrl {
-            UIApplication.sharedApplication().openURL(url)
+        if UIApplication.sharedApplication().canOpenURL(url.byAddingPrefixIfNeeded()) {
+            UIApplication.sharedApplication().openURL(url.byAddingPrefixIfNeeded())
         }
     }
+    
+    
 }

@@ -61,6 +61,11 @@ class DiscoverItemManager: ModelManager {
         return realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPointId)").first
     }
     
+    class func findWithStory(storyId: Int) -> DiscoverItem! {
+        let realm = try! Realm()
+        return realm.objects(DiscoverItem).filter("story.id == \(storyId)").first
+    }
+    
     class func findOrCreateWithStoryPoint(storyPoint: StoryPoint) -> DiscoverItem! {
         let realm = try! Realm()
         if let foundedObject = realm.objects(DiscoverItem).filter("storyPoint.id == \(storyPoint.id)").first {

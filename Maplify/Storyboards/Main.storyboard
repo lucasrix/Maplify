@@ -2132,13 +2132,12 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7e-3A-K5d">
+                                                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BjQ-BK-cJV">
                                                         <rect key="frame" x="13" y="44" width="349" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D7-EA-Lqn">
                                                         <rect key="frame" x="245" y="11" width="117" height="21"/>
                                                         <constraints>
@@ -2153,18 +2152,18 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="4hV-QC-CPW"/>
+                                                    <constraint firstItem="BjQ-BK-cJV" firstAttribute="top" secondItem="fyf-UK-pF3" secondAttribute="bottom" constant="7" id="784-tU-A3H"/>
                                                     <constraint firstItem="fyf-UK-pF3" firstAttribute="top" secondItem="ic4-ni-Dg0" secondAttribute="top" constant="8" id="CBf-4q-MyF"/>
                                                     <constraint firstAttribute="trailing" secondItem="xNh-4N-lAa" secondAttribute="trailing" id="CgH-BS-ltI"/>
-                                                    <constraint firstAttribute="bottom" secondItem="f7e-3A-K5d" secondAttribute="bottom" id="FX0-6h-NsR"/>
+                                                    <constraint firstItem="BjQ-BK-cJV" firstAttribute="leading" secondItem="ic4-ni-Dg0" secondAttribute="leading" constant="13" id="OMw-yg-JP9"/>
                                                     <constraint firstAttribute="trailing" secondItem="8D7-EA-Lqn" secondAttribute="trailing" constant="13" id="RHg-me-fcu"/>
                                                     <constraint firstItem="xNh-4N-lAa" firstAttribute="leading" secondItem="fyf-UK-pF3" secondAttribute="trailing" constant="15" id="Upy-q0-l2x"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BjQ-BK-cJV" secondAttribute="trailing" constant="13" id="Xyx-bO-S6Y"/>
                                                     <constraint firstItem="Lt1-o8-1GJ" firstAttribute="top" secondItem="ic4-ni-Dg0" secondAttribute="top" constant="12" id="YsR-vg-Lwk"/>
                                                     <constraint firstItem="xNh-4N-lAa" firstAttribute="top" secondItem="ic4-ni-Dg0" secondAttribute="top" constant="15" id="ZEG-WO-nq1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="BjQ-BK-cJV" secondAttribute="bottom" id="b1Y-98-3Cf"/>
                                                     <constraint firstItem="8D7-EA-Lqn" firstAttribute="top" secondItem="ic4-ni-Dg0" secondAttribute="top" constant="11" id="dAr-Y6-fQZ"/>
                                                     <constraint firstItem="Lt1-o8-1GJ" firstAttribute="leading" secondItem="fyf-UK-pF3" secondAttribute="trailing" constant="15" id="h81-Z4-vCz"/>
-                                                    <constraint firstAttribute="trailing" secondItem="f7e-3A-K5d" secondAttribute="trailing" constant="13" id="hUi-jy-ikl"/>
-                                                    <constraint firstItem="f7e-3A-K5d" firstAttribute="top" secondItem="fyf-UK-pF3" secondAttribute="bottom" constant="7" id="i72-pm-JeZ"/>
-                                                    <constraint firstItem="f7e-3A-K5d" firstAttribute="leading" secondItem="ic4-ni-Dg0" secondAttribute="leading" constant="13" id="q55-qh-Agx"/>
                                                     <constraint firstItem="fyf-UK-pF3" firstAttribute="leading" secondItem="ic4-ni-Dg0" secondAttribute="leading" constant="13" id="zVZ-lk-NcP"/>
                                                 </constraints>
                                             </view>
@@ -2294,10 +2293,10 @@
                         <outlet property="contentScrollView" destination="r1g-rn-3fF" id="9du-aF-JOa"/>
                         <outlet property="contentViewHeightConstraint" destination="4W4-kl-eZK" id="Mkp-iv-0NY"/>
                         <outlet property="descriptionButton" destination="fyf-UK-pF3" id="dIB-4D-c19"/>
-                        <outlet property="descriptionLabel" destination="f7e-3A-K5d" id="AnL-Kn-WEJ"/>
                         <outlet property="descriptionTextView" destination="bP9-NY-9im" id="QOj-RR-Jd6"/>
                         <outlet property="descriptionView" destination="ic4-ni-Dg0" id="wXF-0b-QAa"/>
                         <outlet property="descriptionViewHeightConstraint" destination="4hV-QC-CPW" id="nK5-ei-JDl"/>
+                        <outlet property="desriptionInputTextView" destination="BjQ-BK-cJV" id="Lo1-fp-VJ9"/>
                         <outlet property="detailEditView" destination="zcQ-hV-A8g" id="flU-G9-Y34"/>
                         <outlet property="detailEditViewHeight" destination="iNo-z1-m0L" id="mwR-Za-zbn"/>
                         <outlet property="storyPointImageView" destination="fs7-sO-daw" id="JEV-4a-CUK"/>

@@ -2092,9 +2092,42 @@
                     <view key="view" contentMode="scaleToFill" id="xAQ-Nc-frB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8vw-Dg-FXv">
+                                <rect key="frame" x="8" y="8" width="359" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="4oT-Ke-Hdn"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <color key="tintColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlChangedValue:" destination="ewr-eJ-A57" eventType="valueChanged" id="2hb-kt-94X"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k3P-xG-OEJ">
+                                <rect key="frame" x="0.0" y="42" width="375" height="625"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="f3u-wR-5TM" firstAttribute="top" secondItem="k3P-xG-OEJ" secondAttribute="bottom" id="AwV-5i-OPJ"/>
+                            <constraint firstAttribute="trailing" secondItem="k3P-xG-OEJ" secondAttribute="trailing" id="IXk-dy-SRt"/>
+                            <constraint firstAttribute="trailing" secondItem="8vw-Dg-FXv" secondAttribute="trailing" constant="8" id="MBI-PJ-j0v"/>
+                            <constraint firstItem="k3P-xG-OEJ" firstAttribute="top" secondItem="8vw-Dg-FXv" secondAttribute="bottom" constant="8" id="MXK-O4-TPc"/>
+                            <constraint firstItem="8vw-Dg-FXv" firstAttribute="leading" secondItem="xAQ-Nc-frB" secondAttribute="leading" constant="8" id="fGn-81-t4r"/>
+                            <constraint firstItem="k3P-xG-OEJ" firstAttribute="leading" secondItem="xAQ-Nc-frB" secondAttribute="leading" id="qYD-M4-Snf"/>
+                            <constraint firstItem="8vw-Dg-FXv" firstAttribute="top" secondItem="xAQ-Nc-frB" secondAttribute="top" constant="8" id="uTT-fK-nvZ"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="contentView" destination="k3P-xG-OEJ" id="Zqc-Rt-iYZ"/>
+                        <outlet property="segmentControl" destination="8vw-Dg-FXv" id="Dhi-Cn-yVb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaN-lC-UPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

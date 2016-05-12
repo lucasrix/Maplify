@@ -82,7 +82,7 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let user = story.user as User
         let profile = user.profile as Profile
 
-        let userPhotoUrl: NSURL! = NSURL(string: profile.photo)
+        let userPhotoUrl: NSURL! = NSURL(string: profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
         self.thumbImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         

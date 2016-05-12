@@ -2198,7 +2198,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-sO-daw">
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-sO-daw">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="fs7-sO-daw" secondAttribute="height" multiplier="1:1" id="nWv-0X-zi8"/>

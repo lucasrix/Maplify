@@ -18,6 +18,7 @@ class ContentFollowingViewController: ViewController {
     @IBOutlet weak var contentView: UIView!
     
     var showingListOption: ShowingListOption = ShowingListOption.Followers
+    var currentController: UIViewController! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class ContentFollowingViewController: ViewController {
     func setup() {
         self.setupSegmentControl()
         self.setupTitle()
+        self.setupController()
     }
     
     func setupSegmentControl() {
@@ -44,6 +46,24 @@ class ContentFollowingViewController: ViewController {
         } else if self.showingListOption == ShowingListOption.Following {
             self.title = NSLocalizedString("Label.Following", comment: String()).capitalizedString
         }
+    }
+    
+    func setupController() {
+        if self.currentController != nil {
+            self.removeChildController(self.currentController)
+        }
+        let controllerToShow = self.controllerToShow()
+        self.configureChildViewController(controllerToShow, onView: self.contentView)
+        self.currentController = controllerToShow
+    }
+    
+    func controllerToShow() -> UIViewController! {
+        if self.showingListOption == ShowingListOption.Followers {
+            return UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.followersController)
+        } else if self.showingListOption == ShowingListOption.Following {
+            return UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.followingController)
+        }
+        return nil
     }
     
     // MARK: - navigation bar
@@ -63,5 +83,6 @@ class ContentFollowingViewController: ViewController {
             self.showingListOption = ShowingListOption.Following
         }
         self.setupTitle()
+        self.setupController()
     }
 }

@@ -138,6 +138,8 @@
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
 		CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
+		CD153CBC1CE4AB1500F32BDE /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */; };
+		CD153CBE1CE4AB3400F32BDE /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
@@ -324,6 +326,8 @@
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
 		CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentFollowingViewController.swift; sourceTree = "<group>"; };
+		CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
@@ -897,9 +901,27 @@
 		CD153CB61CE4901E00F32BDE /* FollowingList */ = {
 			isa = PBXGroup;
 			children = (
+				CD153CB91CE4AAFA00F32BDE /* FollowersController */,
+				CD153CBA1CE4AAFA00F32BDE /* FollowingController */,
 				CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */,
 			);
 			path = FollowingList;
+			sourceTree = "<group>";
+		};
+		CD153CB91CE4AAFA00F32BDE /* FollowersController */ = {
+			isa = PBXGroup;
+			children = (
+				CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */,
+			);
+			path = FollowersController;
+			sourceTree = "<group>";
+		};
+		CD153CBA1CE4AAFA00F32BDE /* FollowingController */ = {
+			isa = PBXGroup;
+			children = (
+				CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */,
+			);
+			path = FollowingController;
 			sourceTree = "<group>";
 		};
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
@@ -1287,6 +1309,7 @@
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
+				CD153CBC1CE4AB1500F32BDE /* FollowersViewController.swift in Sources */,
 				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
 				A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */,
 				1FC780FB1CA0349E00C50C23 /* NavigationBarItems.swift in Sources */,
@@ -1305,6 +1328,7 @@
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				CD153CBE1CE4AB3400F32BDE /* FollowingViewController.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,

@@ -2133,6 +2133,44 @@
             </objects>
             <point key="canvasLocation" x="2271.5" y="2681.5"/>
         </scene>
+        <!--Followers View Controller-->
+        <scene sceneID="jWx-wR-1Y2">
+            <objects>
+                <viewController storyboardIdentifier="FollowersViewController" id="hoD-od-s5K" customClass="FollowersViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ee1-Qz-kuj"/>
+                        <viewControllerLayoutGuide type="bottom" id="cPo-Jq-hsO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7xW-0S-80F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.20784313730000001" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbG-y1-Ngs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2767.5" y="2305.5"/>
+        </scene>
+        <!--Following View Controller-->
+        <scene sceneID="hhL-nw-eso">
+            <objects>
+                <viewController storyboardIdentifier="FollowingViewController" id="04j-HN-0Ay" customClass="FollowingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nSG-7Q-tkq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mxq-eJ-TZH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DhE-yl-pqn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GMD-7W-Fd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2767.5" y="3044.5"/>
+        </scene>
         <!--Story Point Edit View Controller-->
         <scene sceneID="rcc-rR-UfO">
             <objects>

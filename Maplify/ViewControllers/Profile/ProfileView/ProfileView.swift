@@ -199,8 +199,9 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func setupImageView() {
-        let url = NSURL(string: self.user.profile.photo)
+        let url = NSURL(string: self.user.profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
+        
         
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         

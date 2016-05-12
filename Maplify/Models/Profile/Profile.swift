@@ -11,10 +11,11 @@ import Tailor
 class Profile: Model {
     dynamic var firstName = ""
     dynamic var lastName = ""
-    dynamic var photo = ""
     dynamic var city = ""
     dynamic var url = ""
     dynamic var about = ""
+    dynamic var small_thumbnail = ""
+    dynamic var big_thumbnail = ""
     dynamic var story_points_count: Int = 0
     dynamic var stories_count: Int = 0
     dynamic var followers_count: Int = 0
@@ -32,7 +33,8 @@ class Profile: Model {
         self.about <- map.property("about")
         self.city <- map.property("city")
         self.url <- map.property("url")
-        self.photo <- map.property("photo_url")
+        self.small_thumbnail <- map.property("small_thumbnail")
+        self.big_thumbnail <- map.property("big_thumbnail")
         self.story_points_count <- map.property("story_points_count")
         self.stories_count <- map.property("stories_count")
         self.followers_count <- map.property("followers_count")

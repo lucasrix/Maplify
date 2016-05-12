@@ -294,6 +294,7 @@
                 <outlet property="plusLabel" destination="E0g-yT-lBc" id="7Hq-d8-kzn"/>
                 <outlet property="profileUrlLabel" destination="JHQ-HS-D2J" id="g8O-3H-ZRJ"/>
                 <outlet property="statsParentView" destination="Zj7-D6-Dwq" id="ie8-nB-WeB"/>
+                <outlet property="statsParentViewBottomConstraint" destination="MI9-9X-7EQ" id="UFq-nl-EA8"/>
                 <outlet property="urlLabelHeightConstraint" destination="5nZ-7H-qjr" id="z1k-EW-QeX"/>
                 <outlet property="userImageView" destination="OTl-w1-liM" id="f8I-Ms-msG"/>
                 <outlet property="usernameLabel" destination="SrJ-gK-jvr" id="Vua-oc-oor"/>

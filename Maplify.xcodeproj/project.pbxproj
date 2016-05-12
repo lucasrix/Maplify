@@ -140,6 +140,8 @@
 		CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
 		CD153CBC1CE4AB1500F32BDE /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */; };
 		CD153CBE1CE4AB3400F32BDE /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */; };
+		CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
+		CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
@@ -328,6 +330,8 @@
 		CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentFollowingViewController.swift; sourceTree = "<group>"; };
 		CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
+		CD153CC21CE4C4E200F32BDE /* UserListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
@@ -833,6 +837,7 @@
 			children = (
 				A5D7AAF41C9C437F00A94C4F /* User.swift */,
 				A5D7AAFA1C9C438E00A94C4F /* SessionManager.swift */,
+				CD153CC21CE4C4E200F32BDE /* UserListManager.swift */,
 				A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */,
 			);
 			path = User;
@@ -901,6 +906,7 @@
 		CD153CB61CE4901E00F32BDE /* FollowingList */ = {
 			isa = PBXGroup;
 			children = (
+				CD153CBF1CE4B6BF00F32BDE /* FollowingCell */,
 				CD153CB91CE4AAFA00F32BDE /* FollowersController */,
 				CD153CBA1CE4AAFA00F32BDE /* FollowingController */,
 				CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */,
@@ -922,6 +928,14 @@
 				CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */,
 			);
 			path = FollowingController;
+			sourceTree = "<group>";
+		};
+		CD153CBF1CE4B6BF00F32BDE /* FollowingCell */ = {
+			isa = PBXGroup;
+			children = (
+				CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */,
+			);
+			path = FollowingCell;
 			sourceTree = "<group>";
 		};
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
@@ -1264,6 +1278,7 @@
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
+				CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */,
 				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
@@ -1271,6 +1286,7 @@
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
+				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,

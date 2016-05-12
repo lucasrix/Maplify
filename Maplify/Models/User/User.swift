@@ -15,6 +15,8 @@ class User: Model {
     dynamic var email = ""
     dynamic var profile: Profile! = nil
     dynamic var followed: Bool = false
+    dynamic var is_follower: Bool = false
+    dynamic var is_following: Bool = false
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()

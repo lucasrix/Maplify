@@ -296,6 +296,10 @@ class ApiClient {
     func retrieveFollowersList(success: successClosure!, failure: failureClosure!) {
         self.getRequest("user/followers", params: nil, manager: UserListManager(), success: success, failure: failure)
     }
+    
+    func retrieveFollowingsList(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("user/followed", params: nil, manager: UserListManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

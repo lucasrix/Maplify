@@ -217,6 +217,10 @@ class ApiClient {
     func getStoryPointStories(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.getRequest("story_points/\(storyPointId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
     }
+    
+    func deleteStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("auth/sign_out", params: nil, manager: SessionManager(), success: success, failure: failure)

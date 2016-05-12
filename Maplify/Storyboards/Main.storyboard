@@ -2081,6 +2081,25 @@
             </objects>
             <point key="canvasLocation" x="1832.5" y="2681.5"/>
         </scene>
+        <!--Content Following View Controller-->
+        <scene sceneID="jCz-IF-4hl">
+            <objects>
+                <viewController storyboardIdentifier="ContentFollowingViewController" id="ewr-eJ-A57" customClass="ContentFollowingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pnc-6e-f66"/>
+                        <viewControllerLayoutGuide type="bottom" id="f3u-wR-5TM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xAQ-Nc-frB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DaN-lC-UPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2271.5" y="2681.5"/>
+        </scene>
         <!--Story Point Edit View Controller-->
         <scene sceneID="rcc-rR-UfO">
             <objects>

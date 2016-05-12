@@ -22,9 +22,11 @@ protocol ProfileViewDelegate {
     func followButtonDidTap(userId: Int, completion: ((success: Bool) -> ()))
     func editButtonDidTap()
     func createStoryButtonDidTap()
+    func followingUsersTapped()
+    func followersUsersTapped()
 }
 
-class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FollowingListDelegate {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -106,6 +108,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.privateStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
         self.privateStatsView.followersLabel.text = NSLocalizedString("Label.Followers", comment: String())
         self.privateStatsView.followinfLabel.text = NSLocalizedString("Label.Following", comment: String())
+        self.privateStatsView.delegate = self
         self.statsParentView.addSubview(self.privateStatsView)
     }
     
@@ -324,5 +327,12 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         }
     }
     
+    // MARK: - FollowingListDelegate
+    func followingTapped() {
+        self.delegate?.followingUsersTapped()
+    }
     
+    func followersTapped() {
+        self.delegate?.followersUsersTapped()
+    }
 }

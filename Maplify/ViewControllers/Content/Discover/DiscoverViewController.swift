@@ -648,6 +648,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    func followingUsersTapped() {
+        self.routesOpenFollowingContentController(ShowingListOption.Following)
+    }
+    
+    func followersUsersTapped() {
+        self.routesOpenFollowingContentController(ShowingListOption.Followers)
+    }
+    
     // MARK: - private
     private func followUser(userId: Int, completion: ((success: Bool) -> ())) {
         ApiClient.sharedClient.followUser(userId, success: { (response) in

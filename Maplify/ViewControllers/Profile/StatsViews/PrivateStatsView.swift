@@ -17,4 +17,19 @@ class PrivateStatsView: UIView {
     @IBOutlet weak var followinfLabel: UILabel!
     @IBOutlet weak var followersNumberLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
+    
+    var delegate: FollowingListDelegate! = nil
+    
+    @IBAction func followingTapped(sender: UIButton) {
+        self.delegate?.followingTapped()
+    }
+    
+    @IBAction func followersTapped(sender: UIButton) {
+        self.delegate?.followersTapped()
+    }
+}
+
+protocol FollowingListDelegate {
+    func followingTapped()
+    func followersTapped()
 }

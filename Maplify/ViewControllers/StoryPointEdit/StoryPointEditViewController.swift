@@ -221,6 +221,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     // MARK: - actions
     func dismissKeyboard() {
         self.descriptionTextView.resignFirstResponder()
+        self.desriptionInputTextView.resignFirstResponder()
     }
     
     @IBAction func showDescriptionButtonTapped(sender: AnyObject) {

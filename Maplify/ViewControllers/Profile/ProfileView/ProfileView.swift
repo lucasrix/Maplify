@@ -45,6 +45,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     @IBOutlet weak var createStoryButton: UIButton!
     @IBOutlet weak var createStoryButtonHeight: NSLayoutConstraint!
     @IBOutlet weak var createStoryButtonTop: NSLayoutConstraint!
+    @IBOutlet weak var statsParentViewBottomConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -79,6 +80,9 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func setupDetailStatsView() {
+        if self.profileId != SessionManager.currentUser().id {
+            self.statsParentViewBottomConstraint.constant = 0
+        }
         self.statsParentView.subviews.forEach({ $0.removeFromSuperview() })
         if self.profileId == SessionManager.currentUser().id {
             self.setupPrivateStatsView()

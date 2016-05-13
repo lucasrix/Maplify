@@ -8,6 +8,8 @@
 
 import Foundation
 
+let kPrefixHttp = "http://"
+
 extension NSURL {
     var queryItems: [String: String] {
         return (NSURLComponents(URL: self, resolvingAgainstBaseURL: false)?
@@ -17,5 +19,12 @@ extension NSURL {
                 data[item.name] = item.value
                 return data
             }))!
+    }
+    
+    func byAddingPrefixIfNeeded() -> NSURL {
+        if String(self).hasPrefix(kPrefixHttp) == false {
+            return NSURL(string: kPrefixHttp + String(self))!
+        }
+        return self
     }
 }

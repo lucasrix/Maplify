@@ -453,7 +453,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func deleteStory(storyId: Int) {
-        // TODO: delete
+        let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
+        let yesButton = NSLocalizedString("Button.Yes", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: yesButton, buttons: [noButton]) { (buttonIndex) in
+            if buttonIndex != 0 {
+                self.showProgressHUD()
+                ApiClient.sharedClient.deleteStory(storyId,
+                                                   success: { [weak self] (response) in
+                                                        let discoverItem = DiscoverItemManager.findWithStory(storyId)
+                                                        let story = StoryManager.find(storyId)
+                                                        if (story != nil) && (discoverItem != nil) {
+                                                            DiscoverItemManager.delete(discoverItem)
+                                                            StoryManager.delete(story)
+                                                        }
+                                                        self?.hideProgressHUD()
+                                                        self?.loadItemsFromDB()
+                                                    },
+                                                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                        self?.hideProgressHUD()
+                                                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                    })
+            }
+        }
     }
     
     func shareStory(storyId: Int) {
@@ -624,6 +646,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
             self?.configureProfileViewIfNeeded()
         }
+    }
+    
+    func followingUsersTapped() {
+        self.routesOpenFollowingContentController(ShowingListOption.Following)
+    }
+    
+    func followersUsersTapped() {
+        self.routesOpenFollowingContentController(ShowingListOption.Followers)
     }
     
     // MARK: - private

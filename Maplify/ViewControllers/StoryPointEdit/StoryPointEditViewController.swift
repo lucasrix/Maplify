@@ -15,7 +15,6 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var storyPointImageView: UIImageView!
     @IBOutlet weak var descriptionButton: UIButton!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var charsNumberLabel: UILabel!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
@@ -27,6 +26,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     @IBOutlet weak var charactersNumberLabelViewHeight: NSLayoutConstraint!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var desriptionInputTextView: UITextView!
     
     var editInfoViewController: StoryPointEditInfoViewController! = nil
     var storyPointId: Int = 0
@@ -62,11 +62,18 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         self.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
         self.setupGesture()
         self.setupStories()
+        self.setupDesriptionInputTextView()
     }
     
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointEditViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    func setupDesriptionInputTextView() {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        self.desriptionInputTextView.delegate = self
+        self.desriptionInputTextView.text = storyPoint.text
     }
     
     func setupNavigationBar() {
@@ -174,11 +181,19 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func setupContentHeight(expanded: Bool) {
+        if (storyPoint.attachment != nil) && expanded {
+            self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight + self.descriptionTextContentHeight()
+        }
         let infoHeight = self.editInfoViewController.contentHeight()
-        let updatedHeight = infoHeight + self.detailEditViewHeight.constant + self.detailsViewContentHeight()
+        let updatedHeight = infoHeight + self.detailEditViewHeight.constant + self.detailsViewContentHeight() + self.descriptionTextContentHeight()
         self.detailEditViewHeight.constant = self.detailsViewContentHeight()
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.contentSize.width, updatedHeight)
         self.contentViewHeightConstraint.constant = updatedHeight
+    }
+    
+    func descriptionTextContentHeight() -> CGFloat {
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.desriptionInputTextView.frame) , CGFloat.max)
+        return self.desriptionInputTextView.text.size(self.desriptionInputTextView.font!, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
     }
     
     // MARK: - navigation bar
@@ -206,6 +221,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     // MARK: - actions
     func dismissKeyboard() {
         self.descriptionTextView.resignFirstResponder()
+        self.desriptionInputTextView.resignFirstResponder()
     }
     
     @IBAction func showDescriptionButtonTapped(sender: AnyObject) {
@@ -214,16 +230,16 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     }
     
     func showStoryPointDescription() {
-        let storyPoint = StoryPointManager.find(self.storyPointId)
-        self.descriptionLabel.text = storyPoint.text
-        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.descriptionLabel.frame) , CGFloat.max)
-        let textHeight = storyPoint.text.size(self.descriptionLabel.font, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
+        let boundingRect = CGRectMake(0, 0, CGRectGetWidth(self.desriptionInputTextView.frame) , CGFloat.max)
+        let textHeight = self.desriptionInputTextView.text.size(self.desriptionInputTextView.font!, boundingRect: boundingRect).height + 2 * kDescriptionHorizontalPadding
+        
+        self.desriptionInputTextView.hidden = !self.descriptionButton.selected
         
         if self.descriptionButton.selected {
-            self.descriptionViewHeightConstraint.constant = CGRectGetHeight(self.descriptionView.frame) + textHeight
+            self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight + textHeight
         } else {
+            self.desriptionInputTextView.resignFirstResponder()
             self.descriptionViewHeightConstraint.constant = kDefaultDescriptionViewHeight
-            self.descriptionLabel.text = String()
         }
         
         self.setupContentHeight(self.descriptionButton.selected)
@@ -239,7 +255,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         
         var text = String()
         if self.storyPoint.attachment != nil {
-            text = self.storyPoint.text
+            text = self.desriptionInputTextView.text
         } else {
             text = self.descriptionTextView.text
         }
@@ -273,18 +289,37 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     
     // MARK: - UITextViewDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
-        if resultCharactersCount <= kDescriptionTextViewMaxCharactersCount {
-            self.updateCharactersCountLabel(resultCharactersCount)
+        if textView === self.desriptionInputTextView {
+            self.setupContentHeight(self.descriptionButton.selected)
+            self.scrollToDescriptionTextEnd()
             return true
+        } else if textView === self.descriptionTextView {
+            let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
+            if resultCharactersCount <= kDescriptionTextViewMaxCharactersCount {
+                self.updateCharactersCountLabel(resultCharactersCount)
+                return true
+            }
         }
         return false
     }
     
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView === self.desriptionInputTextView {
+            self.scrollToDescriptionTextEnd()
+        }
+    }
+    
+    func scrollToDescriptionTextEnd() {
+        let updatedHeight = self.descriptionTextContentHeight() + kDefaultDescriptionViewHeight + 2 * kDescriptionHorizontalPadding
+        self.contentScrollView.setContentOffset(CGPointMake(0, updatedHeight), animated: true)
+    }
+    
     func textViewDidChange(textView: UITextView) {
-        self.detailEditViewHeight.constant = self.detailsViewContentHeight()
-        self.setupContentHeight(self.descriptionButton.selected)
-        self.contentScrollView.scrollRectToVisible(CGRectMake(0, 0, CGRectGetWidth(self.descriptionView.frame), self.detailsViewContentHeight() + self.keyboardHeight), animated: true)
+        if textView === self.descriptionTextView {
+            self.detailEditViewHeight.constant = self.detailsViewContentHeight()
+            self.setupContentHeight(self.descriptionButton.selected)
+            self.contentScrollView.scrollRectToVisible(CGRectMake(0, 0, CGRectGetWidth(self.descriptionView.frame), self.detailsViewContentHeight() + self.keyboardHeight), animated: true)
+        }
     }
     
     func detailsViewContentHeight() -> CGFloat {

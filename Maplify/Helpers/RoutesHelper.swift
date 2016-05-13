@@ -198,6 +198,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
+    func routesOpenFollowingContentController(showingListOption: ShowingListOption) {
+        let contentFollowingViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.contentFollowingViewController) as! ContentFollowingViewController
+        contentFollowingViewController.showingListOption = showingListOption
+        self.navigationController?.pushViewController(contentFollowingViewController, animated: true)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController

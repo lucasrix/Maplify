@@ -217,6 +217,10 @@ class ApiClient {
     func getStoryPointStories(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
         self.getRequest("story_points/\(storyPointId)/stories", params: nil, manager: ArrayStoryManager(), success: success, failure: failure)
     }
+    
+    func deleteStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.deleteRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("auth/sign_out", params: nil, manager: SessionManager(), success: success, failure: failure)
@@ -287,6 +291,14 @@ class ApiClient {
     func changePassword(password: String, confirmPassword: String, success: successClosure!, failure: failureClosure!) {
         let params = ["password": password, "password_confirmation": confirmPassword]
         self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
+    }
+    
+    func retrieveFollowersList(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("user/followers", params: nil, manager: UserListManager(), success: success, failure: failure)
+    }
+    
+    func retrieveFollowingsList(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("user/followed", params: nil, manager: UserListManager(), success: success, failure: failure)
     }
 }
 

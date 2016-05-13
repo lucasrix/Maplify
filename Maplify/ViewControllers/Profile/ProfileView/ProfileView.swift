@@ -15,7 +15,6 @@ let kDefaultContentWithButtonHeight: CGFloat = 420
 let kMapGradientOpacity: CGFloat = 0.85
 let kProfileButtonBorderWidth: CGFloat = 0.5
 let kAboutLabelMargin: CGFloat = 5
-let kOpenProfileUrl = "openProfileUrl"
 let kShadowYOffset: CGFloat = -3
 let kDefaultLabelHeight: CGFloat = 36
 
@@ -23,9 +22,11 @@ protocol ProfileViewDelegate {
     func followButtonDidTap(userId: Int, completion: ((success: Bool) -> ()))
     func editButtonDidTap()
     func createStoryButtonDidTap()
+    func followingUsersTapped()
+    func followersUsersTapped()
 }
 
-class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FollowingListDelegate {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -46,6 +47,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     @IBOutlet weak var createStoryButton: UIButton!
     @IBOutlet weak var createStoryButtonHeight: NSLayoutConstraint!
     @IBOutlet weak var createStoryButtonTop: NSLayoutConstraint!
+    @IBOutlet weak var statsParentViewBottomConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -80,6 +82,9 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func setupDetailStatsView() {
+        if self.profileId != SessionManager.currentUser().id {
+            self.statsParentViewBottomConstraint.constant = 0
+        }
         self.statsParentView.subviews.forEach({ $0.removeFromSuperview() })
         if self.profileId == SessionManager.currentUser().id {
             self.setupPrivateStatsView()
@@ -103,6 +108,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.privateStatsView.postsLabel.text = NSLocalizedString("Label.Posts", comment: String())
         self.privateStatsView.followersLabel.text = NSLocalizedString("Label.Followers", comment: String())
         self.privateStatsView.followinfLabel.text = NSLocalizedString("Label.Following", comment: String())
+        self.privateStatsView.delegate = self
         self.statsParentView.addSubview(self.privateStatsView)
     }
     
@@ -123,7 +129,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.profileUrlLabel.text = self.user.profile.url
             self.profileUrlLabel.setupDefaultAttributes(self.user.profile.url, textColor: UIColor.dodgerBlue(), font: self.profileUrlLabel.font, delegate: self)
             self.profileUrlLabel.setupLinkAttributes(UIColor.dodgerBlue(), underlined: true)
-            self.profileUrlLabel.addURLLink(kOpenProfileUrl, str: self.user.profile.url, rangeStr: self.user.profile.url)
+            self.profileUrlLabel.addURLLink(self.user.profile.url, str: self.user.profile.url, rangeStr: self.user.profile.url)
         } else {
             self.urlLabelHeightConstraint.constant = 0
             self.profileUrlLabel.text = String()
@@ -200,8 +206,9 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func setupImageView() {
-        let url = NSURL(string: self.user.profile.photo)
+        let url = NSURL(string: self.user.profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
+        
         
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         
@@ -315,8 +322,17 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     // MARK: - TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        if url.absoluteString == kOpenProfileUrl {
-            UIApplication.sharedApplication().openURL(url)
+        if UIApplication.sharedApplication().canOpenURL(url.byAddingPrefixIfNeeded()) {
+            UIApplication.sharedApplication().openURL(url.byAddingPrefixIfNeeded())
         }
+    }
+    
+    // MARK: - FollowingListDelegate
+    func followingTapped() {
+        self.delegate?.followingUsersTapped()
+    }
+    
+    func followersTapped() {
+        self.delegate?.followersUsersTapped()
     }
 }

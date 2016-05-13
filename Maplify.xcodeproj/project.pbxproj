@@ -138,8 +138,6 @@
 		CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
 		CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
 		CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
-		CD153CBC1CE4AB1500F32BDE /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */; };
-		CD153CBE1CE4AB3400F32BDE /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */; };
 		CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
 		CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
@@ -166,6 +164,8 @@
 		CD8A10A81CB66AA700B58396 /* StoryPointDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */; };
 		CD8A10AD1CB68F5500B58396 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AC1CB68F5500B58396 /* Converter.swift */; };
 		CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
+		CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */; };
+		CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -328,8 +328,6 @@
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
 		CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCell.swift; sourceTree = "<group>"; };
 		CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentFollowingViewController.swift; sourceTree = "<group>"; };
-		CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
-		CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		CD153CC21CE4C4E200F32BDE /* UserListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
@@ -352,6 +350,8 @@
 		CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDetailCell.swift; sourceTree = "<group>"; };
 		CD8A10AC1CB68F5500B58396 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCollectionDataSource.swift; sourceTree = "<group>"; };
+		CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -917,7 +917,7 @@
 		CD153CB91CE4AAFA00F32BDE /* FollowersController */ = {
 			isa = PBXGroup;
 			children = (
-				CD153CBB1CE4AB1500F32BDE /* FollowersViewController.swift */,
+				CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */,
 			);
 			path = FollowersController;
 			sourceTree = "<group>";
@@ -925,7 +925,7 @@
 		CD153CBA1CE4AAFA00F32BDE /* FollowingController */ = {
 			isa = PBXGroup;
 			children = (
-				CD153CBD1CE4AB3400F32BDE /* FollowingViewController.swift */,
+				CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */,
 			);
 			path = FollowingController;
 			sourceTree = "<group>";
@@ -1287,6 +1287,7 @@
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
+				CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */,
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
@@ -1321,11 +1322,11 @@
 				CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
 				A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */,
+				CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */,
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
-				CD153CBC1CE4AB1500F32BDE /* FollowersViewController.swift in Sources */,
 				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
 				A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */,
 				1FC780FB1CA0349E00C50C23 /* NavigationBarItems.swift in Sources */,
@@ -1344,7 +1345,6 @@
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
-				CD153CBE1CE4AB3400F32BDE /* FollowingViewController.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,

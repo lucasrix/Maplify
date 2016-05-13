@@ -16,24 +16,14 @@ class UserListManager: ModelManager {
     }
     
     class func saveFollowers(users: [User]) {
-        let realm = try! Realm()
-        
         for user in users {
-            try! realm.write {
-                user.is_follower = true
-                realm.add(user, update: true)
-            }
+            SessionManager.saveUser(user)
         }
     }
     
     class func saveFollowings(users: [User]) {
-        let realm = try! Realm()
-        
         for user in users {
-            try! realm.write {
-                user.is_following = true
-                realm.add(user, update: true)
-            }
+            SessionManager.saveUser(user)
         }
     }
 }

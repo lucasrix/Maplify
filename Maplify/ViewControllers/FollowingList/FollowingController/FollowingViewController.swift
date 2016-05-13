@@ -117,7 +117,7 @@ class FollowingViewController: ViewController, FollowingCellDelegate {
         let cancel = NSLocalizedString("Button.Cancel", comment: String())
         let destructive = NSLocalizedString("Button.Unfollow", comment: String())
         
-        self.showActionSheet(title, attributedMessage: attributedMessage, cancel: cancel, destructive: destructive, buttons: []) { [weak self] (buttonIndex) in
+        self.showActionSheet(attributedMessage, cancel: cancel, destructive: destructive, buttons: []) { [weak self] (buttonIndex) in
             if buttonIndex == ActionSheetButtonIndexes.Destructive.rawValue {
                 self?.unfollowUserRemote(userId, completion: completion)
             }

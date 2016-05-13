@@ -57,9 +57,9 @@ extension UIViewController {
             self.showController(title, message: message, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
     }
     
-    func showActionSheet(title: String!, attributedMessage: NSMutableAttributedString!, cancel: String, destructive: String!,
+    func showActionSheet(attributedMessage: NSMutableAttributedString!, cancel: String, destructive: String!,
                          buttons: [String], handle: buttonClosure) {
-        self.showController(title, message: nil, attributedMessage: attributedMessage, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
+        self.showController(nil, message: nil, attributedMessage: attributedMessage, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
     }
     
     private func showController(title: String!, message: String!, cancel: String!, destructive: String!,

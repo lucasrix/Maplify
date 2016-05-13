@@ -69,7 +69,7 @@ class FollowersViewController: ViewController, FollowingCellDelegate {
     func followUser(userId: Int, completion: ((success: Bool) -> ())!) {
         let user = SessionManager.findUser(userId)
         if user.followed {
-            self.unfollowUserRemote(userId, completion: completion)
+            self.showUnfollowAlert(userId, completion: completion)
         } else {
             self.followUserRemote(userId, completion: completion)
         }
@@ -99,6 +99,28 @@ class FollowersViewController: ViewController, FollowingCellDelegate {
         }) { [weak self] (statusCode, errors, localDescription, messages) in
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             completion(success: false)
+        }
+    }
+    
+    func showUnfollowAlert(userId: Int, completion: ((success: Bool) -> ())) {
+        let user = SessionManager.findUser(userId)
+        let username = user.profile.firstName + " " + user.profile.lastName
+        let message = NSLocalizedString("Button.Unfollow", comment: String()) + " " + username + "?"
+        
+        let attributedMessage = NSMutableAttributedString(string: message)
+        attributedMessage.addAttribute(NSForegroundColorAttributeName, value: UIColor.warmGrey(), range: NSMakeRange(0, NSString(string: attributedMessage.string).length))
+        let colorRange = (message as NSString).rangeOfString(username)
+        attributedMessage.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGreyBlue(), range: colorRange)
+        attributedMessage.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(kAttributedMessageDefaultFontSize), range: NSMakeRange(0, NSString(string: attributedMessage.string).length))
+        attributedMessage.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(kAttributedMessageDefaultFontSize), range: colorRange)
+        
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let destructive = NSLocalizedString("Button.Unfollow", comment: String())
+        
+        self.showActionSheet(title, attributedMessage: attributedMessage, cancel: cancel, destructive: destructive, buttons: []) { [weak self] (buttonIndex) in
+            if buttonIndex == ActionSheetButtonIndexes.Destructive.rawValue {
+                self?.unfollowUserRemote(userId, completion: completion)
+            }
         }
     }
     

@@ -292,6 +292,14 @@ class ApiClient {
         let params = ["password": password, "password_confirmation": confirmPassword]
         self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
     }
+    
+    func retrieveFollowersList(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("user/followers", params: nil, manager: UserListManager(), success: success, failure: failure)
+    }
+    
+    func retrieveFollowingsList(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("user/followed", params: nil, manager: UserListManager(), success: success, failure: failure)
+    }
 }
 
 private extension String {

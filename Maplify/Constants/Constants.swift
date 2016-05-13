@@ -71,6 +71,9 @@ struct Controllers {
     static let shareStoryViewController = "ShareStoryViewController"
     static let resetPasswordViewController = "ResetPasswordController"
     static let changePasswordViewController = "ChangePasswordController"
+    static let contentFollowingViewController = "ContentFollowingViewController"
+    static let followersController = "FollowersViewController"
+    static let followingController = "FollowingViewController"
 }
 
 struct AppIDs {

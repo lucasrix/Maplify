@@ -49,7 +49,7 @@ class FollowingViewController: ViewController, FollowingCellDelegate {
         self.followingsActiveModel.removeData()
         
         let realm = try! Realm()
-        let followings = Array(realm.objects(User).filter("followed == true"))
+        let followings = Array(realm.objects(User).filter("followed == true").sorted("created_at"))
         
         self.followingsActiveModel.addItems(followings, cellIdentifier: String(FollowingTableViewCell), sectionTitle: nil, delegate: self)
         self.followingsDataSource.reloadTable()

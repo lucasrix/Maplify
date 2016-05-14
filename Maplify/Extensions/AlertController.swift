@@ -12,8 +12,6 @@ enum ActionSheetButtonIndexes: Int {
     case Destructive = 0
 }
 
-let kAttributedMessageDefaultFontSize: CGFloat = 13
-
 let kAttributedMessageKey = "attributedMessage"
 
 typealias buttonClosure = (buttonIndex: Int) -> ()

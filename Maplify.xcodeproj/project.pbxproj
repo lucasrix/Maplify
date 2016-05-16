@@ -169,10 +169,7 @@
 		CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
 		CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
 		CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
-		CDC26E4A1CE9DE5800D3EDEE /* NotificationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E491CE9DE5800D3EDEE /* NotificationUser.swift */; };
 		CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
-		CDC26E4E1CEA270500D3EDEE /* NotificationStoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4D1CEA270500D3EDEE /* NotificationStoryPoint.swift */; };
-		CDC26E501CEA276800D3EDEE /* NotificationStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4F1CEA276800D3EDEE /* NotificationStory.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -363,10 +360,7 @@
 		CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		CDC26E471CE9D8DD00D3EDEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		CDC26E491CE9DE5800D3EDEE /* NotificationUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUser.swift; sourceTree = "<group>"; };
 		CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
-		CDC26E4D1CEA270500D3EDEE /* NotificationStoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationStoryPoint.swift; sourceTree = "<group>"; };
-		CDC26E4F1CEA276800D3EDEE /* NotificationStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationStory.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -1044,9 +1038,6 @@
 			isa = PBXGroup;
 			children = (
 				CDC26E471CE9D8DD00D3EDEE /* Notification.swift */,
-				CDC26E491CE9DE5800D3EDEE /* NotificationUser.swift */,
-				CDC26E4D1CEA270500D3EDEE /* NotificationStoryPoint.swift */,
-				CDC26E4F1CEA276800D3EDEE /* NotificationStory.swift */,
 				CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */,
 			);
 			path = Notification;
@@ -1327,7 +1318,6 @@
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
-				CDC26E4A1CE9DE5800D3EDEE /* NotificationUser.swift in Sources */,
 				CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */,
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
@@ -1392,7 +1382,6 @@
 				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
-				CDC26E501CEA276800D3EDEE /* NotificationStory.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */,
 				CDF6D8971CD26007001387EC /* ShareController.swift in Sources */,
@@ -1429,7 +1418,6 @@
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */,
 				85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */,
-				CDC26E4E1CEA270500D3EDEE /* NotificationStoryPoint.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,

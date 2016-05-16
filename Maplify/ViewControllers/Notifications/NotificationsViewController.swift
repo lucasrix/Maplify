@@ -47,7 +47,7 @@ class NotificationsViewController: ViewController {
     func loadItemsFromDB() {
         let realm = try! Realm()
         let notifications = Array(realm.objects(Notification))
-        print(notifications.count)
+        print(notifications)
     }
     
     func loadRemoteData() {

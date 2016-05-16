@@ -9,11 +9,20 @@
 import RealmSwift
 import Tailor
 
+enum NotificableType: String {
+    case User = "User"
+    case StoryPoint = "StoryPoint"
+    case Story = "Story"
+}
+
 class Notification: Model {
     dynamic var message = ""
     dynamic var unread: Bool = false
     dynamic var notificable_type = ""
     dynamic var action_user: User! = nil
+    dynamic var notificable_user: User! = nil
+    dynamic var notificable_storypoint: StoryPoint! = nil
+    dynamic var notificable_story: Story! = nil
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()

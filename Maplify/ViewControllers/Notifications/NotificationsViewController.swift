@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 class NotificationsViewController: ViewController {
@@ -15,6 +16,8 @@ class NotificationsViewController: ViewController {
         super.viewDidLoad()
         
         self.setup()
+        self.loadItemsFromDB()
+        self.loadRemoteData()
     }
     
     // MARK: - setup
@@ -39,5 +42,20 @@ class NotificationsViewController: ViewController {
     override func backTapped() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         super.backTapped()
+    }
+    
+    func loadItemsFromDB() {
+        let realm = try! Realm()
+        let notifications = Array(realm.objects(Notification))
+        print(notifications.count)
+    }
+    
+    func loadRemoteData() {
+        ApiClient.sharedClient.retrieveNotifications({ (response) in
+            NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
+            
+            }) { (statusCode, errors, localDescription, messages) in
+                //
+        }
     }
 }

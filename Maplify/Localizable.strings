@@ -63,6 +63,7 @@
 "Controller.SharePost" = "Share Post";
 "Controller.ShareStory" = "Share Story";
 "Controller.ResetPassword" = "Reset Password";
+"Controller.Notifications" = "Notifications";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";

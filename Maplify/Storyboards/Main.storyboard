@@ -3893,6 +3893,25 @@
             </objects>
             <point key="canvasLocation" x="2708.5" y="473.5"/>
         </scene>
+        <!--Notifications View Controller-->
+        <scene sceneID="3pw-Xn-hC6">
+            <objects>
+                <viewController storyboardIdentifier="NotificationsViewController" id="beN-k0-V04" customClass="NotificationsViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a0Z-WC-iot"/>
+                        <viewControllerLayoutGuide type="bottom" id="oQP-Za-LaM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="laU-YT-GQM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IRf-aE-MvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3127.5" y="473.5"/>
+        </scene>
         <!--Story Point Add Photo Video View Controller-->
         <scene sceneID="2Gx-qA-TgH">
             <objects>

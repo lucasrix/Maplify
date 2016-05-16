@@ -54,6 +54,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.resetPasswordViewController)
     }
     
+    func routesOpenNotificationsController() {
+        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.notificationsController)
+    }
+    
     func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         storyCreateController.createStoryClosure = createStoryClosure

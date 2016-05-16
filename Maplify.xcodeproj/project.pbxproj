@@ -167,6 +167,7 @@
 		CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
 		CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */; };
 		CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
+		CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -355,6 +356,7 @@
 		CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCollectionDataSource.swift; sourceTree = "<group>"; };
 		CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDC26E431CE9D25500D3EDEE /* Notifications */,
 				CD153CB61CE4901E00F32BDE /* FollowingList */,
 				CDF6D8981CD2846C001387EC /* Share */,
 				85E915961CBD3DB00041182F /* Profile */,
@@ -1018,6 +1021,14 @@
 			path = CollectionViewDetailItem;
 			sourceTree = "<group>";
 		};
+		CDC26E431CE9D25500D3EDEE /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1324,7 @@
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
+				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,

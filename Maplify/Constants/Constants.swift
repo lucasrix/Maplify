@@ -75,6 +75,7 @@ struct Controllers {
     static let followersController = "FollowersViewController"
     static let followingController = "FollowingViewController"
     static let signupGetCityController = "SignupGetCityController"
+    static let notificationsController = "NotificationsViewController"
 }
 
 struct AppIDs {

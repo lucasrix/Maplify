@@ -353,7 +353,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         let photo = (self.profileView.userImageView.image != nil) ? UIImagePNGRepresentation(self.profileView.userImageView.image!) : nil
         self.showProgressHUD()
         
-        ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, photo: photo,
+        ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, location: nil, photo: photo,
             success: { [weak self] (response) in
                 self?.hideProgressHUD()
                 self?.navigationItem.rightBarButtonItem = nil

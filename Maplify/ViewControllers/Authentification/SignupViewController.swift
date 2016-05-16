@@ -105,7 +105,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
                 self?.hideProgressHUD()
                 let user = response as! User
                 user.profile = profile
-                self?.routesOpenSignUpUpdateProfileViewController(user)
+                self?.routesOpenSignupGetCityViewController(user)
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) -> () in
                 self?.hideProgressHUD()

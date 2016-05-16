@@ -923,6 +923,108 @@ Tap OK once it appears.</string>
             </objects>
             <point key="canvasLocation" x="1855.5" y="1135.5"/>
         </scene>
+        <!--Signup Get City View Controller-->
+        <scene sceneID="hoa-Mz-2fv">
+            <objects>
+                <viewController storyboardIdentifier="SignupGetCityController" id="DD8-7S-5Ei" customClass="SignupGetCityViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tP7-U5-J86"/>
+                        <viewControllerLayoutGuide type="bottom" id="bdI-fA-QB2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Krn-Iy-LLn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worldMap" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-pA-H4g">
+                                <rect key="frame" x="0.0" y="40" width="375" height="272"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-8I-bPo">
+                                <rect key="frame" x="146" y="34" width="83" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="eqs-9H-Ugf"/>
+                                    <constraint firstAttribute="height" constant="88" id="gOV-5P-Exq"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-3O-75d">
+                                <rect key="frame" x="78" y="146" width="220" height="45"/>
+                                <color key="backgroundColor" red="0.20784313725490194" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="pjT-nV-3Dw"/>
+                                </constraints>
+                                <state key="normal" title="Get my current city">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getCityButtonTapped:" destination="DD8-7S-5Ei" eventType="touchUpInside" id="UbB-8d-Md6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We use your location to show you stories and other fun stuff around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86C-Qv-lzW">
+                                <rect key="frame" x="55" y="216" width="265" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Jf4-Ab-Elk"/>
+                                    <constraint firstAttribute="width" constant="265" id="ZLo-Zr-DnF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="XFG-mj-7M0">
+                                <rect key="frame" x="158" y="87" width="58" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="B2i-Wu-gqh"/>
+                                    <constraint firstAttribute="width" constant="58" id="EIh-5o-HYY"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Washingron DC, USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zg-4I-GRV">
+                                <rect key="frame" x="10" y="139" width="355" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="Dnm-mJ-dRI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5zg-4I-GRV" firstAttribute="leading" secondItem="Krn-Iy-LLn" secondAttribute="leading" constant="10" id="4d0-bh-jZf"/>
+                            <constraint firstItem="XFG-mj-7M0" firstAttribute="top" secondItem="tP7-U5-J86" secondAttribute="bottom" constant="67" id="8aR-uL-u96"/>
+                            <constraint firstItem="6Qj-8I-bPo" firstAttribute="centerX" secondItem="Krn-Iy-LLn" secondAttribute="centerX" id="AeL-nP-mYz"/>
+                            <constraint firstItem="Rez-3O-75d" firstAttribute="leading" secondItem="Krn-Iy-LLn" secondAttribute="leading" constant="78" id="H05-2X-wUW"/>
+                            <constraint firstItem="86C-Qv-lzW" firstAttribute="top" secondItem="Rez-3O-75d" secondAttribute="bottom" constant="25" id="J2e-H7-1gP"/>
+                            <constraint firstItem="6Qj-8I-bPo" firstAttribute="top" secondItem="tP7-U5-J86" secondAttribute="bottom" constant="14" id="MPQ-wy-nIe"/>
+                            <constraint firstItem="Ufk-pA-H4g" firstAttribute="top" secondItem="tP7-U5-J86" secondAttribute="bottom" constant="20" id="Mi4-k4-qxu"/>
+                            <constraint firstItem="86C-Qv-lzW" firstAttribute="leading" secondItem="Krn-Iy-LLn" secondAttribute="leading" constant="43" id="NxC-ga-v5h"/>
+                            <constraint firstAttribute="trailing" secondItem="86C-Qv-lzW" secondAttribute="trailing" constant="44" id="TCC-yi-ZXm"/>
+                            <constraint firstItem="5zg-4I-GRV" firstAttribute="top" secondItem="XFG-mj-7M0" secondAttribute="bottom" constant="3" id="WqG-ja-Fn1"/>
+                            <constraint firstAttribute="trailing" secondItem="Rez-3O-75d" secondAttribute="trailing" constant="77" id="Y34-Wc-vDd"/>
+                            <constraint firstAttribute="trailing" secondItem="Ufk-pA-H4g" secondAttribute="trailing" id="c7n-oV-5Jg"/>
+                            <constraint firstItem="Ufk-pA-H4g" firstAttribute="leading" secondItem="Krn-Iy-LLn" secondAttribute="leading" id="dT2-yx-HID"/>
+                            <constraint firstItem="Rez-3O-75d" firstAttribute="top" secondItem="6Qj-8I-bPo" secondAttribute="bottom" constant="24" id="ezi-47-y5p"/>
+                            <constraint firstItem="86C-Qv-lzW" firstAttribute="centerX" secondItem="Krn-Iy-LLn" secondAttribute="centerX" id="kCp-a4-be8"/>
+                            <constraint firstItem="XFG-mj-7M0" firstAttribute="centerX" secondItem="Krn-Iy-LLn" secondAttribute="centerX" id="pgy-UT-VKs"/>
+                            <constraint firstAttribute="trailing" secondItem="5zg-4I-GRV" secondAttribute="trailing" constant="10" id="tFg-In-zX6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NxC-ga-v5h"/>
+                                <exclude reference="TCC-yi-ZXm"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="5zg-4I-GRV" id="qfH-cX-bKH"/>
+                        <outlet property="getCityButton" destination="Rez-3O-75d" id="5WD-gD-3CB"/>
+                        <outlet property="getCityInfoLabel" destination="86C-Qv-lzW" id="7P1-DY-s5m"/>
+                        <outlet property="pin" destination="XFG-mj-7M0" id="k4v-3n-8L8"/>
+                        <outlet property="questionPin" destination="6Qj-8I-bPo" id="M5s-rU-1lX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y6d-hU-JH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1855.5" y="1877.5"/>
+        </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="NmC-Km-a0f">
             <objects>
@@ -1029,5 +1131,8 @@ Tap OK once it appears.</string>
         <image name="onboardDiscoverBackground" width="375" height="667"/>
         <image name="onboardDiscoverIcon" width="200" height="163"/>
         <image name="photoAddPlaceholder" width="90" height="90"/>
+        <image name="pin" width="34" height="47"/>
+        <image name="pinQuestion" width="61" height="82"/>
+        <image name="worldMap" width="375" height="272"/>
     </resources>
 </document>

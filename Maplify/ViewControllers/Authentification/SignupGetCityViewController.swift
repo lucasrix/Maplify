@@ -49,6 +49,10 @@ class SignupGetCityViewController: ViewController, ErrorHandlingProtocol {
         self.pin.hidden = false
     }
     
+    override func backButtonHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - actions
     @IBAction func getCityButtonTapped(sender: AnyObject) {
         INTULocationManager.sharedInstance().requestLocationWithDesiredAccuracy(.City, timeout: Network.mapRequestTimeOut) { [weak self] (location, accuracy, status) -> () in

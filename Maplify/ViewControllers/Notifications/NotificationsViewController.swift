@@ -9,7 +9,7 @@
 import RealmSwift
 import UIKit
 
-class NotificationsViewController: ViewController {
+class NotificationsViewController: ViewController, NotificationsCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var notificationsDataSource: CSBaseTableDataSource! = nil
@@ -57,7 +57,7 @@ class NotificationsViewController: ViewController {
         self.notificationsActiveModel.removeData()
         
         let realm = try! Realm()
-        let notifications = Array(realm.objects(Notification))
+        let notifications = Array(realm.objects(Notification).sorted("created_at", ascending: false))
         
         self.notificationsActiveModel.addItems(notifications, cellIdentifier: String(NotificationsTableViewCell), sectionTitle: nil, delegate: self)
         self.notificationsDataSource.reloadTable()
@@ -79,5 +79,10 @@ class NotificationsViewController: ViewController {
         let title = NSLocalizedString("Alert.Error", comment: String())
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
+    }
+    
+    // MARL: - NotificationsCellDelegate
+    func openProfile(userId: Int) {
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
     }
 }

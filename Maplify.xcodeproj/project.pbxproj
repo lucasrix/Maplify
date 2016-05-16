@@ -170,6 +170,7 @@
 		CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
 		CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
 		CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
+		CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -361,6 +362,7 @@
 		CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		CDC26E471CE9D8DD00D3EDEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -1030,6 +1032,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */,
+				CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1395,6 +1398,7 @@
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
+				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,

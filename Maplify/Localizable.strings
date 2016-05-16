@@ -145,6 +145,7 @@
 "Button.PlusFollow" = "+ Follow";
 "Button.Following" = "Following";
 "Button.Reset" = "Reset";
+"Button.Unfollow" = "Unfollow";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

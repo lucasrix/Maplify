@@ -188,6 +188,7 @@
 		F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */; };
 		F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */; };
 		F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0419C211CA6147600AB83C0 /* Assets.xcassets */; };
+		F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,6 +373,7 @@
 		F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryQuickCreationCell.swift; sourceTree = "<group>"; };
 		F0419C211CA6147600AB83C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -731,6 +733,7 @@
 				8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */,
 				CDF6D8961CD26007001387EC /* ShareController.swift */,
 				855567A31CDCBA180096A561 /* NSURL.swift */,
+				F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1305,6 +1308,7 @@
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
+				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,

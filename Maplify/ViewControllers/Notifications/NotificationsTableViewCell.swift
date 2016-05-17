@@ -108,7 +108,7 @@ class NotificationsTableViewCell: CSTableViewCell {
         } else if storyPoint.kind == StoryPointKind.Text.rawValue {
             attachmentUrl = nil
         } else {
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall, showWholeWorld: false)
         }
         return attachmentUrl
     }

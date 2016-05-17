@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import INSPullToRefresh.UIScrollView_INSPullToRefresh
 import UIKit
 
 class NotificationsViewController: ViewController, NotificationsCellDelegate {
@@ -24,10 +25,17 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         self.loadRemoteData()
     }
     
+    deinit {
+        if self.tableView != nil {
+            self.tableView.ins_removePullToRefresh()
+        }
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
         self.setupDataSource()
+        self.setupPullToRefresh()
     }
     
     func setupNavigationBar() {
@@ -66,12 +74,25 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
     func loadRemoteData() {
         ApiClient.sharedClient.retrieveNotifications({ [weak self] (response) in
             NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
-            
+            self?.tableView.ins_endPullToRefresh()
             self?.loadItemsFromDB()
             
             }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.tableView.ins_endPullToRefresh()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
+    }
+    
+    func setupPullToRefresh() {
+        self.tableView.ins_addPullToRefreshWithHeight(NavigationBar.defaultHeight) { [weak self] (scrollView) in
+            self?.loadRemoteData()
+        }
+        
+        let pullToRefresh = INSDefaultPullToRefresh(frame: Frame.pullToRefreshFrame, backImage: nil, frontImage: nil)
+        self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = false
+        self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+        self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
+        self.tableView.contentInset = UIEdgeInsetsZero
     }
     
     // MARK: - ErrorHandlingProtocol

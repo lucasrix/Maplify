@@ -52,11 +52,11 @@ extension String {
         return !self.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty
     }
     
-    func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {
+    func toDate(format : String? = DateFormats.defaultFormat) -> NSDate? {
         return self.toDate(format, dateTimeZone: NSTimeZone.defaultTimeZone())
     }
     
-    func toDate(format : String? = "yyyy-MM-dd", dateTimeZone: NSTimeZone) -> NSDate? {
+    func toDate(format : String? = DateFormats.defaultFormat, dateTimeZone: NSTimeZone) -> NSDate? {
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = dateTimeZone
         dateFormatter.dateFormat = format

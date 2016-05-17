@@ -28,6 +28,8 @@ class Notification: Model {
         self.init()
         
         self.id <- map.property("id")
+        self.created_at <- map.property("created_at")
+        self.updated_at <- map.property("updated_at")
         self.message <- map.property("message")
         self.unread <- map.property("unread")
         self.notificable_type <- map.property("notificable_type")

@@ -203,7 +203,7 @@ class ApiClient {
         self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
-    func getAllStoryPoints( success: successClosure!, failure: failureClosure!) {
+    func getAllStoryPoints(success: successClosure!, failure: failureClosure!) {
         let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
                                            "location[latitude]": 0,
                                            "location[longitude]": 0]

@@ -57,4 +57,9 @@ class StoryPointManager: ModelManager {
         let storyPoints = Array(realm.objects(StoryPoint).filter("user.id == \(userId)").sorted(sorted, ascending: ascending))
         return storyPoints
     }
+    
+    class func allStoryPoints() -> [StoryPoint] {
+        let realm = try! Realm()
+        return Array(realm.objects(StoryPoint))
+    }
 }

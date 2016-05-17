@@ -155,7 +155,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
 
         } else {
-            storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
+            storyPoints = StoryPointManager.allStoryPoints()
         }
         
         self.updateStoryPointDetails(storyPoints)
@@ -177,10 +177,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     // MARK: - request
     func retrieveStoryPointsIfNeeded(location: MCMapCoordinate, radius: CGFloat) {
         if self.publicStoryPointsSupport == false {
-            let locationDict: [String: AnyObject] = ["latitude": CGFloat(location.latitude), "longitude": CGFloat(location.longitude)]
-            let params: [String: AnyObject] = ["location":locationDict, "radius": radius]
-            ApiClient.sharedClient.getStoryPoints(params,
-                                                  success: { [weak self] (response) in
+            ApiClient.sharedClient.getAllStoryPoints({ [weak self] (response) in
                                                     if let storyPoints = response {
                                                         StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
                                                         self?.loadItemsFromDBIfNedded()

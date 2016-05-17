@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import SDWebImage.UIImageView_WebCache
 import UIKit
 
 let kNotificationAttributedMessageDefaultFontSize: CGFloat = 14
@@ -16,7 +17,9 @@ class NotificationsTableViewCell: CSTableViewCell {
     @IBOutlet weak var userThumbImageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var notificableItemBackView: UIView!
     @IBOutlet weak var notificableItemImageView: UIImageView!
+    @IBOutlet weak var colorView: UIView!
     
     var actionUserId: Int = 0
     var delegate: NotificationsCellDelegate! = nil
@@ -54,7 +57,40 @@ class NotificationsTableViewCell: CSTableViewCell {
     }
     
     func populateNotificableItemIfNeeded(notification: Notification) {
-        // TODO:
+        var attachmentFileUrl: NSURL! = nil
+        let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
+        var storyPointToShow: StoryPoint! = nil
+        if notification.notificable_type == NotificableType.StoryPoint.rawValue {
+            storyPointToShow = notification.notificable_storypoint
+        } else if notification.notificable_type == NotificableType.Story.rawValue {
+            if let storyPoint = notification.notificable_story?.storyPoints.first {
+                storyPointToShow = storyPoint
+            }
+        }
+        
+        if storyPointToShow != nil {
+            attachmentFileUrl = self.attachmentFileUrl(storyPointToShow)
+        }
+        
+        self.notificableItemBackView?.hidden = notification.notificable_type == NotificableType.User.rawValue
+        
+        self.notificableItemImageView?.sd_setImageWithURL(attachmentFileUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+            if error == nil {
+                self?.colorView?.alpha = (storyPointToShow?.kind == StoryPointKind.Photo.rawValue) || (storyPointToShow == nil) ? 0.0 : kMapImageDownloadCompletedAlpha
+            }
+        }        
+    }
+    
+    func attachmentFileUrl(storyPoint: StoryPoint) -> NSURL! {
+        var attachmentUrl: NSURL! = nil
+        if storyPoint.kind == StoryPointKind.Photo.rawValue {
+            attachmentUrl = storyPoint.attachment.file_url.url
+        } else if storyPoint.kind == StoryPointKind.Text.rawValue {
+            attachmentUrl = nil
+        } else {
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+        }
+        return attachmentUrl
     }
     
     // MARK: - private

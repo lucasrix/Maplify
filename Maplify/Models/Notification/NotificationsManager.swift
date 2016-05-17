@@ -16,7 +16,6 @@ class NotificationsManager: ModelManager {
     
     class func saveNotificationItems(notificationItems: [String: AnyObject]) {
         let list: NSArray = notificationItems["notifications"] as! NSArray
-        print(list)
         for notificationItem in list {
             let dict = notificationItem as! [String: AnyObject]
             let notification = Notification(dict)

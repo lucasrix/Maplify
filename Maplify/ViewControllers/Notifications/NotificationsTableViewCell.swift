@@ -12,6 +12,8 @@ import UIKit
 let kNotificationAttributedMessageDefaultFontSize: CGFloat = 14
 let kNotificationMessageAlphaComponentDefault: CGFloat = 0.4
 let kNotificationMessageAlphaComponentHighlited: CGFloat = 1
+let kUnreadIndicatorWidthConstraintDefault: CGFloat = 10
+let kUnreadIndicatorRightMarginConstraintDefault: CGFloat = 4
 
 class NotificationsTableViewCell: CSTableViewCell {
     @IBOutlet weak var userThumbImageView: UIImageView!
@@ -20,6 +22,10 @@ class NotificationsTableViewCell: CSTableViewCell {
     @IBOutlet weak var notificableItemBackView: UIView!
     @IBOutlet weak var notificableItemImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var unreadColorBackView: UIView!
+    @IBOutlet weak var unreadIndicatorView: UIView!
+    @IBOutlet weak var unreadIndicatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var unreadIndicatorRightMarginConstraint: NSLayoutConstraint!
     
     var actionUserId: Int = 0
     var delegate: NotificationsCellDelegate! = nil
@@ -34,6 +40,7 @@ class NotificationsTableViewCell: CSTableViewCell {
         self.setupViews()
         self.populateActionUserViews(notification.action_user)
         self.populateMessageViews(notification)
+        self.populateDateViews(notification)
         self.populateNotificableItemIfNeeded(notification)
     }
     
@@ -53,7 +60,22 @@ class NotificationsTableViewCell: CSTableViewCell {
     
     func populateMessageViews(notification: Notification) {
         self.messageLabel.attributedText = self.messageText(notification)
+    }
+    
+    func populateDateViews(notification: Notification) {
         self.dateLabel.text = self.dateText(notification)
+        if notification.unread {
+            self.unreadColorBackView.hidden = false
+            self.dateLabel.textColor = UIColor.dodgerBlue().colorWithAlphaComponent(kNotificationMessageAlphaComponentHighlited)
+            self.unreadIndicatorView.layer.cornerRadius = CGRectGetWidth(self.unreadIndicatorView.frame) / 2
+            self.unreadIndicatorWidthConstraint.constant = kUnreadIndicatorWidthConstraintDefault
+            self.unreadIndicatorRightMarginConstraint.constant = kUnreadIndicatorRightMarginConstraintDefault
+        } else {
+            self.unreadColorBackView.hidden = true
+            self.dateLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(kNotificationMessageAlphaComponentDefault)
+            self.unreadIndicatorWidthConstraint.constant = 0
+            self.unreadIndicatorRightMarginConstraint.constant = 0
+        }
     }
     
     func populateNotificableItemIfNeeded(notification: Notification) {
@@ -71,9 +93,7 @@ class NotificationsTableViewCell: CSTableViewCell {
         if storyPointToShow != nil {
             attachmentFileUrl = self.attachmentFileUrl(storyPointToShow)
         }
-        
         self.notificableItemBackView?.hidden = notification.notificable_type == NotificableType.User.rawValue
-        
         self.notificableItemImageView?.sd_setImageWithURL(attachmentFileUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
                 self?.colorView?.alpha = (storyPointToShow?.kind == StoryPointKind.Photo.rawValue) || (storyPointToShow == nil) ? 0.0 : kMapImageDownloadCompletedAlpha

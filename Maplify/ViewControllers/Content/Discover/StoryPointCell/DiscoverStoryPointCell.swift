@@ -103,7 +103,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
             placeholderImage = nil
         } else {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {

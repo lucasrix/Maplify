@@ -85,16 +85,9 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
         FacebookHelper.facebookAuthorize({ [weak self] (token) in
             ApiClient.sharedClient.facebookAuth(token,
                 success: { (response) -> () in
-                    let user = response as! User
-                    SessionManager.saveCurrentUser(user)
                     self?.hideProgressHUD()
-
-                    if (user.profile.city.length > 0) || (user.profile.url.length > 0) || (user.profile.about.length > 0) {
-                        SessionHelper.sharedHelper.setupDefaultSettings()
-                        self?.routesSetContentController()
-                    } else {
-                        self?.routesOpenSignUpUpdateProfileViewController(user)
-                    }
+                    let user = response as! User
+                    self?.routesOpenSignupGetCityViewController(user)
                 },
                 failure: { (statusCode, errors, localDescription, messages) -> () in
                     self?.hideProgressHUD()

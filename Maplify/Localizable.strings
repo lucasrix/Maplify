@@ -96,6 +96,7 @@
 "Label.ResetPasswordDetails" = "Enter your email and we'll email you a link to reset your password.";
 "Label.LinkWasSent" = "A link to reset your password was sent to your email.";
 "Label.ChangePassword" = "Change Password";
+"Label.GetCurrentCity" = "We use your location to show you stories and other fun stuff around you.";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -146,6 +147,7 @@
 "Button.Following" = "Following";
 "Button.Reset" = "Reset";
 "Button.Unfollow" = "Unfollow";
+"Button.GetCity" = "Get my current city";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

@@ -103,14 +103,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.retrieveCurrentLocation({ [weak self] (location) in
                 if location != nil {
                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
-                    self?.setupMap(location)
+                    self?.setupMap(location, showWholeWorld: false)
                 } else {
-                    self?.setupMap(SessionHelper.sharedHelper.userLastLocation())
+                    self?.setupMap(SessionHelper.sharedHelper.userLastLocation(), showWholeWorld: true)
                 }
             })
         } else {
             let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
-            self.setupMap(defaultLocation)
+            self.setupMap(defaultLocation, showWholeWorld: true)
         }
     }
     
@@ -120,9 +120,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
-    func setupMap(location: CLLocation) {
+    func setupMap(location: CLLocation, showWholeWorld: Bool) {
         let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        self.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom)
+        self.googleMapService = GoogleMapService(region: region, zoom: kDefaulMapZoom, showWholeWorld: showWholeWorld)
         self.googleMapService.setMapType(kGMSTypeNormal)
         self.googleMapService.delegate = self
         self.mapView.service = self.googleMapService
@@ -152,7 +152,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         if self.publicStoryPointsSupport {
             storyPoints = Converter.listToArray(self.publicStory.storyPoints, type: StoryPoint.self)
             let location = storyPoints.first?.location
-            self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!))
+            self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
 
         } else {
             storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)

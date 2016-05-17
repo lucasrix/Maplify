@@ -6,17 +6,18 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Foundation
+import GoogleMaps
 
 let kStaticMapDefaultZoom = 13
 
 class StaticMap: NSObject {
     
-    class func staticMapUrl(latitude: Double, longitude: Double, sizeWidth: Int) -> NSURL {
+    class func staticMapUrl(latitude: Double, longitude: Double, sizeWidth: Int, showWholeWorld: Bool) -> NSURL {
         let host = "http://maps.googleapis.com/maps/api/staticmap?"
         let coordinate = "center=\(latitude),\(longitude)"
         let size = "&size=\(sizeWidth)x\(sizeWidth)"
-        let zoom = "&zoom=\(kStaticMapDefaultZoom)"
+        let zoomValue = showWholeWorld ? Int(kGMSMinZoomLevel) : kStaticMapDefaultZoom
+        let zoom = "&zoom=\(zoomValue)"
         return NSURL(string: host + coordinate + size + zoom)!
     }
 }

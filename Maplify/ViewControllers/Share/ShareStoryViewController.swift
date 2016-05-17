@@ -83,7 +83,7 @@ class ShareStoryViewController: ViewController {
     func populateBackgroundImage(story: Story) {
         let storyPoint: StoryPoint = story.storyPoints.first!
         if storyPoint.location != nil {
-            let imageUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall)
+            let imageUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall, showWholeWorld: false)
             self.backgroundImageView.sd_setImageWithURL(imageUrl)
         }
     }
@@ -115,7 +115,7 @@ class ShareStoryViewController: ViewController {
     @IBAction func shareToFacebookTapped(sender: UIButton) {
         let story = StoryManager.find(self.storyId)
         let firstStoryPoint = story.storyPoints.first
-        let attachmentUrl = StaticMap.staticMapUrl(firstStoryPoint!.location.latitude, longitude: firstStoryPoint!.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        let attachmentUrl = StaticMap.staticMapUrl(firstStoryPoint!.location.latitude, longitude: firstStoryPoint!.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         
         let facebookShareHelper = FacebookShareHelper()
         facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl) { (success) in

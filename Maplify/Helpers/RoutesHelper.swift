@@ -177,6 +177,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(shareStoryViewController, animated: true)
     }
     
+    func routesOpenSignupGetCityViewController(user: User) {
+        let signupGetCityViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupGetCityController) as! SignupGetCityViewController
+        signupGetCityViewController.user = user
+        self.navigationController?.pushViewController(signupGetCityViewController, animated: true)
+    }
+    
     // MARK: - push from left
     func routesPushFromLeftCaptureViewController(story: Story!) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController

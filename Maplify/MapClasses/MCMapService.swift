@@ -7,7 +7,7 @@
 //
 
 protocol MCMapServiceProtocol {
-    func configuredMapView(region: MCMapRegion, zoom: Float) -> UIView!
+    func configuredMapView(region: MCMapRegion, zoom: Float, showWholeWorld: Bool) -> UIView!
     func addItemsGroup(itemsGroup: MCMapItemsGroup)
     func placeItem(item: MCMapItem)
     func removeAllItems()
@@ -31,15 +31,15 @@ class MCMapService: NSObject, MCMapServiceProtocol {
     var delegate: MCMapServiceDelegate! = nil
     lazy var itemsArray = [MCMapItemsGroup]()
 
-    init(region: MCMapRegion, zoom: Float) {
+    init(region: MCMapRegion, zoom: Float, showWholeWorld: Bool) {
         super.init()
         self.defaultRegion = region
         self.defaultZoom = zoom
-        self.mapView = self.configuredMapView(region, zoom: zoom)
+        self.mapView = self.configuredMapView(region, zoom: zoom, showWholeWorld: showWholeWorld)
     }
     
     // MARK: - methods to override
-    func configuredMapView(region: MCMapRegion, zoom: Float) -> UIView! {
+    func configuredMapView(region: MCMapRegion, zoom: Float, showWholeWorld: Bool) -> UIView! {
         return nil
     }
     

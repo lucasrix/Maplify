@@ -172,7 +172,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     }
     
     func updateProfile(profile: Profile) {
-        ApiClient.sharedClient.updateProfile(profile, photo: nil,
+        ApiClient.sharedClient.updateProfile(profile, location: nil, photo: nil,
                                              success: { [weak self] (response) in
                                                 self?.hideProgressHUD()
                                                 

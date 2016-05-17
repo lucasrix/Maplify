@@ -150,7 +150,7 @@ class ShareStoryPointViewController: ViewController {
             }
         } else {
             if storyPoint.location != nil {
-                return StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+                return StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
             }
         }
         return nil

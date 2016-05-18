@@ -142,9 +142,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - navigation bar
     override func navigationBarColor() -> UIColor {
-        if self.publicStoryPointsSupport {
-            return UIColor.grapePurple().colorWithAlphaComponent(NavigationBar.captureStoryMapOpacity)
-        }
         return UIColor.darkBlueGrey().colorWithAlphaComponent(NavigationBar.defaultOpacity)
     }
     
@@ -154,7 +151,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             storyPoints = self.publicStoryPoints
             let location = self.publicStoryPoints.first?.location
             self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
-
         } else {
             storyPoints = StoryPointManager.allStoryPoints()
         }
@@ -162,6 +158,28 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
+        self.setupCollectionViewIfNeeded()
+    }
+    
+    func selectPin(index: Int, mapCoordinate: MCMapCoordinate) {
+        if index != NSNotFound {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
+            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            
+            self.mapActiveModel.selectPinAtIndex(index)
+            self.mapDataSource.reloadMapView(StoryPointMapItem)
+        }
+    }
+    
+    func setupCollectionViewIfNeeded() {
+        if self.publicStoryPointsSupport {
+            let location = self.publicStoryPoints.first?.location
+            let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
+            self.selectPin(0, mapCoordinate: mapCoordinate)
+            self.collectionView.hidden = false
+        }
     }
     
     func loadDataFromRemote() {
@@ -231,16 +249,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
         let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
         
-        if storyPointIndex != NSNotFound {
-            let indexPath = NSIndexPath(forRow: storyPointIndex, inSection: 0)
-            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
-            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-            
-            self.mapActiveModel.selectPinAtIndex(storyPointIndex)
-            self.mapDataSource.reloadMapView(StoryPointMapItem)
-        }
-        
+        self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
         self.collectionView.hidden = false
     }
     

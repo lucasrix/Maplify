@@ -15,6 +15,13 @@ let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
 let kStoryPointsFindingRadius: CGFloat = 10000000
 let kDefaulMapZoom: Float = 13
 
+enum ContentType: Int {
+    case Default
+    case Profile
+    case Notification
+    case Share
+}
+
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -29,9 +36,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var mapDataSource: MCMapDataSource! = nil
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
     var userLastStoryPoint: StoryPoint! = nil
-    var publicStoryPointsSupport: Bool = false
-    var publicStoryPoints: [StoryPoint]! = nil
+    var contentType: ContentType = ContentType.Default
+    var publicStoryPoints: [StoryPoint]! = []
     var publicTitle = String()
+    var sharedType = String()
+    var sharedId: Int = 0
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -56,11 +65,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupPressAndHoldViewIfNeeded() {
-        if self.publicStoryPointsSupport == false {
+        if self.contentType == ContentType.Default {
             self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
             self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
         }
-        self.pressAndHoldView.hidden = self.publicStoryPointsSupport
+        self.pressAndHoldView.hidden = self.contentType != ContentType.Default
     }
     
     func setupCollectionView() {
@@ -73,7 +82,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupNavigationBar() {
-        if self.publicStoryPointsSupport {
+        if (self.contentType != ContentType.Default) {
             self.setupStoryCaptureNavigationBar()
         } else {
             self.setupDefaultCaptureNavigationBar()
@@ -100,7 +109,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func checkLocationEnabled() {
-        if SessionHelper.sharedHelper.locationEnabled() && self.publicStoryPointsSupport == false {
+        if SessionHelper.sharedHelper.locationEnabled() && self.contentType == ContentType.Default {
             self.retrieveCurrentLocation({ [weak self] (location) in
                 if location != nil {
                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
@@ -147,11 +156,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadItemsFromDBIfNedded() {
         var storyPoints: [StoryPoint]! = nil
-        if self.publicStoryPointsSupport {
+        if self.contentType == ContentType.Default {
+            storyPoints = StoryPointManager.allStoryPoints()
+        } else if self.contentType == ContentType.Share {
+            storyPoints = []
+        } else {
             storyPoints = self.publicStoryPoints
             self.setupPublicMap()
-        } else {
-            storyPoints = StoryPointManager.allStoryPoints()
         }
         
         self.updateStoryPointDetails(storyPoints)
@@ -186,7 +197,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupCollectionViewIfNeeded() {
-        if self.publicStoryPointsSupport && self.publicStoryPoints.count > 0 {
+        if self.contentType != ContentType.Default && self.publicStoryPoints.count > 0 {
             let location = self.publicStoryPoints.first?.location
             let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
             self.selectPin(0, mapCoordinate: mapCoordinate)
@@ -207,7 +218,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - request
     func retrieveStoryPointsIfNeeded(location: MCMapCoordinate, radius: CGFloat) {
-        if self.publicStoryPointsSupport == false {
+        if self.contentType == ContentType.Default {
             ApiClient.sharedClient.getAllStoryPoints({ [weak self] (response) in
                                                     if let storyPoints = response {
                                                         StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
@@ -259,7 +270,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func cancelButtonTapped() {
-        self.popControllerFromLeft()
+        if self.contentType == ContentType.Share {
+            self.routesSetContentController()
+        } else {
+            self.popControllerFromLeft()
+        }
     }
     
     // MARK: - MCMapServiceDelegate
@@ -279,7 +294,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
-        if self.publicStoryPointsSupport == false {
+        if self.contentType == ContentType.Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
             let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)

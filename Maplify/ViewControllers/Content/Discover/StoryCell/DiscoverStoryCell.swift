@@ -208,6 +208,10 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         })
     }
     
+    @IBAction func shareTapped(sender: UIButton) {
+        self.delegate?.shareStoryDidTap(self.storyId)
+    }
+    
     // MARK: - private
     func showHideButtonHidden(text: String) -> Bool {
         let font = self.descriptionLabel.font
@@ -296,4 +300,5 @@ protocol DiscoverStoryCellDelegate {
     func editStoryContentDidTap(storyId: Int)
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
     func followStory(storyId: Int, completion: ((success: Bool) -> ()))
+    func shareStoryDidTap(storyId: Int)
 }

@@ -173,6 +173,10 @@ class DiscoverStoryPointCell: CSTableViewCell {
         })
     }
     
+    @IBAction func shareTapped(sender: UIButton) {
+        self.delegate?.shareStoryPointDidTap(self.storyPointId)
+    }
+    
     // MARK: - gestures
     func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
         let item = self.cellData.model as! DiscoverItem
@@ -240,4 +244,5 @@ protocol DiscoverStoryPointCellDelegate {
     func editContentDidTap(storyPointId: Int)
     func profileImageTapped(userId: Int)
     func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
+    func shareStoryPointDidTap(storyPointId: Int)
 }

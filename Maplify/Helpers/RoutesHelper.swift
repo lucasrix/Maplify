@@ -188,9 +188,9 @@ extension UIViewController {
     }
     
     // MARK: - push from left
-    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String) {
+    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String, contentType: ContentType) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.publicStoryPointsSupport = true
+        captureViewController.contentType = contentType
         captureViewController.publicStoryPoints = storyPoints
         captureViewController.publicTitle = title
         
@@ -202,6 +202,16 @@ extension UIViewController {
         transition.timingFunction = timingFunction
         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
         self.navigationController?.pushViewController(captureViewController, animated: false)
+    }
+    
+    func routesOpenSharedContentController(sharedType: String, sharedId: Int) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.contentType = ContentType.Share
+        captureViewController.sharedType = sharedType
+        captureViewController.sharedId = sharedId
+        let navigationController = NavigationViewController(rootViewController: captureViewController)
+        let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+        window.rootViewController = navigationController
     }
 
     func routesOpenChangePasswordViewController() {

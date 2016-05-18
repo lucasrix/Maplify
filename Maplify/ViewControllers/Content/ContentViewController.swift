@@ -44,8 +44,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func setupControllers() {        
-        let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
-        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
+        let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
             self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)

@@ -127,7 +127,7 @@ class ShareStoryPointViewController: ViewController {
         let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
         
         let facebookShareHelper = FacebookShareHelper()
-        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl) { (success) in
+        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl, contentUrl: self.sharingLink()) { (success) in
             if success == false {
                 let title = NSLocalizedString("Alert.Error", comment: String())
                 let message = NSLocalizedString("Alert.SharingError", comment: String())
@@ -138,7 +138,7 @@ class ShareStoryPointViewController: ViewController {
     }
     
     @IBAction func copyLinkTapped(sender: UIButton) {
-        UIPasteboard.generalPasteboard().string = Links.landingLink
+        UIPasteboard.generalPasteboard().string = self.sharingLink()
     }
     
     // MARK: - private
@@ -154,5 +154,13 @@ class ShareStoryPointViewController: ViewController {
             }
         }
         return nil
+    }
+    
+    func sharingLink() -> String{
+        return Network.routingPrefix + Network.sharePrefix + self.sharingParams()
+    }
+    
+    func sharingParams() -> String {
+        return SharingKeys.typeTitle + "=" + SharingKeys.typeStoryPoint + "&" + SharingKeys.typeId + "=\(self.storyPointId)"
     }
 }

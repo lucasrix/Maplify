@@ -862,6 +862,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="Upr-Vx-gOW"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverShare"/>
+                                                            <connections>
+                                                                <action selector="shareTapped:" destination="2su-9Q-baY" eventType="touchUpInside" id="gIK-Qy-GhU"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaS-Gw-XTb">
                                                             <rect key="frame" x="323" y="0.0" width="48" height="46"/>
@@ -1145,6 +1148,9 @@
                                                                 <constraint firstAttribute="width" constant="48" id="pKA-Sf-GQW"/>
                                                             </constraints>
                                                             <state key="normal" image="DiscoverShare"/>
+                                                            <connections>
+                                                                <action selector="shareTapped:" destination="k3W-Z4-0sj" eventType="touchUpInside" id="QfG-up-0LL"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5P-ag-4K7">
                                                             <rect key="frame" x="323" y="0.0" width="48" height="46"/>

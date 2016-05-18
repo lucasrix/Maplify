@@ -155,11 +155,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func loadItemsFromDBIfNedded() {
-        var storyPoints: [StoryPoint]! = nil
+        var storyPoints: [StoryPoint]! = []
         if self.contentType == ContentType.Default {
             storyPoints = StoryPointManager.allStoryPoints()
         } else if self.contentType == ContentType.Share {
-            storyPoints = []
+            storyPoints = self.sharedType == SharingKeys.typeStoryPoint ? self.loadSharedStoryPoint() : self.loadSharedStory()
         } else {
             storyPoints = self.publicStoryPoints
             self.setupPublicMap()
@@ -171,6 +171,20 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setupCollectionViewIfNeeded()
     }
     
+    func loadSharedStoryPoint() -> [StoryPoint] {
+        if let storyPoint = StoryPointManager.find(self.sharedId) {
+            return [storyPoint]
+        }
+        return []
+    }
+    
+    func loadSharedStory() -> [StoryPoint] {
+        if let story = StoryManager.find(self.sharedId) {
+            return Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+        }
+        return []
+    }
+    
     func setupPublicMap() {
         var location: CLLocation! = nil
         if self.publicStoryPoints.count > 0 {
@@ -178,7 +192,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             location = CLLocation(latitude: storyPointLocation.latitude, longitude: storyPointLocation.longitude)
         } else {
             location = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
-            self.showEmptyStoryError()
+            self.showEmptyStoryErrorIfNeeded()
         }
         let showWholeWorld = self.publicStoryPoints.count == 0
         self.setupMap(CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), showWholeWorld: showWholeWorld)
@@ -231,6 +245,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                 }
             )
         }
+        else if self.contentType == ContentType.Share {
+            print("share")
+        }
     }
     
     func movetoLastStoryPointIfNeeded() {
@@ -243,11 +260,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
-    func showEmptyStoryError() {
-        let title = NSLocalizedString("Alert.Info", comment: String())
-        let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
-        let cancel = NSLocalizedString("Button.Ok", comment: String())
-        self.showMessageAlert(title, message: message, cancel: cancel)
+    func showEmptyStoryErrorIfNeeded() {
+        if self.contentType == ContentType.Notification {
+            let title = NSLocalizedString("Alert.Info", comment: String())
+            let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
+            let cancel = NSLocalizedString("Button.Ok", comment: String())
+            self.showMessageAlert(title, message: message, cancel: cancel)
+        }
     }
     
     // MARK: - actions

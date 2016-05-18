@@ -167,6 +167,10 @@
 		CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
 		CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */; };
 		CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
+		CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
+		CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
+		CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
+		CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -355,6 +359,10 @@
 		CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCollectionDataSource.swift; sourceTree = "<group>"; };
 		CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		CDC26E471CE9D8DD00D3EDEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -652,6 +660,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDC26E431CE9D25500D3EDEE /* Notifications */,
 				CD153CB61CE4901E00F32BDE /* FollowingList */,
 				CDF6D8981CD2846C001387EC /* Share */,
 				85E915961CBD3DB00041182F /* Profile */,
@@ -798,6 +807,7 @@
 		A5A0E98D1C86FA290094FC04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CDC26E461CE9D8CE00D3EDEE /* Notification */,
 				CD340CF81CBD1FE000461015 /* DiscoverList */,
 				1FC781031CA151DB00C50C23 /* Attachment */,
 				1FC781001CA14C1A00C50C23 /* Location */,
@@ -1016,6 +1026,24 @@
 				CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */,
 			);
 			path = CollectionViewDetailItem;
+			sourceTree = "<group>";
+		};
+		CDC26E431CE9D25500D3EDEE /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */,
+				CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		CDC26E461CE9D8CE00D3EDEE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E471CE9D8DD00D3EDEE /* Notification.swift */,
+				CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
@@ -1313,6 +1341,7 @@
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
 				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
+				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
@@ -1353,6 +1382,7 @@
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
@@ -1368,11 +1398,13 @@
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
+				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,
 				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
+				CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* SessionManager.swift in Sources */,
 				8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */,
 				CD45672B1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift in Sources */,

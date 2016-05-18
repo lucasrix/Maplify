@@ -75,6 +75,7 @@ struct Controllers {
     static let followersController = "FollowersViewController"
     static let followingController = "FollowingViewController"
     static let signupGetCityController = "SignupGetCityController"
+    static let notificationsController = "NotificationsViewController"
 }
 
 struct AppIDs {
@@ -97,4 +98,9 @@ struct StaticMapSize {
 
 struct AnimationDurations {
     static let pushControllerDefault: CFTimeInterval = 0.35
+}
+
+struct DateFormats {
+    static let defaultFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    static let notificationFormat = "dd MMM yyyy"
 }

@@ -30,7 +30,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
     var userLastStoryPoint: StoryPoint! = nil
     var publicStoryPointsSupport: Bool = false
-    var publicStory: Story! = nil
+    var publicStoryPoints: [StoryPoint]! = nil
+    var publicTitle = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -86,7 +87,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupStoryCaptureNavigationBar() {
-        self.title = self.publicStory.title
+        self.title = self.publicTitle
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(CaptureViewController.cancelButtonTapped))
     }
     
@@ -141,19 +142,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - navigation bar
     override func navigationBarColor() -> UIColor {
-        if self.publicStoryPointsSupport {
-            return UIColor.grapePurple().colorWithAlphaComponent(NavigationBar.captureStoryMapOpacity)
-        }
         return UIColor.darkBlueGrey().colorWithAlphaComponent(NavigationBar.defaultOpacity)
     }
     
     func loadItemsFromDBIfNedded() {
         var storyPoints: [StoryPoint]! = nil
         if self.publicStoryPointsSupport {
-            storyPoints = Converter.listToArray(self.publicStory.storyPoints, type: StoryPoint.self)
-            let location = storyPoints.first?.location
-            self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
-
+            storyPoints = self.publicStoryPoints
+            self.setupPublicMap()
         } else {
             storyPoints = StoryPointManager.allStoryPoints()
         }
@@ -161,6 +157,41 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.updateStoryPointDetails(storyPoints)
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
+        self.setupCollectionViewIfNeeded()
+    }
+    
+    func setupPublicMap() {
+        var location: CLLocation! = nil
+        if self.publicStoryPoints.count > 0 {
+            let storyPointLocation = self.publicStoryPoints.first!.location
+            location = CLLocation(latitude: storyPointLocation.latitude, longitude: storyPointLocation.longitude)
+        } else {
+            location = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
+            self.showEmptyStoryError()
+        }
+        let showWholeWorld = self.publicStoryPoints.count == 0
+        self.setupMap(CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), showWholeWorld: showWholeWorld)
+    }
+    
+    func selectPin(index: Int, mapCoordinate: MCMapCoordinate) {
+        if index != NSNotFound {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
+            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            
+            self.mapActiveModel.selectPinAtIndex(index)
+            self.mapDataSource.reloadMapView(StoryPointMapItem)
+        }
+    }
+    
+    func setupCollectionViewIfNeeded() {
+        if self.publicStoryPointsSupport && self.publicStoryPoints.count > 0 {
+            let location = self.publicStoryPoints.first?.location
+            let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
+            self.selectPin(0, mapCoordinate: mapCoordinate)
+            self.collectionView.hidden = false
+        }
     }
     
     func loadDataFromRemote() {
@@ -201,6 +232,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func showEmptyStoryError() {
+        let title = NSLocalizedString("Alert.Info", comment: String())
+        let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancel)
+    }
+    
     // MARK: - actions
     func locationButtonTapped() {
         self.retrieveCurrentLocation { [weak self] (location) in
@@ -230,16 +268,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
         let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
         
-        if storyPointIndex != NSNotFound {
-            let indexPath = NSIndexPath(forRow: storyPointIndex, inSection: 0)
-            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
-            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-            
-            self.mapActiveModel.selectPinAtIndex(storyPointIndex)
-            self.mapDataSource.reloadMapView(StoryPointMapItem)
-        }
-        
+        self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
         self.collectionView.hidden = false
     }
     

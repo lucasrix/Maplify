@@ -54,6 +54,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.resetPasswordViewController)
     }
     
+    func routesOpenNotificationsController() {
+        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.notificationsController)
+    }
+    
     func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         storyCreateController.createStoryClosure = createStoryClosure
@@ -184,10 +188,11 @@ extension UIViewController {
     }
     
     // MARK: - push from left
-    func routesPushFromLeftCaptureViewController(story: Story!) {
+    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
         captureViewController.publicStoryPointsSupport = true
-        captureViewController.publicStory = story
+        captureViewController.publicStoryPoints = storyPoints
+        captureViewController.publicTitle = title
         
         let transition = CATransition()
         transition.duration = AnimationDurations.pushControllerDefault

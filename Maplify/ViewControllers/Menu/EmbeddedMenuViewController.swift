@@ -23,6 +23,7 @@ public enum MenuItem: Int {
 }
 
 let kSignOutAction = "signOut"
+let kOpenNotificationsAction = "openNotifications"
 
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
@@ -49,10 +50,7 @@ class EmbeddedMenuViewController: UITableViewController {
         switch index {
             
         case MenuItem.SectionNotifications.rawValue:
-            // TODO:
-            // example
-            // self.sendAction("routesOpenAudioStoryPointController")
-            break
+            self.sendAction(kOpenNotificationsAction)
             
         case MenuItem.SectionEditProfile.rawValue:
             // TODO:

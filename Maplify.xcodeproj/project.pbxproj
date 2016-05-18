@@ -36,6 +36,8 @@
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */; };
+		850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */; };
+		850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */; };
 		853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
 		853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
 		853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */; };
@@ -240,6 +242,8 @@
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupGetCityViewController.swift; sourceTree = "<group>"; };
+		850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryPointInfoView.xib; sourceTree = "<group>"; };
+		850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryInfoView.xib; sourceTree = "<group>"; };
 		853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		853A41B01CDA0F4C00922D94 /* PasswordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 		853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC817171CF2FCE60072DAE5 /* CapturePopUpView */,
+				850A64B61CEB4F87008FA969 /* PostDetailView */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
@@ -525,6 +530,15 @@
 				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		850A64B61CEB4F87008FA969 /* PostDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */,
+				850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */,
+			);
+			path = PostDetailView;
 			sourceTree = "<group>";
 		};
 		853A41AF1CDA0F3F00922D94 /* Password */ = {
@@ -1255,10 +1269,12 @@
 				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
+				850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
+				850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,

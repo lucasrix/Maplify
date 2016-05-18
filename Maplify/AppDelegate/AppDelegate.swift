@@ -28,8 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let params = url.queryItems
             let sharedType = params[SharingKeys.typeTitle]
 //            let id = params[SharingKeys.typeId]
-            let sharedId = 1
-            
+            let sharedId = 15
             
             if self.window?.rootViewController is NavigationViewController {
                 let navigationController = self.window?.rootViewController as! NavigationViewController

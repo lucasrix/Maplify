@@ -160,6 +160,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             storyPoints = StoryPointManager.allStoryPoints()
         } else if self.contentType == ContentType.Share {
             storyPoints = self.sharedType == SharingKeys.typeStoryPoint ? self.loadSharedStoryPoint() : self.loadSharedStory()
+            self.publicStoryPoints = storyPoints
         } else {
             storyPoints = self.publicStoryPoints
             self.setupPublicMap()
@@ -173,6 +174,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadSharedStoryPoint() -> [StoryPoint] {
         if let storyPoint = StoryPointManager.find(self.sharedId) {
+            self.title = storyPoint.caption
             return [storyPoint]
         }
         return []
@@ -180,6 +182,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadSharedStory() -> [StoryPoint] {
         if let story = StoryManager.find(self.sharedId) {
+            self.title = story.title
             return Converter.listToArray(story.storyPoints, type: StoryPoint.self)
         }
         return []
@@ -246,7 +249,33 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             )
         }
         else if self.contentType == ContentType.Share {
-            print("share")
+            self.retrieveSharedItem()
+        }
+    }
+    
+    func retrieveSharedItem() {
+        if self.sharedType == SharingKeys.typeStoryPoint {
+            self.retrieveSharedStoryPoint()
+        } else if self.sharedType == SharingKeys.typeStory {
+            self.retrieveSharedStory()
+        }
+    }
+    
+    func retrieveSharedStoryPoint() {
+        ApiClient.sharedClient.getStoryPoint(self.sharedId, success: { [weak self] (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.loadItemsFromDBIfNedded()
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    func retrieveSharedStory() {
+        ApiClient.sharedClient.getStory(self.sharedId, success: { [weak self] (response) in
+            StoryManager.saveStory(response as! Story)
+            self?.loadItemsFromDBIfNedded()
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     

@@ -149,8 +149,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         var storyPoints: [StoryPoint]! = nil
         if self.publicStoryPointsSupport {
             storyPoints = self.publicStoryPoints
-            let location = self.publicStoryPoints.first?.location
-            self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
+            self.setupPublicMap()
         } else {
             storyPoints = StoryPointManager.allStoryPoints()
         }
@@ -159,6 +158,19 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.updateMapActiveModel(storyPoints)
         self.setupMapDataSource()
         self.setupCollectionViewIfNeeded()
+    }
+    
+    func setupPublicMap() {
+        var location: CLLocation! = nil
+        if self.publicStoryPoints.count > 0 {
+            let storyPointLocation = self.publicStoryPoints.first!.location
+            location = CLLocation(latitude: storyPointLocation.latitude, longitude: storyPointLocation.longitude)
+        } else {
+            location = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
+            self.showEmptyStoryError()
+        }
+        let showWholeWorld = self.publicStoryPoints.count == 0
+        self.setupMap(CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), showWholeWorld: showWholeWorld)
     }
     
     func selectPin(index: Int, mapCoordinate: MCMapCoordinate) {
@@ -174,7 +186,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupCollectionViewIfNeeded() {
-        if self.publicStoryPointsSupport {
+        if self.publicStoryPointsSupport && self.publicStoryPoints.count > 0 {
             let location = self.publicStoryPoints.first?.location
             let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
             self.selectPin(0, mapCoordinate: mapCoordinate)
@@ -218,6 +230,13 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             let region = MCMapRegion(latitude: location.latitude, longitude: location.longitude)
             self.googleMapService?.moveTo(region, zoom: (self.googleMapService?.currentZoom())!)
         }
+    }
+    
+    func showEmptyStoryError() {
+        let title = NSLocalizedString("Alert.Info", comment: String())
+        let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancel)
     }
     
     // MARK: - actions

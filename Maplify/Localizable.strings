@@ -153,6 +153,7 @@
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
 "Alert.Error" = "Error";
+"Alert.Info" = "Info";
 "Alert.Warning" = "Warning";
 "Alert.NoPhoto" = "You didn’t set a profile photo. It just takes a sec and you can always change it later!";
 "Alert.Title.ProfilePhoto" = "Profile Photo";
@@ -169,6 +170,7 @@
 "Alert.EnterDescription" = "Please enter a description";
 "Alert.SharingError" = "Some error occured during sharing";
 "Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
+"Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

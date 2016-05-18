@@ -110,8 +110,6 @@ class NotificationsTableViewCell: CSTableViewCell {
         var attachmentUrl: NSURL! = nil
         if storyPoint.kind == StoryPointKind.Photo.rawValue {
             attachmentUrl = storyPoint.attachment.file_url.url
-        } else if storyPoint.kind == StoryPointKind.Text.rawValue {
-            attachmentUrl = nil
         } else {
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthSmall, showWholeWorld: false)
         }

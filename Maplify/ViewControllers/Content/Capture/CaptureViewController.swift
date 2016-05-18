@@ -30,7 +30,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
     var userLastStoryPoint: StoryPoint! = nil
     var publicStoryPointsSupport: Bool = false
-    var publicStory: Story! = nil
+    var publicStoryPoints: [StoryPoint]! = nil
+    var publicTitle = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -86,7 +87,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupStoryCaptureNavigationBar() {
-        self.title = self.publicStory.title
+        self.title = self.publicTitle
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(CaptureViewController.cancelButtonTapped))
     }
     
@@ -150,8 +151,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func loadItemsFromDBIfNedded() {
         var storyPoints: [StoryPoint]! = nil
         if self.publicStoryPointsSupport {
-            storyPoints = Converter.listToArray(self.publicStory.storyPoints, type: StoryPoint.self)
-            let location = storyPoints.first?.location
+            storyPoints = self.publicStoryPoints
+            let location = self.publicStoryPoints.first?.location
             self.setupMap(CLLocation(latitude: (location?.latitude)!, longitude: (location?.longitude)!), showWholeWorld: false)
 
         } else {

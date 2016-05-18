@@ -43,4 +43,9 @@ class NotificationsManager: ModelManager {
             realm.add(item, update: true)
         }
     }
+    
+    class func find(notificationId: Int) -> Notification! {
+        let realm = try! Realm()
+        return realm.objectForPrimaryKey(Notification.self, key: notificationId)
+    }
 }

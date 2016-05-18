@@ -27,6 +27,7 @@ class NotificationsTableViewCell: CSTableViewCell {
     @IBOutlet weak var unreadIndicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var unreadIndicatorRightMarginConstraint: NSLayoutConstraint!
     
+    var notificatiocItemId: Int = 0
     var actionUserId: Int = 0
     var delegate: NotificationsCellDelegate! = nil
     
@@ -34,6 +35,7 @@ class NotificationsTableViewCell: CSTableViewCell {
     override func configure(cellData: CSCellData) {
         let notification = cellData.model as! Notification
         
+        self.notificatiocItemId = notification.id
         self.actionUserId = notification.action_user.id
         self.delegate = cellData.delegate as! NotificationsCellDelegate
         
@@ -98,7 +100,10 @@ class NotificationsTableViewCell: CSTableViewCell {
             if error == nil {
                 self?.colorView?.alpha = (storyPointToShow?.kind == StoryPointKind.Photo.rawValue) || (storyPointToShow == nil) ? 0.0 : kMapImageDownloadCompletedAlpha
             }
-        }        
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(NotificationsTableViewCell.notificationItemImageTapped))
+        self.notificableItemImageView.addGestureRecognizer(tapGesture)
     }
     
     func attachmentFileUrl(storyPoint: StoryPoint) -> NSURL! {
@@ -116,6 +121,10 @@ class NotificationsTableViewCell: CSTableViewCell {
     // MARK: - private
     func profileImageTapped() {
         self.delegate?.openProfile(self.actionUserId)
+    }
+    
+    func notificationItemImageTapped() {
+        self.delegate?.openNotificableItem(self.notificatiocItemId)
     }
     
     func messageText(notification: Notification) -> NSMutableAttributedString {
@@ -158,4 +167,5 @@ class NotificationsTableViewCell: CSTableViewCell {
 
 protocol NotificationsCellDelegate {
     func openProfile(userId: Int)
+    func openNotificableItem(notificableItemId: Int)
 }

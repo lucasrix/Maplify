@@ -36,7 +36,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var mapDataSource: MCMapDataSource! = nil
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
     var userLastStoryPoint: StoryPoint! = nil
-    var contentType: ContentType = ContentType.Default
+    var contentType: ContentType = .Default
     var publicStoryPoints: [StoryPoint]! = []
     var publicTitle = String()
     var sharedType = String()
@@ -65,11 +65,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupPressAndHoldViewIfNeeded() {
-        if self.contentType == ContentType.Default {
+        if self.contentType == .Default {
             self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
             self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
         }
-        self.pressAndHoldView.hidden = self.contentType != ContentType.Default
+        self.pressAndHoldView.hidden = self.contentType != .Default
     }
     
     func setupCollectionView() {
@@ -82,7 +82,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupNavigationBar() {
-        if (self.contentType != ContentType.Default) {
+        if (self.contentType != .Default) {
             self.setupStoryCaptureNavigationBar()
         } else {
             self.setupDefaultCaptureNavigationBar()
@@ -109,7 +109,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func checkLocationEnabled() {
-        if SessionHelper.sharedHelper.locationEnabled() && self.contentType == ContentType.Default {
+        if SessionHelper.sharedHelper.locationEnabled() && self.contentType == .Default {
             self.retrieveCurrentLocation({ [weak self] (location) in
                 if location != nil {
                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)
@@ -156,9 +156,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func loadItemsFromDBIfNedded() {
         var storyPoints: [StoryPoint]! = []
-        if self.contentType == ContentType.Default {
+        if self.contentType == .Default {
             storyPoints = StoryPointManager.allStoryPoints()
-        } else if self.contentType == ContentType.Share {
+        } else if self.contentType == .Share {
             storyPoints = self.sharedType == SharingKeys.typeStoryPoint ? self.loadSharedStoryPoint() : self.loadSharedStory()
             self.publicStoryPoints = storyPoints
         } else {
@@ -214,7 +214,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupCollectionViewIfNeeded() {
-        if self.contentType != ContentType.Default && self.publicStoryPoints.count > 0 {
+        if self.contentType != .Default && self.publicStoryPoints.count > 0 {
             let location = self.publicStoryPoints.first?.location
             let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
             self.selectPin(0, mapCoordinate: mapCoordinate)
@@ -235,7 +235,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - request
     func retrieveStoryPointsIfNeeded(location: MCMapCoordinate, radius: CGFloat) {
-        if self.contentType == ContentType.Default {
+        if self.contentType == .Default {
             ApiClient.sharedClient.getAllStoryPoints({ [weak self] (response) in
                                                     if let storyPoints = response {
                                                         StoryPointManager.saveStoryPoints(storyPoints as! [StoryPoint])
@@ -248,7 +248,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                 }
             )
         }
-        else if self.contentType == ContentType.Share {
+        else if self.contentType == .Share {
             self.retrieveSharedItem()
         }
     }
@@ -290,7 +290,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func showEmptyStoryErrorIfNeeded() {
-        if self.contentType == ContentType.Notification {
+        if self.contentType == .Notification {
             let title = NSLocalizedString("Alert.Info", comment: String())
             let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
             let cancel = NSLocalizedString("Button.Ok", comment: String())
@@ -318,7 +318,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func cancelButtonTapped() {
-        if self.contentType == ContentType.Share {
+        if self.contentType == .Share {
             self.routesSetContentController()
         } else {
             self.popControllerFromLeft()
@@ -342,7 +342,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
-        if self.contentType == ContentType.Default {
+        if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
             let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)

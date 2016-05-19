@@ -206,7 +206,7 @@ extension UIViewController {
     
     func routesOpenSharedContentController(sharedType: String, sharedId: Int) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = ContentType.Share
+        captureViewController.contentType = .Share
         captureViewController.sharedType = sharedType
         captureViewController.sharedId = sharedId
         let navigationController = NavigationViewController(rootViewController: captureViewController)

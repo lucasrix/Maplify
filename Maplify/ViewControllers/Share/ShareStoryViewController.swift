@@ -93,7 +93,6 @@ class ShareStoryViewController: ViewController {
     }
     
     func populateAddress(story: Story) {
-        // TODO:
         let substringPoints = story.storyPoints.count % 10 == 1 ? NSLocalizedString("Substring.Point", comment: String()) : NSLocalizedString("Substring.Points", comment: String())
         self.storyAddressLabel.text = "\(story.storyPoints.count) " + substringPoints
     }

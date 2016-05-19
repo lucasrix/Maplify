@@ -558,7 +558,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func didSelectMap(story: Story!) {
         let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: story.title, contentType: ContentType.Profile)
+        self.routesPushFromLeftCaptureViewController(storyPoints, title: story.title, contentType: .Profile)
     }
     
     func storyProfileImageTapped(userId: Int) {

@@ -118,7 +118,7 @@ class ShareStoryViewController: ViewController {
         let attachmentUrl = StaticMap.staticMapUrl(firstStoryPoint!.location.latitude, longitude: firstStoryPoint!.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         
         let facebookShareHelper = FacebookShareHelper()
-        facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl, contentUrl: self.sharingLink()) { (success) in
+        facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl, contentUrl: self.sharingParams()) { (success) in
             if success == false {
                 let title = NSLocalizedString("Alert.Error", comment: String())
                 let message = NSLocalizedString("Alert.SharingError", comment: String())

@@ -127,7 +127,7 @@ class ShareStoryPointViewController: ViewController {
         let attachmentUrl = self.attachmentUrlForStoryPoint(storyPoint)
         
         let facebookShareHelper = FacebookShareHelper()
-        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl, contentUrl: self.sharingLink()) { (success) in
+        facebookShareHelper.shareContent(self, title: storyPoint.caption, description: storyPoint.text, imageUrl: attachmentUrl, contentUrl: self.sharingParams()) { (success) in
             if success == false {
                 let title = NSLocalizedString("Alert.Error", comment: String())
                 let message = NSLocalizedString("Alert.SharingError", comment: String())

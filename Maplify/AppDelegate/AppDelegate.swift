@@ -24,18 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if url.absoluteString.containsString(Network.routingPrefix + Network.sharePrefix) {
-            print(url)
             let params = url.queryItems
             let sharedType = params[SharingKeys.typeTitle]
-//            let id = params[SharingKeys.typeId]
-            let sharedId = 15
+            let sharedId = Int(params[SharingKeys.typeId]!)
             
             if self.window?.rootViewController is NavigationViewController {
                 let navigationController = self.window?.rootViewController as! NavigationViewController
                 let viewController = navigationController.viewControllers.first
-                viewController!.routesOpenSharedContentController(sharedType!, sharedId: sharedId)
+                viewController!.routesOpenSharedContentController(sharedType!, sharedId: sharedId!)
             } else {
-                self.window?.rootViewController?.routesOpenSharedContentController(sharedType!, sharedId: sharedId)
+                self.window?.rootViewController?.routesOpenSharedContentController(sharedType!, sharedId: sharedId!)
             }
             
         } else if url.absoluteString.containsString(Network.routingPrefix) {

@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import UIKit
 
-let kSharingLinkPrefix = "http://maplify.herokuapp.com/share?link="
+let kSharingLinkPrefix = "http://maplify.herokuapp.com/share?"
 
 class FacebookShareHelper: NSObject {
     

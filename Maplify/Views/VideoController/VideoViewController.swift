@@ -17,6 +17,8 @@ public enum CameraState: Int {
 
 let nibNameVideoControllerView = "VideoViewController"
 let kVideoFileName = "MaplifyVideoRecording.MOV"
+let kVideoViewHeightIPhone3_5: CGFloat = 240
+let kVideoDeleteButtonTopMarginIPhone3_5: CGFloat = 0
 let recordTimeMax: Double = 20
 let kProgressViewHeight: CGFloat = 4
 
@@ -27,6 +29,8 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var progressBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var videoViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonTopConstraint: NSLayoutConstraint!
     
     var simpleCamera: LLSimpleCamera! = nil
     var delegate: VideoControllerDelagate! = nil
@@ -57,6 +61,12 @@ class VideoViewController: UIViewController {
     
     // MARK: - setup
     func setupViews() {
+        if UIScreen().isIPhoneScreenSize3_5() {
+            self.videoViewHeightConstraint.constant = kVideoViewHeightIPhone3_5
+            self.deleteButtonTopConstraint.constant = kVideoDeleteButtonTopMarginIPhone3_5
+        } else {
+            self.videoViewHeightConstraint.constant = UIScreen().screenWidth()
+        }
         self.progressBarHeightConstraint.constant = kProgressViewHeight
         self.progressView.progress = Float(0)
         self.updateUI()

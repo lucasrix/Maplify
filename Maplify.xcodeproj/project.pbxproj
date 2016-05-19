@@ -171,6 +171,8 @@
 		CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
 		CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
 		CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
+		CDC26E551CEDD3BE00D3EDEE /* AmbientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */; };
+		CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -363,6 +365,8 @@
 		CDC26E471CE9D8DD00D3EDEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientViewController.swift; sourceTree = "<group>"; };
+		CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmbientViewController.xib; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
+				CDC26E531CEDD39A00D3EDEE /* AmbientController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,
@@ -1046,6 +1051,15 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		CDC26E531CEDD39A00D3EDEE /* AmbientController */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */,
+				CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */,
+			);
+			path = AmbientController;
+			sourceTree = "<group>";
+		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1190,6 +1204,7 @@
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
+				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
@@ -1294,6 +1309,7 @@
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
 				CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */,
+				CDC26E551CEDD3BE00D3EDEE /* AmbientViewController.swift in Sources */,
 				85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */,
 				85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,

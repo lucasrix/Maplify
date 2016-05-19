@@ -82,6 +82,8 @@ struct MediaButtons {
     static let photoHighlited = "AddMediaScreenPhotoOn"
     static let videoDefault = "AddMediaScreenVideoOff"
     static let videoHighlited = "AddMediaScreenVideoOn"
+    static let micDefault = "AddMediaScreenMicOff"
+    static let micHighlited = "AddMediaScreenMicOn"
     static let photoShotHighlited = "AddMediaScreenPhotoButtonShotSelected"
     static let flashAuto = "AddMediaScreenFlashAuto"
     static let flashOff = "AddMediaScreenFlashOff"

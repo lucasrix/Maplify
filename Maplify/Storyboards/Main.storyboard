@@ -4045,7 +4045,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIU-QG-hOv" userLabel="Gallery Button">
-                                <rect key="frame" x="0.0" y="623" width="125" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="94" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Jba-xI-dz1"/>
                                 </constraints>
@@ -4057,7 +4057,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY7-EW-cWD" userLabel="Photo Button">
-                                <rect key="frame" x="125" y="623" width="125" height="44"/>
+                                <rect key="frame" x="94" y="623" width="94" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="AddMediaScreenPhotoOff"/>
                                 <state key="selected" image="AddMediaScreenPhotoOn"/>
@@ -4067,7 +4067,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaZ-4v-o3l" userLabel="Video Button">
-                                <rect key="frame" x="250" y="623" width="125" height="44"/>
+                                <rect key="frame" x="188" y="623" width="93" height="44"/>
                                 <state key="normal" image="AddMediaScreenVideoOff"/>
                                 <state key="selected" image="AddMediaScreenVideoOn"/>
                                 <state key="highlighted" image="AddMediaScreenVideoOn"/>
@@ -4079,15 +4079,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayR-7v-NOn" userLabel="Video Button">
+                                <rect key="frame" x="281" y="623" width="94" height="44"/>
+                                <state key="normal" image="AddMediaScreenMicOff"/>
+                                <state key="selected" image="AddMediaScreenMicOn"/>
+                                <state key="highlighted" image="AddMediaScreenMicOn"/>
+                                <connections>
+                                    <action selector="micTapped:" destination="UBv-qO-lQd" eventType="touchUpInside" id="5pE-ke-qV1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.16470588235294117" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ocz-fv-rLL" firstAttribute="top" secondItem="C1B-O2-bfr" secondAttribute="top" id="2ZH-7W-hUF"/>
-                            <constraint firstAttribute="trailing" secondItem="oaZ-4v-o3l" secondAttribute="trailing" id="54d-Pb-jF5"/>
+                            <constraint firstAttribute="trailing" secondItem="ayR-7v-NOn" secondAttribute="trailing" id="4nv-c7-y9s"/>
                             <constraint firstItem="oaZ-4v-o3l" firstAttribute="leading" secondItem="bY7-EW-cWD" secondAttribute="trailing" id="70g-OY-fco"/>
                             <constraint firstItem="oaZ-4v-o3l" firstAttribute="width" secondItem="MIU-QG-hOv" secondAttribute="width" id="A99-Kl-eUx"/>
                             <constraint firstItem="bY7-EW-cWD" firstAttribute="height" secondItem="MIU-QG-hOv" secondAttribute="height" id="Cwi-1n-Uc9"/>
                             <constraint firstItem="bY7-EW-cWD" firstAttribute="leading" secondItem="MIU-QG-hOv" secondAttribute="trailing" id="JtR-pe-j4h"/>
+                            <constraint firstItem="ayR-7v-NOn" firstAttribute="height" secondItem="MIU-QG-hOv" secondAttribute="height" id="Jx9-he-Pkj"/>
                             <constraint firstItem="bY7-EW-cWD" firstAttribute="width" secondItem="MIU-QG-hOv" secondAttribute="width" id="KiJ-T4-QBG"/>
                             <constraint firstItem="ocz-fv-rLL" firstAttribute="leading" secondItem="C1B-O2-bfr" secondAttribute="leading" id="MOP-Yx-gGg"/>
                             <constraint firstAttribute="trailing" secondItem="ocz-fv-rLL" secondAttribute="trailing" id="Rre-Iy-0Ga"/>
@@ -4097,13 +4107,17 @@
                             <constraint firstItem="oaZ-4v-o3l" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="top" id="gT5-lf-dbo"/>
                             <constraint firstItem="bY7-EW-cWD" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="top" id="h0u-hZ-o5K"/>
                             <constraint firstItem="MIU-QG-hOv" firstAttribute="leading" secondItem="C1B-O2-bfr" secondAttribute="leading" id="h7Y-iW-dRr"/>
+                            <constraint firstItem="ayR-7v-NOn" firstAttribute="leading" secondItem="oaZ-4v-o3l" secondAttribute="trailing" id="ica-vh-V6P"/>
+                            <constraint firstItem="ayR-7v-NOn" firstAttribute="top" secondItem="MIU-QG-hOv" secondAttribute="top" id="lbs-cL-b47"/>
                             <constraint firstItem="oaZ-4v-o3l" firstAttribute="height" secondItem="MIU-QG-hOv" secondAttribute="height" id="pAN-xX-91c"/>
+                            <constraint firstItem="ayR-7v-NOn" firstAttribute="width" secondItem="MIU-QG-hOv" secondAttribute="width" id="yaY-xm-O7p"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="containerView" destination="ocz-fv-rLL" id="z0r-VX-Fuc"/>
                         <outlet property="galleryButton" destination="MIU-QG-hOv" id="eqe-bj-EgD"/>
+                        <outlet property="micButton" destination="ayR-7v-NOn" id="Y1s-f2-kQC"/>
                         <outlet property="photoButton" destination="bY7-EW-cWD" id="hPi-og-im4"/>
                         <outlet property="videoButton" destination="oaZ-4v-o3l" id="K7Q-f0-ELN"/>
                     </connections>
@@ -4116,6 +4130,8 @@
     <resources>
         <image name="AddMediaScreenGalleryOff" width="25" height="25"/>
         <image name="AddMediaScreenGalleryOn" width="25" height="25"/>
+        <image name="AddMediaScreenMicOff" width="18" height="30"/>
+        <image name="AddMediaScreenMicOn" width="18" height="30"/>
         <image name="AddMediaScreenPhotoOff" width="28" height="25"/>
         <image name="AddMediaScreenPhotoOn" width="28" height="25"/>
         <image name="AddMediaScreenVideoOff" width="32" height="17"/>

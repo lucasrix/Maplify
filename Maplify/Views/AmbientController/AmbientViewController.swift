@@ -1,29 +1,42 @@
 //
-//  StoryPointAddAudioController.swift
+//  AmbientViewController.swift
 //  Maplify
 //
-//  Created by Antonoff Evgeniy on 3/23/16.
+//  Created by Evgeniy Antonoff on 5/19/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import UIKit
 import EZAudio
 import AVFoundation
+import UIKit
 
-let kProgressBarHeight: CGFloat = 4
+let nibNameAmbientControllerView = "AmbientViewController"
+let kAmbientEqualizerViewHeightIPhone3_5: CGFloat = 240
+let kAmbientDeleteButtonTopMarginIPhone3_5: CGFloat = 0
 
-class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioRecorderDelegate {
+class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecorderDelegate {
     @IBOutlet weak var audioPlot: EZAudioPlot!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var equalizerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonTopConstraint: NSLayoutConstraint!
     
     var microphone: EZMicrophone!
     var audioRecorder = AudioRecorderHelper()
     var pickedLocation: MCMapCoordinate! = nil
+    var delegate: AmbientControllerDelegate! = nil
     
     // MARK: - view controller life cycle
+    override func loadView() {
+        super.viewDidLoad()
+        
+        if let view = UINib(nibName: nibNameAmbientControllerView, bundle: NSBundle(forClass: self.classForCoder)).instantiateWithOwner(self, options: nil).first as? UIView {
+            self.view = view
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,8 +57,12 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     }
     
     func setupViews() {
-        self.title = NSLocalizedString("Controller.Ambient.Title", comment: String())
-        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
+        if UIScreen().isIPhoneScreenSize3_5() {
+            self.equalizerViewHeightConstraint.constant = kAmbientEqualizerViewHeightIPhone3_5
+            self.deleteButtonTopConstraint.constant = kAmbientDeleteButtonTopMarginIPhone3_5
+        } else {
+            self.equalizerViewHeightConstraint.constant = UIScreen().screenWidth()
+        }
         self.progressBarHeightConstraint.constant = kProgressBarHeight
         self.progressBar.progress = 0 as Float
         self.setupStartRecordUI()
@@ -63,25 +80,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.audioRecorder.delegate = self
     }
     
-    // MARK: - navigation bar
-    override func navigationBarIsTranlucent() -> Bool {
-        return false
-    }
-    
-    override func navigationBarColor() -> UIColor {
-        return UIColor.darkGreyBlue()
-    }
-    
-    // MARK: - navigation bar item actions
-    override func rightBarButtonItemDidTap() {
-        self.audioRecorder.finishRecording()
-    }
-    
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
-    }
-    
     // MARK: - actions
     @IBAction func recordTapped(sender: UIButton) {
         self.audioRecorder.toggleStartPauseRecording()
@@ -89,22 +87,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     @IBAction func deleteTapped(sender: UIButton) {
         self.audioRecorder.reloadRecording()
-    }
-    
-    // MARK: - remote
-    func remotePostAttachment(fileData: NSData) {
-        self.showProgressHUD()
-        
-        let params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
-        
-        ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
-            self?.hideProgressHUD()
-            let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
-        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-            self?.hideProgressHUD()
-            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-        }
     }
     
     // MARK: - private
@@ -125,25 +107,15 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         self.deleteButton.hidden = true
     }
     
-    private func showAudioPermissionsError() {
-        let title = NSLocalizedString("Alert.Audio.Permissions.Title", comment: String()).capitalizedString
-        let message = NSLocalizedString("Alert.Audio.Permissions.Message", comment: String()).capitalizedString
-        let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttonOpenSettingsTitle = NSLocalizedString("Button.OpenSettings", comment: String()).capitalizedString
-        
-        self.showAlert(title, message: message, cancel: cancel, buttons: [buttonOpenSettingsTitle]) { [weak self] (buttonIndex) in
-            if buttonIndex == 0 {
-                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
-            }
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
+    func donePressed() {
+        self.audioRecorder.finishRecording()
     }
     
     // MARK: - AudioRecorderDelegate
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
-            self.remotePostAttachment(audioData!)
+            self.delegate?.audioDidRecord(audioData!)
         }
     }
     
@@ -162,7 +134,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
     
     func audioRecordDidCheckedPermissions(success: Bool) {
         if !success {
-            self.showAudioPermissionsError()
+            self.delegate?.audioMicrophoneUnauthorized()
         }
     }
     
@@ -176,4 +148,9 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
+}
+
+protocol AmbientControllerDelegate {
+    func audioDidRecord(audioData: NSData)
+    func audioMicrophoneUnauthorized()
 }

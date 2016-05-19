@@ -20,6 +20,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     
     var pickedLocation: MCMapCoordinate! = nil
     var currentChildController: UIViewController! = nil
+    var selectedStoryIds: [Int]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -78,11 +79,6 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         }
     }
     
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
-    }
-    
     // MARK: - actions
     @IBAction func galleryTapped(sender: UIButton) {
         self.updateControllerTitle(NSLocalizedString("Controller.CameraRoll.Title", comment: String()))
@@ -132,7 +128,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
             
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
+            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds)
             
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             

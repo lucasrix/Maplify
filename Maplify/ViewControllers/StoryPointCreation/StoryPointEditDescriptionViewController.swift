@@ -6,6 +6,8 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import RealmSwift
+import GoogleMaps
 import UIKit
 
 let kDescriptionTextViewMaxCharactersCount = 1500
@@ -18,6 +20,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId: Int = 0
     var location: MCMapCoordinate! = nil
+    var selectedStoryIds: [Int]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -76,11 +79,73 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         if self.descriptionTextView.text.isNonWhiteSpace {
-        self.routesOpenStoryPointEditInfoController(self.descriptionTextView.text, storyPointKind: self.storyPointKind, storyPointAttachmentId: self.storyPointAttachmentId, location: self.location)
+        self.retrieveCurrentPlace()
         } else {
             let messasge = NSLocalizedString("Alert.EnterDescription", comment: String())
             let cancel = NSLocalizedString("Button.Ok", comment: String())
             self.showMessageAlert(nil, message: messasge, cancel: cancel)
+        }
+    }
+    
+    // MARK: - location
+    func retrieveCurrentPlace() {
+        if self.location != nil {
+            let geocoder = GMSGeocoder()
+            geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
+                if error != nil {
+                    self?.remotePostStoryPoint(String())
+                } else {
+                    let address = response?.firstResult()
+                    var addressString = String()
+                    if address?.thoroughfare != nil {
+                        addressString = (address?.thoroughfare)!
+                    } else if address?.locality != nil {
+                        addressString = (address?.locality)!
+                    }
+                    self?.remotePostStoryPoint(addressString)
+                }
+            })
+        }
+    }
+    
+    // MARK: - private
+    func remotePostStoryPoint(address: String) {
+        self.descriptionTextView.resignFirstResponder()
+        self.showProgressHUD()
+        var locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
+        if address.length > 0 {
+            locationDict["address"] = address
+        }
+        let kind = self.storyPointKind.rawValue
+        var storyPointDict: [String: AnyObject] = ["kind":kind,
+                                                   "text":self.descriptionTextView.text,
+                                                   "location":locationDict]
+        if self.storyPointKind != StoryPointKind.Text {
+            storyPointDict["attachment_id"] = self.storyPointAttachmentId
+        }
+        if self.selectedStoryIds.count > 0 {
+            storyPointDict["story_ids"] = self.selectedStoryIds
+        }
+        
+        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(response as! StoryPoint, update: true)
+            }
+            
+            ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
+                success: { [weak self] (response) in
+                    StoryManager.saveStories(response as! [Story])
+                    self?.hideProgressHUD()
+                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                    self?.navigationController?.popToRootViewControllerAnimated(true)
+                }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                    self?.hideProgressHUD()
+                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                })
+        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+            self?.hideProgressHUD()
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
     }
     
@@ -117,5 +182,12 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         let substringOf = NSLocalizedString("Substring.Of", comment: String())
         let substringChars = NSLocalizedString("Substring.Chars", comment: String())
         self.charactersCountLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

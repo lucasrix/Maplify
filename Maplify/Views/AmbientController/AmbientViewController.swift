@@ -11,6 +11,8 @@ import AVFoundation
 import UIKit
 
 let nibNameAmbientControllerView = "AmbientViewController"
+let kAmbientEqualizerViewHeightIPhone3_5: CGFloat = 240
+let kAmbientDeleteButtonTopMarginIPhone3_5: CGFloat = 0
 
 class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecorderDelegate {
     @IBOutlet weak var audioPlot: EZAudioPlot!
@@ -18,6 +20,8 @@ class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecord
     @IBOutlet weak var progressBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var equalizerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonTopConstraint: NSLayoutConstraint!
     
     var microphone: EZMicrophone!
     var audioRecorder = AudioRecorderHelper()
@@ -53,6 +57,12 @@ class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecord
     }
     
     func setupViews() {
+        if UIScreen().isIPhoneScreenSize3_5() {
+            self.equalizerViewHeightConstraint.constant = kAmbientEqualizerViewHeightIPhone3_5
+            self.deleteButtonTopConstraint.constant = kAmbientDeleteButtonTopMarginIPhone3_5
+        } else {
+            self.equalizerViewHeightConstraint.constant = UIScreen().screenWidth()
+        }
         self.progressBarHeightConstraint.constant = kProgressBarHeight
         self.progressBar.progress = 0 as Float
         self.setupStartRecordUI()

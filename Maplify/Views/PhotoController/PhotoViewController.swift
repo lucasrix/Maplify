@@ -12,6 +12,8 @@ import CoreMedia
 import AVFoundation
 
 let nibNamePhotoControllerView = "PhotoViewController"
+let kPhotoViewHeightIPhone3_5: CGFloat = 240
+let kPhotoDeleteButtonTopMarginIPhone3_5: CGFloat = 0
 let kDeleteButtonHighlitedStateAlpha: CGFloat = 0.5
 
 class PhotoViewController: UIViewController {
@@ -20,6 +22,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var previewViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonTopConstraint: NSLayoutConstraint!
     
     var simpleCamera: LLSimpleCamera! = nil
     var delegate: PhotoControllerDelegate! = nil
@@ -42,8 +46,18 @@ class PhotoViewController: UIViewController {
     
     // MARK: - setup
     func setup() {
+        self.setupViews()
         self.setupCamera()
         self.setupBottomButtons()
+    }
+    
+    func setupViews() {
+        if UIScreen().isIPhoneScreenSize3_5() {
+            self.previewViewHeightConstraint.constant = kPhotoViewHeightIPhone3_5
+            self.deleteButtonTopConstraint.constant = kPhotoDeleteButtonTopMarginIPhone3_5
+        } else {
+            self.previewViewHeightConstraint.constant = UIScreen().screenWidth()
+        }
     }
     
     func setupCamera() {

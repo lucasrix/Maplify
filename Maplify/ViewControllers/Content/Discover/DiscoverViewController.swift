@@ -536,6 +536,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 completion(success: false)
         }
     }
+    
+    func shareStoryPointDidTap(storyPointId: Int) {
+        self.shareStoryPoint(storyPointId)
+    }
 
     // MARK: - DiscoverStoryCellDelegate
     func didSelectStory(storyId: Int) {
@@ -554,7 +558,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func didSelectMap(story: Story!) {
         let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: story.title)
+        self.routesPushFromLeftCaptureViewController(storyPoints, title: story.title, contentType: .Profile)
     }
     
     func storyProfileImageTapped(userId: Int) {
@@ -625,6 +629,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
         }
+    }
+    
+    func shareStoryDidTap(storyId: Int) {
+        self.shareStory(storyId)
     }
 
     // MARK: - ProfileViewDelegate

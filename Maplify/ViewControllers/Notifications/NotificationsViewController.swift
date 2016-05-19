@@ -118,6 +118,6 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
             storyPoints = Converter.listToArray(notification.notificable_story.storyPoints, type: StoryPoint.self)
             title = notification.notificable_story.title
         }
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: title)
+        self.routesPushFromLeftCaptureViewController(storyPoints, title: title, contentType: .Notification)
     }
 }

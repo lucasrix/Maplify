@@ -23,7 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        if url.absoluteString.containsString(Network.routingPrefix) {
+        if url.absoluteString.containsString(Network.routingPrefix + Network.sharePrefix) {
+            let params = url.queryItems
+            let sharedType = params[SharingKeys.typeTitle]
+            let sharedId = Int(params[SharingKeys.typeId]!)
+            
+            if self.window?.rootViewController is NavigationViewController {
+                let navigationController = self.window?.rootViewController as! NavigationViewController
+                let viewController = navigationController.viewControllers.first
+                viewController!.routesOpenSharedContentController(sharedType!, sharedId: sharedId!)
+            } else {
+                self.window?.rootViewController?.routesOpenSharedContentController(sharedType!, sharedId: sharedId!)
+            }
+            
+        } else if url.absoluteString.containsString(Network.routingPrefix) {
             SessionHelper.sharedHelper.setSessionData(url)
             if self.window?.rootViewController is NavigationViewController {
                 let navigationController = self.window?.rootViewController as! NavigationViewController

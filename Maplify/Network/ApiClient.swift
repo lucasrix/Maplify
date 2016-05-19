@@ -203,6 +203,10 @@ class ApiClient {
         self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
+    func getStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("story_points/\(storyPointId)", params: nil, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
     func getAllStoryPoints(success: successClosure!, failure: failureClosure!) {
         let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
                                            "location[latitude]": 0,
@@ -232,6 +236,10 @@ class ApiClient {
     
     func deleteStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func getStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {

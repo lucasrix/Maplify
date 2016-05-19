@@ -32,6 +32,7 @@ struct Network {
     static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
     static let routingPrefix = "maplify:"
+    static let sharePrefix = "//share?"
 }
 
 struct Controllers {
@@ -84,6 +85,13 @@ struct AppIDs {
 
 struct Links {
     static let landingLink = "http://www.maplifyapp.com"
+}
+
+struct SharingKeys {
+    static let typeTitle = "type"
+    static let typeStoryPoint = "StoryPoint"
+    static let typeStory = "Story"
+    static let typeId = "id"
 }
 
 struct DefaultLocation {

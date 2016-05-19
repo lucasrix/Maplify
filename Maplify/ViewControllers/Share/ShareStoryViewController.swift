@@ -93,7 +93,6 @@ class ShareStoryViewController: ViewController {
     }
     
     func populateAddress(story: Story) {
-        // TODO:
         let substringPoints = story.storyPoints.count % 10 == 1 ? NSLocalizedString("Substring.Point", comment: String()) : NSLocalizedString("Substring.Points", comment: String())
         self.storyAddressLabel.text = "\(story.storyPoints.count) " + substringPoints
     }
@@ -118,7 +117,7 @@ class ShareStoryViewController: ViewController {
         let attachmentUrl = StaticMap.staticMapUrl(firstStoryPoint!.location.latitude, longitude: firstStoryPoint!.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         
         let facebookShareHelper = FacebookShareHelper()
-        facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl) { (success) in
+        facebookShareHelper.shareContent(self, title: story.title, description: story.storyDescription, imageUrl: attachmentUrl, contentUrl: self.sharingParams()) { (success) in
             if success == false {
                 let title = NSLocalizedString("Alert.Error", comment: String())
                 let message = NSLocalizedString("Alert.SharingError", comment: String())
@@ -129,6 +128,14 @@ class ShareStoryViewController: ViewController {
     }
     
     @IBAction func copyLinkTapped(sender: UIButton) {
-        UIPasteboard.generalPasteboard().string = Links.landingLink
+        UIPasteboard.generalPasteboard().string = self.sharingLink()
+    }
+    
+    func sharingLink() -> String{
+        return Network.routingPrefix + Network.sharePrefix + self.sharingParams()
+    }
+    
+    func sharingParams() -> String {
+        return SharingKeys.typeTitle + "=" + SharingKeys.typeStory + "&" + SharingKeys.typeId + "=\(self.storyId)"
     }
 }

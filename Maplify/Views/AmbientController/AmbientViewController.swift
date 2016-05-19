@@ -116,8 +116,6 @@ class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecord
         if success {
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
             self.delegate?.audioDidRecord(audioData!)
-        } else {
-            // TODO:
         }
     }
     

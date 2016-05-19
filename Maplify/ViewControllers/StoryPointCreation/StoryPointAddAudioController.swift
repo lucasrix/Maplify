@@ -144,8 +144,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         if success {
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
             self.remotePostAttachment(audioData!)
-        } else {
-            // TODO:
         }
     }
     

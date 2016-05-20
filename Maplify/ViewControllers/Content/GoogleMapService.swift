@@ -95,6 +95,7 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     }
     
     func mapView(mapView: GMSMapView, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-        self.delegate?.didLongTapMapView?(mapView, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let locationInView = mapView.projection.pointForCoordinate(coordinate)
+        self.delegate?.didLongTapMapView?(mapView, latitude: coordinate.latitude, longitude: coordinate.longitude, locationInView: locationInView)
     }
 }

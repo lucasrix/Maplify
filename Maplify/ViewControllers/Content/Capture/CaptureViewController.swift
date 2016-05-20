@@ -8,6 +8,7 @@
 
 import INTULocationManager
 import GoogleMaps
+import AMPopTip
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
@@ -42,6 +43,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var sharedType = String()
     var sharedId: Int = 0
     var previewPlaceItem: MCMapItem! = nil
+    var popTip = AMPopTip()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -344,7 +346,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
     
-    func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
+    func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
         if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
@@ -359,6 +361,17 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             
             self.previewPlaceItem = placeItem
             self.googleMapService.placeItem(placeItem, temporary: true)
+            
+//            (self.googleMapService.mapView as! GMSMapView).animateToZoom(10)
+            print(locationInView)
+            
+            //
+            let customView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            customView.backgroundColor = UIColor.redColor()
+            // Configure your view
+//            self.popTip.showText("Hello", direction: .Up, maxWidth: 200, inView: self.view, fromFrame: placeItem.image)
+            self.popTip.showCustomView(customView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x, locationInView.y, 10, 10))
+            //
 //            self.addStoryPointButtonTapped(location: coordinate)
         }
     }

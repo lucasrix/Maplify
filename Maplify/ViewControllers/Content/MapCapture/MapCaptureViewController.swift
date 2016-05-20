@@ -23,6 +23,10 @@ class MapCaptureViewController: ViewController, InfinitePageControlDelegate {
     }
     
     // MARL: - InfinitePageControlDelegate
+    func numberOfItems() -> Int {
+        return 10
+    }
+    
     func didShowPageView(pageControl: InfinitePageControl, view: UIView, index: Int) {
         print("index: \(index)")
         

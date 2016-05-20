@@ -15,6 +15,7 @@ enum InfiniteScrollDirection {
 }
 
 protocol InfinitePageControlDelegate {
+    func numberOfItems() -> Int
     func didShowPageView(pageControl: InfinitePageControl, view: UIView, index: Int)
 }
 
@@ -22,7 +23,6 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     private var contentViews = [UIView]()
     private var currentPageIndex: Int = 0
     private var lastContentOffset: CGFloat = 0
-    private var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var pageControlDelegate: InfinitePageControlDelegate! = nil
     
     //MARK: - init
@@ -62,9 +62,9 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         centerView.frame = CGRectMake(viewWidth * CGFloat(index), 0, viewWidth, viewHeight)
         rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1), 0, viewWidth, viewHeight)
         
-        self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index)
+        self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
         self.pageControlDelegate?.didShowPageView(self, view: centerView, index: index)
-        self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index)
+        self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index + 1)
 
         self.addSubview(leftView)
         self.addSubview(centerView)
@@ -102,14 +102,12 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         frame.origin.y = 0
         viewToMove.frame = frame
         
-        if (index > 0 && index < self.items.count - 1) {
-            self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: index)
-        }
+        self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: index)
     }
     
     func updateContentSize() {
         let viewWidth = CGRectGetWidth(self.frame)
-        self.contentSize = CGSizeMake(viewWidth * CGFloat(self.items.count), 0)
+        self.contentSize = CGSizeMake(viewWidth * CGFloat((self.pageControlDelegate?.numberOfItems())!), 0)
     }
     
     func scrollingGestureDirection(currentOffset: CGFloat, previousOffset: CGFloat) -> InfiniteScrollDirection {
@@ -154,7 +152,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         var isPageChanged = false
         
         if (direction == .Left) {
-            if (self.currentPageIndex < self.items.count - 1) {
+            if (self.currentPageIndex < (self.pageControlDelegate?.numberOfItems())! - 1) {
                 if ((scrollView.contentOffset.x / keepsakeViewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
                     self.currentPageIndex += 1
                     isPageChanged = true

@@ -138,11 +138,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.routesOpenPhotoVideoViewController(location)
+        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil)
     }
     
     // MARK: - MenuDelegate

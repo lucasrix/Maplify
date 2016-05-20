@@ -25,7 +25,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     private var lastContentOffset: CGFloat = 0
     var pageControlDelegate: InfinitePageControlDelegate! = nil
     
-    //MARK: - init
+    // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -36,18 +36,35 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         self.setup()
     }
     
-    //MARK: - setup
-    func setup() {
+    // MARK: - setup
+    private func setup() {
         self.delegate = self
         self.pagingEnabled = true
     }
     
+    // MARK: - actions
     func moveAndShowCell(index: Int, animated: Bool) {
         self.setupViewsAtIndex(index)
         self.scrollToPage(index, animated: animated)
     }
     
-    func setupViewsAtIndex(index: Int) {
+    func updateViewFrames() {
+        let viewWidth = CGRectGetWidth(self.frame)
+        let viewHeight = CGRectGetHeight(self.frame)
+        
+        let leftFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex - 1), 0, viewWidth, viewHeight);
+        let centerFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex), 0, viewWidth, viewHeight);
+        let rightFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex + 1), 0, viewWidth, viewHeight);
+        
+        self.contentViews[0].frame = leftFrame
+        self.contentViews[1].frame = centerFrame
+        self.contentViews[2].frame = rightFrame
+        
+        self.updateContentSize()
+    }
+    
+    // MARK: - private
+    private func setupViewsAtIndex(index: Int) {
         self.contentViews.forEach({$0.removeFromSuperview()})
         self.contentViews.removeAll()
         
@@ -77,7 +94,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         self.updateContentSize()
     }
     
-    func replaceViewsWithDirection(direction: InfiniteScrollDirection, index: Int) {
+    private func replaceViewsWithDirection(direction: InfiniteScrollDirection, index: Int) {
         let viewWidth = CGRectGetWidth(self.frame)
         
         var viewToMove: UIView
@@ -105,12 +122,12 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: index)
     }
     
-    func updateContentSize() {
+    private func updateContentSize() {
         let viewWidth = CGRectGetWidth(self.frame)
         self.contentSize = CGSizeMake(viewWidth * CGFloat((self.pageControlDelegate?.numberOfItems())!), 0)
     }
     
-    func scrollingGestureDirection(currentOffset: CGFloat, previousOffset: CGFloat) -> InfiniteScrollDirection {
+    private func scrollingGestureDirection(currentOffset: CGFloat, previousOffset: CGFloat) -> InfiniteScrollDirection {
         var scrollDirection: InfiniteScrollDirection = .None
       
         if previousOffset > currentOffset {
@@ -122,52 +139,37 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         return scrollDirection;
     }
     
-    func updateFramesForKeepsakes() {
-        let viewWidth = CGRectGetWidth(self.frame)
-        let viewHeight = CGRectGetHeight(self.frame)
-        
-        let leftFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex - 1), 0, viewWidth, viewHeight);
-        let centerFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex), 0, viewWidth, viewHeight);
-        let rightFrame = CGRectMake(viewWidth * CGFloat(self.currentPageIndex + 1), 0, viewWidth, viewHeight);
-        
-        self.contentViews[0].frame = leftFrame
-        self.contentViews[1].frame = centerFrame
-        self.contentViews[2].frame = rightFrame
-        
-        self.updateContentSize()
-    }
-    
-    func scrollToPage(index: Int, animated: Bool) {
+    private func scrollToPage(index: Int, animated: Bool) {
         let viewWidth = CGRectGetWidth(self.frame);
         let contentOffset = CGPointMake(viewWidth * CGFloat(index), 0);
         self.setContentOffset(contentOffset, animated: animated)
     }
     
-    //MARK: - UIScrollViewDelegate
+    // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let keepsakeViewWidth = CGRectGetWidth(self.frame)
+        let viewWidth = CGRectGetWidth(self.frame)
         
         let direction = self.scrollingGestureDirection(self.contentOffset.x, previousOffset: self.lastContentOffset)
         
-        var isPageChanged = false
+        var viewsShouldBeReplaced = false
         
         if (direction == .Left) {
             if (self.currentPageIndex < (self.pageControlDelegate?.numberOfItems())! - 1) {
-                if ((scrollView.contentOffset.x / keepsakeViewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
+                if ((scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
                     self.currentPageIndex += 1
-                    isPageChanged = true
+                    viewsShouldBeReplaced = true
                 }
             }
         } else if (direction == .Right) {
             if (self.currentPageIndex > 0) {
-                if ((scrollView.contentOffset.x / keepsakeViewWidth) < CGFloat(self.currentPageIndex) - 0.5) {
+                if ((scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex) - 0.5) {
                     self.currentPageIndex -= 1
-                    isPageChanged = true
+                    viewsShouldBeReplaced = true
                 }
             }
         }
         
-        if (isPageChanged) {
+        if viewsShouldBeReplaced {
             self.replaceViewsWithDirection(direction, index: self.currentPageIndex)
             self.lastContentOffset = self.contentOffset.x;
         }
@@ -176,7 +178,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
 
 private extension Array {
     mutating func removeObject<U: Equatable>(object: U) -> Bool {
-        for (idx, objectToCompare) in self.enumerate() {  //in old swift use enumerate(self)
+        for (idx, objectToCompare) in self.enumerate() {
             if let to = objectToCompare as? U {
                 if object == to {
                     self.removeAtIndex(idx)

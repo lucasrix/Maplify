@@ -206,16 +206,24 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         }
     }
     
+    func postTextStoryPoint() {
+        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds)
+    }
+    
     // MARK: - CameraRollDelegate
-    func imageDidSelect(imageData: NSData) {
-        self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
+    func imageDidSelect(imageData: NSData!) {
+        if imageData != nil {
+            self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func cameraRollUnauthorized() {
         self.showGalleryPermissionsError()
     }
     
-    func videoDidSelect(videoData: NSData, duration: Double) {
+    func videoDidSelect(videoData: NSData!, duration: Double) {
         if duration < kVideoDurationSecondsMax {
             self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
         } else {
@@ -231,8 +239,12 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - PhotoControllerDelegate
-    func photoDidTake(imageData: NSData) {
-        self.remotePostAttachment(.Photo, fileData: imageData)
+    func photoDidTake(imageData: NSData!) {
+        if imageData != nil {
+            self.remotePostAttachment(.Photo, fileData: imageData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func photoCameraUnauthorized() {
@@ -240,8 +252,12 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - VideoControllerDelagate
-    func videoDidWrite(videoData: NSData) {
-        self.remotePostAttachment(.Video, fileData: videoData)
+    func videoDidWrite(videoData: NSData!) {
+        if videoData != nil {
+            self.remotePostAttachment(.Video, fileData: videoData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func videoCameraUnauthorized() {
@@ -249,8 +265,12 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - AmbientControllerDelegate
-    func audioDidRecord(audioData: NSData) {
-        self.remotePostAttachment(.Audio, fileData: audioData)
+    func audioDidRecord(audioData: NSData!) {
+        if audioData != nil {
+            self.remotePostAttachment(.Audio, fileData: audioData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func audioMicrophoneUnauthorized() {

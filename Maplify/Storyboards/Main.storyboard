@@ -2857,6 +2857,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="UBi-EP-gNq"/>
                                                 </constraints>
                                                 <state key="normal" image="DiscoverShare"/>
+                                                <connections>
+                                                    <action selector="shareTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="wqi-Ru-CDQ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDQ-XZ-vdk">
                                                 <rect key="frame" x="323" y="0.0" width="48" height="46"/>
@@ -4015,7 +4018,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xTv-Tb-zyb" firstAttribute="top" secondItem="laU-YT-GQM" secondAttribute="top" id="Deb-67-o1Q"/>
                             <constraint firstAttribute="trailing" secondItem="xTv-Tb-zyb" secondAttribute="trailing" id="EMi-Vd-cRt"/>

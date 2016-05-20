@@ -54,6 +54,12 @@ class VideoViewController: UIViewController {
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     func setup() {
         self.setupViews()
         self.setupCamera()
@@ -152,7 +158,9 @@ class VideoViewController: UIViewController {
     }
     
     func donePressed() {
-        if self.cameraState == CameraState.Finished {
+        if self.recordProgress == 0 {
+            self.delegate?.videoDidWrite(nil)
+        } else if self.cameraState == CameraState.Finished {
             let url = NSURL(string: self.fileUrl)
             let file = NSData(contentsOfURL: url!)
             self.delegate?.videoDidWrite(file!)
@@ -206,6 +214,6 @@ class VideoViewController: UIViewController {
 }
 
 protocol VideoControllerDelagate {
-    func videoDidWrite(videoData: NSData)
+    func videoDidWrite(videoData: NSData!)
     func videoCameraUnauthorized()
 }

@@ -72,7 +72,7 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
     }
     
     func loadRemoteData() {
-        ApiClient.sharedClient.retrieveNotifications({ [weak self] (response) in
+        ApiClient.sharedClient.retrieveNotifications(true, success: { [weak self] (response) in
             NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
             self?.tableView.ins_endPullToRefresh()
             self?.loadItemsFromDB()

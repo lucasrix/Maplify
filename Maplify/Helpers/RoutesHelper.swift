@@ -111,7 +111,7 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate, selectedStoryIds: [Int]!) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate!, selectedStoryIds: [Int]!) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.storyPointKind = storyPointKind
         storyPointEditDescriptionController.location = location

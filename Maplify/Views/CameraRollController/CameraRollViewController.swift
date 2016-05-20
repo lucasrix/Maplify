@@ -37,6 +37,7 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     var cameraRollType: CameraRollType = CameraRollType.Photo
     var selectedVideoData: NSData! = nil
     var selectedVideoDuration: Double = 0
+    var itemDidSelect: Bool = false
     
     // MARK: - view controller life cycle
     override func loadView() {
@@ -95,7 +96,9 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func donePressed() {
-        if self.cameraRollType == CameraRollType.Photo {
+        if self.itemDidSelect == false {
+            self.delegate?.imageDidSelect(nil)
+        } else if self.cameraRollType == CameraRollType.Photo {
             self.sendImage()
         } else if self.cameraRollType == CameraRollType.Video {
             self.sendVideo()
@@ -162,6 +165,7 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.itemDidSelect = true
         let item = images[indexPath.row] as! PHAsset
         self.changeItem(item)
     }
@@ -310,7 +314,7 @@ private extension CameraRollViewController {
 }
 
 protocol CameraRollDelegate {
-    func imageDidSelect(imageData: NSData)
-    func videoDidSelect(videoData: NSData, duration: Double)
+    func imageDidSelect(imageData: NSData!)
+    func videoDidSelect(videoData: NSData!, duration: Double)
     func cameraRollUnauthorized()
 }

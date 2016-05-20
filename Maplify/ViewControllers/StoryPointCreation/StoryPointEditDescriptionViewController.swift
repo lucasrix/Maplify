@@ -54,7 +54,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     
     func setupViews() {
         self.title = NSLocalizedString("Controller.StoryPointEditDescription.Title", comment: String())
-        self.addRightBarItem(NSLocalizedString("Button.Next", comment: String()))
+        self.addRightBarItem(NSLocalizedString("Button.Post", comment: String()))
         self.updateCharactersCountLabel(0 as Int)
     }
     

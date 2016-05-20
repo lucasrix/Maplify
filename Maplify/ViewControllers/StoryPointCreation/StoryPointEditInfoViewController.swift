@@ -147,55 +147,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.showSelectedStories(self.selectedStories)
     }
     
-    // MARK: - navigation bar item actions
-    override func rightBarButtonItemDidTap() {
-        self.hideKeyboard()
-        
-        if self.placeOrLocationTextField.text?.length > 0 {
-            self.remotePostStoryPoint()
-        } else {
-            self.showMessageAlert(nil, message: NSLocalizedString("Alert.AddPlaceOrLocation", comment: String()), cancel: NSLocalizedString("Button.Ok", comment: String()))
-        }
-    }
-    
-    // MARK: - private
-    func remotePostStoryPoint() {
-        self.showProgressHUD()
-        let locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude, "address": self.placeOrLocationTextField.text!]
-        let kind = self.storyPointKind.rawValue
-        var storyPointDict: [String: AnyObject] = ["caption":self.captionTextField.text!,
-                                                   "kind":kind,
-                                                   "text":self.storyPointDescription,
-                                                   "location":locationDict]
-        if self.storyPointKind != StoryPointKind.Text {
-            storyPointDict["attachment_id"] = self.storyPointAttachmentId
-        }
-        if self.selectedStories.count > 0 {
-            storyPointDict["story_ids"] = self.selectedStories.map({$0.id})
-        }
-        
-        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
-            let realm = try! Realm()
-            try! realm.write {
-                realm.add(response as! StoryPoint, update: true)
-            }
-            
-            ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
-                success: { [weak self] (response) in
-                    StoryManager.saveStories(response as! [Story])
-                    self?.hideProgressHUD()
-                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
-                    self?.navigationController?.popToRootViewControllerAnimated(true)
-                }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                    self?.hideProgressHUD()
-                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                })
-        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-            self?.hideProgressHUD()
-            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-        }
-    }
-    
     func hideKeyboard() {
         self.captionTextField.endEditing(true)
         self.placeOrLocationTextField.endEditing(true)

@@ -80,6 +80,7 @@ struct Controllers {
     static let reportsController = "ReportsViewController"
     static let reportSuccessController = "ReportSuccessViewController"
     static let ourStoryController = "OurStoryViewController"
+    static let mapCaptureController = "MapCaptureController"
 }
 
 struct AppIDs {

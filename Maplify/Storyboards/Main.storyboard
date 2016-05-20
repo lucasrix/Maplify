@@ -334,6 +334,42 @@
             </objects>
             <point key="canvasLocation" x="487.5" y="1228.5"/>
         </scene>
+        <!--Map Capture View Controller-->
+        <scene sceneID="AFp-bh-Iuk">
+            <objects>
+                <viewController storyboardIdentifier="MapCaptureController" id="wjf-eq-gk6" customClass="MapCaptureViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tXD-2q-F12"/>
+                        <viewControllerLayoutGuide type="bottom" id="y8H-jb-fUr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yvD-68-Pvy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e7-mQ-bIz" customClass="InfinitePageControl" customModule="Maplify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="376" width="375" height="291"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="291" id="Rel-NL-6EM"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7e7-mQ-bIz" firstAttribute="leading" secondItem="yvD-68-Pvy" secondAttribute="leading" id="bTE-1q-dyQ"/>
+                            <constraint firstItem="y8H-jb-fUr" firstAttribute="top" secondItem="7e7-mQ-bIz" secondAttribute="bottom" id="jRi-Y8-l9H"/>
+                            <constraint firstAttribute="trailing" secondItem="7e7-mQ-bIz" secondAttribute="trailing" id="zvj-lF-i6P"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="pageControl" destination="7e7-mQ-bIz" id="03p-cA-nVp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mA6-yP-C3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="30.5" y="1904.5"/>
+        </scene>
         <!--Share Story Point View Controller-->
         <scene sceneID="sIj-83-spM">
             <objects>

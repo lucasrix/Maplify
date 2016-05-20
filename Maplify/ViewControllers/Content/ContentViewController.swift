@@ -138,7 +138,6 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-//        self.routesOpenPhotoVideoViewController(location)
         self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
     }
     

@@ -282,7 +282,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     override func navigationBarColor() -> UIColor {
-        return UIColor.grapePurple()
+        return UIColor.darkGreyBlue()
     }
     
     // MARK: - UIScrollViewDelegate

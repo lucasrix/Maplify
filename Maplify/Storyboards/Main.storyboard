@@ -2577,7 +2577,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-vS-wU9">
                                         <rect key="frame" x="8" y="640" width="359" height="17"/>
-                                        <color key="backgroundColor" red="0.31372549019607843" green="0.070588235294117646" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="zdc-4i-bGa"/>
                                         </constraints>

@@ -88,7 +88,7 @@ class StoryDetailViewController: ViewController, UIPageViewControllerDataSource,
     }
     
     override func navigationBarColor() -> UIColor {
-        return UIColor.grapePurple()
+        return UIColor.darkGreyBlue()
     }
     
     // MARK: - UIPageViewControllerDataSource

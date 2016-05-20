@@ -24,12 +24,23 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     }
     
     override func placeItem(item: MCMapItem) {
+        self.placeItem(item, temporary: false)
+    }
+    
+    func placeItem(item: MCMapItem, temporary: Bool) {
         let position = CLLocationCoordinate2DMake(item.location.latitude, item.location.longitude)
         let marker = GMSMarker(position: position)
         marker.title = item.title
         marker.map = self.mapView as? GMSMapView
         marker.icon = item.image
         marker.opacity = Float(item.opacity)
+        marker.userData = temporary
+        
+        item.data = marker
+    }
+    
+    override func removeItem(item: MCMapItem) {
+        (item.data as! GMSMarker).map = nil
     }
     
     override func removeAllItems() {

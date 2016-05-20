@@ -41,6 +41,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var publicTitle = String()
     var sharedType = String()
     var sharedId: Int = 0
+    var previewPlaceItem: MCMapItem! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -327,12 +328,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - MCMapServiceDelegate
     func didTapMapView(mapView: UIView, itemObject: AnyObject) {
-        let clLocation = (itemObject as! GMSMarker).position
-        let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
-        let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
-        
-        self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
-        self.collectionView.hidden = false
+        if ((itemObject as! GMSMarker).userData as! Bool) == false {
+            let clLocation = (itemObject as! GMSMarker).position
+            let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
+            let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
+            
+            self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
+            self.collectionView.hidden = false
+        }
     }
     
     func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
@@ -346,7 +349,17 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
             let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
-            self.addStoryPointButtonTapped(location: coordinate)
+            if self.previewPlaceItem != nil {
+                self.googleMapService.removeItem(self.previewPlaceItem)
+                self.previewPlaceItem = nil
+            }
+            let placeItem = MCMapItem()
+            placeItem.location = coordinate
+            placeItem.image = UIImage(named: MapPinImages.tapped)
+            
+            self.previewPlaceItem = placeItem
+            self.googleMapService.placeItem(placeItem, temporary: true)
+//            self.addStoryPointButtonTapped(location: coordinate)
         }
     }
     

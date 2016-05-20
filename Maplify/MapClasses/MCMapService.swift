@@ -11,6 +11,7 @@ protocol MCMapServiceProtocol {
     func addItemsGroup(itemsGroup: MCMapItemsGroup)
     func placeItem(item: MCMapItem)
     func removeAllItems()
+    func removeItem(item: MCMapItem)
     func setMapType<T>(mapType: T)
     func moveTo(region: MCMapRegion, zoom: Float)
     func moveToDefaultRegion()
@@ -50,4 +51,5 @@ class MCMapService: NSObject, MCMapServiceProtocol {
     func setMapType<T>(mapType: T) {}
     func moveTo(region: MCMapRegion, zoom: Float) {}
     func moveToDefaultRegion() {}
+    func removeItem(item: MCMapItem) {}
 }

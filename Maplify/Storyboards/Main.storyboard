@@ -337,7 +337,7 @@
         <!--Map Capture View Controller-->
         <scene sceneID="AFp-bh-Iuk">
             <objects>
-                <viewController storyboardIdentifier="MapCaptureController" id="wjf-eq-gk6" customClass="MapCaptureViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapCaptureController" automaticallyAdjustsScrollViewInsets="NO" id="wjf-eq-gk6" customClass="MapCaptureViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tXD-2q-F12"/>
                         <viewControllerLayoutGuide type="bottom" id="y8H-jb-fUr"/>

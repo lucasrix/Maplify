@@ -25,6 +25,8 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     var updatedStoryIds: updateStoryClosure! = nil
     var selectedIndexPathes: [NSIndexPath]! = nil
     var selectedIds: [Int]! = nil
+    var storyPointCreationSupport: Bool = false
+    var pickedLocation: MCMapCoordinate! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -50,8 +52,16 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     // MARK: - setup
     func setup() {
         self.setupTableView()
+        self.setupNavigationBar()
         self.setupViews()
         self.setupPlaceholderView()
+    }
+    
+    func setupNavigationBar() {
+        if self.storyPointCreationSupport {
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.tableView.contentInset = UIEdgeInsetsZero
+        }
     }
     
     func setupTableView() {
@@ -102,6 +112,11 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    override func backTapped() {
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        super.backTapped()
     }
     
     func loadRemoteData() {
@@ -189,10 +204,13 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     // MARK: - actions
     override func rightBarButtonItemDidTap() {
-        if self.storyActiveModel.selectedIndexPathes().count > 0 {
-            let selectedStories = self.storyActiveModel.selectedModels().map({$0.model as! Story})
-            self.updatedStoryIds(selectedStories)
+        let selectedStories: [Story] = self.storyActiveModel.selectedModels().map({$0.model as! Story})
+        if (self.storyActiveModel.selectedIndexPathes().count > 0) && (self.storyPointCreationSupport == false) {
+            self.updatedStoryIds?(selectedStories)
             self.navigationController?.popViewControllerAnimated(true)
+        } else if (self.storyActiveModel.selectedIndexPathes().count > 0) && (self.storyPointCreationSupport == true) {
+            let selectedIds = selectedStories.map({$0.id})
+            self.routesOpenPhotoVideoViewController(self.pickedLocation, selectedStoryIds: selectedIds)
         }
     }
     

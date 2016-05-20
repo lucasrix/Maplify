@@ -103,7 +103,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
             placeholderImage = nil
         } else {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
@@ -173,6 +173,10 @@ class DiscoverStoryPointCell: CSTableViewCell {
         })
     }
     
+    @IBAction func shareTapped(sender: UIButton) {
+        self.delegate?.shareStoryPointDidTap(self.storyPointId)
+    }
+    
     // MARK: - gestures
     func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
         let item = self.cellData.model as! DiscoverItem
@@ -240,4 +244,5 @@ protocol DiscoverStoryPointCellDelegate {
     func editContentDidTap(storyPointId: Int)
     func profileImageTapped(userId: Int)
     func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
+    func shareStoryPointDidTap(storyPointId: Int)
 }

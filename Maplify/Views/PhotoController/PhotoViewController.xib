@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -11,8 +10,10 @@
             <connections>
                 <outlet property="cameraView" destination="3ec-Vw-QBk" id="rfj-RH-p1k"/>
                 <outlet property="deleteButton" destination="8CE-wv-kSW" id="RvG-Pf-WDJ"/>
+                <outlet property="deleteButtonTopConstraint" destination="QCJ-da-j0e" id="MZi-R5-Ldm"/>
                 <outlet property="flashButton" destination="RRN-bg-MP5" id="Llc-G6-oPE"/>
                 <outlet property="previewImageView" destination="INr-Th-Oyf" id="ek9-Fj-DWd"/>
+                <outlet property="previewViewHeightConstraint" destination="382-Pz-QGn" id="Lqx-Of-O4c"/>
                 <outlet property="shotButton" destination="RI2-Zq-sNV" id="fVt-Aq-zb3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="bB9-UL-90e"/>
             </connections>
@@ -26,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="3ec-Vw-QBk" secondAttribute="height" multiplier="125:125" id="HiP-Oq-j1M"/>
+                        <constraint firstAttribute="height" constant="375" id="382-Pz-QGn"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="INr-Th-Oyf">
@@ -104,7 +105,6 @@
                 <constraint firstAttribute="bottom" secondItem="akh-Bh-PsO" secondAttribute="bottom" id="2Ud-Yp-IfL"/>
                 <constraint firstAttribute="trailing" secondItem="INr-Th-Oyf" secondAttribute="trailing" id="3Hg-vC-wZV"/>
                 <constraint firstItem="3ec-Vw-QBk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9uu-Ay-YwF"/>
-                <constraint firstItem="INr-Th-Oyf" firstAttribute="height" secondItem="3ec-Vw-QBk" secondAttribute="height" id="VpG-kG-DU4"/>
                 <constraint firstItem="INr-Th-Oyf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WhM-BJ-t26"/>
                 <constraint firstAttribute="trailing" secondItem="akh-Bh-PsO" secondAttribute="trailing" id="XLM-80-4Jg"/>
                 <constraint firstItem="akh-Bh-PsO" firstAttribute="top" secondItem="3ec-Vw-QBk" secondAttribute="bottom" id="hsI-I5-j2t"/>
@@ -112,6 +112,7 @@
                 <constraint firstItem="INr-Th-Oyf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ky1-7z-G19"/>
                 <constraint firstItem="akh-Bh-PsO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="l1R-xD-lic"/>
                 <constraint firstAttribute="trailing" secondItem="3ec-Vw-QBk" secondAttribute="trailing" id="yFg-kp-ehJ"/>
+                <constraint firstItem="INr-Th-Oyf" firstAttribute="height" secondItem="3ec-Vw-QBk" secondAttribute="height" id="ycA-bd-qpO"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="13.5" y="100.5"/>

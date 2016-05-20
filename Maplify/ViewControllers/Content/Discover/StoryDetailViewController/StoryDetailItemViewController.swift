@@ -109,7 +109,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
             attachmentUrl = nil
         } else {
             self.attachmentHeightConstraint.constant = UIScreen().screenWidth()
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge)
+            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
@@ -193,6 +193,10 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         } else {
             self.likeStoryPoint()
         }
+    }
+    
+    @IBAction func shareTapped(sender: UIButton) {
+        self.shareStoryPoint()
     }
     
     // MARK: - private
@@ -282,7 +286,7 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
     }
     
     override func navigationBarColor() -> UIColor {
-        return UIColor.grapePurple()
+        return UIColor.darkGreyBlue()
     }
     
     // MARK: - UIScrollViewDelegate

@@ -9,6 +9,7 @@
 import UIKit
 import TTTAttributedLabel
 import SDWebImage
+import CoreLocation
 
 let kDefaultContentHeight: CGFloat = 360
 let kDefaultContentWithButtonHeight: CGFloat = 420
@@ -138,7 +139,15 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     func setupBackgroundMap() {
         let location = self.user.profile.location
-        let attachmentUrl = StaticMap.staticMapUrl(location.latitude, longitude: location.longitude, sizeWidth: StaticMapSize.widthLarge)
+        
+        var attachmentUrl: NSURL! = nil
+        
+        if location != nil {
+            attachmentUrl = StaticMap.staticMapUrl(location.latitude, longitude: location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
+        } else {
+            let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
+            attachmentUrl = StaticMap.staticMapUrl(defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: true)
+        }
         
         self.mapImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: nil) { [weak self] (image, error, cacheType, url) in
             if error == nil {

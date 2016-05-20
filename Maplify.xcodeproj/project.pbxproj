@@ -36,6 +36,7 @@
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
+		850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */; };
 		853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
 		853A41B11CDA0F4C00922D94 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
 		853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */; };
@@ -166,6 +167,12 @@
 		CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
 		CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */; };
 		CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
+		CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
+		CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
+		CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
+		CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
+		CDC26E551CEDD3BE00D3EDEE /* AmbientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */; };
+		CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -188,6 +195,7 @@
 		F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */; };
 		F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */; };
 		F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0419C211CA6147600AB83C0 /* Assets.xcassets */; };
+		F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +233,7 @@
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupGetCityViewController.swift; sourceTree = "<group>"; };
 		853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		853A41B01CDA0F4C00922D94 /* PasswordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 		853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +361,12 @@
 		CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCollectionDataSource.swift; sourceTree = "<group>"; };
 		CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		CDC26E471CE9D8DD00D3EDEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientViewController.swift; sourceTree = "<group>"; };
+		CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmbientViewController.xib; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -372,6 +387,7 @@
 		F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryQuickCreationCell.swift; sourceTree = "<group>"; };
 		F0419C211CA6147600AB83C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +416,7 @@
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
+				CDC26E531CEDD39A00D3EDEE /* AmbientController */,
 				A5C584C41C9195710036064A /* InputTextView */,
 				A5728A301C89C18000C6DA7E /* DoneButton */,
 				1F2E33781C80651500D3B446 /* InputTextField */,
@@ -582,6 +599,7 @@
 				A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */,
 				853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */,
 				853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */,
+				850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -647,6 +665,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDC26E431CE9D25500D3EDEE /* Notifications */,
 				CD153CB61CE4901E00F32BDE /* FollowingList */,
 				CDF6D8981CD2846C001387EC /* Share */,
 				85E915961CBD3DB00041182F /* Profile */,
@@ -731,6 +750,7 @@
 				8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */,
 				CDF6D8961CD26007001387EC /* ShareController.swift */,
 				855567A31CDCBA180096A561 /* NSURL.swift */,
+				F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -792,6 +812,7 @@
 		A5A0E98D1C86FA290094FC04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CDC26E461CE9D8CE00D3EDEE /* Notification */,
 				CD340CF81CBD1FE000461015 /* DiscoverList */,
 				1FC781031CA151DB00C50C23 /* Attachment */,
 				1FC781001CA14C1A00C50C23 /* Location */,
@@ -1012,6 +1033,33 @@
 			path = CollectionViewDetailItem;
 			sourceTree = "<group>";
 		};
+		CDC26E431CE9D25500D3EDEE /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */,
+				CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		CDC26E461CE9D8CE00D3EDEE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E471CE9D8DD00D3EDEE /* Notification.swift */,
+				CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		CDC26E531CEDD39A00D3EDEE /* AmbientController */ = {
+			isa = PBXGroup;
+			children = (
+				CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */,
+				CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */,
+			);
+			path = AmbientController;
+			sourceTree = "<group>";
+		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1156,6 +1204,7 @@
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
+				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
@@ -1260,6 +1309,7 @@
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
 				CD0BB2B11CB2912000E3E66B /* DiscoverTableDataSource.swift in Sources */,
+				CDC26E551CEDD3BE00D3EDEE /* AmbientViewController.swift in Sources */,
 				85E9159F1CBE93220041182F /* PublicStatsView.swift in Sources */,
 				85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,
@@ -1297,6 +1347,7 @@
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
+				850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
@@ -1305,6 +1356,8 @@
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
+				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
+				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
@@ -1345,6 +1398,7 @@
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
+				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
@@ -1360,11 +1414,13 @@
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
+				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,
 				CD451B641CAC2C8B00EBCC7A /* SquareImage.swift in Sources */,
+				CDC26E4C1CE9DF6B00D3EDEE /* NotificationsManager.swift in Sources */,
 				A5D7AAFB1C9C438E00A94C4F /* SessionManager.swift in Sources */,
 				8595DF321CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift in Sources */,
 				CD45672B1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift in Sources */,

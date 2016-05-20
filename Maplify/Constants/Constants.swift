@@ -32,6 +32,7 @@ struct Network {
     static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
     static let routingPrefix = "maplify:"
+    static let sharePrefix = "//share?"
 }
 
 struct Controllers {
@@ -74,6 +75,8 @@ struct Controllers {
     static let contentFollowingViewController = "ContentFollowingViewController"
     static let followersController = "FollowersViewController"
     static let followingController = "FollowingViewController"
+    static let signupGetCityController = "SignupGetCityController"
+    static let notificationsController = "NotificationsViewController"
 }
 
 struct AppIDs {
@@ -82,6 +85,13 @@ struct AppIDs {
 
 struct Links {
     static let landingLink = "http://www.maplifyapp.com"
+}
+
+struct SharingKeys {
+    static let typeTitle = "type"
+    static let typeStoryPoint = "StoryPoint"
+    static let typeStory = "Story"
+    static let typeId = "id"
 }
 
 struct DefaultLocation {
@@ -96,4 +106,9 @@ struct StaticMapSize {
 
 struct AnimationDurations {
     static let pushControllerDefault: CFTimeInterval = 0.35
+}
+
+struct DateFormats {
+    static let defaultFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    static let notificationFormat = "dd MMM yyyy"
 }

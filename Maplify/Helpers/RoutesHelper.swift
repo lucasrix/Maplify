@@ -54,6 +54,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.resetPasswordViewController)
     }
     
+    func routesOpenNotificationsController() {
+        self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.notificationsController)
+    }
+    
     func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         storyCreateController.createStoryClosure = createStoryClosure
@@ -107,11 +111,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate!, selectedStoryIds: [Int]!) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.storyPointKind = storyPointKind
         storyPointEditDescriptionController.location = location
         storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
+        storyPointEditDescriptionController.selectedStoryIds = selectedStoryIds
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
     }
     
@@ -130,16 +135,19 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointAddAudioViewController, animated: true)
     }
     
-    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate) {
+    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate, selectedStoryIds: [Int]!) {
         let storyPointAddPhotoVideoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddPhotoVideoViewController) as! StoryPointAddPhotoVideoViewController
         storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
+        storyPointAddPhotoVideoViewController.selectedStoryIds = selectedStoryIds
         self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
     }
 
-    func routesOpenAddToStoryController(selectedIds: [Int], updateStoryHandle: updateStoryClosure) {
+    func routesOpenAddToStoryController(selectedIds: [Int], storypointCreationSupport: Bool, pickedLocation: MCMapCoordinate! = nil, updateStoryHandle: updateStoryClosure!) {
         let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
         addStoryViewController.updatedStoryIds = updateStoryHandle
         addStoryViewController.selectedIds = selectedIds
+        addStoryViewController.storyPointCreationSupport = storypointCreationSupport
+        addStoryViewController.pickedLocation = pickedLocation
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
@@ -177,11 +185,18 @@ extension UIViewController {
         self.navigationController?.pushViewController(shareStoryViewController, animated: true)
     }
     
+    func routesOpenSignupGetCityViewController(user: User) {
+        let signupGetCityViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.signupGetCityController) as! SignupGetCityViewController
+        signupGetCityViewController.user = user
+        self.navigationController?.pushViewController(signupGetCityViewController, animated: true)
+    }
+    
     // MARK: - push from left
-    func routesPushFromLeftCaptureViewController(story: Story!) {
+    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String, contentType: ContentType) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.publicStoryPointsSupport = true
-        captureViewController.publicStory = story
+        captureViewController.contentType = contentType
+        captureViewController.publicStoryPoints = storyPoints
+        captureViewController.publicTitle = title
         
         let transition = CATransition()
         transition.duration = AnimationDurations.pushControllerDefault
@@ -191,6 +206,16 @@ extension UIViewController {
         transition.timingFunction = timingFunction
         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
         self.navigationController?.pushViewController(captureViewController, animated: false)
+    }
+    
+    func routesOpenSharedContentController(sharedType: String, sharedId: Int) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.contentType = .Share
+        captureViewController.sharedType = sharedType
+        captureViewController.sharedId = sharedId
+        let navigationController = NavigationViewController(rootViewController: captureViewController)
+        let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+        window.rootViewController = navigationController
     }
 
     func routesOpenChangePasswordViewController() {

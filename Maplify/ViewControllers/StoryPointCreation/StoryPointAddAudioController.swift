@@ -100,7 +100,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
+            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: nil)
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -144,8 +144,6 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         if success {
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
             self.remotePostAttachment(audioData!)
-        } else {
-            // TODO:
         }
     }
     

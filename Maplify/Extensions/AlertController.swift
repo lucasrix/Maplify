@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum ActionSheetButtonIndexes: Int {
+    case Destructive = 0
+}
+
+let kAttributedMessageKey = "attributedMessage"
+
 typealias buttonClosure = (buttonIndex: Int) -> ()
 
 extension UIViewController {
@@ -49,40 +55,54 @@ extension UIViewController {
             self.showController(title, message: message, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
     }
     
+    func showActionSheet(attributedMessage: NSMutableAttributedString!, cancel: String, destructive: String!,
+                         buttons: [String], handle: buttonClosure) {
+        self.showController(nil, message: nil, attributedMessage: attributedMessage, cancel: cancel, destructive: destructive, buttons: buttons, style: .ActionSheet, handle: handle)
+    }
+    
     private func showController(title: String!, message: String!, cancel: String!, destructive: String!,
         buttons: [String]!, style: UIAlertControllerStyle, handle: buttonClosure) {
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        self.showController(title, message: message, attributedMessage: nil, cancel: cancel, destructive: destructive, buttons: buttons, style: style, handle: handle)
+    }
+    
+    private func showController(title: String!, message: String!, attributedMessage: NSMutableAttributedString!, cancel: String!, destructive: String!,
+                                buttons: [String]!, style: UIAlertControllerStyle, handle: buttonClosure) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         
-            if buttons != nil {
-                for title in buttons {
-                    let alertAction = UIAlertAction(title: title, style: .Default,
-                                                    handler: { (action: UIAlertAction) -> () in
-                                                        let index = buttons.indexOf(action.title!)
-                                                        handle(buttonIndex: index!)
-                    })
-                    alertController.addAction(alertAction)
-                }
-            }
-        
-            if destructive?.length > 0 {
-                let alertAction = UIAlertAction(title: destructive, style: .Destructive,
-                    handler: { (action: UIAlertAction) -> () in
-                        handle(buttonIndex: buttons.count)
+        if buttons != nil {
+            for title in buttons {
+                let alertAction = UIAlertAction(title: title, style: .Default,
+                                                handler: { (action: UIAlertAction) -> () in
+                                                    let index = buttons.indexOf(action.title!)
+                                                    handle(buttonIndex: index!)
                 })
                 alertController.addAction(alertAction)
             }
-            
-            if cancel?.length > 0 {
-                let alertAction = UIAlertAction(title: cancel, style: .Cancel,
-                    handler: { (action: UIAlertAction) -> () in
-                        let buttonsCount = (buttons != nil) ? buttons.count : 0
-                        let index = (style == .Alert || destructive == nil) ? buttonsCount : buttonsCount + 1
-                        handle(buttonIndex: index)
-                })
-                alertController.addAction(alertAction)
-            }
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        if destructive?.length > 0 {
+            let alertAction = UIAlertAction(title: destructive, style: .Destructive,
+                                            handler: { (action: UIAlertAction) -> () in
+                                                handle(buttonIndex: buttons.count)
+            })
+            alertController.addAction(alertAction)
+        }
+        
+        if cancel?.length > 0 {
+            let alertAction = UIAlertAction(title: cancel, style: .Cancel,
+                                            handler: { (action: UIAlertAction) -> () in
+                                                let buttonsCount = (buttons != nil) ? buttons.count : 0
+                                                let index = (style == .Alert || destructive == nil) ? buttonsCount : buttonsCount + 1
+                                                handle(buttonIndex: index)
+            })
+            alertController.addAction(alertAction)
+        }
+        
+        if attributedMessage?.string.length > 0 {
+            alertController.setValue(attributedMessage, forKey: kAttributedMessageKey)
+        }
+     
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

@@ -29,12 +29,12 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setupNavigationBar()
         self.setupSelectedButton()
     }
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.setupTabButtons()
         self.setupControllers()
     }
@@ -44,8 +44,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func setupControllers() {        
-        let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
-        (captureController as! CaptureViewController).addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
+        let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
             self?.routesShowPopupStoryPointCreationController(self!, location: location)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
@@ -138,11 +138,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.routesOpenPhotoVideoViewController(location)
+        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil)
     }
     
     // MARK: - MenuDelegate
@@ -165,5 +165,9 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
                 RootViewController.navigationController().routesSetLandingController()
             }
         )
+    }
+    
+    func openNotifications() {
+        self.routesOpenNotificationsController()
     }
 }

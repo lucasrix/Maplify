@@ -12,6 +12,8 @@ import CoreMedia
 import AVFoundation
 
 let nibNamePhotoControllerView = "PhotoViewController"
+let kPhotoViewHeightIPhone3_5: CGFloat = 240
+let kPhotoDeleteButtonTopMarginIPhone3_5: CGFloat = 0
 let kDeleteButtonHighlitedStateAlpha: CGFloat = 0.5
 
 class PhotoViewController: UIViewController {
@@ -20,6 +22,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var previewViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonTopConstraint: NSLayoutConstraint!
     
     var simpleCamera: LLSimpleCamera! = nil
     var delegate: PhotoControllerDelegate! = nil
@@ -40,15 +44,31 @@ class PhotoViewController: UIViewController {
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     // MARK: - setup
     func setup() {
+        self.setupViews()
         self.setupCamera()
         self.setupBottomButtons()
     }
     
+    func setupViews() {
+        if UIScreen().isIPhoneScreenSize3_5() {
+            self.previewViewHeightConstraint.constant = kPhotoViewHeightIPhone3_5
+            self.deleteButtonTopConstraint.constant = kPhotoDeleteButtonTopMarginIPhone3_5
+        } else {
+            self.previewViewHeightConstraint.constant = UIScreen().screenWidth()
+        }
+    }
+    
     func setupCamera() {
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { [weak self] (alowedAccess) -> () in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> () in
                 if alowedAccess {
                     self?.configureCamera()
                 } else {
@@ -110,7 +130,7 @@ class PhotoViewController: UIViewController {
     
     // MARK: - private
     func captureAction() {
-        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> Void in
+        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> () in
             if let capturedImage = image {
                 let correctOrientedImage = capturedImage.correctlyOrientedImage()
                 self?.toggleCameraMode()
@@ -146,11 +166,13 @@ class PhotoViewController: UIViewController {
         if !self.previewImageView.hidden {
             let imageData = UIImagePNGRepresentation(self.previewImageView.image!)
             self.delegate?.photoDidTake(imageData!)
+        } else {
+            self.delegate?.photoDidTake(nil)
         }
     }
 }
 
 protocol PhotoControllerDelegate {
-    func photoDidTake(imageData: NSData)
+    func photoDidTake(imageData: NSData!)
     func photoCameraUnauthorized()
 }

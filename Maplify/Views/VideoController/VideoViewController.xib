@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -11,10 +10,12 @@
             <connections>
                 <outlet property="cameraView" destination="g2c-mM-fBp" id="sex-Dd-Swd"/>
                 <outlet property="deleteButton" destination="3qp-Qd-n07" id="msr-9g-lPu"/>
+                <outlet property="deleteButtonTopConstraint" destination="gsQ-A1-QFq" id="26B-pj-6zU"/>
                 <outlet property="flashButton" destination="CMW-CI-SJr" id="NC5-BA-Rsj"/>
                 <outlet property="progressBarHeightConstraint" destination="gch-dT-XXp" id="VdM-BX-Tjf"/>
                 <outlet property="progressView" destination="y5X-2d-jYX" id="UrA-i7-9NF"/>
                 <outlet property="recordButton" destination="IwI-kH-0VI" id="5dc-hA-6bs"/>
+                <outlet property="videoViewHeightConstraint" destination="Wli-ip-bZx" id="yX2-W1-8vg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Eet-qb-Qp3"/>
             </connections>
         </placeholder>
@@ -27,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="g2c-mM-fBp" secondAttribute="height" multiplier="75:75" id="Y7J-3U-jzY"/>
+                        <constraint firstAttribute="height" constant="375" id="Wli-ip-bZx"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0Q-px-nQi" userLabel="Bottom View">

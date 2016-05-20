@@ -165,11 +165,16 @@ class ApiClient {
         self.getRequest("profiles/\(profileId)", params: nil, manager: ProfileManager(), success: success, failure: failure)
     }
     
-    func updateProfile(profile: Profile, photo: NSData!, success: successClosure!, failure: failureClosure!) {
-        let params = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName, "mimeType": "image/png", "fileName": "photo.png"]
+    func updateProfile(profile: Profile, location: Location! ,photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        var params: [String: AnyObject] = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName, "mimeType": "image/png", "fileName": "photo.png"]
         var data: [String: AnyObject]! = nil
         if (photo != nil) {
             data = ["photo": photo]
+        }
+        
+        if (location != nil) {
+            let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address]
+            params["location"] = locationDict
         }
         self.putRequest("profile", params: params, data: data,  manager: ProfileManager(), success: success, failure: failure)
     }
@@ -198,6 +203,17 @@ class ApiClient {
         self.getRequest("user/story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
     }
     
+    func getStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("story_points/\(storyPointId)", params: nil, manager: StoryPointManager(), success: success, failure: failure)
+    }
+    
+    func getAllStoryPoints(success: successClosure!, failure: failureClosure!) {
+        let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
+                                           "location[latitude]": 0,
+                                           "location[longitude]": 0]
+        self.getRequest("story_points", params: params, manager: ArrayStoryPointManager(), success: success, failure: failure)
+    }
+    
     func getUserStoryPoints(userId: Int, success: successClosure!, failure: failureClosure!) {
         let params: [String: AnyObject] = ["radius": kDiscoverSearchingRadius,
                                            "location[latitude]": 0,
@@ -220,6 +236,10 @@ class ApiClient {
     
     func deleteStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
         self.deleteRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
+    }
+    
+    func getStory(storyId: Int, success: successClosure!, failure: failureClosure!) {
+        self.getRequest("stories/\(storyId)", params: nil, manager: StoryManager(), success: success, failure: failure)
     }
 
     func signOut(success: successClosure!, failure: failureClosure!) {
@@ -299,6 +319,11 @@ class ApiClient {
     
     func retrieveFollowingsList(success: successClosure!, failure: failureClosure!) {
         self.getRequest("user/followed", params: nil, manager: UserListManager(), success: success, failure: failure)
+    }
+    
+    func retrieveNotifications(makeRead: Bool, success: successClosure!, failure: failureClosure!) {
+        let params = ["make_read": String(makeRead)]
+        self.getRequest("notifications", params: params, manager: NotificationsManager(), success: success, failure: failure)
     }
 }
 

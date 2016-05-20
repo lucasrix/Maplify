@@ -69,7 +69,7 @@ class FollowersViewController: ViewController, FollowingCellDelegate {
     func followUser(userId: Int, completion: ((success: Bool) -> ())!) {
         let user = SessionManager.findUser(userId)
         if user.followed {
-            self.unfollowUserRemote(userId, completion: completion)
+            self.showUnfollowAlert(userId, completion: completion)
         } else {
             self.followUserRemote(userId, completion: completion)
         }
@@ -99,6 +99,14 @@ class FollowersViewController: ViewController, FollowingCellDelegate {
         }) { [weak self] (statusCode, errors, localDescription, messages) in
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             completion(success: false)
+        }
+    }
+    
+    func showUnfollowAlert(userId: Int, completion: ((success: Bool) -> ())) {
+        self.askForUnfollow(userId) { [weak self] (selectedButtonIndex) in
+            if selectedButtonIndex == ActionSheetButtonIndexes.Destructive.rawValue {
+                self?.unfollowUserRemote(userId, completion: completion)
+            }
         }
     }
     

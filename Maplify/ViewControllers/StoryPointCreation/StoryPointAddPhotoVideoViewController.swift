@@ -11,14 +11,16 @@ import UIKit
 
 let kVideoDurationSecondsMax: Double = 20
 
-class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate, VideoControllerDelagate {
+class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate, PhotoControllerDelegate, VideoControllerDelagate, AmbientControllerDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var galleryButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var micButton: UIButton!
     
     var pickedLocation: MCMapCoordinate! = nil
     var currentChildController: UIViewController! = nil
+    var selectedStoryIds: [Int]! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -43,6 +45,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         self.setupButton(self.galleryButton, imageNameHighlited: MediaButtons.galleryHighlited)
         self.setupButton(self.photoButton, imageNameHighlited: MediaButtons.photoHighlited)
         self.setupButton(self.videoButton, imageNameHighlited: MediaButtons.videoHighlited)
+        self.setupButton(self.micButton, imageNameHighlited: MediaButtons.micHighlited)
     }
     
     func setupButton(button: UIButton, imageNameHighlited: String) {
@@ -71,12 +74,9 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
             (self.currentChildController as! PhotoViewController).donePressed()
         } else if self.currentChildController is VideoViewController {
             (self.currentChildController as! VideoViewController).donePressed()
+        } else if self.currentChildController is AmbientViewController {
+            (self.currentChildController as! AmbientViewController).donePressed()
         }
-    }
-    
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
     }
     
     // MARK: - actions
@@ -104,21 +104,31 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         self.showController(videoViewController)
     }
     
+    @IBAction func micTapped(sender: UIButton) {
+        self.updateControllerTitle(NSLocalizedString("Controller.Ambient.Title", comment: String()))
+        self.selectButton(sender)
+        let ambientViewController = AmbientViewController()
+        ambientViewController.delegate = self
+        self.showController(ambientViewController)
+    }
+    
     // MARK: - remote
     func remotePostAttachment(storyPointKind: StoryPointKind, fileData: NSData) {
         self.showProgressHUD()
         var params: [String: AnyObject]! = nil
-        if storyPointKind == StoryPointKind.Photo {
+        if storyPointKind == .Photo {
                 params = ["mimeType": "image/png", "fileName": "photo.png"]
-        } else if storyPointKind == StoryPointKind.Video {
+        } else if storyPointKind == .Video {
             params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
+        } else if storyPointKind == .Audio {
+            params = ["mimeType": "audio/m4a", "fileName": "audio.m4a"]
         }
         
         ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
             
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!)
+            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds)
             
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             
@@ -140,6 +150,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         self.galleryButton.selected = false
         self.photoButton.selected = false
         self.videoButton.selected = false
+        self.micButton.selected = false
         button.selected = true
     }
     
@@ -181,16 +192,38 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
         }
     }
     
+    private func showAudioPermissionsError() {
+        let title = NSLocalizedString("Alert.Audio.Permissions.Title", comment: String()).capitalizedString
+        let message = NSLocalizedString("Alert.Audio.Permissions.Message", comment: String()).capitalizedString
+        let cancel = NSLocalizedString("Button.Cancel", comment: String())
+        let buttonOpenSettingsTitle = NSLocalizedString("Button.OpenSettings", comment: String()).capitalizedString
+        
+        self.showAlert(title, message: message, cancel: cancel, buttons: [buttonOpenSettingsTitle]) { [weak self] (buttonIndex) in
+            if buttonIndex == 0 {
+                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
+            }
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    func postTextStoryPoint() {
+        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds)
+    }
+    
     // MARK: - CameraRollDelegate
-    func imageDidSelect(imageData: NSData) {
-        self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
+    func imageDidSelect(imageData: NSData!) {
+        if imageData != nil {
+            self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func cameraRollUnauthorized() {
         self.showGalleryPermissionsError()
     }
     
-    func videoDidSelect(videoData: NSData, duration: Double) {
+    func videoDidSelect(videoData: NSData!, duration: Double) {
         if duration < kVideoDurationSecondsMax {
             self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
         } else {
@@ -206,8 +239,12 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - PhotoControllerDelegate
-    func photoDidTake(imageData: NSData) {
-        self.remotePostAttachment(StoryPointKind.Photo, fileData: imageData)
+    func photoDidTake(imageData: NSData!) {
+        if imageData != nil {
+            self.remotePostAttachment(.Photo, fileData: imageData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func photoCameraUnauthorized() {
@@ -215,12 +252,29 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     // MARK: - VideoControllerDelagate
-    func videoDidWrite(videoData: NSData) {
-        self.remotePostAttachment(StoryPointKind.Video, fileData: videoData)
+    func videoDidWrite(videoData: NSData!) {
+        if videoData != nil {
+            self.remotePostAttachment(.Video, fileData: videoData)
+        } else {
+            self.postTextStoryPoint()
+        }
     }
     
     func videoCameraUnauthorized() {
         self.showCameraPermissionsError()
+    }
+    
+    // MARK: - AmbientControllerDelegate
+    func audioDidRecord(audioData: NSData!) {
+        if audioData != nil {
+            self.remotePostAttachment(.Audio, fileData: audioData)
+        } else {
+            self.postTextStoryPoint()
+        }
+    }
+    
+    func audioMicrophoneUnauthorized() {
+        self.showAudioPermissionsError()
     }
     
     // MARK: - ErrorHandlingProtocol

@@ -195,6 +195,10 @@ class StoryDetailItemViewController: ViewController, UIScrollViewDelegate {
         }
     }
     
+    @IBAction func shareTapped(sender: UIButton) {
+        self.shareStoryPoint()
+    }
+    
     // MARK: - private
     func deleteStoryPoint() {
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())

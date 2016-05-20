@@ -321,8 +321,9 @@ class ApiClient {
         self.getRequest("user/followed", params: nil, manager: UserListManager(), success: success, failure: failure)
     }
     
-    func retrieveNotifications(success: successClosure!, failure: failureClosure!) {
-        self.getRequest("notifications", params: nil, manager: NotificationsManager(), success: success, failure: failure)
+    func retrieveNotifications(makeRead: Bool, success: successClosure!, failure: failureClosure!) {
+        let params = ["make_read": String(makeRead)]
+        self.getRequest("notifications", params: params, manager: NotificationsManager(), success: success, failure: failure)
     }
 }
 

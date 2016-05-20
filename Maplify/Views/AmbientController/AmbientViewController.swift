@@ -115,7 +115,9 @@ class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecord
     func audioRecordDidFinishRecording(success: Bool, filePath: String) {
         if success {
             let audioData = NSFileManager.defaultManager().contentsAtPath(filePath)
-            self.delegate?.audioDidRecord(audioData!)
+            self.delegate?.audioDidRecord(audioData)
+        } else {
+            self.delegate?.audioDidRecord(nil)
         }
     }
     
@@ -151,6 +153,6 @@ class AmbientViewController: UIViewController, EZMicrophoneDelegate, AudioRecord
 }
 
 protocol AmbientControllerDelegate {
-    func audioDidRecord(audioData: NSData)
+    func audioDidRecord(audioData: NSData!)
     func audioMicrophoneUnauthorized()
 }

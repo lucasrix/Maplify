@@ -69,7 +69,7 @@ class NotificationsTableViewCell: CSTableViewCell {
         if notification.unread {
             self.unreadColorBackView.hidden = false
             self.dateLabel.textColor = UIColor.dodgerBlue().colorWithAlphaComponent(kNotificationMessageAlphaComponentHighlited)
-            self.unreadIndicatorView.layer.cornerRadius = CGRectGetWidth(self.unreadIndicatorView.frame) / 2
+            self.unreadIndicatorView.layer.cornerRadius = CornerRadius.defaultRadius
             self.unreadIndicatorWidthConstraint.constant = kUnreadIndicatorWidthConstraintDefault
             self.unreadIndicatorRightMarginConstraint.constant = kUnreadIndicatorRightMarginConstraintDefault
         } else {

@@ -29,12 +29,12 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setupNavigationBar()
         self.setupSelectedButton()
     }
     
     // MARK: - setup
     func setup() {
-        self.setupNavigationBar()
         self.setupTabButtons()
         self.setupControllers()
     }

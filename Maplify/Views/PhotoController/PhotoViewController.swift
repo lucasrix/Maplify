@@ -44,6 +44,12 @@ class PhotoViewController: UIViewController {
         self.setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupViews()
@@ -62,7 +68,7 @@ class PhotoViewController: UIViewController {
     
     func setupCamera() {
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { [weak self] (alowedAccess) -> () in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> () in
                 if alowedAccess {
                     self?.configureCamera()
                 } else {
@@ -124,7 +130,7 @@ class PhotoViewController: UIViewController {
     
     // MARK: - private
     func captureAction() {
-        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> Void in
+        self.simpleCamera.capture({ [weak self] (camera, image, dict, error) -> () in
             if let capturedImage = image {
                 let correctOrientedImage = capturedImage.correctlyOrientedImage()
                 self?.toggleCameraMode()
@@ -160,11 +166,13 @@ class PhotoViewController: UIViewController {
         if !self.previewImageView.hidden {
             let imageData = UIImagePNGRepresentation(self.previewImageView.image!)
             self.delegate?.photoDidTake(imageData!)
+        } else {
+            self.delegate?.photoDidTake(nil)
         }
     }
 }
 
 protocol PhotoControllerDelegate {
-    func photoDidTake(imageData: NSData)
+    func photoDidTake(imageData: NSData!)
     func photoCameraUnauthorized()
 }

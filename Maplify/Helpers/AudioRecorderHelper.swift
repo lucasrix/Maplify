@@ -107,6 +107,8 @@ class AudioRecorderHelper: NSObject {
             self.pauseRecording()
             self.audioRecorder?.stop()
             self.delegate?.audioRecordDidFinishRecording(true, filePath: filePath())
+        } else {
+            self.delegate?.audioRecordDidFinishRecording(false, filePath: filePath())
         }
     }
     

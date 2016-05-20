@@ -114,6 +114,11 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
         return UIColor.darkGreyBlue()
     }
     
+    override func backTapped() {
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        super.backTapped()
+    }
+    
     func loadRemoteData() {
         ApiClient.sharedClient.getCurrentUserStories(self.storyActiveModel.page,
             success: { [weak self] (response) in

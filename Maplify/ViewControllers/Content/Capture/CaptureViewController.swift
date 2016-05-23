@@ -385,8 +385,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.previewPlaceItem = placeItem
             self.googleMapService.placeItem(placeItem, temporary: true)
             
-//            (self.googleMapService.mapView as! GMSMapView).animateToZoom(10)
-            
             self.configuratePopup(locationInView, coordinate: coordinate)
         }
     }

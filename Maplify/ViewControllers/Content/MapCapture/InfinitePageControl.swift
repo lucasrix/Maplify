@@ -154,7 +154,6 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     }
     
     private func scrollToPage(index: Int, animated: Bool) {
-        
         let margin = CGFloat(index - 2) * 0.5 * kCellHorizontalMargin
         let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
         let contentOffset = CGPointMake(viewWidth * CGFloat(index) + margin, 0)
@@ -172,14 +171,14 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         
         if (direction == .Left) {
             if (self.currentPageIndex < (self.pageControlDelegate?.numberOfItems())! - 1) {
-                if ((scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
+                if (ceil(scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
                     self.currentPageIndex += 1
                     viewsShouldBeReplaced = true
                 }
             }
         } else if (direction == .Right) {
             if (self.currentPageIndex > 0) {
-                if ((scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex) - 0.5) {
+                if (ceil(scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex) - 0.5) {
                     self.currentPageIndex -= 1
                     viewsShouldBeReplaced = true
                 }

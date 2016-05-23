@@ -45,8 +45,8 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
-            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
+        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate, locationString: String) -> () in
+            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, locationString: locationString, updateStoryHandle: nil)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
@@ -138,11 +138,11 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
+        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, locationString: String(), updateStoryHandle: nil)
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil)
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil, locationString: String())
     }
     
     // MARK: - MenuDelegate

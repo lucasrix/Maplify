@@ -37,7 +37,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
 
-    var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
+    var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel = CSActiveModel()
@@ -52,6 +52,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var sharedId: Int = 0
     var previewPlaceItem: MCMapItem! = nil
     var popTip: AMPopTip! = nil
+    var locationString = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -392,14 +393,17 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func configuratePopup(locationInView: CGPoint, coordinate: MCMapCoordinate) {
         let popupView = CapturePopUpView(frame: CGRect(x: 0, y: 0, width: kPoptipViewWidth, height: kPoptipViewHeight))
-        popupView.configure(coordinate)
+        popupView.configure(coordinate) { [weak self] (locationString) in
+            self?.locationString = locationString
+        }
+
         self.popTip = AMPopTip()
         self.popTip.layer.shadowColor = UIColor.blackColor().CGColor
         self.popTip.layer.shadowOpacity = kPoptipShadowOpacity
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
-            self?.addStoryPointButtonTapped(location: coordinate)
+            self?.addStoryPointButtonTapped(location: coordinate, locationString: (self?.locationString)!)
             self?.popTip?.hide()
             self?.removePreviewItem()
         }

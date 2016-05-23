@@ -20,6 +20,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     var storyPointKind: StoryPointKind! = nil
     var storyPointAttachmentId: Int = 0
     var location: MCMapCoordinate! = nil
+    var locationString = String()
     var selectedStoryIds: [Int]! = nil
     
     // MARK: - view controller life cycle
@@ -79,7 +80,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     // MARK: - navigation bar item actions
     override func rightBarButtonItemDidTap() {
         if self.descriptionTextView.text.isNonWhiteSpace {
-        self.retrieveCurrentPlace()
+            self.remotePostStoryPoint()
         } else {
             let messasge = NSLocalizedString("Alert.EnterDescription", comment: String())
             let cancel = NSLocalizedString("Button.Ok", comment: String())
@@ -87,34 +88,13 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         }
     }
     
-    // MARK: - location
-    func retrieveCurrentPlace() {
-        if self.location != nil {
-            let geocoder = GMSGeocoder()
-            geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: self.location.latitude, longitude: self.location.longitude), completionHandler: { [weak self] (response, error) in
-                if error != nil {
-                    self?.remotePostStoryPoint(String())
-                } else {
-                    let address = response?.firstResult()
-                    var addressString = String()
-                    if address?.thoroughfare != nil {
-                        addressString = (address?.thoroughfare)!
-                    } else if address?.locality != nil {
-                        addressString = (address?.locality)!
-                    }
-                    self?.remotePostStoryPoint(addressString)
-                }
-            })
-        }
-    }
-    
     // MARK: - private
-    func remotePostStoryPoint(address: String) {
+    func remotePostStoryPoint() {
         self.descriptionTextView.resignFirstResponder()
         self.showProgressHUD()
         var locationDict: [String: AnyObject] = ["latitude":self.location.latitude, "longitude":self.location.longitude]
-        if address.length > 0 {
-            locationDict["address"] = address
+        if self.locationString.length > 0 {
+            locationDict["address"] = self.locationString
         }
         let kind = self.storyPointKind.rawValue
         var storyPointDict: [String: AnyObject] = ["kind":kind,

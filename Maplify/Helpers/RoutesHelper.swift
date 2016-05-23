@@ -111,10 +111,11 @@ extension UIViewController {
         self.navigationController?.pushViewController(signupUpdateProfileController, animated: true)
     }
     
-    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate!, selectedStoryIds: [Int]!) {
+    func routesOpenStoryPointEditDescriptionController(storyPointKind: StoryPointKind, storyPointAttachmentId: Int, location: MCMapCoordinate!, selectedStoryIds: [Int]!, locationString: String) {
         let storyPointEditDescriptionController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointEditDescriptionViewController) as! StoryPointEditDescriptionViewController
         storyPointEditDescriptionController.storyPointKind = storyPointKind
         storyPointEditDescriptionController.location = location
+        storyPointEditDescriptionController.locationString = locationString
         storyPointEditDescriptionController.storyPointAttachmentId = storyPointAttachmentId
         storyPointEditDescriptionController.selectedStoryIds = selectedStoryIds
         self.navigationController?.pushViewController(storyPointEditDescriptionController, animated: true)
@@ -135,19 +136,21 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointAddAudioViewController, animated: true)
     }
     
-    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate, selectedStoryIds: [Int]!) {
+    func routesOpenPhotoVideoViewController(pickedLocation: MCMapCoordinate, locationString: String, selectedStoryIds: [Int]!) {
         let storyPointAddPhotoVideoViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointAddPhotoVideoViewController) as! StoryPointAddPhotoVideoViewController
         storyPointAddPhotoVideoViewController.pickedLocation = pickedLocation
+        storyPointAddPhotoVideoViewController.locationString = locationString
         storyPointAddPhotoVideoViewController.selectedStoryIds = selectedStoryIds
         self.navigationController?.pushViewController(storyPointAddPhotoVideoViewController, animated: true)
     }
 
-    func routesOpenAddToStoryController(selectedIds: [Int], storypointCreationSupport: Bool, pickedLocation: MCMapCoordinate! = nil, updateStoryHandle: updateStoryClosure!) {
+    func routesOpenAddToStoryController(selectedIds: [Int], storypointCreationSupport: Bool, pickedLocation: MCMapCoordinate!, locationString: String, updateStoryHandle: updateStoryClosure!) {
         let addStoryViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.addStoryViewController) as! AddStoryViewController
         addStoryViewController.updatedStoryIds = updateStoryHandle
         addStoryViewController.selectedIds = selectedIds
         addStoryViewController.storyPointCreationSupport = storypointCreationSupport
         addStoryViewController.pickedLocation = pickedLocation
+        addStoryViewController.locationString = locationString
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     

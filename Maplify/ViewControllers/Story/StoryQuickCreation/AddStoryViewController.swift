@@ -27,6 +27,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     var selectedIds: [Int]! = nil
     var storyPointCreationSupport: Bool = false
     var pickedLocation: MCMapCoordinate! = nil
+    var locationString = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -210,7 +211,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
             self.navigationController?.popViewControllerAnimated(true)
         } else if (self.storyActiveModel.selectedIndexPathes().count > 0) && (self.storyPointCreationSupport == true) {
             let selectedIds = selectedStories.map({$0.id})
-            self.routesOpenPhotoVideoViewController(self.pickedLocation, selectedStoryIds: selectedIds)
+            self.routesOpenPhotoVideoViewController(self.pickedLocation, locationString: self.locationString, selectedStoryIds: selectedIds)
         }
     }
     

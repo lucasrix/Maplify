@@ -37,12 +37,12 @@ class CapturePopUpView: UIView {
         }
     }
     
-    func configure(location: MCMapCoordinate!) {
-        self.retrievePlace(location)
+    func configure(location: MCMapCoordinate!, completion: ((locationString: String) -> ())!) {
+        self.retrievePlace(location, completion: completion)
     }
     
     // MARK: - location
-    func retrievePlace(location: MCMapCoordinate!) {
+    func retrievePlace(location: MCMapCoordinate!, completion: ((locationString: String) -> ())!) {
         if location != nil {
             let geocoder = GMSGeocoder()
             geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude), completionHandler: { [weak self] (response, error) in
@@ -57,8 +57,10 @@ class CapturePopUpView: UIView {
                         addressString = (self?.generateLocationString(location))!
                     }
                     self?.addressLabel.text = addressString
+                    completion(locationString: addressString)
                 } else {
                     self?.addressLabel.text = self?.generateLocationString(location)
+                    completion(locationString: (self?.addressLabel.text)!)
                 }
             })
         }

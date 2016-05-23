@@ -386,19 +386,22 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             
 //            (self.googleMapService.mapView as! GMSMapView).animateToZoom(10)
             
-            self.configuratePopup(locationInView)
-            
-//            self.addStoryPointButtonTapped(location: coordinate)
+            self.configuratePopup(locationInView, coordinate: coordinate)
         }
     }
     
-    func configuratePopup(locationInView: CGPoint) {
+    func configuratePopup(locationInView: CGPoint, coordinate: MCMapCoordinate) {
         let popupView = CapturePopUpView(frame: CGRect(x: 0, y: 0, width: kPoptipViewWidth, height: kPoptipViewHeight))
         self.popTip = AMPopTip()
         self.popTip.layer.shadowColor = UIColor.blackColor().CGColor
         self.popTip.layer.shadowOpacity = kPoptipShadowOpacity
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
+        self.popTip.tapHandler = { [weak self] () -> () in
+            self?.addStoryPointButtonTapped(location: coordinate)
+            self?.popTip?.hide()
+            self?.removePreviewItem()
+        }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
     }
     

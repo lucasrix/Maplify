@@ -17,6 +17,12 @@ let kStoryPointsFindingRadius: CGFloat = 10000000
 let kDefaulMapZoom: Float = 13
 let kPinIconDeltaX: CGFloat = 4
 let kPinIconDeltaY: CGFloat = 42
+let kPoptipShadowOpacity: Float = 0.15
+let kPoptipShadowRadius: CGFloat = 6
+let kPoptipViewWidth: CGFloat = 290
+let kPoptipViewHeight: CGFloat = 35
+let kPoptipBorderWidth: CGFloat = 0
+let kPoptipPopoverColorAlpha: CGFloat = 0.95
 
 enum ContentType: Int {
     case Default
@@ -45,7 +51,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var sharedType = String()
     var sharedId: Int = 0
     var previewPlaceItem: MCMapItem! = nil
-    var popTip = AMPopTip()
+    var popTip: AMPopTip! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -66,7 +72,15 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
+        self.setupPopTip()
         self.setupPressAndHoldViewIfNeeded()
+    }
+    
+    func setupPopTip() {
+        let appearance = AMPopTip.appearance()
+        appearance.popoverColor = UIColor.whiteColor().colorWithAlphaComponent(kPoptipPopoverColorAlpha)
+        appearance.borderWidth = kPoptipBorderWidth
+        appearance.rounded = true
     }
     
     func setupPressAndHoldViewIfNeeded() {
@@ -335,7 +349,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.googleMapService.removeItem(self.previewPlaceItem)
             self.previewPlaceItem = nil
         }
-        self.popTip.hide()
+        self.popTip?.hide()
     }
     
     // MARK: - MCMapServiceDelegate
@@ -372,13 +386,20 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             
 //            (self.googleMapService.mapView as! GMSMapView).animateToZoom(10)
             
-            //
-            let customView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-            customView.backgroundColor = UIColor.redColor()
-            self.popTip.showCustomView(customView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
-            //
+            self.configuratePopup(locationInView)
+            
 //            self.addStoryPointButtonTapped(location: coordinate)
         }
+    }
+    
+    func configuratePopup(locationInView: CGPoint) {
+        let popupView = CapturePopUpView(frame: CGRect(x: 0, y: 0, width: kPoptipViewWidth, height: kPoptipViewHeight))
+        self.popTip = AMPopTip()
+        self.popTip.layer.shadowColor = UIColor.blackColor().CGColor
+        self.popTip.layer.shadowOpacity = kPoptipShadowOpacity
+        self.popTip.layer.shadowOffset = CGSizeZero
+        self.popTip.layer.shadowRadius = kPoptipShadowRadius
+        self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
     }
     
     func willMoveMapView(mapView: UIView, willMove: Bool) {

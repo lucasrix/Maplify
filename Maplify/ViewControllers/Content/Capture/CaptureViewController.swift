@@ -392,6 +392,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func configuratePopup(locationInView: CGPoint, coordinate: MCMapCoordinate) {
         let popupView = CapturePopUpView(frame: CGRect(x: 0, y: 0, width: kPoptipViewWidth, height: kPoptipViewHeight))
+        popupView.configure(coordinate)
         self.popTip = AMPopTip()
         self.popTip.layer.shadowColor = UIColor.blackColor().CGColor
         self.popTip.layer.shadowOpacity = kPoptipShadowOpacity

@@ -98,12 +98,15 @@
 "Label.LinkWasSent" = "A link to reset your password was sent to your email.";
 "Label.ChangePassword" = "Change Password";
 "Label.GetCurrentCity" = "We use your location to show you stories and other fun stuff around you.";
+"Label.Loading" = "Loading...";
 
 //Subsrtings
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
 "Substring.Points" = "points";
 "Substring.Point" = "point";
+"Substring.Latitude" = "Latitude: ";
+"Substring.Longitude" = ", longitude: ";
 
 //Buttons
 "Button.Ok" = "OK";

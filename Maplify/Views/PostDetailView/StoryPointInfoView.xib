@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StoryPointInfoView" customModule="Maplify" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="342" height="469"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -77,6 +77,9 @@
                                         <constraint firstAttribute="height" constant="39" id="zdj-5p-poA"/>
                                     </constraints>
                                     <state key="normal" image="page1"/>
+                                    <connections>
+                                        <action selector="likeButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="pSG-LX-Ht9"/>
+                                    </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="yYI-WO-CYW">
                                     <rect key="frame" x="8" y="66" width="326" height="261"/>
@@ -122,6 +125,9 @@
                                         <constraint firstAttribute="width" constant="40" id="gC0-cf-i3Y"/>
                                     </constraints>
                                     <state key="normal" image="icoShare"/>
+                                    <connections>
+                                        <action selector="shareButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Wc4-F8-wpI"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kelly Towles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zht-Wc-xye">
                                     <rect key="frame" x="64" y="41" width="181" height="17"/>
@@ -185,6 +191,18 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addressLabel" destination="HbN-fx-FG3" id="vsf-Jx-NX4"/>
+                <outlet property="detailsTextView" destination="yYI-WO-CYW" id="frT-DF-kgo"/>
+                <outlet property="imageViewHeightConstraint" destination="C5y-Eq-eLU" id="PMg-bd-RKv"/>
+                <outlet property="likeButton" destination="HX0-3f-I5n" id="5tE-Dk-D00"/>
+                <outlet property="scrollView" destination="bcM-Zt-Q4j" id="PUM-iK-MPn"/>
+                <outlet property="shareButton" destination="RZd-b6-mkq" id="QQQ-TV-YRh"/>
+                <outlet property="storiesTableView" destination="VjG-BN-mqN" id="khA-2b-DXW"/>
+                <outlet property="storyPointImageView" destination="RyQ-Rd-7cp" id="Zs1-4f-t1P"/>
+                <outlet property="userImageView" destination="ocg-Aj-azd" id="Out-Sr-IXV"/>
+                <outlet property="userNameLabel" destination="zht-Wc-xye" id="yXW-0Y-MXr"/>
+            </connections>
             <point key="canvasLocation" x="551" y="425.5"/>
         </view>
     </objects>

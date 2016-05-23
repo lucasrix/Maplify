@@ -149,13 +149,6 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         }
     }
     
-    override func backTapped() {
-        if self.storyPointKind == StoryPointKind.Text {
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
-        }
-        super.backTapped()
-    }
-    
     // MARK: - keyboard notification
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!

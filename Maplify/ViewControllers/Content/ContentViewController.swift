@@ -166,8 +166,4 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
             }
         )
     }
-    
-    func openNotifications() {
-        self.routesOpenNotificationsController()
-    }
 }

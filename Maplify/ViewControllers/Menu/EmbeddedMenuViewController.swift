@@ -10,8 +10,6 @@ import UIKit
 
 public enum MenuItem: Int {
     case SectionAccount = 0
-    case SectionNotifications
-    case SectionEditProfile
     case SectionChangePassword
     case SectionInformation
     case SectionAbout
@@ -23,7 +21,6 @@ public enum MenuItem: Int {
 }
 
 let kSignOutAction = "signOut"
-let kOpenNotificationsAction = "openNotifications"
 
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
@@ -48,13 +45,6 @@ class EmbeddedMenuViewController: UITableViewController {
     // MARK: - private
     func didSelectMenuItem(index: Int) {
         switch index {
-            
-        case MenuItem.SectionNotifications.rawValue:
-            self.sendAction(kOpenNotificationsAction)
-            
-        case MenuItem.SectionEditProfile.rawValue:
-            // TODO:
-            break
             
         case MenuItem.SectionChangePassword.rawValue:
             // TODO:

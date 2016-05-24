@@ -9,7 +9,8 @@
 import UIKit
 
 let kCellHorizontalMargin: CGFloat = 17
-let kGlobalOffset: CGFloat = kCellHorizontalMargin * 0.5
+let kGlobalCellOffset: CGFloat = kCellHorizontalMargin * 0.5
+let kSecondsInMinute: CGFloat = 60
 
 enum InfiniteScrollDirection {
     case None
@@ -27,7 +28,12 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     private var currentPageIndex: Int = 0
     private var lastContentOffset: CGFloat = 0
     var pageControlDelegate: InfinitePageControlDelegate! = nil
-    var cellModeEnabled: Bool = false
+    var cellModeEnabled: Bool = false {
+        didSet {
+            self.pagingEnabled = !self.cellModeEnabled
+        }
+    }
+    var yViewsOffset: CGFloat = 0
     
     // MARK: - init
     override init(frame: CGRect) {
@@ -43,8 +49,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     // MARK: - setup
     private func setup() {
         self.delegate = self
-//        self.pagingEnabled = true
-//        self.clipsToBounds = false
+        self.pagingEnabled = true
     }
     
     // MARK: - actions
@@ -54,8 +59,8 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     }
     
     // MARK: - private
-    private func viewWidth() -> CGFloat {
-        return self.cellModeEnabled ? CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin : 0
+    private func cellViewWidth() -> CGFloat {
+        return self.cellModeEnabled ? CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin : CGRectGetWidth(self.frame)
     }
     
     private func setupViewsAtIndex(index: Int) {
@@ -66,16 +71,16 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         let centerView = UIView()
         let rightView = UIView()
 
-        let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
+        let viewWidth = self.cellViewWidth()
         let viewHeight = CGRectGetHeight(self.frame)
         
-        let lMargin = kCellHorizontalMargin * 0.5 * CGFloat(index - 1)
-        let cMargin = kCellHorizontalMargin * 0.5 * CGFloat(index)
-        let rMargin = kCellHorizontalMargin * 0.5 * CGFloat(index + 1)
+        let leftMargin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(index - 1) + kCellHorizontalMargin : 0
+        let centerMargin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(index) + kCellHorizontalMargin : 0
+        let rightMargin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(index + 1) + kCellHorizontalMargin : 0
         
-        leftView.frame = CGRectMake(viewWidth * CGFloat(index - 1) + lMargin + kCellHorizontalMargin, 10, viewWidth, viewHeight)
-        centerView.frame = CGRectMake(viewWidth * CGFloat(index) + cMargin + kCellHorizontalMargin, 10, viewWidth, viewHeight)
-        rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1) + rMargin + kCellHorizontalMargin, 10, viewWidth, viewHeight)
+        leftView.frame = CGRectMake(viewWidth * CGFloat(index - 1) + leftMargin, yViewsOffset, viewWidth, viewHeight)
+        centerView.frame = CGRectMake(viewWidth * CGFloat(index) + centerMargin, yViewsOffset, viewWidth, viewHeight)
+        rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1) + rightMargin, yViewsOffset, viewWidth, viewHeight)
         
         self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
         self.pageControlDelegate?.didShowPageView(self, view: centerView, index: index)
@@ -93,7 +98,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     }
     
     private func replaceViewsWithDirection(direction: InfiniteScrollDirection, index: Int) {
-        let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
+        let viewWidth = self.cellViewWidth()
         
         var viewToMove: UIView
         var viewIndex: Int
@@ -115,20 +120,23 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
             self.contentViews.append(viewToMove)
         }
         
-        margin = kCellHorizontalMargin * 0.5 * CGFloat(viewIndex)
-
+        margin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(viewIndex) + kCellHorizontalMargin : 0
         
         var frame = viewToMove.frame
-        frame.origin.x = viewWidth * CGFloat(viewIndex) + margin + kCellHorizontalMargin
-        frame.origin.y = 10
+        frame.origin.x = viewWidth * CGFloat(viewIndex) + margin
+        frame.origin.y = yViewsOffset
         viewToMove.frame = frame
         
         self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: index)
     }
     
     private func updateContentSize() {
-        let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
-        let margin = CGFloat((self.pageControlDelegate?.numberOfItems())!) * 0.5 * kCellHorizontalMargin + 1.5 * kCellHorizontalMargin
+        let viewWidth = self.cellViewWidth()
+        var margin: CGFloat = 0
+        if self.cellModeEnabled {
+            let additionalContentWidth = kGlobalCellOffset + kGlobalCellOffset
+            margin = CGFloat((self.pageControlDelegate?.numberOfItems())!) * kGlobalCellOffset + additionalContentWidth
+        }
         self.contentSize = CGSizeMake(viewWidth * CGFloat((self.pageControlDelegate?.numberOfItems())!) + margin, 0)
     }
     
@@ -145,10 +153,8 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     }
     
     private func scrollToPage(index: Int, animated: Bool) {
-        let start = kCellHorizontalMargin * 0.5
-
-        let margin = CGFloat(index - 1) * 0.5 * kCellHorizontalMargin + start
-        let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
+        let margin = (self.cellModeEnabled) ? CGFloat(index - 1) * kGlobalCellOffset + kGlobalCellOffset : 0
+        let viewWidth = self.cellViewWidth()
         let contentOffset = CGPointMake(viewWidth * CGFloat(index) + margin, 0)
         self.setContentOffset(contentOffset, animated: animated)
         
@@ -157,25 +163,21 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         let viewWidth = CGRectGetWidth(self.frame)
-        
         let direction = self.scrollingGestureDirection(self.contentOffset.x, previousOffset: self.lastContentOffset)
-        
         
         var viewsShouldBeReplaced = false
         
-        
         if (direction == .Left) {
             if (self.currentPageIndex < (self.pageControlDelegate?.numberOfItems())! - 1) {
-                if (ceil(scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex) + 0.5) {
+                if (ceil(scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex)) {
                     self.currentPageIndex += 1
                     viewsShouldBeReplaced = true
                 }
             }
         } else if (direction == .Right) {
             if (self.currentPageIndex > 0) {
-                if (ceil(scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex) - 0.5) {
+                if (ceil(scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex)) {
                     self.currentPageIndex -= 1
                     viewsShouldBeReplaced = true
                 }
@@ -189,21 +191,18 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     }
     
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        let viewWidth = CGRectGetWidth(self.frame) - 2 * kCellHorizontalMargin
-        let viewSpacing = kCellHorizontalMargin * 0.5
-
-        let targetX = scrollView.contentOffset.x + velocity.x * 60.0
-        
-        var targetIndex: CGFloat = 0
-        
-        if (velocity.x > 0) {
-            targetIndex = ceil(targetX / (viewWidth + viewSpacing))
-        } else {
-            targetIndex = floor(targetX / (viewWidth + viewSpacing))
+        if self.cellModeEnabled {
+            let viewWidth = self.cellViewWidth()
+            let targetX = scrollView.contentOffset.x + velocity.x * kSecondsInMinute
+            var targetIndex: CGFloat = 0
+            
+            if (velocity.x > 0) {
+                targetIndex = ceil(targetX / (viewWidth + kGlobalCellOffset))
+            } else {
+                targetIndex = floor(targetX / (viewWidth + kGlobalCellOffset))
+            }
+            targetContentOffset.memory.x = targetIndex * (viewWidth + kGlobalCellOffset)
         }
-        
-        targetContentOffset.memory.x = targetIndex * (viewWidth + viewSpacing)
     }
 }
 

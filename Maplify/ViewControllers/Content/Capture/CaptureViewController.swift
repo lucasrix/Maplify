@@ -127,6 +127,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         
         self.profileButton.layer.cornerRadius = cornerRadius
         self.profileButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+        
+        self.notificationsButton.hidden = self.contentType != .Default
+        self.addStoryButton.hidden = self.contentType != .Default
+        self.profileButton.hidden = self.contentType != .Default
     }
     
     func setupDefaultCaptureNavigationBar() {
@@ -339,6 +343,21 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     // MARK: - actions
+    @IBAction func notificationsTapped(sender: UIButton) {
+        self.routesOpenNotificationsController()
+    }
+    
+    @IBAction func addStoryTapped(sender: UIButton) {
+        self.routesOpenStoryCreateController { 
+            // TODO:
+        }
+    }
+    
+    @IBAction func profileTapped(sender: UIButton) {
+        let userId = SessionManager.currentUser().id
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+    }
+    
     func locationButtonTapped() {
         self.retrieveCurrentLocation { [weak self] (location) in
             var region: MCMapRegion! = nil

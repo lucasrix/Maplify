@@ -105,6 +105,9 @@
                                     <constraint firstAttribute="height" constant="42" id="rmY-If-fXd"/>
                                 </constraints>
                                 <state key="normal" image="CaptureNotificationsIcon"/>
+                                <connections>
+                                    <action selector="notificationsTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="Wsm-bX-vKw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuJ-QW-eHb">
                                 <rect key="frame" x="130" y="610" width="115" height="42"/>
@@ -116,11 +119,17 @@
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Story" image="CaptureAddStoryIcon"/>
+                                <connections>
+                                    <action selector="addStoryTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="KGf-LS-laZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRY-bt-2Iz">
                                 <rect key="frame" x="323" y="610" width="42" height="42"/>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="CaptureProfileIcon"/>
+                                <connections>
+                                    <action selector="profileTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="Cq1-Ia-m5d"/>
+                                </connections>
                             </button>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="beI-fX-4xR">
                                 <rect key="frame" x="0.0" y="547" width="375" height="120"/>

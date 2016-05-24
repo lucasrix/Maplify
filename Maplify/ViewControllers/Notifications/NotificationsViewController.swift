@@ -56,11 +56,6 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         return UIColor.darkGreyBlue()
     }
     
-    override func backTapped() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        super.backTapped()
-    }
-    
     func loadItemsFromDB() {
         self.notificationsActiveModel.removeData()
         

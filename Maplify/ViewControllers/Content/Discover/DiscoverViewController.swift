@@ -562,7 +562,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func storyProfileImageTapped(userId: Int) {
-        self.discoverShowProfileClosure(userId: userId)
+        self.discoverShowProfileClosure?(userId: userId)
     }
     
     func editStoryContentDidTap(storyId: Int) {

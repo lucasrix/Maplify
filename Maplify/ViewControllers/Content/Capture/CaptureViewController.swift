@@ -9,6 +9,7 @@
 import INTULocationManager
 import GoogleMaps
 import AMPopTip
+import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
@@ -23,6 +24,8 @@ let kPoptipViewWidth: CGFloat = 290
 let kPoptipViewHeight: CGFloat = 35
 let kPoptipBorderWidth: CGFloat = 0
 let kPoptipPopoverColorAlpha: CGFloat = 0.95
+let kNotificationsButtonBackgroundColorAlpha: CGFloat = 0.4
+let kAddStoryButtonBackgroundColorAlpha: CGFloat = 0.7
 
 enum ContentType: Int {
     case Default
@@ -36,6 +39,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
+    @IBOutlet weak var notificationsButton: UIButton!
+    @IBOutlet weak var addStoryButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
 
     var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
@@ -66,7 +72,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         
         self.setupCollectionView()
         self.setupNavigationBar()
+        self.setupBottomButtonIfNeeded()
         self.loadItemsFromDBIfNedded()
+        self.retrieveNotifications()
     }
     
     // MARK: - setup
@@ -107,6 +115,27 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         } else {
             self.setupDefaultCaptureNavigationBar()
         }
+    }
+    
+    func setupBottomButtonIfNeeded() {
+        if self.contentType == .Default {
+            let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
+            
+            let realm = try! Realm()
+            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true").count > 0
+            self.notificationsButton.layer.cornerRadius = cornerRadius
+            self.notificationsButton.backgroundColor = newNotificationsAvailable == true ? UIColor.dodgerBlue() : UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+            
+            self.addStoryButton.layer.cornerRadius = cornerRadius
+            self.addStoryButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kAddStoryButtonBackgroundColorAlpha)
+            self.addStoryButton.setTitle(NSLocalizedString("Label.Story", comment: String()).uppercaseString, forState: .Normal)
+            
+            self.profileButton.layer.cornerRadius = cornerRadius
+            self.profileButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+        }
+        self.notificationsButton.hidden = self.contentType != .Default
+        self.addStoryButton.hidden = self.contentType != .Default
+        self.profileButton.hidden = self.contentType != .Default
     }
     
     func setupDefaultCaptureNavigationBar() {
@@ -299,6 +328,15 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func retrieveNotifications() {
+        if self.contentType == .Default {
+            ApiClient.sharedClient.retrieveNotifications(false, success: { [weak self] (response) in
+                NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
+                self?.setupBottomButtonIfNeeded()
+                }, failure: nil)
+        }
+    }
+    
     func movetoLastStoryPointIfNeeded() {
         let storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
         if (self.userLastStoryPoint == nil) && (storyPoints.count > 0) {
@@ -319,6 +357,19 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     // MARK: - actions
+    @IBAction func notificationsTapped(sender: UIButton) {
+        self.routesOpenNotificationsController()
+    }
+    
+    @IBAction func addStoryTapped(sender: UIButton) {
+        self.routesOpenStoryCreateController()
+    }
+    
+    @IBAction func profileTapped(sender: UIButton) {
+        let userId = SessionManager.currentUser().id
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+    }
+    
     func locationButtonTapped() {
         self.retrieveCurrentLocation { [weak self] (location) in
             var region: MCMapRegion! = nil
@@ -401,7 +452,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
-            self?.addStoryPointButtonTapped(location: coordinate, locationString: (self?.locationString)!)
+            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil)
             self?.popTip?.hide()
             self?.removePreviewItem()
         }

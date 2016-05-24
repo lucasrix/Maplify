@@ -117,7 +117,6 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
                 success: { [weak self] (response) in
                     StoryManager.saveStories(response as! [Story])
                     self?.hideProgressHUD()
-                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
                     self?.navigationController?.popToRootViewControllerAnimated(true)
                 }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     self?.hideProgressHUD()

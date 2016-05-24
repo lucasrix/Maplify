@@ -45,7 +45,7 @@
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
-"Controller.Capture.Title" = "Near you";
+"Controller.Capture.Title" = "Maplify";
 "Controller.Ambient.Title" = "Ambient";
 "Controller.CameraRoll.Title" = "Camera Roll";
 "Controller.Photo.Title" = "Photo";
@@ -186,3 +186,4 @@
 "Error.EmptyStoryName" = "Name can't be blank";
 "Error.InternalServerError" = "Internal server error";
 "Error.PasswordDoesNotMatch" = "Password does not match the confirm password";
+"Error.Unknown" = "Unknown error";

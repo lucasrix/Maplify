@@ -63,11 +63,14 @@ extension String {
         return dateFormatter.dateFromString(self)
     }
     
-    static func formattedErrorMessage(lines: [String]) -> String {
-        var message = String()
-        for str in lines {
-            message += str + "\n"
+    static func formattedErrorMessage(lines: [String]!) -> String {
+        if lines != nil {
+            var message = String()
+            for str in lines {
+                message += str + "\n"
+            }
+            return message
         }
-        return message
+        return NSLocalizedString("Error.Unknown", comment: String())
     }
 }

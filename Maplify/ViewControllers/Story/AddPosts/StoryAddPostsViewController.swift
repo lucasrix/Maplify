@@ -20,7 +20,6 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     var isStoryModeCreation = false
     var storyName = String()
     var storyDescription = String()
-    var createStoryClosure: (() -> ())! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -121,7 +120,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         
         ApiClient.sharedClient.createStory(params, success: { [weak self] (response) in
             self?.hideProgressHUD()
-            self?.createStoryClosure()
+            self?.navigationController?.popToRootViewControllerAnimated(true)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

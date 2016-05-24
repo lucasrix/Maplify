@@ -116,7 +116,7 @@ class StoryEditViewController: ViewController, UITextViewDelegate, StoryEditData
     
     // MARK: - actions
     @IBAction func addPostsTapped(sender: UIButton) {
-        self.routesOpenStoryAddPostsViewController(self.storyPoints, delegate: self, storyModeCreation: false, storyName: String(), storyDescription: String(), storyCreateClosure: nil)
+        self.routesOpenStoryAddPostsViewController(self.storyPoints, delegate: self, storyModeCreation: false, storyName: String(), storyDescription: String())
     }
     
     func updateStory() {

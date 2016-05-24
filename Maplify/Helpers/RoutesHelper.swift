@@ -19,8 +19,8 @@ extension UIViewController {
     }
     
     func routesSetContentController() {
-        let contentViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.contentController)
-        let navigationController = NavigationViewController(rootViewController: contentViewController)
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
+        let navigationController = NavigationViewController(rootViewController: captureViewController)
         let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
         window.rootViewController = navigationController
     }
@@ -58,9 +58,8 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.notificationsController)
     }
     
-    func routesOpenStoryCreateController(createStoryClosure: (() -> ())!) {
+    func routesOpenStoryCreateController() {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
-        storyCreateController.createStoryClosure = createStoryClosure
         self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
@@ -89,7 +88,6 @@ extension UIViewController {
     func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: () -> ()) {
         let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
         storyEditViewController.storyId = storyId
-        storyEditViewController.storyUpdateHandler = storyUpdateHandler
         self.navigationController?.pushViewController(storyEditViewController, animated: true)
     }
     
@@ -163,14 +161,13 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
-    func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, storyCreateClosure: (() -> ())!) {
+    func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
         storyAddPostsViewController.selectedStoryPoints = selectedStoryPoints
         storyAddPostsViewController.delegate = delegate
         storyAddPostsViewController.isStoryModeCreation = storyModeCreation
         storyAddPostsViewController.storyName = storyName
         storyAddPostsViewController.storyDescription = storyDescription
-        storyAddPostsViewController.createStoryClosure = storyCreateClosure
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     

@@ -23,6 +23,8 @@ let kPoptipViewWidth: CGFloat = 290
 let kPoptipViewHeight: CGFloat = 35
 let kPoptipBorderWidth: CGFloat = 0
 let kPoptipPopoverColorAlpha: CGFloat = 0.95
+let kNotificationsButtonBackgroundColorAlpha: CGFloat = 0.4
+let kAddStoryButtonBackgroundColorAlpha: CGFloat = 0.7
 
 enum ContentType: Int {
     case Default
@@ -36,6 +38,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
+    @IBOutlet weak var notificationsButton: UIButton!
+    @IBOutlet weak var addStoryButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
 
     var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
@@ -66,6 +71,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         
         self.setupCollectionView()
         self.setupNavigationBar()
+        self.setupBottomButtonIfNeeded()
         self.loadItemsFromDBIfNedded()
     }
     
@@ -107,6 +113,20 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         } else {
             self.setupDefaultCaptureNavigationBar()
         }
+    }
+    
+    func setupBottomButtonIfNeeded() {
+        let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
+        
+        self.notificationsButton.layer.cornerRadius = cornerRadius
+        self.notificationsButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+        
+        self.addStoryButton.layer.cornerRadius = cornerRadius
+        self.addStoryButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kAddStoryButtonBackgroundColorAlpha)
+        self.addStoryButton.setTitle(NSLocalizedString("Label.Story", comment: String()).uppercaseString, forState: .Normal)
+        
+        self.profileButton.layer.cornerRadius = cornerRadius
+        self.profileButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
     }
     
     func setupDefaultCaptureNavigationBar() {
@@ -401,7 +421,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
-            self?.addStoryPointButtonTapped(location: coordinate, locationString: (self?.locationString)!)
+            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil)
             self?.popTip?.hide()
             self?.removePreviewItem()
         }

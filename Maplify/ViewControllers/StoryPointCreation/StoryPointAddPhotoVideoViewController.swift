@@ -19,6 +19,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     @IBOutlet weak var micButton: UIButton!
     
     var pickedLocation: MCMapCoordinate! = nil
+    var locationString = String()
     var currentChildController: UIViewController! = nil
     var selectedStoryIds: [Int]! = nil
     
@@ -128,7 +129,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
             
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds)
+            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds, locationString: (self?.locationString)!)
             
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             
@@ -207,7 +208,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     func postTextStoryPoint() {
-        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds)
+        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds, locationString: self.locationString)
     }
     
     // MARK: - CameraRollDelegate

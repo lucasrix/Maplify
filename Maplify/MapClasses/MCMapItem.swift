@@ -19,7 +19,8 @@ class MCMapItem: MCMapItemProtocol {
     var title: String! = nil
     var image: UIImage! = nil
     var opacity: CGFloat = kDefaulMapItemOpacity
-
+    var data: AnyObject! = nil
+    
     required init() {}
     
     func configure(data: CSCellData) {}

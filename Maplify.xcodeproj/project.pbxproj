@@ -173,6 +173,8 @@
 		CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
 		CDC26E551CEDD3BE00D3EDEE /* AmbientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */; };
 		CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */; };
+		CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */; };
+		CDC8171B1CF2FD2F0072DAE5 /* CapturePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -367,6 +369,8 @@
 		CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientViewController.swift; sourceTree = "<group>"; };
 		CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmbientViewController.xib; sourceTree = "<group>"; };
+		CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CapturePopUpView.xib; sourceTree = "<group>"; };
+		CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePopUpView.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +417,7 @@
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CDC817171CF2FCE60072DAE5 /* CapturePopUpView */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
@@ -1060,6 +1065,15 @@
 			path = AmbientController;
 			sourceTree = "<group>";
 		};
+		CDC817171CF2FCE60072DAE5 /* CapturePopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */,
+				CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */,
+			);
+			path = CapturePopUpView;
+			sourceTree = "<group>";
+		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1170,6 +1184,11 @@
 					A58A52761C7F0A2800443C06 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = YYG42FLABM;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A58A528A1C7F0A2900443C06 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1205,6 +1224,7 @@
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
+				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
@@ -1437,6 +1457,7 @@
 				CD45672E1CCA74E700961A7A /* StoryEditViewController.swift in Sources */,
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */,
+				CDC8171B1CF2FD2F0072DAE5 /* CapturePopUpView.swift in Sources */,
 				85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,

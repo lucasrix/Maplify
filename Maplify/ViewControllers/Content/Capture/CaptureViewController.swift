@@ -8,12 +8,21 @@
 
 import INTULocationManager
 import GoogleMaps
+import AMPopTip
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
 let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
 let kStoryPointsFindingRadius: CGFloat = 10000000
 let kDefaulMapZoom: Float = 13
+let kPinIconDeltaX: CGFloat = 4
+let kPinIconDeltaY: CGFloat = 42
+let kPoptipShadowOpacity: Float = 0.15
+let kPoptipShadowRadius: CGFloat = 6
+let kPoptipViewWidth: CGFloat = 290
+let kPoptipViewHeight: CGFloat = 35
+let kPoptipBorderWidth: CGFloat = 0
+let kPoptipPopoverColorAlpha: CGFloat = 0.95
 
 enum ContentType: Int {
     case Default
@@ -28,7 +37,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
 
-    var addStoryPointButtonTapped: ((location: MCMapCoordinate) -> ())! = nil
+    var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
     var storyPointDataSource: StoryPointDataSource! = nil
     var storyPointActiveModel = CSActiveModel()
@@ -41,6 +50,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var publicTitle = String()
     var sharedType = String()
     var sharedId: Int = 0
+    var previewPlaceItem: MCMapItem! = nil
+    var popTip: AMPopTip! = nil
+    var locationString = String()
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -61,7 +73,15 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setup() {
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
+        self.setupPopTip()
         self.setupPressAndHoldViewIfNeeded()
+    }
+    
+    func setupPopTip() {
+        let appearance = AMPopTip.appearance()
+        appearance.popoverColor = UIColor.whiteColor().colorWithAlphaComponent(kPoptipPopoverColorAlpha)
+        appearance.borderWidth = kPoptipBorderWidth
+        appearance.rounded = true
     }
     
     func setupPressAndHoldViewIfNeeded() {
@@ -325,29 +345,71 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func removePreviewItem() {
+        if self.previewPlaceItem != nil {
+            self.googleMapService.removeItem(self.previewPlaceItem)
+            self.previewPlaceItem = nil
+        }
+        self.popTip?.hide()
+    }
+    
     // MARK: - MCMapServiceDelegate
     func didTapMapView(mapView: UIView, itemObject: AnyObject) {
-        let clLocation = (itemObject as! GMSMarker).position
-        let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
-        let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
-        
-        self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
-        self.collectionView.hidden = false
+        if ((itemObject as! GMSMarker).userData as! Bool) == false {
+            let clLocation = (itemObject as! GMSMarker).position
+            let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
+            let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
+            
+            self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
+            self.collectionView.hidden = false
+        }
     }
     
     func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
         self.collectionView.hidden = true
+        self.removePreviewItem()
         self.mapActiveModel.deselectAll()
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
     
-    func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double) {
+    func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
         if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
             let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
-            self.addStoryPointButtonTapped(location: coordinate)
+            self.removePreviewItem()
+            let placeItem = MCMapItem()
+            placeItem.location = coordinate
+            placeItem.image = UIImage(named: MapPinImages.tapped)
+            
+            self.previewPlaceItem = placeItem
+            self.googleMapService.placeItem(placeItem, temporary: true)
+            
+            self.configuratePopup(locationInView, coordinate: coordinate)
         }
+    }
+    
+    func configuratePopup(locationInView: CGPoint, coordinate: MCMapCoordinate) {
+        let popupView = CapturePopUpView(frame: CGRect(x: 0, y: 0, width: kPoptipViewWidth, height: kPoptipViewHeight))
+        popupView.configure(coordinate) { [weak self] (locationString) in
+            self?.locationString = locationString
+        }
+
+        self.popTip = AMPopTip()
+        self.popTip.layer.shadowColor = UIColor.blackColor().CGColor
+        self.popTip.layer.shadowOpacity = kPoptipShadowOpacity
+        self.popTip.layer.shadowOffset = CGSizeZero
+        self.popTip.layer.shadowRadius = kPoptipShadowRadius
+        self.popTip.tapHandler = { [weak self] () -> () in
+            self?.addStoryPointButtonTapped(location: coordinate, locationString: (self?.locationString)!)
+            self?.popTip?.hide()
+            self?.removePreviewItem()
+        }
+        self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
+    }
+    
+    func willMoveMapView(mapView: UIView, willMove: Bool) {
+        self.removePreviewItem()
     }
     
     // MARK: - CSBaseCollectionDataSourceDelegate

@@ -11,6 +11,7 @@ protocol MCMapServiceProtocol {
     func addItemsGroup(itemsGroup: MCMapItemsGroup)
     func placeItem(item: MCMapItem)
     func removeAllItems()
+    func removeItem(item: MCMapItem)
     func setMapType<T>(mapType: T)
     func moveTo(region: MCMapRegion, zoom: Float)
     func moveToDefaultRegion()
@@ -21,7 +22,7 @@ protocol MCMapServiceProtocol {
     optional func didMoveMapView(mapView: UIView, target: AnyObject)
     optional func willMoveMapView(mapView: UIView, willMove: Bool)
     optional func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double)
-    optional func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double)
+    optional func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint)
 }
 
 class MCMapService: NSObject, MCMapServiceProtocol {
@@ -50,4 +51,5 @@ class MCMapService: NSObject, MCMapServiceProtocol {
     func setMapType<T>(mapType: T) {}
     func moveTo(region: MCMapRegion, zoom: Float) {}
     func moveToDefaultRegion() {}
+    func removeItem(item: MCMapItem) {}
 }

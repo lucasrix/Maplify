@@ -36,7 +36,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationLogo: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var plusLabel: UILabel!
     @IBOutlet weak var profileUrlLabel: TTTAttributedLabel!
     @IBOutlet weak var statsParentView: UIView!
     @IBOutlet weak var aboutLabel: UILabel!
@@ -167,7 +166,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     func setupDetailedLabels() {
         self.likesLabel.text = String(self.user.profile.likes_count)
-        self.plusLabel.text = String(self.user.profile.saves_count)
         
         if self.profileId == SessionManager.currentUser().id {
             self.privateStatsView.followersNumberLabel.text = String(self.user.profile.followers_count)

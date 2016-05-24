@@ -14,7 +14,7 @@ let kStoryPointCellDescriptionDefaultHeight: CGFloat = 17
 let kShadowOpacity: Float = 0.15
 let kShadowRadius: CGFloat = 3
 
-let kTopInfoViewHeight: CGFloat = 126
+let kTopInfoViewHeight: CGFloat = 103
 let kBottomInfoView: CGFloat = 70
 let kStoryPointTextFontSize: CGFloat = 14
 let kStoryPointTextHorizontalMargin: CGFloat = 16
@@ -25,7 +25,6 @@ class DiscoverStoryPointCell: CSTableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAddressLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
-    @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var storyPointAddressLabel: UILabel!
     @IBOutlet weak var storyPointAddressImageView: UIImageView!
     @IBOutlet weak var attachmentImageView: UIImageView!
@@ -86,7 +85,6 @@ class DiscoverStoryPointCell: CSTableViewCell {
     }
     
     func populateStoryPointInfoViews(storyPoint: StoryPoint) {
-        self.captionLabel.text = storyPoint.caption
         self.storyPointAddressLabel.text = storyPoint.location.address
         self.storyPointAddressImageView.hidden = storyPoint.location.address == String()
     }

@@ -99,14 +99,13 @@
 "Label.ChangePassword" = "Change Password";
 "Label.GetCurrentCity" = "We use your location to show you stories and other fun stuff around you.";
 "Label.Loading" = "Loading...";
+"Label.LatitudeLongitude" = "Latitude: %.2f, longitude: %.2f";
 
 //Subsrtings
 "Substring.Of" = "of";
 "Substring.Chars" = "chars";
 "Substring.Points" = "points";
 "Substring.Point" = "point";
-"Substring.Latitude" = "Latitude: ";
-"Substring.Longitude" = ", longitude: ";
 
 //Buttons
 "Button.Ok" = "OK";

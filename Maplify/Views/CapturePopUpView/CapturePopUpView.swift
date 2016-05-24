@@ -68,7 +68,7 @@ class CapturePopUpView: UIView {
     
     func generateLocationString(location: MCMapCoordinate!) -> String {
         if location != nil {
-            return NSLocalizedString("Substring.Latitude", comment: String()) + String(format: "%.2f", location.latitude) + NSLocalizedString("Substring.Longitude", comment: String()) + String(format: "%.2f", location.longitude)
+            return String(format: NSLocalizedString("Label.LatitudeLongitude", comment: String()), location.latitude, location.longitude)
         }
         return String()
     }

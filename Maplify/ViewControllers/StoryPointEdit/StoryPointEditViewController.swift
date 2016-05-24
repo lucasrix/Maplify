@@ -260,8 +260,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
             text = self.descriptionTextView.text
         }
         
-        var storyPointDict: [String: AnyObject] = ["caption": self.editInfoViewController.captionTextField.text!,
-                                                   "kind": kind,
+        var storyPointDict: [String: AnyObject] = ["kind": kind,
                                                    "text": text,
                                                    "location":locationDict]
         

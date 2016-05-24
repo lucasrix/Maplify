@@ -333,10 +333,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             ApiClient.sharedClient.retrieveNotifications(false, success: { [weak self] (response) in
                 NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
                 self?.setupBottomButtonIfNeeded()
-                
-            }) { (statusCode, errors, localDescription, messages) in
-                // TODO:
-            }
+                }, failure: nil)
         }
     }
     

@@ -9,6 +9,7 @@
 import INTULocationManager
 import GoogleMaps
 import AMPopTip
+import RealmSwift
 
 let kMinimumPressDuration: NSTimeInterval = 1
 let kMinimumLineSpacing: CGFloat = 0.001
@@ -73,6 +74,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setupNavigationBar()
         self.setupBottomButtonIfNeeded()
         self.loadItemsFromDBIfNedded()
+        self.retrieveNotifications()
     }
     
     // MARK: - setup
@@ -116,18 +118,21 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupBottomButtonIfNeeded() {
-        let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
-        
-        self.notificationsButton.layer.cornerRadius = cornerRadius
-        self.notificationsButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
-        
-        self.addStoryButton.layer.cornerRadius = cornerRadius
-        self.addStoryButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kAddStoryButtonBackgroundColorAlpha)
-        self.addStoryButton.setTitle(NSLocalizedString("Label.Story", comment: String()).uppercaseString, forState: .Normal)
-        
-        self.profileButton.layer.cornerRadius = cornerRadius
-        self.profileButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
-        
+        if self.contentType == .Default {
+            let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
+            
+            let realm = try! Realm()
+            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true").count > 0
+            self.notificationsButton.layer.cornerRadius = cornerRadius
+            self.notificationsButton.backgroundColor = newNotificationsAvailable == true ? UIColor.dodgerBlue() : UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+            
+            self.addStoryButton.layer.cornerRadius = cornerRadius
+            self.addStoryButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kAddStoryButtonBackgroundColorAlpha)
+            self.addStoryButton.setTitle(NSLocalizedString("Label.Story", comment: String()).uppercaseString, forState: .Normal)
+            
+            self.profileButton.layer.cornerRadius = cornerRadius
+            self.profileButton.backgroundColor = UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
+        }
         self.notificationsButton.hidden = self.contentType != .Default
         self.addStoryButton.hidden = self.contentType != .Default
         self.profileButton.hidden = self.contentType != .Default
@@ -323,6 +328,18 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func retrieveNotifications() {
+        if self.contentType == .Default {
+            ApiClient.sharedClient.retrieveNotifications(false, success: { [weak self] (response) in
+                NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
+                self?.setupBottomButtonIfNeeded()
+                
+            }) { (statusCode, errors, localDescription, messages) in
+                // TODO:
+            }
+        }
+    }
+    
     func movetoLastStoryPointIfNeeded() {
         let storyPoints = StoryPointManager.userStoryPoints("created_at", ascending: false)
         if (self.userLastStoryPoint == nil) && (storyPoints.count > 0) {
@@ -348,9 +365,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     @IBAction func addStoryTapped(sender: UIButton) {
-        self.routesOpenStoryCreateController { 
-            // TODO:
-        }
+        self.routesOpenStoryCreateController()
     }
     
     @IBAction func profileTapped(sender: UIButton) {

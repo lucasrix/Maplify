@@ -138,6 +138,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func setupNavigationBarButtonItems() {
         if self.supportUserProfile == false {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.searchButtonTapped))
+        } else if (self.supportUserProfile) && self.userProfileId == (SessionManager.currentUser().id) {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(DiscoverViewController.settingsButtonTapped))
         }
     }
     
@@ -486,6 +488,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func searchButtonTapped() {
         self.routerShowDiscoverChangeLocationPopupController(self)
+    }
+    
+    func settingsButtonTapped() {
+        self.routesOpenMenuController()
     }
     
     // MARK: - DiscoverStoryPointCellDelegate

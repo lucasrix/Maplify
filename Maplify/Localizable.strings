@@ -186,3 +186,4 @@
 "Error.EmptyStoryName" = "Name can't be blank";
 "Error.InternalServerError" = "Internal server error";
 "Error.PasswordDoesNotMatch" = "Password does not match the confirm password";
+"Error.Unknown" = "Unknown error";

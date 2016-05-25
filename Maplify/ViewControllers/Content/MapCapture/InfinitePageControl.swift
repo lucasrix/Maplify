@@ -54,6 +54,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
     
     // MARK: - actions
     func moveAndShowCell(index: Int, animated: Bool) {
+        self.layoutIfNeeded()
         self.setupViewsAtIndex(index)
         self.scrollToPage(index, animated: animated)
     }

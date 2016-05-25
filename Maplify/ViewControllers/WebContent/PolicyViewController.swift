@@ -23,10 +23,16 @@ class PolicyViewController: ViewController, ErrorHandlingProtocol, UIWebViewDele
         self.webView.delegate = self
     }
     
+    // MARK: - navigation bar
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
+    }
+    
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
     }
     
+    // MARK: - remote
     func loadRemoteData() {
         self.showProgressHUD(self.view)
         ApiClient.sharedClient.retrievePrivacyPolicy({ [weak self] (response) -> () in

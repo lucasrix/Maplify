@@ -50,4 +50,16 @@ class MenuViewController: ViewController, MenuDelegate {
     func changePassword() {
         self.routesOpenChangePasswordViewController()
     }
+    
+    func policy() {
+        self.routesOpenPolicyViewController()
+    }
+    
+    func terms() {
+        self.routesOpenTermsViewController()
+    }
+    
+    func ourStory() {
+        self.routesOpenOurStoryController()
+    }
 }

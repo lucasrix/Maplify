@@ -1,12 +1,12 @@
 //
-//  WebContentViewController.swift
+//  OurStoryViewController.swift
 //  Maplify
 //
-//  Created by Sergey on 3/14/16.
+//  Created by Evgeniy Antonoff on 5/25/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDelegate {
+class OurStoryViewController: ViewController, ErrorHandlingProtocol, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     
     // MARK: - view controller life cycle
@@ -18,8 +18,8 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
     }
 
     // MARK: - setup
-    func setup() {        
-        self.title = NSLocalizedString("Controller.Terms.Title", comment: String())
+    func setup() {
+        self.title = NSLocalizedString("Controller.About.Title", comment: String())
         self.webView.delegate = self
     }
     
@@ -35,7 +35,7 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
     // MARK: - remote
     func loadRemoteData() {
         self.showProgressHUD(self.view)
-        ApiClient.sharedClient.retrieveTermsOfUse({ [weak self] (response) -> () in
+        ApiClient.sharedClient.retrieveAbout({ [weak self] (response) in
             let htmlString = (response as! WebContent).html
             self?.webView.loadHTMLString(htmlString, baseURL: nil)
         },

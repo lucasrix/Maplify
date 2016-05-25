@@ -229,6 +229,10 @@ extension UIViewController {
         self.navigationController?.pushViewController(contentFollowingViewController, animated: true)
     }
     
+    func routesOpenMenuController() {
+        self.routesOpenViewController(UIStoryboard.menuStoryboard(), identifier: Controllers.menuViewController)
+    }
+    
     // MARK: - open as popup controllers
     func routesShowPopupStoryPointCreationController(delegate: StoryPointCreationPopupDelegate, location: MCMapCoordinate) {
         let storyPointCreationPopupController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyPointCreationPopupController) as! StoryPointCreationPopupViewController
@@ -236,12 +240,6 @@ extension UIViewController {
         storyPointCreationPopupController.location = location
         storyPointCreationPopupController.modalPresentationStyle = .OverCurrentContext
         self.presentViewController(storyPointCreationPopupController, animated: true, completion: nil)
-    }
-    
-    func routerShowMenuController(delegate: MenuDelegate) {
-        let menuController = UIStoryboard.menuStoryboard().instantiateViewControllerWithIdentifier(Controllers.menuViewController) as! MenuViewController
-        menuController.delegate = delegate
-        self.navigationController?.presentViewController(menuController, animated: true, completion: nil)
     }
     
     func routerShowDiscoverChangeLocationPopupController(delegate: DiscoverChangeLocationDelegate) {

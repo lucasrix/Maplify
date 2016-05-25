@@ -9,7 +9,7 @@
 import AFImageHelper
 import CoreLocation
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate, MenuDelegate {
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     @IBOutlet weak var parentView: UIView!
     
     var tabCaptureNavigationController: NavigationViewController! = nil
@@ -63,27 +63,5 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     func textDidTapped(location: MCMapCoordinate) {
         self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil, locationString: String())
-    }
-    
-    // MARK: - MenuDelegate
-    func menuDidSelectItem(actionString:String) {
-        self.performSelector(Selector(actionString))
-    }
-    
-    func signOut() {
-        SessionHelper.sharedHelper.removeSessionData()
-        SessionHelper.sharedHelper.removeSessionAuthCookies()
-        SessionHelper.sharedHelper.removeDatabaseData()
-        
-        self.showProgressHUD()
-        ApiClient.sharedClient.signOut({ [weak self] (response) in
-                self?.hideProgressHUD()
-                RootViewController.navigationController().routesSetLandingController()
-            },
-            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
-                RootViewController.navigationController().routesSetLandingController()
-            }
-        )
     }
 }

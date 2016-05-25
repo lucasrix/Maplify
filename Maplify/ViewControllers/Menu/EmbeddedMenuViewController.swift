@@ -21,6 +21,7 @@ public enum MenuItem: Int {
 }
 
 let kSignOutAction = "signOut"
+let kChangePasswordAction = "changePassword"
 
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
@@ -47,8 +48,7 @@ class EmbeddedMenuViewController: UITableViewController {
         switch index {
             
         case MenuItem.SectionChangePassword.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kChangePasswordAction)
             
         case MenuItem.SectionAbout.rawValue:
             // TODO:
@@ -71,9 +71,7 @@ class EmbeddedMenuViewController: UITableViewController {
     }
     
     func sendAction(actionString: String) {
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: { [weak self] () in
-            self?.delegate?.menuDidSelectItem(actionString)
-        })
+        self.delegate?.menuDidSelectItem(actionString)
     }
 }
 

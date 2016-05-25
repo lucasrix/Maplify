@@ -90,10 +90,31 @@ class ReportsViewController: ViewController {
     }
     
     private func remoteReportStoryPoint(kind: ReportKind) {
-        // TODO:
+        self.showProgressHUD()
+        ApiClient.sharedClient.reportStoryPoint(self.postId, reportKind: kind.rawValue, success: { [weak self] (response) in
+            self?.hideProgressHUD()
+            self?.routesOpenReportSucceddController(self?.completionClosure)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
     }
     
     private func remoteReportStory(kind: ReportKind) {
-        // TODO:
+        self.showProgressHUD()
+        ApiClient.sharedClient.reportStory(self.postId, reportKind: kind.rawValue, success: { [weak self] (response) in
+            self?.hideProgressHUD()
+            self?.routesOpenReportSucceddController(self?.completionClosure)
+            }) { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

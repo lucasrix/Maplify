@@ -211,7 +211,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if self.supportUserProfile {
             self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
-            let allItems = realm.objects(DiscoverItem).filter(/*"storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND */"story.storyPoints.@count > 0").sorted("created_at", ascending: false)
+            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND story.storyPoints.@count > 0)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
             let itemsCount = self.itemsCountToShow()
@@ -246,8 +246,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - remote
     func loadRemoteData() {
         if self.supportUserProfile {
-//            self.loadUserDiscoverData()
-            self.loadDiscoverRemoteData()
+            self.loadUserDiscoverData()
         } else {
             self.loadDiscoverRemoteData()
         }
@@ -435,7 +434,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func reportStoryPoint(storyPointId: Int) {
         self.routesOpenReportsController(storyPointId, postType: .StoryPoint) { 
-            // TODO:
+            self.navigationController?.popToViewController(self, animated: true)
         }
     }
     
@@ -499,7 +498,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func reportStory(storyId: Int) {
         self.routesOpenReportsController(storyId, postType: .Story) { 
-            // TODO:
+            self.navigationController?.popToViewController(self, animated: true)
         }
     }
     

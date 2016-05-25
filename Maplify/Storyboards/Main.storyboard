@@ -4136,9 +4136,46 @@
                     <view key="view" contentMode="scaleToFill" id="hez-x0-5lC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReportsSuccessIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8J0-Te-bPO">
+                                <rect key="frame" x="100" y="62" width="175" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ns3-Lb-5tq"/>
+                                    <constraint firstAttribute="width" constant="175" id="xWT-f4-Qi2"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGt-0N-9F7">
+                                <rect key="frame" x="10" y="139" width="355" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We take this very seriously" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NN-zk-eUb">
+                                <rect key="frame" x="66" y="160" width="243" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="243" id="tJb-Wg-5Yo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5NN-zk-eUb" firstAttribute="top" secondItem="dGt-0N-9F7" secondAttribute="bottom" id="5gv-D1-H14"/>
+                            <constraint firstItem="8J0-Te-bPO" firstAttribute="centerX" secondItem="hez-x0-5lC" secondAttribute="centerX" id="9Nx-1o-6UD"/>
+                            <constraint firstItem="dGt-0N-9F7" firstAttribute="leading" secondItem="hez-x0-5lC" secondAttribute="leading" constant="10" id="ClK-Pa-Pou"/>
+                            <constraint firstAttribute="trailing" secondItem="dGt-0N-9F7" secondAttribute="trailing" constant="10" id="IAI-yt-Kdx"/>
+                            <constraint firstItem="5NN-zk-eUb" firstAttribute="centerX" secondItem="hez-x0-5lC" secondAttribute="centerX" id="ZSn-2e-elu"/>
+                            <constraint firstItem="8J0-Te-bPO" firstAttribute="top" secondItem="rbE-Ll-agS" secondAttribute="bottom" constant="42" id="cXJ-jN-NFV"/>
+                            <constraint firstItem="dGt-0N-9F7" firstAttribute="top" secondItem="8J0-Te-bPO" secondAttribute="bottom" constant="17" id="s8b-xz-D0Q"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="thanksDescriptionLabel" destination="5NN-zk-eUb" id="99T-Rl-WWs"/>
+                        <outlet property="thanksTitleLabel" destination="dGt-0N-9F7" id="Kko-1n-HmT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKC-VU-GgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4173,6 +4210,7 @@
         <image name="DiscoverStoryPointPlusCount" width="51" height="51"/>
         <image name="DiscoverUserEmptyAva" width="50" height="50"/>
         <image name="ReportButtonArrow" width="9" height="15"/>
+        <image name="ReportsSuccessIcon" width="175" height="60"/>
         <image name="ShareCopyToClipboard" width="24" height="28"/>
         <image name="empty-circle" width="31" height="31"/>
         <image name="fill1" width="14" height="17"/>

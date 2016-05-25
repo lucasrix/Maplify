@@ -77,6 +77,12 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.retrieveNotifications()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.removePreviewItem()
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupPlaceSearchHelper()
@@ -414,6 +420,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
             self.collectionView.hidden = false
         }
+        self.popTip.hide()
     }
     
     func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
@@ -453,8 +460,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
             self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil)
-            self?.popTip?.hide()
-            self?.removePreviewItem()
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
     }

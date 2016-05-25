@@ -32,6 +32,7 @@ struct PlaceholderImages {
 
 struct BarButtonImages {
     static let backArrow = "icoBack"
+    static let profileSettings = "ProfileSettings"
 }
 
 struct OnboardImages {

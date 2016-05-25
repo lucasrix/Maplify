@@ -64,6 +64,7 @@
 "Controller.ShareStory" = "Share Story";
 "Controller.ResetPassword" = "Reset Password";
 "Controller.Notifications" = "Notifications";
+"Controller.Reports" = "Report a problem";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -151,6 +152,10 @@
 "Button.Reset" = "Reset";
 "Button.Unfollow" = "Unfollow";
 "Button.GetCity" = "Get my current city";
+"Button.ReportsDontLikeThisPost" = "I don’t like this post";
+"Button.ReportsSpamOrScam" = "This post is spam or a scam";
+"Button.ReportsPutsRisk" = "This post puts people at risk";
+"Button.ReportsPostShouldBeRemoved" = "This post should be removed";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

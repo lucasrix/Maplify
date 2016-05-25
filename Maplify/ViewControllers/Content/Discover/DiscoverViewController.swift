@@ -211,7 +211,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if self.supportUserProfile {
             self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
-            let allItems = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND story.storyPoints.@count > 0)").sorted("created_at", ascending: false)
+            let allItems = realm.objects(DiscoverItem)//.filter("storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND story.storyPoints.@count > 0)").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
             let itemsCount = self.itemsCountToShow()
@@ -392,6 +392,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 
                 if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
                     self?.shareStoryPoint(storyPointId)
+                } else if selectedIndex == StoryPointDefaultContentOption.ReportAbuse.rawValue {
+                    self?.reportStoryPoint(storyPointId)
                 }
             })
         }       
@@ -430,6 +432,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
+    func reportStoryPoint(storyPointId: Int) {
+        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) { 
+            // TODO:
+        }
+    }
+    
     // MARK: - story
     func showEditStoryContentMenu(storyId: Int) {
         let story = StoryManager.find(storyId)
@@ -449,6 +457,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             self.showStoryDefaultContentActionSheet( { [weak self] (selectedIndex) in
                 if selectedIndex == StoryDefaultContentOption.ShareStory.rawValue {
                     self?.shareStory(storyId)
+                } else if selectedIndex == StoryDefaultContentOption.ReportAbuse.rawValue {
+                    self?.reportStory(storyId)
                 }
             })
         }
@@ -483,6 +493,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func shareStory(storyId: Int) {
         self.routesOpenShareStoryViewController(storyId) { [weak self] () in
             self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
+    func reportStory(storyId: Int) {
+        self.routesOpenReportsController(storyId, postType: .Story) { 
+            // TODO:
         }
     }
     

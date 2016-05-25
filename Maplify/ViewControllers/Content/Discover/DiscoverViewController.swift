@@ -211,7 +211,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if self.supportUserProfile {
             self.storyActiveModel.removeData()
             let currentUserId = self.userProfileId
-            let allItems = realm.objects(DiscoverItem)//.filter("storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND story.storyPoints.@count > 0)").sorted("created_at", ascending: false)
+            let allItems = realm.objects(DiscoverItem).filter(/*"storyPoint.user.id == \(currentUserId) OR (story.user.id == \(currentUserId) AND */"story.storyPoints.@count > 0").sorted("created_at", ascending: false)
             self.discoverItems = Array(allItems)
         } else {
             let itemsCount = self.itemsCountToShow()
@@ -246,7 +246,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     // MARK: - remote
     func loadRemoteData() {
         if self.supportUserProfile {
-            self.loadUserDiscoverData()
+//            self.loadUserDiscoverData()
+            self.loadDiscoverRemoteData()
         } else {
             self.loadDiscoverRemoteData()
         }

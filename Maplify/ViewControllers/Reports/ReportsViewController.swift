@@ -92,6 +92,7 @@ class ReportsViewController: ViewController {
     private func remoteReportStoryPoint(kind: ReportKind) {
         self.showProgressHUD()
         ApiClient.sharedClient.reportStoryPoint(self.postId, reportKind: kind.rawValue, success: { [weak self] (response) in
+            StoryPointManager.delete((self?.postId)!)
             self?.hideProgressHUD()
             self?.routesOpenReportSucceddController(self?.completionClosure)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
@@ -103,6 +104,7 @@ class ReportsViewController: ViewController {
     private func remoteReportStory(kind: ReportKind) {
         self.showProgressHUD()
         ApiClient.sharedClient.reportStory(self.postId, reportKind: kind.rawValue, success: { [weak self] (response) in
+            StoryManager.delete((self?.postId)!)
             self?.hideProgressHUD()
             self?.routesOpenReportSucceddController(self?.completionClosure)
             }) { [weak self] (statusCode, errors, localDescription, messages) in

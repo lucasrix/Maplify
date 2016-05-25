@@ -2751,15 +2751,8 @@
                                                     <action selector="likeTapped:" destination="Oew-o6-10W" eventType="touchUpInside" id="5wM-XF-j26"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV0-eb-gNt">
-                                                <rect key="frame" x="52" y="0.0" width="48" height="46"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="yfU-Dg-APi"/>
-                                                </constraints>
-                                                <state key="normal" image="DiscoverAdd"/>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boh-fr-2hX">
-                                                <rect key="frame" x="100" y="0.0" width="48" height="46"/>
+                                                <rect key="frame" x="52" y="0.0" width="48" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="UBi-EP-gNq"/>
                                                 </constraints>
@@ -2779,7 +2772,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="show hide desc" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2XP-Yp-chs">
-                                                <rect key="frame" x="148" y="12" width="175" height="21"/>
+                                                <rect key="frame" x="100" y="12" width="223" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="CHT-6Z-fvU"/>
                                                 </constraints>
@@ -2790,22 +2783,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="PV0-eb-gNt" firstAttribute="leading" secondItem="Eb2-1s-wVx" secondAttribute="trailing" id="54Q-Ki-GxO"/>
+                                            <constraint firstItem="boh-fr-2hX" firstAttribute="leading" secondItem="Eb2-1s-wVx" secondAttribute="trailing" id="4eC-nn-Q0t"/>
                                             <constraint firstAttribute="bottom" secondItem="boh-fr-2hX" secondAttribute="bottom" id="9Rj-MN-qAj"/>
                                             <constraint firstAttribute="bottom" secondItem="Eb2-1s-wVx" secondAttribute="bottom" id="9x1-LE-nXa"/>
                                             <constraint firstAttribute="bottom" secondItem="sDQ-XZ-vdk" secondAttribute="bottom" id="A3B-ll-ZHz"/>
                                             <constraint firstAttribute="height" constant="46" id="JWf-Fq-COb"/>
-                                            <constraint firstItem="PV0-eb-gNt" firstAttribute="top" secondItem="0tA-uk-9vU" secondAttribute="top" id="KIj-9v-IcB"/>
                                             <constraint firstItem="Eb2-1s-wVx" firstAttribute="leading" secondItem="0tA-uk-9vU" secondAttribute="leading" constant="4" id="LiC-UD-i46"/>
                                             <constraint firstItem="boh-fr-2hX" firstAttribute="top" secondItem="0tA-uk-9vU" secondAttribute="top" id="TGb-5B-J0Q"/>
                                             <constraint firstItem="Eb2-1s-wVx" firstAttribute="top" secondItem="0tA-uk-9vU" secondAttribute="top" id="VWl-Lb-Hqm"/>
                                             <constraint firstItem="2XP-Yp-chs" firstAttribute="centerY" secondItem="0tA-uk-9vU" secondAttribute="centerY" id="dqq-aq-u4h"/>
-                                            <constraint firstAttribute="bottom" secondItem="PV0-eb-gNt" secondAttribute="bottom" id="hKc-HV-Ldg"/>
                                             <constraint firstAttribute="trailing" secondItem="sDQ-XZ-vdk" secondAttribute="trailing" constant="4" id="iEP-RT-lar"/>
                                             <constraint firstItem="sDQ-XZ-vdk" firstAttribute="top" secondItem="0tA-uk-9vU" secondAttribute="top" id="p8t-8i-1gi"/>
                                             <constraint firstItem="sDQ-XZ-vdk" firstAttribute="leading" secondItem="2XP-Yp-chs" secondAttribute="trailing" id="qDq-az-krG"/>
                                             <constraint firstItem="2XP-Yp-chs" firstAttribute="leading" secondItem="boh-fr-2hX" secondAttribute="trailing" id="tIf-B8-Vfk"/>
-                                            <constraint firstItem="boh-fr-2hX" firstAttribute="leading" secondItem="PV0-eb-gNt" secondAttribute="trailing" id="ylu-L5-AWN"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -4172,7 +4162,6 @@
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>
-        <image name="DiscoverAdd" width="24" height="24"/>
         <image name="DiscoverChangeLocationAllOver" width="25" height="25"/>
         <image name="DiscoverChangeLocationNearMe" width="20" height="20"/>
         <image name="DiscoverJumpToFeedEarth" width="24" height="24"/>

@@ -134,7 +134,7 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         let viewWidth = self.cellViewWidth()
         var margin: CGFloat = 0
         if self.cellModeEnabled {
-            let additionalContentWidth = kGlobalCellOffset + kGlobalCellOffset
+            let additionalContentWidth = kGlobalCellOffset + kCellHorizontalMargin
             margin = CGFloat((self.pageControlDelegate?.numberOfItems())!) * kGlobalCellOffset + additionalContentWidth
         }
         self.contentSize = CGSizeMake(viewWidth * CGFloat((self.pageControlDelegate?.numberOfItems())!) + margin, 0)
@@ -168,16 +168,18 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         
         var viewsShouldBeReplaced = false
         
+        let offset = (self.cellModeEnabled) ? CGFloat(self.currentPageIndex) * (kCellHorizontalMargin + kGlobalCellOffset) - kCellHorizontalMargin : 0
+        
         if (direction == .Left) {
             if (self.currentPageIndex < (self.pageControlDelegate?.numberOfItems())! - 1) {
-                if (ceil(scrollView.contentOffset.x / viewWidth) > CGFloat(self.currentPageIndex)) {
+                if (ceil((scrollView.contentOffset.x + offset) / viewWidth) > CGFloat(self.currentPageIndex)) {
                     self.currentPageIndex += 1
                     viewsShouldBeReplaced = true
                 }
             }
         } else if (direction == .Right) {
             if (self.currentPageIndex > 0) {
-                if (ceil(scrollView.contentOffset.x / viewWidth) < CGFloat(self.currentPageIndex)) {
+                if (ceil((scrollView.contentOffset.x + offset - kCellHorizontalMargin) / viewWidth) < CGFloat(self.currentPageIndex)) {
                     self.currentPageIndex -= 1
                     viewsShouldBeReplaced = true
                 }

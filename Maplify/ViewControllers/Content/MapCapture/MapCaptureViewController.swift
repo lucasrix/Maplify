@@ -6,8 +6,8 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-class MapCaptureViewController: ViewController, InfinitePageControlDelegate, ErrorHandlingProtocol {
-    @IBOutlet weak var pageControl: InfinitePageControl!
+class MapCaptureViewController: ViewController, InfiniteScrollViewDelegate, ErrorHandlingProtocol {
+    @IBOutlet weak var pageControl: InfiniteScrollView!
     @IBOutlet weak var mapView: MCMapView!
 
     var googleMapService: GoogleMapService! = nil
@@ -71,7 +71,7 @@ class MapCaptureViewController: ViewController, InfinitePageControlDelegate, Err
         return 10
     }
     
-    func didShowPageView(pageControl: InfinitePageControl, view: UIView, index: Int) {
+    func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
         
 //        let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
 //        if model is StoryPoint {

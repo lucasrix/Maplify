@@ -34,15 +34,15 @@ enum ContentType: Int {
     case Share
 }
 
-class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, ErrorHandlingProtocol {
+class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
     @IBOutlet weak var notificationsButton: UIButton!
     @IBOutlet weak var addStoryButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
-
+    @IBOutlet weak var infiniteScrollView: InfiniteScrollView!
+    
     var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
     var storyPointDataSource: StoryPointDataSource! = nil
@@ -72,6 +72,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         super.viewWillAppear(animated)
         
         self.loadItemsFromDBIfNedded()
+        self.setupInfiniteScrollView()
         self.setupNavigationBar()
         self.setupBottomButtonIfNeeded()
         self.retrieveNotifications()
@@ -108,8 +109,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.pressAndHoldView.hidden = self.contentType != .Default
     }
     
-    func setupCollectionView() {
-        self.collectionView.hidden = true
+    func setupInfiniteScrollView() {
+        self.infiniteScrollView.pageControlDelegate = self
+        self.infiniteScrollView.cellModeEnabled = true
+        self.infiniteScrollView.yViewsOffset = 10
+        self.infiniteScrollView.hidden = true
     }
     
     func setupPlaceSearchHelper() {
@@ -200,10 +204,10 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func updateStoryPointDetails(storyPoints: [StoryPoint]) {
         self.storyPointActiveModel.removeData()
         self.storyPointActiveModel.addItems(storyPoints, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
-        self.storyPointDataSource = StoryPointDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
-        let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.minimumLineSpacing = kMinimumLineSpacing
-        self.storyPointDataSource.reloadCollectionView()
+//        self.storyPointDataSource = StoryPointDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
+//        let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        flowLayout.minimumLineSpacing = kMinimumLineSpacing
+//        self.storyPointDataSource.reloadCollectionView()
     }
     
     // MARK: - navigation bar
@@ -260,14 +264,17 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func selectPin(index: Int, mapCoordinate: MCMapCoordinate) {
         if index != NSNotFound {
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-            let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
-            self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-            
             self.mapActiveModel.selectPinAtIndex(index)
             self.mapDataSource.reloadMapView(StoryPointMapItem)
             self.collectionView.hidden = false
+            self.infiniteScrollView.moveAndShowCell(index, animated: false)
+
+            if self.infiniteScrollView.hidden {
+                let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
+                self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            } else {
+                // TODO:
+            }
         }
     }
     
@@ -276,7 +283,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             let location = self.publicStoryPoints.first?.location
             let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
             self.selectPin(0, mapCoordinate: mapCoordinate)
-            self.collectionView.hidden = false
+            self.infiniteScrollView.hidden = false
         }
     }
     
@@ -420,6 +427,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
             let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
             
+            self.infiniteScrollView.hidden = false
+
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
             self.collectionView?.hidden = false
         }
@@ -427,13 +436,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
-        self.collectionView.hidden = true
+        self.infiniteScrollView.hidden = true
         self.removePreviewItem()
         self.mapActiveModel.deselectAll()
         self.mapDataSource.reloadMapView(StoryPointMapItem)
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
+        print(locationInView)
         if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
@@ -521,6 +531,28 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.placeSearchHelper.hideGooglePlaceSearchController()
+    }
+    
+    // MARK: - InfinitePageControlDelegate
+    func numberOfItems() -> Int {
+        return self.storyPointActiveModel.numberOfItems(0)
+    }
+    
+    func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
+        
+        //        let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
+        //        if model is StoryPoint {
+        //            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
+        //        } else if model is Story {
+        //            DetailMapItemHelper.configureStoryView(view, story: model as! Story)
+        //        }
+        
+        let randomRed:CGFloat = CGFloat(drand48())
+        let randomGreen:CGFloat = CGFloat(drand48())
+        let randomBlue:CGFloat = CGFloat(drand48())
+        
+        view.backgroundColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+        view.layer.cornerRadius = 8
     }
     
     // MARK: - ErrorHandlingProtocol

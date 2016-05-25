@@ -18,16 +18,16 @@ enum InfiniteScrollDirection {
     case Right
 }
 
-protocol InfinitePageControlDelegate {
+protocol InfiniteScrollViewDelegate {
     func numberOfItems() -> Int
-    func didShowPageView(pageControl: InfinitePageControl, view: UIView, index: Int)
+    func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int)
 }
 
-class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
+class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     private var contentViews = [UIView]()
     private var currentPageIndex: Int = 0
     private var lastContentOffset: CGFloat = 0
-    var pageControlDelegate: InfinitePageControlDelegate! = nil
+    var pageControlDelegate: InfiniteScrollViewDelegate! = nil
     var cellModeEnabled: Bool = false {
         didSet {
             self.pagingEnabled = !self.cellModeEnabled
@@ -153,12 +153,12 @@ class InfinitePageControl: UIScrollView, UIScrollViewDelegate {
         return scrollDirection;
     }
     
-    private func scrollToPage(index: Int, animated: Bool) {
+    func scrollToPage(index: Int, animated: Bool) {
         let margin = (self.cellModeEnabled) ? CGFloat(index - 1) * kGlobalCellOffset + kGlobalCellOffset : 0
         let viewWidth = self.cellViewWidth()
         let contentOffset = CGPointMake(viewWidth * CGFloat(index) + margin, 0)
+
         self.setContentOffset(contentOffset, animated: animated)
-        
         self.lastContentOffset = self.contentOffset.x
     }
     

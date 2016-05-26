@@ -178,6 +178,7 @@
 		CDC817201CF5BCC30072DAE5 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */; };
 		CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */; };
 		CDE2D4C91CF61C3400949D87 /* OurStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */; };
+		CDE2D4CC1CF7183900949D87 /* DiscoverPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4CB1CF7183900949D87 /* DiscoverPlaceholderCell.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -377,6 +378,7 @@
 		CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSuccessViewController.swift; sourceTree = "<group>"; };
 		CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurStoryViewController.swift; sourceTree = "<group>"; };
+		CDE2D4CB1CF7183900949D87 /* DiscoverPlaceholderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPlaceholderCell.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 				F03507F31CBAF98F00CFAA05 /* StoryDetailViewController */,
 				CD0BB2BB1CB54A1E00E3E66B /* StoryCell */,
 				CD0BB2A91CB2859500E3E66B /* StoryPointCell */,
+				CDE2D4CA1CF7181300949D87 /* PlaceholderCell */,
 				A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */,
 				CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */,
 			);
@@ -1089,6 +1092,14 @@
 				CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */,
 			);
 			path = Reports;
+			sourceTree = "<group>";
+		};
+		CDE2D4CA1CF7181300949D87 /* PlaceholderCell */ = {
+			isa = PBXGroup;
+			children = (
+				CDE2D4CB1CF7183900949D87 /* DiscoverPlaceholderCell.swift */,
+			);
+			path = PlaceholderCell;
 			sourceTree = "<group>";
 		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
@@ -1377,6 +1388,7 @@
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
+				CDE2D4CC1CF7183900949D87 /* DiscoverPlaceholderCell.swift in Sources */,
 				CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */,
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,

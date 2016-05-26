@@ -30,7 +30,6 @@
 		1FC780FF1CA14A0C00C50C23 /* StoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */; };
 		1FC781021CA14C2600C50C23 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781011CA14C2600C50C23 /* Location.swift */; };
 		1FC781051CA151E900C50C23 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781041CA151E900C50C23 /* Attachment.swift */; };
-		1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
 		1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */; };
 		1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
@@ -175,6 +174,9 @@
 		CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */; };
 		CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */; };
 		CDC8171B1CF2FD2F0072DAE5 /* CapturePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */; };
+		CDC8171F1CF5BC3D0072DAE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
+		CDC817201CF5BCC30072DAE5 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */; };
+		CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -371,6 +373,8 @@
 		CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmbientViewController.xib; sourceTree = "<group>"; };
 		CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CapturePopUpView.xib; sourceTree = "<group>"; };
 		CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePopUpView.swift; sourceTree = "<group>"; };
+		CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSuccessViewController.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -670,6 +674,7 @@
 		A58A52A01C7F103000443C06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDC8171C1CF5B12E0072DAE5 /* Reports */,
 				CDC26E431CE9D25500D3EDEE /* Notifications */,
 				CD153CB61CE4901E00F32BDE /* FollowingList */,
 				CDF6D8981CD2846C001387EC /* Share */,
@@ -1074,6 +1079,15 @@
 			path = CapturePopUpView;
 			sourceTree = "<group>";
 		};
+		CDC8171C1CF5B12E0072DAE5 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */,
+				CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
 		CDF164EE1CCF623E00E38C7A /* AddPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1248,7 +1262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB705BD1C9C89B500FC3496 /* Auth.storyboard in Resources */,
-				1FC7810B1CA1A84E00C50C23 /* Main.storyboard in Resources */,
+				CDC8171F1CF5BC3D0072DAE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1320,6 +1334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC817201CF5BCC30072DAE5 /* ReportsViewController.swift in Sources */,
 				A5728A1C1C88887400C6DA7E /* NavigationViewController.swift in Sources */,
 				CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */,
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
@@ -1344,6 +1359,7 @@
 				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
+				CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */,
 				855567A41CDCBA180096A561 /* NSURL.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,

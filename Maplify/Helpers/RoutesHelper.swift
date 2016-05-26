@@ -58,6 +58,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.mainStoryboard(), identifier: Controllers.notificationsController)
     }
     
+    func routesOpenMenuController() {
+        self.routesOpenViewController(UIStoryboard.menuStoryboard(), identifier: Controllers.menuViewController)
+    }
+    
     func routesOpenStoryCreateController() {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
         self.navigationController?.pushViewController(storyCreateController, animated: true)
@@ -229,8 +233,18 @@ extension UIViewController {
         self.navigationController?.pushViewController(contentFollowingViewController, animated: true)
     }
     
-    func routesOpenMenuController() {
-        self.routesOpenViewController(UIStoryboard.menuStoryboard(), identifier: Controllers.menuViewController)
+    func routesOpenReportsController(postId: Int, postType: PostType, completionClosure: (() -> ())!) {
+        let reportsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.reportsController) as! ReportsViewController
+        reportsViewController.postId = postId
+        reportsViewController.postType = postType
+        reportsViewController.completionClosure = completionClosure
+        self.navigationController?.pushViewController(reportsViewController, animated: true)
+    }
+    
+    func routesOpenReportSucceddController(completionClosure: (() -> ())!) {
+        let reportSuccessController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.reportSuccessController) as! ReportSuccessViewController
+        reportSuccessController.completionClosure = completionClosure
+        self.navigationController?.pushViewController(reportSuccessController, animated: true)
     }
     
     // MARK: - open as popup controllers

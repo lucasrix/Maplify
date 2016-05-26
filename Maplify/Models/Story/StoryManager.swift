@@ -40,6 +40,16 @@ class StoryManager: ModelManager {
         return realm.objectForPrimaryKey(Story.self, key: storyId)
     }
     
+    class func delete(storyId: Int) {
+        let realm = try! Realm()
+        let story = realm.objectForPrimaryKey(Story.self, key: storyId)
+        if story != nil {
+            try! realm.write {
+                realm.delete(story!)
+            }
+        }
+    }
+    
     class func delete(story: Story) {
         let realm = try! Realm()
         try! realm.write {

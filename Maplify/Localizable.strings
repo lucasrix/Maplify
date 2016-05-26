@@ -64,6 +64,7 @@
 "Controller.ShareStory" = "Share Story";
 "Controller.ResetPassword" = "Reset Password";
 "Controller.Notifications" = "Notifications";
+"Controller.Reports" = "Report a problem";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -100,6 +101,8 @@
 "Label.GetCurrentCity" = "We use your location to show you stories and other fun stuff around you.";
 "Label.Loading" = "Loading...";
 "Label.LatitudeLongitude" = "Latitude: %.2f, longitude: %.2f";
+"Label.ReportSuccessTitle" = "Thanks for you feedback!";
+"Label.ReportSuccessDescription" = "We take this very seriously and will review and remove anything that does not adhere to our content guidelines";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -151,6 +154,10 @@
 "Button.Reset" = "Reset";
 "Button.Unfollow" = "Unfollow";
 "Button.GetCity" = "Get my current city";
+"Button.ReportsDontLikeThisPost" = "I don’t like this post";
+"Button.ReportsSpamOrScam" = "This post is spam or a scam";
+"Button.ReportsPutsRisk" = "This post puts people at risk";
+"Button.ReportsPostShouldBeRemoved" = "This post should be removed";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

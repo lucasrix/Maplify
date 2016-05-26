@@ -236,11 +236,6 @@ extension UIViewController {
         self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
-    func routesOpenMapCaptureViewController() {
-        let mapCaptureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.mapCaptureController) as! MapCaptureViewController
-        self.navigationController?.pushViewController(mapCaptureViewController, animated: true)
-    }
-    
     func routesOpenFollowingContentController(showingListOption: ShowingListOption) {
         let contentFollowingViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.contentFollowingViewController) as! ContentFollowingViewController
         contentFollowingViewController.showingListOption = showingListOption

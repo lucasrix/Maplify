@@ -21,6 +21,8 @@
 "Text.Placeholder.WhatsYourStoryAbout" = "What's your story about?";
 "Text.Placeholder.NewPassword" = "New Password";
 "Text.Placeholder.ConfirmNewPassword" = "Confirm new Password";
+"Text.Placeholder.Followers" = "You don't have any followers yet";
+"Text.Placeholder.Followings" = "You are not following anyone yet";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";

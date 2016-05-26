@@ -42,6 +42,10 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.policyController)
     }
     
+    func routesOpenOurStoryController() {
+        self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.ourStoryController)
+    }
+    
     func routesOpenOnboardController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.onboardController)
     }

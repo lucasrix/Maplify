@@ -177,6 +177,7 @@
 		CDC8171F1CF5BC3D0072DAE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
 		CDC817201CF5BCC30072DAE5 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */; };
 		CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */; };
+		CDE2D4C91CF61C3400949D87 /* OurStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */; };
 		CDF0EADA1CB7A71E00F93C66 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
 		CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
@@ -375,6 +376,7 @@
 		CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePopUpView.swift; sourceTree = "<group>"; };
 		CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSuccessViewController.swift; sourceTree = "<group>"; };
+		CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurStoryViewController.swift; sourceTree = "<group>"; };
 		CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoCell.swift; sourceTree = "<group>"; };
 		CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 			children = (
 				A59A7E741C96F48A00399A38 /* TermsViewController.swift */,
 				A59A7E781C971DF200399A38 /* PolicyViewController.swift */,
+				CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */,
 			);
 			path = WebContent;
 			sourceTree = "<group>";
@@ -1340,6 +1343,7 @@
 				A59A7E871C9AD36700399A38 /* MCMapItem.swift in Sources */,
 				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
 				CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */,
+				CDE2D4C91CF61C3400949D87 /* OurStoryViewController.swift in Sources */,
 				8C3575DC1CB3FB240039828A /* FacebookHelper.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,

@@ -22,6 +22,9 @@ public enum MenuItem: Int {
 
 let kSignOutAction = "signOut"
 let kChangePasswordAction = "changePassword"
+let kPolicyAction = "policy"
+let kTermsAction = "terms"
+let kOurStoryAction = "ourStory"
 
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
@@ -51,16 +54,13 @@ class EmbeddedMenuViewController: UITableViewController {
             self.delegate?.menuDidSelectItem(kChangePasswordAction)
             
         case MenuItem.SectionAbout.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kOurStoryAction)
             
         case MenuItem.SectionPrivacyPolicy.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kPolicyAction)
             
         case MenuItem.SectionTermsOfService.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kTermsAction)
             
         case MenuItem.SectionLogOut.rawValue:
             self.delegate?.menuDidSelectItem(kSignOutAction)

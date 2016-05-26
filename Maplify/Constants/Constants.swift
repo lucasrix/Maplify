@@ -79,6 +79,7 @@ struct Controllers {
     static let notificationsController = "NotificationsViewController"
     static let reportsController = "ReportsViewController"
     static let reportSuccessController = "ReportSuccessViewController"
+    static let ourStoryController = "OurStoryViewController"
 }
 
 struct AppIDs {

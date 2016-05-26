@@ -21,7 +21,20 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellData = self.activeModel.cellData(indexPath)
         let model = cellData.model
-        let item = model as! DiscoverItem
+        
+        if model is DiscoverItem {
+            let item = model as! DiscoverItem
+            return self.configureDiscoverItemCell(item, tableView: tableView, indexPath: indexPath)
+        } else if model is String {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverPlaceholderCell), forIndexPath: indexPath) as! DiscoverPlaceholderCell
+            cell.configure(cellData)
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func configureDiscoverItemCell(item: DiscoverItem, tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        let cellData = self.activeModel.cellData(indexPath)
         if item.type ==  DiscoverItemType.StoryPoint.rawValue {
             let cell = tableView.dequeueReusableCellWithIdentifier(String(DiscoverStoryPointCell), forIndexPath: indexPath) as! DiscoverStoryPointCell
             cell.configure(cellData)
@@ -36,9 +49,17 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cellData = self.activeModel.cellData(indexPath)
         let model = cellData.model
-        let item = model as! DiscoverItem
+        if model is DiscoverItem {
+            let item = model as! DiscoverItem
+            return self.heightForDiscoverItem(item, cellData: cellData)
+        } else if model is String {
+            return DiscoverPlaceholderCell.contentSize(cellData).height
+        }
+        return 0
+    }
+    
+    func heightForDiscoverItem(item: DiscoverItem, cellData: CSCellData) -> CGFloat {
         var itemHeight: CGFloat = 0
-        
         if item.type == DiscoverItemType.StoryPoint.rawValue {
             itemHeight = DiscoverStoryPointCell.contentSize(cellData).height
         } else if item.type ==  DiscoverItemType.Story.rawValue {
@@ -50,9 +71,11 @@ class DiscoverTableDataSource: CSBaseTableDataSource {
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let cellData = self.activeModel.cellData(indexPath) {
             let model = cellData.model
-            let item = model as! DiscoverItem
-            if (item.type == DiscoverItemType.StoryPoint.rawValue) && (cell is DiscoverStoryPointCell) {
-                (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
+            if model is DiscoverItem {
+                let item = model as! DiscoverItem
+                if (item.type == DiscoverItemType.StoryPoint.rawValue) && (cell is DiscoverStoryPointCell) {
+                    (cell as! DiscoverStoryPointCell).cellDidEndDiplaying()
+                }
             }
         }
     }

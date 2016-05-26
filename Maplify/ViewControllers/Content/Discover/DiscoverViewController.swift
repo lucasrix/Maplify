@@ -223,8 +223,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self.discoverItems = Array(allItems)
             }
         }
-        
-        self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
+        if (self.discoverItems.count == 0) && (self.supportUserProfile) {
+            let placeholderString = NSLocalizedString("Text.Placeholder.Profile", comment: String())
+            self.storyActiveModel.addItems([placeholderString], cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
+        } else {
+            self.storyActiveModel.addItems(self.discoverItems, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
+        }
         self.storyDataSource.reloadTable()
     }
     

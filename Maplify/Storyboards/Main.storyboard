@@ -131,16 +131,19 @@
                                     <action selector="profileTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="Cq1-Ia-m5d"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="Maplify" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="Maplify" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="244" width="375" height="423"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="a5q-iA-fzr" firstAttribute="top" secondItem="siV-0z-UKe" secondAttribute="bottom" constant="15" id="4Lf-7k-dc0"/>
+                            <constraint firstAttribute="trailing" secondItem="MPK-oh-TIo" secondAttribute="trailing" id="4wb-Ky-9wI"/>
+                            <constraint firstItem="a5q-iA-fzr" firstAttribute="top" secondItem="MPK-oh-TIo" secondAttribute="bottom" id="67O-gU-Rbh"/>
                             <constraint firstAttribute="trailing" secondItem="QmD-k8-fzr" secondAttribute="trailing" id="8rF-oF-JJz"/>
                             <constraint firstAttribute="trailing" secondItem="MRY-bt-2Iz" secondAttribute="trailing" constant="10" id="DWT-XN-aRf"/>
                             <constraint firstItem="QmD-k8-fzr" firstAttribute="top" secondItem="Erw-7p-JDe" secondAttribute="top" id="JUa-ri-0We"/>
+                            <constraint firstItem="MPK-oh-TIo" firstAttribute="top" secondItem="TeE-eq-13O" secondAttribute="bottom" constant="180" id="LCK-GB-OwK"/>
                             <constraint firstItem="MRY-bt-2Iz" firstAttribute="top" secondItem="siV-0z-UKe" secondAttribute="top" id="Lys-ey-QFs"/>
                             <constraint firstItem="QmD-k8-fzr" firstAttribute="leading" secondItem="Erw-7p-JDe" secondAttribute="leading" id="Pwx-dT-n82"/>
                             <constraint firstItem="a5q-iA-fzr" firstAttribute="top" secondItem="QmD-k8-fzr" secondAttribute="bottom" id="Ru0-xN-hKl"/>
@@ -152,19 +155,15 @@
                             <constraint firstItem="a5q-iA-fzr" firstAttribute="top" secondItem="nuJ-QW-eHb" secondAttribute="bottom" constant="15" id="m93-51-KCf"/>
                             <constraint firstItem="MRY-bt-2Iz" firstAttribute="width" secondItem="siV-0z-UKe" secondAttribute="width" id="nAx-6d-ayf"/>
                             <constraint firstItem="MRY-bt-2Iz" firstAttribute="height" secondItem="siV-0z-UKe" secondAttribute="height" id="o2e-1F-DKz"/>
-                            <constraint firstItem="QmD-k8-fzr" firstAttribute="top" secondItem="TeE-eq-13O" secondAttribute="bottom" id="uNK-vG-ohM"/>
+                            <constraint firstItem="MPK-oh-TIo" firstAttribute="leading" secondItem="Erw-7p-JDe" secondAttribute="leading" id="x3c-X9-lYl"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="uNK-vG-ohM"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addStoryButton" destination="nuJ-QW-eHb" id="uhY-AQ-Ms2"/>
                         <outlet property="infiniteScrollView" destination="MPK-oh-TIo" id="hR4-VB-DZl"/>
+                        <outlet property="infiniteScrollViewTopConstraint" destination="LCK-GB-OwK" id="rwk-Rh-MlA"/>
                         <outlet property="mapView" destination="QmD-k8-fzr" id="JgK-N5-M4A"/>
                         <outlet property="notificationsButton" destination="siV-0z-UKe" id="zpV-Vq-s2I"/>
                         <outlet property="pressAndHoldLabel" destination="Y6c-HQ-7te" id="sDb-Ds-YWe"/>

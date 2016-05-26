@@ -72,6 +72,17 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
         return location
     }
     
+    func pointFromLocation(location: CLLocationCoordinate2D) -> CGPoint {
+        return (self.mapView as! GMSMapView).projection.pointForCoordinate(location)
+    }
+    
+    func scrollMapToPoint(sourcePoint: CGPoint, destinationPoint: CGPoint) {
+        let deltaX = sourcePoint.x - destinationPoint.x
+        let deltaY = sourcePoint.y - destinationPoint.y
+        let cameraUpdate = GMSCameraUpdate.scrollByX(deltaX, y: deltaY)
+        (self.mapView as! GMSMapView).animateWithCameraUpdate(cameraUpdate)
+    }
+    
     func currentZoom() -> Float {
         return (self.mapView as! GMSMapView).camera.zoom
     }

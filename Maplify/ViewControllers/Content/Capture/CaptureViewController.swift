@@ -26,6 +26,9 @@ let kPoptipBorderWidth: CGFloat = 0
 let kPoptipPopoverColorAlpha: CGFloat = 0.95
 let kNotificationsButtonBackgroundColorAlpha: CGFloat = 0.4
 let kAddStoryButtonBackgroundColorAlpha: CGFloat = 0.7
+let kPinWidthOffset: CGFloat = 8
+let kPinHeightOffset: CGFloat = 25
+let kDetailViewYOffset: CGFloat = 10
 
 enum ContentType: Int {
     case Default
@@ -42,6 +45,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     @IBOutlet weak var addStoryButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var infiniteScrollView: InfiniteScrollView!
+    @IBOutlet weak var infiniteScrollViewTopConstraint: NSLayoutConstraint!
     
     var addStoryPointButtonTapped: ((location: MCMapCoordinate, locationString: String) -> ())! = nil
     var googleMapService: GoogleMapService! = nil
@@ -112,7 +116,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func setupInfiniteScrollView() {
         self.infiniteScrollView.pageControlDelegate = self
         self.infiniteScrollView.cellModeEnabled = true
-        self.infiniteScrollView.yViewsOffset = 10
+        self.infiniteScrollView.yViewsOffset = kDetailViewYOffset
         self.infiniteScrollView.hidden = true
     }
     
@@ -262,19 +266,16 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.setupMap(CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), showWholeWorld: showWholeWorld)
     }
     
-    func selectPin(index: Int, mapCoordinate: MCMapCoordinate) {
+    func selectPin(index: Int, mapCoordinate: MCMapCoordinate, pointInView: CGPoint) {
         if index != NSNotFound {
             self.mapActiveModel.selectPinAtIndex(index)
             self.mapDataSource.reloadMapView(StoryPointMapItem)
             self.collectionView.hidden = false
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
 
-            if self.infiniteScrollView.hidden {
-                let region = MCMapRegion(latitude: mapCoordinate.latitude, longitude: mapCoordinate.longitude)
-                self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-            } else {
-                // TODO:
-            }
+            let x = self.mapView.center.x + kPinWidthOffset
+            let y = (NavigationBar.defaultHeight + self.infiniteScrollViewTopConstraint.constant / 2 + kPinHeightOffset)
+            self.googleMapService.scrollMapToPoint(pointInView, destinationPoint: CGPointMake(x, y))
         }
     }
     
@@ -282,7 +283,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         if self.contentType != .Default && self.publicStoryPoints.count > 0 {
             let location = self.publicStoryPoints.first?.location
             let mapCoordinate = MCMapCoordinate(latitude: location!.latitude, longitude: location!.longitude)
-            self.selectPin(0, mapCoordinate: mapCoordinate)
+            self.selectPin(0, mapCoordinate: mapCoordinate, pointInView: CGPointZero)
             self.infiniteScrollView.hidden = false
         }
     }
@@ -424,13 +425,15 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func didTapMapView(mapView: UIView, itemObject: AnyObject) {
         if ((itemObject as! GMSMarker).userData as! Bool) == false {
             let clLocation = (itemObject as! GMSMarker).position
+            let pointInView = self.googleMapService.pointFromLocation(clLocation)
+
             let mapCoordinate = MCMapCoordinate(latitude: clLocation.latitude, longitude: clLocation.longitude)
             let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
             
             self.infiniteScrollView.hidden = false
 
-            self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
             self.collectionView?.hidden = false
+            self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate, pointInView: pointInView)
         }
         self.popTip?.hide()
     }
@@ -443,7 +446,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
-        print(locationInView)
         if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true

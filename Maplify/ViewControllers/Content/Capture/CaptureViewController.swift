@@ -542,19 +542,18 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
         
-        //        let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
-        //        if model is StoryPoint {
-        //            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
-        //        } else if model is Story {
-        //            DetailMapItemHelper.configureStoryView(view, story: model as! Story)
-        //        }
-        
-        let randomRed:CGFloat = CGFloat(drand48())
-        let randomGreen:CGFloat = CGFloat(drand48())
-        let randomBlue:CGFloat = CGFloat(drand48())
-        
-        view.backgroundColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-        view.layer.cornerRadius = 8
+        if (index >= 0) && (index < self.storyPointActiveModel.numberOfItems(0)) {
+            self.mapActiveModel.selectPinAtIndex(index)
+            self.mapDataSource.reloadMapView(StoryPointMapItem)
+            
+            
+            let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
+            if model is StoryPoint {
+                DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
+            } else if model is Story {
+                DetailMapItemHelper.configureStoryView(view, story: model as! Story)
+            }
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

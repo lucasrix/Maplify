@@ -125,9 +125,9 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
         let selectedIds = self.selectedStories.map({$0.id})
-        self.routesOpenAddToStoryController(selectedIds, storypointCreationSupport: false, pickedLocation: nil, locationString: String()) { [weak self] (selectedStories) in
+        self.routesOpenAddToStoryController(selectedIds, storypointCreationSupport: false, pickedLocation: nil, locationString: String(), updateStoryHandle: { [weak self] (selectedStories) in
             self?.configureSelectedStories(selectedStories)
-        }
+        }, creationPostCompletion: nil)
     }
     
     func configureSelectedStories(selectedStories: [Story]) {

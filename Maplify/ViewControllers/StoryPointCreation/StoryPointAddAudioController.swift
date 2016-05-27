@@ -100,7 +100,7 @@ class StoryPointAddAudioController: ViewController, EZMicrophoneDelegate, AudioR
         ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: nil, locationString: String())
+            self?.routesOpenStoryPointEditDescriptionController(StoryPointKind.Audio, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: nil, locationString: String(), creationPostCompletion: nil)
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

@@ -22,6 +22,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     var locationString = String()
     var currentChildController: UIViewController! = nil
     var selectedStoryIds: [Int]! = nil
+    var creationPostCompletion: creationPostClosure!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -129,7 +130,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
             
             self?.hideProgressHUD()
             let attachmentID = (response as! Attachment).id
-            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds, locationString: (self?.locationString)!)
+            self?.routesOpenStoryPointEditDescriptionController(storyPointKind, storyPointAttachmentId: attachmentID, location: (self?.pickedLocation)!, selectedStoryIds: self?.selectedStoryIds, locationString: (self?.locationString)!, creationPostCompletion: self?.creationPostCompletion)
             
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             
@@ -208,7 +209,7 @@ class StoryPointAddPhotoVideoViewController: ViewController, CameraRollDelegate,
     }
     
     func postTextStoryPoint() {
-        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds, locationString: self.locationString)
+        self.routesOpenStoryPointEditDescriptionController(.Text, storyPointAttachmentId: 0, location: (self.pickedLocation)!, selectedStoryIds: self.selectedStoryIds, locationString: self.locationString, creationPostCompletion: self.creationPostCompletion)
     }
     
     // MARK: - CameraRollDelegate

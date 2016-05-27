@@ -118,6 +118,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.infiniteScrollView.cellModeEnabled = true
         self.infiniteScrollView.yViewsOffset = kDetailViewYOffset
         self.infiniteScrollView.hidden = true
+        self.infiniteScrollView.cellCornerRadius = CornerRadius.detailViewBorderRadius
     }
     
     func setupPlaceSearchHelper() {
@@ -272,11 +273,14 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.mapDataSource.reloadMapView(StoryPointMapItem)
             self.collectionView.hidden = false
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
-
-            let x = self.mapView.center.x + kPinWidthOffset
-            let y = (NavigationBar.defaultHeight + self.infiniteScrollViewTopConstraint.constant / 2 + kPinHeightOffset)
-            self.googleMapService.scrollMapToPoint(pointInView, destinationPoint: CGPointMake(x, y))
+            self.scrollToDestinationPointWithOffset(pointInView)
         }
+    }
+    
+    func scrollToDestinationPointWithOffset(pointInView: CGPoint) {
+        let x = self.mapView.center.x + kPinWidthOffset
+        let y = (NavigationBar.defaultHeight + self.infiniteScrollViewTopConstraint.constant / 2 + kPinHeightOffset)
+        self.googleMapService.scrollMapToPoint(pointInView, destinationPoint: CGPointMake(x, y))
     }
     
     func setupCollectionViewIfNeeded() {
@@ -502,8 +506,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
         
-        self.mapActiveModel.selectPinAtIndex(currentIndex)
-        self.mapDataSource.reloadMapView(StoryPointMapItem)
+//        self.mapActiveModel.selectPinAtIndex(currentIndex)
+//        self.mapDataSource.reloadMapView(StoryPointMapItem)
         
         let storyPoint = self.mapActiveModel.storyPoint(indexPath)
         
@@ -541,19 +545,22 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
-        
-        if (index >= 0) && (index < self.storyPointActiveModel.numberOfItems(0)) {
-            self.mapActiveModel.selectPinAtIndex(index)
-            self.mapDataSource.reloadMapView(StoryPointMapItem)
-            
-            
-            let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
-            if model is StoryPoint {
-                DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
-            } else if model is Story {
-                DetailMapItemHelper.configureStoryView(view, story: model as! Story)
-            }
+        let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
+        if model is StoryPoint {
+            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
+        } else if model is Story {
+            DetailMapItemHelper.configureStoryView(view, story: model as! Story)
         }
+    }
+    
+    func didScrollPageView(pageControl: InfiniteScrollView, index: Int) {        
+        self.mapActiveModel.selectPinAtIndex(index)
+        self.mapDataSource.reloadMapView(StoryPointMapItem)
+
+        let storyPoint = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! StoryPoint
+        let location = CLLocationCoordinate2DMake(storyPoint.location.latitude , storyPoint.location.longitude)
+        let pointInView = self.googleMapService.pointFromLocation(location)
+        self.scrollToDestinationPointWithOffset(pointInView)
     }
     
     // MARK: - ErrorHandlingProtocol

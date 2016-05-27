@@ -14,9 +14,7 @@ class DetailMapItemHelper {
         contentView.frame = view.bounds
         contentView.configure(storyPoint)
         
-        view.layer.cornerRadius = CornerRadius.detailViewBorderRadius
         contentView.layer.cornerRadius = CornerRadius.detailViewBorderRadius
-        view.layer.masksToBounds = true
         contentView.layer.masksToBounds = true
         
         view.addSubview(contentView)
@@ -27,9 +25,7 @@ class DetailMapItemHelper {
         contentView.frame = view.bounds
         contentView.configure(story)
         
-        view.layer.cornerRadius = CornerRadius.detailViewBorderRadius
         contentView.layer.cornerRadius = CornerRadius.detailViewBorderRadius
-        view.layer.masksToBounds = true
         contentView.layer.masksToBounds = true
         
         view.addSubview(contentView)

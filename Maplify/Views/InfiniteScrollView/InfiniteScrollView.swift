@@ -21,12 +21,15 @@ enum InfiniteScrollDirection {
 protocol InfiniteScrollViewDelegate {
     func numberOfItems() -> Int
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int)
+    func didScrollPageView(pageControl: InfiniteScrollView, index: Int)
 }
 
 class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     private var contentViews = [UIView]()
     private var currentPageIndex: Int = 0
     private var lastContentOffset: CGFloat = 0
+    
+    var cellCornerRadius: CGFloat = 0
     var pageControlDelegate: InfiniteScrollViewDelegate! = nil
     var cellModeEnabled: Bool = false {
         didSet {
@@ -71,7 +74,21 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         let leftView = UIView()
         let centerView = UIView()
         let rightView = UIView()
-
+        
+        if self.cellModeEnabled {
+            leftView.layer.cornerRadius = self.cellCornerRadius
+            centerView.layer.cornerRadius = self.cellCornerRadius
+            rightView.layer.cornerRadius = self.cellCornerRadius
+            
+            leftView.layer.masksToBounds = true
+            centerView.layer.masksToBounds = true
+            rightView.layer.masksToBounds = true
+        }
+        
+        leftView.backgroundColor = UIColor.whiteColor()
+        centerView.backgroundColor = UIColor.whiteColor()
+        rightView.backgroundColor = UIColor.whiteColor()
+        
         let viewWidth = self.cellViewWidth()
         let viewHeight = CGRectGetHeight(self.frame)
         
@@ -83,10 +100,16 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         centerView.frame = CGRectMake(viewWidth * CGFloat(index) + centerMargin, yViewsOffset, viewWidth, viewHeight)
         rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1) + rightMargin, yViewsOffset, viewWidth, viewHeight)
         
-        self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
+        if (index - 1) > 0 {
+            self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
+        }
+        
         self.pageControlDelegate?.didShowPageView(self, view: centerView, index: index)
-        self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index + 1)
 
+        if (index + 1) < self.pageControlDelegate?.numberOfItems() {
+            self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index + 1)
+        }
+        
         self.addSubview(leftView)
         self.addSubview(centerView)
         self.addSubview(rightView)
@@ -128,7 +151,11 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         frame.origin.y = yViewsOffset
         viewToMove.frame = frame
         
-        self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: index)
+        let viewToConfigure = self.contentViews[1]
+        
+        if (index >= 0 && index < (self.pageControlDelegate?.numberOfItems())!) {
+            self.pageControlDelegate?.didShowPageView(self, view: viewToConfigure, index: index)
+        }
     }
     
     private func updateContentSize() {
@@ -194,10 +221,11 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let viewWidth = self.cellViewWidth()
+        var targetIndex: CGFloat = scrollView.contentOffset.x / scrollView.frame.size.width
+
         if self.cellModeEnabled {
-            let viewWidth = self.cellViewWidth()
             let targetX = scrollView.contentOffset.x + velocity.x * kSecondsInMinute
-            var targetIndex: CGFloat = 0
             
             if (velocity.x > 0) {
                 targetIndex = ceil(targetX / (viewWidth + kGlobalCellOffset))
@@ -205,6 +233,10 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
                 targetIndex = floor(targetX / (viewWidth + kGlobalCellOffset))
             }
             targetContentOffset.memory.x = targetIndex * (viewWidth + kGlobalCellOffset)
+        }
+   
+        if (targetIndex >= 0 && targetIndex < CGFloat((self.pageControlDelegate?.numberOfItems())!)) {
+            self.pageControlDelegate?.didScrollPageView(self, index: Int(targetIndex))
         }
     }
 }

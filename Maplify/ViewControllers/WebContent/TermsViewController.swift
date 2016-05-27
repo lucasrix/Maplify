@@ -23,10 +23,16 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
         self.webView.delegate = self
     }
     
+    // MARK: - navigation bar
+    override func navigationBarIsTranlucent() -> Bool {
+        return false
+    }
+    
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
     }
     
+    // MARK: - remote
     func loadRemoteData() {
         self.showProgressHUD(self.view)
         ApiClient.sharedClient.retrieveTermsOfUse({ [weak self] (response) -> () in
@@ -50,5 +56,4 @@ class TermsViewController: ViewController, ErrorHandlingProtocol, UIWebViewDeleg
     func webViewDidFinishLoad(webView: UIWebView) {
         self.hideProgressHUD(self.webView)
     }
-    
 }

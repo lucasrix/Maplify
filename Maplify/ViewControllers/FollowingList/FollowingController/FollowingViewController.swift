@@ -11,6 +11,7 @@ import UIKit
 
 class FollowingViewController: ViewController, FollowingCellDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var placeholerLabel: UILabel!
     
     var followingsDataSource: CSBaseTableDataSource! = nil
     var followingsActiveModel = CSActiveModel()
@@ -29,7 +30,12 @@ class FollowingViewController: ViewController, FollowingCellDelegate {
     }
     
     func setup() {
+        self.setupPlaceholder()
         self.setupDataSource()
+    }
+    
+    func setupPlaceholder() {
+        self.placeholerLabel.text = NSLocalizedString("Text.Placeholder.Followings", comment: String())
     }
     
     func setupDataSource() {
@@ -50,6 +56,8 @@ class FollowingViewController: ViewController, FollowingCellDelegate {
         
         let realm = try! Realm()
         let followings = Array(realm.objects(User).filter("followed == true").sorted("created_at"))
+        self.tableView.hidden = followings.count == 0
+        self.placeholerLabel.hidden = followings.count != 0
         
         self.followingsActiveModel.addItems(followings, cellIdentifier: String(FollowingTableViewCell), sectionTitle: nil, delegate: self)
         self.followingsDataSource.reloadTable()

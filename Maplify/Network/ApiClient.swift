@@ -187,6 +187,10 @@ class ApiClient {
         self.getRequest("privacy_policy", params: nil, manager: WebContentManager(), success: success, failure: failure)
     }
     
+    func retrieveAbout(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("about", params: nil, manager: WebContentManager(), success: success, failure: failure)
+    }
+    
     func createStoryPoint(params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
         self.postRequest("story_points", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
     }
@@ -324,6 +328,16 @@ class ApiClient {
     func retrieveNotifications(makeRead: Bool, success: successClosure!, failure: failureClosure!) {
         let params = ["make_read": String(makeRead)]
         self.getRequest("notifications", params: params, manager: NotificationsManager(), success: success, failure: failure)
+    }
+    
+    func reportStoryPoint(storyPointId: Int, reportKind: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["kind": reportKind]
+        self.postRequest("story_points/\(storyPointId)/report", params: params, data: nil, manager: StoryPointManager(), progress: nil, success: success, failure: failure)
+    }
+    
+    func reportStory(storyId: Int, reportKind: String, success: successClosure!, failure: failureClosure!) {
+        let params = ["kind": reportKind]
+        self.postRequest("stories/\(storyId)/report", params: params, data: nil, manager: StoryManager(), progress: nil, success: success, failure: failure)
     }
 }
 

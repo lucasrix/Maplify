@@ -15,11 +15,14 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchMap" translatesAutoresizingMaskIntoConstraints="NO" id="oVj-fv-Cfk">
+                                <rect key="frame" x="0.0" y="47" width="375" height="575"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="mVX-ZI-hva">
-                                <rect key="frame" x="150" y="236" width="300" height="128"/>
+                                <rect key="frame" x="38" y="270" width="300" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mVX-ZI-hva" secondAttribute="height" multiplier="75:32" id="5ha-66-uUC"/>
                                     <constraint firstAttribute="height" constant="128" id="GU6-AE-vuX"/>
@@ -27,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your life on a map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAs-l8-qts">
-                                <rect key="frame" x="237" y="334" width="156" height="21"/>
+                                <rect key="frame" x="125" y="368" width="156" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="3PK-iv-ShY"/>
                                     <constraint firstAttribute="width" constant="156" id="E4a-NY-atW"/>
@@ -39,20 +42,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="oVj-fv-Cfk" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="47" id="Azg-oY-qEx"/>
                             <constraint firstItem="kAs-l8-qts" firstAttribute="top" secondItem="mVX-ZI-hva" secondAttribute="bottom" constant="-30" id="Bk1-dz-3JF"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="oVj-fv-Cfk" secondAttribute="bottom" constant="45" id="IRc-Ez-QXO"/>
                             <constraint firstItem="kAs-l8-qts" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="15" id="O1J-DJ-WyN"/>
+                            <constraint firstItem="oVj-fv-Cfk" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ReM-qi-KL3"/>
+                            <constraint firstAttribute="trailing" secondItem="oVj-fv-Cfk" secondAttribute="trailing" id="WzN-Qw-7Wq"/>
                             <constraint firstItem="mVX-ZI-hva" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YcN-lv-tga"/>
                             <constraint firstItem="mVX-ZI-hva" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="geN-Iy-FYi"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchMap" width="375" height="575"/>
         <image name="logo" width="276" height="95"/>
     </resources>
 </document>

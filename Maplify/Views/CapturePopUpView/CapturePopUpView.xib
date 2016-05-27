@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CapturePopUpView" customModule="Maplify" customModuleProvider="target">
+            <connections>
+                <outlet property="addressLabel" destination="MuM-xg-HR0" id="hD9-g0-qNz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icoAddSp" translatesAutoresizingMaskIntoConstraints="NO" id="EiD-rB-hxf">
+                    <rect key="frame" x="253" y="-2" width="49" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EiD-rB-hxf" secondAttribute="height" multiplier="1:1" id="dcn-Ir-Z9c"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="MuM-xg-HR0">
+                    <rect key="frame" x="25" y="12" width="224" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="mTc-7e-jir"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fill1" translatesAutoresizingMaskIntoConstraints="NO" id="325-mn-aFC">
+                    <rect key="frame" x="5" y="13" width="16" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="ZOz-MR-ab3"/>
+                        <constraint firstAttribute="height" constant="20" id="gGe-XQ-bqw"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MuM-xg-HR0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1mE-0e-2zg"/>
+                <constraint firstItem="EiD-rB-hxf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-2" id="5Iw-fQ-eWU"/>
+                <constraint firstItem="325-mn-aFC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="5QD-qc-oRg"/>
+                <constraint firstItem="325-mn-aFC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OFQ-96-QVJ"/>
+                <constraint firstItem="MuM-xg-HR0" firstAttribute="leading" secondItem="325-mn-aFC" secondAttribute="trailing" constant="4" id="fL7-m8-c7Q"/>
+                <constraint firstItem="EiD-rB-hxf" firstAttribute="leading" secondItem="MuM-xg-HR0" secondAttribute="trailing" constant="4" id="hJW-mp-Bx8"/>
+                <constraint firstAttribute="trailing" secondItem="EiD-rB-hxf" secondAttribute="trailing" constant="-2" id="hyd-pQ-Deu"/>
+                <constraint firstAttribute="bottom" secondItem="EiD-rB-hxf" secondAttribute="bottom" constant="-2" id="img-fd-cql"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="111" y="60.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="fill1" width="14" height="17"/>
+        <image name="icoAddSp" width="40" height="40"/>
+    </resources>
+</document>

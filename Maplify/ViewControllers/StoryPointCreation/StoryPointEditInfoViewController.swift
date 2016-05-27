@@ -9,9 +9,7 @@
 import UIKit
 import GoogleMaps
 import RealmSwift
-import Haneke
 import CoreLocation
-import Haneke
 import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
 let kLocationInputFieldRightMargin: CGFloat = 30
@@ -19,12 +17,8 @@ let kEditInfoTopViewHeight: CGFloat = 281
 let kStoryCellHeight: CGFloat = 44
 
 class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtocol, ErrorHandlingProtocol {
-    @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var placeOrLocationLabel: UILabel!
-    @IBOutlet weak var tagsLabel: UILabel!
-    @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var placeOrLocationTextField: UITextField!
-    @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var isPartOfStoryLabel: UILabel!
     @IBOutlet weak var addToStoryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -67,17 +61,11 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         self.title = NSLocalizedString("Controller.StoryPointEditDescription.Title", comment: String())
         self.addRightBarItem(NSLocalizedString("Button.Post", comment: String()))
         
-        self.captionLabel.text = NSLocalizedString("Label.Caption", comment: String())
-        self.placeOrLocationLabel.text = NSLocalizedString("Label.PlaceOrLocation", comment: String())
-        self.tagsLabel.text = NSLocalizedString("Label.Tags", comment: String())
-        
-        self.captionTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterBriefCaption", comment: String())
         self.placeOrLocationTextField.placeholder = NSLocalizedString("Text.Placeholder.EveryPostMustBeGeotagged", comment: String())
         
         let view = UIView(frame: CGRectMake(0, 0, kLocationInputFieldRightMargin, self.placeOrLocationTextField.frame.size.height))
         self.placeOrLocationTextField.rightViewMode = .Always
         self.placeOrLocationTextField.rightView = view
-        self.tagsTextField.placeholder = NSLocalizedString("Text.Placeholder.EnterTag", comment: String())
         
         self.setupStoryAttachmentLabels()
     }
@@ -94,7 +82,6 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
         
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint != nil {
-            self.captionTextField.text = storyPoint.caption
             self.placeOrLocationTextField.text = storyPoint.location.address
         }
     }
@@ -136,9 +123,9 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     // MARK: - actions
     @IBAction func addToStoryTapped(sender: UIButton) {
         let selectedIds = self.selectedStories.map({$0.id})
-        self.routesOpenAddToStoryController(selectedIds, storypointCreationSupport: false, pickedLocation: nil) { [weak self] (selectedStories) in
+        self.routesOpenAddToStoryController(selectedIds, storypointCreationSupport: false, pickedLocation: nil, locationString: String(), updateStoryHandle: { [weak self] (selectedStories) in
             self?.configureSelectedStories(selectedStories)
-        }
+        }, creationPostCompletion: nil)
     }
     
     func configureSelectedStories(selectedStories: [Story]) {
@@ -148,9 +135,7 @@ class StoryPointEditInfoViewController: ViewController, SelectedStoryCellProtoco
     }
     
     func hideKeyboard() {
-        self.captionTextField.endEditing(true)
         self.placeOrLocationTextField.endEditing(true)
-        self.tagsTextField.endEditing(true)
     }
     
     func contentHeight() -> CGFloat {

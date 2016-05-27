@@ -10,8 +10,6 @@ import UIKit
 
 public enum MenuItem: Int {
     case SectionAccount = 0
-    case SectionNotifications
-    case SectionEditProfile
     case SectionChangePassword
     case SectionInformation
     case SectionAbout
@@ -23,7 +21,10 @@ public enum MenuItem: Int {
 }
 
 let kSignOutAction = "signOut"
-let kOpenNotificationsAction = "openNotifications"
+let kChangePasswordAction = "changePassword"
+let kPolicyAction = "policy"
+let kTermsAction = "terms"
+let kOurStoryAction = "ourStory"
 
 class EmbeddedMenuViewController: UITableViewController {
     var delegate: MenuDelegate! = nil
@@ -49,28 +50,17 @@ class EmbeddedMenuViewController: UITableViewController {
     func didSelectMenuItem(index: Int) {
         switch index {
             
-        case MenuItem.SectionNotifications.rawValue:
-            self.sendAction(kOpenNotificationsAction)
-            
-        case MenuItem.SectionEditProfile.rawValue:
-            // TODO:
-            break
-            
         case MenuItem.SectionChangePassword.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kChangePasswordAction)
             
         case MenuItem.SectionAbout.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kOurStoryAction)
             
         case MenuItem.SectionPrivacyPolicy.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kPolicyAction)
             
         case MenuItem.SectionTermsOfService.rawValue:
-            // TODO:
-            break
+            self.delegate?.menuDidSelectItem(kTermsAction)
             
         case MenuItem.SectionLogOut.rawValue:
             self.delegate?.menuDidSelectItem(kSignOutAction)
@@ -81,9 +71,7 @@ class EmbeddedMenuViewController: UITableViewController {
     }
     
     func sendAction(actionString: String) {
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: { [weak self] () in
-            self?.delegate?.menuDidSelectItem(actionString)
-        })
+        self.delegate?.menuDidSelectItem(actionString)
     }
 }
 

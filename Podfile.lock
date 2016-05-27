@@ -2,6 +2,7 @@ PODS:
   - AFImageHelper (3.0.2)
   - Alamofire (3.2.1)
   - ALThreeCircleSpinner (1.0.2)
+  - AMPopTip (1.0.3)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -34,7 +35,6 @@ PODS:
   - GooglePlaces (1.0.4):
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
-  - HanekeSwift (0.10.1)
   - INSPullToRefresh (1.1.5)
   - INTULocationManager (4.1.1)
   - KDEAudioPlayer (0.8.4)
@@ -65,6 +65,7 @@ DEPENDENCIES:
   - AFImageHelper (~> 3.0)
   - Alamofire (~> 3.2)
   - ALThreeCircleSpinner (~> 1.0)
+  - AMPopTip (~> 1.0)
   - Crashlytics (~> 3.7)
   - EZAudio (from `https://github.com/rzehan/EZAudio.git`, commit `df349f2729139bfb2410644e05bb2945af6f57c3`)
   - Fabric (~> 1.6)
@@ -73,7 +74,6 @@ DEPENDENCIES:
   - FBSDKShareKit (~> 4.1.0)
   - GoogleMaps (~> 1.13)
   - GooglePlaces (~> 1.0)
-  - HanekeSwift (~> 0.10)
   - INSPullToRefresh (~> 1.1)
   - INTULocationManager (~> 4.1)
   - KDEAudioPlayer (~> 0.8)
@@ -102,6 +102,7 @@ SPEC CHECKSUMS:
   AFImageHelper: 77a89f76b410655928b757a36627a66c1eb67fc2
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
+  AMPopTip: 42ab801c5d4519093908d14134c8c9d7ffc435b4
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   EZAudio: 8e684b2b81b0437fe45faa7e2725fe99f69c84b6
@@ -111,7 +112,6 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 8002faf0c564ff3625eadd16e506b0b0fbf3adef
   GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
   GooglePlaces: af82dff8b6699dd59fdbf8ec9b3ad170e5f2217a
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47
   INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
   KDEAudioPlayer: d21120cfd9659db372633c99738747d8ab72f155

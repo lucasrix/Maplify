@@ -21,6 +21,9 @@
 "Text.Placeholder.WhatsYourStoryAbout" = "What's your story about?";
 "Text.Placeholder.NewPassword" = "New Password";
 "Text.Placeholder.ConfirmNewPassword" = "Confirm new Password";
+"Text.Placeholder.Followers" = "You don't have any followers yet";
+"Text.Placeholder.Followings" = "You are not following anyone yet";
+"Text.Placeholder.Profile" = "You don’t have any posts yet";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -40,12 +43,13 @@
 "Controller.Login.Title" = "Log In";
 "Controller.Terms.Title" = "Terms of Use";
 "Controller.Policy.Title" = "Privacy Policy";
+"Controller.About.Title" = "About";
 "Controller.StoryPointEditDescription.Title" = "New Post";
 "Controller.Onboard.Discover.Title" = "Discover";
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";
 "Controller.Onboard.Capture.Description" = "Collect and share experiences on maps  during a trip, event, or normal day-to-day";
-"Controller.Capture.Title" = "Near you";
+"Controller.Capture.Title" = "Maplify";
 "Controller.Ambient.Title" = "Ambient";
 "Controller.CameraRoll.Title" = "Camera Roll";
 "Controller.Photo.Title" = "Photo";
@@ -64,6 +68,7 @@
 "Controller.ShareStory" = "Share Story";
 "Controller.ResetPassword" = "Reset Password";
 "Controller.Notifications" = "Notifications";
+"Controller.Reports" = "Report a problem";
 
 // Labels
 "Label.CreateStoryPopupTop" = "What would you like to post?";
@@ -98,6 +103,10 @@
 "Label.LinkWasSent" = "A link to reset your password was sent to your email.";
 "Label.ChangePassword" = "Change Password";
 "Label.GetCurrentCity" = "We use your location to show you stories and other fun stuff around you.";
+"Label.Loading" = "Loading...";
+"Label.LatitudeLongitude" = "Latitude: %.2f, longitude: %.2f";
+"Label.ReportSuccessTitle" = "Thanks for you feedback!";
+"Label.ReportSuccessDescription" = "We take this very seriously and will review and remove anything that does not adhere to our content guidelines";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -149,6 +158,10 @@
 "Button.Reset" = "Reset";
 "Button.Unfollow" = "Unfollow";
 "Button.GetCity" = "Get my current city";
+"Button.ReportsDontLikeThisPost" = "I don’t like this post";
+"Button.ReportsSpamOrScam" = "This post is spam or a scam";
+"Button.ReportsPutsRisk" = "This post puts people at risk";
+"Button.ReportsPostShouldBeRemoved" = "This post should be removed";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -184,3 +197,4 @@
 "Error.EmptyStoryName" = "Name can't be blank";
 "Error.InternalServerError" = "Internal server error";
 "Error.PasswordDoesNotMatch" = "Password does not match the confirm password";
+"Error.Unknown" = "Unknown error";

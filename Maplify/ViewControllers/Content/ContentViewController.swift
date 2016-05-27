@@ -9,11 +9,7 @@
 import AFImageHelper
 import CoreLocation
 
-class ContentViewController: ViewController, StoryPointCreationPopupDelegate, MenuDelegate {
-    @IBOutlet weak var menuTabButton: UIButton!
-    @IBOutlet weak var captureTabButton: UIButton!
-    @IBOutlet weak var discoverTabButton: UIButton!
-    @IBOutlet weak var profileTabButton: UIButton!
+class ContentViewController: ViewController, StoryPointCreationPopupDelegate {
     @IBOutlet weak var parentView: UIView!
     
     var tabCaptureNavigationController: NavigationViewController! = nil
@@ -30,12 +26,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
         super.viewWillAppear(animated)
         
         self.setupNavigationBar()
-        self.setupSelectedButton()
     }
     
     // MARK: - setup
     func setup() {
-        self.setupTabButtons()
         self.setupControllers()
     }
     
@@ -45,92 +39,18 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     
     func setupControllers() {        
         let captureController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate) -> () in
-            self?.routesShowPopupStoryPointCreationController(self!, location: location)
+        captureController.addStoryPointButtonTapped = { [weak self] (location: MCMapCoordinate, locationString: String) -> () in
+            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, locationString: locationString, updateStoryHandle: nil, creationPostCompletion: nil)
         }
         self.tabCaptureNavigationController = NavigationViewController(rootViewController: captureController)
         self.tabCaptureNavigationController.navigationBar.barStyle = .Black
-        
-        let discoverController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
-        discoverController.discoverShowProfileClosure = { [weak self] (userId) in
-            self?.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: false)
-        }
-        self.tabDiscoverNavigationController = NavigationViewController(rootViewController: discoverController)
 
         self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)
-        self.captureTabButton.selected = true
-    }
-    
-    func setupTabButtons() {
-        self.menuTabButton.setBackgroundImage(UIImage(color: UIColor.darkBlueGrey()), forState: .Normal)
-        self.menuTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Highlighted)
-        self.menuTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Selected)
-        self.menuTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: [.Highlighted, .Selected])
-        self.menuTabButton.setTitleColor(UIColor.whiteColor(), forState: [.Highlighted, .Selected])
-        self.menuTabButton.setImage(UIImage(named: TabButtonImages.menuHighlighted), forState: [.Highlighted, .Selected])
-        
-        self.captureTabButton.setBackgroundImage(UIImage(color: UIColor.darkBlueGrey()), forState: .Normal)
-        self.captureTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Highlighted)
-        self.captureTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Selected)
-        self.captureTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: [.Highlighted, .Selected])
-        self.captureTabButton.setTitleColor(UIColor.whiteColor(), forState: [.Highlighted, .Selected])
-        self.captureTabButton.setImage(UIImage(named: TabButtonImages.locationHighlighted), forState: [.Highlighted, .Selected])
-        
-        self.discoverTabButton.setBackgroundImage(UIImage(color: UIColor.darkBlueGrey()), forState: .Normal)
-        self.discoverTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Highlighted)
-        self.discoverTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Selected)
-        self.discoverTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: [.Highlighted, .Selected])
-        self.discoverTabButton.setTitleColor(UIColor.whiteColor(), forState: [.Highlighted, .Selected])
-        self.discoverTabButton.setImage(UIImage(named: TabButtonImages.discoverHighlighted), forState: [.Highlighted, .Selected])
-        
-        self.profileTabButton.setBackgroundImage(UIImage(color: UIColor.darkBlueGrey()), forState: .Normal)
-        self.profileTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Highlighted)
-        self.profileTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: .Selected)
-        self.profileTabButton.setBackgroundImage(UIImage(color: UIColor.darkGreyBlue()), forState: [.Highlighted, .Selected])
-        self.profileTabButton.setTitleColor(UIColor.whiteColor(), forState: [.Highlighted, .Selected])
-        self.profileTabButton.setImage(UIImage(named: TabButtonImages.profileHighlighted), forState: [.Highlighted, .Selected])
     }
     
     override func backButtonHidden() -> Bool {
         return true
     }
-    
-    func setupSelectedButton() {
-        if self.currentChildViewController == self.tabCaptureNavigationController {
-            self.captureTabButton.selected = true
-        } else {
-            self.discoverTabButton.selected = true
-        }
-        self.profileTabButton.selected = false
-    }
-
-    // MARK: - actions
-    func selectTabButton(button: UIButton) {
-        self.captureTabButton.selected = false
-        self.discoverTabButton.selected = false
-        self.profileTabButton.selected = false
-        button.selected = true
-    }
-    
-    @IBAction func menuButtonDidTap(sender: AnyObject) {
-        self.routerShowMenuController(self)
-    }
-    
-    @IBAction func captureButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
-        self.replaceChildViewController(self.tabCaptureNavigationController, parentView: self.parentView)
-    }
-    
-    @IBAction func discoverButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
-        self.replaceChildViewController(self.tabDiscoverNavigationController, parentView: self.parentView)
-    }
-    
-    @IBAction func profileButtonDidTap(sender: AnyObject) {
-        self.selectTabButton(sender as! UIButton)
-        let currentUserId = SessionManager.currentUser().id
-        self.routesOpenDiscoverController(currentUserId, supportUserProfile: true, stackSupport: false)
-    } 
     
     // MARK: - storyPointCreationPopupDelegate
     func ambientDidTapped(location: MCMapCoordinate) {
@@ -138,36 +58,10 @@ class ContentViewController: ViewController, StoryPointCreationPopupDelegate, Me
     }
     
     func photoVideoDidTapped(location: MCMapCoordinate) {
-        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, updateStoryHandle: nil)
+        self.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: location, locationString: String(), updateStoryHandle: nil, creationPostCompletion: nil)
     }
     
     func textDidTapped(location: MCMapCoordinate) {
-        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil)
-    }
-    
-    // MARK: - MenuDelegate
-    func menuDidSelectItem(actionString:String) {
-        self.performSelector(Selector(actionString))
-    }
-    
-    func signOut() {
-        SessionHelper.sharedHelper.removeSessionData()
-        SessionHelper.sharedHelper.removeSessionAuthCookies()
-        SessionHelper.sharedHelper.removeDatabaseData()
-        
-        self.showProgressHUD()
-        ApiClient.sharedClient.signOut({ [weak self] (response) in
-                self?.hideProgressHUD()
-                RootViewController.navigationController().routesSetLandingController()
-            },
-            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
-                RootViewController.navigationController().routesSetLandingController()
-            }
-        )
-    }
-    
-    func openNotifications() {
-        self.routesOpenNotificationsController()
+        self.routesOpenStoryPointEditDescriptionController(StoryPointKind.Text, storyPointAttachmentId: 0, location: location, selectedStoryIds: nil, locationString: String(), creationPostCompletion: nil)
     }
 }

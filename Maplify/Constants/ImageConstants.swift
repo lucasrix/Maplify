@@ -32,6 +32,7 @@ struct PlaceholderImages {
 
 struct BarButtonImages {
     static let backArrow = "icoBack"
+    static let profileSettings = "ProfileSettings"
 }
 
 struct OnboardImages {
@@ -55,6 +56,7 @@ struct MapPinImages {
     static let text = "pinBlueText"
     static let play = "pinBluePlay"
     static let marked = "pinMarked"
+    static let tapped = "pinTapped"
 }
 
 struct ButtonImages {

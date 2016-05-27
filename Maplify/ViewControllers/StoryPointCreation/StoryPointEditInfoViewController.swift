@@ -9,9 +9,7 @@
 import UIKit
 import GoogleMaps
 import RealmSwift
-import Haneke
 import CoreLocation
-import Haneke
 import TPKeyboardAvoiding.TPKeyboardAvoidingScrollView
 
 let kLocationInputFieldRightMargin: CGFloat = 30

@@ -6,7 +6,6 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import Haneke
 import UIKit
 
 let kVideoDurationSecondsMax: Double = 20

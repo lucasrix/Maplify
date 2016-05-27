@@ -18,8 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.029999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchMap" translatesAutoresizingMaskIntoConstraints="NO" id="9Ri-cP-Aet">
+                                <rect key="frame" x="0.0" y="47" width="375" height="575"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="etG-o4-DlP">
-                                <rect key="frame" x="49" y="131" width="278" height="128"/>
+                                <rect key="frame" x="49" y="87" width="278" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="278" id="Jgx-QM-Kkj"/>
                                     <constraint firstAttribute="height" constant="128" id="X31-CY-Tar"/>
@@ -78,7 +81,7 @@ Terms &amp; Privacy Policy.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your life on a map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAK-i7-LWr">
-                                <rect key="frame" x="125" y="229" width="156" height="21"/>
+                                <rect key="frame" x="125" y="185" width="156" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="CQn-Od-LHl"/>
                                     <constraint firstAttribute="width" constant="156" id="YaH-Py-HO8"/>
@@ -100,14 +103,19 @@ Terms &amp; Privacy Policy.</string>
                             <constraint firstItem="SAK-i7-LWr" firstAttribute="top" secondItem="etG-o4-DlP" secondAttribute="bottom" constant="-30" id="LLD-1g-XNW"/>
                             <constraint firstItem="YzC-9h-bIu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="etG-o4-DlP" secondAttribute="bottom" constant="10" id="S6R-EL-HUf"/>
                             <constraint firstAttribute="trailing" secondItem="YzC-9h-bIu" secondAttribute="trailing" constant="20" id="SKg-0g-eNp"/>
+                            <constraint firstItem="f7E-1i-pFf" firstAttribute="top" secondItem="9Ri-cP-Aet" secondAttribute="bottom" constant="45" id="TLf-bB-6Ts"/>
+                            <constraint firstItem="9Ri-cP-Aet" firstAttribute="leading" secondItem="mgn-3B-rhW" secondAttribute="leading" id="V5u-LN-whL"/>
                             <constraint firstItem="f7E-1i-pFf" firstAttribute="top" secondItem="AhX-ET-2Sx" secondAttribute="bottom" constant="30" id="Vt9-sv-MZB"/>
                             <constraint firstItem="G2B-Tg-vSa" firstAttribute="leading" secondItem="mgn-3B-rhW" secondAttribute="leading" constant="20" id="bEc-6C-lT8"/>
                             <constraint firstItem="chO-PQ-SZW" firstAttribute="top" secondItem="G2B-Tg-vSa" secondAttribute="bottom" constant="15" id="lAp-6c-sHV"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ri-cP-Aet" secondAttribute="trailing" id="lN4-ge-kAY"/>
                             <constraint firstItem="AhX-ET-2Sx" firstAttribute="top" secondItem="chO-PQ-SZW" secondAttribute="bottom" constant="40" id="lfB-RC-17X"/>
                             <constraint firstItem="SAK-i7-LWr" firstAttribute="centerX" secondItem="mgn-3B-rhW" secondAttribute="centerX" constant="15" id="ozG-CB-T0Q"/>
+                            <constraint firstItem="9Ri-cP-Aet" firstAttribute="top" secondItem="mgn-3B-rhW" secondAttribute="top" constant="47" id="pMp-3k-MFD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Cte-3U-YZg"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="emailButton" destination="G2B-Tg-vSa" id="moU-z4-sm0"/>
@@ -1155,6 +1163,7 @@ Tap OK once it appears.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchMap" width="375" height="575"/>
         <image name="icoEnvelope" width="24" height="19"/>
         <image name="icoFb" width="24" height="24"/>
         <image name="logo" width="276" height="95"/>

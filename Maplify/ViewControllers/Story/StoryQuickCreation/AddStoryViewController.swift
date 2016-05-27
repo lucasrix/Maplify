@@ -11,6 +11,7 @@ import RealmSwift
 import INSPullToRefresh.UIScrollView_INSPullToRefresh
 
 typealias updateStoryClosure = ([Story]) -> ()
+typealias creationPostClosure = (storyPointId: Int) -> ()
 
 class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var myStoriesLabel: UILabel!
@@ -28,6 +29,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     var storyPointCreationSupport: Bool = false
     var pickedLocation: MCMapCoordinate! = nil
     var locationString = String()
+    var creationPostCompletion: creationPostClosure! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -206,7 +208,7 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
             self.navigationController?.popViewControllerAnimated(true)
         } else if (self.storyActiveModel.selectedIndexPathes().count > 0) && (self.storyPointCreationSupport == true) {
             let selectedIds = selectedStories.map({$0.id})
-            self.routesOpenPhotoVideoViewController(self.pickedLocation, locationString: self.locationString, selectedStoryIds: selectedIds)
+            self.routesOpenPhotoVideoViewController(self.pickedLocation, locationString: self.locationString, selectedStoryIds: selectedIds, creationPostCompletion: self.creationPostCompletion)
         }
     }
     

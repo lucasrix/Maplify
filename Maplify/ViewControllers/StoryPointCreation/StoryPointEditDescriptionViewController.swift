@@ -22,6 +22,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
     var location: MCMapCoordinate! = nil
     var locationString = String()
     var selectedStoryIds: [Int]! = nil
+    var creationPostCompletion: creationPostClosure!
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -113,19 +114,25 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
                 realm.add(response as! StoryPoint, update: true)
             }
             
-            ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
-                success: { [weak self] (response) in
-                    StoryManager.saveStories(response as! [Story])
-                    self?.hideProgressHUD()
-                    self?.navigationController?.popToRootViewControllerAnimated(true)
-                }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                    self?.hideProgressHUD()
-                    self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                })
+            let storyPointId = (response as! StoryPoint).id
+            self?.retrieveUserStories(storyPointId)
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
             self?.hideProgressHUD()
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         }
+    }
+    
+    func retrieveUserStories(storyPointId: Int) {
+        ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
+                                              success: { [weak self] (response) in
+                                                StoryManager.saveStories(response as! [Story])
+                                                self?.hideProgressHUD()
+                                                self?.creationPostCompletion?(storyPointId: storyPointId)
+                                                self?.navigationController?.popToRootViewControllerAnimated(true)
+            }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.hideProgressHUD()
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            })
     }
     
     // MARK: - keyboard notification

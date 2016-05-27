@@ -70,10 +70,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setupCollectionView()
         self.setupNavigationBar()
         self.setupBottomButtonIfNeeded()
-        self.loadItemsFromDBIfNedded()
         self.retrieveNotifications()
     }
     
@@ -85,6 +83,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - setup
     func setup() {
+        self.loadItemsFromDBIfNedded()
+        self.setupCollectionView()
+        
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
         self.setupPopTip()
@@ -265,6 +266,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             
             self.mapActiveModel.selectPinAtIndex(index)
             self.mapDataSource.reloadMapView(StoryPointMapItem)
+            self.collectionView.hidden = false
         }
     }
     
@@ -418,9 +420,9 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             let storyPointIndex = self.mapActiveModel.storyPointIndex(mapCoordinate, section: 0)
             
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate)
-            self.collectionView.hidden = false
+            self.collectionView?.hidden = false
         }
-        self.popTip.hide()
+        self.popTip?.hide()
     }
     
     func didTapCoordinateMapView(mapView: UIView, latitude: Double, longitude: Double) {
@@ -459,9 +461,21 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
-            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil)
+            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil, creationPostCompletion: { (storyPointId) in
+                self?.loadItemsFromDBIfNedded()
+                self?.showCreatedStoryPoint(storyPointId)
+            })
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
+    }
+    
+    func showCreatedStoryPoint(storyPointId: Int) {
+        let realm = try! Realm()
+        if let storyPoint = realm.objectForPrimaryKey(StoryPoint.self, key: storyPointId) {
+            let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+            let storyPointIndex = self.mapActiveModel.storyPointIndex(coordinate, section: 0)
+            self.selectPin(storyPointIndex, mapCoordinate: coordinate)
+        }
     }
     
     func willMoveMapView(mapView: UIView, willMove: Bool) {

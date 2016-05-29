@@ -9,9 +9,17 @@
 import UIKit
 
 let kEmptyImageViewDefaultHeight: CGFloat = 30
-let kInfoViewHeight: CGFloat = 200
+let kInfoViewHeight: CGFloat = 100
 let kDetailTextBottomMargin: CGFloat = 10
 let kStoriesTableRowHeight: CGFloat = 44
+let kStoryPointCellYOffset: CGFloat = 10
+
+protocol StoryPointInfoViewDelegate {
+    func profileImageTapped(userId: Int)
+    func didSelectStory(storyId: Int)
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
+    func shareStoryPointDidTap(storyPointId: Int)
+}
 
 class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDelegate {
     @IBOutlet weak var userImageView: UIImageView!
@@ -25,16 +33,22 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var backUserImageView: UIImageView!
-    @IBOutlet weak var detailTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var tableNameLabel: UILabel!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var colorView: UIImageView!
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     var storiesLinksActiveModel = CSActiveModel()
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
+    var userId: Int = 0
+    var storyPointId: Int = 0
+    var delegate: StoryPointInfoViewDelegate! = nil
+    var textHeight: CGFloat = 0
     
     // MARK: - setup
-    func configure(storyPoint: StoryPoint) {
+    func configure(storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
+        self.delegate = delegate
+        
         self.setupLabels(storyPoint)
         self.setupImageView(storyPoint)
         self.setupUserViews(storyPoint)
@@ -50,7 +64,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.addressLabel.text = self.generateLocationString(location)
         }
         self.detailsTextView.text = storyPoint.text
-        self.detailTextViewHeight.constant = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
+        self.textHeight = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
         
         self.tableNameLabel.hidden = !(storyPoint.storiesLinks.count > 0)
     }
@@ -67,6 +81,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     func setupUserViews(storyPoint: StoryPoint) {
         let user = storyPoint.user as User
         let profile = user.profile as Profile
+        self.userId = user.id
         
         let userPhotoUrl: NSURL! = NSURL(string: profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
@@ -127,32 +142,50 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.storiesTableView.registerNib(UINib(nibName: String(StoryLinkCell), bundle: nil), forCellReuseIdentifier: String(StoryLinkCell))
             self.storiesLinksActiveModel.addItems(Array(storyPoint.storiesLinks), cellIdentifier: String(StoryLinkCell), sectionTitle: nil, delegate: self)
             self.storiesLinksDataSource = CSBaseTableDataSource(tableView: self.storiesTableView, activeModel: self.storiesLinksActiveModel, delegate: self)
+            self.tableViewHeightConstraint.constant = CGFloat(self.storiesLinksActiveModel.numberOfItems(0)) * kStoriesTableRowHeight
             self.storiesLinksDataSource.reloadTable()
         }
     }
     
     func setupContentSize() {
         self.scrollView.delegate = self
-        let contentHeight = self.imageViewHeightConstraint.constant + self.detailTextViewHeight.constant + kInfoViewHeight + CGFloat(self.storiesLinksActiveModel.numberOfItems(0)) * kStoriesTableRowHeight
+        let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset
         self.scrollView.contentSize = CGSizeMake(0, contentHeight)
+    }
+    
+    func populateLikeButton() {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        if storyPoint.liked {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
+        }
     }
     
     // MARK: - actions
     func profileImageTapped() {
-        //TODO:
+        self.delegate?.profileImageTapped(self.userId)
+    }
+    
+    override func layoutSubviews() {
+        self.setupContentSize()
     }
     
     @IBAction func likeButtonTapped(sender: AnyObject) {
-        //TODO:
+        self.delegate?.likeStoryPointDidTap(self.storyPointId, completion: { [weak self] (success) in
+            if success {
+                self?.populateLikeButton()
+            }
+        })
     }
     
     @IBAction func shareButtonTapped(sender: AnyObject) {
-        //TODO:
+        self.delegate?.shareStoryPointDidTap(self.storyPointId)
     }
     
     // MARK: - CSBaseTableDataSourceDelegate
     func didSelectModel(model: AnyObject, selection: Bool, indexPath: NSIndexPath) {
-        //TODO:
+        self.delegate?.didSelectStory((model as! StoryLink).id)
     }
     
     // MARK: - UIScrollViewDelegate

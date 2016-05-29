@@ -37,7 +37,7 @@ enum ContentType: Int {
     case Share
 }
 
-class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, ErrorHandlingProtocol {
+class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, StoryPointInfoViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
@@ -547,7 +547,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
         let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
         if model is StoryPoint {
-            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint)
+            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint, delegate: self)
         } else if model is Story {
             DetailMapItemHelper.configureStoryView(view, story: model as! Story)
         }
@@ -561,6 +561,51 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let location = CLLocationCoordinate2DMake(storyPoint.location.latitude , storyPoint.location.longitude)
         let pointInView = self.googleMapService.pointFromLocation(location)
         self.scrollToDestinationPointWithOffset(pointInView)
+    }
+    
+    // MARK: - StoryPointInfoViewDelegate
+    func profileImageTapped(userId: Int) {
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+    }
+    
+    func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.liked {
+            self.unlikeStoryPoint(storyPointId, completion: completion)
+        } else {
+            self.likeStoryPoint(storyPointId, completion: completion)
+        }
+    }
+    
+    private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
+    }
+    
+    private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
+    }
+    
+    func shareStoryPointDidTap(storyPointId: Int) {
+        self.routesOpenShareStoryPointViewController(storyPointId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
+    func didSelectStory(storyId: Int) {
+        print(storyId)
     }
     
     // MARK: - ErrorHandlingProtocol

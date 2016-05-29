@@ -35,6 +35,7 @@ enum ContentType: Int {
     case Profile
     case Notification
     case Share
+    case Story
 }
 
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, StoryPointInfoViewDelegate, ErrorHandlingProtocol {
@@ -64,6 +65,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var popTip: AMPopTip! = nil
     var locationString = String()
     var selectedPostId: Int = 0
+    var storyToShow: Story! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -156,9 +158,16 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func setupDefaultCaptureNavigationBar() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: #selector(CaptureViewController.detailMenuButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(CaptureViewController.detailCancelButtonTapped))
+    }
+    
+    func setupDataDetailNavigationBar(story: Story) {
+        self.title = story.title
+
         self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoGps)!, target: self, action: #selector(CaptureViewController.locationButtonTapped))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(CaptureViewController.searchButtonTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoMoreWhite)!, target: self, action: #selector(CaptureViewController.detailMenuButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(CaptureViewController.detailCancelButtonTapped))
     }
     
     func setupStoryCaptureNavigationBar() {
@@ -209,10 +218,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     func updateStoryPointDetails(storyPoints: [StoryPoint]) {
         self.storyPointActiveModel.removeData()
         self.storyPointActiveModel.addItems(storyPoints, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
-//        self.storyPointDataSource = StoryPointDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
-//        let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        flowLayout.minimumLineSpacing = kMinimumLineSpacing
-//        self.storyPointDataSource.reloadCollectionView()
     }
     
     // MARK: - navigation bar
@@ -273,6 +278,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.mapDataSource.reloadMapView(StoryPointMapItem)
             self.collectionView.hidden = false
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
+            if self.contentType == .Story {
+                self.infiniteScrollView.moveAndShowCell(index + 1, animated: false)
+            } else {
+                self.infiniteScrollView.moveAndShowCell(index, animated: false)
+            }
             self.scrollToDestinationPointWithOffset(pointInView)
         }
     }
@@ -417,6 +427,19 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
+    func detailCancelButtonTapped() {
+        self.mapActiveModel.removeData()
+        self.storyPointActiveModel.removeData()
+        self.contentType = .Default
+        self.setupDefaultCaptureNavigationBar()
+        self.loadItemsFromDBIfNedded()
+        self.infiniteScrollView.moveAndShowCell(0, animated: false)
+    }
+    
+    func detailMenuButtonTapped() {
+        //TODO:
+    }
+    
     func removePreviewItem() {
         if self.previewPlaceItem != nil {
             self.googleMapService.removeItem(self.previewPlaceItem)
@@ -506,9 +529,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
         
-//        self.mapActiveModel.selectPinAtIndex(currentIndex)
-//        self.mapDataSource.reloadMapView(StoryPointMapItem)
-        
         let storyPoint = self.mapActiveModel.storyPoint(indexPath)
         
         let region = MCMapRegion(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
@@ -541,11 +561,22 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - InfinitePageControlDelegate
     func numberOfItems() -> Int {
-        return self.storyPointActiveModel.numberOfItems(0)
+        return (self.contentType == .Story) ? self.storyPointActiveModel.numberOfItems(0) + 1 : self.storyPointActiveModel.numberOfItems(0)
     }
     
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
-        let model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
+        var model = Model()
+        
+        if self.contentType == .Story {
+            if index == 0 {
+                model = self.storyToShow
+            } else {
+                model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index - 1, inSection: 0)).model as! Model
+            }
+        } else {
+            model = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! Model
+        }
+        
         if model is StoryPoint {
             DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint, delegate: self)
         } else if model is Story {
@@ -553,14 +584,24 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }
     }
     
-    func didScrollPageView(pageControl: InfiniteScrollView, index: Int) {        
-        self.mapActiveModel.selectPinAtIndex(index)
+    func didScrollPageView(pageControl: InfiniteScrollView, index: Int) {
+        var indexToSelect = index
+        if self.contentType == .Story {
+            if index > 0 {
+                indexToSelect -= 1
+                self.mapActiveModel.selectPinAtIndex(indexToSelect)
+            }
+        } else {
+            self.mapActiveModel.selectPinAtIndex(indexToSelect)
+        }
         self.mapDataSource.reloadMapView(StoryPointMapItem)
 
-        let storyPoint = self.storyPointActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! StoryPoint
-        let location = CLLocationCoordinate2DMake(storyPoint.location.latitude , storyPoint.location.longitude)
-        let pointInView = self.googleMapService.pointFromLocation(location)
-        self.scrollToDestinationPointWithOffset(pointInView)
+        if indexToSelect < self.storyPointActiveModel.numberOfItems(0) {
+            let storyPoint = self.storyPointActiveModel.cellData(NSIndexPath(forRow: indexToSelect, inSection: 0)).model as! StoryPoint
+            let location = CLLocationCoordinate2DMake(storyPoint.location.latitude , storyPoint.location.longitude)
+            let pointInView = self.googleMapService.pointFromLocation(location)
+            self.scrollToDestinationPointWithOffset(pointInView)
+        }
     }
     
     // MARK: - StoryPointInfoViewDelegate
@@ -605,7 +646,22 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func didSelectStory(storyId: Int) {
-        print(storyId)
+        ApiClient.sharedClient.getStory(storyId, success: { [weak self] (response) in
+            self?.mapActiveModel.removeData()
+            self?.storyPointActiveModel.removeData()
+            self?.contentType = .Story
+            self?.storyToShow = response as! Story
+            self?.setupDataDetailNavigationBar((self?.storyToShow)!)
+
+            StoryManager.saveStory((self?.storyToShow)!)
+            
+            self?.mapDataSource.reloadMapView(StoryPointMapItem)
+            self?.storyPointActiveModel.addItems(Array((self?.storyToShow.storyPoints)!), cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
+            self?.mapActiveModel.addItems(Array((self?.storyToShow.storyPoints)!))
+            self?.infiniteScrollView.moveAndShowCell(0, animated: false)
+        }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        })
     }
     
     // MARK: - ErrorHandlingProtocol

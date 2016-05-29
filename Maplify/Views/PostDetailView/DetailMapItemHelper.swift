@@ -21,7 +21,7 @@ class DetailMapItemHelper {
     }
     
     class func configureStoryView(view: UIView, story: Story) {
-        let contentView = NSBundle.mainBundle().loadNibNamed("StoryPointInfoView", owner: nil, options: nil).first as! StoryInfoView
+        let contentView = NSBundle.mainBundle().loadNibNamed("StoryInfoView", owner: nil, options: nil).first as! StoryInfoView
         contentView.frame = view.bounds
         contentView.configure(story)
         

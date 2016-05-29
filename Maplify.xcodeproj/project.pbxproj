@@ -68,6 +68,10 @@
 		8C512F531CAE8C0C0068AE49 /* SelectedStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */; };
 		8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */; };
 		8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */; };
+		8CEA34FE1CFB2D9000874AD4 /* StoryLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA34FD1CFB2D9000874AD4 /* StoryLink.swift */; };
+		8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */; };
+		8CEA35041CFB339B00874AD4 /* StoryLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */; };
+		8CEA35051CFB33A200874AD4 /* StoryLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */; };
 		A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
 		A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
@@ -278,6 +282,9 @@
 		8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStoryCell.swift; sourceTree = "<group>"; };
 		8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayStoryManager.swift; sourceTree = "<group>"; };
 		8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedSettingsViewController.swift; sourceTree = "<group>"; };
+		8CEA34FD1CFB2D9000874AD4 /* StoryLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLink.swift; sourceTree = "<group>"; };
+		8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryLinkCell.xib; sourceTree = "<group>"; };
+		8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLinkCell.swift; sourceTree = "<group>"; };
 		A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorypointCell.swift; sourceTree = "<group>"; };
 		A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDataSource.swift; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -500,6 +507,7 @@
 				1FC780F61CA01ED500C50C23 /* StoryPoint.swift */,
 				1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */,
 				A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */,
+				8CEA34FD1CFB2D9000874AD4 /* StoryLink.swift */,
 			);
 			path = StoryPoint;
 			sourceTree = "<group>";
@@ -549,6 +557,8 @@
 				85AC3C511CF31051007D9A76 /* DetailMapItemHelper.swift */,
 				85AC3C531CF310F9007D9A76 /* StoryPointInfoView.swift */,
 				85AC3C551CF31250007D9A76 /* StoryInfoView.swift */,
+				8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */,
+				8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */,
 			);
 			path = PostDetailView;
 			sourceTree = "<group>";
@@ -1285,6 +1295,7 @@
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
+				8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */,
 				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
 				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
@@ -1409,6 +1420,7 @@
 				8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */,
 				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
+				8CEA34FE1CFB2D9000874AD4 /* StoryLink.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */,
 				855567A41CDCBA180096A561 /* NSURL.swift in Sources */,
@@ -1425,7 +1437,6 @@
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
 				CDE2D4CC1CF7183900949D87 /* DiscoverPlaceholderCell.swift in Sources */,
-				85AC3C4E1CEDD069007D9A76 /* MapCaptureViewController.swift in Sources */,
 				CDA3B8221CE4DF3400DC8AF6 /* FollowersViewController.swift in Sources */,
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				85AC3C591CF5D1F6007D9A76 /* InfiniteScrollView.swift in Sources */,
@@ -1466,6 +1477,7 @@
 				1FB70B321C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift in Sources */,
 				85AC3C541CF310F9007D9A76 /* StoryPointInfoView.swift in Sources */,
 				CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */,
+				8CEA35041CFB339B00874AD4 /* StoryLinkCell.swift in Sources */,
 				A59A7E901C9AE62E00399A38 /* MCMapRegion.swift in Sources */,
 				A5FC35CB1CA426E200DFEE38 /* StoryPointMapItem.swift in Sources */,
 				CDA3B8241CE4DF4400DC8AF6 /* FollowingViewController.swift in Sources */,
@@ -1552,6 +1564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58A52D41C7F133C00443C06 /* CSTableViewCell.swift in Sources */,
+				8CEA35051CFB33A200874AD4 /* StoryLinkCell.swift in Sources */,
 				CD7F28DA1CDB540B00534211 /* DiscoverStoryPointCell.swift in Sources */,
 				A58A52D31C7F133C00443C06 /* CSCollectionViewCell.swift in Sources */,
 				F03507FA1CBB04FB00CFAA05 /* StoryPageViewController.swift in Sources */,

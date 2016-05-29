@@ -26,13 +26,15 @@ class StoryPoint: Model {
     dynamic var text = ""
     dynamic var liked: Bool = false
     dynamic var reported: Bool = false
+    var storiesLinks = List<StoryLink>()
+    
     var discoverItem: DiscoverItem? {
         return self.linkingObjects(DiscoverItem.self, forProperty: "storyPoint").first
     }
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
-        
+    
         self.id <- map.property("id")
         self.user <- map.relationOrNil("user")
         self.location <- map.relationOrNil("location")
@@ -44,6 +46,7 @@ class StoryPoint: Model {
         self.updated_at <- map.property("updated_at")
         self.liked <- map.property("liked")
         self.reported <- map.property("reported")
+        self.storiesLinks <- Converter.arrayToList(map.relations("story_links"), type: StoryLink.self)
     }
     
     override class func primaryKey() -> String {

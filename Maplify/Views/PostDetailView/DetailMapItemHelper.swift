@@ -20,10 +20,10 @@ class DetailMapItemHelper {
         view.addSubview(contentView)
     }
     
-    class func configureStoryView(view: UIView, story: Story) {
+    class func configureStoryView(view: UIView, story: Story, delegate: StoryInfoViewDelegate) {
         let contentView = NSBundle.mainBundle().loadNibNamed("StoryInfoView", owner: nil, options: nil).first as! StoryInfoView
         contentView.frame = view.bounds
-        contentView.configure(story)
+        contentView.configure(story, delegate: delegate)
         
         contentView.layer.cornerRadius = CornerRadius.detailViewBorderRadius
         contentView.layer.masksToBounds = true

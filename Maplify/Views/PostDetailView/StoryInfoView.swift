@@ -9,10 +9,9 @@
 import UIKit
 
 protocol StoryInfoViewDelegate {
-    func profileImageTapped(userId: Int)
-    func didSelectStory(storyId: Int)
-    func likeStoryDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
-    func shareStoryDidTap(storyPointId: Int)
+    func storyProfileImageTapped(userId: Int)
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
+    func shareStoryDidTap(storyId: Int)
 }
 
 class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDelegate {
@@ -39,9 +38,14 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     var textHeight: CGFloat = 0
     
     // MARK: - setup
-    func configure(story: Story) {
+    func configure(story: Story, delegate: StoryInfoViewDelegate) {
+        self.delegate = delegate
+        self.storyId = story.id
+        
         self.setupUserViews(story)
         self.updateCollectionViewData(story)
+        self.populateLikeButton(story)
+        self.setupAddressLabel(story)
     }
     
     func setupUserViews(story: Story) {
@@ -55,7 +59,7 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
         self.userImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointInfoView.profileImageTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryInfoView.profileImageTapped))
         self.userImageView.addGestureRecognizer(tapGesture)
         
         self.backUserImageView.image = UIImage(color: UIColor.whiteColor())?.roundCornersToCircle()
@@ -67,6 +71,33 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
+    }
+    
+    func setupAddressLabel(story: Story) {
+        let user = story.user as User
+        let profile = user.profile as Profile
+        
+        if profile.location.address.length > 0 {
+            self.addressLabel.text = profile.location.address
+        } else {
+            let location = MCMapCoordinate(latitude: profile.location.latitude, longitude: profile.location.longitude)
+            self.addressLabel.text = self.generateLocationString(location)
+        }
+    }
+    
+    func generateLocationString(location: MCMapCoordinate!) -> String {
+        if location != nil {
+            return String(format: NSLocalizedString("Label.LatitudeLongitude", comment: String()), location.latitude, location.longitude)
+        }
+        return String()
+    }
+    
+    func populateLikeButton(story: Story) {
+        if story.liked {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
+        }
     }
     
     func updateCollectionViewData(story: Story) {
@@ -121,9 +152,22 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     
     // MARK: - actions
     func profileImageTapped() {
-        self.delegate?.profileImageTapped(self.userId)
+        self.delegate?.storyProfileImageTapped(self.userId)
     }
     
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            if success {
+                let story = StoryManager.find((self?.storyId)!)
+                self?.populateLikeButton(story)
+            }
+        })
+    }
+    
+    @IBAction func shareButtonTapped(sender: AnyObject) {
+        self.delegate?.shareStoryDidTap(self.storyId)
+    }
+      
     func setupContentSize() {
         self.scrollView.delegate = self
         
@@ -135,5 +179,4 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     func scrollViewDidScroll(scrollView: UIScrollView) {
         self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentOffset.y)
     }
-    
 }

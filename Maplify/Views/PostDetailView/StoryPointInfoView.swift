@@ -19,6 +19,7 @@ protocol StoryPointInfoViewDelegate {
     func didSelectStory(storyId: Int)
     func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
     func shareStoryPointDidTap(storyPointId: Int)
+    func menuButtonTapped(storyPointId: Int)
 }
 
 class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDelegate {
@@ -37,6 +38,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var colorView: UIImageView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var attachmentContentView: UIView!
+    @IBOutlet weak var userNameLabelTopConstraint: NSLayoutConstraint!
     
     var storiesLinksActiveModel = CSActiveModel()
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
@@ -48,11 +51,14 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     // MARK: - setup
     func configure(storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
         self.delegate = delegate
+        self.storyPointId = storyPoint.id
         
         self.setupLabels(storyPoint)
         self.setupImageView(storyPoint)
         self.setupUserViews(storyPoint)
         self.setupStoriesTableView(storyPoint)
+        self.populateLikeButton(storyPoint)
+        self.setupGestures()
         self.setupContentSize()
     }
     
@@ -71,6 +77,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     
     func setupImageView(storyPoint: StoryPoint) {
         if storyPoint.kind == StoryPointKind.Text.rawValue {
+            self.userNameLabelTopConstraint.constant = 0
+            self.colorView.hidden = true
             self.imageViewHeightConstraint.constant = kEmptyImageViewDefaultHeight
         } else {
             self.imageViewHeightConstraint.constant = CGRectGetWidth(self.frame)
@@ -95,6 +103,11 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.backUserImageView.layer.masksToBounds = true
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
+    }
+    
+    func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointInfoView.openContentTapHandler(_:)))
+        self.attachmentContentView?.addGestureRecognizer(tapGesture)
     }
     
     func populateAttachment(storyPoint: StoryPoint) {
@@ -153,8 +166,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.scrollView.contentSize = CGSizeMake(0, contentHeight)
     }
     
-    func populateLikeButton() {
-        let storyPoint = StoryPointManager.find(self.storyPointId)
+    func populateLikeButton(storyPoint: StoryPoint) {
         if storyPoint.liked {
             self.likeButton.setImage(UIImage(named: ButtonImages.discoverLikeHighlited), forState: .Normal)
         } else {
@@ -174,13 +186,28 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBAction func likeButtonTapped(sender: AnyObject) {
         self.delegate?.likeStoryPointDidTap(self.storyPointId, completion: { [weak self] (success) in
             if success {
-                self?.populateLikeButton()
+                let storyPoint = StoryPointManager.find((self?.storyPointId)!)
+                self?.populateLikeButton(storyPoint)
             }
         })
     }
     
+    @IBAction func menuButtonTapped(sender: AnyObject) {
+        self.delegate?.menuButtonTapped(self.storyPointId)
+    }
+    
     @IBAction func shareButtonTapped(sender: AnyObject) {
         self.delegate?.shareStoryPointDidTap(self.storyPointId)
+    }
+    
+    func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
+        let storyPoint = StoryPointManager.find(self.storyPointId)
+        if storyPoint?.kind == StoryPointKind.Video.rawValue {
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.storyPointImageView)
+        } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.storyPointImageView)
+        }
+        self.storyPointImageView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

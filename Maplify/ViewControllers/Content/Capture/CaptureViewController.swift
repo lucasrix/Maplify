@@ -38,7 +38,7 @@ enum ContentType: Int {
     case Story
 }
 
-class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, StoryPointInfoViewDelegate, ErrorHandlingProtocol {
+class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, StoryPointInfoViewDelegate, StoryInfoViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var mapView: MCMapView!
     @IBOutlet weak var pressAndHoldLabel: UILabel!
     @IBOutlet weak var pressAndHoldView: UIView!
@@ -580,7 +580,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         if model is StoryPoint {
             DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint, delegate: self)
         } else if model is Story {
-            DetailMapItemHelper.configureStoryView(view, story: model as! Story)
+            DetailMapItemHelper.configureStoryView(view, story: model as! Story, delegate: self)
         }
     }
     
@@ -662,6 +662,52 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
         })
+    }
+    
+    func menuButtonTapped(storyPointId: Int) {
+        //TODO: -
+    }
+    
+    // MARK: - StoryInfoViewDelegate
+    func storyProfileImageTapped(userId: Int) {
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+    }
+    
+    func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ())) {
+        let story = StoryManager.find(storyId)
+        if story.liked {
+            self.unlikeStory(storyId, completion: completion)
+        } else {
+            self.likeStory(storyId, completion: completion)
+        }
+    }
+    
+    func shareStoryDidTap(storyId: Int) {
+        self.routesOpenShareStoryViewController(storyId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
+    private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.likeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
+    }
+    
+    private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
+        ApiClient.sharedClient.unlikeStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
+            
+        }) { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

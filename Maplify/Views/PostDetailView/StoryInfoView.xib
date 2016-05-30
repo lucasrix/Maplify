@@ -64,7 +64,7 @@
                             <color key="textColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Xp-97-Fkg" userLabel="userImageView">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Xp-97-Fkg" userLabel="userImageView">
                             <rect key="frame" x="13" y="13" width="46" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="K12-NE-4Vw"/>
@@ -78,6 +78,9 @@
                                 <constraint firstAttribute="width" constant="42" id="m2c-8N-Tco"/>
                             </constraints>
                             <state key="normal" image="page1"/>
+                            <connections>
+                                <action selector="likeButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="0Uh-OW-wyn"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDb-i3-3y6">
                             <rect key="frame" x="294" y="15" width="40" height="39"/>
@@ -86,6 +89,9 @@
                                 <constraint firstAttribute="width" constant="40" id="dhI-Y0-B1g"/>
                             </constraints>
                             <state key="normal" image="icoShare"/>
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="zDG-x4-uMq"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Washington, DC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhC-je-s7d">
                             <rect key="frame" x="68" y="40" width="174" height="16"/>

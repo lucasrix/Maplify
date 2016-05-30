@@ -283,6 +283,18 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.parentViewController.presentViewController(self.imagePicker, animated: true, completion: nil)
     }
     
+    
+    func getAboutLabelHeight() -> CGFloat {
+        if self.expandButton.selected {
+            let font = self.aboutLabel.font
+            let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
+            let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
+            self.aboutLabel.text = self.user.profile.about
+            return CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
+        }
+        return 0
+    }
+    
     @IBAction func createStoryButtonTapped(sender: AnyObject) {
         self.delegate?.createStoryButtonDidTap()
     }
@@ -296,17 +308,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         self.aboutLabelHeight.constant = self.getAboutLabelHeight()
         
         self.updateContentClosure?()
-    }
-    
-    func getAboutLabelHeight() -> CGFloat {
-        if self.expandButton.selected {
-            let font = self.aboutLabel.font
-            let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
-            let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
-            self.aboutLabel.text = self.user.profile.about
-            return CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
-        }
-        return 0
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {

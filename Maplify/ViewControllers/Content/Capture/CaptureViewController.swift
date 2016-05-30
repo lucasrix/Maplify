@@ -59,6 +59,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var previewPlaceItem: MCMapItem! = nil
     var popTip: AMPopTip! = nil
     var locationString = String()
+    var selectedPostId: Int = 0
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -70,9 +71,11 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.loadItemsFromDBIfNedded()
         self.setupNavigationBar()
         self.setupBottomButtonIfNeeded()
         self.retrieveNotifications()
+        self.showCreatedStoryPointIfNeedded()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,9 +86,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - setup
     func setup() {
-        self.loadItemsFromDBIfNedded()
         self.setupCollectionView()
-        
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
         self.setupPopTip()
@@ -462,20 +463,22 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
             self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil, creationPostCompletion: { (storyPointId) in
-                self?.loadItemsFromDBIfNedded()
-                self?.showCreatedStoryPoint(storyPointId)
+                self?.selectedPostId = storyPointId
             })
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
     }
     
-    func showCreatedStoryPoint(storyPointId: Int) {
-        let realm = try! Realm()
-        if let storyPoint = realm.objectForPrimaryKey(StoryPoint.self, key: storyPointId) {
-            let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
-            let storyPointIndex = self.mapActiveModel.storyPointIndex(coordinate, section: 0)
-            self.selectPin(storyPointIndex, mapCoordinate: coordinate)
+    func showCreatedStoryPointIfNeedded() {
+        if self.selectedPostId != 0 {
+            let realm = try! Realm()
+            if let storyPoint = realm.objectForPrimaryKey(StoryPoint.self, key: self.selectedPostId) {
+                let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+                let storyPointIndex = self.mapActiveModel.storyPointIndex(coordinate, section: 0)
+                self.selectPin(storyPointIndex, mapCoordinate: coordinate)
+            }
         }
+        self.selectedPostId = 0
     }
     
     func willMoveMapView(mapView: UIView, willMove: Bool) {

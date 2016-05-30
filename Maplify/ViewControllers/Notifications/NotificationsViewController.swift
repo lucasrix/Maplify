@@ -60,7 +60,7 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         self.notificationsActiveModel.removeData()
         
         let realm = try! Realm()
-        let notifications = Array(realm.objects(Notification).sorted("created_at", ascending: false))
+        let notifications = Array(realm.objects(Notification).filter("action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR notificable_story != nil)").sorted("created_at", ascending: false))
         
         self.notificationsActiveModel.addItems(notifications, cellIdentifier: String(NotificationsTableViewCell), sectionTitle: nil, delegate: self)
         self.notificationsDataSource.reloadTable()

@@ -10,6 +10,7 @@ import Foundation
 
 struct CornerRadius {
     static let defaultRadius: CGFloat = 5
+    static let detailViewBorderRadius: CGFloat = 8
 }
 
 struct Border {

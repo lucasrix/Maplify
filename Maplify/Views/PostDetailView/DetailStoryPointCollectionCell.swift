@@ -1,16 +1,12 @@
 //
-//  StoryPointDetailCell.swift
+//  DetailStoryPointCollectionCell.swift
 //  Maplify
 //
-//  Created by Evgeniy Antonoff on 4/7/16.
+//  Created by Sergei on 30/05/16.
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import UIKit
-
-let kMapImageDownloadCompletedAlpha: CGFloat = 0.5
-
-class StoryPointDetailCell: CSCollectionViewCell {
+class DetailStoryPointCollectionCell: CSCollectionViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var storyPointKindImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
@@ -21,7 +17,7 @@ class StoryPointDetailCell: CSCollectionViewCell {
         let storyPoint = cellData.model as! StoryPoint
         self.populateBackgroundImage(storyPoint)
     }
-
+    
     func populateBackgroundImage(storyPoint: StoryPoint) {
         var attachmentUrl: NSURL! = nil
         let placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)

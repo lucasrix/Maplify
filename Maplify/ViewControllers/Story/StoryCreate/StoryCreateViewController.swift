@@ -17,6 +17,8 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var charactersCountLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    var createStoryCompletion: createStoryClosure! = nil
         
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -84,7 +86,7 @@ class StoryCreateViewController: ViewController, UITextViewDelegate {
             let cancel = NSLocalizedString("Button.Ok", comment: String())
             self.showMessageAlert(title, message: message, cancel: cancel)
         } else if (self.storyNameTextField.text?.length > 0) && (self.storyNameTextField.text?.isNonWhiteSpace)! {
-            self.routesOpenStoryAddPostsViewController(nil, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text)
+            self.routesOpenStoryAddPostsViewController(nil, delegate: nil, storyModeCreation: true, storyName: self.storyNameTextField.text!, storyDescription: self.descriptionTextView.text, createStoryCompletion: self.createStoryCompletion)
         } else {
             let message = NSLocalizedString("Error.EmptyStoryName", comment: String())
             let title = NSLocalizedString("Alert.Error", comment: String())

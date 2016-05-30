@@ -677,7 +677,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func createStoryButtonDidTap() {
-        self.routesOpenStoryCreateController()
+        self.routesOpenStoryCreateController { [weak self] () in
+            self?.profileView?.setupDetailedLabels()
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     func editButtonDidTap() {

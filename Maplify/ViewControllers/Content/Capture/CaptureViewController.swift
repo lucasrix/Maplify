@@ -371,7 +371,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     @IBAction func addStoryTapped(sender: UIButton) {
-        self.routesOpenStoryCreateController()
+        self.routesOpenStoryCreateController(nil)
     }
     
     @IBAction func profileTapped(sender: UIButton) {

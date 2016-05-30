@@ -10,7 +10,7 @@ import UIKit
 
 class DetailMapItemHelper {
     class func configureStoryPointView(view: UIView, storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
-        let contentView = NSBundle.mainBundle().loadNibNamed("StoryPointInfoView", owner: nil, options: nil).first as! StoryPointInfoView
+        let contentView = NSBundle.mainBundle().loadNibNamed(String(StoryPointInfoView), owner: nil, options: nil).first as! StoryPointInfoView
         contentView.frame = view.bounds
         contentView.configure(storyPoint, delegate: delegate)
         
@@ -21,7 +21,7 @@ class DetailMapItemHelper {
     }
     
     class func configureStoryView(view: UIView, story: Story, delegate: StoryInfoViewDelegate) {
-        let contentView = NSBundle.mainBundle().loadNibNamed("StoryInfoView", owner: nil, options: nil).first as! StoryInfoView
+        let contentView = NSBundle.mainBundle().loadNibNamed(String(StoryInfoView), owner: nil, options: nil).first as! StoryInfoView
         contentView.frame = view.bounds
         contentView.configure(story, delegate: delegate)
         

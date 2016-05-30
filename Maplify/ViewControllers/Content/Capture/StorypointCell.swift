@@ -66,7 +66,7 @@ class StorypointCell: CSCollectionViewCell {
             }
         }
         self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
-            if !(error != nil) {
+            if error == nil {
                 self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
                 self?.populateKindImage(storyPoint)
             }

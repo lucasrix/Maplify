@@ -9,7 +9,7 @@
 import Foundation
 
 class DetailStoryItemsDataSource: CSBaseCollectionDataSource {
-    var boundingSize: CGSize = CGSizeMake(150, 150)
+    var boundingSize: CGSize = CGSizeZero
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return kDiscoverStoryDataSourceNumbersOfSection
@@ -21,8 +21,6 @@ class DetailStoryItemsDataSource: CSBaseCollectionDataSource {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cellData = self.activeModel.cellData(indexPath)
-        
-
         
         if indexPath.row == kDiscoverStoryDataSourceStoryInfoRowNumber {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(DetailStoryNumberCell), forIndexPath: indexPath) as! DetailStoryNumberCell
@@ -49,5 +47,4 @@ class DetailStoryItemsDataSource: CSBaseCollectionDataSource {
         let totalCellsLayer: CGFloat = (CGFloat(numberOfColumn) - 1) * kDiscoverStoryDataSourceCellsLayerWidth
         return (self.boundingSize.width - totalCellsLayer) / CGFloat(numberOfColumn)
     }
-    
 }

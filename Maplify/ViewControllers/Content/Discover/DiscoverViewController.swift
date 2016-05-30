@@ -102,7 +102,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func setupProfileViewIfNeeded() {
         if self.supportUserProfile {
-            self.profileView = NSBundle.mainBundle().loadNibNamed("ProfileView", owner: nil, options: nil).last as! ProfileView
+            self.profileView = NSBundle.mainBundle().loadNibNamed(String(ProfileView), owner: nil, options: nil).last as! ProfileView
             self.profileView.updateContentClosure = { [weak self] () in
                 self?.tableView.reloadData()
             }

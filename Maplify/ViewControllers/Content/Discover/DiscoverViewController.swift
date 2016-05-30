@@ -412,12 +412,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self.showProgressHUD()
                 ApiClient.sharedClient.deleteStoryPoint(storyPointId,
                                                         success: { [weak self] (response) in
+                                                            StoryPointManager.saveStoryPoint(response as! StoryPoint)
                                                             let discoverItem = DiscoverItemManager.findWithStoryPoint(storyPointId)
                                                             let storyPoint = StoryPointManager.find(storyPointId)
                                                             if (storyPoint != nil) && (discoverItem != nil) {
                                                                 DiscoverItemManager.delete(discoverItem)
                                                                 StoryPointManager.delete(storyPoint)
                                                             }
+                                                            self?.profileView?.setupDetailedLabels()
                                                             self?.hideProgressHUD()
                                                             self?.loadItemsFromDB()
                                                         },
@@ -477,12 +479,14 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self.showProgressHUD()
                 ApiClient.sharedClient.deleteStory(storyId,
                                                    success: { [weak self] (response) in
+                                                        StoryManager.saveStory(response as! Story)
                                                         let discoverItem = DiscoverItemManager.findWithStory(storyId)
                                                         let story = StoryManager.find(storyId)
                                                         if (story != nil) && (discoverItem != nil) {
                                                             DiscoverItemManager.delete(discoverItem)
                                                             StoryManager.delete(story)
                                                         }
+                                                    self?.profileView?.setupDetailedLabels()
                                                         self?.hideProgressHUD()
                                                         self?.loadItemsFromDB()
                                                     },
@@ -543,8 +547,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func likeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
-        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { (response) in
+        ApiClient.sharedClient.likeStoryPoint(storyPointId, success: { [weak self] (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.profileView?.setupDetailedLabels()
             completion(success: true)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -553,10 +558,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func unlikeStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())) {
-        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { (response) in
+        ApiClient.sharedClient.unlikeStoryPoint(storyPointId, success: { [weak self] (response) in
             StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            self?.profileView?.setupDetailedLabels()
             completion(success: true)
-            
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
@@ -605,10 +610,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func likeStory(storyId: Int, completion: ((success: Bool) -> ())) {
-        ApiClient.sharedClient.likeStory(storyId, success: { (response) in
+        ApiClient.sharedClient.likeStory(storyId, success: { [weak self] (response) in
             StoryManager.saveStory(response as! Story)
+            self?.profileView?.setupDetailedLabels()
             completion(success: true)
-            
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
@@ -616,10 +621,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     private func unlikeStory(storyId: Int, completion: ((success: Bool) -> ())) {
-        ApiClient.sharedClient.unlikeStory(storyId, success: { (response) in
+        ApiClient.sharedClient.unlikeStory(storyId, success: { [weak self] (response) in
             StoryManager.saveStory(response as! Story)
+            self?.profileView?.setupDetailedLabels()
             completion(success: true)
-            
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 completion(success: false)
@@ -672,7 +677,10 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func createStoryButtonDidTap() {
-        self.routesOpenStoryCreateController()
+        self.routesOpenStoryCreateController { [weak self] () in
+            self?.profileView?.setupDetailedLabels()
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     func editButtonDidTap() {

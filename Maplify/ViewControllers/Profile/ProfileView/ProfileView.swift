@@ -115,6 +115,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     func setupLabels() {
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
         self.aboutLabel.text = self.user.profile.about
+        self.aboutLabelHeight.constant = self.getAboutLabelHeight()
         
         if self.user.profile.city.length > 0 {
             self.locationLabel.text = self.user.profile.city
@@ -226,7 +227,8 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func setupInitialContentHeight() {
-        self.contentHeightValue = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
+        let contentHeight = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight: kDefaultContentHeight
+        self.contentHeightValue = contentHeight + self.getAboutLabelHeight()
     }
     
     func loadItemFromDB() {
@@ -282,6 +284,17 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     
+    func getAboutLabelHeight() -> CGFloat {
+        if self.expandButton.selected {
+            let font = self.aboutLabel.font
+            let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
+            let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
+            self.aboutLabel.text = self.user.profile.about
+            return CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
+        }
+        return 0
+    }
+    
     @IBAction func createStoryButtonTapped(sender: AnyObject) {
         self.delegate?.createStoryButtonDidTap()
     }
@@ -291,19 +304,10 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         
         let baseContentHeight = (self.profileId == SessionManager.currentUser().id) ? kDefaultContentWithButtonHeight : kDefaultContentHeight
         
-        if self.expandButton.selected {
-            let font = self.aboutLabel.font
-            let boundingRect = CGRectMake(0, 0, self.aboutLabel.frame.size.width, CGFloat.max)
-            let textHeight = self.user.profile.about.size(font, boundingRect: boundingRect).height
-            self.aboutLabel.text = self.user.profile.about
-            self.contentHeightValue = baseContentHeight + CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
-            self.aboutLabelHeight.constant = CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
-        } else {
-            self.contentHeightValue = baseContentHeight
-            self.aboutLabelHeight.constant = 0
-        }
+        self.contentHeightValue = baseContentHeight + self.getAboutLabelHeight()
+        self.aboutLabelHeight.constant = self.getAboutLabelHeight()
         
-        self.updateContentClosure()
+        self.updateContentClosure?()
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {

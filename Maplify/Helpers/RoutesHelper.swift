@@ -66,8 +66,9 @@ extension UIViewController {
         self.routesOpenViewController(UIStoryboard.menuStoryboard(), identifier: Controllers.menuViewController)
     }
     
-    func routesOpenStoryCreateController() {
+    func routesOpenStoryCreateController(createStoryCompletion: createStoryClosure!) {
         let storyCreateController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateViewController) as! StoryCreateViewController
+        storyCreateController.createStoryCompletion = createStoryCompletion
         self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
@@ -172,13 +173,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyDetailViewController, animated: true)
     }
     
-    func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String) {
+    func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, createStoryCompletion: createStoryClosure!) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
         storyAddPostsViewController.selectedStoryPoints = selectedStoryPoints
         storyAddPostsViewController.delegate = delegate
         storyAddPostsViewController.isStoryModeCreation = storyModeCreation
         storyAddPostsViewController.storyName = storyName
         storyAddPostsViewController.storyDescription = storyDescription
+        storyAddPostsViewController.createStoryCompletion = createStoryCompletion
         self.navigationController?.pushViewController(storyAddPostsViewController, animated: true)
     }
     

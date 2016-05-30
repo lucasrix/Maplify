@@ -58,6 +58,11 @@
 		85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E551CCE4C6B00439761 /* ProfileView.swift */; };
 		85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FB7E571CCE4C7600439761 /* ProfileView.xib */; };
 		85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E591CCF57B900439761 /* UserRequestHelper.swift */; };
+		85FD8C221CFC3A4A008956CE /* DetailStoryNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FD8C211CFC3A4A008956CE /* DetailStoryNumberCell.xib */; };
+		85FD8C241CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FD8C231CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib */; };
+		85FD8C261CFC3C10008956CE /* DetailStoryNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C251CFC3C10008956CE /* DetailStoryNumberCell.swift */; };
+		85FD8C281CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C271CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift */; };
+		85FD8C2A1CFC3FA6008956CE /* DetailStoryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C291CFC3FA6008956CE /* DetailStoryItemsDataSource.swift */; };
 		8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
 		8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
 		8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
@@ -272,6 +277,11 @@
 		85FB7E551CCE4C6B00439761 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		85FB7E571CCE4C7600439761 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		85FB7E591CCF57B900439761 /* UserRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestHelper.swift; sourceTree = "<group>"; };
+		85FD8C211CFC3A4A008956CE /* DetailStoryNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailStoryNumberCell.xib; sourceTree = "<group>"; };
+		85FD8C231CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailStoryPointCollectionCell.xib; sourceTree = "<group>"; };
+		85FD8C251CFC3C10008956CE /* DetailStoryNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStoryNumberCell.swift; sourceTree = "<group>"; };
+		85FD8C271CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStoryPointCollectionCell.swift; sourceTree = "<group>"; };
+		85FD8C291CFC3FA6008956CE /* DetailStoryItemsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStoryItemsDataSource.swift; sourceTree = "<group>"; };
 		8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesHelper.swift; sourceTree = "<group>"; };
 		8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -559,6 +569,11 @@
 				85AC3C551CF31250007D9A76 /* StoryInfoView.swift */,
 				8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */,
 				8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */,
+				85FD8C211CFC3A4A008956CE /* DetailStoryNumberCell.xib */,
+				85FD8C231CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib */,
+				85FD8C251CFC3C10008956CE /* DetailStoryNumberCell.swift */,
+				85FD8C271CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift */,
+				85FD8C291CFC3FA6008956CE /* DetailStoryItemsDataSource.swift */,
 			);
 			path = PostDetailView;
 			sourceTree = "<group>";
@@ -1294,11 +1309,13 @@
 			files = (
 				A5728A1E1C88945A00C6DA7E /* Localizable.strings in Resources */,
 				1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */,
+				85FD8C241CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib in Resources */,
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */,
 				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
 				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
+				85FD8C221CFC3A4A008956CE /* DetailStoryNumberCell.xib in Resources */,
 				A5C584C81C919DCB0036064A /* InputTextView.xib in Resources */,
 				850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
@@ -1430,6 +1447,7 @@
 				CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */,
 				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
+				85FD8C281CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
@@ -1492,11 +1510,13 @@
 				A5D7AAF91C9C437F00A94C4F /* WebContent.swift in Sources */,
 				8C130A271C8C9E4F0005DF12 /* LoginViewController.swift in Sources */,
 				1FB705B61C9C5D0000FC3496 /* ChildController.swift in Sources */,
+				85FD8C261CFC3C10008956CE /* DetailStoryNumberCell.swift in Sources */,
 				1FC781051CA151E900C50C23 /* Attachment.swift in Sources */,
 				A5FC35CD1CA5556D00DFEE38 /* CurrentUser.swift in Sources */,
 				8C130A231C8C6CF10005DF12 /* RoutesHelper.swift in Sources */,
 				CD003E8E1CC7BB7800026B1B /* PlayerHelper.swift in Sources */,
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
+				85FD8C2A1CFC3FA6008956CE /* DetailStoryItemsDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,

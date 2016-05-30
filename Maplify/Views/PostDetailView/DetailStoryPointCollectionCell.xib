@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailStoryPointCollectionCell" customModule="Maplify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="axT-Dw-NpB">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                </imageView>
+                <view alpha="0.23000000417232513" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktX-fh-QHg" userLabel="Color View">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                    <color key="backgroundColor" red="0.21176470589999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <imageView userInteractionEnabled="NO" alpha="0.64999997615814209" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c4O-gc-5vP">
+                    <rect key="frame" x="48" y="47" width="55" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="2Gg-FH-3IS"/>
+                        <constraint firstAttribute="width" constant="55" id="r0o-Ax-afB"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="axT-Dw-NpB" secondAttribute="bottom" id="4ym-0R-dI6"/>
+                <constraint firstItem="axT-Dw-NpB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Vn-me-p7m"/>
+                <constraint firstAttribute="trailing" secondItem="ktX-fh-QHg" secondAttribute="trailing" id="9W6-R9-4Zz"/>
+                <constraint firstItem="axT-Dw-NpB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CHv-hP-VEt"/>
+                <constraint firstItem="c4O-gc-5vP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JNQ-rx-VKv"/>
+                <constraint firstItem="c4O-gc-5vP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eq5-Pn-ewE"/>
+                <constraint firstItem="ktX-fh-QHg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fGx-VX-Y5x"/>
+                <constraint firstAttribute="bottom" secondItem="ktX-fh-QHg" secondAttribute="bottom" id="g0I-RG-3Ca"/>
+                <constraint firstItem="ktX-fh-QHg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="l7F-6L-8FV"/>
+                <constraint firstAttribute="trailing" secondItem="axT-Dw-NpB" secondAttribute="trailing" id="wYX-xa-oDX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="axT-Dw-NpB" id="1q9-AM-4D8"/>
+                <outlet property="colorView" destination="ktX-fh-QHg" id="eaa-yk-NAT"/>
+                <outlet property="storyPointKindImageView" destination="c4O-gc-5vP" id="ueq-nn-ZMh"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="DiscoverPlaceholder" width="375" height="375"/>
+    </resources>
+</document>

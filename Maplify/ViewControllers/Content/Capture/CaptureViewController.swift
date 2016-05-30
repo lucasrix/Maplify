@@ -93,7 +93,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     
     // MARK: - setup
     func setup() {
-        self.setupCollectionView()
         self.setupPlaceSearchHelper()
         self.checkLocationEnabled()
         self.setupPopTip()
@@ -276,7 +275,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         if index != NSNotFound {
             self.mapActiveModel.selectPinAtIndex(index)
             self.mapDataSource.reloadMapView(StoryPointMapItem)
-            self.collectionView.hidden = false
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
             if self.contentType == .Story {
                 self.infiniteScrollView.moveAndShowCell(index + 1, animated: false)
@@ -459,7 +457,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             
             self.infiniteScrollView.hidden = false
 
-            self.collectionView?.hidden = false
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate, pointInView: pointInView)
         }
         self.popTip?.hide()
@@ -514,7 +511,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             if let storyPoint = realm.objectForPrimaryKey(StoryPoint.self, key: self.selectedPostId) {
                 let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
                 let storyPointIndex = self.mapActiveModel.storyPointIndex(coordinate, section: 0)
-                self.selectPin(storyPointIndex, mapCoordinate: coordinate)
+                self.selectPin(storyPointIndex, mapCoordinate: coordinate, pointInView: CGPointZero)
             }
         }
         self.selectedPostId = 0

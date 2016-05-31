@@ -477,17 +477,6 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         self.selectedPostId = 0
     }
     
-    // MARK: - CSBaseCollectionDataSourceDelegate
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        let indexPath = NSIndexPath(forRow: currentIndex, inSection: 0)
-        
-        let storyPoint = self.mapActiveModel.storyPoint(indexPath)
-        
-        let region = MCMapRegion(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
-        self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-    }
-    
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())

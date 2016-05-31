@@ -12,13 +12,13 @@ extension CaptureViewController {
     
     // MARK: - InfinitePageControlDelegate
     func numberOfItems() -> Int {
-        return (self.contentType == .Story) ? self.storyPointActiveModel.numberOfItems(0) + 1 : self.storyPointActiveModel.numberOfItems(0)
+        return (self.contentType == .StoryDetail) ? self.storyPointActiveModel.numberOfItems(0) + 1 : self.storyPointActiveModel.numberOfItems(0)
     }
     
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
         var model = Model()
         
-        if self.contentType == .Story {
+        if self.contentType == .StoryDetail {
             if index == 0 {
                 model = self.storyToShow
             } else {
@@ -37,7 +37,7 @@ extension CaptureViewController {
     
     func didScrollPageView(pageControl: InfiniteScrollView, index: Int) {
         var indexToSelect = index
-        if self.contentType == .Story {
+        if self.contentType == .StoryDetail {
             if index > 0 {
                 indexToSelect -= 1
                 self.mapActiveModel.selectPinAtIndex(indexToSelect)

@@ -53,7 +53,7 @@ extension CaptureViewController {
         ApiClient.sharedClient.getStory(storyId, success: { [weak self] (response) in
             self?.mapActiveModel.removeData()
             self?.storyPointActiveModel.removeData()
-            self?.contentType = .Story
+            self?.contentType = .StoryDetail
             self?.storyToShow = response as! Story
             self?.setupDataDetailNavigationBar((self?.storyToShow)!)
             

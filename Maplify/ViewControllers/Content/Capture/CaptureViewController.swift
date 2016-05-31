@@ -32,10 +32,11 @@ let kDetailViewYOffset: CGFloat = 10
 
 enum ContentType: Int {
     case Default
-    case Profile
-    case Notification
-    case Share
-    case Story
+    case PushedStoryPoint
+    case PushedStory
+    case SharedStoryPoint
+    case SharedStory
+    case StoryDetail
 }
 
 class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollectionDataSourceDelegate, GooglePlaceSearchHelperDelegate, InfiniteScrollViewDelegate, StoryPointInfoViewDelegate, StoryInfoViewDelegate, ErrorHandlingProtocol {
@@ -66,6 +67,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     var locationString = String()
     var selectedPostId: Int = 0
     var storyToShow: Story! = nil
+    var storyPointToShow: StoryPoint! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -228,7 +230,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         var storyPoints: [StoryPoint]! = []
         if self.contentType == .Default {
             storyPoints = StoryPointManager.allStoryPoints()
-        } else if self.contentType == .Share {
+        } else if self.contentType == .SharedStoryPoint {
             storyPoints = self.sharedType == SharingKeys.typeStoryPoint ? self.loadSharedStoryPoint() : self.loadSharedStory()
             self.publicStoryPoints = storyPoints
         } else {
@@ -276,7 +278,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             self.mapActiveModel.selectPinAtIndex(index)
             self.mapDataSource.reloadMapView(StoryPointMapItem)
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
-            if self.contentType == .Story {
+            if self.contentType == .StoryDetail {
                 self.infiniteScrollView.moveAndShowCell(index + 1, animated: false)
             } else {
                 self.infiniteScrollView.moveAndShowCell(index, animated: false)
@@ -326,7 +328,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
                 }
             )
         }
-        else if self.contentType == .Share {
+        else if self.contentType == .SharedStoryPoint {
             self.retrieveSharedItem()
         }
     }
@@ -377,7 +379,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func showEmptyStoryErrorIfNeeded() {
-        if self.contentType == .Notification {
+        if self.contentType == .PushedStory {
             let title = NSLocalizedString("Alert.Info", comment: String())
             let message = NSLocalizedString("Alert.StoryDoesntHaveStoryPoints", comment: String())
             let cancel = NSLocalizedString("Button.Ok", comment: String())
@@ -418,7 +420,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func cancelButtonTapped() {
-        if self.contentType == .Share {
+        if (self.contentType == .SharedStoryPoint) || (self.contentType == .SharedStory) {
             self.routesSetContentController()
         } else {
             self.popControllerFromLeft()

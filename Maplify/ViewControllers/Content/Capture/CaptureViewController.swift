@@ -435,7 +435,7 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
     }
     
     func detailMenuButtonTapped() {
-        //TODO:
+        self.showEditStoryContentMenu(self.storyToShow.id)
     }
     
     func removePreviewItem() {
@@ -661,8 +661,92 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         })
     }
     
-    func menuButtonTapped(storyPointId: Int) {
-        //TODO: -
+    func storyPointMenuButtonTapped(storyPointId: Int) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
+            
+            self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
+                if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
+                    self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: nil)
+                } else if selectedIndex == StoryPointEditContentOption.DeletePost.rawValue {
+                    self?.deleteStoryPoint(storyPointId)
+                } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                }
+            })
+        } else {
+            self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
+                    self?.shareStoryPoint(storyPointId)
+                } else if selectedIndex == StoryPointDefaultContentOption.ReportAbuse.rawValue {
+                    self?.reportStoryPoint(storyPointId)
+                }
+            })
+        }
+    }
+    
+    func deleteStoryPoint(storyPointId: Int) {
+        let storyPoint = StoryPointManager.find(storyPointId)
+        let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
+        let yesButton = NSLocalizedString("Button.Yes", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: yesButton, buttons: [noButton]) { (buttonIndex) in
+            if buttonIndex != 0 {
+                self.showProgressHUD()
+                ApiClient.sharedClient.deleteStoryPoint(storyPointId,
+                                                        success: { [weak self] (response) in
+                                                                self?.hideProgressHUD()
+                                                                StoryPointManager.delete(storyPoint)
+                                                                self?.infiniteScrollView.deleteCurrentView()
+                                                                self?.loadItemsFromDBIfNedded()
+                    },
+                                                        failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                            self?.hideProgressHUD()
+                                                            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                    }
+                )
+            }
+        }
+    }
+
+    
+    func deleteStory(storyId: Int) {
+        let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
+        let yesButton = NSLocalizedString("Button.Yes", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: yesButton, buttons: [noButton]) { (buttonIndex) in
+            if buttonIndex != 0 {
+                self.showProgressHUD()
+                ApiClient.sharedClient.deleteStory(storyId,
+                                                   success: { [weak self] (response) in
+                                                    StoryManager.saveStory(response as! Story)
+                                                    let discoverItem = DiscoverItemManager.findWithStory(storyId)
+                                                    let story = StoryManager.find(storyId)
+                                                    if (story != nil) && (discoverItem != nil) {
+                                                        DiscoverItemManager.delete(discoverItem)
+                                                        StoryManager.delete(story)
+                                                    }
+                                                    self?.hideProgressHUD()
+                                                    self?.loadItemsFromDBIfNedded()
+                    },
+                                                   failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                                                        self?.hideProgressHUD()
+                                                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                    })
+            }
+        }
+    }
+    
+    func reportStoryPoint(storyPointId: Int) {
+        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) {
+            self.navigationController?.popToViewController(self, animated: true)
+        }
+    }
+    
+    func shareStoryPoint(storyPointId: Int) {
+        self.routesOpenShareStoryPointViewController(storyPointId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     // MARK: - StoryInfoViewDelegate
@@ -706,6 +790,42 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
             completion(success: false)
         }
     }
+    
+    func showEditStoryContentMenu(storyId: Int) {
+        let story = StoryManager.find(storyId)
+        if story.user.profile.id == SessionManager.currentUser().profile.id {
+            self.showEditStoryContentActionSheet({ [weak self] (selectedIndex) in
+                if selectedIndex == StoryEditContentOption.EditStory.rawValue {
+                    self?.routesOpenStoryEditController(storyId, storyUpdateHandler: nil)
+                } else if selectedIndex == StoryEditContentOption.DeleteStory.rawValue {
+                    self?.deleteStory(storyId)
+                } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                }
+            })
+        } else {
+            self.showStoryDefaultContentActionSheet( { [weak self] (selectedIndex) in
+                if selectedIndex == StoryDefaultContentOption.ShareStory.rawValue {
+                    self?.shareStory(storyId)
+                } else if selectedIndex == StoryDefaultContentOption.ReportAbuse.rawValue {
+                    self?.reportStory(storyId)
+                }
+            })
+        }
+    }
+    
+    func shareStory(storyId: Int) {
+        self.routesOpenShareStoryViewController(storyId) { [weak self] () in
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
+    
+    func reportStory(storyId: Int) {
+        self.routesOpenReportsController(storyId, postType: .Story) {
+            self.navigationController?.popToViewController(self, animated: true)
+        }
+    }
+
     
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {

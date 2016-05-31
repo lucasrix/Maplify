@@ -11,6 +11,7 @@ import UIKit
 let kCellHorizontalMargin: CGFloat = 17
 let kGlobalCellOffset: CGFloat = kCellHorizontalMargin * 0.5
 let kSecondsInMinute: CGFloat = 60
+let kDeleteAnimationDuration: NSTimeInterval = 0.2
 
 enum InfiniteScrollDirection {
     case None
@@ -26,7 +27,7 @@ protocol InfiniteScrollViewDelegate {
 
 class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     private var contentViews = [UIView]()
-    private var currentPageIndex: Int = 0
+    private(set) internal var currentPageIndex: Int = 0
     private var lastContentOffset: CGFloat = 0
     
     var cellCornerRadius: CGFloat = 0
@@ -237,6 +238,51 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
    
         if (targetIndex >= 0 && targetIndex < CGFloat((self.pageControlDelegate?.numberOfItems())!)) {
             self.pageControlDelegate?.didScrollPageView(self, index: Int(targetIndex))
+        }
+    }
+    
+    func deleteCurrentView() {
+        let centerView = self.contentViews[1]
+        let rightView = self.contentViews.last!
+        UIView.animateWithDuration(kDeleteAnimationDuration,
+            animations: { [weak self] () in
+                self?.updateViewsOrder()
+                centerView.alpha = 0
+                self?.moveRightViewToCenter(rightView)
+            },
+            completion: { [weak self] (finished) in
+                self?.moveViewsToEmptySpace()
+            })
+    }
+    
+    func updateViewsOrder() {
+        let rightView = self.contentViews.removeLast()
+        self.contentViews.insert(rightView, atIndex: 1)
+    }
+    
+    func moveCenterViewToRight(centerView: UIView) {
+        let viewWidth = self.cellViewWidth()
+        let margin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(self.currentPageIndex + 1) + kCellHorizontalMargin : 0
+        var frame = centerView.frame
+        frame.origin.x = viewWidth * CGFloat(self.currentPageIndex + 1) + margin
+        frame.origin.y = self.yViewsOffset
+        centerView.frame = frame
+    }
+    
+    func moveRightViewToCenter(rightView: UIView) {
+        let viewWidth = self.cellViewWidth()
+        let margin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(self.currentPageIndex) + kCellHorizontalMargin : 0
+        var frame = rightView.frame
+        frame.origin.x = viewWidth * CGFloat(self.currentPageIndex) + margin
+        frame.origin.y = self.yViewsOffset
+        rightView.frame = frame
+    }
+    
+    func moveViewsToEmptySpace() {
+        let view = self.contentViews.last!
+        self.moveCenterViewToRight(view)
+        UIView.animateWithDuration(kDeleteAnimationDuration) {
+            self.contentViews.forEach({$0.alpha = 1})
         }
     }
 }

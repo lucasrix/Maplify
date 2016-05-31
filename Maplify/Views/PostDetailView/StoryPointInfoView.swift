@@ -19,7 +19,7 @@ protocol StoryPointInfoViewDelegate {
     func didSelectStory(storyId: Int)
     func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
     func shareStoryPointDidTap(storyPointId: Int)
-    func menuButtonTapped(storyPointId: Int)
+    func storyPointMenuButtonTapped(storyPointId: Int)
 }
 
 class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDelegate {
@@ -193,7 +193,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     }
     
     @IBAction func menuButtonTapped(sender: AnyObject) {
-        self.delegate?.menuButtonTapped(self.storyPointId)
+        self.delegate?.storyPointMenuButtonTapped(self.storyPointId)
     }
     
     @IBAction func shareButtonTapped(sender: AnyObject) {

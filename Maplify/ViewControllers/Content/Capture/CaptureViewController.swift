@@ -230,6 +230,8 @@ class CaptureViewController: ViewController, MCMapServiceDelegate, CSBaseCollect
         var storyPoints: [StoryPoint]! = []
         if self.contentType == .Default {
             storyPoints = StoryPointManager.allStoryPoints()
+        } else if self.contentType == .PushedStoryPoint {
+            storyPoints = [self.storyPointToShow]
         } else if self.contentType == .SharedStoryPoint {
             storyPoints = self.sharedType == SharingKeys.typeStoryPoint ? self.loadSharedStoryPoint() : self.loadSharedStory()
             self.publicStoryPoints = storyPoints

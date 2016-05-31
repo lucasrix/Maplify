@@ -104,15 +104,10 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
     
     func openNotificableItem(notificableItemId: Int) {
         let notification = NotificationsManager.find(notificableItemId)
-        var storyPoints: [StoryPoint]! = nil
-        var title = String()
         if notification.notificable_type == NotificableType.StoryPoint.rawValue {
-            storyPoints = [notification.notificable_storypoint]
-            title = notification.notificable_storypoint.caption
+            self.routesPushFromLeftStoryPointCaptureViewController(notification.notificable_storypoint)
         } else if notification.notificable_type == NotificableType.Story.rawValue {
-            storyPoints = Converter.listToArray(notification.notificable_story.storyPoints, type: StoryPoint.self)
-            title = notification.notificable_story.title
+            self.routesPushFromLeftStoryCaptureViewController(notification.notificable_story)
         }
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: title, contentType: .PushedStoryPoint)
     }
 }

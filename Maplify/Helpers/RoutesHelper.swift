@@ -205,12 +205,21 @@ extension UIViewController {
     }
     
     // MARK: - push from left
-    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String, contentType: ContentType) {
+    func routesPushFromLeftStoryPointCaptureViewController(storyPoint: StoryPoint) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = contentType
-        captureViewController.publicStoryPoints = storyPoints
-        captureViewController.publicTitle = title
-        
+        captureViewController.contentType = .PushedStoryPoint
+        captureViewController.storyPointToShow = storyPoint
+        self.routesPushFromLeftViewController(captureViewController)
+    }
+    
+    func routesPushFromLeftStoryCaptureViewController(story: Story) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.contentType = .PushedStory
+        captureViewController.storyToShow = story
+        self.routesPushFromLeftViewController(captureViewController)
+    }
+    
+    func routesPushFromLeftViewController(controller: ViewController) {
         let transition = CATransition()
         transition.duration = AnimationDurations.pushControllerDefault
         transition.type = kCATransitionMoveIn
@@ -218,7 +227,7 @@ extension UIViewController {
         let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         transition.timingFunction = timingFunction
         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(captureViewController, animated: false)
+        self.navigationController?.pushViewController(controller, animated: false)
     }
     
     func routesOpenSharedContentController(sharedType: String, sharedId: Int) {

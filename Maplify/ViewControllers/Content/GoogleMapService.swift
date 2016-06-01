@@ -8,12 +8,15 @@
 
 import GoogleMaps
 
+let kMapViewwingAngle: Double = 45
+
 class GoogleMapService: MCMapService, GMSMapViewDelegate {
     
     // MARK: - MCMapServiceProtocol
     override func configuredMapView(region: MCMapRegion, zoom: Float, showWholeWorld: Bool) -> UIView! {
         let initialZoom = showWholeWorld ? kGMSMinZoomLevel : zoom
-        let camera = GMSCameraPosition.cameraWithLatitude(region.location.latitude, longitude:region.location.longitude, zoom: initialZoom)
+        let target = CLLocationCoordinate2D(latitude: region.location.latitude, longitude: region.location.longitude)
+        let camera = GMSCameraPosition.cameraWithTarget(target, zoom: initialZoom, bearing: 0, viewingAngle: kMapViewwingAngle)
         let mapView = GMSMapView.mapWithFrame(region.span.rect, camera:camera)
         mapView.delegate = self
         return mapView

@@ -207,15 +207,15 @@ extension UIViewController {
     // MARK: - push from left
     func routesPushFromLeftStoryPointCaptureViewController(storyPoint: StoryPoint) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = .PushedStoryPoint
-        captureViewController.storyPointToShow = storyPoint
+        captureViewController.contentType = .StoryPoint
+        captureViewController.selectedStoryPointId = storyPoint.id
         self.routesPushFromLeftViewController(captureViewController)
     }
     
     func routesPushFromLeftStoryCaptureViewController(story: Story) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = .PushedStory
-        captureViewController.storyToShow = story
+        captureViewController.contentType = .Story
+        captureViewController.selectedStoryId = story.id
         self.routesPushFromLeftViewController(captureViewController)
     }
     
@@ -232,7 +232,7 @@ extension UIViewController {
     
     func routesOpenSharedContentController(sharedType: String, sharedId: Int) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = .SharedStoryPoint
+        captureViewController.contentType = .StoryPoint
         captureViewController.sharedType = sharedType
         captureViewController.sharedId = sharedId
         let navigationController = NavigationViewController(rootViewController: captureViewController)

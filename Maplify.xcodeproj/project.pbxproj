@@ -155,11 +155,10 @@
 		CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
 		CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
 		CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
-		CD1DB2321CFDCF5100D62944 /* CaptureStoryPointInfoViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2311CFDCF5100D62944 /* CaptureStoryPointInfoViewExtension.swift */; };
-		CD1DB2341CFDD0E800D62944 /* CaptureStoryInfoViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2331CFDD0E800D62944 /* CaptureStoryInfoViewExtension.swift */; };
-		CD1DB2361CFDD15B00D62944 /* CaptureInfinitePageControlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2351CFDD15B00D62944 /* CaptureInfinitePageControlExtension.swift */; };
-		CD1DB2381CFDD27E00D62944 /* CaptureMCMapServiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2371CFDD27E00D62944 /* CaptureMCMapServiceExtension.swift */; };
-		CD1DB23A1CFDD39700D62944 /* CaptureGooglePlaceSearchHelperExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2391CFDD39700D62944 /* CaptureGooglePlaceSearchHelperExtension.swift */; };
+		CD1DB23D1CFEDD9D00D62944 /* CaptureMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */; };
+		CD1DB23F1CFEE05500D62944 /* CaptureDataFetchingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */; };
+		CD1DB2411CFF0F5A00D62944 /* CaptureDetailViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */; };
+		CD1DB2431CFF114400D62944 /* CaptureSetupUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
@@ -379,11 +378,10 @@
 		CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentFollowingViewController.swift; sourceTree = "<group>"; };
 		CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		CD153CC21CE4C4E200F32BDE /* UserListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListManager.swift; sourceTree = "<group>"; };
-		CD1DB2311CFDCF5100D62944 /* CaptureStoryPointInfoViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureStoryPointInfoViewExtension.swift; sourceTree = "<group>"; };
-		CD1DB2331CFDD0E800D62944 /* CaptureStoryInfoViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureStoryInfoViewExtension.swift; sourceTree = "<group>"; };
-		CD1DB2351CFDD15B00D62944 /* CaptureInfinitePageControlExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureInfinitePageControlExtension.swift; sourceTree = "<group>"; };
-		CD1DB2371CFDD27E00D62944 /* CaptureMCMapServiceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureMCMapServiceExtension.swift; sourceTree = "<group>"; };
-		CD1DB2391CFDD39700D62944 /* CaptureGooglePlaceSearchHelperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureGooglePlaceSearchHelperExtension.swift; sourceTree = "<group>"; };
+		CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureMapExtension.swift; sourceTree = "<group>"; };
+		CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDataFetchingExtension.swift; sourceTree = "<group>"; };
+		CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDetailViewExtension.swift; sourceTree = "<group>"; };
+		CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSetupUIExtension.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
@@ -960,7 +958,7 @@
 		A5D7AB001CA03F5100A94C4F /* Capture */ = {
 			isa = PBXGroup;
 			children = (
-				CD1DB2301CFDCEC800D62944 /* CaptureExtensions */,
+				CD1DB23B1CFEDCFB00D62944 /* CaptureExtensions */,
 				A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */,
 				A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */,
 				A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */,
@@ -1045,14 +1043,13 @@
 			path = FollowingCell;
 			sourceTree = "<group>";
 		};
-		CD1DB2301CFDCEC800D62944 /* CaptureExtensions */ = {
+		CD1DB23B1CFEDCFB00D62944 /* CaptureExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				CD1DB2311CFDCF5100D62944 /* CaptureStoryPointInfoViewExtension.swift */,
-				CD1DB2331CFDD0E800D62944 /* CaptureStoryInfoViewExtension.swift */,
-				CD1DB2351CFDD15B00D62944 /* CaptureInfinitePageControlExtension.swift */,
-				CD1DB2371CFDD27E00D62944 /* CaptureMCMapServiceExtension.swift */,
-				CD1DB2391CFDD39700D62944 /* CaptureGooglePlaceSearchHelperExtension.swift */,
+				CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */,
+				CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */,
+				CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */,
+				CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */,
 			);
 			path = CaptureExtensions;
 			sourceTree = "<group>";
@@ -1451,8 +1448,8 @@
 				85EAC1071CC0F38100B65801 /* EditProfileViewController.swift in Sources */,
 				8595DF281CB7FEB200F98F80 /* UIBarButtonItem.swift in Sources */,
 				A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */,
+				CD1DB2431CFF114400D62944 /* CaptureSetupUIExtension.swift in Sources */,
 				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,
-				CD1DB2381CFDD27E00D62944 /* CaptureMCMapServiceExtension.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
 				8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
@@ -1467,13 +1464,12 @@
 				855567A41CDCBA180096A561 /* NSURL.swift in Sources */,
 				A59A7BBE1CA1666100455E6D /* NSData.swift in Sources */,
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
-				CD1DB23A1CFDD39700D62944 /* CaptureGooglePlaceSearchHelperExtension.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
 				CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */,
 				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
-				CD1DB2321CFDCF5100D62944 /* CaptureStoryPointInfoViewExtension.swift in Sources */,
 				85FD8C281CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift in Sources */,
+				CD1DB2411CFF0F5A00D62944 /* CaptureDetailViewExtension.swift in Sources */,
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
@@ -1495,7 +1491,6 @@
 				850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
-				CD1DB2361CFDD15B00D62944 /* CaptureInfinitePageControlExtension.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
 				853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */,
 				85AC3C561CF31250007D9A76 /* StoryInfoView.swift in Sources */,
@@ -1555,7 +1550,6 @@
 				A5C584C61C91957D0036064A /* InputTextView.swift in Sources */,
 				A5C584C31C917B930036064A /* SignupUpdateProfileController.swift in Sources */,
 				A5D7AB051CA03F6B00A94C4F /* DiscoverViewController.swift in Sources */,
-				CD1DB2341CFDD0E800D62944 /* CaptureStoryInfoViewExtension.swift in Sources */,
 				CDF6D8971CD26007001387EC /* ShareController.swift in Sources */,
 				CD0BB2BE1CB54A6900E3E66B /* DiscoverStoryCell.swift in Sources */,
 				A59A7BBC1CA1628800455E6D /* UIImage.swift in Sources */,
@@ -1598,11 +1592,13 @@
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
 				85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */,
 				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,
+				CD1DB23F1CFEE05500D62944 /* CaptureDataFetchingExtension.swift in Sources */,
 				1FC780F91CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift in Sources */,
 				CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */,
 				F0419C201CA6122300AB83C0 /* StoryQuickCreationCell.swift in Sources */,
 				A59A7E751C96F48A00399A38 /* TermsViewController.swift in Sources */,
 				A5D7AAFF1C9C461900A94C4F /* WebContentManager.swift in Sources */,
+				CD1DB23D1CFEDD9D00D62944 /* CaptureMapExtension.swift in Sources */,
 				A59A7E791C971DF200399A38 /* PolicyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -136,9 +136,10 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 self.showProgressHUD()
                 ApiClient.sharedClient.deleteStoryPoint(storyPointId,
                                                         success: { [weak self] (response) in
-                                                            self?.hideProgressHUD()
+                                                            StoryPointManager.saveStoryPoint(response as! StoryPoint)
                                                             StoryPointManager.delete(storyPoint)
                                                             self?.infiniteScrollView.deleteCurrentView()
+                                                            self?.hideProgressHUD()
                                                             self?.loadData()
                     },
                                                         failure: { [weak self] (statusCode, errors, localDescription, messages) in
@@ -161,14 +162,12 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 ApiClient.sharedClient.deleteStory(storyId,
                                                    success: { [weak self] (response) in
                                                     StoryManager.saveStory(response as! Story)
-                                                    let discoverItem = DiscoverItemManager.findWithStory(storyId)
                                                     let story = StoryManager.find(storyId)
-                                                    if (story != nil) && (discoverItem != nil) {
-                                                        DiscoverItemManager.delete(discoverItem)
-                                                        StoryManager.delete(story)
-                                                    }
+                                                    StoryLinkManager.deleteStoryLink(storyId)
+                                                    StoryManager.delete(story)
+                                                    self?.infiniteScrollView.deleteCurrentView()
                                                     self?.hideProgressHUD()
-                                                    self?.loadData()
+                                                    self?.cancelButtonTapped()
                     },
                                                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                     self?.hideProgressHUD()

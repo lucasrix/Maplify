@@ -370,11 +370,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     // MARK: - actions
-    override func rightBarButtonItemDidTap() {
-       
-
-    }
-    
     func showEditContentMenu(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {

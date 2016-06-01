@@ -131,8 +131,8 @@ class ApiClient {
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
-    func patchRequest(uri: String, params: [String: AnyObject]?, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
-        let config = RequestConfig(type: .PATCH, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: nil)
+    func patchRequest(uri: String, params: [String: AnyObject]?, data: [String: AnyObject]!, manager: ModelManager, success: successClosure!, failure: failureClosure!) {
+        let config = RequestConfig(type: .PATCH, uri: uri, params: params!, acceptCodes: Network.successStatusCodes, data: data)
         self.request(config, manager: manager, encoding: .JSON, success: success, failure: failure)
     }
     
@@ -165,18 +165,19 @@ class ApiClient {
         self.getRequest("profiles/\(profileId)", params: nil, manager: ProfileManager(), success: success, failure: failure)
     }
     
-    func updateProfile(profile: Profile, location: Location! ,photo: NSData!, success: successClosure!, failure: failureClosure!) {
-        var params: [String: AnyObject] = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName, "mimeType": "image/png", "fileName": "photo.png"]
-        var data: [String: AnyObject]! = nil
-        if (photo != nil) {
-            data = ["photo": photo]
-        }
-        
+    func updateProfilePhoto(photo: NSData!, success: successClosure!, failure: failureClosure!) {
+        let params = ["mimeType": "image/png", "fileName": "photo.png"]
+        let data = ["photo": photo]
+        self.patchRequest("profile", params: params, data: data, manager: ProfileManager(), success: success, failure: failure)
+    }
+    
+    func updateProfile(profile: Profile, location: Location!, success: successClosure!, failure: failureClosure!) {
+        var params: [String: AnyObject] = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
         if (location != nil) {
             let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address]
             params["location"] = locationDict
         }
-        self.putRequest("profile", params: params, data: data,  manager: ProfileManager(), success: success, failure: failure)
+        self.patchRequest("profile", params: params, data: nil, manager: ProfileManager(), success: success, failure: failure)
     }
     
     func retrieveTermsOfUse(success: successClosure!, failure: failureClosure!) {
@@ -196,7 +197,7 @@ class ApiClient {
     }
     
     func updateStoryPoint(storyPointId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
-        self.patchRequest("story_points/\(storyPointId)", params: params, manager: StoryPointManager(), success: success, failure: failure)
+        self.patchRequest("story_points/\(storyPointId)", params: params, data: nil, manager: StoryPointManager(), success: success, failure: failure)
     }
     
     func deleteStoryPoint(storyPointId: Int, success: successClosure!, failure: failureClosure!) {
@@ -272,7 +273,7 @@ class ApiClient {
     }
     
     func updateStory(storyId: Int, params: [String: AnyObject], success: successClosure!, failure: failureClosure!) {
-        self.patchRequest("stories/\(storyId)", params: params, manager: StoryManager(), success: success, failure: failure)
+        self.patchRequest("stories/\(storyId)", params: params, data: nil, manager: StoryManager(), success: success, failure: failure)
     }
     
     func resetPassword(email: String, redirectUrl: String, success: successClosure!, failure: failureClosure!) {
@@ -314,7 +315,7 @@ class ApiClient {
 
     func changePassword(password: String, confirmPassword: String, success: successClosure!, failure: failureClosure!) {
         let params = ["password": password, "password_confirmation": confirmPassword]
-        self.patchRequest("auth/password", params: params, manager: SessionManager(), success: success, failure: failure)
+        self.patchRequest("auth/password", params: params, data: nil, manager: SessionManager(), success: success, failure: failure)
     }
     
     func retrieveFollowersList(success: successClosure!, failure: failureClosure!) {

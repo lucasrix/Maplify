@@ -109,18 +109,22 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 self?.tableView.reloadData()
             }
             
-            self.profileView.didChangeImageClosure = { [weak self] () in
+            self.profileView.didChangeImageClosure = { [weak self] (image) in
                 self?.showProgressHUD()
-                let photo = (self?.profileView.userImageView.image != nil) ? UIImagePNGRepresentation((self?.profileView.userImageView.image)!) : nil
-                ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, location: nil, photo: photo,
+                let photo = UIImagePNGRepresentation(image)
+                ApiClient.sharedClient.updateProfilePhoto(photo,
                                                      success: { [weak self] (response) in
-                                                        self?.hideProgressHUD()
-                                                        self?.navigationItem.rightBarButtonItem = nil
-                                                        
                                                         let profile = response as! Profile
+                                                        let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
+                                                        
                                                         ProfileManager.saveProfile(profile)
                                                         SessionManager.updateProfileForCurrrentUser(profile)
-                                                     },
+                                                        
+                                                        self?.profileView.userImageView.sd_setImageWithURL(NSURL(string: profile.small_thumbnail), placeholderImage: placeholderImage, options: [.RefreshCached], completed: { (image, error, type, url) in
+                                                            self?.hideProgressHUD()
+                                                            self?.storyDataSource.reloadTable()
+                                                        })
+                                                    },
                                                      failure:  { [weak self] (statusCode, errors, localDescription, messages) in
                                                         self?.hideProgressHUD()
                                                         self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -373,9 +377,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func showEditContentMenu(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
-            
             self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
-                
                 if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
                     self?.routesOpenStoryPointEditController(storyPointId, storyPointUpdateHandler: { [weak self] in
                         self?.storyDataSource.reloadTable()
@@ -388,7 +390,6 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
             })
         } else {
             self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
-                
                 if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
                     self?.shareStoryPoint(storyPointId)
                 } else if selectedIndex == StoryPointDefaultContentOption.ReportAbuse.rawValue {
@@ -680,6 +681,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     func editButtonDidTap() {
         self.routesOpenEditProfileController(self.userProfileId, photo: self.profileView.userImageView.image) { [weak self] () in
+            self?.storyDataSource.reloadTable()
             self?.configureProfileViewIfNeeded()
         }
     }

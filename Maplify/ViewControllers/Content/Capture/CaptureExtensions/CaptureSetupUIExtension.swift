@@ -99,7 +99,7 @@ extension CaptureViewController {
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.tapHandler = { [weak self] () -> () in
             self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil, creationPostCompletion: { (storyPointId) in
-                self?.selectedPostId = storyPointId
+                self?.selectedStoryPointId = storyPointId
             })
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
@@ -128,8 +128,13 @@ extension CaptureViewController {
     }
     
     func cancelButtonTapped() {
-        self.contentType = .Default
-        self.infiniteScrollView.hidden = true
-        self.loadData()
+        if self.poppingControllerSupport {
+            self.popControllerFromLeft()
+        } else {
+            self.contentType = .Default
+            self.infiniteScrollView.hidden = true
+            self.setupBottomButtonIfNeeded()
+            self.loadData()
+        }
     }
 }

@@ -579,12 +579,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
-    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
-        self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: true)
-    }
-    
     func didSelectMap(story: Story!) {
-        self.routesPushFromLeftStoryCaptureViewController(story)
+        self.routesPushFromLeftStoryCaptureViewController(story.id)
     }
     
     func storyProfileImageTapped(userId: Int) {

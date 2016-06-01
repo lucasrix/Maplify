@@ -52,18 +52,16 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     var captureActiveModel = MCMapActiveModel()
     var placeSearchHelper: GooglePlaceSearchHelper! = nil
     var userLastStoryPoint: StoryPoint! = nil
-    var sharedType = String()
-    var sharedId: Int = 0
     var previewPlaceItem: MCMapItem! = nil
     var popTip: AMPopTip! = nil
     var locationString = String()
-    var selectedPostId: Int = 0
     
     var contentType: ContentType = .Default
     var currentStory: Story! = nil
     var currentStoryPoints = [StoryPoint]()
     var selectedStoryPointId: Int = 0
     var selectedStoryId: Int = 0
+    var poppingControllerSupport: Bool = false
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {

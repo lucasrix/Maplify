@@ -63,7 +63,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.populateLikeButton()
-        self.setupMapSwipe()
     }
     
     func setupViews() {
@@ -147,17 +146,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         let itemsOverlimit = story!.storyPoints.count - self.numberOfStoryPointInCollectionView()
         self.storyPointPlusLabel.text = "+\(itemsOverlimit)"
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
-    }
-    
-    func setupMapSwipe() {
-        let mapSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleMapSwipe(_:)))
-        mapSwipeGesture.direction = .Right
-        self.contentView.addGestureRecognizer(mapSwipeGesture)
-    }
-    
-    func handleMapSwipe(sender:UISwipeGestureRecognizer) {
-        let story = StoryManager.find(self.storyId)
-        self.delegate?.didSelectMap(story)
     }
     
     func numberOfStoryPointInCollectionView() -> Int {
@@ -275,7 +263,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
 
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
-    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
     func didSelectMap(story: Story!)
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)

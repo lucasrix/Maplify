@@ -20,6 +20,8 @@ extension CaptureViewController {
     
     func loadLocalCurrentStory(storyId: Int) {
         self.currentStory = StoryManager.find(storyId)
+        self.currentStoryPoints.removeAll()
+        self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
     }
     
     // MARK: - remote

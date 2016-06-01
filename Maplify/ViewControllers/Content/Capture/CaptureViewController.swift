@@ -175,6 +175,20 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.captureDataSource.reloadMapView(StoryPointMapItem)
     }
     
+    // MARK: - actions
+    @IBAction func notificationsTapped(sender: UIButton) {
+        self.routesOpenNotificationsController()
+    }
+    
+    @IBAction func addStoryTapped(sender: UIButton) {
+        self.routesOpenStoryCreateController(nil)
+    }
+    
+    @IBAction func profileTapped(sender: UIButton) {
+        let userId = SessionManager.currentUser().id
+        self.routesOpenDiscoverController(userId, supportUserProfile: true, stackSupport: true)
+    }
+    
     // MARK: - ErrorHandlingProtocol
     func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
         let title = NSLocalizedString("Alert.Error", comment: String())

@@ -11,10 +11,12 @@ import AMPopTip
 
 extension CaptureViewController {
     func setupNavigationBar() {
-        if (self.contentType != .Default) {
-            self.setupStoryCaptureNavigationBar()
+        if self.contentType == .Story {
+            self.setupDataDetailNavigationBar()
+        } else if self.contentType == .StoryPoint {
+           self.setupStoryCaptureNavigationBar()
         } else {
-            self.setupDefaultCaptureNavigationBar()
+             self.setupDefaultCaptureNavigationBar()
         }
     }
     
@@ -44,8 +46,7 @@ extension CaptureViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoSearch)!, target: self, action: #selector(CaptureViewController.searchBarButtonHandler))
     }
     
-    func setupDataDetailNavigationBar(story: Story) {
-        self.title = story.title
+    func setupDataDetailNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoMoreWhite)!, target: self, action: #selector(CaptureViewController.storyDetailMenuButtonTapped))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(CaptureViewController.cancelButtonTapped))
     }
@@ -123,10 +124,12 @@ extension CaptureViewController {
     }
     
     func storyDetailMenuButtonTapped() {
-        
+        self.showEditStoryContentMenu(self.selectedStoryId)
     }
     
     func cancelButtonTapped() {
-        
+        self.contentType = .Default
+        self.infiniteScrollView.hidden = true
+        self.loadData()
     }
 }

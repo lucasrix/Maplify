@@ -56,7 +56,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     var publicStatsView: PublicStatsView! = nil
     var privateStatsView: PrivateStatsView! = nil
     var updateContentClosure: (() -> ())! = nil
-    var didChangeImageClosure: (() -> ())! = nil
+    var didChangeImageClosure: ((image: UIImage!) -> ())! = nil
     var parentViewController: UIViewController! = nil
     var delegate: ProfileViewDelegate! = nil
     var contentHeightValue: CGFloat = 0
@@ -217,7 +217,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
         let url = NSURL(string: self.user.profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.setPhotoPlaceholder)
         
-        
         self.userImageView.sd_setImageWithURL(url, placeholderImage: placeholderImage, options: [.RefreshCached], completed: nil)
         
         if self.profileId == SessionManager.currentUser().id {
@@ -325,8 +324,8 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if let pickedImage = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage {
-            self.userImageView.image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
-            self.didChangeImageClosure()
+            let image = pickedImage.correctlyOrientedImage().roundCornersToCircle()
+            self.didChangeImageClosure(image: image)
         }
         self.parentViewController.dismissViewControllerAnimated(true, completion: nil)
     }

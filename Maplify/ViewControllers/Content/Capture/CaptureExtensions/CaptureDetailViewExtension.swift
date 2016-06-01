@@ -242,7 +242,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {
                     self?.shareStory(storyId)
                 }
-                })
+            })
         } else {
             self.showStoryDefaultContentActionSheet( { [weak self] (selectedIndex) in
                 if selectedIndex == StoryDefaultContentOption.ShareStory.rawValue {
@@ -250,7 +250,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryDefaultContentOption.ReportAbuse.rawValue {
                     self?.reportStory(storyId)
                 }
-                })
+            })
         }
     }
     

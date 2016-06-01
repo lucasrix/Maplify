@@ -179,7 +179,12 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     }
     
     @IBAction func addStoryTapped(sender: UIButton) {
-        self.routesOpenStoryCreateController(nil)
+        self.routesOpenStoryCreateController { [weak self] (storyId) in
+            self?.contentType = .Story
+            self?.selectedStoryId = storyId
+            self?.loadData()
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     @IBAction func profileTapped(sender: UIButton) {

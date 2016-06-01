@@ -86,16 +86,19 @@ extension CaptureViewController: MCMapServiceDelegate {
         if self.contentType == .Default {
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
-            let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
-            self.removePreviewItem()
-            let placeItem = MCMapItem()
-            placeItem.location = coordinate
-            placeItem.image = UIImage(named: MapPinImages.tapped)
-            
-            self.previewPlaceItem = placeItem
-            self.googleMapService.placeItem(placeItem, temporary: true)
-            
-            self.configuratePopup(locationInView, coordinate: coordinate)
+            self.placePopUpPin(latitude, longitude: longitude, locationInView: locationInView)
         }
+    }
+    
+    func placePopUpPin(latitude: Double, longitude: Double, locationInView: CGPoint) {
+        let coordinate = MCMapCoordinate(latitude: latitude, longitude: longitude)
+        self.removePreviewItem()
+        let placeItem = MCMapItem()
+        placeItem.location = coordinate
+        placeItem.image = UIImage(named: MapPinImages.tapped)
+        
+        self.previewPlaceItem = placeItem
+        self.googleMapService.placeItem(placeItem, temporary: true)
+        self.configuratePopup(locationInView, coordinate: coordinate)
     }
 }

@@ -106,11 +106,20 @@ extension CaptureViewController {
     
     // MARK: - actions
     func searchBarButtonHandler() {
-        
+        if self.placeSearchHelper.controllerVisible {
+            self.placeSearchHelper.hideGooglePlaceSearchController()
+        } else {
+            self.placeSearchHelper.showGooglePlaceSearchController()
+        }
     }
     
     func gpsBarButtonHandler() {
-        
+        self.retrieveCurrentLocation { (location) in
+            if location != nil {
+                let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+            }
+        }
     }
     
     func storyDetailMenuButtonTapped() {

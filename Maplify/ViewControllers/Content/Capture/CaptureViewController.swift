@@ -93,6 +93,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupUI() {
+        self.setupPlaceSearchHelper()
         self.setupPressAndHoldViewIfNeeded()
         self.setupBottomButtonIfNeeded()
         self.setupInfiniteScrollView()

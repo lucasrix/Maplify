@@ -103,14 +103,29 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     func setupProfileViewIfNeeded() {
         if self.supportUserProfile {
             self.profileView = NSBundle.mainBundle().loadNibNamed(String(ProfileView), owner: nil, options: nil).last as! ProfileView
+            self.profileView.delegate = self
+
             self.profileView.updateContentClosure = { [weak self] () in
                 self?.tableView.reloadData()
             }
             
             self.profileView.didChangeImageClosure = { [weak self] () in
-                self?.addRightBarItem(NSLocalizedString("Button.Save", comment: String()))
+                self?.showProgressHUD()
+                let photo = (self?.profileView.userImageView.image != nil) ? UIImagePNGRepresentation((self?.profileView.userImageView.image)!) : nil
+                ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, location: nil, photo: photo,
+                                                     success: { [weak self] (response) in
+                                                        self?.hideProgressHUD()
+                                                        self?.navigationItem.rightBarButtonItem = nil
+                                                        
+                                                        let profile = response as! Profile
+                                                        ProfileManager.saveProfile(profile)
+                                                        SessionManager.updateProfileForCurrrentUser(profile)
+                                                     },
+                                                     failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+                                                        self?.hideProgressHUD()
+                                                        self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                                                    })
             }
-            self.profileView.delegate = self
         }
     }
     
@@ -356,22 +371,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     
     // MARK: - actions
     override func rightBarButtonItemDidTap() {
-        let photo = (self.profileView.userImageView.image != nil) ? UIImagePNGRepresentation(self.profileView.userImageView.image!) : nil
-        self.showProgressHUD()
-        
-        ApiClient.sharedClient.updateProfile(SessionManager.currentUser().profile, location: nil, photo: photo,
-            success: { [weak self] (response) in
-                self?.hideProgressHUD()
-                self?.navigationItem.rightBarButtonItem = nil
-                
-                let profile = response as! Profile
-                ProfileManager.saveProfile(profile)
-                SessionManager.updateProfileForCurrrentUser(profile)
-            },
-            failure:  { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.hideProgressHUD()
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-        })
+       
 
     }
     

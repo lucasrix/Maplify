@@ -75,6 +75,7 @@ struct ButtonImages {
     static let icoSearch = "icoSearch"
     static let icoGps = "icoGps"
     static let icoCancel = "icoCancel"
+    static let icoMoreWhite = "icoMoreWhite"
 }
 
 struct MediaButtons {

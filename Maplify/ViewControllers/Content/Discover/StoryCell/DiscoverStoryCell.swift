@@ -63,8 +63,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.populateStoryInfoViews(story!)
         self.populateDescriptionLabel(cellData)
         self.populateLikeButton()
-        self.setupSwipe()
-        self.setupMapSwipe()
     }
     
     func setupViews() {
@@ -150,29 +148,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.storyPointsPlusView.hidden = itemsOverlimit == 0
     }
     
-    func setupSwipe() {
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleDetailSwipe(_:)))
-        swipeGesture.direction = .Left
-        self.contentView.addGestureRecognizer(swipeGesture)
-    }
-    
-    func setupMapSwipe() {
-        let mapSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(DiscoverStoryCell.handleMapSwipe(_:)))
-        mapSwipeGesture.direction = .Right
-        self.contentView.addGestureRecognizer(mapSwipeGesture)
-    }
-    
-    func handleDetailSwipe(sender:UISwipeGestureRecognizer) {
-        let item = cellData.model as! DiscoverItem
-        let story = item.story
-        self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: 0, storyTitle: story!.title)
-    }
-    
-    func handleMapSwipe(sender:UISwipeGestureRecognizer) {
-        let story = StoryManager.find(self.storyId)
-        self.delegate?.didSelectMap(story)
-    }
-    
     func numberOfStoryPointInCollectionView() -> Int {
         return self.collectionView.numberOfItemsInSection(0) - 1
     }
@@ -232,14 +207,8 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     
     // MARK: - CSBaseCollectionDataSourceDelegate
     func didSelectModel(model: AnyObject, indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            let story = StoryManager.find(self.storyId)
-            self.delegate?.didSelectMap(story)
-        } else {
-            let item = cellData.model as! DiscoverItem
-            let story = item.story
-            self.delegate?.didSelectStoryPoint(Array(story!.storyPoints), selectedIndex: indexPath.row - 1, storyTitle: story!.title)
-        }
+        let story = StoryManager.find(self.storyId)
+        self.delegate?.didSelectMap(story)
     }
     
     // MARK: - content height
@@ -294,7 +263,6 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
 
 protocol DiscoverStoryCellDelegate {
     func didSelectStory(storyId: Int)
-    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String)
     func didSelectMap(story: Story!)
     func storyProfileImageTapped(userId: Int)
     func editStoryContentDidTap(storyId: Int)

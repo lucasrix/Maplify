@@ -30,10 +30,12 @@ class MCMapActiveModel : CSActiveModel {
         let dataArray = self.sectionsArray![0]
         for i in 0...dataArray.count {
             let data = dataArray[i]
-            let latitude = (data.model as! StoryPoint).location.latitude
-            let longitude = (data.model as! StoryPoint).location.longitude
-            if (latitude == location.latitude) && (longitude == location.longitude) {
-                return i
+            if data.model is StoryPoint {
+                let latitude = (data.model as! StoryPoint).location.latitude
+                let longitude = (data.model as! StoryPoint).location.longitude
+                if (latitude == location.latitude) && (longitude == location.longitude) {
+                    return i
+                }
             }
         }
         return NSNotFound
@@ -44,7 +46,7 @@ class MCMapActiveModel : CSActiveModel {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             let cellData = self.cellData(indexPath)
             self.deselectAll()
-            cellData.selected = !cellData.selected
+            cellData?.selected = !(cellData?.selected)!
         }
     }
 }

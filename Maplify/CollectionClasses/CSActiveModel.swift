@@ -18,7 +18,7 @@ class CSActiveModel {
     }
     
     // MARK: - Add items
-    func addItem(model: AnyObject, section: Int, cellIdentifier: String, sectionTitle: String, delegate: AnyObject!) {
+    func addItem(model: AnyObject, section: Int, cellIdentifier: String, sectionTitle: String!, delegate: AnyObject!) {
         if section >= self.sectionsArray?.count {
             for _ in (self.sectionsArray?.count)!...section {
                 self.sectionsArray?.append([CSCellData]())
@@ -57,6 +57,19 @@ class CSActiveModel {
         
         self.sectionsArray!.append(dataArray)
     }
+    
+    func addItems(array: [AnyObject], section: Int, cellIdentifier: String, sectionTitle: String!, delegate: AnyObject!, boundingSize: CGSize) {
+        for model in array {
+            let cellData = CSCellData()
+            cellData.model = model
+            cellData.cellIdentifier = cellIdentifier
+            cellData.sectionTitle = sectionTitle
+            cellData.delegate = delegate
+            cellData.boundingSize = boundingSize
+            self.sectionsArray![section].append(cellData)
+        }
+    }
+
     
     func insertItems(array: [AnyObject], cellIdentifier: String, sectionTitle: String,
         delegate: AnyObject!, indexPath: NSIndexPath) {
@@ -197,9 +210,10 @@ class CSActiveModel {
     }
     
     func indexPathOfModel(model: AnyObject) -> NSIndexPath {
-        var indexPath = NSIndexPath()
+        var indexPath = NSIndexPath(forItem: NSNotFound, inSection: NSNotFound)
         var row = 0
         var section = 0
+        
         for dataArray in self.sectionsArray! {
             for cellData in dataArray {
                 if cellData.model === model {

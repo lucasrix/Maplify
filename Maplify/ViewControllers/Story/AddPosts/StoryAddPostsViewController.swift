@@ -9,6 +9,8 @@
 import RealmSwift
 import UIKit
 
+typealias createStoryClosure = ((storyId: Int) -> ())
+
 class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var myPostsLabel: UILabel!
@@ -20,6 +22,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     var isStoryModeCreation = false
     var storyName = String()
     var storyDescription = String()
+    var createStoryCompletion: createStoryClosure! = nil
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -120,7 +123,9 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         
         ApiClient.sharedClient.createStory(params, success: { [weak self] (response) in
             self?.hideProgressHUD()
-            self?.navigationController?.popToRootViewControllerAnimated(true)
+            let story = response as! Story
+            StoryManager.saveStory(story)
+            self?.createStoryCompletion?(storyId: story.id)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

@@ -60,7 +60,7 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         self.notificationsActiveModel.removeData()
         
         let realm = try! Realm()
-        let notifications = Array(realm.objects(Notification).sorted("created_at", ascending: false))
+        let notifications = Array(realm.objects(Notification).filter("action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR notificable_story != nil)").sorted("created_at", ascending: false))
         
         self.notificationsActiveModel.addItems(notifications, cellIdentifier: String(NotificationsTableViewCell), sectionTitle: nil, delegate: self)
         self.notificationsDataSource.reloadTable()
@@ -104,15 +104,10 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
     
     func openNotificableItem(notificableItemId: Int) {
         let notification = NotificationsManager.find(notificableItemId)
-        var storyPoints: [StoryPoint]! = nil
-        var title = String()
         if notification.notificable_type == NotificableType.StoryPoint.rawValue {
-            storyPoints = [notification.notificable_storypoint]
-            title = notification.notificable_storypoint.caption
+            self.routesPushFromLeftStoryPointCaptureViewController(notification.notificable_storypoint.id)
         } else if notification.notificable_type == NotificableType.Story.rawValue {
-            storyPoints = Converter.listToArray(notification.notificable_story.storyPoints, type: StoryPoint.self)
-            title = notification.notificable_story.title
+            self.routesPushFromLeftStoryCaptureViewController(notification.notificable_story.id)
         }
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: title, contentType: .Notification)
     }
 }

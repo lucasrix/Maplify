@@ -17,7 +17,7 @@ protocol MCMapDataSourceDelegate {
 class MCMapDataSource {
     var mapView: MCMapView! = nil
     var mapService: MCMapService! = nil
-    var mapActiveModel: MCMapActiveModel! = nil
+    var mapActiveModel: CSActiveModel! = nil
     var delegate: AnyObject! = nil
     
     func reloadMapView<T: MCMapItem>(type: T.Type) {
@@ -28,9 +28,11 @@ class MCMapDataSource {
                 for j in 0..<self.mapActiveModel.numberOfItems(i) {
                     let indexPath = NSIndexPath(forRow: j, inSection: i)
                     let data = self.mapActiveModel.cellData(indexPath)
-                    let mapItem = T()
-                    mapItem.configure(data)
-                    self.mapService.placeItem(mapItem)
+                    if data.model is StoryPoint {
+                        let mapItem = T()
+                        mapItem.configure(data)
+                        self.mapService.placeItem(mapItem)
+                    }
                 }
             }
         }

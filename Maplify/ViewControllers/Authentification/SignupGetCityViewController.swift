@@ -86,7 +86,7 @@ class SignupGetCityViewController: ViewController, ErrorHandlingProtocol {
 
         if self.location != nil {
             self.showProgressHUD()
-            ApiClient.sharedClient.updateProfile(self.user.profile, location: self.location, photo: nil,
+            ApiClient.sharedClient.updateProfile(self.user.profile, location: self.location,
                                                  success: { [weak self] (response) -> () in
                                                     self?.hideProgressHUD()
                                                     self?.user.profile = response as! Profile

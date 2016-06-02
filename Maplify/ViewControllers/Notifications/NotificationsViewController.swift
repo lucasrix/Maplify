@@ -21,8 +21,13 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         super.viewDidLoad()
         
         self.setup()
-        self.loadItemsFromDB()
         self.loadRemoteData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadItemsFromDB()
     }
     
     deinit {

@@ -239,12 +239,32 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func loadRemoteData() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.loadCurrentProfile()
+        } else {
+            self.loadOtherProfile()
+        }
+    }
+    
+    func loadCurrentProfile() {
+        ApiClient.sharedClient.getCurrentProfileInfo({ [weak self] (response) in
+            let profile = response as! Profile
+            self?.updateUserInfo(profile)
+            }, failure: nil)
+    }
+    
+    func loadOtherProfile() {
         ApiClient.sharedClient.getProfileInfo(self.user.profile.id, success: { [weak self] (response) in
             let profile = response as! Profile
-            ProfileManager.saveProfile(profile)
-            self?.loadItemFromDB()
-            self?.setupLabels()
+            self?.updateUserInfo(profile)
             }, failure: nil)
+    }
+    
+    func updateUserInfo(profile: Profile) {
+        ProfileManager.saveProfile(profile)
+        self.loadItemFromDB()
+        self.setupLabels()
+        self.setupDetailedLabels()
     }
     
     func contentHeight() -> CGFloat {

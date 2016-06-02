@@ -74,6 +74,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         super.viewWillAppear(animated)
         
         self.loadData()
+        self.retrieveNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -172,6 +173,15 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.captureDataSource.mapView = self.mapView
         self.captureDataSource.mapService = self.googleMapService
         self.captureDataSource.reloadMapView(StoryPointMapItem)
+    }
+    
+    func retrieveNotifications() {
+        if self.contentType == .Default {
+            ApiClient.sharedClient.retrieveNotifications(false, success: { [weak self] (response) in
+                NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
+                self?.setupBottomButtonIfNeeded()
+                }, failure: nil)
+        }
     }
     
     // MARK: - actions

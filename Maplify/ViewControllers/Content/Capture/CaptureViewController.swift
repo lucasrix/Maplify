@@ -114,6 +114,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.drawMapData()
         self.updateInfiniteScrollIfNeeded()
         self.setupTopBar()
+        self.showSelectedPostIfNeeded()
     }
     
     func updateData() {

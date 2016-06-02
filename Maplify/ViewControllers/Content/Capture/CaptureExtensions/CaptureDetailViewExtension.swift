@@ -18,18 +18,20 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     
     // MARK: - InfiniteScrollViewDelegate
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
-        let model = self.captureActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! Model
-        if model is StoryPoint {
-            DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint, delegate: self)
-        } else if model is Story {
-            DetailMapItemHelper.configureStoryView(view, story: model as! Story, delegate: self)
+        if index < self.captureActiveModel.numberOfItems(0) {
+            let model = self.captureActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! Model
+            if model is StoryPoint {
+                DetailMapItemHelper.configureStoryPointView(view, storyPoint: model as! StoryPoint, delegate: self)
+            } else if model is Story {
+                DetailMapItemHelper.configureStoryView(view, story: model as! Story, delegate: self)
+            }
         }
     }
     
     func didScrollPageView(pageControl: InfiniteScrollView, index: Int) {
-        self.captureActiveModel.selectPinAtIndex(index)
-        self.captureDataSource.reloadMapView(StoryPointMapItem)
         if index < self.captureActiveModel.numberOfItems(0) {
+            self.captureActiveModel.selectPinAtIndex(index)
+            self.captureDataSource.reloadMapView(StoryPointMapItem)
             let model = self.captureActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model
             if model is StoryPoint {
                 let location = CLLocationCoordinate2DMake((model as! StoryPoint).location.latitude , (model as! StoryPoint).location.longitude)

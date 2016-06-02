@@ -55,6 +55,24 @@ extension CaptureViewController: MCMapServiceDelegate {
         }
     }
     
+    func showSelectedPostIfNeeded() {
+        var storyPoint: StoryPoint! = nil
+        if self.contentType == .StoryPoint {
+            storyPoint = self.currentStoryPoints.first
+        } else if self.contentType == .Story {
+            storyPoint = self.currentStory.storyPoints.first
+        }
+        if storyPoint != nil {
+            let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+            let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            let pointInView = self.googleMapService.pointFromLocation(location)
+            self.selectPin(0, mapCoordinate: coordinate, pointInView: pointInView)
+            self.scrollToDestinationPointWithOffset(pointInView)
+            self.infiniteScrollView.hidden = false
+            self.infiniteScrollView.moveAndShowCell(0, animated: false)
+        }
+    }
+    
     // MARK: - MCMapServiceDelegate
     func didTapMapView(mapView: UIView, itemObject: AnyObject) {
         if ((itemObject as! GMSMarker).userData as! Bool) == false {

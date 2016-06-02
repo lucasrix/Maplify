@@ -164,15 +164,6 @@ extension UIViewController {
         self.navigationController?.pushViewController(addStoryViewController, animated: true)
     }
     
-    func routesOpenStoryDetailViewController(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String, stackSupport: Bool) {
-        let storyDetailViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyDetailViewController) as! StoryDetailViewController
-        storyDetailViewController.storyPoints = storyPoints
-        storyDetailViewController.selectedIndex = selectedIndex
-        storyDetailViewController.storyTitle = storyTitle
-        storyDetailViewController.stackSupport = stackSupport
-        self.navigationController?.pushViewController(storyDetailViewController, animated: true)
-    }
-    
     func routesOpenStoryAddPostsViewController(selectedStoryPoints: [StoryPoint]!, delegate: AddPostsDelegate?, storyModeCreation: Bool, storyName: String, storyDescription: String, createStoryCompletion: createStoryClosure!) {
         let storyAddPostsViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyAddPostsViewController) as! StoryAddPostsViewController
         storyAddPostsViewController.selectedStoryPoints = selectedStoryPoints
@@ -205,12 +196,23 @@ extension UIViewController {
     }
     
     // MARK: - push from left
-    func routesPushFromLeftCaptureViewController(storyPoints: [StoryPoint]!, title: String, contentType: ContentType) {
+    func routesPushFromLeftStoryPointCaptureViewController(storyPointId: Int) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = contentType
-        captureViewController.publicStoryPoints = storyPoints
-        captureViewController.publicTitle = title
-        
+        captureViewController.contentType = .StoryPoint
+        captureViewController.selectedStoryPointId = storyPointId
+        captureViewController.poppingControllerSupport = true
+        self.routesPushFromLeftViewController(captureViewController)
+    }
+    
+    func routesPushFromLeftStoryCaptureViewController(storyId: Int) {
+        let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
+        captureViewController.contentType = .Story
+        captureViewController.selectedStoryId = storyId
+        captureViewController.poppingControllerSupport = true
+        self.routesPushFromLeftViewController(captureViewController)
+    }
+    
+    func routesPushFromLeftViewController(controller: ViewController) {
         let transition = CATransition()
         transition.duration = AnimationDurations.pushControllerDefault
         transition.type = kCATransitionMoveIn
@@ -218,14 +220,18 @@ extension UIViewController {
         let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         transition.timingFunction = timingFunction
         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(captureViewController, animated: false)
+        self.navigationController?.pushViewController(controller, animated: false)
     }
     
     func routesOpenSharedContentController(sharedType: String, sharedId: Int) {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController) as! CaptureViewController
-        captureViewController.contentType = .Share
-        captureViewController.sharedType = sharedType
-        captureViewController.sharedId = sharedId
+        if sharedType == SharingKeys.typeStoryPoint {
+            captureViewController.contentType = .StoryPoint
+            captureViewController.selectedStoryPointId = sharedId
+        } else if sharedType == SharingKeys.typeStory {
+            captureViewController.contentType = .Story
+            captureViewController.selectedStoryId = sharedId
+        }
         let navigationController = NavigationViewController(rootViewController: captureViewController)
         let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
         window.rootViewController = navigationController

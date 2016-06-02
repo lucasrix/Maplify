@@ -75,7 +75,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-k8-fzr" customClass="MCMapView" customModule="Maplify" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.67450980390000004" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blL-MK-ucS">
                                 <rect key="frame" x="78" y="84" width="218" height="25"/>
@@ -106,7 +106,7 @@
                                 </constraints>
                                 <state key="normal" image="CaptureNotificationsIcon"/>
                                 <connections>
-                                    <action selector="notificationsTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="Wsm-bX-vKw"/>
+                                    <action selector="notificationsTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="FBW-va-xsu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuJ-QW-eHb">
@@ -120,7 +120,7 @@
                                 <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Story" image="CaptureAddStoryIcon"/>
                                 <connections>
-                                    <action selector="addStoryTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="KGf-LS-laZ"/>
+                                    <action selector="addStoryTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="tcj-9i-4xK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRY-bt-2Iz">
@@ -128,14 +128,14 @@
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="CaptureProfileIcon"/>
                                 <connections>
-                                    <action selector="profileTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="Cq1-Ia-m5d"/>
+                                    <action selector="profileTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="ddF-B9-vxc"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="Maplify" customModuleProvider="target">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="Maplify" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="244" width="375" height="423"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.67450980392156867" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="a5q-iA-fzr" firstAttribute="top" secondItem="siV-0z-UKe" secondAttribute="bottom" constant="15" id="4Lf-7k-dc0"/>
                             <constraint firstAttribute="trailing" secondItem="MPK-oh-TIo" secondAttribute="trailing" id="4wb-Ky-9wI"/>

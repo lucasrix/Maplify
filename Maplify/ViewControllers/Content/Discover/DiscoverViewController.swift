@@ -579,13 +579,8 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         }
     }
     
-    func didSelectStoryPoint(storyPoints: [StoryPoint], selectedIndex: Int, storyTitle: String) {
-        self.routesOpenStoryDetailViewController(storyPoints, selectedIndex: selectedIndex, storyTitle: storyTitle, stackSupport: true)
-    }
-    
     func didSelectMap(story: Story!) {
-        let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-        self.routesPushFromLeftCaptureViewController(storyPoints, title: story.title, contentType: .Profile)
+        self.routesPushFromLeftStoryCaptureViewController(story.id)
     }
     
     func storyProfileImageTapped(userId: Int) {
@@ -673,7 +668,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
     }
     
     func createStoryButtonDidTap() {
-        self.routesOpenStoryCreateController { [weak self] () in
+        self.routesOpenStoryCreateController { [weak self] (storyId) in
             self?.profileView?.setupDetailedLabels()
             self?.navigationController?.popToViewController(self!, animated: true)
         }

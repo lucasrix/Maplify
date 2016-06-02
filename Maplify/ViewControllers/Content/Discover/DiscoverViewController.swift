@@ -77,6 +77,7 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         super.viewWillAppear(animated)
         
         self.setup()
+        self.configureProfileViewIfNeeded()
     }
     
     // MARK: - setup
@@ -482,9 +483,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                                                             DiscoverItemManager.delete(discoverItem)
                                                             StoryManager.delete(story)
                                                         }
-                                                    self?.profileView?.setupDetailedLabels()
-                                                        self?.hideProgressHUD()
-                                                        self?.loadItemsFromDB()
+                                                        self?.profileView?.setupDetailedLabels()
+                                                    self?.hideProgressHUD()
+                                                    self?.loadItemsFromDB()
                                                     },
                                                     failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                         self?.hideProgressHUD()

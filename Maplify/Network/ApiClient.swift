@@ -165,6 +165,10 @@ class ApiClient {
         self.getRequest("profiles/\(profileId)", params: nil, manager: ProfileManager(), success: success, failure: failure)
     }
     
+    func getCurrentProfileInfo(success: successClosure!, failure: failureClosure!) {
+        self.getRequest("profile", params: nil, manager: ProfileManager(), success: success, failure: failure)
+    }
+    
     func updateProfilePhoto(photo: NSData!, success: successClosure!, failure: failureClosure!) {
         let params = ["mimeType": "image/png", "fileName": "photo.png"]
         let data = ["photo": photo]

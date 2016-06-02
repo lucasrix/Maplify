@@ -56,20 +56,26 @@ extension CaptureViewController: MCMapServiceDelegate {
     }
     
     func showSelectedPostIfNeeded() {
+        var index: Int = 0
         var storyPoint: StoryPoint! = nil
         if self.contentType == .StoryPoint {
             storyPoint = self.currentStoryPoints.first
         } else if self.contentType == .Story {
             storyPoint = self.currentStory.storyPoints.first
+        } else if (self.contentType == .Default) && (self.selectedStoryPointId != 0) {
+            storyPoint = StoryPointManager.find(self.selectedStoryPointId)
+            let indexPath = self.captureActiveModel.find(storyPoint.id)
+            index = indexPath.row
         }
+        
         if storyPoint != nil {
             let coordinate = MCMapCoordinate(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
             let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
             let pointInView = self.googleMapService.pointFromLocation(location)
-            self.selectPin(0, mapCoordinate: coordinate, pointInView: pointInView)
+            self.selectPin(index, mapCoordinate: coordinate, pointInView: pointInView)
             self.scrollToDestinationPointWithOffset(pointInView)
             self.infiniteScrollView.hidden = false
-            self.infiniteScrollView.moveAndShowCell(0, animated: false)
+            self.infiniteScrollView.moveAndShowCell(index, animated: false)
         }
     }
     

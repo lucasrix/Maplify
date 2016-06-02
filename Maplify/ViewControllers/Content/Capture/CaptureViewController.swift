@@ -185,6 +185,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
             self?.selectedStoryId = storyId
             self?.loadData()
             self?.navigationController?.popToViewController(self!, animated: true)
+            self?.showSelectedPostIfNeeded()
         }
     }
     

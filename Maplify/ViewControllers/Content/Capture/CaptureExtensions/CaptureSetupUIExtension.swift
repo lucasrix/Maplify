@@ -8,6 +8,7 @@
 
 import RealmSwift
 import AMPopTip
+import CoreLocation
 
 extension CaptureViewController {
     func setupNavigationBar() {
@@ -136,5 +137,26 @@ extension CaptureViewController {
             self.setupBottomButtonIfNeeded()
             self.loadData()
         }
+    }
+}
+
+extension MCMapActiveModel {
+    func find(storyPointId: Int) -> NSIndexPath {
+        let indexPath = NSIndexPath(forItem: NSNotFound, inSection: NSNotFound)
+        var row = 0
+        var section = 0
+        
+        for dataArray in self.sectionsArray! {
+            for cellData in dataArray {
+                if (cellData.model is StoryPoint) {
+                    if (cellData.model as! StoryPoint).id == storyPointId {
+                        return NSIndexPath(forRow: row, inSection: section)
+                    }
+                }
+                row += 1
+            }
+            section += 1
+        }
+        return indexPath
     }
 }

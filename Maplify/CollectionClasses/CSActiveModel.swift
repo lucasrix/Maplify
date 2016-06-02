@@ -210,9 +210,10 @@ class CSActiveModel {
     }
     
     func indexPathOfModel(model: AnyObject) -> NSIndexPath {
-        var indexPath = NSIndexPath()
+        var indexPath = NSIndexPath(forItem: NSNotFound, inSection: NSNotFound)
         var row = 0
         var section = 0
+        
         for dataArray in self.sectionsArray! {
             for cellData in dataArray {
                 if cellData.model === model {

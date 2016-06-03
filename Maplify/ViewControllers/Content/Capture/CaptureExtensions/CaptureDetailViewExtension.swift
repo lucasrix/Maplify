@@ -180,8 +180,10 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func reportStoryPoint(storyPointId: Int) {
-        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) {
-            self.navigationController?.popToViewController(self, animated: true)
+        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) { [weak self] () in
+            self?.contentType = .Default
+            self?.infiniteScrollView.hidden = true
+            self?.navigationController?.popToViewController(self!, animated: true)
         }
     }
     
@@ -263,8 +265,10 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func reportStory(storyId: Int) {
-        self.routesOpenReportsController(storyId, postType: .Story) {
-            self.navigationController?.popToViewController(self, animated: true)
+        self.routesOpenReportsController(storyId, postType: .Story) { [weak self] () in
+            self?.contentType = .Default
+            self?.infiniteScrollView.hidden = true
+            self?.navigationController?.popToViewController(self!, animated: true)
         }
     }
 }

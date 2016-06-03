@@ -40,7 +40,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var attachmentContentView: UIView!
     @IBOutlet weak var userNameLabelTopConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+
     var storiesLinksActiveModel = CSActiveModel()
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
     var userId: Int = 0
@@ -101,6 +102,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.backUserImageView.image = UIImage(color: UIColor.whiteColor())?.roundCornersToCircle()
         self.backUserImageView.layer.cornerRadius = CGRectGetHeight(self.backUserImageView.frame) / 2
         self.backUserImageView.layer.masksToBounds = true
+        
+        self.userImageView.layer.cornerRadius = CGRectGetHeight(self.backUserImageView.frame) / 2
+        self.userImageView.layer.masksToBounds = true
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }
@@ -164,6 +168,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.scrollView.delegate = self
         let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset
         self.scrollView.contentSize = CGSizeMake(0, contentHeight)
+        self.contentViewHeightConstraint.constant = contentHeight
     }
     
     func populateLikeButton(storyPoint: StoryPoint) {

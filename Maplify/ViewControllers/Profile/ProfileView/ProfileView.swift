@@ -114,7 +114,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     func setupLabels() {
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
-        self.aboutLabel.text = self.user.profile.about
         self.aboutLabelHeight.constant = self.getAboutLabelHeight()
         
         if self.user.profile.city.length > 0 {
@@ -311,6 +310,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.aboutLabel.text = self.user.profile.about
             return CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
         }
+        self.aboutLabel.text = String()
         return 0
     }
     

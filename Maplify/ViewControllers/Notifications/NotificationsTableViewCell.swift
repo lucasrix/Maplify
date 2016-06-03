@@ -146,7 +146,8 @@ class NotificationsTableViewCell: CSTableViewCell {
         attributedMessage.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(kNotificationAttributedMessageDefaultFontSize), range: usernameRange)
         
         if notificableItemSubstring.length > 0 {
-            let notificableItemRange = (resultString as NSString).rangeOfString(notificableItemSubstring)
+            let location = resultString.length - notificableItemSubstring.length
+            let notificableItemRange = NSMakeRange(location, notificableItemSubstring.length)
             attributedMessage.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationMessageAlphaComponentHighlited), range: notificableItemRange)
             attributedMessage.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(kNotificationAttributedMessageDefaultFontSize), range: notificableItemRange)
         }

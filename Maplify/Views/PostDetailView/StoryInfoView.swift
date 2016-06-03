@@ -156,7 +156,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     }
     
     @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.likeButton.enabled = false
         self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            self?.likeButton.enabled = true
             if success {
                 let story = StoryManager.find((self?.storyId)!)
                 self?.populateLikeButton(story)

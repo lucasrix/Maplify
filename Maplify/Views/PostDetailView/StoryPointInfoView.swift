@@ -13,6 +13,8 @@ let kInfoViewHeight: CGFloat = 100
 let kDetailTextBottomMargin: CGFloat = 10
 let kStoriesTableRowHeight: CGFloat = 44
 let kStoryPointCellYOffset: CGFloat = 10
+let kTextDetailViewMargin: CGFloat = 16
+let kBottomTableMargin: CGFloat = 10
 
 protocol StoryPointInfoViewDelegate {
     func profileImageTapped(userId: Int)
@@ -71,7 +73,10 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.addressLabel.text = self.generateLocationString(location)
         }
         self.detailsTextView.text = storyPoint.text
-        self.textHeight = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
+        
+        let width = UIScreen.mainScreen().bounds.width - 2 * (kCellHorizontalMargin + kTextDetailViewMargin)
+        
+        self.textHeight = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, width, CGFloat.max)).height + kDetailTextBottomMargin
         
         self.tableNameLabel.hidden = !(storyPoint.storiesLinks.count > 0)
     }
@@ -166,7 +171,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     
     func setupContentSize() {
         self.scrollView.delegate = self
-        let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset
+        let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset + kBottomTableMargin
         self.scrollView.contentSize = CGSizeMake(0, contentHeight)
         self.contentViewHeightConstraint.constant = contentHeight
     }
@@ -189,7 +194,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     }
     
     @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.likeButton.enabled = false
         self.delegate?.likeStoryPointDidTap(self.storyPointId, completion: { [weak self] (success) in
+            self?.likeButton.enabled = true
             if success {
                 let storyPoint = StoryPointManager.find((self?.storyPointId)!)
                 self?.populateLikeButton(storyPoint)

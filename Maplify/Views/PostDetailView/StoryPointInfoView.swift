@@ -117,7 +117,6 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     }
     
     func setupGestures() {
-        print(self.attachmentContentView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointInfoView.openContentTapHandler(_:)))
         self.attachmentContentView?.addGestureRecognizer(tapGesture)
     }
@@ -222,7 +221,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
             PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
         }
-        self.storyPointImageView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
+        self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

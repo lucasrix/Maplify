@@ -186,6 +186,7 @@
 "Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
 "Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
 "Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
+"Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

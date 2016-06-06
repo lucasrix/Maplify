@@ -138,7 +138,7 @@ class ShareStoryPointViewController: ViewController {
     }
     
     @IBAction func copyLinkTapped(sender: UIButton) {
-        UIPasteboard.generalPasteboard().string = self.sharingLink()
+        UIPasteboard.generalPasteboard().string = self.clipboardLink()
         let title = NSLocalizedString("Alert.Info", comment: String())
         let message = NSLocalizedString("Alert.SharingLinkCopiedToClipboard", comment: String())
         let cancelButton = NSLocalizedString("Button.Ok", comment: String())
@@ -160,11 +160,15 @@ class ShareStoryPointViewController: ViewController {
         return nil
     }
     
-    func sharingLink() -> String{
+    func sharingLink() -> String {
         return Network.routingPrefix + Network.sharePrefix + self.sharingParams()
     }
     
     func sharingParams() -> String {
         return SharingKeys.typeTitle + "=" + SharingKeys.typeStoryPoint + "&" + SharingKeys.typeId + "=\(self.storyPointId)"
+    }
+    
+    func clipboardLink() -> String {
+        return kSharingLinkPrefix + self.sharingParams()
     }
 }

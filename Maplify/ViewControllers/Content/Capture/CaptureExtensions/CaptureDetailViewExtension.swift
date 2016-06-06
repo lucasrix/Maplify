@@ -168,7 +168,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func checkStoryPointsCount() {
-        if self.currentStory.storyPoints.count > 0 {
+        if self.currentStory?.storyPoints.count > 0 {
             self.infiniteScrollView.deleteCurrentView()
             self.loadData()
         } else {

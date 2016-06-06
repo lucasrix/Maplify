@@ -139,6 +139,10 @@ class ShareStoryPointViewController: ViewController {
     
     @IBAction func copyLinkTapped(sender: UIButton) {
         UIPasteboard.generalPasteboard().string = self.sharingLink()
+        let title = NSLocalizedString("Alert.Info", comment: String())
+        let message = NSLocalizedString("Alert.SharingLinkCopiedToClipboard", comment: String())
+        let cancelButton = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancelButton)
     }
     
     // MARK: - private

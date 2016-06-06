@@ -185,6 +185,7 @@
 "Alert.SharingError" = "Some error occured during sharing";
 "Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
 "Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
+"Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

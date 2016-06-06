@@ -119,7 +119,7 @@ extension CaptureViewController: MCMapServiceDelegate {
         self.removePreviewItem()
         let placeItem = MCMapItem()
         placeItem.location = coordinate
-        placeItem.image = UIImage(named: MapPinImages.tapped)
+        placeItem.image = UIImage(named: MapPinImages.marked)
         
         self.previewPlaceItem = placeItem
         self.configuratePopup(locationInView, coordinate: coordinate)

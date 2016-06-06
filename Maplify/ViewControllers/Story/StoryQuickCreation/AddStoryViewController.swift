@@ -178,7 +178,8 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
                 success: { [weak self] (response) in
                     StoryManager.saveStories([response as! Story])
                     self?.hideProgressHUD()
-                    self?.loadItemsFromDB(false)
+                    self?.storyActiveModel.deselectAll()
+                    self?.loadItemsFromDB(true)
             },
                 failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     self?.hideProgressHUD()
@@ -222,6 +223,9 @@ class AddStoryViewController: ViewController, CSBaseTableDataSourceDelegate, Err
     
     // MARK: - CSBaseTableDataSourceDelegate
     func didSelectModel(model: AnyObject, selection: Bool, indexPath: NSIndexPath) {
+        let selectedStories: [Story] = self.storyActiveModel.selectedModels().map({$0.model as! Story})
+        self.selectedIds = selectedStories.map({$0.id})
+        
         self.storyActiveModel.selectModel(indexPath, selected: selection)
         self.storyDataSource.reloadTable()
     }

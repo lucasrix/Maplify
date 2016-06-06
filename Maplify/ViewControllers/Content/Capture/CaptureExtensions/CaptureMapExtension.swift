@@ -122,7 +122,7 @@ extension CaptureViewController: MCMapServiceDelegate {
         placeItem.image = UIImage(named: MapPinImages.tapped)
         
         self.previewPlaceItem = placeItem
-        self.googleMapService.placeItem(placeItem, temporary: true)
         self.configuratePopup(locationInView, coordinate: coordinate)
+        self.googleMapService.placeItem(placeItem, temporary: true)
     }
 }

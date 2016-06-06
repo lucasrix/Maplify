@@ -104,6 +104,10 @@ extension CaptureViewController {
             })
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
+        
+        self.infiniteScrollView.hidden = true
+        self.captureActiveModel.deselectAll()
+        self.captureDataSource.reloadMapView(StoryPointMapItem)
     }
     
     // MARK: - actions

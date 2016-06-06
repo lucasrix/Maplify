@@ -38,8 +38,11 @@ extension TTTAttributedLabel {
     }
     
     func addURLLink(link: String, str: String, rangeStr: String) {
-        let linkRange = (str as NSString).rangeOfString(rangeStr)
-        let url = NSURL(string:link)!
-        self.addLinkToURL(url, withRange:linkRange)
+        if let encodedString = link.stringByAddingPercentEncodingWithAllowedCharacters(
+            NSCharacterSet.URLFragmentAllowedCharacterSet()) {
+            let linkRange = (str as NSString).rangeOfString(rangeStr)
+            let url = NSURL(string:encodedString)
+            self.addLinkToURL(url, withRange:linkRange)
+        }
     }
 }

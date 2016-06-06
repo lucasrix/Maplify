@@ -191,8 +191,10 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     
     @IBAction func addStoryTapped(sender: UIButton) {
         self.routesOpenStoryCreateController { [weak self] (storyId) in
-            self?.contentType = .Story
-            self?.selectedStoryId = storyId
+            if let story = StoryManager.find(storyId) {
+                self?.contentType = story.storyPoints.count > 0 ? .Story : .Default
+                self?.selectedStoryId = story.storyPoints.count > 0 ? storyId : 0
+            }
             self?.loadData()
             self?.navigationController?.popToViewController(self!, animated: true)
             self?.showSelectedPostIfNeeded()

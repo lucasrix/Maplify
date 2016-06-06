@@ -116,7 +116,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
                     self?.shareStoryPoint(storyPointId)
                 }
-                })
+            })
         } else {
             self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
                 if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
@@ -124,7 +124,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryPointDefaultContentOption.ReportAbuse.rawValue {
                     self?.reportStoryPoint(storyPointId)
                 }
-                })
+            })
         }
     }
     
@@ -140,9 +140,15 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                                                         success: { [weak self] (response) in
                                                             StoryPointManager.saveStoryPoint(response as! StoryPoint)
                                                             StoryPointManager.delete(storyPoint)
-                                                            self?.infiniteScrollView.deleteCurrentView()
                                                             self?.hideProgressHUD()
-                                                            self?.loadData()
+                                                            if self?.contentType == .Default {
+                                                                self?.infiniteScrollView.deleteCurrentView()
+                                                                self?.loadData()
+                                                            } else if self?.contentType == .StoryPoint {
+                                                                self?.popController()
+                                                            } else if self?.contentType == .Story {
+                                                                self?.checkStoryPointsCount()
+                                                            }
                     },
                                                         failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                             self?.hideProgressHUD()
@@ -153,6 +159,22 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         }
     }
     
+    func popController() {
+        if self.poppingControllerSupport == true {
+            self.popControllerFromLeft()
+        } else {
+            self.routesSetContentController()
+        }
+    }
+    
+    func checkStoryPointsCount() {
+        if self.currentStory?.storyPoints.count > 0 {
+            self.infiniteScrollView.deleteCurrentView()
+            self.loadData()
+        } else {
+            self.popController()
+        }
+    }
     
     func deleteStory(storyId: Int) {
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())

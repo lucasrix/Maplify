@@ -57,12 +57,21 @@ class ChangePasswordViewController: ViewController, ErrorHandlingProtocol {
             success: { [weak self] (response) in
                 self?.hideProgressHUD()
                 SessionManager.saveCurrentUser(response as! User)
-                self?.routesSetContentController()
+                self?.showChangePasswordSuccessAlert()
             },
             failure: { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             })
+    }
+    
+    func showChangePasswordSuccessAlert() {
+        let title = NSLocalizedString("Alert.Info", comment: String())
+        let message = NSLocalizedString("Alert.PasswordChangedSuccessfully", comment: String())
+        let cancelButton = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancelButton) { [weak self] (action) in
+            self?.routesSetContentController()
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

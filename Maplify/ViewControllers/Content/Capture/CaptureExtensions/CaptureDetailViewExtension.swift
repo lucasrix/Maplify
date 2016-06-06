@@ -141,11 +141,13 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                                                             StoryPointManager.saveStoryPoint(response as! StoryPoint)
                                                             StoryPointManager.delete(storyPoint)
                                                             self?.hideProgressHUD()
-                                                            if (self?.contentType == .Default) || (self?.contentType == .Story) {
+                                                            if self?.contentType == .Default {
                                                                 self?.infiniteScrollView.deleteCurrentView()
                                                                 self?.loadData()
                                                             } else if self?.contentType == .StoryPoint {
-                                                                self?.changeController()
+                                                                self?.popController()
+                                                            } else if self?.contentType == .Story {
+                                                                self?.checkStoryPointsCount()
                                                             }
                     },
                                                         failure: { [weak self] (statusCode, errors, localDescription, messages) in
@@ -157,11 +159,20 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         }
     }
     
-    func changeController() {
+    func popController() {
         if self.poppingControllerSupport == true {
             self.popControllerFromLeft()
         } else {
             self.routesSetContentController()
+        }
+    }
+    
+    func checkStoryPointsCount() {
+        if self.currentStory.storyPoints.count > 0 {
+            self.infiniteScrollView.deleteCurrentView()
+            self.loadData()
+        } else {
+            self.popController()
         }
     }
     

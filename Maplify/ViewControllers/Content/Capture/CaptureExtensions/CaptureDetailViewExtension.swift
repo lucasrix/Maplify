@@ -18,6 +18,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     
     // MARK: - InfiniteScrollViewDelegate
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
+        PlayerHelper.sharedPlayer.removeVideoPlayerIfNedded()
         if index < self.captureActiveModel.numberOfItems(0) {
             let model = self.captureActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! Model
             if model is StoryPoint {

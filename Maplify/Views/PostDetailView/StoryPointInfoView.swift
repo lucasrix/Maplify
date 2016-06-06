@@ -43,7 +43,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var attachmentContentView: UIView!
     @IBOutlet weak var userNameLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var contentMediaViewHeight: NSLayoutConstraint!
+    
     var storiesLinksActiveModel = CSActiveModel()
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
     var userId: Int = 0
@@ -88,6 +89,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.imageViewHeightConstraint.constant = kEmptyImageViewDefaultHeight
         } else {
             self.imageViewHeightConstraint.constant = CGRectGetWidth(self.frame)
+            self.contentMediaViewHeight.constant = CGRectGetWidth(self.frame)
             self.populateAttachment(storyPoint)
         }
     }
@@ -215,11 +217,11 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
         let storyPoint = StoryPointManager.find(self.storyPointId)
         if storyPoint?.kind == StoryPointKind.Video.rawValue {
-            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.storyPointImageView)
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView)
         } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
-            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.storyPointImageView)
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
         }
-        self.storyPointImageView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
+        self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

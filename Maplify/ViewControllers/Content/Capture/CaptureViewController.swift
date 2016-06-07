@@ -17,7 +17,7 @@ let kStoryPointsRequestSuspendInterval: NSTimeInterval = 1
 let kStoryPointsFindingRadius: CGFloat = 10000000
 let kDefaulMapZoom: Float = 13
 let kPinIconDeltaX: CGFloat = 4
-let kPinIconDeltaY: CGFloat = 42
+let kPinIconDeltaY: CGFloat = 52
 let kPoptipShadowOpacity: Float = 0.15
 let kPoptipShadowRadius: CGFloat = 6
 let kPoptipViewWidth: CGFloat = 290
@@ -70,16 +70,19 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         self.loadData()
+        self.retrieveNotifications()
+        self.setupBottomButtonIfNeeded()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidAppear(animated)
         
         self.removePreviewItem()
+        self.selectedStoryPointId = 0
     }
     
     // MARK: - setup
@@ -93,7 +96,6 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     func setupUI() {
         self.setupPlaceSearchHelper()
         self.setupPressAndHoldViewIfNeeded()
-        self.setupBottomButtonIfNeeded()
         self.setupInfiniteScrollView()
         self.setupPopTip()
     }
@@ -174,6 +176,15 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.captureDataSource.reloadMapView(StoryPointMapItem)
     }
     
+    func retrieveNotifications() {
+        if self.contentType == .Default {
+            ApiClient.sharedClient.retrieveNotifications(false, success: { [weak self] (response) in
+                NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
+                self?.setupBottomButtonIfNeeded()
+                }, failure: nil)
+        }
+    }
+    
     // MARK: - actions
     @IBAction func notificationsTapped(sender: UIButton) {
         self.routesOpenNotificationsController()
@@ -181,8 +192,10 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     
     @IBAction func addStoryTapped(sender: UIButton) {
         self.routesOpenStoryCreateController { [weak self] (storyId) in
-            self?.contentType = .Story
-            self?.selectedStoryId = storyId
+            if let story = StoryManager.find(storyId) {
+                self?.contentType = story.storyPoints.count > 0 ? .Story : .Default
+                self?.selectedStoryId = story.storyPoints.count > 0 ? storyId : 0
+            }
             self?.loadData()
             self?.navigationController?.popToViewController(self!, animated: true)
             self?.showSelectedPostIfNeeded()

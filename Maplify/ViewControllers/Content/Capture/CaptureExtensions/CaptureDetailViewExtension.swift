@@ -18,6 +18,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     
     // MARK: - InfiniteScrollViewDelegate
     func didShowPageView(pageControl: InfiniteScrollView, view: UIView, index: Int) {
+        PlayerHelper.sharedPlayer.removeVideoPlayerIfNedded()
         if index < self.captureActiveModel.numberOfItems(0) {
             let model = self.captureActiveModel.cellData(NSIndexPath(forRow: index, inSection: 0)).model as! Model
             if model is StoryPoint {
@@ -116,7 +117,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryPointEditContentOption.SharePost.rawValue {
                     self?.shareStoryPoint(storyPointId)
                 }
-                })
+            })
         } else {
             self.showStoryPointDefaultContentActionSheet( { [weak self] (selectedIndex) in
                 if selectedIndex == StoryPointDefaultContentOption.SharePost.rawValue {
@@ -124,7 +125,7 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 } else if selectedIndex == StoryPointDefaultContentOption.ReportAbuse.rawValue {
                     self?.reportStoryPoint(storyPointId)
                 }
-                })
+            })
         }
     }
     
@@ -140,9 +141,15 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                                                         success: { [weak self] (response) in
                                                             StoryPointManager.saveStoryPoint(response as! StoryPoint)
                                                             StoryPointManager.delete(storyPoint)
-                                                            self?.infiniteScrollView.deleteCurrentView()
                                                             self?.hideProgressHUD()
-                                                            self?.loadData()
+                                                            if self?.contentType == .Default {
+                                                                self?.infiniteScrollView.deleteCurrentView()
+                                                                self?.loadData()
+                                                            } else if self?.contentType == .StoryPoint {
+                                                                self?.popController()
+                                                            } else if self?.contentType == .Story {
+                                                                self?.checkStoryPointsCount()
+                                                            }
                     },
                                                         failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                             self?.hideProgressHUD()
@@ -153,6 +160,22 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         }
     }
     
+    func popController() {
+        if self.poppingControllerSupport == true {
+            self.popControllerFromLeft()
+        } else {
+            self.routesSetContentController()
+        }
+    }
+    
+    func checkStoryPointsCount() {
+        if self.currentStory?.storyPoints.count > 0 {
+            self.infiniteScrollView.deleteCurrentView()
+            self.loadData()
+        } else {
+            self.popController()
+        }
+    }
     
     func deleteStory(storyId: Int) {
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
@@ -180,8 +203,10 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func reportStoryPoint(storyPointId: Int) {
-        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) {
-            self.navigationController?.popToViewController(self, animated: true)
+        self.routesOpenReportsController(storyPointId, postType: .StoryPoint) { [weak self] () in
+            self?.contentType = .Default
+            self?.infiniteScrollView.hidden = true
+            self?.navigationController?.popToViewController(self!, animated: true)
         }
     }
     
@@ -263,8 +288,10 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func reportStory(storyId: Int) {
-        self.routesOpenReportsController(storyId, postType: .Story) {
-            self.navigationController?.popToViewController(self, animated: true)
+        self.routesOpenReportsController(storyId, postType: .Story) { [weak self] () in
+            self?.contentType = .Default
+            self?.infiniteScrollView.hidden = true
+            self?.navigationController?.popToViewController(self!, animated: true)
         }
     }
 }

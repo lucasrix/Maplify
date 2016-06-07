@@ -8,6 +8,7 @@
 
 import RealmSwift
 import AMPopTip
+import GoogleMaps
 import CoreLocation
 
 extension CaptureViewController {
@@ -26,7 +27,7 @@ extension CaptureViewController {
             let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
             
             let realm = try! Realm()
-            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true").count > 0
+            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true AND action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR (notificable_story != nil AND notificable_story.storyPoints.@count > 0))").count > 0
             self.notificationsButton.layer.cornerRadius = cornerRadius
             self.notificationsButton.backgroundColor = newNotificationsAvailable == true ? UIColor.dodgerBlue() : UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
             
@@ -104,6 +105,10 @@ extension CaptureViewController {
             })
         }
         self.popTip.showCustomView(popupView, direction: .Up, inView: self.view, fromFrame: CGRectMake(locationInView.x - kPinIconDeltaX, locationInView.y - kPinIconDeltaY, 0, 0))
+        
+        self.infiniteScrollView.hidden = true
+        self.captureActiveModel.deselectAll()
+        self.captureDataSource.reloadMapView(StoryPointMapItem)
     }
     
     // MARK: - actions
@@ -120,6 +125,9 @@ extension CaptureViewController {
             if location != nil {
                 let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+                let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let locationInView = (self.googleMapService.mapView as! GMSMapView).projection.pointForCoordinate(coordinate)
+                self.placePopUpPin(location.coordinate.latitude, longitude: location.coordinate.longitude, locationInView: locationInView)
             }
         }
     }

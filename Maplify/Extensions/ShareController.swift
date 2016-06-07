@@ -12,12 +12,10 @@ import UIKit
 enum StoryPointEditContentOption: Int {
     case EditPost
     case DeletePost
-    case Directions
     case SharePost
 }
 
 enum StoryPointDefaultContentOption: Int {
-    case Directions
     case SharePost
     case ReportAbuse
 }
@@ -29,7 +27,6 @@ enum StoryEditContentOption: Int {
 }
 
 enum StoryDefaultContentOption: Int {
-    case Directions
     case ShareStory
     case ReportAbuse
 }
@@ -40,10 +37,9 @@ extension UIViewController {
     func showStoryPointEditContentActionSheet(selectedClosure: ((selectedIndex: Int) -> ())!) {
         let editPost = NSLocalizedString("Button.EditPost", comment: String())
         let deletePost = NSLocalizedString("Button.DeletePost", comment: String())
-        let directions = NSLocalizedString("Button.Directions", comment: String())
         let sharePost = NSLocalizedString("Button.SharePost", comment: String())
         let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [editPost, deletePost, directions, sharePost]
+        let buttons = [editPost, deletePost, sharePost]
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: nil, buttons: buttons, handle: { (buttonIndex) in
             selectedClosure(selectedIndex: buttonIndex)
@@ -51,11 +47,10 @@ extension UIViewController {
     }
     
     func showStoryPointDefaultContentActionSheet(selectedClosure: ((selectedIndex: Int) -> ())!) {
-        let directions = NSLocalizedString("Button.Directions", comment: String())
         let sharePost = NSLocalizedString("Button.SharePost", comment: String())
         let reportAbuse = NSLocalizedString("Button.ReportAbuse", comment: String())
         let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [directions, sharePost]
+        let buttons = [sharePost]
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: reportAbuse, buttons: buttons, handle: { (buttonIndex) in
             selectedClosure(selectedIndex: buttonIndex)
@@ -77,11 +72,10 @@ extension UIViewController {
     }
     
     func showStoryDefaultContentActionSheet(selectedClosure: ((selectedIndex: Int) -> ())!) {
-        let directions = NSLocalizedString("Button.Directions", comment: String())
         let sharePost = NSLocalizedString("Button.ShareStory", comment: String())
         let reportAbuse = NSLocalizedString("Button.ReportAbuse", comment: String())
         let cancel = NSLocalizedString("Button.Cancel", comment: String())
-        let buttons = [directions, sharePost]
+        let buttons = [sharePost]
         
         self.showActionSheet(nil, message: nil, cancel: cancel, destructive: reportAbuse, buttons: buttons, handle: { (buttonIndex) in
             selectedClosure(selectedIndex: buttonIndex)

@@ -87,7 +87,13 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
                 success: { (response) -> () in
                     self?.hideProgressHUD()
                     let user = response as! User
-                    self?.routesOpenSignupGetCityViewController(user)
+                    
+                    if user.profile.city.length > 0 {
+                        SessionManager.saveCurrentUser(user)
+                        self?.routesSetContentController()
+                    } else {
+                        self?.routesOpenSignupGetCityViewController(user)
+                    }
                 },
                 failure: { (statusCode, errors, localDescription, messages) -> () in
                     self?.hideProgressHUD()

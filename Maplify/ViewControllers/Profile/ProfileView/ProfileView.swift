@@ -114,7 +114,6 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     
     func setupLabels() {
         self.usernameLabel.text = self.user.profile.firstName + " " + self.user.profile.lastName
-        self.aboutLabel.text = self.user.profile.about
         self.aboutLabelHeight.constant = self.getAboutLabelHeight()
         
         if self.user.profile.city.length > 0 {
@@ -160,7 +159,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     func addMapGradient() {
         self.mapImageView.layer.sublayers = nil
         let gradient = CAGradientLayer()
-        gradient.frame = self.mapImageView.bounds
+        gradient.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(self.mapImageView.bounds))
         gradient.colors = [UIColor.darkGreyBlue().colorWithAlphaComponent(kMapGradientOpacity).CGColor, UIColor.darkerGreyBlue().CGColor]
         self.mapImageView.layer.addSublayer(gradient)
     }
@@ -239,12 +238,32 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     func loadRemoteData() {
+        if self.profileId == SessionManager.currentUser().id {
+            self.loadCurrentProfile()
+        } else {
+            self.loadOtherProfile()
+        }
+    }
+    
+    func loadCurrentProfile() {
+        ApiClient.sharedClient.getCurrentProfileInfo({ [weak self] (response) in
+            let profile = response as! Profile
+            self?.updateUserInfo(profile)
+            }, failure: nil)
+    }
+    
+    func loadOtherProfile() {
         ApiClient.sharedClient.getProfileInfo(self.user.profile.id, success: { [weak self] (response) in
             let profile = response as! Profile
-            ProfileManager.saveProfile(profile)
-            self?.loadItemFromDB()
-            self?.setupLabels()
+            self?.updateUserInfo(profile)
             }, failure: nil)
+    }
+    
+    func updateUserInfo(profile: Profile) {
+        ProfileManager.saveProfile(profile)
+        self.loadItemFromDB()
+        self.setupLabels()
+        self.setupDetailedLabels()
     }
     
     func contentHeight() -> CGFloat {
@@ -291,6 +310,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
             self.aboutLabel.text = self.user.profile.about
             return CGFloat(ceilf(Float(textHeight))) + 2 * kAboutLabelMargin
         }
+        self.aboutLabel.text = String()
         return 0
     }
     

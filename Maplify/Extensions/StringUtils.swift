@@ -73,4 +73,11 @@ extension String {
         }
         return NSLocalizedString("Error.Unknown", comment: String())
     }
+    
+    func appVersion() -> String {
+        let dictionary = NSBundle.mainBundle().infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "\(version) (\(build))"
+    }
 }

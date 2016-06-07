@@ -24,6 +24,7 @@
 "Text.Placeholder.Followers" = "You don't have any followers yet";
 "Text.Placeholder.Followings" = "You are not following anyone yet";
 "Text.Placeholder.Profile" = "You don’t have any posts yet";
+"Text.Placeholder.Notifications" = "There aren’t any notifications for now";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -43,8 +44,8 @@
 "Controller.Login.Title" = "Log In";
 "Controller.Terms.Title" = "Terms of Use";
 "Controller.Policy.Title" = "Privacy Policy";
-"Controller.About.Title" = "About";
-"Controller.StoryPointEditDescription.Title" = "New Post";
+"Controller.OurStory.Title" = "Our Story";
+"Controller.StoryPointEditDescription.Title" = "Description";
 "Controller.Onboard.Discover.Title" = "Discover";
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";
@@ -107,6 +108,9 @@
 "Label.LatitudeLongitude" = "Latitude: %.2f, longitude: %.2f";
 "Label.ReportSuccessTitle" = "Thanks for you feedback!";
 "Label.ReportSuccessDescription" = "We take this very seriously and will review and remove anything that does not adhere to our content guidelines";
+"Label.Account" = "Account";
+"Label.Information" = "Information";
+"Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -162,6 +166,11 @@
 "Button.ReportsSpamOrScam" = "This post is spam or a scam";
 "Button.ReportsPutsRisk" = "This post puts people at risk";
 "Button.ReportsPostShouldBeRemoved" = "This post should be removed";
+"Button.ChangePassword" = "Change Password";
+"Button.OurStory" = "Our Story";
+"Button.PrivacyPolicy" = "Privacy Policy";
+"Button.TermsOfService" = "Terms of Service";
+"Button.LogOut" = "Log out";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -184,6 +193,8 @@
 "Alert.SharingError" = "Some error occured during sharing";
 "Alert.StoryNameTooLong" = "Name is too long (maximum is 25 characters)";
 "Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
+"Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
+"Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

@@ -13,6 +13,8 @@ let kInfoViewHeight: CGFloat = 100
 let kDetailTextBottomMargin: CGFloat = 10
 let kStoriesTableRowHeight: CGFloat = 44
 let kStoryPointCellYOffset: CGFloat = 10
+let kTextDetailViewMargin: CGFloat = 16
+let kBottomTableMargin: CGFloat = 10
 
 protocol StoryPointInfoViewDelegate {
     func profileImageTapped(userId: Int)
@@ -40,6 +42,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var attachmentContentView: UIView!
     @IBOutlet weak var userNameLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentMediaViewHeight: NSLayoutConstraint!
     
     var storiesLinksActiveModel = CSActiveModel()
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
@@ -70,7 +74,10 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.addressLabel.text = self.generateLocationString(location)
         }
         self.detailsTextView.text = storyPoint.text
-        self.textHeight = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
+        
+        let width = UIScreen.mainScreen().bounds.width - 2 * (kCellHorizontalMargin + kTextDetailViewMargin)
+        
+        self.textHeight = storyPoint.text.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, width, CGFloat.max)).height + kDetailTextBottomMargin
         
         self.tableNameLabel.hidden = !(storyPoint.storiesLinks.count > 0)
     }
@@ -82,6 +89,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             self.imageViewHeightConstraint.constant = kEmptyImageViewDefaultHeight
         } else {
             self.imageViewHeightConstraint.constant = CGRectGetWidth(self.frame)
+            self.contentMediaViewHeight.constant = CGRectGetWidth(self.frame)
             self.populateAttachment(storyPoint)
         }
     }
@@ -101,6 +109,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.backUserImageView.image = UIImage(color: UIColor.whiteColor())?.roundCornersToCircle()
         self.backUserImageView.layer.cornerRadius = CGRectGetHeight(self.backUserImageView.frame) / 2
         self.backUserImageView.layer.masksToBounds = true
+        
+        self.userImageView.layer.cornerRadius = CGRectGetHeight(self.backUserImageView.frame) / 2
+        self.userImageView.layer.masksToBounds = true
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }
@@ -162,8 +173,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     
     func setupContentSize() {
         self.scrollView.delegate = self
-        let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset
+        let contentHeight = self.imageViewHeightConstraint.constant + self.textHeight + kInfoViewHeight + self.tableViewHeightConstraint.constant + kStoryPointCellYOffset + kBottomTableMargin
         self.scrollView.contentSize = CGSizeMake(0, contentHeight)
+        self.contentViewHeightConstraint.constant = contentHeight
     }
     
     func populateLikeButton(storyPoint: StoryPoint) {
@@ -184,7 +196,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     }
     
     @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.likeButton.enabled = false
         self.delegate?.likeStoryPointDidTap(self.storyPointId, completion: { [weak self] (success) in
+            self?.likeButton.enabled = true
             if success {
                 let storyPoint = StoryPointManager.find((self?.storyPointId)!)
                 self?.populateLikeButton(storyPoint)
@@ -203,11 +217,11 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     func openContentTapHandler(gestureRecognizer: UIGestureRecognizer) {
         let storyPoint = StoryPointManager.find(self.storyPointId)
         if storyPoint?.kind == StoryPointKind.Video.rawValue {
-            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.storyPointImageView)
+            PlayerHelper.sharedPlayer.playVideo((storyPoint?.attachment.file_url)!, onView: self.attachmentContentView)
         } else if storyPoint?.kind == StoryPointKind.Audio.rawValue {
-            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.storyPointImageView)
+            PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
         }
-        self.storyPointImageView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
+        self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

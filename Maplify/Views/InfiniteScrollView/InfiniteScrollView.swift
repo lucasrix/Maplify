@@ -58,7 +58,6 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     
     // MARK: - actions
     func moveAndShowCell(index: Int, animated: Bool) {
-        self.layoutIfNeeded()
         self.setupViewsAtIndex(index)
         self.scrollToPage(index, animated: animated)
     }
@@ -75,6 +74,9 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         let leftView = UIView()
         let centerView = UIView()
         let rightView = UIView()
+        
+        leftView.hidden = true
+        rightView.hidden = true
         
         if self.cellModeEnabled {
             leftView.layer.cornerRadius = self.cellCornerRadius
@@ -101,14 +103,16 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         centerView.frame = CGRectMake(viewWidth * CGFloat(index) + centerMargin, yViewsOffset, viewWidth, viewHeight)
         rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1) + rightMargin, yViewsOffset, viewWidth, viewHeight)
         
-        if (index - 1) > 0 {
+        if (index - 1) >= 0 {
             self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
+            leftView.hidden = false
         }
         
         self.pageControlDelegate?.didShowPageView(self, view: centerView, index: index)
 
         if (index + 1) < self.pageControlDelegate?.numberOfItems() {
             self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index + 1)
+            rightView.hidden = false
         }
         
         self.addSubview(leftView)
@@ -123,6 +127,8 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     private func replaceViewsWithDirection(direction: InfiniteScrollDirection, index: Int) {
+        self.contentViews.forEach({$0.hidden = false})
+        
         let viewWidth = self.cellViewWidth()
         
         var viewToMove: UIView
@@ -147,15 +153,21 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         
         margin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(viewIndex) + kCellHorizontalMargin : 0
         
+        if index == 0 {
+            self.contentViews.first?.hidden = true
+        }
+        
+        if index == (self.pageControlDelegate?.numberOfItems())! - 1 {
+            self.contentViews.last?.hidden = true
+        }
+        
         var frame = viewToMove.frame
         frame.origin.x = viewWidth * CGFloat(viewIndex) + margin
         frame.origin.y = yViewsOffset
         viewToMove.frame = frame
         
-        let viewToConfigure = self.contentViews[1]
-        
-        if (index >= 0 && index < (self.pageControlDelegate?.numberOfItems())!) {
-            self.pageControlDelegate?.didShowPageView(self, view: viewToConfigure, index: index)
+        if (viewIndex >= 0 && viewIndex < (self.pageControlDelegate?.numberOfItems())!) {
+            self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: viewIndex)
         }
     }
     

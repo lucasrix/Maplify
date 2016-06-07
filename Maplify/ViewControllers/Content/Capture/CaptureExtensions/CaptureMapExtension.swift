@@ -46,11 +46,6 @@ extension CaptureViewController: MCMapServiceDelegate {
             self.captureActiveModel.selectPinAtIndex(index)
             self.captureDataSource.reloadMapView(StoryPointMapItem)
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
-            if self.contentType == .Story {
-                self.infiniteScrollView.moveAndShowCell(index + 1, animated: false)
-            } else {
-                self.infiniteScrollView.moveAndShowCell(index, animated: false)
-            }
             self.scrollToDestinationPointWithOffset(pointInView)
         }
     }
@@ -119,10 +114,10 @@ extension CaptureViewController: MCMapServiceDelegate {
         self.removePreviewItem()
         let placeItem = MCMapItem()
         placeItem.location = coordinate
-        placeItem.image = UIImage(named: MapPinImages.tapped)
+        placeItem.image = UIImage(named: MapPinImages.marked)
         
         self.previewPlaceItem = placeItem
-        self.googleMapService.placeItem(placeItem, temporary: true)
         self.configuratePopup(locationInView, coordinate: coordinate)
+        self.googleMapService.placeItem(placeItem, temporary: true)
     }
 }

@@ -22,14 +22,15 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var backUserImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var storyPointPlusLabel: UILabel!
     @IBOutlet weak var storyPointsPlusView: UIView!
     @IBOutlet weak var storyTitleLabel: UILabel!
     @IBOutlet weak var detailsTextViewHeight: NSLayoutConstraint!
-    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+
     var userId: Int = 0
     var storyId: Int = 0
     var delegate: StoryInfoViewDelegate! = nil
@@ -61,14 +62,12 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryInfoView.profileImageTapped))
         self.userImageView.addGestureRecognizer(tapGesture)
-        
-        self.backUserImageView.image = UIImage(color: UIColor.whiteColor())?.roundCornersToCircle()
-        self.backUserImageView.layer.cornerRadius = CGRectGetHeight(self.backUserImageView.frame) / 2
-        self.backUserImageView.layer.masksToBounds = true
+        self.userImageView.layer.cornerRadius = CGRectGetHeight(self.userImageView.frame) / 2
+        self.userImageView.layer.masksToBounds = true
         
         self.detailsTextView.text = story.storyDescription
         
-        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height
+        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }
@@ -110,8 +109,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         let storyPoints: [StoryPoint] = Array(story.storyPoints)
         let itemsToShow: [AnyObject] = [story] + storyPoints
         self.storyPointActiveModel.removeData()
-                
-        self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: CGSizeMake(CGRectGetWidth(self.scrollView.frame), 0))
+        
+        let width = UIScreen.mainScreen().bounds.width - 2 * kCellHorizontalMargin
+        self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: CGSizeMake(width, 0))
         self.storyPointDataSource = DetailStoryItemsDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
         self.storyPointDataSource.reloadCollectionView()
         
@@ -156,7 +156,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     }
     
     @IBAction func likeButtonTapped(sender: AnyObject) {
+        self.likeButton.enabled = false
         self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            self?.likeButton.enabled = true
             if success {
                 let story = StoryManager.find((self?.storyId)!)
                 self?.populateLikeButton(story)
@@ -173,6 +175,7 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         
         let updatedHeight = self.detailsTextViewHeight.constant + self.collectionViewHeightConstraint.constant + kInfoViewHeight + kDetailTextBottomMargin
         self.scrollView.contentSize = CGSizeMake(0, updatedHeight)
+        self.contentViewHeightConstraint.constant = updatedHeight
     }
     
     // MARK: - UIScrollViewDelegate

@@ -214,7 +214,6 @@
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
-		F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */; };
 		F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */; };
 		F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */; };
 		F03507F91CBB044000CFAA05 /* StoryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F81CBB044000CFAA05 /* StoryPageViewController.swift */; };
@@ -433,7 +432,6 @@
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedMenuViewController.swift; sourceTree = "<group>"; };
 		F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryDetailViewController.swift; path = Maplify/ViewControllers/Content/Discover/StoryDetailViewController/StoryDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailItemViewController.swift; sourceTree = "<group>"; };
 		F03507F81CBB044000CFAA05 /* StoryPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPageViewController.swift; sourceTree = "<group>"; };
@@ -1217,7 +1215,6 @@
 			isa = PBXGroup;
 			children = (
 				F01A89541CA753E3008B8702 /* MenuViewController.swift */,
-				F01A89571CA75E0F008B8702 /* EmbeddedMenuViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1472,7 +1469,6 @@
 				A5D7AB031CA03F6000A94C4F /* CaptureViewController.swift in Sources */,
 				A5FC35C71CA4170B00DFEE38 /* ArrayStoryPointManager.swift in Sources */,
 				CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */,
-				F01A89581CA75E0F008B8702 /* EmbeddedMenuViewController.swift in Sources */,
 				A58A531A1C7F345300443C06 /* ConfigHepler.swift in Sources */,
 				85FD8C281CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift in Sources */,
 				CD1DB2411CFF0F5A00D62944 /* CaptureDetailViewExtension.swift in Sources */,

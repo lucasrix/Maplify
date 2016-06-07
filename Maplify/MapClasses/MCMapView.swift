@@ -19,7 +19,7 @@ class MCMapView: UIView {
     
     func configure(service: MCMapService!) {
         self.serviceView = service.mapView
-        self.serviceView.frame = self.bounds
+        self.serviceView.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
         self.addSubview(self.serviceView)
     }
 }

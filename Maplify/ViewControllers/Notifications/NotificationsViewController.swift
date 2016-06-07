@@ -12,6 +12,7 @@ import UIKit
 
 class NotificationsViewController: ViewController, NotificationsCellDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     var notificationsDataSource: CSBaseTableDataSource! = nil
     var notificationsActiveModel = CSActiveModel()
@@ -21,8 +22,13 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         super.viewDidLoad()
         
         self.setup()
-        self.loadItemsFromDB()
         self.loadRemoteData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadItemsFromDB()
     }
     
     deinit {
@@ -34,8 +40,13 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
+        self.setupPlaceholder()
         self.setupDataSource()
         self.setupPullToRefresh()
+    }
+    
+    func setupPlaceholder() {
+        self.placeholderLabel.text = NSLocalizedString("Text.Placeholder.Notifications", comment: String())
     }
     
     func setupNavigationBar() {
@@ -60,7 +71,9 @@ class NotificationsViewController: ViewController, NotificationsCellDelegate {
         self.notificationsActiveModel.removeData()
         
         let realm = try! Realm()
-        let notifications = Array(realm.objects(Notification).filter("action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR notificable_story != nil)").sorted("created_at", ascending: false))
+        let notifications = Array(realm.objects(Notification).filter("action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR (notificable_story != nil AND notificable_story.storyPoints.@count > 0))").sorted("created_at", ascending: false))
+        self.tableView.hidden = notifications.count == 0
+        self.placeholderLabel.hidden = notifications.count != 0
         
         self.notificationsActiveModel.addItems(notifications, cellIdentifier: String(NotificationsTableViewCell), sectionTitle: nil, delegate: self)
         self.notificationsDataSource.reloadTable()

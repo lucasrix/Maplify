@@ -46,11 +46,6 @@ extension CaptureViewController: MCMapServiceDelegate {
             self.captureActiveModel.selectPinAtIndex(index)
             self.captureDataSource.reloadMapView(StoryPointMapItem)
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
-            if self.contentType == .Story {
-                self.infiniteScrollView.moveAndShowCell(index + 1, animated: false)
-            } else {
-                self.infiniteScrollView.moveAndShowCell(index, animated: false)
-            }
             self.scrollToDestinationPointWithOffset(pointInView)
         }
     }

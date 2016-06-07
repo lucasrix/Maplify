@@ -103,7 +103,7 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         centerView.frame = CGRectMake(viewWidth * CGFloat(index) + centerMargin, yViewsOffset, viewWidth, viewHeight)
         rightView.frame = CGRectMake(viewWidth * CGFloat(index + 1) + rightMargin, yViewsOffset, viewWidth, viewHeight)
         
-        if (index - 1) > 0 {
+        if (index - 1) >= 0 {
             self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
             leftView.hidden = false
         }
@@ -166,10 +166,8 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         frame.origin.y = yViewsOffset
         viewToMove.frame = frame
         
-        let viewToConfigure = self.contentViews[1]
-        
-        if (index >= 0 && index < (self.pageControlDelegate?.numberOfItems())!) {
-            self.pageControlDelegate?.didShowPageView(self, view: viewToConfigure, index: index)
+        if (viewIndex >= 0 && viewIndex < (self.pageControlDelegate?.numberOfItems())!) {
+            self.pageControlDelegate?.didShowPageView(self, view: viewToMove, index: viewIndex)
         }
     }
     

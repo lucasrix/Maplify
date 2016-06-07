@@ -110,7 +110,7 @@
 "Label.ReportSuccessDescription" = "We take this very seriously and will review and remove anything that does not adhere to our content guidelines";
 "Label.Account" = "Account";
 "Label.Information" = "Information";
-"Label.SoftwareVersion" = "Software version 1.0a\nCopyright © 2016 MaplifyApp";
+"Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
 
 //Subsrtings
 "Substring.Of" = "of";

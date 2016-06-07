@@ -61,7 +61,9 @@ class MenuViewController: ViewController {
     
     func setupLogoutViews() {
         self.logoutButton.setTitle(NSLocalizedString("Button.LogOut", comment: String()), forState: .Normal)
-        self.softwareVersionLabel.text = NSLocalizedString("Label.SoftwareVersion", comment: String())
+        let appVersion = String().appVersion()
+        let formattedString = NSLocalizedString("Label.SoftwareVersion", comment: String())
+        self.softwareVersionLabel.text = String(format:formattedString, appVersion)
     }
     
     override func backButtonHidden() -> Bool {

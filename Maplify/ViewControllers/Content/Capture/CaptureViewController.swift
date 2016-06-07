@@ -75,12 +75,14 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         
         self.loadData()
         self.retrieveNotifications()
+        self.setupBottomButtonIfNeeded()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidAppear(animated)
         
         self.removePreviewItem()
+        self.selectedStoryPointId = 0
     }
     
     // MARK: - setup
@@ -94,7 +96,6 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     func setupUI() {
         self.setupPlaceSearchHelper()
         self.setupPressAndHoldViewIfNeeded()
-        self.setupBottomButtonIfNeeded()
         self.setupInfiniteScrollView()
         self.setupPopTip()
     }

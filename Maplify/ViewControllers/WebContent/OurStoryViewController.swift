@@ -19,7 +19,7 @@ class OurStoryViewController: ViewController, ErrorHandlingProtocol, UIWebViewDe
 
     // MARK: - setup
     func setup() {
-        self.title = NSLocalizedString("Controller.About.Title", comment: String())
+        self.title = NSLocalizedString("Controller.OurStory.Title", comment: String())
         self.webView.delegate = self
     }
     

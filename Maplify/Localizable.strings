@@ -44,8 +44,8 @@
 "Controller.Login.Title" = "Log In";
 "Controller.Terms.Title" = "Terms of Use";
 "Controller.Policy.Title" = "Privacy Policy";
-"Controller.About.Title" = "About";
-"Controller.StoryPointEditDescription.Title" = "New Post";
+"Controller.OurStory.Title" = "Our Story";
+"Controller.StoryPointEditDescription.Title" = "Description";
 "Controller.Onboard.Discover.Title" = "Discover";
 "Controller.Onboard.Discover.Description" = "Discover people's stories around the world. What does it [sound.look.feel.taste] like there?";
 "Controller.Onboard.Capture.Title" = "Capture";

@@ -8,6 +8,7 @@
 
 import RealmSwift
 import AMPopTip
+import GoogleMaps
 import CoreLocation
 
 extension CaptureViewController {
@@ -124,6 +125,9 @@ extension CaptureViewController {
             if location != nil {
                 let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+                let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let locationInView = (self.googleMapService.mapView as! GMSMapView).projection.pointForCoordinate(coordinate)
+                self.placePopUpPin(location.coordinate.latitude, longitude: location.coordinate.longitude, locationInView: locationInView)
             }
         }
     }

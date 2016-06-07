@@ -75,6 +75,9 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         let centerView = UIView()
         let rightView = UIView()
         
+        leftView.hidden = true
+        rightView.hidden = true
+        
         if self.cellModeEnabled {
             leftView.layer.cornerRadius = self.cellCornerRadius
             centerView.layer.cornerRadius = self.cellCornerRadius
@@ -102,12 +105,14 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         
         if (index - 1) > 0 {
             self.pageControlDelegate?.didShowPageView(self, view: leftView, index: index - 1)
+            leftView.hidden = false
         }
         
         self.pageControlDelegate?.didShowPageView(self, view: centerView, index: index)
 
         if (index + 1) < self.pageControlDelegate?.numberOfItems() {
             self.pageControlDelegate?.didShowPageView(self, view: rightView, index: index + 1)
+            rightView.hidden = false
         }
         
         self.addSubview(leftView)
@@ -122,6 +127,8 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     private func replaceViewsWithDirection(direction: InfiniteScrollDirection, index: Int) {
+        self.contentViews.forEach({$0.hidden = false})
+        
         let viewWidth = self.cellViewWidth()
         
         var viewToMove: UIView
@@ -145,6 +152,14 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         }
         
         margin = (self.cellModeEnabled) ? kGlobalCellOffset * CGFloat(viewIndex) + kCellHorizontalMargin : 0
+        
+        if index == 0 {
+            self.contentViews.first?.hidden = true
+        }
+        
+        if index == (self.pageControlDelegate?.numberOfItems())! - 1 {
+            self.contentViews.last?.hidden = true
+        }
         
         var frame = viewToMove.frame
         frame.origin.x = viewWidth * CGFloat(viewIndex) + margin

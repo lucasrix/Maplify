@@ -159,7 +159,7 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     func addMapGradient() {
         self.mapImageView.layer.sublayers = nil
         let gradient = CAGradientLayer()
-        gradient.frame = self.mapImageView.bounds
+        gradient.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(self.mapImageView.bounds))
         gradient.colors = [UIColor.darkGreyBlue().colorWithAlphaComponent(kMapGradientOpacity).CGColor, UIColor.darkerGreyBlue().CGColor]
         self.mapImageView.layer.addSublayer(gradient)
     }

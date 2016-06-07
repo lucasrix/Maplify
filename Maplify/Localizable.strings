@@ -108,6 +108,9 @@
 "Label.LatitudeLongitude" = "Latitude: %.2f, longitude: %.2f";
 "Label.ReportSuccessTitle" = "Thanks for you feedback!";
 "Label.ReportSuccessDescription" = "We take this very seriously and will review and remove anything that does not adhere to our content guidelines";
+"Label.Account" = "Account";
+"Label.Information" = "Information";
+"Label.SoftwareVersion" = "Software version 1.0a\nCopyright © 2016 MaplifyApp";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -163,6 +166,11 @@
 "Button.ReportsSpamOrScam" = "This post is spam or a scam";
 "Button.ReportsPutsRisk" = "This post puts people at risk";
 "Button.ReportsPostShouldBeRemoved" = "This post should be removed";
+"Button.ChangePassword" = "Change Password";
+"Button.OurStory" = "Our Story";
+"Button.PrivacyPolicy" = "Privacy Policy";
+"Button.TermsOfService" = "Terms of Service";
+"Button.LogOut" = "Log out";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

@@ -1723,6 +1723,12 @@
                                     <constraint firstAttribute="height" constant="48" id="qVz-6d-eD6"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="awX-j2-i80">
+                                <rect key="frame" x="5" y="92" width="365" height="0.0"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.29803921570000003" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-Nc-yhC">
                                 <rect key="frame" x="0.0" y="48" width="375" height="619"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1859,13 +1865,17 @@
                             <constraint firstAttribute="trailing" secondItem="iWR-TH-c8I" secondAttribute="trailing" id="5Y4-hF-2qC"/>
                             <constraint firstItem="Rfq-Nc-yhC" firstAttribute="top" secondItem="iWR-TH-c8I" secondAttribute="bottom" id="Eia-wJ-d5K"/>
                             <constraint firstItem="iWR-TH-c8I" firstAttribute="leading" secondItem="nM5-9D-fRd" secondAttribute="leading" id="UPK-YA-7B5"/>
+                            <constraint firstItem="awX-j2-i80" firstAttribute="leading" secondItem="nM5-9D-fRd" secondAttribute="leading" constant="5" id="cFk-Yg-Lbr"/>
                             <constraint firstAttribute="trailing" secondItem="Rfq-Nc-yhC" secondAttribute="trailing" id="i7K-zC-iHJ"/>
                             <constraint firstItem="Rfq-Nc-yhC" firstAttribute="leading" secondItem="nM5-9D-fRd" secondAttribute="leading" id="iJB-VA-BPP"/>
+                            <constraint firstAttribute="trailing" secondItem="awX-j2-i80" secondAttribute="trailing" constant="5" id="pGW-dB-7uQ"/>
+                            <constraint firstItem="awX-j2-i80" firstAttribute="top" secondItem="iWR-TH-c8I" secondAttribute="bottom" constant="44" id="srM-4B-rkU"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="myPostsLabel" destination="zzB-lz-PTM" id="8aR-ek-GQN"/>
+                        <outlet property="placeholderLabel" destination="awX-j2-i80" id="QtB-Ur-d0E"/>
                         <outlet property="tableView" destination="Rfq-Nc-yhC" id="a5C-5O-RRu"/>
                     </connections>
                 </viewController>

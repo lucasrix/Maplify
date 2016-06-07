@@ -14,6 +14,7 @@ typealias createStoryClosure = ((storyId: Int) -> ())
 class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var myPostsLabel: UILabel!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     var selectedStoryPoints: [StoryPoint]! = nil
     var delegate: AddPostsDelegate! = nil
@@ -41,12 +42,17 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     // MARK: - setup
     func setup() {
         self.setupNavigationBar()
-        self.myPostsLabel.text = NSLocalizedString("Label.MyPosts", comment: String())
+        self.setupViews()
     }
     
     func setupNavigationBar() {
         self.title = NSLocalizedString("Controller.AddPosts", comment: String())
         self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
+    }
+    
+    func setupViews() {
+        self.myPostsLabel.text = NSLocalizedString("Label.MyPosts", comment: String())
+        self.placeholderLabel.text = NSLocalizedString("Text.Placeholder.Profile", comment: String())
     }
     
     // MARK: - navigation bar
@@ -62,6 +68,9 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         self.storyActiveModel.removeData()
         let realm = try! Realm()
         let foundedStoryPoints = Array(realm.objects(StoryPoint).filter("user.id == \(SessionManager.currentUser().id)").sorted("created_at", ascending: false))
+        self.myPostsLabel.hidden = foundedStoryPoints.count == 0
+        self.tableView.hidden = foundedStoryPoints.count == 0
+        self.placeholderLabel.hidden = foundedStoryPoints.count > 0
         
         self.storyActiveModel.addItems(foundedStoryPoints, cellIdentifier: String(StoryAddPostsTableViewCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         

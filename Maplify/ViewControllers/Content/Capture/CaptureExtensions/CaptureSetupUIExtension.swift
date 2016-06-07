@@ -27,7 +27,7 @@ extension CaptureViewController {
             let cornerRadius = CGRectGetHeight(self.notificationsButton.frame) / 2
             
             let realm = try! Realm()
-            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true").count > 0
+            let newNotificationsAvailable: Bool = realm.objects(Notification).filter("unread == true AND action_user != nil AND (notificable_user != nil OR notificable_storypoint != nil OR (notificable_story != nil AND notificable_story.storyPoints.@count > 0))").count > 0
             self.notificationsButton.layer.cornerRadius = cornerRadius
             self.notificationsButton.backgroundColor = newNotificationsAvailable == true ? UIColor.dodgerBlue() : UIColor.darkGreyBlue().colorWithAlphaComponent(kNotificationsButtonBackgroundColorAlpha)
             

@@ -72,7 +72,7 @@ class SignupGetCityViewController: ViewController, ErrorHandlingProtocol {
                                                                 self?.location.longitude = location.coordinate.longitude
                                                                 self?.location.address = (address?.thoroughfare)!
                                                                 self?.location.city = (address?.locality)!
-                                                                
+                                                                self?.user.profile.city = (address?.locality)!
                                                                 self?.cityLabel.text = (address?.locality)!
                                                                 self?.setupView((address?.locality)!)
                                                             }

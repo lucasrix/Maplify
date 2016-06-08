@@ -42,11 +42,11 @@ PODS:
   - Locksmith (2.0.8)
   - ObjectMapper (1.1.5)
   - Player (0.1.1)
-  - Realm (0.98.2):
-    - Realm/Headers (= 0.98.2)
-  - Realm/Headers (0.98.2)
-  - RealmSwift (0.98.2):
-    - Realm (= 0.98.2)
+  - Realm (1.0.0):
+    - Realm/Headers (= 1.0.0)
+  - Realm/Headers (1.0.0)
+  - RealmSwift (1.0.0):
+    - Realm (= 1.0.0)
   - RSKGrowingTextView (1.0.1):
     - RSKPlaceholderTextView (= 1.0.0)
   - RSKKeyboardAnimationObserver (1.0.0)
@@ -80,7 +80,7 @@ DEPENDENCIES:
   - LLSimpleCamera (~> 4.2)
   - Locksmith (~> 2.0)
   - Player (~> 0.1)
-  - RealmSwift (~> 0.98)
+  - RealmSwift (~> 1.0)
   - RSKGrowingTextView (~> 1.0)
   - RSKKeyboardAnimationObserver (~> 1.0)
   - SDWebImage (~> 3.7)
@@ -119,8 +119,8 @@ SPEC CHECKSUMS:
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   Player: 575e1e8cde1e6b7cd62d6d6bc06e492d02e62b9e
-  Realm: 88a147fe04b8f07191a676b15c779b2b448991de
-  RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
+  Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
+  RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
   RSKGrowingTextView: 585888654fb5007e13089a71923ce78e53a6f0d4
   RSKKeyboardAnimationObserver: 0bdbc5235a96ce6d1e6143998214160c7f7c9b37
   RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7

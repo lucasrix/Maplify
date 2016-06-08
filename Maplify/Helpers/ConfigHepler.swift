@@ -38,10 +38,4 @@ class ConfigHepler {
     class func screenSmallerThanIPhoneSixSize() -> Bool {
         return UIScreen.mainScreen().bounds.size.height < ScreenSize.iPhoneSixScreenPointsHeight
     }
-    
-    // MARK: - path
-    class func databasePath() -> String! {
-        let realm = try! Realm()
-        return realm.configuration.path
-    }
 }

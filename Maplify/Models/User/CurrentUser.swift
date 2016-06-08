@@ -14,11 +14,15 @@ class CurrentUser: User {
         super.init()
     }
     
-    override init(realm: RLMRealm, schema: RLMObjectSchema) {
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
         super.init(realm: realm, schema: schema)
     }
     
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
+    }
+    
+    required init(value: AnyObject, schema: RLMSchema) {
+        fatalError("init(value:schema:) has not been implemented")
     }
 }

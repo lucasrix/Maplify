@@ -8,8 +8,14 @@
 
 import TPKeyboardAvoiding
 
+enum ProviderType: String {
+    case Email = "email"
+    case Facebook = "facebook"
+}
+
 let kAboutFieldCharactersLimit = 500
-let kEmailProviderType = "email"
+let kProfileContentHeight: CGFloat = 603
+let kEmailLabelMinimizedTopConstraint: CGFloat = 20
 
 class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var avoidingKeyboardScrollView: TPKeyboardAvoidingScrollView!
@@ -28,6 +34,13 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var firstNameErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var charsNumberLabel: UILabel!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var emailLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var errorEmailLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var emailTextFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var errorEmailLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var emailTextFieldTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var emailLabelTopConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -47,6 +60,15 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.setupButtons()
         self.setupTextFields()
         self.setupNavigationBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.updateContentSize()
+    }
+    
+    func updateContentSize() {
+        self.contentViewHeightConstraint.constant = kProfileContentHeight
+        self.avoidingKeyboardScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), kProfileContentHeight)
     }
     
     func setupNavigationBar() {
@@ -98,6 +120,19 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.homeCityTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.homeCityTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
+        if self.user.provider == ProviderType.Facebook.rawValue {
+            self.emailErrorLabel.text = String()
+            self.emailLabel.text = String()
+            self.emailTextField.text = String()
+            self.emailTextField.hidden = true
+            self.emailLabelHeightConstraint.constant = 0
+            self.errorEmailLabelHeightConstraint.constant = 0
+            self.emailTextFieldHeightConstraint.constant = 0
+            self.errorEmailLabelTopConstraint.constant = 0
+            self.emailTextFieldTopConstraint.constant = 0
+            self.emailLabelTopConstraint.constant = kEmailLabelMinimizedTopConstraint
+        }
+        
         self.urlTextField.layer.borderWidth = Border.defaultBorderWidth
         self.urlTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.urlTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
@@ -130,15 +165,12 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         
         self.firstNameErrorLabel.hidden = firstNameValid
         
-        if (self.user.provider == kEmailProviderType) {
+        if self.user.provider == ProviderType.Email.rawValue {
             self.emailErrorLabel.hidden = emailValid!
+            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
         }
         
         self.firstNameTextField.layer.borderColor = firstNameValid ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        
-        if (self.user.provider == kEmailProviderType) {
-            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        }
         
         let profile = Profile()
         profile.lastName = self.lastNameTextField.text!
@@ -148,9 +180,9 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         
         if firstNameValid {
             profile.firstName = self.firstNameTextField.text!
-            self.showProgressHUD()
 
-            if (emailValid!) && (self.user.provider == kEmailProviderType) {                
+            if (emailValid!) && (self.user.provider == ProviderType.Email.rawValue) {
+                self.showProgressHUD()
                 ApiClient.sharedClient.updateUser(self.emailTextField.text!,
                                                   success: { [weak self] (response) in
                                                     let user = response as! User
@@ -162,7 +194,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
                                                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                     }
                 )
-            } else {
+            } else if emailValid! == true {
                self.updateProfile(profile)
             }
         } else {
@@ -172,7 +204,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     }
     
     func updateProfile(profile: Profile) {
-        ApiClient.sharedClient.updateProfile(profile, location: nil,
+        ApiClient.sharedClient.updateProfile(profile, location: self.user.profile.location,
                                              success: { [weak self] (response) in
                                                 self?.hideProgressHUD()
                                                 

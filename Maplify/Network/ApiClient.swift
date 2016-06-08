@@ -178,7 +178,7 @@ class ApiClient {
     func updateProfile(profile: Profile, location: Location!, success: successClosure!, failure: failureClosure!) {
         var params: [String: AnyObject] = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
         if (location != nil) {
-            let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address]
+            let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address, "city": location.city]
             params["location"] = locationDict
         }
         self.patchRequest("profile", params: params, data: nil, manager: ProfileManager(), success: success, failure: failure)

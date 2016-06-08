@@ -73,9 +73,13 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.loadData()
-        self.retrieveNotifications()
-        self.setupBottomButtonIfNeeded()
+        if SessionHelper.sharedHelper.isSessionTokenExists() {
+            self.loadData()
+            self.retrieveNotifications()
+            self.setupBottomButtonIfNeeded()
+        } else {
+            self.routesSetLoginViewController()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

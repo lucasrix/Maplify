@@ -16,6 +16,8 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     @IBOutlet weak var passwordInputField: InputTextField!
     @IBOutlet weak var keyboardAvoidingScrollView: TPKeyboardAvoidingScrollView!
     
+    var backHidden: Bool = false
+    
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,11 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
     
     func setupDoneButton() {
         self.addRightBarItem(NSLocalizedString("Button.Done", comment: String()))
+    }
+    
+    // MARK: - navigation bar
+    override func backButtonHidden() -> Bool {
+        return self.backHidden
     }
     
     // MARK: - Actions

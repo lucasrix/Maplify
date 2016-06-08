@@ -62,6 +62,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     var selectedStoryPointId: Int = 0
     var selectedStoryId: Int = 0
     var poppingControllerSupport: Bool = false
+    var pressAndHoldLabelHidden: Bool = false
     
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -73,7 +74,6 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.setupBottomButtonIfNeeded()
         if SessionHelper.sharedHelper.isSessionTokenExists() {
             self.loadData()
             self.retrieveNotifications()
@@ -100,10 +100,23 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     }
     
     func setupUI() {
+        self.setupBottomButtonIfNeeded()
         self.setupPlaceSearchHelper()
         self.setupPressAndHoldViewIfNeeded()
         self.setupInfiniteScrollView()
         self.setupPopTip()
+    }
+    
+    func updateUI() {
+        self.setupBottomButtonIfNeeded()
+        if self.contentType == .Default {
+            self.pressAndHoldView.hidden = self.pressAndHoldLabelHidden
+            self.pressAndHoldLabel.hidden = self.pressAndHoldLabelHidden
+        } else {
+            self.placeSearchHelper?.hideGooglePlaceSearchController()
+            self.pressAndHoldView.hidden = true
+            self.pressAndHoldLabel.hidden = true
+        }
     }
     
     func setupTopBar() {
@@ -123,6 +136,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         self.updateInfiniteScrollIfNeeded()
         self.setupTopBar()
         self.showSelectedPostIfNeeded()
+        self.updateUI()
     }
     
     func updateData() {

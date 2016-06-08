@@ -10,6 +10,7 @@ import TPKeyboardAvoiding
 
 let kAboutFieldCharactersLimit = 500
 let kEmailProviderType = "email"
+let kProfileContentHeight: CGFloat = 603
 
 class EditProfileViewController: ViewController, UITextFieldDelegate, UITextViewDelegate, ErrorHandlingProtocol {
     @IBOutlet weak var avoidingKeyboardScrollView: TPKeyboardAvoidingScrollView!
@@ -28,6 +29,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var firstNameErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var charsNumberLabel: UILabel!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
     var profileId: Int = 0
     var user: User! = nil
@@ -47,6 +49,15 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.setupButtons()
         self.setupTextFields()
         self.setupNavigationBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.updateContentSize()
+    }
+    
+    func updateContentSize() {
+        self.contentViewHeightConstraint.constant = kProfileContentHeight
+        self.avoidingKeyboardScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), kProfileContentHeight)
     }
     
     func setupNavigationBar() {

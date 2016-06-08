@@ -24,6 +24,7 @@ extension CaptureViewController: MCMapServiceDelegate {
         } else {
             let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
             self.setupMap(defaultLocation, showWholeWorld: true)
+            completion()
         }
     }
     
@@ -54,9 +55,9 @@ extension CaptureViewController: MCMapServiceDelegate {
         var index: Int = 0
         var storyPoint: StoryPoint! = nil
         if self.contentType == .StoryPoint {
-            storyPoint = self.currentStoryPoints.first
+            storyPoint = self.currentStoryPoints.count > 0 ? self.currentStoryPoints.first : nil
         } else if self.contentType == .Story {
-            storyPoint = self.currentStory.storyPoints.first
+            storyPoint = self.currentStory?.storyPoints.first
         } else if (self.contentType == .Default) && (self.selectedStoryPointId != 0) {
             storyPoint = StoryPointManager.find(self.selectedStoryPointId)
             let indexPath = self.captureActiveModel.find(storyPoint.id)

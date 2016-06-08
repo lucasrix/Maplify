@@ -15,13 +15,18 @@ extension CaptureViewController {
     
     func loadLocalCurrentStoryPont(storyPointId: Int) {
         self.currentStoryPoints.removeAll()
-        self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint != nil {
+            self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
+        }
     }
     
     func loadLocalCurrentStory(storyId: Int) {
-        self.currentStory = StoryManager.find(storyId)
         self.currentStoryPoints.removeAll()
-        self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
+        self.currentStory = StoryManager.find(storyId)
+        if self.currentStory != nil {
+            self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
+        }        
     }
     
     // MARK: - remote

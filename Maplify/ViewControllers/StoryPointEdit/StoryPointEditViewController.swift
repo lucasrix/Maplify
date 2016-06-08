@@ -31,7 +31,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
     var editInfoViewController: StoryPointEditInfoViewController! = nil
     var storyPointId: Int = 0
     var storyPoint: StoryPoint! = nil
-    var storyPointUpdateHandler: (() -> ())! = nil
+    var storyPointUpdateHandler: (() -> ())? = nil
     var keyboardHeight: CGFloat = 0
     
     // MARK: - view controller life cycle
@@ -272,10 +272,10 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
             
             ApiClient.sharedClient.getUserStories(SessionManager.currentUser().id,
                 success: { [weak self] (response) in
-                    StoryManager.saveStories(response as! [Story])
-                    self?.hideProgressHUD()
-                    self?.storyPointUpdateHandler()
-                    self?.navigationController?.popViewControllerAnimated(true)
+                        StoryManager.saveStories(response as! [Story])
+                        self?.hideProgressHUD()
+                        self?.storyPointUpdateHandler?()
+                        self?.navigationController?.popViewControllerAnimated(true)
                 }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     self?.hideProgressHUD()
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

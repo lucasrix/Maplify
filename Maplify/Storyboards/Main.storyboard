@@ -2873,6 +2873,9 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lrT-9Q-Hfb">
                                                 <rect key="frame" x="8" y="178" width="359" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Jj4-IQ-4ea"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                             </textField>
@@ -2948,7 +2951,6 @@
                                             <constraint firstItem="noE-u3-49q" firstAttribute="leading" secondItem="mo2-v3-cEV" secondAttribute="leading" constant="8" id="KQH-wd-rbk"/>
                                             <constraint firstItem="oX2-Lq-nDQ" firstAttribute="top" secondItem="Ile-P4-8rY" secondAttribute="bottom" constant="2" id="Lup-fC-jGI"/>
                                             <constraint firstItem="noE-u3-49q" firstAttribute="top" secondItem="zps-3o-5a3" secondAttribute="bottom" constant="2" id="MW1-Ij-8qv"/>
-                                            <constraint firstAttribute="bottom" secondItem="u3T-dB-i27" secondAttribute="bottom" constant="8" id="N6r-js-5Ut"/>
                                             <constraint firstItem="OGW-uJ-3Be" firstAttribute="leading" secondItem="mo2-v3-cEV" secondAttribute="leading" constant="15" id="QCn-1b-USn"/>
                                             <constraint firstAttribute="trailing" secondItem="qWR-Ak-LJy" secondAttribute="trailing" constant="8" id="Td7-QS-kuL"/>
                                             <constraint firstItem="A2v-cS-BEP" firstAttribute="top" secondItem="qWR-Ak-LJy" secondAttribute="bottom" constant="29" id="UkG-BZ-hdl"/>
@@ -2971,11 +2973,6 @@
                                             <constraint firstItem="u3T-dB-i27" firstAttribute="leading" secondItem="mo2-v3-cEV" secondAttribute="leading" constant="8" id="xGL-Ed-kiS"/>
                                             <constraint firstAttribute="trailing" secondItem="noE-u3-49q" secondAttribute="trailing" constant="8" id="zk7-N2-vRY"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="N6r-js-5Ut"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -3011,7 +3008,13 @@
                         <outlet property="contentViewHeightConstraint" destination="jhx-8c-LDo" id="Wmg-7B-FHw"/>
                         <outlet property="emailErrorLabel" destination="OGW-uJ-3Be" id="6TQ-Sl-Efn"/>
                         <outlet property="emailLabel" destination="A2v-cS-BEP" id="EEN-4t-Iaz"/>
+                        <outlet property="emailLabelHeightConstraint" destination="PA8-uZ-Ajq" id="z1T-yr-JS2"/>
+                        <outlet property="emailLabelTopConstraint" destination="UkG-BZ-hdl" id="IF8-0Q-QIi"/>
                         <outlet property="emailTextField" destination="lrT-9Q-Hfb" id="ZkE-w2-nmr"/>
+                        <outlet property="emailTextFieldHeightConstraint" destination="Jj4-IQ-4ea" id="AYB-aH-Eq2"/>
+                        <outlet property="emailTextFieldTopConstraint" destination="1rc-nT-55U" id="iBE-QY-P3a"/>
+                        <outlet property="errorEmailLabelHeightConstraint" destination="pLL-2G-bxO" id="6dS-r1-9La"/>
+                        <outlet property="errorEmailLabelTopConstraint" destination="dOk-Q6-0LR" id="L0u-d9-ImQ"/>
                         <outlet property="firstNameErrorLabel" destination="fK9-6k-XY4" id="cMO-I1-qkB"/>
                         <outlet property="firstNameLabel" destination="zps-3o-5a3" id="OVY-Bt-t6P"/>
                         <outlet property="firstNameTextField" destination="noE-u3-49q" id="Rhm-Dx-CbF"/>

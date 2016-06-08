@@ -195,6 +195,7 @@
 "Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
 "Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
+"Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

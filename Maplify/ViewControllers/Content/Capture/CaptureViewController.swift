@@ -73,9 +73,15 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.loadData()
-        self.retrieveNotifications()
         self.setupBottomButtonIfNeeded()
+        if SessionHelper.sharedHelper.isSessionTokenExists() {
+            self.loadData()
+            self.retrieveNotifications()
+        } else {
+            self.setupDefaultCaptureNavigationBar()
+            self.setupDefaultTitle()
+            self.showAuthAlert()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -161,8 +167,11 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     func configureActiveModel() {
         switch self.contentType {
         case .Story:
-            self.captureActiveModel.addItem(self.currentStory, section: 0, cellIdentifier: String(), sectionTitle: nil, delegate: self)
-            self.captureActiveModel.addItems(self.currentStoryPoints, section: 0, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self, boundingSize: CGSizeZero)
+            if self.currentStory != nil {
+                self.captureActiveModel.addItem(self.currentStory, section: 0, cellIdentifier: String(), sectionTitle: nil, delegate: self)
+                self.captureActiveModel.addItems(self.currentStoryPoints, section: 0, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self, boundingSize: CGSizeZero)
+            }
+            
         default:
             self.captureActiveModel.addItems(self.currentStoryPoints, cellIdentifier: String(StorypointCell), sectionTitle: nil, delegate: self)
         }
@@ -182,6 +191,15 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
                 NotificationsManager.saveNotificationItems(response as! [String: AnyObject])
                 self?.setupBottomButtonIfNeeded()
                 }, failure: nil)
+        }
+    }
+    
+    func showAuthAlert() {
+        let title = NSLocalizedString("Alert.Info", comment: String())
+        let message = NSLocalizedString("Alert.LoginAndReopenLink", comment: String())
+        let cancelButton = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: message, cancel: cancelButton) { [weak self] (alertAction) in
+            self?.routesSetLandingController()
         }
     }
     

@@ -25,6 +25,14 @@ extension UIViewController {
         window.rootViewController = navigationController
     }
     
+    func routesSetLoginViewController() {
+        let loginViewController = UIStoryboard.authStoryboard().instantiateViewControllerWithIdentifier(Controllers.loginController) as! LoginViewController
+        loginViewController.backHidden = true
+        let navigationController = NavigationViewController(rootViewController: loginViewController)
+        let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+        window.rootViewController = navigationController
+    }
+    
     // MARK: - open controllers
     func routesOpenLoginViewController() {
         self.routesOpenViewController(UIStoryboard.authStoryboard(), identifier: Controllers.loginController)

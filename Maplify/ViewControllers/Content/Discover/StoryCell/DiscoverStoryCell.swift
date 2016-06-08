@@ -74,6 +74,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         self.followButton.layer.borderWidth = Border.defaultBorderWidth
         self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
+
+        let story = StoryManager.find(self.storyId)
+        self.followButton.hidden = story.user.id == SessionManager.currentUser().id
     }
     
     func populateUserViews(story: Story) {

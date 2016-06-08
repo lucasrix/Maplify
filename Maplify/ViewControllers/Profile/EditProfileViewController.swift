@@ -9,8 +9,8 @@
 import TPKeyboardAvoiding
 
 enum ProviderType: String {
-    case email = "email"
-    case facebook = "facebook"
+    case Email = "email"
+    case Facebook = "facebook"
 }
 
 let kAboutFieldCharactersLimit = 500
@@ -120,7 +120,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         self.homeCityTextField.layer.cornerRadius = CornerRadius.defaultRadius
         self.homeCityTextField.layer.borderColor = UIColor.inactiveGrey().CGColor
         
-        if self.user.provider == ProviderType.facebook.rawValue {
+        if self.user.provider == ProviderType.Facebook.rawValue {
             self.emailErrorLabel.text = String()
             self.emailLabel.text = String()
             self.emailTextField.text = String()
@@ -165,15 +165,12 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         
         self.firstNameErrorLabel.hidden = firstNameValid
         
-        if self.user.provider == ProviderType.email.rawValue {
+        if self.user.provider == ProviderType.Email.rawValue {
             self.emailErrorLabel.hidden = emailValid!
+            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
         }
         
         self.firstNameTextField.layer.borderColor = firstNameValid ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        
-        if self.user.provider == ProviderType.email.rawValue {
-            self.emailTextField.layer.borderColor = emailValid! ? UIColor.inactiveGrey().CGColor : UIColor.errorRed().CGColor
-        }
         
         let profile = Profile()
         profile.lastName = self.lastNameTextField.text!
@@ -183,9 +180,9 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
         
         if firstNameValid {
             profile.firstName = self.firstNameTextField.text!
-            self.showProgressHUD()
 
-            if (emailValid!) && (self.user.provider == ProviderType.email.rawValue) {
+            if (emailValid!) && (self.user.provider == ProviderType.Email.rawValue) {
+                self.showProgressHUD()
                 ApiClient.sharedClient.updateUser(self.emailTextField.text!,
                                                   success: { [weak self] (response) in
                                                     let user = response as! User
@@ -197,7 +194,7 @@ class EditProfileViewController: ViewController, UITextFieldDelegate, UITextView
                                                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                     }
                 )
-            } else {
+            } else if emailValid! == true {
                self.updateProfile(profile)
             }
         } else {

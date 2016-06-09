@@ -24,9 +24,12 @@ extension CaptureViewController {
     func loadLocalCurrentStory(storyId: Int) {
         self.currentStoryPoints.removeAll()
         self.currentStory = StoryManager.find(storyId)
+        if self.currentStory?.storyPoints.count == 0 {
+            self.popController()
+        }
         if self.currentStory != nil {
             self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
-        }        
+        }
     }
     
     // MARK: - remote

@@ -133,11 +133,17 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
         self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
-            if error == nil {
-                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+            if let foundedStoryPoint = StoryPointManager.find((self?.storyPointId)!) {
+                self?.populateImage(foundedStoryPoint, error: error)
             }
-            self?.populateKindImage(storyPoint)
         }
+    }
+    
+    func populateImage(storyPoint: StoryPoint, error: NSError!) {
+        if error == nil {
+            self.colorView?.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+        }
+        self.populateKindImage(storyPoint)
     }
     
     func populateKindImage(storyPoint: StoryPoint) {

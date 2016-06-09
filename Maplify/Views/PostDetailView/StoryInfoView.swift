@@ -76,8 +76,8 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         let user = story.user as User
         let profile = user.profile as Profile
         
-        if profile.location.address.length > 0 {
-            self.addressLabel.text = profile.location.address
+        if profile.city.length > 0 {
+            self.addressLabel.text = profile.city
         } else {
             let location = MCMapCoordinate(latitude: profile.location.latitude, longitude: profile.location.longitude)
             self.addressLabel.text = self.generateLocationString(location)

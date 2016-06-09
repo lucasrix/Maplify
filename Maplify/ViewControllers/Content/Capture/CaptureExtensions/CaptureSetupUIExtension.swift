@@ -64,7 +64,6 @@ extension CaptureViewController {
             self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
             self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
         }
-        self.pressAndHoldView.hidden = self.contentType != .Default
     }
     
     func setupTitle() {
@@ -149,7 +148,6 @@ extension CaptureViewController {
             self.contentType = .Default
             self.selectedStoryPointId = 0
             self.infiniteScrollView.hidden = true
-            self.setupBottomButtonIfNeeded()
             self.loadData()
         }
     }

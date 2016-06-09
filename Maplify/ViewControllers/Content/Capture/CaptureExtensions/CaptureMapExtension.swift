@@ -71,6 +71,7 @@ extension CaptureViewController: MCMapServiceDelegate {
             self.selectPin(index, mapCoordinate: coordinate, pointInView: pointInView)
             self.scrollToDestinationPointWithOffset(pointInView)
             self.infiniteScrollView.hidden = false
+            self.infiniteScrollView.clearData()
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
         }
     }
@@ -85,6 +86,7 @@ extension CaptureViewController: MCMapServiceDelegate {
             let storyPointIndex = self.captureActiveModel.storyPointIndex(mapCoordinate, section: 0)
             
             self.infiniteScrollView.hidden = false
+            self.infiniteScrollView.clearData()
             
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate, pointInView: pointInView)
         }

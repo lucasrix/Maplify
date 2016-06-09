@@ -53,8 +53,9 @@ class GoogleMapService: MCMapService, GMSMapViewDelegate {
     }
     
     override func moveTo(region: MCMapRegion, zoom: Float) {
-        let camera = GMSCameraPosition.cameraWithLatitude(region.location.latitude, longitude: region.location.longitude, zoom: zoom)
-        (self.mapView as! GMSMapView).camera = camera
+        let location = CLLocationCoordinate2DMake(region.location.latitude, region.location.longitude)
+        let cameraUpdate = GMSCameraUpdate.setTarget(location, zoom: zoom)
+        (self.mapView as! GMSMapView).animateWithCameraUpdate(cameraUpdate)
     }
     
     override func moveToDefaultRegion() {

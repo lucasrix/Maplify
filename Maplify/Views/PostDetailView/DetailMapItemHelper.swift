@@ -10,24 +10,28 @@ import UIKit
 
 class DetailMapItemHelper {
     class func configureStoryPointView(view: UIView, storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
-        let contentView = NSBundle.mainBundle().loadNibNamed(String(StoryPointInfoView), owner: nil, options: nil).first as! StoryPointInfoView
-        contentView.frame = view.bounds
-        contentView.configure(storyPoint, delegate: delegate)
+        view.subviews.forEach({$0.removeFromSuperview()})
         
-        contentView.layer.cornerRadius = CornerRadius.detailViewBorderRadius
-        contentView.layer.masksToBounds = true
+        weak var contentView = NSBundle.mainBundle().loadNibNamed(String(StoryPointInfoView), owner: nil, options: nil).first as? StoryPointInfoView
+        contentView?.frame = view.bounds
+        contentView?.configure(storyPoint, delegate: delegate)
         
-        view.addSubview(contentView)
+        contentView?.layer.cornerRadius = CornerRadius.detailViewBorderRadius
+        contentView?.layer.masksToBounds = true
+        
+        view.addSubview(contentView!)
     }
     
     class func configureStoryView(view: UIView, story: Story, delegate: StoryInfoViewDelegate) {
-        let contentView = NSBundle.mainBundle().loadNibNamed(String(StoryInfoView), owner: nil, options: nil).first as! StoryInfoView
-        contentView.frame = view.bounds
-        contentView.configure(story, delegate: delegate)
+        view.subviews.forEach({$0.removeFromSuperview()})
         
-        contentView.layer.cornerRadius = CornerRadius.detailViewBorderRadius
-        contentView.layer.masksToBounds = true
+        weak var contentView = NSBundle.mainBundle().loadNibNamed(String(StoryInfoView), owner: nil, options: nil).first as? StoryInfoView
+        contentView?.frame = view.bounds
+        contentView?.configure(story, delegate: delegate)
         
-        view.addSubview(contentView)
+        contentView?.layer.cornerRadius = CornerRadius.detailViewBorderRadius
+        contentView?.layer.masksToBounds = true
+        
+        view.addSubview(contentView!)
     }
 }

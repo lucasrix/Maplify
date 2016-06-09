@@ -9,12 +9,23 @@
 import RealmSwift
 import UIKit
 
+let kAddPostsAttributedMessageDefaultFontSize: CGFloat = 17
+let kPlaceholderImageTopConstantScreen3_5: CGFloat = 20
+let kPlaceholderImageTopConstantScreenGreater3_5: CGFloat = 56
+let kCreateButtonTopConstantScreen3_5: CGFloat = 20
+let kCreateButtonTopConstantScreenGreater3_5: CGFloat = 37
+
 typealias createStoryClosure = ((storyId: Int) -> ())
 
 class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var myPostsLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var createFirstPostButton: UIButton!
+    @IBOutlet weak var placeholderTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var createButtonTopConstraint: NSLayoutConstraint!
     
     var selectedStoryPoints: [StoryPoint]! = nil
     var delegate: AddPostsDelegate! = nil
@@ -52,7 +63,21 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     
     func setupViews() {
         self.myPostsLabel.text = NSLocalizedString("Label.MyPosts", comment: String())
-        self.placeholderLabel.text = NSLocalizedString("Text.Placeholder.Profile", comment: String())
+        
+        let placeholderTextHighlited = NSLocalizedString("Text.Placeholder.AddPostsHighlited", comment: String())
+        let placeholderTextDefault = NSLocalizedString("Text.Placeholder.AddPostsDefault", comment: String())
+        let resultString = placeholderTextHighlited + " " + placeholderTextDefault
+        let attributedString = NSMutableAttributedString(string: resultString)
+        let highlitedRange = (resultString as NSString).rangeOfString(placeholderTextHighlited)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGreyBlue(), range: NSMakeRange(0, NSString(string: attributedString.string).length))
+        attributedString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(kAddPostsAttributedMessageDefaultFontSize), range: highlitedRange)
+        self.placeholderLabel.attributedText = attributedString
+        
+        self.createFirstPostButton.setTitle(NSLocalizedString("Button.CreateFirstPost", comment: String()), forState: .Normal)
+        self.createFirstPostButton.layer.cornerRadius = CornerRadius.defaultRadius
+        
+        self.placeholderTopConstraint.constant = UIScreen.mainScreen().isIPhoneScreenSize3_5() ? kPlaceholderImageTopConstantScreen3_5 : kPlaceholderImageTopConstantScreenGreater3_5
+        self.createButtonTopConstraint.constant = UIScreen.mainScreen().isIPhoneScreenSize3_5() ? kCreateButtonTopConstantScreen3_5 : kCreateButtonTopConstantScreenGreater3_5
     }
     
     // MARK: - navigation bar
@@ -68,9 +93,9 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
         self.storyActiveModel.removeData()
         let realm = try! Realm()
         let foundedStoryPoints = Array(realm.objects(StoryPoint).filter("user.id == \(SessionManager.currentUser().id)").sorted("created_at", ascending: false))
-        self.myPostsLabel.hidden = foundedStoryPoints.count == 0
+        self.topView.hidden = foundedStoryPoints.count == 0
         self.tableView.hidden = foundedStoryPoints.count == 0
-        self.placeholderLabel.hidden = foundedStoryPoints.count > 0
+        self.placeholderView.hidden = foundedStoryPoints.count > 0
         
         self.storyActiveModel.addItems(foundedStoryPoints, cellIdentifier: String(StoryAddPostsTableViewCell), sectionTitle: nil, delegate: self, boundingSize: UIScreen.mainScreen().bounds.size)
         
@@ -115,6 +140,11 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
             self.updateStory(selectedStoryPoints)
             self.backTapped()
         }
+    }
+    
+    // MARK: - actions
+    @IBAction func createFirstPostTapped(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     // MARK: - private

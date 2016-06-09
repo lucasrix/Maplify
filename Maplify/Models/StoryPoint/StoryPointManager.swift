@@ -51,6 +51,35 @@ class StoryPointManager: ModelManager {
         }
     }
     
+    class func deleteLinksFromStory(storyId: Int) {
+        let realm = try! Realm()
+        
+        let result = realm.objects(StoryPoint.self).filter{ (storyPoint) -> Bool in
+            let links = Converter.listToArray(storyPoint.storiesLinks, type: StoryLink.self).map({$0.id})
+            return links.contains(storyId)
+        }
+        
+        let story = StoryManager.find(storyId)
+        if story != nil {
+            for storyPoint in result {
+                StoryPointManager.deleteLink(storyPoint, storyId: storyId)
+            }
+        }
+    }
+    
+    class func deleteLink(storyPoint: StoryPoint, storyId: Int) {
+        let realm = try! Realm()
+        
+        let storiesLinksIds = Converter.listToArray(storyPoint.storiesLinks, type: StoryLink.self).map({$0.id})
+        
+        let index = storiesLinksIds.indexOf(storyId)
+        if index != NSNotFound {
+            try! realm.write {
+                storyPoint.storiesLinks.removeAtIndex(index!)
+            }
+        }
+    }
+    
     class func userStoryPoints(sorted: String, ascending: Bool) -> [StoryPoint] {
         let realm = try! Realm()
         let userId = SessionManager.currentUser().id

@@ -60,6 +60,6 @@ class StoryPointManager: ModelManager {
     
     class func allStoryPoints() -> [StoryPoint] {
         let realm = try! Realm()
-        return Array(realm.objects(StoryPoint))
+        return Array(realm.objects(StoryPoint).filter("reported == false").sorted("created_at", ascending: false))
     }
 }

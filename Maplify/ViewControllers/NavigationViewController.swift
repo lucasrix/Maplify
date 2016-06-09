@@ -8,8 +8,13 @@
 
 import UIKit
 
+enum NavigationType: Int {
+    case Auth
+    case Main
+}
 
 class NavigationViewController: UINavigationController {
+    var navigationType: NavigationType = .Auth
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {

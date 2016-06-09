@@ -16,6 +16,8 @@ typealias progressClosure = (Int64, Int64, Int64) -> ()
 class ApiClient {
     static let sharedClient = ApiClient()
     
+    var counter = 0
+    
     // MARK: - request management
     private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         if ReachabilityNetwork.isConnectedToNetwork() {
@@ -71,6 +73,10 @@ class ApiClient {
     }
     
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
+        
+        self.counter += 1
+        print(self.counter)
+        
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
             SessionHelper.sharedHelper.setSessionData(headersDictionary)
@@ -83,7 +89,8 @@ class ApiClient {
             let htmlDict = ["html": str!] as NSDictionary
             payload = ["data": htmlDict]
         }
-        let statusCode = (response as NSHTTPURLResponse).statusCode
+        let statusCode = self.counter % 10 == 0 ? Network.failureStatusCode401 : (response as NSHTTPURLResponse).statusCode
+        print(statusCode)
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = (payload as! [String : AnyObject])["data"] {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -98,6 +105,16 @@ class ApiClient {
             if statusCode == Network.failureStatusCode500 {
                 dispatch_async(dispatch_get_main_queue()) {
                     failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
+                }
+            } else if statusCode == Network.failureStatusCode401 {
+                let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+                let navigationController = window.rootViewController as! NavigationViewController
+                if navigationController.navigationType == .Main {
+                    RootViewController.navigationController().routesSetLandingController()
+                } else {
+                    if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+                        self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
+                    }
                 }
             } else {
                 if let dataDictionary = (payload as! [String : AnyObject])["error"] {

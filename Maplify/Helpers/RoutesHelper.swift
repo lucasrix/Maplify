@@ -21,6 +21,7 @@ extension UIViewController {
     func routesSetContentController() {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
         let navigationController = NavigationViewController(rootViewController: captureViewController)
+        navigationController.navigationType = .Main
         let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
         window.rootViewController = navigationController
     }

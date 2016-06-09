@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import GoogleMaps
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 self.window?.rootViewController?.routesOpenSharedContentController(sharedType!, sharedId: sharedId!)
             }
-            
         } else if url.absoluteString.containsString(Network.routingPrefix) {
             SessionHelper.sharedHelper.setSessionData(url)
             if self.window?.rootViewController is NavigationViewController {

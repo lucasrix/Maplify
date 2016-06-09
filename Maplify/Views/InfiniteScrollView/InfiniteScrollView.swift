@@ -37,6 +37,7 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
             self.pagingEnabled = !self.cellModeEnabled
         }
     }
+    
     var yViewsOffset: CGFloat = 0
     
     // MARK: - init
@@ -295,6 +296,13 @@ class InfiniteScrollView: UIScrollView, UIScrollViewDelegate {
         self.moveCenterViewToRight(view)
         UIView.animateWithDuration(kDeleteAnimationDuration) {
             self.contentViews.forEach({$0.alpha = 1})
+        }
+    }
+    
+    func clearData() {
+        for view in contentViews {
+            view.subviews.forEach({$0.removeFromSuperview()})
+            view.removeFromSuperview()
         }
     }
 }

@@ -71,7 +71,6 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     }
     
     deinit {
-        print("deinit")
         self.clearData()
     }
     

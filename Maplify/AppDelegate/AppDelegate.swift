@@ -10,7 +10,6 @@ import UIKit
 import Fabric
 import Crashlytics
 import GoogleMaps
-import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

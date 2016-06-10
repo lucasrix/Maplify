@@ -60,8 +60,10 @@ extension CaptureViewController: MCMapServiceDelegate {
             storyPoint = self.currentStory?.storyPoints.first
         } else if (self.contentType == .Default) && (self.selectedStoryPointId != 0) {
             storyPoint = StoryPointManager.find(self.selectedStoryPointId)
-            let indexPath = self.captureActiveModel.find(storyPoint.id)
-            index = indexPath.row
+            if storyPoint != nil {
+                let indexPath = self.captureActiveModel.find(storyPoint.id)
+                index = indexPath.row
+            }
         }
         
         if storyPoint != nil {

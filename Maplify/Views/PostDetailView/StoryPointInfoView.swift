@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 import AFImageHelper
+import PINRemoteImage.PINImageView_PINRemoteImage
+import PINCache
 
 let kEmptyImageViewDefaultHeight: CGFloat = 30
 let kInfoViewHeight: CGFloat = 100
@@ -58,7 +60,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     // MARK: - setup
     func configure(storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
         self.clearData()
-        self.clearCache(storyPoint)
+        self.clearCache()
         
         self.delegate = delegate
         self.storyPointId = storyPoint.id
@@ -111,7 +113,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         
         let userPhotoUrl: NSURL! = NSURL(string: profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
-        self.userImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
+        
+        self.userImageView.pin_setImageFromURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointInfoView.profileImageTapped))
         self.userImageView.addGestureRecognizer(tapGesture)
@@ -142,14 +145,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         } else {
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
-
-        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage, options: [.AvoidAutoSetImage]) { [weak self] (image, error, cacheType, url) in
-            
-            self?.storyPointImageView.image = image.resize(CGSizeMake(kImageReduceSize, kImageReduceSize))
-            if let foundedStoryPoint = StoryPointManager.find((self?.storyPointId)!) {
-                self?.populateImage(foundedStoryPoint, error: error)
-            }
-        }
+        
+        self.storyPointImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage)
     }
     
     func populateImage(storyPoint: StoryPoint, error: NSError!) {
@@ -253,11 +250,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.storiesLinksDataSource = nil
     }
     
-    func clearCache(storyPoint: StoryPoint) {
-        if storyPoint.attachment != nil {
-            SDImageCache.sharedImageCache().removeImageForKey(storyPoint.attachment.file_url, fromDisk: false)
-            SDImageCache.sharedImageCache().removeImageForKey(storyPoint.user.profile.small_thumbnail, fromDisk: false)
-        }
+    func clearCache() {
+        PINRemoteImageManager.sharedImageManager().defaultImageCache().removeAllObjects()
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

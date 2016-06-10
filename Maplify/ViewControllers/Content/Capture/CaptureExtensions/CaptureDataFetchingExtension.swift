@@ -6,7 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-let kCaptureStorypointsFetchLimit: Int = 50
+let kCaptureStorypointsFetchLimit: Int = 200
 
 extension CaptureViewController {
     

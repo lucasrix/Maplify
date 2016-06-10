@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kNotificationNameSignOut = "NotificationNameSignOut"
+
 enum NavigationType: Int {
     case Auth
     case Main
@@ -40,5 +42,15 @@ class NavigationViewController: UINavigationController {
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return (self.topViewController?.supportedInterfaceOrientations())!
+    }
+    
+    func subscribeNotificationsIfNeeded() {
+        if self.navigationType == .Main {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NavigationViewController.signOut), name: "rrr", object: nil)
+        }
+    }
+    
+    func signOut() {
+        
     }
 }

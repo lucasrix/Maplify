@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kStoryDetailTextBottomMargin: CGFloat = 20
+
 protocol StoryInfoViewDelegate: class {
     func storyProfileImageTapped(userId: Int)
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
@@ -71,7 +73,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         
         self.detailsTextView.text = story.storyDescription
         
-        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
+        let width = UIScreen.mainScreen().bounds.width - 2 * (kCellHorizontalMargin + kTextDetailViewMargin)
+        
+        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, width, CGFloat.max)).height + kStoryDetailTextBottomMargin
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }

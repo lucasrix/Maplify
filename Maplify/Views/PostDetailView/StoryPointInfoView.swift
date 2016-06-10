@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import AFImageHelper
 
 let kEmptyImageViewDefaultHeight: CGFloat = 30
 let kInfoViewHeight: CGFloat = 100
@@ -16,6 +17,7 @@ let kStoriesTableRowHeight: CGFloat = 44
 let kStoryPointCellYOffset: CGFloat = 10
 let kTextDetailViewMargin: CGFloat = 16
 let kBottomTableMargin: CGFloat = 10
+let kImageReduceSize: CGFloat = 350
 
 protocol StoryPointInfoViewDelegate: class {
     func profileImageTapped(userId: Int)
@@ -141,7 +143,9 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
 
-        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
+        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage, options: [.AvoidAutoSetImage]) { [weak self] (image, error, cacheType, url) in
+            
+            self?.storyPointImageView.image = image.resize(CGSizeMake(kImageReduceSize, kImageReduceSize))
             if let foundedStoryPoint = StoryPointManager.find((self?.storyPointId)!) {
                 self?.populateImage(foundedStoryPoint, error: error)
             }

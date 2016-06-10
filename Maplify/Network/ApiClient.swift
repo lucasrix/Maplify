@@ -18,10 +18,14 @@ class ApiClient {
     
     // MARK: - request management
     private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        if (config.data != nil) {
-            self.multipartRequest(config, manager: manager, success: success, failure: failure)
+        if ReachabilityNetwork.isConnectedToNetwork() {
+            if (config.data != nil) {
+                self.multipartRequest(config, manager: manager, success: success, failure: failure)
+            } else {
+                self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
+            }
         } else {
-            self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
+            failure?(statusCode: 0, errors: nil, localDescription: nil, messages: [NSLocalizedString("Alert.CheckConnectionNetwork", comment: String())])
         }
     }
     
@@ -72,7 +76,7 @@ class ApiClient {
             SessionHelper.sharedHelper.setSessionData(headersDictionary)
         }
         
-        var payload = data.jsonDictionary()
+        var payload = data?.jsonDictionary()
         
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)

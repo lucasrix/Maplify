@@ -199,6 +199,7 @@
 "Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 "Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
+"Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

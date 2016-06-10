@@ -25,10 +25,15 @@ class NavigationViewController: UINavigationController {
         self.setup()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: kNotificationNameSignOut, object: nil)
+    }
+    
     // MARK: - setup
     func setup() {
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.tintColor = UIColor.whiteColor()
+        self.subscribeNotifications()
     }
     
     override func childViewControllerForStatusBarStyle() -> UIViewController? {
@@ -44,13 +49,16 @@ class NavigationViewController: UINavigationController {
         return (self.topViewController?.supportedInterfaceOrientations())!
     }
     
-    func subscribeNotificationsIfNeeded() {
-        if self.navigationType == .Main {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NavigationViewController.signOut), name: "rrr", object: nil)
-        }
+    func subscribeNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NavigationViewController.signOut), name: kNotificationNameSignOut, object: nil)
     }
     
     func signOut() {
-        
+        if self.navigationType == .Main {
+            SessionHelper.sharedHelper.removeSessionData()
+            SessionHelper.sharedHelper.removeSessionAuthCookies()
+            SessionHelper.sharedHelper.removeDatabaseData()
+            RootViewController.navigationController().routesSetLandingController()
+        }
     }
 }

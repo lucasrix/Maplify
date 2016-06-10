@@ -103,17 +103,9 @@ class ApiClient {
             }
         } else {
             if statusCode == Network.failureStatusCode500 {
-                dispatch_async(dispatch_get_main_queue()) {
-                    failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
-                }
+                self.manageInternalServerError(statusCode, failure: failure)
             } else if statusCode == Network.failureStatusCode401 {
-                let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
-                let navigationController = window.rootViewController as! NavigationViewController
-                if navigationController.navigationType == .Main {
-                    RootViewController.navigationController().routesSetLandingController()
-                } else {
-                    self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
-                }
+                self.manageUnauthorizedError(payload, statusCode: statusCode, error: error, failure: failure)
             } else {
                 self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
             }
@@ -131,6 +123,22 @@ class ApiClient {
         }
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
+        }
+    }
+    
+    private func manageUnauthorizedError(payload: AnyObject!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+        let navigationController = window.rootViewController as! NavigationViewController
+        if navigationController.navigationType == .Main {
+            NSNotificationCenter.defaultCenter().postNotificationName(kNotificationNameSignOut, object: nil)
+        } else {
+            self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
+        }
+    }
+    
+    private func manageInternalServerError(statusCode: Int, failure: failureClosure!) {
+        dispatch_async(dispatch_get_main_queue()) {
+            failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
         }
     }
     

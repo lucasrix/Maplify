@@ -16,8 +16,6 @@ typealias progressClosure = (Int64, Int64, Int64) -> ()
 class ApiClient {
     static let sharedClient = ApiClient()
     
-    var counter = 0
-    
     // MARK: - request management
     private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
         if ReachabilityNetwork.isConnectedToNetwork() {
@@ -74,9 +72,6 @@ class ApiClient {
     
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
         
-        self.counter += 1
-        print(self.counter)
-        
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
             SessionHelper.sharedHelper.setSessionData(headersDictionary)
@@ -89,8 +84,8 @@ class ApiClient {
             let htmlDict = ["html": str!] as NSDictionary
             payload = ["data": htmlDict]
         }
-        let statusCode = self.counter % 10 == 0 ? Network.failureStatusCode401 : (response as NSHTTPURLResponse).statusCode
-        print(statusCode)
+        
+        let statusCode = (response as NSHTTPURLResponse).statusCode
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = (payload as! [String : AnyObject])["data"] {
                 dispatch_async(dispatch_get_main_queue()) {

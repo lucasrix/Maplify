@@ -68,13 +68,6 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if ReachabilityNetwork.isConnectedToNetwork() {
-            print("yes")
-        } else {
-            print("no")
-        }
-        
         self.setup()
     }
     

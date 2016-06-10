@@ -181,7 +181,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     @IBAction func followTapped(sender: UIButton) {
+        self.followButton.enabled = false
         self.delegate?.followStory(self.storyId, completion: { [weak self] (success) in
+            self?.followButton.enabled = true
             if success {
                 self?.populateFollowButton()
             }

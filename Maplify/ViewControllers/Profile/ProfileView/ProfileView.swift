@@ -330,7 +330,9 @@ class ProfileView: UIView, TTTAttributedLabelDelegate, UIImagePickerControllerDe
     }
     
     @IBAction func followButtonTapped(sender: AnyObject) {
+        self.followButton.enabled = false
         self.delegate?.followButtonDidTap(self.profileId, completion: { [weak self] (success) in
+            self?.followButton.enabled = true
             if success {
                 self?.populateFollowButton()
             }

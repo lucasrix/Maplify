@@ -112,26 +112,23 @@ class ApiClient {
                 if navigationController.navigationType == .Main {
                     RootViewController.navigationController().routesSetLandingController()
                 } else {
-                    if let dataDictionary = (payload as! [String : AnyObject])["error"] {
-                        self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
-                    }
+                    self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
                 }
             } else {
-                if let dataDictionary = (payload as! [String : AnyObject])["error"] {
-                    self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
-                    }
-                }
+                self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
             }
         }
     }
     
-    private func manageError(dict: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let details = dict["details"] as! [String: AnyObject]
-        let messages = dict["error_messages"] as! [String]
-        let errors = ApiError.parseErrors(details, messages: messages)
+    private func manageError(payload: AnyObject!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        var errors: [ApiError]! = nil
+        var messages: [String]! = nil
+        
+        if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+            let details = dataDictionary["details"] as! [String: AnyObject]
+            messages = dataDictionary["error_messages"] as! [String]
+            errors = ApiError.parseErrors(details, messages: messages)
+        }
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
         }

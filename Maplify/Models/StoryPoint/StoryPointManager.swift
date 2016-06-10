@@ -91,4 +91,9 @@ class StoryPointManager: ModelManager {
         let realm = try! Realm()
         return Array(realm.objects(StoryPoint).filter("reported == false").sorted("created_at", ascending: false))
     }
+    
+    class func allStoryPoints(limit: Int) -> [StoryPoint] {
+        let array = StoryPointManager.allStoryPoints()
+        return Array(array.prefix(limit))
+    }
 }

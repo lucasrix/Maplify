@@ -6,11 +6,13 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+let kCaptureStorypointsFetchLimit: Int = 180
+
 extension CaptureViewController {
     
     // MARK: - database
     func loadLocalAllStoryPonts() {
-        self.currentStoryPoints = StoryPointManager.allStoryPoints()
+        self.currentStoryPoints = StoryPointManager.allStoryPoints(kCaptureStorypointsFetchLimit)
     }
     
     func loadLocalCurrentStoryPont(storyPointId: Int) {

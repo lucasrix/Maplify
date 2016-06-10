@@ -23,8 +23,10 @@
 "Text.Placeholder.ConfirmNewPassword" = "Confirm new Password";
 "Text.Placeholder.Followers" = "You don't have any followers yet";
 "Text.Placeholder.Followings" = "You are not following anyone yet";
-"Text.Placeholder.Profile" = "You don’t have any posts yet";
 "Text.Placeholder.Notifications" = "There aren’t any notifications for now";
+"Text.Placeholder.AddPostsHighlited" = "Looks like you don't have anything to add just yet.";
+"Text.Placeholder.AddPostsDefault" = "So... you can come back to it later, but better yet how about we jump in and create your first post?";
+"Text.Placeholder.Profile" = "You don’t have any posts yet";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -171,6 +173,7 @@
 "Button.PrivacyPolicy" = "Privacy Policy";
 "Button.TermsOfService" = "Terms of Service";
 "Button.LogOut" = "Log out";
+"Button.CreateFirstPost" = "Create your 1st post";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -195,6 +198,8 @@
 "Alert.StoryDoesntHaveStoryPoints" = "This story doesn’t have storypoints";
 "Alert.SharingLinkCopiedToClipboard" = "URL copied. Paste and share away!";
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
+"Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
+"Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

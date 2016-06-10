@@ -49,7 +49,9 @@ extension CaptureViewController {
     }
     
     func setupDataDetailNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoMoreWhite)!, target: self, action: #selector(CaptureViewController.storyDetailMenuButtonTapped))
+        if self.currentStory != nil {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoMoreWhite)!, target: self, action: #selector(CaptureViewController.storyDetailMenuButtonTapped))
+        }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(CaptureViewController.cancelButtonTapped))
     }
     
@@ -62,15 +64,18 @@ extension CaptureViewController {
             self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
             self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
         }
-        self.pressAndHoldView.hidden = self.contentType != .Default
     }
     
     func setupTitle() {
         if self.contentType == .Story {
             self.title = self.currentStory?.title
         } else {
-            self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
+            self.setupDefaultTitle()
         }
+    }
+    
+    func setupDefaultTitle() {
+        self.title = NSLocalizedString("Controller.Capture.Title", comment: String())
     }
     
     func setupPopTip() {
@@ -141,8 +146,8 @@ extension CaptureViewController {
             self.popControllerFromLeft()
         } else {
             self.contentType = .Default
+            self.selectedStoryPointId = 0
             self.infiniteScrollView.hidden = true
-            self.setupBottomButtonIfNeeded()
             self.loadData()
         }
     }

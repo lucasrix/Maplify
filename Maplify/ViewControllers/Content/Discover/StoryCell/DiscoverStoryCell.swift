@@ -74,6 +74,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
         self.followButton.layer.cornerRadius = CornerRadius.defaultRadius
         self.followButton.layer.borderWidth = Border.defaultBorderWidth
         self.followButton.layer.borderColor = UIColor.darkGreyBlue().CGColor
+
+        let story = StoryManager.find(self.storyId)
+        self.followButton.hidden = story.user.id == SessionManager.currentUser().id
     }
     
     func populateUserViews(story: Story) {
@@ -162,7 +165,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     @IBAction func likeTapped(sender: UIButton) {
+        self.likeButton.enabled = false
         self.delegate?.likeStoryDidTap(self.storyId, completion: { [weak self] (success) in
+            self?.likeButton.enabled = true
             if success {
                 self?.populateLikeButton()
             }
@@ -176,7 +181,9 @@ class DiscoverStoryCell: CSTableViewCell, CSBaseCollectionDataSourceDelegate {
     }
     
     @IBAction func followTapped(sender: UIButton) {
+        self.followButton.enabled = false
         self.delegate?.followStory(self.storyId, completion: { [weak self] (success) in
+            self?.followButton.enabled = true
             if success {
                 self?.populateFollowButton()
             }

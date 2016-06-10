@@ -188,11 +188,13 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                                                    success: { [weak self] (response) in
                                                     StoryManager.saveStory(response as! Story)
                                                     let story = StoryManager.find(storyId)
-                                                    StoryLinkManager.deleteStoryLink(storyId)
+                                                    
+                                                    StoryPointManager.deleteLinksFromStory(storyId)
                                                     StoryManager.delete(story)
+                                                    
                                                     self?.infiniteScrollView.deleteCurrentView()
                                                     self?.hideProgressHUD()
-                                                    self?.cancelButtonTapped()
+                                                    self?.cancelButtonTapped()                                                    
                     },
                                                    failure: { [weak self] (statusCode, errors, localDescription, messages) in
                                                     self?.hideProgressHUD()

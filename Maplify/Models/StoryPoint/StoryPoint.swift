@@ -28,10 +28,6 @@ class StoryPoint: Model {
     dynamic var reported: Bool = false
     var storiesLinks = List<StoryLink>()
     
-    var discoverItem: DiscoverItem? {
-        return self.linkingObjects(DiscoverItem.self, forProperty: "storyPoint").first
-    }
-    
     convenience required init(_ map: [String : AnyObject]) {
         self.init()
     

@@ -24,6 +24,7 @@ extension CaptureViewController: MCMapServiceDelegate {
         } else {
             let defaultLocation = CLLocation(latitude: DefaultLocation.washingtonDC.0, longitude: DefaultLocation.washingtonDC.1)
             self.setupMap(defaultLocation, showWholeWorld: true)
+            completion()
         }
     }
     
@@ -54,13 +55,15 @@ extension CaptureViewController: MCMapServiceDelegate {
         var index: Int = 0
         var storyPoint: StoryPoint! = nil
         if self.contentType == .StoryPoint {
-            storyPoint = self.currentStoryPoints.first
+            storyPoint = self.currentStoryPoints.count > 0 ? self.currentStoryPoints.first : nil
         } else if self.contentType == .Story {
-            storyPoint = self.currentStory.storyPoints.first
+            storyPoint = self.currentStory?.storyPoints.first
         } else if (self.contentType == .Default) && (self.selectedStoryPointId != 0) {
             storyPoint = StoryPointManager.find(self.selectedStoryPointId)
-            let indexPath = self.captureActiveModel.find(storyPoint.id)
-            index = indexPath.row
+            if storyPoint != nil {
+                let indexPath = self.captureActiveModel.find(storyPoint.id)
+                index = indexPath.row
+            }
         }
         
         if storyPoint != nil {
@@ -70,6 +73,7 @@ extension CaptureViewController: MCMapServiceDelegate {
             self.selectPin(index, mapCoordinate: coordinate, pointInView: pointInView)
             self.scrollToDestinationPointWithOffset(pointInView)
             self.infiniteScrollView.hidden = false
+            self.infiniteScrollView.clearData()
             self.infiniteScrollView.moveAndShowCell(index, animated: false)
         }
     }
@@ -84,6 +88,7 @@ extension CaptureViewController: MCMapServiceDelegate {
             let storyPointIndex = self.captureActiveModel.storyPointIndex(mapCoordinate, section: 0)
             
             self.infiniteScrollView.hidden = false
+            self.infiniteScrollView.clearData()
             
             self.selectPin(storyPointIndex, mapCoordinate: mapCoordinate, pointInView: pointInView)
         }
@@ -103,6 +108,7 @@ extension CaptureViewController: MCMapServiceDelegate {
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
         if self.contentType == .Default {
+            self.pressAndHoldLabelHidden = true
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
             self.placePopUpPin(latitude, longitude: longitude, locationInView: locationInView)

@@ -6,22 +6,32 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+let kCaptureStorypointsFetchLimit: Int = 180
+
 extension CaptureViewController {
     
     // MARK: - database
     func loadLocalAllStoryPonts() {
-        self.currentStoryPoints = StoryPointManager.allStoryPoints()
+        self.currentStoryPoints = StoryPointManager.allStoryPoints(kCaptureStorypointsFetchLimit)
     }
     
     func loadLocalCurrentStoryPont(storyPointId: Int) {
         self.currentStoryPoints.removeAll()
-        self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
+        let storyPoint = StoryPointManager.find(storyPointId)
+        if storyPoint != nil {
+            self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
+        }
     }
     
     func loadLocalCurrentStory(storyId: Int) {
-        self.currentStory = StoryManager.find(storyId)
         self.currentStoryPoints.removeAll()
-        self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
+        self.currentStory = StoryManager.find(storyId)
+        if self.currentStory?.storyPoints.count == 0 {
+            self.popController()
+        }
+        if self.currentStory != nil {
+            self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
+        }
     }
     
     // MARK: - remote

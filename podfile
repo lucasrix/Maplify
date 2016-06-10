@@ -3,7 +3,7 @@ use_frameworks!
 
 target 'Maplify' do
   pod 'Alamofire', '~> 3.2'
-  pod 'RealmSwift', '~> 0.98'
+  pod 'RealmSwift', '~> 1.0'
   pod 'TTTAttributedLabel', '~> 1.13'
   pod 'ALThreeCircleSpinner', '~> 1.0'
   pod 'Locksmith', '~> 2.0'
@@ -27,4 +27,5 @@ target 'Maplify' do
   pod 'Player', '~> 0.1'
   pod 'KDEAudioPlayer', '~> 0.8'
   pod 'AMPopTip', '~> 1.0'
+  pod 'PINRemoteImage', '~> 2.1'
 end

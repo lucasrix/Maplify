@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
+import AFImageHelper
+import PINRemoteImage.PINImageView_PINRemoteImage
+import PINCache
 
 let kEmptyImageViewDefaultHeight: CGFloat = 30
 let kInfoViewHeight: CGFloat = 100
@@ -15,8 +19,9 @@ let kStoriesTableRowHeight: CGFloat = 44
 let kStoryPointCellYOffset: CGFloat = 10
 let kTextDetailViewMargin: CGFloat = 16
 let kBottomTableMargin: CGFloat = 10
+let kImageReduceSize: CGFloat = 350
 
-protocol StoryPointInfoViewDelegate {
+protocol StoryPointInfoViewDelegate: class {
     func profileImageTapped(userId: Int)
     func didSelectStory(storyId: Int)
     func likeStoryPointDidTap(storyPointId: Int, completion: ((success: Bool) -> ()))
@@ -45,15 +50,18 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentMediaViewHeight: NSLayoutConstraint!
     
-    var storiesLinksActiveModel = CSActiveModel()
+    var storiesLinksActiveModel: CSActiveModel! = nil
     var storiesLinksDataSource: CSBaseTableDataSource! = nil
     var userId: Int = 0
     var storyPointId: Int = 0
-    var delegate: StoryPointInfoViewDelegate! = nil
+    weak var delegate: StoryPointInfoViewDelegate? = nil
     var textHeight: CGFloat = 0
     
     // MARK: - setup
     func configure(storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
+        self.clearData()
+        self.clearCache()
+        
         self.delegate = delegate
         self.storyPointId = storyPoint.id
         
@@ -64,6 +72,10 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.populateLikeButton(storyPoint)
         self.setupGestures()
         self.setupContentSize()
+    }
+    
+    deinit {
+        self.clearData()
     }
     
     func setupLabels(storyPoint: StoryPoint) {
@@ -101,7 +113,8 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         
         let userPhotoUrl: NSURL! = NSURL(string: profile.small_thumbnail)
         let placeholderImage = UIImage(named: PlaceholderImages.discoverUserEmptyAva)
-        self.userImageView.sd_setImageWithURL(userPhotoUrl, placeholderImage: placeholderImage)
+        
+        self.userImageView.pin_setImageFromURL(userPhotoUrl, placeholderImage: placeholderImage)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryPointInfoView.profileImageTapped))
         self.userImageView.addGestureRecognizer(tapGesture)
@@ -132,12 +145,20 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         } else {
             attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         }
-        self.storyPointImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
-            if error == nil {
+        
+        self.storyPointImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage, completion: { [weak self] (result) in
+            if result.error == nil {
                 self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
             }
             self?.populateKindImage(storyPoint)
+        })
+    }
+    
+    func populateImage(storyPoint: StoryPoint, error: NSError!) {
+        if error == nil {
+            self.colorView?.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
         }
+        self.populateKindImage(storyPoint)
     }
     
     func populateKindImage(storyPoint: StoryPoint) {
@@ -164,6 +185,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         if storyPoint.storiesLinks.count > 0 {
             self.storiesTableView.registerClass(StoryLinkCell.self, forCellReuseIdentifier: String(StoryLinkCell))
             self.storiesTableView.registerNib(UINib(nibName: String(StoryLinkCell), bundle: nil), forCellReuseIdentifier: String(StoryLinkCell))
+            self.storiesLinksActiveModel = CSActiveModel()
             self.storiesLinksActiveModel.addItems(Array(storyPoint.storiesLinks), cellIdentifier: String(StoryLinkCell), sectionTitle: nil, delegate: self)
             self.storiesLinksDataSource = CSBaseTableDataSource(tableView: self.storiesTableView, activeModel: self.storiesLinksActiveModel, delegate: self)
             self.tableViewHeightConstraint.constant = CGFloat(self.storiesLinksActiveModel.numberOfItems(0)) * kStoriesTableRowHeight
@@ -222,6 +244,19 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
             PlayerHelper.sharedPlayer.playAudio((storyPoint?.attachment?.file_url)!, onView: self.attachmentContentView)
         }
         self.attachmentContentView.hidden = storyPoint?.kind == StoryPointKind.Text.rawValue || storyPoint?.kind == StoryPointKind.Photo.rawValue
+    }
+    
+    func clearData() {
+        self.storyPointImageView?.image = nil
+        self.userImageView?.image = nil
+        self.backUserImageView?.image = nil
+        self.storiesLinksActiveModel?.removeData()
+        self.storiesLinksActiveModel = nil
+        self.storiesLinksDataSource = nil
+    }
+    
+    func clearCache() {
+        PINRemoteImageManager.sharedImageManager().defaultImageCache().removeAllObjects()
     }
     
     // MARK: - CSBaseTableDataSourceDelegate

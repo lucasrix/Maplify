@@ -8,7 +8,9 @@
 
 import UIKit
 
-protocol StoryInfoViewDelegate {
+let kStoryDetailTextBottomMargin: CGFloat = 45
+
+protocol StoryInfoViewDelegate: class {
     func storyProfileImageTapped(userId: Int)
     func likeStoryDidTap(storyId: Int, completion: ((success: Bool) -> ()))
     func shareStoryDidTap(storyId: Int)
@@ -33,9 +35,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
 
     var userId: Int = 0
     var storyId: Int = 0
-    var delegate: StoryInfoViewDelegate! = nil
+    weak var delegate: StoryInfoViewDelegate? = nil
     var storyPointDataSource: DetailStoryItemsDataSource! = nil
-    var storyPointActiveModel = CSActiveModel()
+    var storyPointActiveModel: CSActiveModel! = nil
     var textHeight: CGFloat = 0
     
     // MARK: - setup
@@ -47,6 +49,10 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         self.updateCollectionViewData(story)
         self.populateLikeButton(story)
         self.setupAddressLabel(story)
+    }
+    
+    deinit {
+        self.clearData()
     }
     
     func setupUserViews(story: Story) {
@@ -67,7 +73,9 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         
         self.detailsTextView.text = story.storyDescription
         
-        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, CGRectGetWidth(self.detailsTextView.frame), CGFloat.max)).height + kDetailTextBottomMargin
+        let width = UIScreen.mainScreen().bounds.width - 2 * (kCellHorizontalMargin + kTextDetailViewMargin)
+        
+        self.detailsTextViewHeight.constant = story.storyDescription.size(self.detailsTextView.font!, boundingRect: CGRectMake(0, 0, width, CGFloat.max)).height + kStoryDetailTextBottomMargin
         
         self.userNameLabel.text = profile.firstName + " " + profile.lastName
     }
@@ -76,8 +84,8 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         let user = story.user as User
         let profile = user.profile as Profile
         
-        if profile.location.address.length > 0 {
-            self.addressLabel.text = profile.location.address
+        if profile.city.length > 0 {
+            self.addressLabel.text = profile.city
         } else {
             let location = MCMapCoordinate(latitude: profile.location.latitude, longitude: profile.location.longitude)
             self.addressLabel.text = self.generateLocationString(location)
@@ -100,17 +108,18 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     }
     
     func updateCollectionViewData(story: Story) {
-        self.collectionView.registerClass(DetailStoryNumberCell.self, forCellWithReuseIdentifier: String(DetailStoryNumberCell))
-        self.collectionView.registerNib(UINib(nibName: String(DetailStoryNumberCell), bundle: nil), forCellWithReuseIdentifier: String(DetailStoryNumberCell))
+        self.collectionView?.registerClass(DetailStoryNumberCell.self, forCellWithReuseIdentifier: String(DetailStoryNumberCell))
+        self.collectionView?.registerNib(UINib(nibName: String(DetailStoryNumberCell), bundle: nil), forCellWithReuseIdentifier: String(DetailStoryNumberCell))
         
-        self.collectionView.registerClass(DetailStoryPointCollectionCell.self, forCellWithReuseIdentifier: String(DetailStoryPointCollectionCell))
-        self.collectionView.registerNib(UINib(nibName: String(DetailStoryPointCollectionCell), bundle: nil), forCellWithReuseIdentifier: String(DetailStoryPointCollectionCell))
+        self.collectionView?.registerClass(DetailStoryPointCollectionCell.self, forCellWithReuseIdentifier: String(DetailStoryPointCollectionCell))
+        self.collectionView?.registerNib(UINib(nibName: String(DetailStoryPointCollectionCell), bundle: nil), forCellWithReuseIdentifier: String(DetailStoryPointCollectionCell))
         
         let storyPoints: [StoryPoint] = Array(story.storyPoints)
         let itemsToShow: [AnyObject] = [story] + storyPoints
-        self.storyPointActiveModel.removeData()
+        self.storyPointActiveModel?.removeData()
         
         let width = UIScreen.mainScreen().bounds.width - 2 * kCellHorizontalMargin
+        self.storyPointActiveModel = CSActiveModel()
         self.storyPointActiveModel.addItems(itemsToShow, cellIdentifier: String(), sectionTitle: nil, delegate: self, boundingSize: CGSizeMake(width, 0))
         self.storyPointDataSource = DetailStoryItemsDataSource(collectionView: self.collectionView, activeModel: self.storyPointActiveModel, delegate: self)
         self.storyPointDataSource.reloadCollectionView()
@@ -176,6 +185,13 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         let updatedHeight = self.detailsTextViewHeight.constant + self.collectionViewHeightConstraint.constant + kInfoViewHeight + kDetailTextBottomMargin
         self.scrollView.contentSize = CGSizeMake(0, updatedHeight)
         self.contentViewHeightConstraint.constant = updatedHeight
+    }
+    
+    func clearData() {
+        self.storyPointActiveModel.removeData()
+        self.storyPointActiveModel = nil
+        self.storyPointDataSource = nil
+        self.userImageView?.image = nil
     }
     
     // MARK: - UIScrollViewDelegate

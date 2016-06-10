@@ -155,6 +155,7 @@
 		CD153CB81CE4904200F32BDE /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
 		CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
 		CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
+		CD18DF5A1D0B0A9300538D30 /* ReachabilityNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */; };
 		CD1DB23D1CFEDD9D00D62944 /* CaptureMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */; };
 		CD1DB23F1CFEE05500D62944 /* CaptureDataFetchingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */; };
 		CD1DB2411CFF0F5A00D62944 /* CaptureDetailViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */; };
@@ -379,6 +380,7 @@
 		CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentFollowingViewController.swift; sourceTree = "<group>"; };
 		CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		CD153CC21CE4C4E200F32BDE /* UserListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListManager.swift; sourceTree = "<group>"; };
+		CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityNetwork.swift; sourceTree = "<group>"; };
 		CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureMapExtension.swift; sourceTree = "<group>"; };
 		CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDataFetchingExtension.swift; sourceTree = "<group>"; };
 		CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDetailViewExtension.swift; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */,
 				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 				CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */,
+				CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1543,6 +1546,7 @@
 				A59A7E891C9AD38600399A38 /* MCMapDataSource.swift in Sources */,
 				85FD8C2A1CFC3FA6008956CE /* DetailStoryItemsDataSource.swift in Sources */,
 				A59A7E831C9AD1F400399A38 /* MCMapView.swift in Sources */,
+				CD18DF5A1D0B0A9300538D30 /* ReachabilityNetwork.swift in Sources */,
 				A58A52CA1C7F132A00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,

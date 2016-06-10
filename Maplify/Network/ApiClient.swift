@@ -18,10 +18,14 @@ class ApiClient {
     
     // MARK: - request management
     private func request(config: RequestConfig, manager: ModelManager!, encoding: ParameterEncoding, success: successClosure!, failure: failureClosure!) {
-        if (config.data != nil) {
-            self.multipartRequest(config, manager: manager, success: success, failure: failure)
+        if ReachabilityNetwork.isConnectedToNetwork() {
+            if (config.data != nil) {
+                self.multipartRequest(config, manager: manager, success: success, failure: failure)
+            } else {
+                self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
+            }
         } else {
-            self.baseRequest(config, manager: manager, encoding: encoding, success: success, failure: failure)
+            failure?(statusCode: 0, errors: nil, localDescription: nil, messages: [NSLocalizedString("Alert.CheckConnectionNetwork", comment: String())])
         }
     }
     
@@ -72,7 +76,7 @@ class ApiClient {
             SessionHelper.sharedHelper.setSessionData(headersDictionary)
         }
         
-        var payload = data.jsonDictionary()
+        var payload = data?.jsonDictionary()
         
         if payload == nil {
             let str = String(data: data, encoding: NSUTF8StringEncoding)
@@ -178,7 +182,7 @@ class ApiClient {
     func updateProfile(profile: Profile, location: Location!, success: successClosure!, failure: failureClosure!) {
         var params: [String: AnyObject] = ["city": profile.city, "url": profile.url, "about": profile.about, "first_name": profile.firstName, "last_name": profile.lastName]
         if (location != nil) {
-            let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address]
+            let locationDict: [String: AnyObject] = ["latitude": location.latitude, "longitude": location.longitude, "address": location.address, "city": location.city]
             params["location"] = locationDict
         }
         self.patchRequest("profile", params: params, data: nil, manager: ProfileManager(), success: success, failure: failure)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kStoryDetailTextBottomMargin: CGFloat = 20
+let kStoryDetailTextBottomMargin: CGFloat = 45
 
 protocol StoryInfoViewDelegate: class {
     func storyProfileImageTapped(userId: Int)

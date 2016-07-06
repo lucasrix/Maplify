@@ -153,6 +153,4 @@ class SessionHelper {
         SessionHelper.sharedHelper.setPushNotificationsEnabled(true)
         SessionHelper.sharedHelper.setLocationEnabled(true)
     }
-    
-    
 }

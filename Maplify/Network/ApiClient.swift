@@ -33,7 +33,9 @@ class ApiClient {
         let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
-                self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                if response != nil {
+                    self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                }
         }
     }
     
@@ -125,6 +127,7 @@ class ApiClient {
         let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
         let navigationController = window.rootViewController as! NavigationViewController
         if navigationController.navigationType == .Main {
+            self.cancelAllRequests()
             NSNotificationCenter.defaultCenter().postNotificationName(kNotificationNameSignOut, object: nil)
         } else {
             self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
@@ -134,6 +137,20 @@ class ApiClient {
     private func manageInternalServerError(statusCode: Int, failure: failureClosure!) {
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
+        }
+    }
+    
+    private func cancelAllRequests() {
+        if #available(iOS 9.0, *) {
+            Alamofire.Manager.sharedInstance.session.getAllTasksWithCompletionHandler({ (tasks) in
+                tasks.forEach { $0.cancel() }
+            })
+        } else {
+            Alamofire.Manager.sharedInstance.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+                dataTasks.forEach { $0.cancel() }
+                uploadTasks.forEach { $0.cancel() }
+                downloadTasks.forEach { $0.cancel() }
+            }
         }
     }
     

@@ -33,7 +33,9 @@ class ApiClient {
         let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
         Alamofire.request(config.type, config.uri.byAddingHost(), parameters: config.params, encoding: encoding, headers: headers)
             .response {[weak self] request, response, data, error  in
-                self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                if response != nil {
+                    self?.manageResponse(response!, data: data!, manager: manager, acceptCodes: config.acceptCodes, error: error, success: success, failure: failure)
+                }
         }
     }
     
@@ -71,6 +73,7 @@ class ApiClient {
     }
     
     private func manageResponse(response: NSHTTPURLResponse!, data: NSData!, manager: ModelManager!, acceptCodes: [Int]!, error: NSError!, success: successClosure!, failure: failureClosure!) {
+        
         let headersDictionary = (response as NSHTTPURLResponse).allHeaderFields
         if headersDictionary["Access-Token"] != nil {
             SessionHelper.sharedHelper.setSessionData(headersDictionary)
@@ -83,6 +86,7 @@ class ApiClient {
             let htmlDict = ["html": str!] as NSDictionary
             payload = ["data": htmlDict]
         }
+        
         let statusCode = (response as NSHTTPURLResponse).statusCode
         if acceptCodes.contains(statusCode) {
             if let dataDictionary = (payload as! [String : AnyObject])["data"] {
@@ -96,27 +100,57 @@ class ApiClient {
             }
         } else {
             if statusCode == Network.failureStatusCode500 {
-                dispatch_async(dispatch_get_main_queue()) {
-                    failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
-                }
+                self.manageInternalServerError(statusCode, failure: failure)
+            } else if statusCode == Network.failureStatusCode401 {
+                self.manageUnauthorizedError(payload, statusCode: statusCode, error: error, failure: failure)
             } else {
-                if let dataDictionary = (payload as! [String : AnyObject])["error"] {
-                    self.manageError(dataDictionary as! [String : AnyObject], statusCode: statusCode, error: error, failure: failure)
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        failure?(statusCode: statusCode, errors: nil, localDescription: error?.localizedDescription, messages: nil)
-                    }
-                }
+                self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
             }
         }
     }
     
-    private func manageError(dict: [String: AnyObject]!, statusCode: Int , error: NSError!, failure: failureClosure!) {
-        let details = dict["details"] as! [String: AnyObject]
-        let messages = dict["error_messages"] as! [String]
-        let errors = ApiError.parseErrors(details, messages: messages)
+    private func manageError(payload: AnyObject!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        var errors: [ApiError]! = nil
+        var messages: [String]! = nil
+        
+        if let dataDictionary = (payload as! [String : AnyObject])["error"] {
+            let details = dataDictionary["details"] as! [String: AnyObject]
+            messages = dataDictionary["error_messages"] as! [String]
+            errors = ApiError.parseErrors(details, messages: messages)
+        }
         dispatch_async(dispatch_get_main_queue()) {
             failure?(statusCode: statusCode, errors: errors, localDescription: error?.localizedDescription, messages: messages)
+        }
+    }
+    
+    private func manageUnauthorizedError(payload: AnyObject!, statusCode: Int , error: NSError!, failure: failureClosure!) {
+        let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
+        let navigationController = window.rootViewController as! NavigationViewController
+        if navigationController.navigationType == .Main {
+            self.cancelAllRequests()
+            NSNotificationCenter.defaultCenter().postNotificationName(kNotificationNameSignOut, object: nil)
+        } else {
+            self.manageError(payload, statusCode: statusCode, error: error, failure: failure)
+        }
+    }
+    
+    private func manageInternalServerError(statusCode: Int, failure: failureClosure!) {
+        dispatch_async(dispatch_get_main_queue()) {
+            failure?(statusCode: statusCode, errors: nil, localDescription: nil, messages: [NSLocalizedString("Error.InternalServerError", comment: String())])
+        }
+    }
+    
+    private func cancelAllRequests() {
+        if #available(iOS 9.0, *) {
+            Alamofire.Manager.sharedInstance.session.getAllTasksWithCompletionHandler({ (tasks) in
+                tasks.forEach { $0.cancel() }
+            })
+        } else {
+            Alamofire.Manager.sharedInstance.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+                dataTasks.forEach { $0.cancel() }
+                uploadTasks.forEach { $0.cancel() }
+                downloadTasks.forEach { $0.cancel() }
+            }
         }
     }
     

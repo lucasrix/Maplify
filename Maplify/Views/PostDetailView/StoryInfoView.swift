@@ -38,7 +38,6 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     weak var delegate: StoryInfoViewDelegate? = nil
     var storyPointDataSource: DetailStoryItemsDataSource! = nil
     var storyPointActiveModel: CSActiveModel! = nil
-    var textHeight: CGFloat = 0
     
     // MARK: - setup
     func configure(story: Story, delegate: StoryInfoViewDelegate) {

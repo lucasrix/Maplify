@@ -81,6 +81,12 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
+    func routesOpenStoryCreateCameraRollController(createStoryCompletion: createStoryClosure!) {
+        let storyCreateCameraRollController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateCameraRollController) as! StoryCreateCameraRollViewController
+        storyCreateCameraRollController.createStoryCompletion = createStoryCompletion
+        self.navigationController?.pushViewController(storyCreateCameraRollController, animated: true)
+    }
+    
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
         let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverViewController.userProfileId = userProfileId

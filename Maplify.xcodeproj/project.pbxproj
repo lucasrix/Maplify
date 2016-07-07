@@ -163,6 +163,11 @@
 		CD1DB2451CFF269E00D62944 /* CaptureSearchPlaceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */; };
 		CD1DB2471CFF34FC00D62944 /* StoryLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */; };
 		CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */; };
+		CD28F8321D2E8485001CF185 /* CameraRollMultipleSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */; };
+		CD28F8341D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */; };
+		CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */; };
+		CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */; };
+		CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
@@ -391,6 +396,11 @@
 		CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSearchPlaceExtension.swift; sourceTree = "<group>"; };
 		CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLinkManager.swift; sourceTree = "<group>"; };
 		CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueManager.swift; sourceTree = "<group>"; };
+		CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollMultipleSelectionController.swift; sourceTree = "<group>"; };
+		CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollMultipleSelectionView.xib; sourceTree = "<group>"; };
+		CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateCameraRollViewController.swift; sourceTree = "<group>"; };
+		CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollItemViewCell.swift; sourceTree = "<group>"; };
+		CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollItemViewCell.xib; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
@@ -476,6 +486,7 @@
 				CDC817171CF2FCE60072DAE5 /* CapturePopUpView */,
 				850A64B61CEB4F87008FA969 /* PostDetailView */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
+				CD28F8301D2E8445001CF185 /* CameraRollMultipleSelectionController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
 				CDC26E531CEDD39A00D3EDEE /* AmbientController */,
@@ -561,6 +572,7 @@
 		1FE6D5AF1CA57B470052B412 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */,
 				CDF164F31CD0E74500E38C7A /* StoryCreate */,
 				CDF164EE1CCF623E00E38C7A /* AddPosts */,
 				CD45672C1CCA74D500961A7A /* StoryEdit */,
@@ -1070,6 +1082,25 @@
 			path = CaptureExtensions;
 			sourceTree = "<group>";
 		};
+		CD28F8301D2E8445001CF185 /* CameraRollMultipleSelectionController */ = {
+			isa = PBXGroup;
+			children = (
+				CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */,
+				CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */,
+				CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */,
+				CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */,
+			);
+			path = CameraRollMultipleSelectionController;
+			sourceTree = "<group>";
+		};
+		CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */ = {
+			isa = PBXGroup;
+			children = (
+				CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */,
+			);
+			path = StoryCreateCameraRollController;
+			sourceTree = "<group>";
+		};
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,6 +1379,7 @@
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */,
 				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
+				CD28F8341D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib in Resources */,
 				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				85FD8C221CFC3A4A008956CE /* DetailStoryNumberCell.xib in Resources */,
@@ -1355,6 +1387,7 @@
 				850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
+				CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */,
@@ -1517,6 +1550,7 @@
 				CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */,
 				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
 				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
+				CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
@@ -1563,6 +1597,7 @@
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
+				CD28F8321D2E8485001CF185 /* CameraRollMultipleSelectionController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
@@ -1608,6 +1643,7 @@
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
+				CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
 				85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */,
 				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,

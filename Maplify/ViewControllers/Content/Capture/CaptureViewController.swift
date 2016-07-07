@@ -223,7 +223,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     }
     
     @IBAction func addStoryTapped(sender: UIButton) {
-        self.routesOpenStoryCreateController { [weak self] (storyId) in
+        self.routesOpenStoryCreateCameraRollController { [weak self] (storyId) in
             if let story = StoryManager.find(storyId) {
                 self?.contentType = story.storyPoints.count > 0 ? .Story : .Default
                 self?.selectedStoryId = story.storyPoints.count > 0 ? storyId : 0

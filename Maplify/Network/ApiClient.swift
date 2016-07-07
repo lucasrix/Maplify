@@ -41,7 +41,7 @@ class ApiClient {
     
     private func multipartRequest(config: RequestConfig, manager: ModelManager!, success: successClosure!, failure: failureClosure!) {
         let headers = SessionHelper.sharedHelper.sessionData() as! [String: String]
-        
+                
         Alamofire.upload(config.type, config.uri.byAddingHost(), headers: headers,
             multipartFormData: { (multipartFormData) -> () in
                 let data = config.data[0].value as! NSData

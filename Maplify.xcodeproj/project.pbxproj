@@ -162,8 +162,11 @@
 		CD1DB2431CFF114400D62944 /* CaptureSetupUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */; };
 		CD1DB2451CFF269E00D62944 /* CaptureSearchPlaceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */; };
 		CD1DB2471CFF34FC00D62944 /* StoryLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */; };
+		CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
+		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
+		CD34F7221D2D51CA00CC4EBE /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
 		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
 		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
@@ -387,8 +390,11 @@
 		CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSetupUIExtension.swift; sourceTree = "<group>"; };
 		CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSearchPlaceExtension.swift; sourceTree = "<group>"; };
 		CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLinkManager.swift; sourceTree = "<group>"; };
+		CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
+		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
 		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
@@ -660,6 +666,8 @@
 				A5081E5A1C807AD2006FBA52 /* ApiError.swift */,
 				A5A0E9941C8738F90094FC04 /* RequestConfig.swift */,
 				A5D7AAEF1C9C3C6400A94C4F /* ModelManager.swift */,
+				CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */,
+				CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -858,6 +866,7 @@
 				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 				CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */,
 				CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */,
+				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1445,6 +1454,7 @@
 				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
 				CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */,
 				CDE2D4C91CF61C3400949D87 /* OurStoryViewController.swift in Sources */,
+				CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */,
 				8C3575DC1CB3FB240039828A /* FacebookHelper.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
@@ -1504,6 +1514,7 @@
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
+				CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */,
 				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
 				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
@@ -1530,6 +1541,7 @@
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
+				CD34F7221D2D51CA00CC4EBE /* ConcurrentOperation.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
 				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
 				A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */,

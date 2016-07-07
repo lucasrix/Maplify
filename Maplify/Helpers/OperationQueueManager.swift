@@ -12,14 +12,12 @@ typealias SynchronousClosure = (operation: NetworkOperation) -> ()
 
 let kMaxConcurrentOperationCount = 1
 
-class OperationQueueManager: NSObject {
+class OperationQueueManager {
     static let sharedInstance = OperationQueueManager()
     
     var queue: NSOperationQueue! = nil
     
-    override init() {
-        super.init()
-        
+    init() {
         self.setupManager()
     }
     

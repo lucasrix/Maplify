@@ -12,6 +12,11 @@ enum ActionSheetButtonIndexes: Int {
     case Destructive = 0
 }
 
+enum AlertButtonIndexes: Int {
+    case Submit = 0
+    case Cancel = 1
+}
+
 let kAttributedMessageKey = "attributedMessage"
 
 typealias buttonClosure = (buttonIndex: Int) -> ()

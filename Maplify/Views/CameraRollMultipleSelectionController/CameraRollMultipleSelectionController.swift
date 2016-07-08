@@ -12,17 +12,18 @@ import Photos
 let nibNameCameraRollMultipleSelectionView = "CameraRollMultipleSelectionView"
 let nibNameCameraRollItemViewCell = "CameraRollItemViewCell"
 
+protocol CameraRollMultipleSelectionDelegate {
+    func cameraRollUnauthorized()
+}
+
 class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images: PHFetchResult!
     var imageManager: PHCachingImageManager?
     var cellSize: CGSize = CGSizeZero
-    var delegate: CameraRollDelegate! = nil
-    var cameraRollType: CameraRollType = CameraRollType.Photo
-    var selectedVideoData: NSData! = nil
-    var selectedVideoDuration: Double = 0
-    var itemDidSelect: Bool = false
+    var delegate: CameraRollMultipleSelectionDelegate! = nil
+    var selectedIndexes = [Int]()
 
     // MARK: - view controller life cycle
     override func loadView() {
@@ -54,15 +55,9 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
     }
     
     func setupImages() {
-        // Sorting condition
         let options = PHFetchOptions()
-        options.sortDescriptors = [
-            NSSortDescriptor(key: "creationDate", ascending: false)
-        ]
-        images = PHAsset.fetchAssetsWithOptions(options)
-        if images.count > 0 {
-            changeItem(images[0] as! PHAsset)
-        }
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        self.images = PHAsset.fetchAssetsWithOptions(options)
         collectionView.reloadData()
     }
     
@@ -73,48 +68,30 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
     
     // MARK: - UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(nibNameCameraRollItemViewCell, forIndexPath: indexPath) as! CameraRollItemViewCell
-        
-        let currentTag = cell.tag + 1
-        cell.tag = currentTag
-        
         let asset = self.images[indexPath.item] as! PHAsset
-        self.imageManager?.requestImageForAsset(asset, targetSize: cellSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
-            
-            if cell.tag == currentTag {
-                cell.image = result
-//                cell.timeLabel.hidden = asset.mediaType != .Video
-                if asset.mediaType == .Video {
-                    let timeText = self?.durationToTimeString(asset.duration)
-//                    cell.timeLabel.text = timeText
-                }
-            }
-        }
+        let selected = self.selectedIndexes.contains(indexPath.row)
+        cell.configure(asset, targetSize: self.cellSize, selected: selected)
         return cell
     }
     
-    func durationToTimeString(duration: NSTimeInterval) -> String {
-        let minutes = Int(duration / kTime60)
-        let minutesString = String("\(minutes)")
-        let seconds = Int(duration) - minutes * Int(kTime60)
-        let secondsString = seconds >= 10 ? String(":\(seconds)") : String(":0\(seconds)")
-        return minutesString + secondsString
-    }
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images == nil ? 0 : images.count
+        return self.images == nil ? 0 : self.images.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = self.cellWidth()
-        return CGSize(width: width, height: width)
+        return self.cellSize
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.itemDidSelect = true
-        let item = images[indexPath.row] as! PHAsset
-        self.changeItem(item)
+        if self.selectedIndexes.contains(indexPath.row) {
+            let index = self.selectedIndexes.indexOf(indexPath.row)
+            self.selectedIndexes.removeAtIndex(index!)
+        } else {
+            self.selectedIndexes.append(indexPath.row)
+        }
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CameraRollItemViewCell
+        cell.updateSelection(self.selectedIndexes.contains(indexPath.row))
     }
     
     //MARK: - PHPhotoLibraryChangeObserver
@@ -140,7 +117,7 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
                         if (changedIndexes?.count ?? 0) != 0 {
                             collectionView.reloadItemsAtIndexPaths(changedIndexes!.indexPathsFromIndexesWithSection(0))
                         }
-                        }, completion: nil)
+                    }, completion: nil)
                 }
                 self.resetCachedAssets()
             }
@@ -160,28 +137,6 @@ internal extension NSIndexSet {
 }
 
 private extension CameraRollMultipleSelectionController {
-    
-    func changeItem(item: PHAsset) {
-        if item.mediaType == .Video {
-            self.cameraRollType = CameraRollType.Video
-            changeVideo(item)
-        } else {
-            self.cameraRollType = CameraRollType.Photo
-            changeImage(item)
-        }
-    }
-    
-    func changeImage(asset: PHAsset) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let options = PHImageRequestOptions()
-            options.networkAccessAllowed = true
-            
-            self.imageManager?.requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFill, options: options) { [weak self] (result, info) in
-                // TODO:
-            }
-        })
-    }
-    
     // Check the status of authorization for PHPhotoLibrary
     private func checkPhotoAuth() {
         PHPhotoLibrary.requestAuthorization { [weak self] (status) -> Void in
@@ -204,32 +159,8 @@ private extension CameraRollMultipleSelectionController {
         }
     }
     
-    private func changeVideo(asset: PHAsset) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let options = PHVideoRequestOptions()
-            options.networkAccessAllowed = true
-            
-            self.imageManager?.requestAVAssetForVideo(asset, options: options, resultHandler: { [weak self] (avAsset, audioMix, info) -> () in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    let fileAsset = avAsset as? AVURLAsset
-                    self?.selectedVideoData = NSData(contentsOfURL: fileAsset!.URL)
-                    self?.selectedVideoDuration = (avAsset?.duration.seconds)!
-                        // TODO:
-                })
-            })
-            
-            // video preview
-            let imageOptions = PHImageRequestOptions()
-            self.imageManager?.requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFill, options: imageOptions) { [weak self] (result, info) in
-                // TODO:
-            }
-        })
-    }
-    
     // MARK: - Asset Caching
     func resetCachedAssets() {
-        imageManager?.stopCachingImagesForAllAssets()
+        self.imageManager?.stopCachingImagesForAllAssets()
     }
 }

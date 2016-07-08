@@ -16,12 +16,20 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-Op-4C4">
                         <rect key="frame" x="1" y="1" width="167" height="156"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-x5-J30">
+                        <rect key="frame" x="135" y="138" width="29" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="BZS-Op-4C4" secondAttribute="bottom" constant="1" id="2zd-sC-8XA"/>
+                <constraint firstAttribute="bottom" secondItem="hfA-x5-J30" secondAttribute="bottom" constant="6" id="Ngg-aJ-VIE"/>
+                <constraint firstAttribute="trailing" secondItem="hfA-x5-J30" secondAttribute="trailing" constant="5" id="T86-ES-vzL"/>
                 <constraint firstAttribute="trailing" secondItem="BZS-Op-4C4" secondAttribute="trailing" constant="1" id="YuT-ZK-mCu"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="gje-E9-PgT"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="vCe-qT-yTG"/>
@@ -29,6 +37,7 @@
             <size key="customSize" width="169" height="158"/>
             <connections>
                 <outlet property="imageView" destination="BZS-Op-4C4" id="6hW-Rl-8TC"/>
+                <outlet property="timeLabel" destination="hfA-x5-J30" id="zh2-87-2eT"/>
             </connections>
             <point key="canvasLocation" x="312.5" y="433"/>
         </collectionViewCell>

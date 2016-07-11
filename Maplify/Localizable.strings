@@ -113,6 +113,9 @@
 "Label.Account" = "Account";
 "Label.Information" = "Information";
 "Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
+"Label.CameraRollAddUpCount" = "Add up to %i moments";
+"Label.CameraRollSelectedOfCount" = "Selected %i of %i";
+
 
 //Subsrtings
 "Substring.Of" = "of";

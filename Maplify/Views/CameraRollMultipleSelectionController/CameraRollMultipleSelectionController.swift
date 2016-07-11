@@ -11,6 +11,7 @@ import Photos
 
 let nibNameCameraRollMultipleSelectionView = "CameraRollMultipleSelectionView"
 let nibNameCameraRollItemViewCell = "CameraRollItemViewCell"
+let kMaxItemsCount: Int = 10
 
 protocol CameraRollMultipleSelectionDelegate {
     func cameraRollUnauthorized()
@@ -18,12 +19,15 @@ protocol CameraRollMultipleSelectionDelegate {
 
 class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var selectedItemsCountLabel: UILabel!
     
     var images: PHFetchResult!
     var imageManager: PHCachingImageManager?
     var cellSize: CGSize = CGSizeZero
     var delegate: CameraRollMultipleSelectionDelegate! = nil
     var selectedIndexes = [Int]()
+    var selectedAssets = [PHAsset]()
+    var maxItemsCount = kMaxItemsCount
 
     // MARK: - view controller life cycle
     override func loadView() {
@@ -44,6 +48,7 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
     func setup() {
         self.setupCollectionView()
         self.checkPhotoAuth()
+        self.selectedItemsCountLabel.text = String(format: NSLocalizedString("Label.CameraRollAddUpCount", comment: String()), self.maxItemsCount)
     }
     
     func setupCollectionView() {
@@ -59,6 +64,10 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         self.images = PHAsset.fetchAssetsWithOptions(options)
         collectionView.reloadData()
+    }
+    
+    func populateSelectedItemsCountLabel() {
+        self.selectedItemsCountLabel.text = String(format: NSLocalizedString("Label.CameraRollSelectedOfCount", comment: String()), self.selectedAssets.count, self.maxItemsCount)
     }
     
     // MARK: - private
@@ -87,11 +96,15 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
         if self.selectedIndexes.contains(indexPath.row) {
             let index = self.selectedIndexes.indexOf(indexPath.row)
             self.selectedIndexes.removeAtIndex(index!)
+            self.selectedAssets.removeAtIndex(index!)
         } else {
             self.selectedIndexes.append(indexPath.row)
+            self.selectedAssets.append(self.images.objectAtIndex(indexPath.row) as! PHAsset)
         }
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CameraRollItemViewCell
         cell.updateSelection(self.selectedIndexes.contains(indexPath.row))
+        
+        self.populateSelectedItemsCountLabel()
     }
     
     //MARK: - PHPhotoLibraryChangeObserver

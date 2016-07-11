@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraRollMultipleSelectionController" customModule="Maplify" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7qj-d1-grA" id="iJD-IO-FJJ"/>
+                <outlet property="selectedItemsCountLabel" destination="FhS-uJ-458" id="jtj-ld-8py"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Edi-HK-7Ck"/>
             </connections>
         </placeholder>
@@ -18,8 +19,20 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJL-Rh-dER">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                    <color key="backgroundColor" red="0.27450980390000002" green="0.42745098040000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected of" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhS-uJ-458">
+                            <rect key="frame" x="8" y="8" width="359" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.070588235294117646" green="0.16470588235294117" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="FhS-uJ-458" firstAttribute="top" secondItem="aJL-Rh-dER" secondAttribute="top" constant="8" id="5Wx-HO-HmM"/>
+                        <constraint firstAttribute="bottom" secondItem="FhS-uJ-458" secondAttribute="bottom" constant="8" id="F7X-5V-0aj"/>
+                        <constraint firstItem="FhS-uJ-458" firstAttribute="leading" secondItem="aJL-Rh-dER" secondAttribute="leading" constant="8" id="Lgi-q3-snX"/>
+                        <constraint firstAttribute="trailing" secondItem="FhS-uJ-458" secondAttribute="trailing" constant="8" id="Wg6-kV-ewf"/>
                         <constraint firstAttribute="height" constant="40" id="ya9-8y-EhL"/>
                     </constraints>
                 </view>

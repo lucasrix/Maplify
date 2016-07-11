@@ -14,6 +14,8 @@ let kDoubleTime60: Double = 60
 class CameraRollItemViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var isVideoImageView: UIImageView!
+    @IBOutlet weak var checkedImageView: UIImageView!
     
     var imageManager = PHCachingImageManager()
     
@@ -25,6 +27,7 @@ class CameraRollItemViewCell: UICollectionViewCell {
     
     func updateSelection(selected: Bool) {
         self.contentView.backgroundColor = selected ? UIColor.dodgerBlue() : UIColor.clearColor()
+        self.checkedImageView.hidden = !selected
     }
     
     func populateImage(asset: PHAsset, targetSize: CGSize) {
@@ -34,6 +37,7 @@ class CameraRollItemViewCell: UICollectionViewCell {
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self?.imageView.image = result
+                    self?.isVideoImageView.hidden = asset.mediaType == .Image
                 })
             }
         })

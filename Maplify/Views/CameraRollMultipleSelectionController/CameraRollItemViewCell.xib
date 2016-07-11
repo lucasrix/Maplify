@@ -16,30 +16,54 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-Op-4C4">
                         <rect key="frame" x="1" y="1" width="167" height="156"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-x5-J30">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-x5-J30">
                         <rect key="frame" x="135" y="138" width="29" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraRollVideo" translatesAutoresizingMaskIntoConstraints="NO" id="1hF-ve-8xP">
+                        <rect key="frame" x="6" y="139" width="18" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="AEs-aX-Rnw"/>
+                            <constraint firstAttribute="height" constant="12" id="DGi-s4-qDd"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraRollChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Nu7-hc-7pG">
+                        <rect key="frame" x="5" y="5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="8zw-Bh-UXL"/>
+                            <constraint firstAttribute="width" constant="24" id="DLh-gU-6YS"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="1hF-ve-8xP" secondAttribute="bottom" constant="7" id="0h9-Mk-Rre"/>
                 <constraint firstAttribute="bottom" secondItem="BZS-Op-4C4" secondAttribute="bottom" constant="1" id="2zd-sC-8XA"/>
                 <constraint firstAttribute="bottom" secondItem="hfA-x5-J30" secondAttribute="bottom" constant="6" id="Ngg-aJ-VIE"/>
                 <constraint firstAttribute="trailing" secondItem="hfA-x5-J30" secondAttribute="trailing" constant="5" id="T86-ES-vzL"/>
+                <constraint firstItem="Nu7-hc-7pG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Wx5-Hr-SXY"/>
                 <constraint firstAttribute="trailing" secondItem="BZS-Op-4C4" secondAttribute="trailing" constant="1" id="YuT-ZK-mCu"/>
+                <constraint firstItem="Nu7-hc-7pG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="cQB-jp-FVr"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="gje-E9-PgT"/>
+                <constraint firstItem="1hF-ve-8xP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="ubi-rs-MOZ"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="vCe-qT-yTG"/>
             </constraints>
             <size key="customSize" width="169" height="158"/>
             <connections>
+                <outlet property="checkedImageView" destination="Nu7-hc-7pG" id="Og4-4U-Zi3"/>
                 <outlet property="imageView" destination="BZS-Op-4C4" id="6hW-Rl-8TC"/>
+                <outlet property="isVideoImageView" destination="1hF-ve-8xP" id="HHp-uJ-1ww"/>
                 <outlet property="timeLabel" destination="hfA-x5-J30" id="zh2-87-2eT"/>
             </connections>
             <point key="canvasLocation" x="312.5" y="433"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="CameraRollChecked" width="24" height="24"/>
+        <image name="CameraRollVideo" width="18" height="12"/>
+    </resources>
 </document>

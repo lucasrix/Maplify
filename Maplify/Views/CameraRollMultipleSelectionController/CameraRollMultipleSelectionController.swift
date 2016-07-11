@@ -17,7 +17,7 @@ protocol CameraRollMultipleSelectionDelegate {
     func cameraRollUnauthorized()
 }
 
-class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver {
+class CameraRollMultipleSelectionController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var selectedItemsCountLabel: UILabel!
     

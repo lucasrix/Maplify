@@ -10,12 +10,20 @@ import UIKit
 
 class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSelectionDelegate {
     var createStoryCompletion: createStoryClosure! = nil
-
+    let cameraRollController = CameraRollMultipleSelectionController()
+    
     // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setup()
+        self.populateViews()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setupNavigationBarItems()
     }
     
     // MARK: - setup
@@ -23,10 +31,18 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
         self.setupCameraRollController()
     }
     
+    func setupNavigationBarItems() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(UIImage(named: ButtonImages.icoCancel)!, target: self, action: #selector(StoryCreateCameraRollViewController.cancelButtonTapped))
+        self.addRightBarItem(NSLocalizedString("Button.Add", comment: String()))
+    }
+    
     func setupCameraRollController() {
-        let cameraRollController = CameraRollMultipleSelectionController()
-        cameraRollController.delegate = self
-        self.configureChildViewController(cameraRollController, onView: self.view)
+        self.cameraRollController.delegate = self
+        self.configureChildViewController(self.cameraRollController, onView: self.view)
+    }
+    
+    func populateViews() {
+        self.title = NSLocalizedString("Controller.CameraRoll.Title", comment: String())
     }
     
     // MARK: - navigation bar
@@ -36,6 +52,17 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
     
     override func navigationBarColor() -> UIColor {
         return UIColor.darkGreyBlue()
+    }
+    
+    // MARK: - actions
+    func cancelButtonTapped() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func rightBarButtonItemDidTap() {
+        if self.cameraRollController.selectedAssets.count > 0 {
+            // TODO:
+        }
     }
     
     // MARK: - CameraRollMultipleSelectionDelegate

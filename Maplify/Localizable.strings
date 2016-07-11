@@ -27,6 +27,8 @@
 "Text.Placeholder.AddPostsHighlited" = "Looks like you don't have anything to add just yet.";
 "Text.Placeholder.AddPostsDefault" = "So... you can come back to it later, but better yet how about we jump in and create your first post?";
 "Text.Placeholder.Profile" = "You don’t have any posts yet";
+"Text.Placeholder.StoryAddMediaTitle" = "What's this story called?";
+"Text.Placeholder.StoryAddMediaDescription" = "Add story description";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -115,7 +117,6 @@
 "Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
 "Label.CameraRollAddUpCount" = "Add up to %i moments";
 "Label.CameraRollSelectedOfCount" = "Selected %i of %i";
-
 
 //Subsrtings
 "Substring.Of" = "of";

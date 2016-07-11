@@ -34,7 +34,6 @@
 		1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
-		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */; };
 		850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */; };
 		850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */; };
@@ -173,6 +172,10 @@
 		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
 		CD34F7221D2D51CA00CC4EBE /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */; };
 		CD3E0CEB1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */; };
+		CD3E0CED1D33D1460047BC55 /* StoryAddMediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */; };
+		CD3E0CF21D33D2E00047BC55 /* StoryAddMediaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */; };
+		CD3E0CF41D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */; };
+		CD3E0CF61D33D5E80047BC55 /* StoryAddMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CF51D33D5E80047BC55 /* StoryAddMediaTableViewCell.swift */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
 		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
 		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
@@ -221,6 +224,7 @@
 		CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
+		D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -245,6 +249,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
 		1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
@@ -267,8 +272,7 @@
 		1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationOrNil.swift; sourceTree = "<group>"; };
 		1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddAudioController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
-		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupGetCityViewController.swift; sourceTree = "<group>"; };
 		850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryPointInfoView.xib; sourceTree = "<group>"; };
 		850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryInfoView.xib; sourceTree = "<group>"; };
@@ -381,7 +385,6 @@
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
-		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 		CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
@@ -407,6 +410,10 @@
 		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateAddInfoViewController.swift; sourceTree = "<group>"; };
+		CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaDataSource.swift; sourceTree = "<group>"; };
+		CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaHeaderView.swift; sourceTree = "<group>"; };
+		CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryAddMediaHeaderView.xib; sourceTree = "<group>"; };
+		CD3E0CF51D33D5E80047BC55 /* StoryAddMediaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaTableViewCell.swift; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
 		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
@@ -450,6 +457,7 @@
 		CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareHelper.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
+		D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryDetailViewController.swift; path = Maplify/ViewControllers/Content/Discover/StoryDetailViewController/StoryDetailViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -467,7 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52E09981C8D8C2E00706F9C /* Accounts.framework in Frameworks */,
-				4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */,
+				D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +489,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08DAFED8B0BB2421C03CDB85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */,
+				D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,15 +599,6 @@
 				F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */,
 			);
 			path = Story;
-			sourceTree = "<group>";
-		};
-		4069C54AB44294CF30EEEA95 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */,
-				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		850A64B61CEB4F87008FA969 /* PostDetailView */ = {
@@ -726,8 +734,8 @@
 				A58A52791C7F0A2900443C06 /* Maplify */,
 				A58A528E1C7F0A2900443C06 /* MaplifyTests */,
 				A58A52781C7F0A2800443C06 /* Products */,
-				4069C54AB44294CF30EEEA95 /* Pods */,
 				C60D303F351EBEB7C2F52374 /* Frameworks */,
+				08DAFED8B0BB2421C03CDB85 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1015,7 +1023,7 @@
 			isa = PBXGroup;
 			children = (
 				A52E09971C8D8C2E00706F9C /* Accounts.framework */,
-				306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */,
+				7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1117,8 +1125,20 @@
 			isa = PBXGroup;
 			children = (
 				CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */,
+				CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */,
+				CD3E0CF51D33D5E80047BC55 /* StoryAddMediaTableViewCell.swift */,
+				CD3E0CF01D33D2C80047BC55 /* StoryAddMediaHeaderView */,
 			);
 			path = StoryCreateAddInfoController;
+			sourceTree = "<group>";
+		};
+		CD3E0CF01D33D2C80047BC55 /* StoryAddMediaHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */,
+				CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */,
+			);
+			path = StoryAddMediaHeaderView;
 			sourceTree = "<group>";
 		};
 		CD451B101CAAD90100EBCC7A /* CameraRollController */ = {
@@ -1300,13 +1320,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "Maplify" */;
 			buildPhases = (
-				369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */,
+				C6C6600AC233A4FC410C4866 /* [CP] Check Pods Manifest.lock */,
 				A58A52731C7F0A2800443C06 /* Sources */,
 				A58A52741C7F0A2800443C06 /* Frameworks */,
 				A58A52751C7F0A2800443C06 /* Resources */,
-				DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */,
-				9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */,
 				A58A52DF1C7F1DD200443C06 /* ShellScript */,
+				37E12923BABD2641101458EB /* [CP] Embed Pods Frameworks */,
+				D32C9B392E312C4595A743C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1402,6 +1422,7 @@
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */,
+				CD3E0CF41D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
@@ -1426,34 +1447,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */ = {
+		37E12923BABD2641101458EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A58A52DF1C7F1DD200443C06 /* ShellScript */ = {
@@ -1469,19 +1475,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1be821fed07b6c7a86373f911acbc3c03d375f60 d0ef49d435d745ce847f8957558f8fcf56b27a284f9f95784d0fd9c8901a0fc1";
 		};
-		DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */ = {
+		C6C6600AC233A4FC410C4866 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D32C9B392E312C4595A743C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1512,12 +1533,14 @@
 				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
 				8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */,
+				CD3E0CF21D33D2E00047BC55 /* StoryAddMediaHeaderView.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
 				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */,
 				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
+				CD3E0CED1D33D1460047BC55 /* StoryAddMediaDataSource.swift in Sources */,
 				8CEA34FE1CFB2D9000874AD4 /* StoryLink.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */,
@@ -1541,6 +1564,7 @@
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				85AC3C591CF5D1F6007D9A76 /* InfiniteScrollView.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
+				CD3E0CF61D33D5E80047BC55 /* StoryAddMediaTableViewCell.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
 				CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
@@ -1816,7 +1840,7 @@
 		};
 		A58A52951C7F0A2900443C06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */;
+			baseConfigurationReference = 0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1835,7 +1859,7 @@
 		};
 		A58A52961C7F0A2900443C06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */;
+			baseConfigurationReference = D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

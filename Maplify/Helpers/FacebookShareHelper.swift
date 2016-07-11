@@ -32,7 +32,7 @@ class FacebookShareHelper: NSObject {
         if FBSDKAccessToken.currentAccessToken() != nil {
             callback(success: true)
         } else {
-            FBSDKLoginManager().logInWithPublishPermissions(["publish_actions"], handler: { (result, error) in
+            FBSDKLoginManager().logInWithPublishPermissions(["publish_actions"], fromViewController: nil, handler: { (result, error) in
                 if (error == nil) && (result.isCancelled == false) {
                     callback(success: true)
                 } else {

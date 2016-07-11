@@ -95,16 +95,28 @@ class CameraRollMultipleSelectionController: UIViewController,UICollectionViewDa
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if self.selectedIndexes.contains(indexPath.row) {
             let index = self.selectedIndexes.indexOf(indexPath.row)
-            self.selectedIndexes.removeAtIndex(index!)
-            self.selectedAssets.removeAtIndex(index!)
+            self.removeItem(index)
         } else {
-            self.selectedIndexes.append(indexPath.row)
-            self.selectedAssets.append(self.images.objectAtIndex(indexPath.row) as! PHAsset)
+            self.addItemIfNeeded(indexPath.row)
         }
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CameraRollItemViewCell
         cell.updateSelection(self.selectedIndexes.contains(indexPath.row))
         
         self.populateSelectedItemsCountLabel()
+    }
+    
+    func addItemIfNeeded(index: Int) {
+        if self.selectedAssets.count < self.maxItemsCount {
+            self.selectedIndexes.append(index)
+            self.selectedAssets.append(self.images.objectAtIndex(index) as! PHAsset)
+        }
+    }
+    
+    func removeItem(index: Int!) {
+        if (index != nil) && (index != NSNotFound) {
+            self.selectedIndexes.removeAtIndex(index)
+            self.selectedAssets.removeAtIndex(index)
+        }
     }
     
     //MARK: - PHPhotoLibraryChangeObserver

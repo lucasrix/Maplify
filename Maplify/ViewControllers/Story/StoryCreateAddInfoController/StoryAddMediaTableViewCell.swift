@@ -8,6 +8,7 @@
 
 import Photos
 import GoogleMaps
+import KMPlaceholderTextView
 import UIKit
 
 let kCellTopMargin: CGFloat = 24
@@ -23,6 +24,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     @IBOutlet weak var changeAddressButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     
     var imageManager = PHCachingImageManager()
     
@@ -40,6 +42,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.addressLabel.text = NSLocalizedString("Label.Loading", comment: String())
         self.changeAddressButton.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
         self.addLocationButton.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
+        self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
     }
     
     func populateImage(asset: PHAsset) {

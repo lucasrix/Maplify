@@ -29,6 +29,7 @@
 "Text.Placeholder.Profile" = "You don’t have any posts yet";
 "Text.Placeholder.StoryAddMediaTitle" = "What's this story called?";
 "Text.Placeholder.StoryAddMediaDescription" = "Add story description";
+"Text.Placeholder.AddDescription" = "Add description";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";

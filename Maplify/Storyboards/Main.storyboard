@@ -1463,7 +1463,7 @@
                                                                 <constraint firstAttribute="width" constant="14" id="ZdW-B1-0DL"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-5J-BsS">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="GFp-5J-BsS">
                                                             <rect key="frame" x="30" y="0.0" width="275" height="38"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -1499,7 +1499,28 @@
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-9u-LSm" userLabel="Description View">
                                                     <rect key="frame" x="0.0" y="438" width="375" height="61"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JPM-Ix-VaT" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                                            <rect key="frame" x="8" y="0.0" width="359" height="61"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <inset key="scrollIndicatorInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Add description"/>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textView>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="JPM-Ix-VaT" secondAttribute="trailing" constant="8" id="EQZ-83-Ozh"/>
+                                                        <constraint firstItem="JPM-Ix-VaT" firstAttribute="top" secondItem="1Hq-9u-LSm" secondAttribute="top" id="ZAN-i5-XAD"/>
+                                                        <constraint firstItem="JPM-Ix-VaT" firstAttribute="leading" secondItem="1Hq-9u-LSm" secondAttribute="leading" constant="8" id="ixt-Ic-tcK"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JPM-Ix-VaT" secondAttribute="bottom" id="ock-u3-KR7"/>
+                                                    </constraints>
                                                 </view>
                                                 <view alpha="0.050000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gn3-E1-irj" userLabel="Description Separator View">
                                                     <rect key="frame" x="0.0" y="499" width="375" height="1"/>
@@ -1533,6 +1554,7 @@
                                             <outlet property="addressLabel" destination="GFp-5J-BsS" id="Evj-5R-Kee"/>
                                             <outlet property="assetImageView" destination="89A-XZ-ov3" id="XP7-D7-Eka"/>
                                             <outlet property="changeAddressButton" destination="BHF-BC-Hck" id="ar8-D6-YJg"/>
+                                            <outlet property="descriptionTextView" destination="JPM-Ix-VaT" id="nNN-6M-cb5"/>
                                             <outlet property="imageViewHeightConstraint" destination="s8J-jP-oVx" id="zhd-IO-x5E"/>
                                             <outlet property="locationView" destination="OMy-y4-3ll" id="mwK-ZN-JcR"/>
                                         </connections>

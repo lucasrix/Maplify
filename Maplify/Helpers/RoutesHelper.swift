@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import Photos
 import Foundation
 
 extension UIViewController {
@@ -85,6 +86,13 @@ extension UIViewController {
         let storyCreateCameraRollController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateCameraRollController) as! StoryCreateCameraRollViewController
         storyCreateCameraRollController.createStoryCompletion = createStoryCompletion
         self.navigationController?.pushViewController(storyCreateCameraRollController, animated: true)
+    }
+    
+    func routesStoryCreateAddInfoController(selectedAssets: [PHAsset], createStoryCompletion: createStoryClosure!) {
+        let storyCreateAddInfoController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddInfoController) as! StoryCreateAddInfoViewController
+        storyCreateAddInfoController.selectedAssets = selectedAssets
+        storyCreateAddInfoController.createStoryCompletion = createStoryCompletion
+        self.navigationController?.pushViewController(storyCreateAddInfoController, animated: true)
     }
     
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {

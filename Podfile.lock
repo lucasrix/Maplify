@@ -1,6 +1,6 @@
 PODS:
   - AFImageHelper (3.0.2)
-  - Alamofire (3.2.1)
+  - Alamofire (3.4.1)
   - ALThreeCircleSpinner (1.0.2)
   - AMPopTip (1.0.3)
   - Bolts (1.7.0):
@@ -9,7 +9,7 @@ PODS:
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - EZAudio (1.1.4):
     - EZAudio/Full (= 1.1.4)
@@ -17,31 +17,25 @@ PODS:
   - EZAudio/Full (1.1.4):
     - EZAudio/Core
     - TPCircularBuffer (= 1.1)
-  - Fabric (1.6.6)
-  - FBSDKCoreKit (4.1.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.1.0)
-    - FBSDKCoreKit/no-arc (= 4.1.0)
-  - FBSDKCoreKit/arc (4.1.0):
-    - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.1.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.1.0):
+  - Fabric (1.6.7)
+  - FBSDKCoreKit (4.13.1):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.13.1):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.1.0):
+  - FBSDKShareKit (4.13.1):
     - FBSDKCoreKit
   - FLAnimatedImage (1.0.12)
-  - GoogleMaps (1.13.0)
-  - GooglePlaces (1.0.4):
+  - GoogleMaps (1.13.2)
+  - GooglePlaces (1.0.5):
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
   - INSPullToRefresh (1.1.5)
-  - INTULocationManager (4.1.1)
-  - KDEAudioPlayer (0.8.4)
+  - INTULocationManager (4.2.0)
+  - KDEAudioPlayer (0.9.1)
+  - KMPlaceholderTextView (1.2.1)
   - LLSimpleCamera (4.2.0)
   - Locksmith (2.0.8)
-  - ObjectMapper (1.1.5)
+  - ObjectMapper (1.3.0)
   - PINCache (2.2.2)
   - PINRemoteImage (2.1.4):
     - PINRemoteImage/FLAnimatedImage (= 2.1.4)
@@ -51,23 +45,23 @@ PODS:
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
   - Player (0.1.1)
-  - Realm (1.0.0):
-    - Realm/Headers (= 1.0.0)
-  - Realm/Headers (1.0.0)
-  - RealmSwift (1.0.0):
-    - Realm (= 1.0.0)
-  - RSKGrowingTextView (1.0.1):
-    - RSKPlaceholderTextView (= 1.0.0)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
+  - RSKGrowingTextView (1.1.1):
+    - RSKPlaceholderTextView (= 1.1.1)
   - RSKKeyboardAnimationObserver (1.0.0)
-  - RSKPlaceholderTextView (1.0.0)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
-  - Sugar (1.0.5)
-  - Tailor (0.4.5):
+  - RSKPlaceholderTextView (1.1.1)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - Sugar (1.1.1)
+  - Tailor (0.12.0):
     - Sugar
   - TPCircularBuffer (1.1)
-  - TPKeyboardAvoiding (1.2.11)
+  - TPKeyboardAvoiding (1.3)
   - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
@@ -78,14 +72,15 @@ DEPENDENCIES:
   - Crashlytics (~> 3.7)
   - EZAudio (from `https://github.com/rzehan/EZAudio.git`, commit `df349f2729139bfb2410644e05bb2945af6f57c3`)
   - Fabric (~> 1.6)
-  - FBSDKCoreKit (~> 4.1.0)
-  - FBSDKLoginKit (~> 4.1.0)
-  - FBSDKShareKit (~> 4.1.0)
+  - FBSDKCoreKit (~> 4.13)
+  - FBSDKLoginKit (~> 4.13)
+  - FBSDKShareKit (~> 4.13)
   - GoogleMaps (~> 1.13)
   - GooglePlaces (~> 1.0)
   - INSPullToRefresh (~> 1.1)
   - INTULocationManager (~> 4.1)
   - KDEAudioPlayer (~> 0.8)
+  - KMPlaceholderTextView (~> 1.2)
   - LLSimpleCamera (~> 4.2)
   - Locksmith (~> 2.0)
   - PINRemoteImage (~> 2.1)
@@ -110,38 +105,41 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFImageHelper: 77a89f76b410655928b757a36627a66c1eb67fc2
-  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
   AMPopTip: 42ab801c5d4519093908d14134c8c9d7ffc435b4
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   EZAudio: 8e684b2b81b0437fe45faa7e2725fe99f69c84b6
-  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
-  FBSDKCoreKit: 469ed167195f860dbd2b4c4bbaa33d2e90598db9
-  FBSDKLoginKit: ff6224762732e3698f30942e4544321b8c7a23e6
-  FBSDKShareKit: 8002faf0c564ff3625eadd16e506b0b0fbf3adef
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
+  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
+  FBSDKShareKit: c9438df7573b33780ac8c3451201c5ebb260ffca
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
-  GooglePlaces: af82dff8b6699dd59fdbf8ec9b3ad170e5f2217a
+  GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
+  GooglePlaces: 9c56b4f59929d995a5023a6d6e0969b5ed233a9c
   INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47
-  INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
-  KDEAudioPlayer: d21120cfd9659db372633c99738747d8ab72f155
+  INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
+  KDEAudioPlayer: c052553e051974a39fd2e5e07d7f575ea3f557c2
+  KMPlaceholderTextView: be39afe3524144451941ddebf1d571ab1ef6e358
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
-  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   Player: 575e1e8cde1e6b7cd62d6d6bc06e492d02e62b9e
-  Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
-  RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
-  RSKGrowingTextView: 585888654fb5007e13089a71923ce78e53a6f0d4
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  RSKGrowingTextView: aa30b782a641b46b179dd88c44f23f108c4eaab6
   RSKKeyboardAnimationObserver: 0bdbc5235a96ce6d1e6143998214160c7f7c9b37
-  RSKPlaceholderTextView: a34174067f43aa176abe0fc4de9f6ce29f2306c7
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
-  Tailor: d1d5bce9d81e953c3d7b3f3fd6d084337feeb7a5
+  RSKPlaceholderTextView: e677ac4af2a60400233a5c0ad06331de36ea0e8a
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  Sugar: bed396c924fd089feee7c780778cca2a124f580c
+  Tailor: 4b9d3a6e386f3e743bada55e380721e25ef07c58
   TPCircularBuffer: 4960a919e667280f7f38963d771f45871b64fe62
-  TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
+  TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 461315a43177acff611c6ef214bb830f6900a864
+
+COCOAPODS: 1.0.1

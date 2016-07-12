@@ -83,6 +83,7 @@ struct Controllers {
     static let ourStoryController = "OurStoryViewController"
     static let mapCaptureController = "MapCaptureController"
     static let storyCreateCameraRollController = "StoryCreateCameraRollViewController"
+    static let storyCreateAddInfoController = "StoryCreateAddInfoViewController"
 }
 
 struct AppIDs {

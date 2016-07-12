@@ -1423,6 +1423,52 @@
             </objects>
             <point key="canvasLocation" x="1373.5" y="3645.5"/>
         </scene>
+        <!--Story Create Add Info View Controller-->
+        <scene sceneID="2z0-T8-f5J">
+            <objects>
+                <viewController storyboardIdentifier="StoryCreateAddInfoViewController" id="3BS-tu-Sdn" customClass="StoryCreateAddInfoViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wll-sP-B9Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="F4a-Mh-kqF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9eG-if-Bat">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="200" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EDf-F0-hr6" customClass="TPKeyboardAvoidingTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryAddMediaTableViewCell" rowHeight="100" id="GF7-2X-oGO" customClass="StoryAddMediaTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GF7-2X-oGO" id="Xz8-yV-WGv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EDf-F0-hr6" firstAttribute="top" secondItem="9eG-if-Bat" secondAttribute="top" id="Ab0-ER-bIP"/>
+                            <constraint firstAttribute="trailing" secondItem="EDf-F0-hr6" secondAttribute="trailing" id="VMp-jT-9Pz"/>
+                            <constraint firstItem="EDf-F0-hr6" firstAttribute="leading" secondItem="9eG-if-Bat" secondAttribute="leading" id="mS8-Gb-Tym"/>
+                            <constraint firstItem="F4a-Mh-kqF" firstAttribute="top" secondItem="EDf-F0-hr6" secondAttribute="bottom" id="tK5-Hv-XQq"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="EDf-F0-hr6" id="3zs-US-ccI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5K-AF-h2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1787.5" y="3645.5"/>
+        </scene>
         <!--Story Edit View Controller-->
         <scene sceneID="PQQ-hc-LyZ">
             <objects>
@@ -1883,7 +1929,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="placeholder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-VM-eUm">
                                         <rect key="frame" x="30" y="244" width="315" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfV-gl-yDF">

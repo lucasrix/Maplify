@@ -117,6 +117,7 @@
 "Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
 "Label.CameraRollAddUpCount" = "Add up to %i moments";
 "Label.CameraRollSelectedOfCount" = "Selected %i of %i";
+"Label.LocationRequired" = "Location is required";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -178,6 +179,8 @@
 "Button.TermsOfService" = "Terms of Service";
 "Button.LogOut" = "Log out";
 "Button.CreateFirstPost" = "Create your 1st post";
+"Button.Change" = "Change";
+"Button.AddLocation" = "Add location";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

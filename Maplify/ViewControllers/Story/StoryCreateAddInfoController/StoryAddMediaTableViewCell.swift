@@ -7,15 +7,22 @@
 //
 
 import Photos
+import GoogleMaps
 import UIKit
 
 let kCellTopMargin: CGFloat = 24
 let kCellLocationViewHeight: CGFloat = 39
 let kCellDescriptionViewHeight: CGFloat = 73
+let kLocationLabelTextColorAlphaDefault: CGFloat = 0.4
 
 class StoryAddMediaTableViewCell: CSTableViewCell {
     @IBOutlet weak var assetImageView: UIImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addressImageView: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var changeAddressButton: UIButton!
+    @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var locationView: UIView!
     
     var imageManager = PHCachingImageManager()
     
@@ -25,10 +32,14 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         
         let asset = cellData.model as! PHAsset
         self.populateImage(asset)
+        self.manageLocation(asset)
     }
     
     func setupViews() {
         self.imageViewHeightConstraint.constant = UIScreen().screenWidth()
+        self.addressLabel.text = NSLocalizedString("Label.Loading", comment: String())
+        self.changeAddressButton.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
+        self.addLocationButton.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
     }
     
     func populateImage(asset: PHAsset) {
@@ -42,6 +53,31 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
                 })
             }
         })
+    }
+    
+    func manageLocation(asset: PHAsset) {
+        if asset.location != nil {
+            self.retrieveLocation(asset.location!)
+        } else {
+            self.populateEmptyLocation()
+        }
+        
+        let addressImageName = asset.location == nil ? CellImages.locationPink : CellImages.locationGrey
+        self.addressImageView.image = UIImage(named: addressImageName)
+        self.addressLabel.textColor = asset.location == nil ? UIColor.redPink() : UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
+        self.locationView.backgroundColor = asset.location == nil ? UIColor.redPink().colorWithAlphaComponent(0.05) : UIColor.whiteColor()
+        self.changeAddressButton.hidden = asset.location == nil
+        self.addLocationButton.hidden = asset.location != nil
+    }
+    
+    func retrieveLocation(location: CLLocation) {
+        GeocoderHelper.placeFromCoordinate(location.coordinate) { [weak self] (addressString) in
+            self?.addressLabel.text = addressString
+        }
+    }
+    
+    func populateEmptyLocation() {
+        self.addressLabel.text = NSLocalizedString("Label.LocationRequired", comment: String())
     }
     
     class func contentHeight() -> CGFloat {

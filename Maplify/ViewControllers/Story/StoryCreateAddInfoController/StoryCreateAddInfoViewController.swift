@@ -77,7 +77,14 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     // MARK: - actions
     func cancelButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
+        }
     }
     
     override func rightBarButtonItemDidTap() {

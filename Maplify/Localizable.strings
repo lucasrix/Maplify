@@ -130,6 +130,7 @@
 //Buttons
 "Button.Ok" = "OK";
 "Button.Yes" = "Yes";
+"Button.YesDelete" = "Yes, delete";
 "Button.No" = "No";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
@@ -209,6 +210,7 @@
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 "Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
 "Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
+"Alert.StoryCreateCancel" = "Are you sure you want to delete your new story?";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

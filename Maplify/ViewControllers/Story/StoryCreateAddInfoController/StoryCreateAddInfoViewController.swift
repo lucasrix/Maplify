@@ -9,7 +9,7 @@
 import Photos
 import UIKit
 
-class StoryCreateAddInfoViewController: ViewController {
+class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: StoryAddMediaDataSource! = nil
@@ -82,5 +82,11 @@ class StoryCreateAddInfoViewController: ViewController {
     
     override func rightBarButtonItemDidTap() {
         // TODO:
+    }
+    
+    // MARK: - StoryAddMediaTableViewCellDelegate
+    func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!) {
+        let index = self.storyActiveModel.indexPathOfModel(asset)
+        completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
     }
 }

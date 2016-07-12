@@ -1453,6 +1453,14 @@
                                                         <constraint firstAttribute="height" constant="375" id="s8J-jP-oVx"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tb-b5-U54">
+                                                    <rect key="frame" x="319" y="30" width="56" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="BJO-5f-2na"/>
+                                                        <constraint firstAttribute="height" constant="44" id="nrA-hl-Oc5"/>
+                                                    </constraints>
+                                                    <state key="normal" image="DeleteStoryPoint"/>
+                                                </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMy-y4-3ll" userLabel="Location View">
                                                     <rect key="frame" x="0.0" y="399" width="375" height="38"/>
                                                     <subviews>
@@ -1529,18 +1537,60 @@
                                                         <constraint firstAttribute="height" constant="1" id="b59-tE-sXn"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwe-bf-ipN">
+                                                    <rect key="frame" x="319" y="74" width="56" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="205-ig-23p"/>
+                                                        <constraint firstAttribute="width" constant="56" id="9z0-3i-Uc7"/>
+                                                    </constraints>
+                                                    <state key="normal" image="CropImage"/>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mp-ac-pqP">
+                                                    <rect key="frame" x="12" y="36" width="83" height="32"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 of 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="JsM-9n-6L9">
+                                                            <rect key="frame" x="20" y="0.0" width="43" height="32"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="JsM-9n-6L9" secondAttribute="bottom" id="1XN-yk-FeL"/>
+                                                        <constraint firstItem="JsM-9n-6L9" firstAttribute="leading" secondItem="3mp-ac-pqP" secondAttribute="leading" constant="20" id="1k6-V6-uPZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="JsM-9n-6L9" secondAttribute="trailing" constant="20" id="Ddj-1t-za7"/>
+                                                        <constraint firstAttribute="height" constant="32" id="JKf-Aj-n7i"/>
+                                                        <constraint firstItem="JsM-9n-6L9" firstAttribute="top" secondItem="3mp-ac-pqP" secondAttribute="top" id="OLP-Kf-Oav"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IsVideo" translatesAutoresizingMaskIntoConstraints="NO" id="Skh-hI-CnM">
+                                                    <rect key="frame" x="103" y="36" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="LgI-9y-cd5"/>
+                                                        <constraint firstAttribute="width" constant="32" id="uOT-q1-pLo"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="1Hq-9u-LSm" secondAttribute="trailing" id="32F-zC-irG"/>
+                                                <constraint firstItem="0tb-b5-U54" firstAttribute="top" secondItem="89A-XZ-ov3" secondAttribute="top" constant="6" id="39c-o6-wGl"/>
                                                 <constraint firstItem="Gn3-E1-irj" firstAttribute="top" secondItem="1Hq-9u-LSm" secondAttribute="bottom" id="7G5-tE-ftG"/>
+                                                <constraint firstItem="Vwe-bf-ipN" firstAttribute="top" secondItem="0tb-b5-U54" secondAttribute="bottom" id="7dQ-L1-ElF"/>
                                                 <constraint firstAttribute="trailing" secondItem="89A-XZ-ov3" secondAttribute="trailing" id="8cZ-pL-ZlO"/>
                                                 <constraint firstItem="1Hq-9u-LSm" firstAttribute="top" secondItem="GFp-5J-BsS" secondAttribute="bottom" constant="1" id="Hgo-o1-1za"/>
+                                                <constraint firstItem="Skh-hI-CnM" firstAttribute="centerY" secondItem="0tb-b5-U54" secondAttribute="centerY" id="Lm6-dd-lWn"/>
                                                 <constraint firstAttribute="bottom" secondItem="Gn3-E1-irj" secondAttribute="bottom" id="NGv-4z-V1M"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vwe-bf-ipN" secondAttribute="trailing" id="OfH-nx-HCK"/>
                                                 <constraint firstAttribute="trailing" secondItem="Gn3-E1-irj" secondAttribute="trailing" id="SVK-jZ-fWd"/>
+                                                <constraint firstItem="3mp-ac-pqP" firstAttribute="centerY" secondItem="0tb-b5-U54" secondAttribute="centerY" id="VRL-6M-oJR"/>
+                                                <constraint firstAttribute="trailing" secondItem="0tb-b5-U54" secondAttribute="trailing" id="Wzk-30-pgS"/>
                                                 <constraint firstItem="Gn3-E1-irj" firstAttribute="leading" secondItem="Xz8-yV-WGv" secondAttribute="leading" id="Ya4-pv-PXR"/>
                                                 <constraint firstItem="OMy-y4-3ll" firstAttribute="top" secondItem="89A-XZ-ov3" secondAttribute="bottom" id="Zah-oh-ox8"/>
+                                                <constraint firstItem="3mp-ac-pqP" firstAttribute="leading" secondItem="Xz8-yV-WGv" secondAttribute="leading" constant="12" id="ew8-OE-bN7"/>
                                                 <constraint firstItem="OMy-y4-3ll" firstAttribute="leading" secondItem="Xz8-yV-WGv" secondAttribute="leading" id="fpc-WL-H5Q"/>
+                                                <constraint firstItem="Skh-hI-CnM" firstAttribute="leading" secondItem="3mp-ac-pqP" secondAttribute="trailing" constant="8" id="gSj-VZ-cUo"/>
                                                 <constraint firstItem="89A-XZ-ov3" firstAttribute="leading" secondItem="Xz8-yV-WGv" secondAttribute="leading" id="lTv-PM-hss"/>
                                                 <constraint firstAttribute="trailing" secondItem="OMy-y4-3ll" secondAttribute="trailing" id="mcL-Ql-hrF"/>
                                                 <constraint firstItem="89A-XZ-ov3" firstAttribute="top" secondItem="Xz8-yV-WGv" secondAttribute="top" constant="24" id="z2R-5Z-EfT"/>
@@ -1554,9 +1604,14 @@
                                             <outlet property="addressLabel" destination="GFp-5J-BsS" id="Evj-5R-Kee"/>
                                             <outlet property="assetImageView" destination="89A-XZ-ov3" id="XP7-D7-Eka"/>
                                             <outlet property="changeAddressButton" destination="BHF-BC-Hck" id="ar8-D6-YJg"/>
+                                            <outlet property="cropButton" destination="Vwe-bf-ipN" id="uka-ao-iOo"/>
+                                            <outlet property="deleteButton" destination="0tb-b5-U54" id="nJK-sv-3XA"/>
                                             <outlet property="descriptionTextView" destination="JPM-Ix-VaT" id="nNN-6M-cb5"/>
                                             <outlet property="imageViewHeightConstraint" destination="s8J-jP-oVx" id="zhd-IO-x5E"/>
+                                            <outlet property="isVideoImageView" destination="Skh-hI-CnM" id="KuC-Hq-AfI"/>
                                             <outlet property="locationView" destination="OMy-y4-3ll" id="mwK-ZN-JcR"/>
+                                            <outlet property="orderBackView" destination="3mp-ac-pqP" id="ozo-YR-3Nn"/>
+                                            <outlet property="orderLabel" destination="JsM-9n-6L9" id="8Xr-d6-iEb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -4338,6 +4393,8 @@
         <image name="CreateStoryPopintIcoAudio" width="28" height="49"/>
         <image name="CreateStoryPopintIcoPhotoVideo" width="42" height="42"/>
         <image name="CreateStoryPopintIcoText" width="40" height="35"/>
+        <image name="CropImage" width="32" height="32"/>
+        <image name="DeleteStoryPoint" width="32" height="32"/>
         <image name="DiscoverChangeLocationAllOver" width="25" height="25"/>
         <image name="DiscoverChangeLocationNearMe" width="20" height="20"/>
         <image name="DiscoverJumpToFeedEarth" width="24" height="24"/>
@@ -4348,6 +4405,7 @@
         <image name="DiscoverShowHideDescriptionDown" width="24" height="24"/>
         <image name="DiscoverStoryPointPlusCount" width="51" height="51"/>
         <image name="DiscoverUserEmptyAva" width="50" height="50"/>
+        <image name="IsVideo" width="32" height="32"/>
         <image name="ProfilePlaceholder" width="149" height="118"/>
         <image name="ReportButtonArrow" width="9" height="15"/>
         <image name="ReportsSuccessIcon" width="175" height="60"/>

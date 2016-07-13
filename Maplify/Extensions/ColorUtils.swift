@@ -97,4 +97,8 @@ extension UIColor {
     class func whiteFour() -> UIColor {
         return UIColor(red: 247, green: 246, blue: 246)
     }
+    
+    class func redPink() -> UIColor {
+        return UIColor(red: 372, green: 47, blue: 112)
+    }
 }

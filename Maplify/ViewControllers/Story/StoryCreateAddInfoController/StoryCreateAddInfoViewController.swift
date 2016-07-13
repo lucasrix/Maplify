@@ -9,7 +9,7 @@
 import Photos
 import UIKit
 
-class StoryCreateAddInfoViewController: ViewController {
+class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: StoryAddMediaDataSource! = nil
@@ -77,10 +77,23 @@ class StoryCreateAddInfoViewController: ViewController {
     
     // MARK: - actions
     func cancelButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
+        }
     }
     
     override func rightBarButtonItemDidTap() {
         // TODO:
+    }
+    
+    // MARK: - StoryAddMediaTableViewCellDelegate
+    func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!) {
+        let index = self.storyActiveModel.indexPathOfModel(asset)
+        completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
     }
 }

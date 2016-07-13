@@ -44,25 +44,10 @@ class CapturePopUpView: UIView {
     // MARK: - location
     func retrievePlace(location: MCMapCoordinate!, completion: ((locationString: String) -> ())!) {
         if location != nil {
-            let geocoder = GMSGeocoder()
-            geocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude), completionHandler: { [weak self] (response, error) in
-                if error == nil {
-                    let address = response?.firstResult()
-                    var addressString = String()
-                    if address?.thoroughfare != nil {
-                        addressString = (address?.thoroughfare)!
-                    } else if address?.locality != nil {
-                        addressString = (address?.locality)!
-                    } else {
-                        addressString = (self?.generateLocationString(location))!
-                    }
-                    self?.addressLabel.text = addressString
-                    completion(locationString: addressString)
-                } else {
-                    self?.addressLabel.text = self?.generateLocationString(location)
-                    completion(locationString: (self?.addressLabel.text)!)
-                }
-            })
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            GeocoderHelper.placeFromCoordinate(coordinate) { [weak self] (addressString) in
+                self?.addressLabel.text = addressString
+            }
         }
     }
     

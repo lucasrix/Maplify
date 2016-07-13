@@ -38,13 +38,13 @@ class CameraRollItemViewCell: UICollectionViewCell {
                 dispatch_async(dispatch_get_main_queue(), {
                     self?.imageView.image = result
                     self?.isVideoImageView.hidden = asset.mediaType == .Image
+                    self?.timeLabel.hidden = asset.mediaType == .Image
                 })
             }
         })
     }
     
     func populateVideoIfNeeded(asset: PHAsset, targetSize: CGSize) {
-        self.timeLabel.hidden = asset.mediaType == .Image
         if asset.mediaType == .Video {
             self.populateVideo(asset, targetSize: targetSize)
         }

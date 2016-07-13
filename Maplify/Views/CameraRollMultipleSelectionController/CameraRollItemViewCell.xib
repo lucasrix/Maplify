@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraRollChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Nu7-hc-7pG">
-                        <rect key="frame" x="5" y="5" width="24" height="24"/>
+                        <rect key="frame" x="138" y="7" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="8zw-Bh-UXL"/>
                             <constraint firstAttribute="width" constant="24" id="DLh-gU-6YS"/>
@@ -45,10 +45,10 @@
                 <constraint firstAttribute="bottom" secondItem="BZS-Op-4C4" secondAttribute="bottom" constant="1" id="2zd-sC-8XA"/>
                 <constraint firstAttribute="bottom" secondItem="hfA-x5-J30" secondAttribute="bottom" constant="6" id="Ngg-aJ-VIE"/>
                 <constraint firstAttribute="trailing" secondItem="hfA-x5-J30" secondAttribute="trailing" constant="5" id="T86-ES-vzL"/>
-                <constraint firstItem="Nu7-hc-7pG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Wx5-Hr-SXY"/>
                 <constraint firstAttribute="trailing" secondItem="BZS-Op-4C4" secondAttribute="trailing" constant="1" id="YuT-ZK-mCu"/>
-                <constraint firstItem="Nu7-hc-7pG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="cQB-jp-FVr"/>
+                <constraint firstItem="Nu7-hc-7pG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7" id="cQB-jp-FVr"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="gje-E9-PgT"/>
+                <constraint firstAttribute="trailing" secondItem="Nu7-hc-7pG" secondAttribute="trailing" constant="7" id="pOW-eX-nJy"/>
                 <constraint firstItem="1hF-ve-8xP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="ubi-rs-MOZ"/>
                 <constraint firstItem="BZS-Op-4C4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="vCe-qT-yTG"/>
             </constraints>

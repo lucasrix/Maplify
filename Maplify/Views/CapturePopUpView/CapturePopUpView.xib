@@ -31,7 +31,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fill1" translatesAutoresizingMaskIntoConstraints="NO" id="325-mn-aFC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icoPinGrey" translatesAutoresizingMaskIntoConstraints="NO" id="325-mn-aFC">
                     <rect key="frame" x="5" y="13" width="16" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="ZOz-MR-ab3"/>
@@ -55,7 +55,7 @@
         </view>
     </objects>
     <resources>
-        <image name="fill1" width="14" height="17"/>
         <image name="icoAddSp" width="40" height="40"/>
+        <image name="icoPinGrey" width="14" height="17"/>
     </resources>
 </document>

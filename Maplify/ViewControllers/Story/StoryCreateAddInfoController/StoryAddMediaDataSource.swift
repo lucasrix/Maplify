@@ -11,6 +11,10 @@ import UIKit
 class StoryAddMediaDataSource: CSBaseTableDataSource {
     var headerView: StoryAddMediaHeaderView! = nil
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return StoryAddMediaTableViewCell.contentHeight()
+    }
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.headerView
     }

@@ -29,6 +29,7 @@
 "Text.Placeholder.Profile" = "You don’t have any posts yet";
 "Text.Placeholder.StoryAddMediaTitle" = "What's this story called?";
 "Text.Placeholder.StoryAddMediaDescription" = "Add story description";
+"Text.Placeholder.AddDescription" = "Add description";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -117,6 +118,8 @@
 "Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
 "Label.CameraRollAddUpCount" = "Add up to %i moments";
 "Label.CameraRollSelectedOfCount" = "Selected %i of %i";
+"Label.LocationRequired" = "Location is required";
+"Label.StoryAddInfoPostsOrder" = "%i of %i";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -127,6 +130,7 @@
 //Buttons
 "Button.Ok" = "OK";
 "Button.Yes" = "Yes";
+"Button.YesDelete" = "Yes, delete";
 "Button.No" = "No";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
@@ -178,6 +182,8 @@
 "Button.TermsOfService" = "Terms of Service";
 "Button.LogOut" = "Log out";
 "Button.CreateFirstPost" = "Create your 1st post";
+"Button.Change" = "Change";
+"Button.AddLocation" = "Add location";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -204,6 +210,7 @@
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 "Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
 "Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
+"Alert.StoryCreateCancel" = "Are you sure you want to delete your new story?";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

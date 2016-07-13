@@ -18,6 +18,7 @@ let kLocationLabelTextColorAlphaDefault: CGFloat = 0.4
 
 protocol StoryAddMediaTableViewCellDelegate {
     func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!)
+    func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell {
@@ -86,23 +87,45 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         } else {
             self.populateEmptyLocation()
         }
-        
-        let addressImageName = asset.location == nil ? CellImages.locationPink : CellImages.locationGrey
-        self.addressImageView.image = UIImage(named: addressImageName)
-        self.addressLabel.textColor = asset.location == nil ? UIColor.redPink() : UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
-        self.locationView.backgroundColor = asset.location == nil ? UIColor.redPink().colorWithAlphaComponent(0.05) : UIColor.whiteColor()
-        self.changeAddressButton.hidden = asset.location == nil
-        self.addLocationButton.hidden = asset.location != nil
     }
     
     func retrieveLocation(location: CLLocation) {
         GeocoderHelper.placeFromCoordinate(location.coordinate) { [weak self] (addressString) in
-            self?.addressLabel.text = addressString
+            self?.populateLocation(addressString)
         }
+    }
+    
+    func populateLocation(address: String) {
+        self.addressLabel.text = address
+        
+        self.addressImageView.image = UIImage(named: CellImages.locationGrey)
+        self.addressLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
+        self.locationView.backgroundColor = UIColor.whiteColor()
+        self.changeAddressButton.hidden = false
+        self.addLocationButton.hidden = true
     }
     
     func populateEmptyLocation() {
         self.addressLabel.text = NSLocalizedString("Label.LocationRequired", comment: String())
+        
+        self.addressImageView.image = UIImage(named: CellImages.locationPink)
+        self.addressLabel.textColor = UIColor.redPink()
+        self.locationView.backgroundColor = UIColor.redPink().colorWithAlphaComponent(0.05)
+        self.changeAddressButton.hidden = true
+        self.addLocationButton.hidden = false
+    }
+    
+    // MARK: - actions
+    @IBAction func addLocationTapped(sender: UIButton) {
+        self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.populateLocation(address)
+        })
+    }
+    
+    @IBAction func changeLocationTapped(sender: UIButton) {
+        self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.populateLocation(address)
+        })
     }
     
     class func contentHeight() -> CGFloat {

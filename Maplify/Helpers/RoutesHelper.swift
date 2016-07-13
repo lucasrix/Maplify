@@ -88,11 +88,17 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyCreateCameraRollController, animated: true)
     }
     
-    func routesStoryCreateAddInfoController(selectedAssets: [PHAsset], createStoryCompletion: createStoryClosure!) {
+    func routesOpenStoryCreateAddInfoController(selectedAssets: [PHAsset], createStoryCompletion: createStoryClosure!) {
         let storyCreateAddInfoController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddInfoController) as! StoryCreateAddInfoViewController
         storyCreateAddInfoController.selectedAssets = selectedAssets
         storyCreateAddInfoController.createStoryCompletion = createStoryCompletion
         self.navigationController?.pushViewController(storyCreateAddInfoController, animated: true)
+    }
+    
+    func routesOpenStoryCreateAddLocationController(searchLocationClosure: SearchLocationClosure!) {
+        let storyCreateAddLocationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddLocationController) as! StoryCreateAddLocationViewController
+        storyCreateAddLocationController.searchLocationClosure = searchLocationClosure
+        self.navigationController?.pushViewController(storyCreateAddLocationController, animated: true)
     }
     
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {

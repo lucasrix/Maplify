@@ -61,7 +61,7 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
     
     override func rightBarButtonItemDidTap() {
         if self.cameraRollController.selectedAssets.count > 0 {
-            self.routesStoryCreateAddInfoController(self.cameraRollController.selectedAssets, createStoryCompletion: self.createStoryCompletion)
+            self.routesOpenStoryCreateAddInfoController(self.cameraRollController.selectedAssets, createStoryCompletion: self.createStoryCompletion)
         }
     }
     

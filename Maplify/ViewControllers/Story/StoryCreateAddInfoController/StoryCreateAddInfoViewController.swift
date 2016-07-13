@@ -96,4 +96,11 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         let index = self.storyActiveModel.indexPathOfModel(asset)
         completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
     }
+    
+    func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!) {
+        self.routesOpenStoryCreateAddLocationController { [weak self] (place) in
+            completion(location: place.coordinate, address: place.name)
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
+    }
 }

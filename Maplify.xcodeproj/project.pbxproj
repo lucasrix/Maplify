@@ -219,6 +219,7 @@
 		CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
 		CDF564A81D3517570052B997 /* StoryAddMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */; };
 		CDF564AA1D35228D0052B997 /* GeocoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A91D35228D0052B997 /* GeocoderHelper.swift */; };
+		CDF564AD1D368FC30052B997 /* StoryCreateAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */; };
 		CDF6D8971CD26007001387EC /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
 		CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
 		CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
@@ -453,6 +454,7 @@
 		CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateViewController.swift; sourceTree = "<group>"; };
 		CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaTableViewCell.swift; sourceTree = "<group>"; };
 		CDF564A91D35228D0052B997 /* GeocoderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderHelper.swift; sourceTree = "<group>"; };
+		CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateAddLocationViewController.swift; sourceTree = "<group>"; };
 		CDF6D8961CD26007001387EC /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryPointViewController.swift; sourceTree = "<group>"; };
 		CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryViewController.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			children = (
 				CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */,
 				CD3E0CE91D33C7290047BC55 /* StoryCreateAddInfoController */,
+				CDF564AB1D368FA10052B997 /* StoryCreateAddLocationController */,
 				CDF164F31CD0E74500E38C7A /* StoryCreate */,
 				CDF164EE1CCF623E00E38C7A /* AddPosts */,
 				CD45672C1CCA74D500961A7A /* StoryEdit */,
@@ -1279,6 +1282,14 @@
 			path = StoryCreate;
 			sourceTree = "<group>";
 		};
+		CDF564AB1D368FA10052B997 /* StoryCreateAddLocationController */ = {
+			isa = PBXGroup;
+			children = (
+				CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */,
+			);
+			path = StoryCreateAddLocationController;
+			sourceTree = "<group>";
+		};
 		CDF6D8981CD2846C001387EC /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,6 +1569,7 @@
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
+				CDF564AD1D368FC30052B997 /* StoryCreateAddLocationViewController.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,

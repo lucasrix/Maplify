@@ -17,7 +17,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     var headerView: StoryAddMediaHeaderView! = nil
     
     var createStoryCompletion: createStoryClosure! = nil
-    var selectedAssets = [PHAsset]()
+    var selectedDrafts = [StoryPointDraft]()
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func populateTitle() {
-        let localizedString = NSString.localizedStringWithFormat(NSLocalizedString("Count.Assets", comment: String()), self.selectedAssets.count)
+        let localizedString = NSString.localizedStringWithFormat(NSLocalizedString("Count.Assets", comment: String()), self.selectedDrafts.count)
         self.title = String(localizedString)
     }
     
@@ -62,7 +62,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     func loadData() {
         self.storyActiveModel.removeData()
-        self.storyActiveModel.addItems(self.selectedAssets, cellIdentifier: String(StoryAddMediaTableViewCell), sectionTitle: nil, delegate: self)
+        self.storyActiveModel.addItems(self.selectedDrafts, cellIdentifier: String(StoryAddMediaTableViewCell), sectionTitle: nil, delegate: self)
         self.storyDataSource.reloadTable()
     }
     
@@ -92,8 +92,15 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     // MARK: - StoryAddMediaTableViewCellDelegate
-    func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!) {
-        let index = self.storyActiveModel.indexPathOfModel(asset)
+    func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!) {
+        let index = self.storyActiveModel.indexPathOfModel(draft)
         completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
+    }
+    
+    func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!) {
+        self.routesOpenStoryCreateAddLocationController { [weak self] (place) in
+            completion(location: place.coordinate, address: place.name)
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
 }

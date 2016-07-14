@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import Photos
 import UIKit
 
 class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSelectionDelegate {
@@ -61,8 +62,20 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
     
     override func rightBarButtonItemDidTap() {
         if self.cameraRollController.selectedAssets.count > 0 {
-            self.routesStoryCreateAddInfoController(self.cameraRollController.selectedAssets, createStoryCompletion: self.createStoryCompletion)
+            let drafts = self.assetsToDrafts(self.cameraRollController.selectedAssets)
+            self.routesOpenStoryCreateAddInfoController(drafts, createStoryCompletion: self.createStoryCompletion)
         }
+    }
+    
+    private func assetsToDrafts(assets: [PHAsset]) -> [StoryPointDraft] {
+        var drafts = [StoryPointDraft]()
+        for asset in assets {
+            let storyPointDraft = StoryPointDraft()
+            storyPointDraft.asset = asset
+            storyPointDraft.coordinate = asset.location?.coordinate
+            drafts.append(storyPointDraft)
+        }
+        return drafts
     }
     
     // MARK: - CameraRollMultipleSelectionDelegate

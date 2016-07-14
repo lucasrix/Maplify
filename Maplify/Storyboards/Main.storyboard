@@ -1481,11 +1481,17 @@
                                                             <rect key="frame" x="306" y="0.0" width="69" height="38"/>
                                                             <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                             <state key="normal" title="Change"/>
+                                                            <connections>
+                                                                <action selector="changeLocationTapped:" destination="GF7-2X-oGO" eventType="touchUpInside" id="hFS-Yh-T1k"/>
+                                                            </connections>
                                                         </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eZ-kT-5xT">
                                                             <rect key="frame" x="273" y="0.0" width="102" height="38"/>
                                                             <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                             <state key="normal" title="Add location"/>
+                                                            <connections>
+                                                                <action selector="addLocationTapped:" destination="GF7-2X-oGO" eventType="touchUpInside" id="l3t-6Z-05l"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1633,6 +1639,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5K-AF-h2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1787.5" y="3645.5"/>
+        </scene>
+        <!--Story Create Add Location View Controller-->
+        <scene sceneID="Su2-eM-G8K">
+            <objects>
+                <viewController storyboardIdentifier="StoryCreateAddLocationViewController" id="1kR-Lz-GQG" customClass="StoryCreateAddLocationViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fgu-bS-k7l"/>
+                        <viewControllerLayoutGuide type="bottom" id="YyF-qP-814"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KTw-XB-BPn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cW1-4g-dh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2210.5" y="3645.5"/>
         </scene>
         <!--Story Edit View Controller-->
         <scene sceneID="PQQ-hc-LyZ">

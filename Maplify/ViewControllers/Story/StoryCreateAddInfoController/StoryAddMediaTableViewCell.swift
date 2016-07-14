@@ -15,9 +15,11 @@ let kCellTopMargin: CGFloat = 24
 let kCellLocationViewHeight: CGFloat = 39
 let kCellDescriptionViewHeight: CGFloat = 73
 let kLocationLabelTextColorAlphaDefault: CGFloat = 0.4
+let kEmptyLocationViewAlpha: CGFloat = 0.05
 
 protocol StoryAddMediaTableViewCellDelegate {
-    func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!)
+    func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
+    func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell {
@@ -37,15 +39,17 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     
     var imageManager = PHCachingImageManager()
     var delegate: StoryAddMediaTableViewCellDelegate! = nil
+    var draft: StoryPointDraft! = nil
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
-        let asset = cellData.model as! PHAsset
+        let draft = cellData.model as! StoryPointDraft
+        self.draft = draft
         self.delegate = cellData.delegate as! StoryAddMediaTableViewCellDelegate
-        self.setupViews(asset)
-        self.populateOrder(asset)
-        self.populateImage(asset)
-        self.manageLocation(asset)
+        self.setupViews(draft.asset)
+        self.populateOrder(draft)
+        self.populateImage(draft.asset)
+        self.manageLocation(draft)
     }
     
     func setupViews(asset: PHAsset) {
@@ -60,8 +64,8 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
     }
     
-    func populateOrder(asset: PHAsset) {
-        self.delegate?.getIndexOfAsset(asset, completion: { [weak self] (index, count) in
+    func populateOrder(draft: StoryPointDraft) {
+        self.delegate?.getIndexOfObject(draft, completion: { [weak self] (index, count) in
             let order = index + 1
             self?.orderLabel.text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
         })
@@ -80,29 +84,58 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         })
     }
     
-    func manageLocation(asset: PHAsset) {
-        if asset.location != nil {
-            self.retrieveLocation(asset.location!)
+    func manageLocation(draft: StoryPointDraft) {
+        if draft.coordinate != nil {
+            self.retrieveLocationIfNeeded(draft)
         } else {
             self.populateEmptyLocation()
         }
-        
-        let addressImageName = asset.location == nil ? CellImages.locationPink : CellImages.locationGrey
-        self.addressImageView.image = UIImage(named: addressImageName)
-        self.addressLabel.textColor = asset.location == nil ? UIColor.redPink() : UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
-        self.locationView.backgroundColor = asset.location == nil ? UIColor.redPink().colorWithAlphaComponent(0.05) : UIColor.whiteColor()
-        self.changeAddressButton.hidden = asset.location == nil
-        self.addLocationButton.hidden = asset.location != nil
     }
     
-    func retrieveLocation(location: CLLocation) {
-        GeocoderHelper.placeFromCoordinate(location.coordinate) { [weak self] (addressString) in
-            self?.addressLabel.text = addressString
+    func retrieveLocationIfNeeded(draft: StoryPointDraft) {
+        if draft.address.characters.count > 0 {
+            self.populateLocation(draft.address)
+        } else {
+            GeocoderHelper.placeFromCoordinate(draft.coordinate) { [weak self] (addressString) in
+                draft.address = addressString
+                self?.populateLocation(addressString)
+            }
         }
+    }
+    
+    func populateLocation(address: String) {
+        self.addressLabel.text = address
+        self.addressImageView.image = UIImage(named: CellImages.locationGrey)
+        self.addressLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
+        self.locationView.backgroundColor = UIColor.whiteColor()
+        self.changeAddressButton.hidden = false
+        self.addLocationButton.hidden = true
     }
     
     func populateEmptyLocation() {
         self.addressLabel.text = NSLocalizedString("Label.LocationRequired", comment: String())
+        self.addressImageView.image = UIImage(named: CellImages.locationPink)
+        self.addressLabel.textColor = UIColor.redPink()
+        self.locationView.backgroundColor = UIColor.redPink().colorWithAlphaComponent(kEmptyLocationViewAlpha)
+        self.changeAddressButton.hidden = true
+        self.addLocationButton.hidden = false
+    }
+    
+    // MARK: - actions
+    @IBAction func addLocationTapped(sender: UIButton) {
+        self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.draft?.address = address
+            self?.draft?.coordinate = location
+            self?.populateLocation(address)
+        })
+    }
+    
+    @IBAction func changeLocationTapped(sender: UIButton) {
+        self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.draft?.address = address
+            self?.draft?.coordinate = location
+            self?.populateLocation(address)
+        })
     }
     
     class func contentHeight() -> CGFloat {

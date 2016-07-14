@@ -88,9 +88,9 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyCreateCameraRollController, animated: true)
     }
     
-    func routesOpenStoryCreateAddInfoController(selectedAssets: [PHAsset], createStoryCompletion: createStoryClosure!) {
+    func routesOpenStoryCreateAddInfoController(selectedDrafts: [StoryPointDraft], createStoryCompletion: createStoryClosure!) {
         let storyCreateAddInfoController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddInfoController) as! StoryCreateAddInfoViewController
-        storyCreateAddInfoController.selectedAssets = selectedAssets
+        storyCreateAddInfoController.selectedDrafts = selectedDrafts
         storyCreateAddInfoController.createStoryCompletion = createStoryCompletion
         self.navigationController?.pushViewController(storyCreateAddInfoController, animated: true)
     }

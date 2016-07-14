@@ -17,7 +17,7 @@ let kCellDescriptionViewHeight: CGFloat = 73
 let kLocationLabelTextColorAlphaDefault: CGFloat = 0.4
 
 protocol StoryAddMediaTableViewCellDelegate {
-    func getIndexOfAsset(asset: PHAsset, completion: ((index: Int, count: Int) -> ())!)
+    func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
@@ -41,12 +41,12 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
-        let asset = cellData.model as! PHAsset
+        let draft = cellData.model as! StoryPointDraft
         self.delegate = cellData.delegate as! StoryAddMediaTableViewCellDelegate
-        self.setupViews(asset)
-        self.populateOrder(asset)
-        self.populateImage(asset)
-        self.manageLocation(asset)
+        self.setupViews(draft.asset)
+        self.populateOrder(draft)
+        self.populateImage(draft.asset)
+        self.manageLocation(draft.asset)
     }
     
     func setupViews(asset: PHAsset) {
@@ -61,8 +61,8 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
     }
     
-    func populateOrder(asset: PHAsset) {
-        self.delegate?.getIndexOfAsset(asset, completion: { [weak self] (index, count) in
+    func populateOrder(draft: StoryPointDraft) {
+        self.delegate?.getIndexOfObject(draft, completion: { [weak self] (index, count) in
             let order = index + 1
             self?.orderLabel.text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
         })

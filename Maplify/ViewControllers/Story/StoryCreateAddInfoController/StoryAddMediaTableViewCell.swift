@@ -38,15 +38,17 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     
     var imageManager = PHCachingImageManager()
     var delegate: StoryAddMediaTableViewCellDelegate! = nil
+    var draft: StoryPointDraft! = nil
     
     // MARK: - setup
     override func configure(cellData: CSCellData) {
         let draft = cellData.model as! StoryPointDraft
+        self.draft = draft
         self.delegate = cellData.delegate as! StoryAddMediaTableViewCellDelegate
         self.setupViews(draft.asset)
         self.populateOrder(draft)
         self.populateImage(draft.asset)
-        self.manageLocation(draft.asset)
+        self.manageLocation(draft)
     }
     
     func setupViews(asset: PHAsset) {
@@ -81,23 +83,27 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         })
     }
     
-    func manageLocation(asset: PHAsset) {
-        if asset.location != nil {
-            self.retrieveLocation(asset.location!)
+    func manageLocation(draft: StoryPointDraft) {
+        if draft.coordinate != nil {
+            self.retrieveLocationIfNeeded(draft)
         } else {
             self.populateEmptyLocation()
         }
     }
     
-    func retrieveLocation(location: CLLocation) {
-        GeocoderHelper.placeFromCoordinate(location.coordinate) { [weak self] (addressString) in
-            self?.populateLocation(addressString)
+    func retrieveLocationIfNeeded(draft: StoryPointDraft) {
+        if draft.address.characters.count > 0 {
+            self.populateLocation(draft.address)
+        } else {
+            GeocoderHelper.placeFromCoordinate(draft.coordinate) { [weak self] (addressString) in
+                draft.address = addressString
+                self?.populateLocation(addressString)
+            }
         }
     }
     
     func populateLocation(address: String) {
         self.addressLabel.text = address
-        
         self.addressImageView.image = UIImage(named: CellImages.locationGrey)
         self.addressLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
         self.locationView.backgroundColor = UIColor.whiteColor()
@@ -107,7 +113,6 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     
     func populateEmptyLocation() {
         self.addressLabel.text = NSLocalizedString("Label.LocationRequired", comment: String())
-        
         self.addressImageView.image = UIImage(named: CellImages.locationPink)
         self.addressLabel.textColor = UIColor.redPink()
         self.locationView.backgroundColor = UIColor.redPink().colorWithAlphaComponent(0.05)
@@ -118,12 +123,16 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     // MARK: - actions
     @IBAction func addLocationTapped(sender: UIButton) {
         self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.draft?.address = address
+            self?.draft?.coordinate = location
             self?.populateLocation(address)
         })
     }
     
     @IBAction func changeLocationTapped(sender: UIButton) {
         self.delegate?.addLocationDidTap({ [weak self] (location, address) in
+            self?.draft?.address = address
+            self?.draft?.coordinate = location
             self?.populateLocation(address)
         })
     }

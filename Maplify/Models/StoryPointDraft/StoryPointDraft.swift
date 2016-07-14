@@ -11,5 +11,5 @@ import Photos
 class StoryPointDraft: NSObject {
     var asset: PHAsset! = nil
     var coordinate: CLLocationCoordinate2D! = nil
-    var address: String! = nil
+    var address = String()
 }

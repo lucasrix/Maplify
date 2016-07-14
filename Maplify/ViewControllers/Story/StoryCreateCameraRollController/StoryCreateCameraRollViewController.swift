@@ -72,6 +72,7 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
         for asset in assets {
             let storyPointDraft = StoryPointDraft()
             storyPointDraft.asset = asset
+            storyPointDraft.coordinate = asset.location?.coordinate
             drafts.append(storyPointDraft)
         }
         return drafts

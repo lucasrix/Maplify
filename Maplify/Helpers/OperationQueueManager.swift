@@ -32,7 +32,3 @@ class OperationQueueManager {
         queue.addOperation(operation)
     }
 }
-
-protocol OperationQueueDelegate {
-    func allOperationsCompleted(completion: (success: Bool) -> ()!)
-}

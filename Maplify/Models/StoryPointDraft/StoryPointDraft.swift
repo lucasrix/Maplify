@@ -12,4 +12,6 @@ class StoryPointDraft: NSObject {
     var asset: PHAsset! = nil
     var coordinate: CLLocationCoordinate2D! = nil
     var address = String()
+    var image: UIImage! = nil
+    var video: AVAsset! = nil
 }

@@ -9,7 +9,7 @@
 import Photos
 import UIKit
 
-class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate {
+class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate, StoryCreateManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: StoryAddMediaDataSource! = nil
@@ -88,7 +88,22 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     override func rightBarButtonItemDidTap() {
-        // TODO:
+        if self.headerView?.titleTextField?.text?.characters.count > 0 {
+            let storyName = self.headerView?.titleTextField?.text
+            self.postStory(storyName!)
+        } else {
+            print("fffffuuu")
+        }
+    }
+    
+    func postStory(storyName: String) {
+        self.showProgressHUD()
+        let storyManager = StoryCreateManager.sharedManager
+        storyManager.delegate = self
+        let storyDescription = self.headerView?.descriptionTextView?.text
+        storyManager.postStory(storyName, storyDescription: storyDescription, storyPointDrafts: self.selectedDrafts) { 
+            print("completion success")
+        }
     }
     
     // MARK: - StoryAddMediaTableViewCellDelegate
@@ -102,5 +117,40 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
             completion(location: place.coordinate, address: place.name)
             self?.navigationController?.popToViewController(self!, animated: true)
         }
+    }
+    
+    // MARK: - StoryCreateManagerDelegate
+    func creationStoryDidSuccess() {
+        self.hideProgressHUD()
+    }
+    
+    func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+    }
+    
+    func creationStoryPointDidStartCreating(draft: StoryPointDraft) {
+        // TODO:
+        print("creationStoryPointDidStartCreating")
+    }
+    
+    func creationStoryPointDidSuccess(draft: StoryPointDraft) {
+        // TODO:
+        print("creationStoryPointDidSuccess")
+    }
+    
+    func creationStoryPointDidFail(draft: StoryPointDraft) {
+        // TODO:
+        print("creationStoryPointDidFail")
+    }
+    
+    func allOperationsCompleted(storyId: Int) {
+        self.createStoryCompletion(storyId: storyId, cancelled: false)
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

@@ -15,6 +15,7 @@ let kCellTopMargin: CGFloat = 24
 let kCellLocationViewHeight: CGFloat = 39
 let kCellDescriptionViewHeight: CGFloat = 73
 let kLocationLabelTextColorAlphaDefault: CGFloat = 0.4
+let kEmptyLocationViewAlpha: CGFloat = 0.05
 
 protocol StoryAddMediaTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
@@ -115,7 +116,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.addressLabel.text = NSLocalizedString("Label.LocationRequired", comment: String())
         self.addressImageView.image = UIImage(named: CellImages.locationPink)
         self.addressLabel.textColor = UIColor.redPink()
-        self.locationView.backgroundColor = UIColor.redPink().colorWithAlphaComponent(0.05)
+        self.locationView.backgroundColor = UIColor.redPink().colorWithAlphaComponent(kEmptyLocationViewAlpha)
         self.changeAddressButton.hidden = true
         self.addLocationButton.hidden = false
     }

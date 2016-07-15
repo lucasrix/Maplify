@@ -7,7 +7,7 @@
 //
 
 import Photos
-import Foundation
+import UIKit
 
 protocol StoryCreateManagerDelegate {
     func creationStoryDidSuccess()
@@ -106,7 +106,8 @@ class StoryCreateManager: NSObject {
             options.synchronous = true
             self.imageManager.requestImageForAsset(draft.asset, targetSize: targetSize, contentMode: .AspectFill, options: options) { (result, info) in
                 
-                let fileData = UIImagePNGRepresentation(result!)
+                let correctOrientedImage = result!.correctlyOrientedImage().cropToSquare()
+                let fileData = UIImagePNGRepresentation(correctOrientedImage!)
                 dispatch_async(dispatch_get_main_queue(), {
                     
                     if fileData != nil {

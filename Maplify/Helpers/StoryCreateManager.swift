@@ -79,7 +79,6 @@ class StoryCreateManager: NSObject {
     }
     
     func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
-        
         let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
         let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
                                                    "text":"test text",
@@ -107,9 +106,10 @@ class StoryCreateManager: NSObject {
     }
     
     func imageDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        
         var fileData: NSData! = nil
-        if let image = draft.image.cropToSquare() {
+        let imageWidth = UIScreen().screenWidth() * UIScreen().screenScale()
+        let size = CGSizeMake(imageWidth, imageWidth)
+        if let image = draft.image.cropToSquare()?.resize(size) {
             fileData = UIImagePNGRepresentation(image)
         }
         
@@ -124,7 +124,6 @@ class StoryCreateManager: NSObject {
     }
     
     func videoDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             let options = PHVideoRequestOptions()
             options.networkAccessAllowed = true

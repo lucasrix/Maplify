@@ -167,6 +167,7 @@
 		CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */; };
 		CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */; };
 		CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */; };
+		CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
@@ -409,6 +410,7 @@
 		CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateCameraRollViewController.swift; sourceTree = "<group>"; };
 		CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollItemViewCell.swift; sourceTree = "<group>"; };
 		CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollItemViewCell.xib; sourceTree = "<group>"; };
+		CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetRetrievingManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
@@ -901,6 +903,7 @@
 				CDF564A91D35228D0052B997 /* GeocoderHelper.swift */,
 				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
 				CDF564B11D37B9220052B997 /* StoryCreateManager.swift */,
+				CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1607,6 +1610,7 @@
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
+				CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */,
 				853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */,
 				85AC3C561CF31250007D9A76 /* StoryInfoView.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,

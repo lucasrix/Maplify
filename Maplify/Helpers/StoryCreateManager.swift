@@ -127,25 +127,18 @@ class StoryCreateManager: NSObject {
     }
     
     func videoDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let options = PHVideoRequestOptions()
-            options.networkAccessAllowed = true
-            self.imageManager.requestAVAssetForVideo(draft.asset, options: options, resultHandler: { (avAsset, audioMix, info) -> () in
-                
-                let fileAsset = avAsset as? AVURLAsset
-                let fileData = NSData(contentsOfURL: fileAsset!.URL)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    if fileData != nil {
-                        let params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
-                        let kind = StoryPointKind.Video
-                        completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
-                    } else {
-                        self.delegate?.creationStoryPointDidFail(draft)
-                        operation.completeOperation()
-                    }
-                })
-            })
-        })
+        
+        AssetRetrievingManager.retrieveVideoAsset(draft.asset) { (avAsset, audioMix, info) in
+            let fileAsset = avAsset as? AVURLAsset
+            let fileData = NSData(contentsOfURL: fileAsset!.URL)
+            if fileData != nil {
+                let params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
+                let kind = StoryPointKind.Video
+                completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
+            } else {
+                self.delegate?.creationStoryPointDidFail(draft)
+                operation.completeOperation()
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ class StoryCreateManager: NSObject {
     var imageManager = PHCachingImageManager()
     var delegate: StoryCreateManagerDelegate! = nil
     
-    func postStory(storyName: String, storyDescription: String!, storyPointDrafts: [StoryPointDraft], completion: (() -> ())!) {
+    func postStory(storyName: String, storyDescription: String!, storyPointDrafts: [StoryPointDraft]) {
             var params: [String: AnyObject] = ["name": storyName, "discoverable": false]
             if storyDescription.characters.count > 0 {
                 params["description"] = storyDescription

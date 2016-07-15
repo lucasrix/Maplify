@@ -46,11 +46,11 @@ class CameraRollItemViewCell: UICollectionViewCell {
     
     func populateVideoIfNeeded(asset: PHAsset, targetSize: CGSize) {
         if asset.mediaType == .Video {
-            self.populateVideo(asset, targetSize: targetSize)
+            self.populateVideo(asset)
         }
     }
     
-    private func populateVideo(asset: PHAsset, targetSize: CGSize) {
+    private func populateVideo(asset: PHAsset) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             let options = PHVideoRequestOptions()
             options.networkAccessAllowed = true

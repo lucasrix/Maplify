@@ -92,7 +92,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
             let storyName = self.headerView?.titleTextField?.text
             self.postStory(storyName!)
         } else {
-            print("fffffuuu")
+            // TODO:
         }
     }
     
@@ -101,9 +101,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         let storyManager = StoryCreateManager.sharedManager
         storyManager.delegate = self
         let storyDescription = self.headerView?.descriptionTextView?.text
-        storyManager.postStory(storyName, storyDescription: storyDescription, storyPointDrafts: self.selectedDrafts) { 
-            print("completion success")
-        }
+        storyManager.postStory(storyName, storyDescription: storyDescription, storyPointDrafts: self.selectedDrafts)
     }
     
     // MARK: - StoryAddMediaTableViewCellDelegate

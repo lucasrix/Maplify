@@ -81,7 +81,7 @@ class StoryCreateManager: NSObject {
     func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
         let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
         let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
-                                                   "text":"test text",
+                                                   "text":draft.storyPointdescription,
                                                    "location":locationDict,
                                                    "attachment_id":attachmentId,
                                                    "story_ids":[storyId]]
@@ -100,8 +100,11 @@ class StoryCreateManager: NSObject {
     func fileDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
         if draft.asset.mediaType == .Image {
             self.imageDataForDraft(draft, operation: operation, completion: completion)
-        } else {
+        } else if draft.asset.mediaType == .Video {
             self.videoDataForDraft(draft, operation: operation, completion: completion)
+        } else {
+            self.delegate?.creationStoryPointDidFail(draft)
+            operation.completeOperation()
         }
     }
     

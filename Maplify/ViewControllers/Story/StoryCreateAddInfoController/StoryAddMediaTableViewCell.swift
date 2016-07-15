@@ -22,7 +22,7 @@ protocol StoryAddMediaTableViewCellDelegate {
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
-class StoryAddMediaTableViewCell: CSTableViewCell {
+class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     @IBOutlet weak var assetImageView: UIImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addressImageView: UIImageView!
@@ -63,6 +63,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
         self.addLocationButton?.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
         self.descriptionTextView?.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
+        self.descriptionTextView.delegate = self
     }
     
     func populateOrder() {
@@ -155,5 +156,10 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
     class func contentHeight() -> CGFloat {
         let imageViewHeight: CGFloat = UIScreen().screenWidth()
         return kCellTopMargin + imageViewHeight + kCellLocationViewHeight + kCellDescriptionViewHeight
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(textView: UITextView) {
+        self.draft?.storyPointdescription = textView.text
     }
 }

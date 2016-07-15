@@ -11,7 +11,6 @@ import Photos
 class AssetRetrievingManager {
     class func retrieveImage(asset: PHAsset, targetSize: CGSize, completion: ((result: UIImage?, info: [NSObject : AnyObject]?) -> ())!) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let targetSize = CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight))
             PHCachingImageManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { (result, info) in
                 
                 dispatch_async(dispatch_get_main_queue(), {

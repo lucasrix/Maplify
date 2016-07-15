@@ -112,7 +112,7 @@ class StoryCreateManager: NSObject {
         var fileData: NSData! = nil
         let imageWidth = UIScreen().screenWidth() * UIScreen().screenScale()
         let size = CGSizeMake(imageWidth, imageWidth)
-        if let image = draft.image.cropToSquare()?.resize(size) {
+        if let image = draft.image?.cropToSquare()?.resize(size) {
             fileData = UIImagePNGRepresentation(image)
         }
         

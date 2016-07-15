@@ -31,17 +31,11 @@ class CameraRollItemViewCell: UICollectionViewCell {
     }
     
     func populateImage(asset: PHAsset, targetSize: CGSize) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            self.imageManager.requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self?.imageView.image = result
-                    self?.isVideoImageView.hidden = asset.mediaType == .Image
-                    self?.timeLabel.hidden = asset.mediaType == .Image
-                })
-            }
-        })
+        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize) { [weak self] (result, info) in
+            self?.imageView.image = result
+            self?.isVideoImageView.hidden = asset.mediaType == .Image
+            self?.timeLabel.hidden = asset.mediaType == .Image
+        }
     }
     
     func populateVideoIfNeeded(asset: PHAsset, targetSize: CGSize) {
@@ -51,17 +45,10 @@ class CameraRollItemViewCell: UICollectionViewCell {
     }
     
     private func populateVideo(asset: PHAsset) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let options = PHVideoRequestOptions()
-            options.networkAccessAllowed = true
-            self.imageManager.requestAVAssetForVideo(asset, options: options, resultHandler: { [weak self] (avAsset, audioMix, info) -> () in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    let videoDuration = (avAsset?.duration.seconds)!
-                    self?.timeLabel.text = videoDuration.toTimeString()
-                })
-            })
-        })
+        AssetRetrievingManager.retrieveVideoAsset(asset) { [weak self] (avAsset, audioMix, info) in
+            let videoDuration = (avAsset?.duration.seconds)!
+            self?.timeLabel.text = videoDuration.toTimeString()
+        }
     }
 }
 

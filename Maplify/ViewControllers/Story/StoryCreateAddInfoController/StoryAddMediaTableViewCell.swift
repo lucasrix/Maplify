@@ -74,11 +74,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     }
     
     func manageImage() {
-        if self.draft?.image != nil {
-            self.populateImage()
-        } else {
-            self.retrieveImage()
-        }
+        self.draft?.image == nil ? self.retrieveImage() : self.populateImage()
     }
     
     func populateImage() {
@@ -86,7 +82,8 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     }
     
     func retrieveImage() {
-        AssetRetrievingManager.retrieveImage(self.draft.asset) { [weak self] (result, info) in
+        let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
+        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize) { [weak self] (result, info) in
             self?.draft?.image = result!.correctlyOrientedImage()
             self?.populateImage()
         }

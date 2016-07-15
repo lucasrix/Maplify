@@ -52,18 +52,13 @@ class CameraRollItemViewCell: UICollectionViewCell {
     
     private func populateVideo(asset: PHAsset, targetSize: CGSize) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
             let options = PHVideoRequestOptions()
             options.networkAccessAllowed = true
             self.imageManager.requestAVAssetForVideo(asset, options: options, resultHandler: { [weak self] (avAsset, audioMix, info) -> () in
                 
                 dispatch_async(dispatch_get_main_queue(), {
-
                     let videoDuration = (avAsset?.duration.seconds)!
                     self?.timeLabel.text = videoDuration.toTimeString()
-                    
-//                    let fileAsset = avAsset as? AVURLAsset
-//                    self?.selectedVideoData = NSData(contentsOfURL: fileAsset!.URL)
                 })
             })
         })

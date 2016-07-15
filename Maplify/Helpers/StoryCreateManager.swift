@@ -44,7 +44,7 @@ class StoryCreateManager: NSObject {
     func postStoryPoints(storyId: Int, drafts: [StoryPointDraft]) {
         for draft in drafts {
             OperationQueueManager.sharedInstance.addOperation({ [weak self] (operation) in
-                self?.imageFromAsset(draft, operation: operation, completion: { [weak self] (fileData, params, kind, operation) in
+                self?.fileDataForDraft(draft, operation: operation, completion: { (fileData, params, kind, operation) in
                     self?.remotePostAttachment(draft, fileData: fileData, params: params, kind: kind, operation: operation, storyId: storyId)
                 })
             })
@@ -98,28 +98,52 @@ class StoryCreateManager: NSObject {
         }
     }
     
-    func imageFromAsset(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+    func fileDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+        if draft.asset.mediaType == .Image {
+            self.imageDataForDraft(draft, operation: operation, completion: completion)
+        } else {
+            self.videoDataForDraft(draft, operation: operation, completion: completion)
+        }
+    }
+    
+    func imageDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+        
+        var fileData: NSData! = nil
+        if let image = draft.image.cropToSquare() {
+            fileData = UIImagePNGRepresentation(image)
+        }
+        
+        if fileData != nil {
+            let params = ["mimeType": "image/png", "fileName": "photo.png"]
+            let kind = StoryPointKind.Photo
+            completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
+        } else {
+            self.delegate?.creationStoryPointDidFail(draft)
+            operation.completeOperation()
+        }
+    }
+    
+    func videoDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            let targetSize = CGSizeMake(CGFloat(draft.asset.pixelWidth), CGFloat(draft.asset.pixelHeight))
-            let options = PHImageRequestOptions()
-            options.synchronous = true
-            self.imageManager.requestImageForAsset(draft.asset, targetSize: targetSize, contentMode: .AspectFill, options: options) { (result, info) in
+            let options = PHVideoRequestOptions()
+            options.networkAccessAllowed = true
+            self.imageManager.requestAVAssetForVideo(draft.asset, options: options, resultHandler: { (avAsset, audioMix, info) -> () in
                 
-                let correctOrientedImage = result!.correctlyOrientedImage().cropToSquare()
-                let fileData = UIImagePNGRepresentation(correctOrientedImage!)
+                let fileAsset = avAsset as? AVURLAsset
+                let fileData = NSData(contentsOfURL: fileAsset!.URL)
+                
                 dispatch_async(dispatch_get_main_queue(), {
-                    
                     if fileData != nil {
-                        let params = ["mimeType": "image/png", "fileName": "photo.png"]
-                        let kind = StoryPointKind.Photo
+                        let params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
+                        let kind = StoryPointKind.Video
                         completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
                     } else {
                         self.delegate?.creationStoryPointDidFail(draft)
                         operation.completeOperation()
                     }
                 })
-            }
+            })
         })
     }
 }

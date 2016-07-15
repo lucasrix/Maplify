@@ -88,7 +88,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
             self.imageManager.requestImageForAsset(self.draft.asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
-                self?.draft?.image = result!
+                self?.draft?.image = result!.correctlyOrientedImage()
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self?.populateImage()

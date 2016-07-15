@@ -12,6 +12,7 @@ import Photos
 let nibNameCameraRollMultipleSelectionView = "CameraRollMultipleSelectionView"
 let nibNameCameraRollItemViewCell = "CameraRollItemViewCell"
 let kMaxItemsCount: Int = 10
+let kVideoSearchMaxDuration: CGFloat = 20
 
 protocol CameraRollMultipleSelectionDelegate {
     func cameraRollUnauthorized()
@@ -28,6 +29,7 @@ class CameraRollMultipleSelectionController: UIViewController, UICollectionViewD
     var selectedIndexes = [Int]()
     var selectedAssets = [PHAsset]()
     var maxItemsCount = kMaxItemsCount
+    var maxVideoDuration = kVideoSearchMaxDuration
 
     // MARK: - view controller life cycle
     override func loadView() {
@@ -61,9 +63,12 @@ class CameraRollMultipleSelectionController: UIViewController, UICollectionViewD
     
     func setupImages() {
         let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        let predicate = NSPredicate(format: "(mediaType = %d) OR (mediaType = %d AND duration < %f)", PHAssetMediaType.Image.rawValue, PHAssetMediaType.Video.rawValue, self.maxVideoDuration)
+        options.sortDescriptors = [sortDescriptor]
+        options.predicate = predicate
         self.images = PHAsset.fetchAssetsWithOptions(options)
-        collectionView.reloadData()
+        self.collectionView.reloadData()
     }
     
     func populateSelectedItemsCountLabel() {

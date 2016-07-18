@@ -13,5 +13,4 @@ class StoryPointDraft: NSObject {
     var coordinate: CLLocationCoordinate2D! = nil
     var address = String()
     var storyPointdescription = String()
-    var image: UIImage! = nil
 }

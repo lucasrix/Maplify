@@ -48,7 +48,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.delegate = cellData.delegate as! StoryAddMediaTableViewCellDelegate
         self.setupViews()
         self.populateOrder()
-        self.manageImage()
+        self.populateImage()
         self.manageLocation()
     }
     
@@ -73,19 +73,12 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         })
     }
     
-    func manageImage() {
-        self.draft?.image == nil ? self.retrieveImage() : self.populateImage()
-    }
-    
     func populateImage() {
-        self.assetImageView?.image = self.draft?.image
-    }
-    
-    func retrieveImage() {
         let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
-        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize) { [weak self] (result, info) in
-            self?.draft?.image = result!.correctlyOrientedImage()
-            self?.populateImage()
+        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
+            if result != nil {
+                self?.assetImageView?.image = result!
+            }
         }
     }
     

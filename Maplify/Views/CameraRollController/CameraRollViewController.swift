@@ -132,7 +132,7 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
         cell.tag = currentTag
         
         let asset = self.images[indexPath.item] as! PHAsset
-        AssetRetrievingManager.retrieveImage(asset, targetSize: cellSize) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(asset, targetSize: cellSize, synchronous: false) { [weak self] (result, info) in
             if cell.tag == currentTag {
                 cell.image = result
                 cell.timeLabel.hidden = asset.mediaType != .Video
@@ -242,7 +242,7 @@ private extension CameraRollViewController {
     func changeImage(asset: PHAsset) {
         self.imageCropView.image = nil
         let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
             self?.videoView.hidden = true
             self?.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
             self?.imageCropView.image = result
@@ -284,7 +284,7 @@ private extension CameraRollViewController {
         
         // video preview
         let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
             self?.videoImageView.image = result
         }
     }

@@ -9,9 +9,11 @@
 import Photos
 
 class AssetRetrievingManager {
-    class func retrieveImage(asset: PHAsset, targetSize: CGSize, completion: ((result: UIImage?, info: [NSObject : AnyObject]?) -> ())!) {
+    class func retrieveImage(asset: PHAsset, targetSize: CGSize, synchronous: Bool, completion: ((result: UIImage?, info: [NSObject : AnyObject]?) -> ())!) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            PHCachingImageManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { (result, info) in
+            let options = PHImageRequestOptions()
+            options.synchronous = synchronous
+            PHCachingImageManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: options) { (result, info) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     completion?(result: result, info: info)

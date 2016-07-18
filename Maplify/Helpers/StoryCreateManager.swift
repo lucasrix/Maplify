@@ -109,21 +109,23 @@ class StoryCreateManager: NSObject {
     }
     
     func imageDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        var fileData: NSData! = nil
         let imageWidth = UIScreen().screenWidth() * UIScreen().screenScale()
         let size = CGSizeMake(imageWidth, imageWidth)
-        if let image = draft.image?.cropToSquare()?.resize(size) {
-            fileData = UIImagePNGRepresentation(image)
-        }
         
-        if fileData != nil {
-            let params = ["mimeType": "image/png", "fileName": "photo.png"]
-            let kind = StoryPointKind.Photo
-            completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
-        } else {
-            self.delegate?.creationStoryPointDidFail(draft)
-            operation.completeOperation()
-        }
+        AssetRetrievingManager.retrieveImage(draft.asset, targetSize: size, synchronous: true, completion: { (result, info) in
+            var fileData: NSData! = nil
+            if let image = result?.correctlyOrientedImage().cropToSquareImage().resize(size) {
+                fileData = UIImagePNGRepresentation(image)
+            }
+            if fileData != nil {
+                let params = ["mimeType": "image/png", "fileName": "photo.png"]
+                let kind = StoryPointKind.Photo
+                completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
+            } else {
+                self.delegate?.creationStoryPointDidFail(draft)
+                operation.completeOperation()
+            }
+        })
     }
     
     func videoDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {

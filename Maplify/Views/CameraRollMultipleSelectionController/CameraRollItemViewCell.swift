@@ -31,7 +31,7 @@ class CameraRollItemViewCell: UICollectionViewCell {
     }
     
     func populateImage(asset: PHAsset, targetSize: CGSize) {
-        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
             self?.imageView.image = result
             self?.isVideoImageView.hidden = asset.mediaType == .Image
             self?.timeLabel.hidden = asset.mediaType == .Image

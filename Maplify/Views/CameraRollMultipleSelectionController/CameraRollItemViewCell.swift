@@ -31,42 +31,24 @@ class CameraRollItemViewCell: UICollectionViewCell {
     }
     
     func populateImage(asset: PHAsset, targetSize: CGSize) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            self.imageManager.requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self?.imageView.image = result
-                    self?.isVideoImageView.hidden = asset.mediaType == .Image
-                    self?.timeLabel.hidden = asset.mediaType == .Image
-                })
-            }
-        })
+        AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
+            self?.imageView.image = result
+            self?.isVideoImageView.hidden = asset.mediaType == .Image
+            self?.timeLabel.hidden = asset.mediaType == .Image
+        }
     }
     
     func populateVideoIfNeeded(asset: PHAsset, targetSize: CGSize) {
         if asset.mediaType == .Video {
-            self.populateVideo(asset, targetSize: targetSize)
+            self.populateVideo(asset)
         }
     }
     
-    private func populateVideo(asset: PHAsset, targetSize: CGSize) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            let options = PHVideoRequestOptions()
-            options.networkAccessAllowed = true
-            self.imageManager.requestAVAssetForVideo(asset, options: options, resultHandler: { [weak self] (avAsset, audioMix, info) -> () in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-
-                    let videoDuration = (avAsset?.duration.seconds)!
-                    self?.timeLabel.text = videoDuration.toTimeString()
-                    
-//                    let fileAsset = avAsset as? AVURLAsset
-//                    self?.selectedVideoData = NSData(contentsOfURL: fileAsset!.URL)
-                })
-            })
-        })
+    private func populateVideo(asset: PHAsset) {
+        AssetRetrievingManager.retrieveVideoAsset(asset) { [weak self] (avAsset, audioMix, info) in
+            let videoDuration = (avAsset?.duration.seconds)!
+            self?.timeLabel.text = videoDuration.toTimeString()
+        }
     }
 }
 

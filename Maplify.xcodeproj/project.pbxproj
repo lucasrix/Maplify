@@ -167,6 +167,7 @@
 		CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */; };
 		CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */; };
 		CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */; };
+		CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
 		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
@@ -221,6 +222,7 @@
 		CDF564AA1D35228D0052B997 /* GeocoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A91D35228D0052B997 /* GeocoderHelper.swift */; };
 		CDF564AD1D368FC30052B997 /* StoryCreateAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */; };
 		CDF564B01D379FBA0052B997 /* StoryPointDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */; };
+		CDF564B21D37B9220052B997 /* StoryCreateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564B11D37B9220052B997 /* StoryCreateManager.swift */; };
 		CDF6D8971CD26007001387EC /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
 		CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
 		CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
@@ -408,6 +410,7 @@
 		CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateCameraRollViewController.swift; sourceTree = "<group>"; };
 		CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollItemViewCell.swift; sourceTree = "<group>"; };
 		CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollItemViewCell.xib; sourceTree = "<group>"; };
+		CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetRetrievingManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
 		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
@@ -457,6 +460,7 @@
 		CDF564A91D35228D0052B997 /* GeocoderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderHelper.swift; sourceTree = "<group>"; };
 		CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateAddLocationViewController.swift; sourceTree = "<group>"; };
 		CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDraft.swift; sourceTree = "<group>"; };
+		CDF564B11D37B9220052B997 /* StoryCreateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateManager.swift; sourceTree = "<group>"; };
 		CDF6D8961CD26007001387EC /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryPointViewController.swift; sourceTree = "<group>"; };
 		CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryViewController.swift; sourceTree = "<group>"; };
@@ -896,8 +900,10 @@
 				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 				CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */,
 				CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */,
-				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
 				CDF564A91D35228D0052B997 /* GeocoderHelper.swift */,
+				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
+				CDF564B11D37B9220052B997 /* StoryCreateManager.swift */,
+				CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1604,6 +1610,7 @@
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
+				CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */,
 				853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */,
 				85AC3C561CF31250007D9A76 /* StoryInfoView.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
@@ -1660,6 +1667,7 @@
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
+				CDF564B21D37B9220052B997 /* StoryCreateManager.swift in Sources */,
 				CD28F8321D2E8485001CF185 /* CameraRollMultipleSelectionController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,

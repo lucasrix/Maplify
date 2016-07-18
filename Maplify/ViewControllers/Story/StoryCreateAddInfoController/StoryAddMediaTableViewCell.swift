@@ -22,7 +22,7 @@ protocol StoryAddMediaTableViewCellDelegate {
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
-class StoryAddMediaTableViewCell: CSTableViewCell {
+class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     @IBOutlet weak var assetImageView: UIImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addressImageView: UIImageView!
@@ -46,64 +46,63 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         let draft = cellData.model as! StoryPointDraft
         self.draft = draft
         self.delegate = cellData.delegate as! StoryAddMediaTableViewCellDelegate
-        self.setupViews(draft.asset)
-        self.populateOrder(draft)
-        self.populateImage(draft.asset)
-        self.manageLocation(draft)
+        self.setupViews()
+        self.populateOrder()
+        self.populateImage()
+        self.manageLocation()
     }
     
-    func setupViews(asset: PHAsset) {
-        self.imageViewHeightConstraint.constant = UIScreen().screenWidth()
+    func setupViews() {
+        let asset = self.draft?.asset
+        self.imageViewHeightConstraint?.constant = UIScreen().screenWidth()
         let orderBackViewCornerRadius = CGRectGetHeight(self.orderBackView.frame) / 2
-        self.orderBackView.layer.cornerRadius = orderBackViewCornerRadius
-        self.isVideoImageView.hidden = asset.mediaType == .Image
-        self.cropButton.hidden = asset.mediaType == .Video
-        self.addressLabel.text = NSLocalizedString("Label.Loading", comment: String())
-        self.changeAddressButton.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
-        self.addLocationButton.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
-        self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
+        self.orderBackView?.layer.cornerRadius = orderBackViewCornerRadius
+        self.isVideoImageView?.hidden = asset?.mediaType == .Image
+        self.cropButton?.hidden = asset?.mediaType == .Video
+        self.addressLabel?.text = NSLocalizedString("Label.Loading", comment: String())
+        self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
+        self.addLocationButton?.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
+        self.descriptionTextView?.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
+        self.descriptionTextView.delegate = self
     }
     
-    func populateOrder(draft: StoryPointDraft) {
+    func populateOrder() {
         self.delegate?.getIndexOfObject(draft, completion: { [weak self] (index, count) in
             let order = index + 1
-            self?.orderLabel.text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
+            self?.orderLabel?.text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
         })
     }
     
-    func populateImage(asset: PHAsset) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            let targetSize = CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight))
-            self.imageManager.requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: nil) { [weak self] (result, info) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self?.assetImageView.image = result
-                })
+    func populateImage() {
+        let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
+        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
+            if result != nil {
+                self?.assetImageView?.image = result!
             }
-        })
+        }
     }
     
-    func manageLocation(draft: StoryPointDraft) {
-        if draft.coordinate != nil {
-            self.retrieveLocationIfNeeded(draft)
+    func manageLocation() {
+        if self.draft?.coordinate != nil {
+            self.retrieveLocationIfNeeded()
         } else {
             self.populateEmptyLocation()
         }
     }
     
-    func retrieveLocationIfNeeded(draft: StoryPointDraft) {
-        if draft.address.characters.count > 0 {
-            self.populateLocation(draft.address)
+    func retrieveLocationIfNeeded() {
+        if self.draft?.address.characters.count > 0 {
+            self.populateLocation()
         } else {
             GeocoderHelper.placeFromCoordinate(draft.coordinate) { [weak self] (addressString) in
-                draft.address = addressString
-                self?.populateLocation(addressString)
+                self?.draft?.address = addressString
+                self?.populateLocation()
             }
         }
     }
     
-    func populateLocation(address: String) {
+    func populateLocation() {
+        let address = self.draft?.address
         self.addressLabel.text = address
         self.addressImageView.image = UIImage(named: CellImages.locationGrey)
         self.addressLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(kLocationLabelTextColorAlphaDefault)
@@ -126,7 +125,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.delegate?.addLocationDidTap({ [weak self] (location, address) in
             self?.draft?.address = address
             self?.draft?.coordinate = location
-            self?.populateLocation(address)
+            self?.populateLocation()
         })
     }
     
@@ -134,12 +133,17 @@ class StoryAddMediaTableViewCell: CSTableViewCell {
         self.delegate?.addLocationDidTap({ [weak self] (location, address) in
             self?.draft?.address = address
             self?.draft?.coordinate = location
-            self?.populateLocation(address)
+            self?.populateLocation()
         })
     }
     
     class func contentHeight() -> CGFloat {
         let imageViewHeight: CGFloat = UIScreen().screenWidth()
         return kCellTopMargin + imageViewHeight + kCellLocationViewHeight + kCellDescriptionViewHeight
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(textView: UITextView) {
+        self.draft?.storyPointdescription = textView.text
     }
 }

@@ -184,6 +184,7 @@
 "Button.CreateFirstPost" = "Create your 1st post";
 "Button.Change" = "Change";
 "Button.AddLocation" = "Add location";
+"Button.Retry" = "Retry";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";

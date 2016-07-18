@@ -44,6 +44,7 @@ class StoryCreateManager: NSObject {
     func postStoryPoints(storyId: Int, drafts: [StoryPointDraft]) {
         for draft in drafts {
             OperationQueueManager.sharedInstance.addOperation({ [weak self] (operation) in
+                self?.delegate?.creationStoryPointDidStartCreating(draft)
                 self?.fileDataForDraft(draft, operation: operation, completion: { (fileData, params, kind, operation) in
                     self?.remotePostAttachment(draft, fileData: fileData, params: params, kind: kind, operation: operation, storyId: storyId)
                 })
@@ -55,13 +56,13 @@ class StoryCreateManager: NSObject {
                 StoryManager.saveStory(response as! Story)
                 operation.completeOperation()
                 if OperationQueueManager.sharedInstance.queue.operationCount == 0 {
-                    self?.delegate.allOperationsCompleted(storyId)
+//                    self?.delegate?.allOperationsCompleted(storyId)
                 }
                 
                 }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     operation.completeOperation()
                     if OperationQueueManager.sharedInstance.queue.operationCount == 0 {
-                        self?.delegate.allOperationsCompleted(storyId)
+//                        self?.delegate?.allOperationsCompleted(storyId)
                     }
             })
         }

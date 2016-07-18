@@ -9,6 +9,7 @@
 import Photos
 import GoogleMaps
 import KMPlaceholderTextView
+import MBProgressHUD
 import UIKit
 
 let kCellTopMargin: CGFloat = 24
@@ -36,6 +37,9 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     @IBOutlet weak var isVideoImageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var cropButton: UIButton!
+    @IBOutlet weak var successView: UIView!
+    @IBOutlet weak var successLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     
     var imageManager = PHCachingImageManager()
     var delegate: StoryAddMediaTableViewCellDelegate! = nil
@@ -55,8 +59,16 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     func setupViews() {
         let asset = self.draft?.asset
         self.imageViewHeightConstraint?.constant = UIScreen().screenWidth()
-        let orderBackViewCornerRadius = CGRectGetHeight(self.orderBackView.frame) / 2
-        self.orderBackView?.layer.cornerRadius = orderBackViewCornerRadius
+        let stateViewCornerRadius = CGRectGetHeight(self.orderBackView.frame) / 2
+        self.orderBackView?.layer.cornerRadius = stateViewCornerRadius
+        self.successView?.layer.cornerRadius = stateViewCornerRadius
+        self.retryButton.layer.cornerRadius = stateViewCornerRadius
+        
+        self.orderBackView.hidden = self.draft?.downloadState != .Default && self.draft?.downloadState != .InProgress
+        self.successView.hidden = self.draft?.downloadState != .Success
+        self.retryButton.hidden = self.draft?.downloadState != .Fail
+        self.retryButton.setTitle(NSLocalizedString("Button.Retry", comment: String()), forState: .Normal)
+        
         self.isVideoImageView?.hidden = asset?.mediaType == .Image
         self.cropButton?.hidden = asset?.mediaType == .Video
         self.addressLabel?.text = NSLocalizedString("Label.Loading", comment: String())
@@ -64,6 +76,32 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.addLocationButton?.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
         self.descriptionTextView?.placeholder = NSLocalizedString("Text.Placeholder.AddDescription", comment: String())
         self.descriptionTextView.delegate = self
+        
+        if self.draft?.downloadState == .InProgress {
+            self.setupInProgressState()
+        } else if self.draft?.downloadState == .Success {
+            self.setupSuccessState()
+        } else if self.draft?.downloadState == .Fail {
+            self.setupFailState()
+        } else {
+            self.setupDefaultState()
+        }
+    }
+    
+    func setupDefaultState() {
+
+    }
+    
+    func setupInProgressState() {
+        
+    }
+
+    func setupSuccessState() {
+
+    }
+    
+    func setupFailState() {
+        
     }
     
     func populateOrder() {

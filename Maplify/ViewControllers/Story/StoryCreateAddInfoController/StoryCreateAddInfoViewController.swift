@@ -129,16 +129,19 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     func creationStoryPointDidStartCreating(draft: StoryPointDraft) {
         // TODO:
         print("creationStoryPointDidStartCreating")
+        draft.downloadState = .InProgress
     }
     
     func creationStoryPointDidSuccess(draft: StoryPointDraft) {
         // TODO:
         print("creationStoryPointDidSuccess")
+        draft.downloadState = .Success
     }
     
     func creationStoryPointDidFail(draft: StoryPointDraft) {
         // TODO:
         print("creationStoryPointDidFail")
+        draft.downloadState = .Fail
     }
     
     func allOperationsCompleted(storyId: Int) {

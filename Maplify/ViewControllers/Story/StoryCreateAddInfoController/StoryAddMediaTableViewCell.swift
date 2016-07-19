@@ -95,8 +95,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     }
     
     func populateImage() {
-        let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
-        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: Sizes.assetsTargetSizeDefault, synchronous: false) { [weak self] (result, info) in
             if result != nil {
                 self?.assetImageView?.image = result!
             }

@@ -82,6 +82,10 @@ class CSBaseTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         self.activeModel.provideSelection(indexPath)
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
+        
+    func reloadCell(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation = .None) {
+        self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
+    }
     
     // MARK: - actions
     func removeRow(indexPath: NSIndexPath) {

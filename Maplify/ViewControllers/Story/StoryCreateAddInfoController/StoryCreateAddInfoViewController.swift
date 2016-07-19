@@ -118,7 +118,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     // MARK: - StoryCreateManagerDelegate
-    func creationStoryDidSuccess() {
+    func creationStoryDidSuccess(storyId: Int) {
         self.hideProgressHUD()
     }
     
@@ -127,22 +127,32 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryPointDidStartCreating(draft: StoryPointDraft) {
-        // TODO:
-        print("creationStoryPointDidStartCreating")
+        draft.downloadState = .InProgress
+        self.updateCell(draft)
     }
     
     func creationStoryPointDidSuccess(draft: StoryPointDraft) {
-        // TODO:
-        print("creationStoryPointDidSuccess")
+        draft.downloadState = .Success
+        self.updateCell(draft)
     }
     
     func creationStoryPointDidFail(draft: StoryPointDraft) {
-        // TODO:
-        print("creationStoryPointDidFail")
+        draft.downloadState = .Fail
+        self.updateCell(draft)
     }
     
     func allOperationsCompleted(storyId: Int) {
-        self.createStoryCompletion(storyId: storyId, cancelled: false)
+        self.createStoryCompletion?(storyId: storyId, cancelled: false)
+    }
+    
+    private func updateCell(draft: StoryPointDraft) {
+        let index = self.selectedDrafts.indexOf(draft)
+        if (index != nil) && (index != NSNotFound) {
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.storyDataSource.reloadCell([indexPath])
+            })
+        }
     }
     
     // MARK: - ErrorHandlingProtocol

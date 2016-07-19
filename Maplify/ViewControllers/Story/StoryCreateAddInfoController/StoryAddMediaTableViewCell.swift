@@ -22,6 +22,7 @@ protocol StoryAddMediaTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
     func retryPostStoryPointDidTap(draft: StoryPointDraft)
+    func deleteStoryPointDidTap(draft: StoryPointDraft)
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
@@ -163,6 +164,12 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         if self.draft != nil {
             self.retryButton.enabled = false
             self.delegate?.retryPostStoryPointDidTap(self.draft)
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(sender: UIButton) {
+        if self.draft != nil {
+            self.delegate?.deleteStoryPointDidTap(self.draft)
         }
     }
     

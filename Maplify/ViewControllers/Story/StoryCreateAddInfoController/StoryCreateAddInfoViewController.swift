@@ -25,7 +25,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     var selectedDrafts = [StoryPointDraft]()
     var failedDrafts = [StoryPointDraft]()
     var storyId: Int = 0
-//    var networkState = NetworkState.Ready
+    var networkState = NetworkState.Ready
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -120,6 +120,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func postStory(storyName: String) {
+        self.networkState = .InProgress
         self.showProgressHUD()
         self.setupInProgressState()
         let storyManager = StoryCreateManager.sharedManager
@@ -150,6 +151,19 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         }
     }
     
+    func deleteStoryPointDidTap(draft: StoryPointDraft) {
+        let index = self.selectedDrafts.indexOf(draft)
+        if (index != nil) && (index != NSNotFound) {
+            
+            // TODO: ask for delete (networkState !!)
+            
+            self.selectedDrafts.removeAtIndex(index!)
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            self.storyDataSource.removeRow(indexPath)
+//            self.storyDataSource.reloadTable()
+        }
+    }
+    
     // MARK: - StoryCreateManagerDelegate
     func creationStoryDidSuccess(storyId: Int) {
         self.storyId = storyId
@@ -157,6 +171,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.networkState = .Ready
         self.hideProgressHUD()
         self.setupReadyState()
         self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
@@ -181,6 +196,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func allOperationsCompleted(storyId: Int) {
+        self.networkState = .Ready
         self.setupReadyState()
         if self.failedDrafts.count == 0 {
             self.createStoryCompletion?(storyId: storyId, cancelled: false)

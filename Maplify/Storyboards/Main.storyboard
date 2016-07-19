@@ -1617,6 +1617,9 @@
                                                     <state key="normal" title="Retry" image="Retry">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="retryTapped:" destination="GF7-2X-oGO" eventType="touchUpInside" id="zOd-WQ-wru"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-Ni-ux9">
                                                     <rect key="frame" x="0.0" y="24" width="375" height="475"/>

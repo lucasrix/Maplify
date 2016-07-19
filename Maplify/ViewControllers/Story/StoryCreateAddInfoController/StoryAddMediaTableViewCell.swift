@@ -21,6 +21,7 @@ let kEmptyLocationViewAlpha: CGFloat = 0.05
 protocol StoryAddMediaTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
+    func retryPostStoryPointDidTap(draft: StoryPointDraft)
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
@@ -155,6 +156,12 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
             self?.draft?.coordinate = location
             self?.populateLocation()
         })
+    }
+    
+    @IBAction func retryTapped(sender: UIButton) {
+        if self.draft != nil {
+            self.delegate?.retryPostStoryPointDidTap(self.draft)
+        }
     }
     
     class func contentHeight() -> CGFloat {

@@ -9,6 +9,11 @@
 import Photos
 import UIKit
 
+enum NetworkState: Int {
+    case Ready
+    case InProgress
+}
+
 class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate, StoryCreateManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,6 +23,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     var createStoryCompletion: createStoryClosure! = nil
     var selectedDrafts = [StoryPointDraft]()
+//    var networkState = NetworkState.Ready
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -75,6 +81,20 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         return UIColor.darkGreyBlue()
     }
     
+    func setupInProgressState() {
+        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.headerView?.titleTextField.enabled = false
+        self.headerView?.descriptionTextView.editable = false
+        self.headerView?.descriptionTextView.selectable = false
+    }
+    
+    func setupReadyState() {
+        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.headerView?.titleTextField.enabled = true
+        self.headerView?.descriptionTextView.editable = true
+        self.headerView?.descriptionTextView.selectable = true
+    }
+    
     // MARK: - actions
     func cancelButtonTapped() {
         let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
@@ -98,6 +118,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     func postStory(storyName: String) {
         self.showProgressHUD()
+        self.setupInProgressState()
         let storyManager = StoryCreateManager.sharedManager
         storyManager.delegate = self
         let storyDescription = self.headerView?.descriptionTextView?.text
@@ -117,12 +138,18 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         }
     }
     
+    func retryPostStoryPointDidTap(draft: StoryPointDraft) {
+        // TODO:
+        print(draft)
+    }
+    
     // MARK: - StoryCreateManagerDelegate
     func creationStoryDidSuccess(storyId: Int) {
         self.hideProgressHUD()
     }
     
     func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.setupReadyState()
         self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
     }
     
@@ -142,7 +169,8 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func allOperationsCompleted(storyId: Int) {
-        self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        self.setupReadyState()
+//        self.createStoryCompletion?(storyId: storyId, cancelled: false)
     }
     
     private func updateCell(draft: StoryPointDraft) {

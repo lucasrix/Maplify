@@ -66,13 +66,15 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.successView?.layer.cornerRadius = stateViewCornerRadius
         self.retryButton.layer.cornerRadius = stateViewCornerRadius
         
-        self.orderBackView.hidden = self.draft?.downloadState != .Default && self.draft?.downloadState != .InProgress
+        self.orderBackView.hidden = (self.draft?.downloadState != .Default) && (self.draft?.downloadState != .InProgress)
         self.successView.hidden = self.draft?.downloadState != .Success
         self.retryButton.hidden = self.draft?.downloadState != .Fail
+        self.retryButton.enabled = self.draft?.downloadState == .Fail
         self.retryButton.setTitle(NSLocalizedString("Button.Retry", comment: String()), forState: .Normal)
         
         self.isVideoImageView?.hidden = asset?.mediaType == .Image
-        self.cropButton?.hidden = asset?.mediaType == .Video
+        self.cropButton?.hidden = (asset?.mediaType == .Video) || (self.draft?.downloadState == .Success)
+        self.deleteButton?.hidden = self.draft?.downloadState == .Success
         self.addressLabel?.text = NSLocalizedString("Label.Loading", comment: String())
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
         self.addLocationButton?.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)

@@ -37,31 +37,49 @@ extension CaptureViewController {
     // MARK: - remote
     func loadRemoteAllStoryPonts(completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getAllStoryPoints({ (response) in
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StoryPointManager.saveStoryPoints(response as! [StoryPoint])
-                completion(success: true)
-            }, failure:  { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                completion(success: false)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(success: true)
+                })
             })
+        }, failure:  { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        })
     }
     
     func loadRemoteStoryPont(storyPointId: Int, completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getStoryPoint(storyPointId, success: { (response) in
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StoryPointManager.saveStoryPoint(response as! StoryPoint)
-                completion(success: true)
-            }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                completion(success: false)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(success: true)
+                })
             })
+        }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        })
     }
     
     func loadRemoteStory(storyId: Int, completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getStory(storyId, success: { (response) in
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StoryManager.saveStory(response as! Story)
-                completion(success: true)
-            }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-                completion(success: false)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(success: true)
+                })
             })
+        }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+            completion(success: false)
+        })
     }
 }

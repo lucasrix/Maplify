@@ -23,6 +23,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     var createStoryCompletion: createStoryClosure! = nil
     var selectedDrafts = [StoryPointDraft]()
+    var failedDrafts = [StoryPointDraft]()
     var storyId: Int = 0
 //    var networkState = NetworkState.Ready
 
@@ -170,13 +171,18 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryPointDidFail(draft: StoryPointDraft) {
+        if self.failedDrafts.contains(draft) == false {
+            self.failedDrafts.append(draft)
+        }
         draft.downloadState = .Fail
         self.updateCell(draft)
     }
     
     func allOperationsCompleted(storyId: Int) {
         self.setupReadyState()
-//        self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        if self.failedDrafts.count == 0 {
+            self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        }
     }
     
     private func updateCell(draft: StoryPointDraft) {

@@ -159,6 +159,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     
     @IBAction func retryTapped(sender: UIButton) {
         if self.draft != nil {
+            self.retryButton.enabled = false
             self.delegate?.retryPostStoryPointDidTap(self.draft)
         }
     }

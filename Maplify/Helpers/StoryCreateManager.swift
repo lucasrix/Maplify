@@ -85,12 +85,17 @@ class StoryCreateManager: NSObject {
     }
     
     private func remotePostAttachment(draft: StoryPointDraft, fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation, storyId: Int) {
-        ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
-            let attachmentID = (response as! Attachment).id
-            self?.remotePostStoryPoint(draft, kind: kind, storyId: storyId, attachmentId: attachmentID, operation: operation)
-            
-        }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
-            self?.delegate?.creationStoryPointDidFail(draft)
+        if draft.readyToCreate() {
+            ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
+                let attachmentID = (response as! Attachment).id
+                self?.remotePostStoryPoint(draft, kind: kind, storyId: storyId, attachmentId: attachmentID, operation: operation)
+                
+            }) { [weak self] (statusCode, errors, localDescription, messages) -> () in
+                self?.delegate?.creationStoryPointDidFail(draft)
+                operation.completeOperation()
+            }
+        } else {
+            self.delegate?.creationStoryPointDidFail(draft)
             operation.completeOperation()
         }
     }
@@ -127,17 +132,21 @@ class StoryCreateManager: NSObject {
     
     // MARK: - retry posting
     private func retryPostStoryPointRemote(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, completion: ((draft: StoryPointDraft, success: Bool) -> ())!) {
-        let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
-        let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
-                                                   "text":draft.storyPointdescription,
-                                                   "location":locationDict,
-                                                   "attachment_id":attachmentId,
-                                                   "story_ids":[storyId]]
-        
-        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { (response) in
-            StoryPointManager.saveStoryPoint(response as! StoryPoint)
-            completion?(draft: draft, success: true)
-        }) { (statusCode, errors, localDescription, messages) in
+        if draft.readyToCreate() {
+            let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
+            let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
+                                                       "text":draft.storyPointdescription,
+                                                       "location":locationDict,
+                                                       "attachment_id":attachmentId,
+                                                       "story_ids":[storyId]]
+            
+            ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { (response) in
+                StoryPointManager.saveStoryPoint(response as! StoryPoint)
+                completion?(draft: draft, success: true)
+            }) { (statusCode, errors, localDescription, messages) in
+                completion?(draft: draft, success: false)
+            }
+        } else {
             completion?(draft: draft, success: false)
         }
     }

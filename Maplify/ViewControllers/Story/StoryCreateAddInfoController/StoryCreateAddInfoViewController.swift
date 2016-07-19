@@ -110,7 +110,8 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     override func rightBarButtonItemDidTap() {
-        if self.headerView?.titleTextField?.text?.characters.count > 0 {
+        let notReadyDrafts = self.selectedDrafts.filter { $0.readyToCreate() == false }
+        if (self.headerView?.titleTextField?.text?.characters.count > 0) && (notReadyDrafts.count == 0) {
             let storyName = self.headerView?.titleTextField?.text
             self.postStory(storyName!)
         } else {
@@ -156,6 +157,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.hideProgressHUD()
         self.setupReadyState()
         self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
     }

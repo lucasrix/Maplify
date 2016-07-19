@@ -40,6 +40,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     @IBOutlet weak var successView: UIView!
     @IBOutlet weak var successLabel: UILabel!
     @IBOutlet weak var retryButton: UIButton!
+    @IBOutlet weak var progressView: UIView!
     
     var imageManager = PHCachingImageManager()
     var delegate: StoryAddMediaTableViewCellDelegate! = nil
@@ -78,36 +79,17 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.descriptionTextView.delegate = self
         
         if self.draft?.downloadState == .InProgress {
-            self.setupInProgressState()
-        } else if self.draft?.downloadState == .Success {
-            self.setupSuccessState()
-        } else if self.draft?.downloadState == .Fail {
-            self.setupFailState()
-        } else {
-            self.setupDefaultState()
+            MBProgressHUD.showHUDAddedTo(self.progressView, animated: true)
         }
-    }
-    
-    func setupDefaultState() {
-
-    }
-    
-    func setupInProgressState() {
-        
-    }
-
-    func setupSuccessState() {
-
-    }
-    
-    func setupFailState() {
-        
+        self.progressView.hidden = self.draft?.downloadState != .InProgress
     }
     
     func populateOrder() {
         self.delegate?.getIndexOfObject(draft, completion: { [weak self] (index, count) in
             let order = index + 1
-            self?.orderLabel?.text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
+            let text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
+            self?.orderLabel?.text = text
+            self?.successLabel?.text = text
         })
     }
     

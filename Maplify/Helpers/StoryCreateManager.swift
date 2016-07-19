@@ -10,7 +10,7 @@ import Photos
 import UIKit
 
 protocol StoryCreateManagerDelegate {
-    func creationStoryDidSuccess()
+    func creationStoryDidSuccess(storyId: Int)
     func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!)
     func creationStoryPointDidStartCreating(draft: StoryPointDraft)
     func creationStoryPointDidSuccess(draft: StoryPointDraft)
@@ -33,7 +33,7 @@ class StoryCreateManager: NSObject {
             ApiClient.sharedClient.createStory(params, success: { [weak self] (response) in
                 let story = response as! Story
                 StoryManager.saveStory(story)
-                self?.delegate?.creationStoryDidSuccess()
+                self?.delegate?.creationStoryDidSuccess(story.id)
                 self?.postStoryPoints(story.id, drafts: storyPointDrafts)
                 
                 }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
@@ -56,13 +56,13 @@ class StoryCreateManager: NSObject {
                 StoryManager.saveStory(response as! Story)
                 operation.completeOperation()
                 if OperationQueueManager.sharedInstance.queue.operationCount == 0 {
-//                    self?.delegate?.allOperationsCompleted(storyId)
+                    self?.delegate?.allOperationsCompleted(storyId)
                 }
                 
                 }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
                     operation.completeOperation()
                     if OperationQueueManager.sharedInstance.queue.operationCount == 0 {
-//                        self?.delegate?.allOperationsCompleted(storyId)
+                        self?.delegate?.allOperationsCompleted(storyId)
                     }
             })
         }

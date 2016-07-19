@@ -41,7 +41,23 @@ class StoryCreateManager: NSObject {
             })
     }
     
-    func postStoryPoints(storyId: Int, drafts: [StoryPointDraft]) {
+    func retryPostStoryPoint(draft: StoryPointDraft, storyId: Int, completion: ((draft: StoryPointDraft, success: Bool) -> ())!) {
+        FileDataManager.fileDataForDraft(draft, targetSize: self.targetSize()) { (fileData, params, kind) in
+            if fileData != nil {
+                self.retryPostAttachment(fileData!, params: params, kind: kind, completion: { [weak self] (success, attachmentId) in
+                    if success == true {
+                        self?.retryPostStoryPointRemote(draft, kind: kind, storyId: storyId, attachmentId: attachmentId, completion: completion)
+                    } else {
+                        completion?(draft: draft, success: false)
+                    }
+                })
+            } else {
+                completion?(draft: draft, success: false)
+            }
+        }
+    }
+    
+    private func postStoryPoints(storyId: Int, drafts: [StoryPointDraft]) {
         for draft in drafts {
             OperationQueueManager.sharedInstance.addOperation({ [weak self] (operation) in
                 self?.delegate?.creationStoryPointDidStartCreating(draft)
@@ -68,7 +84,7 @@ class StoryCreateManager: NSObject {
         }
     }
     
-    func remotePostAttachment(draft: StoryPointDraft, fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation, storyId: Int) {
+    private func remotePostAttachment(draft: StoryPointDraft, fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation, storyId: Int) {
         ApiClient.sharedClient.postAttachment(fileData, params: params, success: { [weak self] (response) -> () in
             let attachmentID = (response as! Attachment).id
             self?.remotePostStoryPoint(draft, kind: kind, storyId: storyId, attachmentId: attachmentID, operation: operation)
@@ -79,7 +95,7 @@ class StoryCreateManager: NSObject {
         }
     }
     
-    func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
+    private func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
         let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
         let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
                                                    "text":draft.storyPointdescription,
@@ -98,50 +114,45 @@ class StoryCreateManager: NSObject {
         }
     }
     
-    func fileDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        if draft.asset.mediaType == .Image {
-            self.imageDataForDraft(draft, operation: operation, completion: completion)
-        } else if draft.asset.mediaType == .Video {
-            self.videoDataForDraft(draft, operation: operation, completion: completion)
-        } else {
-            self.delegate?.creationStoryPointDidFail(draft)
-            operation.completeOperation()
+    private func fileDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+        FileDataManager.fileDataForDraft(draft, targetSize: self.targetSize()) { (fileData, params, kind) in
+            if fileData != nil {
+                completion?(fileData: fileData, params: params, kind: kind, operation: operation)
+            } else {
+                self.delegate?.creationStoryPointDidFail(draft)
+                operation.completeOperation()
+            }
         }
     }
     
-    func imageDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
+    // MARK: - retry posting
+    private func retryPostStoryPointRemote(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, completion: ((draft: StoryPointDraft, success: Bool) -> ())!) {
+        let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
+        let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
+                                                   "text":draft.storyPointdescription,
+                                                   "location":locationDict,
+                                                   "attachment_id":attachmentId,
+                                                   "story_ids":[storyId]]
+        
+        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion?(draft: draft, success: true)
+        }) { (statusCode, errors, localDescription, messages) in
+            completion?(draft: draft, success: false)
+        }
+    }
+    
+    private func retryPostAttachment(fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, completion: ((success: Bool, attachmentId: Int) -> ())!){
+        ApiClient.sharedClient.postAttachment(fileData, params: params, success: { (response) in
+            let attachment = response as! Attachment
+            completion?(success: true, attachmentId: attachment.id)
+        }) { (statusCode, errors, localDescription, messages) in
+            completion?(success: false, attachmentId: 0)
+        }
+    }
+    
+    private func targetSize() -> CGSize {
         let imageWidth = UIScreen().screenWidth() * UIScreen().screenScale()
-        let size = CGSizeMake(imageWidth, imageWidth)
-        
-        AssetRetrievingManager.retrieveImage(draft.asset, targetSize: size, synchronous: true, completion: { (result, info) in
-            var fileData: NSData! = nil
-            if let image = result?.correctlyOrientedImage().cropToSquareImage().resize(size) {
-                fileData = UIImagePNGRepresentation(image)
-            }
-            if fileData != nil {
-                let params = ["mimeType": "image/png", "fileName": "photo.png"]
-                let kind = StoryPointKind.Photo
-                completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
-            } else {
-                self.delegate?.creationStoryPointDidFail(draft)
-                operation.completeOperation()
-            }
-        })
-    }
-    
-    func videoDataForDraft(draft: StoryPointDraft, operation: NetworkOperation, completion: ((fileData: NSData, params: [String: AnyObject], kind: StoryPointKind, operation: NetworkOperation) -> ())!) {
-        
-        AssetRetrievingManager.retrieveVideoAsset(draft.asset) { (avAsset, audioMix, info) in
-            let fileAsset = avAsset as? AVURLAsset
-            let fileData = NSData(contentsOfURL: fileAsset!.URL)
-            if fileData != nil {
-                let params = ["mimeType": "video/quicktime", "fileName": "video.mov"]
-                let kind = StoryPointKind.Video
-                completion?(fileData: fileData!, params: params, kind: kind, operation: operation)
-            } else {
-                self.delegate?.creationStoryPointDidFail(draft)
-                operation.completeOperation()
-            }
-        }
+        return CGSizeMake(imageWidth, imageWidth)
     }
 }

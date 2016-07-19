@@ -23,6 +23,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     var createStoryCompletion: createStoryClosure! = nil
     var selectedDrafts = [StoryPointDraft]()
+    var storyId: Int = 0
 //    var networkState = NetworkState.Ready
 
     // MARK: - view controller life cycle
@@ -139,12 +140,17 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func retryPostStoryPointDidTap(draft: StoryPointDraft) {
-        // TODO:
-        print(draft)
+        draft.downloadState = .InProgress
+        self.updateCell(draft)
+        StoryCreateManager.sharedManager.retryPostStoryPoint(draft, storyId: self.storyId) { [weak self] (createdDraft, success) in
+            draft.downloadState = success == true ? .Success : .Fail
+            self?.updateCell(draft)
+        }
     }
     
     // MARK: - StoryCreateManagerDelegate
     func creationStoryDidSuccess(storyId: Int) {
+        self.storyId = storyId
         self.hideProgressHUD()
     }
     

@@ -152,15 +152,31 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func deleteStoryPointDidTap(draft: StoryPointDraft) {
+        if self.selectedDrafts.count == 1 {
+            self.showDraftDeletionAlert()
+        } else {
+            self.removeDraft(draft)
+        }
+    }
+    
+    private func removeDraft(draft: StoryPointDraft) {
         let index = self.selectedDrafts.indexOf(draft)
         if (index != nil) && (index != NSNotFound) {
-            
-            // TODO: ask for delete (networkState !!)
-            
             self.selectedDrafts.removeAtIndex(index!)
             let indexPath = NSIndexPath(forRow: index!, inSection: 0)
             self.storyDataSource.removeRow(indexPath)
-//            self.storyDataSource.reloadTable()
+            self.storyDataSource.reloadTable()
+        }
+    }
+    
+    private func showDraftDeletionAlert() {
+        let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletionLast", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
         }
     }
     

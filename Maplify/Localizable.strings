@@ -212,6 +212,7 @@
 "Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
 "Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
 "Alert.StoryCreateCancel" = "Are you sure you want to delete your new story?";
+"Alert.StoryPointDraftDeletionLast" = "Are you sure you want to delete last moment? Story will be deleted";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

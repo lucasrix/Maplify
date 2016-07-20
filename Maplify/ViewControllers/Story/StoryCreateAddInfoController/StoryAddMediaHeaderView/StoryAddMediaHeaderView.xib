@@ -22,6 +22,9 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="textFieldChangedText:" destination="iN0-l3-epB" eventType="editingChanged" id="h8E-Ff-kUM"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,6 +95,7 @@
             <connections>
                 <outlet property="descriptionTextView" destination="jSK-38-qfl" id="8Q7-MF-i4t"/>
                 <outlet property="titleTextField" destination="s3R-Js-HrG" id="6hz-82-3w8"/>
+                <outlet property="titleView" destination="SBs-7c-6Aw" id="cMb-Zq-1Y7"/>
             </connections>
             <point key="canvasLocation" x="175.5" y="173.5"/>
         </view>

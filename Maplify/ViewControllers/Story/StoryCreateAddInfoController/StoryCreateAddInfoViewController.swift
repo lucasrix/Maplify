@@ -111,12 +111,23 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     override func rightBarButtonItemDidTap() {
         let notReadyDrafts = self.selectedDrafts.filter { $0.readyToCreate() == false }
-        if (self.headerView?.titleTextField?.text?.characters.count > 0) && (notReadyDrafts.count == 0) {
+        if (self.headerView?.readyToCreate() == true) && (notReadyDrafts.count == 0) {
             let storyName = self.headerView?.titleTextField?.text
             self.postStory(storyName!)
         } else {
-            // TODO:
+            self.showStoryNameErrorIfNedded()
+            self.showNotAllFilledAlert()
         }
+    }
+    
+    private func showStoryNameErrorIfNedded() {
+        if self.headerView?.readyToCreate() == false {
+            self.headerView.setStoryNameErrorState()
+        }
+    }
+    
+    private func showNotAllFilledAlert() {
+        // TODO:
     }
     
     func postStory(storyName: String) {

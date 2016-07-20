@@ -84,17 +84,18 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func setupInProgressState() {
-        self.navigationItem.rightBarButtonItem?.enabled = false
-        self.headerView?.titleTextField.enabled = false
-        self.headerView?.descriptionTextView.editable = false
-        self.headerView?.descriptionTextView.selectable = false
+        self.changeNetworkState(false)
     }
     
     func setupReadyState() {
-        self.navigationItem.rightBarButtonItem?.enabled = true
-        self.headerView?.titleTextField.enabled = true
-        self.headerView?.descriptionTextView.editable = true
-        self.headerView?.descriptionTextView.selectable = true
+        self.changeNetworkState(true)
+    }
+    
+    private func changeNetworkState(enabled: Bool) {
+        self.navigationItem.rightBarButtonItem?.enabled = enabled
+        self.headerView?.titleTextField.enabled = enabled
+        self.headerView?.descriptionTextView.editable = enabled
+        self.headerView?.descriptionTextView.selectable = enabled
     }
     
     // MARK: - actions

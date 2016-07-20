@@ -160,9 +160,9 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     func deleteStoryPointDidTap(draft: StoryPointDraft) {
         if self.selectedDrafts.count == 1 {
-            self.showDraftDeletionAlert()
+            self.showLastDraftDeletionAlert()
         } else {
-            self.removeDraft(draft)
+            self.showDraftDelationAlert(draft)
         }
     }
     
@@ -176,7 +176,18 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         }
     }
     
-    private func showDraftDeletionAlert() {
+    private func showDraftDelationAlert(draft: StoryPointDraft) {
+        let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletion", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.removeDraft(draft)
+            }
+        }
+    }
+    
+    private func showLastDraftDeletionAlert() {
         let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletionLast", comment: String())
         let yesButton = NSLocalizedString("Button.YesRemoveAndDelete", comment: String())
         let noButton = NSLocalizedString("Button.No", comment: String())

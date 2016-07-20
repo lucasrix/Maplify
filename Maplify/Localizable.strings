@@ -217,6 +217,7 @@
 "Alert.StoryCreateCancel" = "Are you sure you want to delete your new story?";
 "Alert.StoryPointDraftDeletionLast" = "Removing the last moment will delete this story. Are you sure you want to continue?";
 "Alert.StoryProblemSavingSomeMoments" = "We saved your story, but there was a problem saving some of your moments. Would you like to retry?";
+"Alert.StoryPointDraftDeletion" = "Are you sure you want to remove this moment?";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

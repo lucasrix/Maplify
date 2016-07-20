@@ -21,6 +21,8 @@ let kEmptyLocationViewAlpha: CGFloat = 0.05
 protocol StoryAddMediaTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
+    func retryPostStoryPointDidTap(draft: StoryPointDraft)
+    func deleteStoryPointDidTap(draft: StoryPointDraft)
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
@@ -65,13 +67,15 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.successView?.layer.cornerRadius = stateViewCornerRadius
         self.retryButton.layer.cornerRadius = stateViewCornerRadius
         
-        self.orderBackView.hidden = self.draft?.downloadState != .Default && self.draft?.downloadState != .InProgress
+        self.orderBackView.hidden = (self.draft?.downloadState != .Default) && (self.draft?.downloadState != .InProgress)
         self.successView.hidden = self.draft?.downloadState != .Success
         self.retryButton.hidden = self.draft?.downloadState != .Fail
+        self.retryButton.enabled = self.draft?.downloadState == .Fail
         self.retryButton.setTitle(NSLocalizedString("Button.Retry", comment: String()), forState: .Normal)
         
         self.isVideoImageView?.hidden = asset?.mediaType == .Image
-        self.cropButton?.hidden = asset?.mediaType == .Video
+        self.cropButton?.hidden = (asset?.mediaType == .Video) || (self.draft?.downloadState == .Success)
+        self.deleteButton?.hidden = self.draft?.downloadState == .Success
         self.addressLabel?.text = NSLocalizedString("Label.Loading", comment: String())
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
         self.addLocationButton?.setTitle(NSLocalizedString("Button.AddLocation", comment: String()).uppercaseString, forState: .Normal)
@@ -94,8 +98,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     }
     
     func populateImage() {
-        let targetSize = CGSizeMake(CGFloat(self.draft.asset.pixelWidth), CGFloat(self.draft.asset.pixelHeight))
-        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
+        AssetRetrievingManager.retrieveImage(self.draft.asset, targetSize: Sizes.assetsTargetSizeDefault, synchronous: false) { [weak self] (result, info) in
             if result != nil {
                 self?.assetImageView?.image = result!
             }
@@ -155,6 +158,19 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
             self?.draft?.coordinate = location
             self?.populateLocation()
         })
+    }
+    
+    @IBAction func retryTapped(sender: UIButton) {
+        if self.draft != nil {
+            self.retryButton.enabled = false
+            self.delegate?.retryPostStoryPointDidTap(self.draft)
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(sender: UIButton) {
+        if self.draft != nil {
+            self.delegate?.deleteStoryPointDidTap(self.draft)
+        }
     }
     
     class func contentHeight() -> CGFloat {

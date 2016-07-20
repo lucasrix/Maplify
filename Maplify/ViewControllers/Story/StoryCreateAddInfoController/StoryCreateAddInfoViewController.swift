@@ -9,6 +9,11 @@
 import Photos
 import UIKit
 
+enum NetworkState: Int {
+    case Ready
+    case InProgress
+}
+
 class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate, StoryCreateManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,6 +23,9 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     var createStoryCompletion: createStoryClosure! = nil
     var selectedDrafts = [StoryPointDraft]()
+    var failedDrafts = [StoryPointDraft]()
+    var storyId: Int = 0
+    var networkState = NetworkState.Ready
 
     // MARK: - view controller life cycle
     override func viewDidLoad() {
@@ -75,6 +83,21 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         return UIColor.darkGreyBlue()
     }
     
+    func setupInProgressState() {
+        self.changeNetworkState(false)
+    }
+    
+    func setupReadyState() {
+        self.changeNetworkState(true)
+    }
+    
+    private func changeNetworkState(enabled: Bool) {
+        self.navigationItem.rightBarButtonItem?.enabled = enabled
+        self.headerView?.titleTextField.enabled = enabled
+        self.headerView?.descriptionTextView.editable = enabled
+        self.headerView?.descriptionTextView.selectable = enabled
+    }
+    
     // MARK: - actions
     func cancelButtonTapped() {
         let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
@@ -88,16 +111,25 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     override func rightBarButtonItemDidTap() {
-        if self.headerView?.titleTextField?.text?.characters.count > 0 {
+        let notReadyDrafts = self.selectedDrafts.filter { $0.readyToCreate() == false }
+        if (self.headerView?.readyToCreate() == true) && (notReadyDrafts.count == 0) {
             let storyName = self.headerView?.titleTextField?.text
             self.postStory(storyName!)
         } else {
-            // TODO:
+            self.showStoryNameErrorIfNedded()
+        }
+    }
+    
+    private func showStoryNameErrorIfNedded() {
+        if self.headerView?.readyToCreate() == false {
+            self.headerView.setStoryNameErrorState()
         }
     }
     
     func postStory(storyName: String) {
+        self.networkState = .InProgress
         self.showProgressHUD()
+        self.setupInProgressState()
         let storyManager = StoryCreateManager.sharedManager
         storyManager.delegate = self
         let storyDescription = self.headerView?.descriptionTextView?.text
@@ -117,12 +149,54 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         }
     }
     
+    func retryPostStoryPointDidTap(draft: StoryPointDraft) {
+        draft.downloadState = .InProgress
+        self.updateCell(draft)
+        StoryCreateManager.sharedManager.retryPostStoryPoint(draft, storyId: self.storyId) { [weak self] (createdDraft, success) in
+            draft.downloadState = success == true ? .Success : .Fail
+            self?.updateCell(draft)
+        }
+    }
+    
+    func deleteStoryPointDidTap(draft: StoryPointDraft) {
+        if self.selectedDrafts.count == 1 {
+            self.showDraftDeletionAlert()
+        } else {
+            self.removeDraft(draft)
+        }
+    }
+    
+    private func removeDraft(draft: StoryPointDraft) {
+        let index = self.selectedDrafts.indexOf(draft)
+        if (index != nil) && (index != NSNotFound) {
+            self.selectedDrafts.removeAtIndex(index!)
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            self.storyDataSource.removeRow(indexPath)
+            self.storyDataSource.reloadTable()
+        }
+    }
+    
+    private func showDraftDeletionAlert() {
+        let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletionLast", comment: String())
+        let yesButton = NSLocalizedString("Button.YesRemoveAndDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
+        }
+    }
+    
     // MARK: - StoryCreateManagerDelegate
     func creationStoryDidSuccess(storyId: Int) {
+        self.storyId = storyId
         self.hideProgressHUD()
     }
     
     func creationStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.networkState = .Ready
+        self.hideProgressHUD()
+        self.setupReadyState()
         self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
     }
     
@@ -137,12 +211,32 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryPointDidFail(draft: StoryPointDraft) {
+        if self.failedDrafts.contains(draft) == false {
+            self.failedDrafts.append(draft)
+        }
         draft.downloadState = .Fail
         self.updateCell(draft)
     }
     
     func allOperationsCompleted(storyId: Int) {
-        self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        self.networkState = .Ready
+        if self.failedDrafts.count == 0 {
+            self.setupReadyState()
+            self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        } else {
+            self.showNotAllUploadedSuccesfullAlert()
+        }
+    }
+    
+    private func showNotAllUploadedSuccesfullAlert() {
+        let alertMessage = NSLocalizedString("Alert.StoryProblemSavingSomeMoments", comment: String())
+        let yesButton = NSLocalizedString("Button.YesRetry", comment: String())
+        let noButton = NSLocalizedString("Button.NoThanks", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Cancel.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
+        }
     }
     
     private func updateCell(draft: StoryPointDraft) {

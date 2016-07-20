@@ -27,6 +27,10 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
         self.setupNavigationBarItems()
     }
     
+    deinit {
+        PHCachingImageManager().stopCachingImagesForAllAssets()
+    }
+    
     // MARK: - setup
     func setup() {
         self.setupCameraRollController()
@@ -68,6 +72,8 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
     }
     
     private func assetsToDrafts(assets: [PHAsset]) -> [StoryPointDraft] {
+        let options = AssetRetrievingManager.defaultImageOptions(false)
+        PHCachingImageManager().startCachingImagesForAssets(assets, targetSize: Sizes.assetsTargetSizeDefault, contentMode: .AspectFill, options: options)
         var drafts = [StoryPointDraft]()
         for asset in assets {
             let storyPointDraft = StoryPointDraft()

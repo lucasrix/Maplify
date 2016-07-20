@@ -116,7 +116,6 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
             self.postStory(storyName!)
         } else {
             self.showStoryNameErrorIfNedded()
-            self.showNotAllFilledAlert()
         }
     }
     
@@ -124,10 +123,6 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         if self.headerView?.readyToCreate() == false {
             self.headerView.setStoryNameErrorState()
         }
-    }
-    
-    private func showNotAllFilledAlert() {
-        // TODO:
     }
     
     func postStory(storyName: String) {
@@ -182,7 +177,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     private func showDraftDeletionAlert() {
         let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletionLast", comment: String())
-        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let yesButton = NSLocalizedString("Button.YesRemoveAndDelete", comment: String())
         let noButton = NSLocalizedString("Button.No", comment: String())
         self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
             if buttonIndex == AlertButtonIndexes.Submit.rawValue {
@@ -224,9 +219,22 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     func allOperationsCompleted(storyId: Int) {
         self.networkState = .Ready
-        self.setupReadyState()
         if self.failedDrafts.count == 0 {
+            self.setupReadyState()
             self.createStoryCompletion?(storyId: storyId, cancelled: false)
+        } else {
+            self.showNotAllUploadedSuccesfullAlert()
+        }
+    }
+    
+    private func showNotAllUploadedSuccesfullAlert() {
+        let alertMessage = NSLocalizedString("Alert.StoryProblemSavingSomeMoments", comment: String())
+        let yesButton = NSLocalizedString("Button.YesRetry", comment: String())
+        let noButton = NSLocalizedString("Button.NoThanks", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Cancel.rawValue {
+                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+            }
         }
     }
     

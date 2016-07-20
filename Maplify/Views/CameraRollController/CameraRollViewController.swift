@@ -134,7 +134,9 @@ class CameraRollViewController: UIViewController, UICollectionViewDataSource, UI
         let asset = self.images[indexPath.item] as! PHAsset
         AssetRetrievingManager.retrieveImage(asset, targetSize: cellSize, synchronous: false) { [weak self] (result, info) in
             if cell.tag == currentTag {
-                cell.image = result
+                if result != nil {
+                    cell.image = result
+                }
                 cell.timeLabel.hidden = asset.mediaType != .Video
                 cell.timeBackView.hidden = asset.mediaType != .Video
                 if asset.mediaType == .Video {

@@ -245,7 +245,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         let noButton = NSLocalizedString("Button.NoThanks", comment: String())
         self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
             if buttonIndex == AlertButtonIndexes.Cancel.rawValue {
-                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+                self?.createStoryCompletion?(storyId: (self?.storyId)!, cancelled: false)
             }
         }
     }

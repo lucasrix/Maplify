@@ -173,6 +173,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
             let indexPath = NSIndexPath(forRow: index!, inSection: 0)
             self.storyDataSource.removeRow(indexPath)
             self.storyDataSource.reloadTable()
+            self.populateTitle()
         }
     }
     

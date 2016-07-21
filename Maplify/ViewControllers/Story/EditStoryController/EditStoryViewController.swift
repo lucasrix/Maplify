@@ -18,6 +18,7 @@ class EditStoryViewController: ViewController {
     var headerView: EditStoryHeaderView! = nil
     
     var storyId: Int = 0
+    var story: Story! = nil
     var editStoryCompletion: editStoryClosure! = nil
     
     // MARK: - view controller life cycle
@@ -26,6 +27,8 @@ class EditStoryViewController: ViewController {
         
         self.setup()
         self.loadData()
+        self.populateHeaderView()
+        self.populateTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,12 +58,22 @@ class EditStoryViewController: ViewController {
         self.headerView.setup()
     }
     
+    func populateHeaderView() {
+        if self.story != nil {
+            self.headerView?.populateHeader(self.story)
+        }
+    }
+    
+    func loadData() {
+        self.story = StoryManager.find(self.storyId)
+    }
+    
     func setupDataSource() {
         self.storyDataSource = EditStoryDataSource(tableView: self.tableView, activeModel: self.storyActiveModel, delegate: self)
         self.storyDataSource.headerView = self.headerView
     }
     
-    func loadData() {
+    func populateTableView() {
         self.storyActiveModel.removeData()
         let story = StoryManager.find(self.storyId)
         let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)

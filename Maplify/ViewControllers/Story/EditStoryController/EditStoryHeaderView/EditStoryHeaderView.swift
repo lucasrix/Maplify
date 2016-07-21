@@ -29,6 +29,11 @@ class EditStoryHeaderView: UIView {
         self.addToStoryButton.setTitle(NSLocalizedString("Button.PlusAddToStory", comment: String()).uppercaseString, forState: .Normal)
     }
     
+    func populateHeader(story: Story) {
+        self.titleTextField.text = story.title
+        self.descriptionTextView.text = story.storyDescription
+    }
+    
     func setStoryNameDefaultState() {
         self.titleView.backgroundColor = UIColor.whiteColor()
     }
@@ -38,7 +43,7 @@ class EditStoryHeaderView: UIView {
         self.titleTextField.attributedPlaceholder = NSAttributedString(string:self.storyNamePlaceholderText(), attributes:[NSForegroundColorAttributeName: UIColor.redPink()])
     }
     
-    func readyToCreate() -> Bool {
+    func readyToEdit() -> Bool {
         return self.titleTextField?.text!.characters.count > 0
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 typealias editStoryClosure = ((storyId: Int, cancelled: Bool) -> ())
 
-class EditStoryViewController: ViewController {
+class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: EditStoryDataSource! = nil
@@ -100,6 +100,12 @@ class EditStoryViewController: ViewController {
                 self?.editStoryCompletion?(storyId: 0, cancelled: true)
             }
         }
+    }
+    
+    // MARK: - EditStoryTableViewCellDelegate
+    func getIndexOfObject(storyPoint: StoryPoint, completion: ((index: Int, count: Int) -> ())!) {
+        let index = self.storyActiveModel.indexPathOfModel(storyPoint)
+        completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
     }
     
     override func rightBarButtonItemDidTap() {

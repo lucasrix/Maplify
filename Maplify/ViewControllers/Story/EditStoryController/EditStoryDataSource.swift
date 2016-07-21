@@ -11,6 +11,11 @@ import UIKit
 class EditStoryDataSource: CSBaseTableDataSource {
     var headerView: EditStoryHeaderView! = nil
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellData = self.activeModel.cellData(indexPath)
+        return EditStoryTableViewCell.contentHeight(cellData)
+    }
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.headerView
     }

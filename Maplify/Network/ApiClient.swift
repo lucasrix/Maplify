@@ -101,7 +101,7 @@ class ApiClient {
         } else {
             if statusCode == Network.failureStatusCode500 {
                 self.manageInternalServerError(statusCode, failure: failure)
-            } else if statusCode == Network.failureStatusCode401 {
+            } else if statusCode == Network.failureStatusCode403 {
                 self.manageUnauthorizedError(payload, statusCode: statusCode, error: error, failure: failure)
             } else {
                 self.manageError(payload, statusCode: statusCode, error: error, failure: failure)

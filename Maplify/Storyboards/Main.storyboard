@@ -2401,7 +2401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbG-y1-Ngs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767.5" y="2305.5"/>
+            <point key="canvasLocation" x="2717.5" y="2135.5"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="hhL-nw-eso">
@@ -2508,7 +2508,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMD-7W-Fd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767.5" y="3044.5"/>
+            <point key="canvasLocation" x="2717.5" y="2906.5"/>
+        </scene>
+        <!--Edit Story View Controller-->
+        <scene sceneID="nQ6-3r-vZ0">
+            <objects>
+                <viewController storyboardIdentifier="EditStoryViewController" id="k5u-9a-T92" customClass="EditStoryViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0ug-Nr-1cw"/>
+                        <viewControllerLayoutGuide type="bottom" id="cPF-2G-RUD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="71E-yd-UqU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="304" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vQY-2d-w5U">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditStoryTableViewCell" rowHeight="304" id="1CN-9Q-fkA" customClass="EditStoryTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="304"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1CN-9Q-fkA" id="ASM-lS-fry">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zT8-fp-uuj">
+                                                    <rect key="frame" x="22" y="60" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vQY-2d-w5U" firstAttribute="top" secondItem="71E-yd-UqU" secondAttribute="top" id="00k-gC-odz"/>
+                            <constraint firstItem="cPF-2G-RUD" firstAttribute="top" secondItem="vQY-2d-w5U" secondAttribute="bottom" id="7ov-Gy-7UO"/>
+                            <constraint firstAttribute="trailing" secondItem="vQY-2d-w5U" secondAttribute="trailing" id="ZkN-Ii-GHW"/>
+                            <constraint firstItem="vQY-2d-w5U" firstAttribute="leading" secondItem="71E-yd-UqU" secondAttribute="leading" id="a3j-fT-ZIS"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="vQY-2d-w5U" id="laE-F5-tYR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jj-N3-mz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2717.5" y="3645.5"/>
         </scene>
         <!--Story Point Edit View Controller-->
         <scene sceneID="rcc-rR-UfO">

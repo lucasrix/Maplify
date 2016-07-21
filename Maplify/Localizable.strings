@@ -133,6 +133,7 @@
 "Button.YesDelete" = "Yes, delete";
 "Button.YesRetry" = "Yes, retry";
 "Button.YesRemoveAndDelete" = "Yes, remove and delete";
+"Button.YesExit" = "Yes, exit";
 "Button.No" = "No";
 "Button.NoThanks" = "No, thanks";
 "Button.Next" = "Next";
@@ -150,6 +151,7 @@
 "Button.Text" = "Text";
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
+"Button.PlusAddToStory" = "Add to story";
 "Button.Delete" = "Delete";
 "Button.ChangeStory" = "Change Story";
 "Button.Add" = "Add";
@@ -218,6 +220,7 @@
 "Alert.StoryPointDraftDeletionLast" = "Removing the last moment will delete this story. Are you sure you want to continue?";
 "Alert.StoryProblemSavingSomeMoments" = "We saved your story, but there was a problem saving some of your moments. Would you like to retry?";
 "Alert.StoryPointDraftDeletion" = "Are you sure you want to remove this moment?";
+"Alert.StoryEditExit" = "Are you sure you want to exit? All changes will be discarded";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

@@ -192,6 +192,11 @@
 		CD45672E1CCA74E700961A7A /* StoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */; };
 		CD4FE4EC1D3E768E006EC5F1 /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */; };
 		CD4FE4ED1D3E7A03006EC5F1 /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */; };
+		CD4FE4F01D40D7EB006EC5F1 /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */; };
+		CD4FE4F21D40F0EA006EC5F1 /* EditStoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */; };
+		CD4FE4F51D40F17B006EC5F1 /* EditStoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */; };
+		CD4FE4F71D40F195006EC5F1 /* EditStoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */; };
+		CD4FE4F91D40F52B006EC5F1 /* EditStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */; };
 		CD64564B1CD3B43500D5B54A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */; };
 		CD7F28D91CDB53C100534211 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		CD7F28DA1CDB540B00534211 /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
@@ -435,6 +440,11 @@
 		CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverChangeLocationPopupViewController.swift; sourceTree = "<group>"; };
 		CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditViewController.swift; sourceTree = "<group>"; };
 		CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataManager.swift; sourceTree = "<group>"; };
+		CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryViewController.swift; sourceTree = "<group>"; };
+		CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryDataSource.swift; sourceTree = "<group>"; };
+		CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryHeaderView.swift; sourceTree = "<group>"; };
+		CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditStoryHeaderView.xib; sourceTree = "<group>"; };
+		CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryTableViewCell.swift; sourceTree = "<group>"; };
 		CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		CD7F28DC1CDB7C1E00534211 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDetailCell.swift; sourceTree = "<group>"; };
@@ -607,6 +617,7 @@
 				CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */,
 				CD3E0CE91D33C7290047BC55 /* StoryCreateAddInfoController */,
 				CDF564AB1D368FA10052B997 /* StoryCreateAddLocationController */,
+				CD4FE4EE1D40D7C2006EC5F1 /* EditStoryController */,
 				CDF164F31CD0E74500E38C7A /* StoryCreate */,
 				CDF164EE1CCF623E00E38C7A /* AddPosts */,
 				CD45672C1CCA74D500961A7A /* StoryEdit */,
@@ -1208,6 +1219,26 @@
 			path = StoryEdit;
 			sourceTree = "<group>";
 		};
+		CD4FE4EE1D40D7C2006EC5F1 /* EditStoryController */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */,
+				CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */,
+				CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */,
+				CD4FE4F31D40F14C006EC5F1 /* EditStoryHeaderView */,
+			);
+			path = EditStoryController;
+			sourceTree = "<group>";
+		};
+		CD4FE4F31D40F14C006EC5F1 /* EditStoryHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */,
+				CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */,
+			);
+			path = EditStoryHeaderView;
+			sourceTree = "<group>";
+		};
 		CD7F28DB1CDB7C1E00534211 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1466,6 +1497,7 @@
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */,
 				85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */,
+				CD4FE4F71D40F195006EC5F1 /* EditStoryHeaderView.xib in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1604,6 +1636,7 @@
 				CDF564A81D3517570052B997 /* StoryAddMediaTableViewCell.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
 				CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */,
+				CD4FE4F51D40F17B006EC5F1 /* EditStoryHeaderView.swift in Sources */,
 				CDF564AA1D35228D0052B997 /* GeocoderHelper.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
@@ -1612,6 +1645,7 @@
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
 				850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */,
+				CD4FE4F01D40D7EB006EC5F1 /* EditStoryViewController.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
@@ -1692,7 +1726,9 @@
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
 				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,
+				CD4FE4F21D40F0EA006EC5F1 /* EditStoryDataSource.swift in Sources */,
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
+				CD4FE4F91D40F52B006EC5F1 /* EditStoryTableViewCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,

@@ -85,6 +85,7 @@ struct Controllers {
     static let storyCreateCameraRollController = "StoryCreateCameraRollViewController"
     static let storyCreateAddInfoController = "StoryCreateAddInfoViewController"
     static let storyCreateAddLocationController = "StoryCreateAddLocationViewController"
+    static let editStoryController = "EditStoryViewController"
 }
 
 struct AppIDs {

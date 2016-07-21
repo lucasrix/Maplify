@@ -123,10 +123,16 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
     }
     
-    func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: (() -> ())!) {
+    func routesOpenStoryEditController(storyId: Int, editStoryCompletion: editStoryClosure!) {
+        /*
         let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
         storyEditViewController.storyId = storyId
-        self.navigationController?.pushViewController(storyEditViewController, animated: true)
+        self.navigationController?.pushViewController(storyEditViewController, animated: true)*/
+        
+        let editStoryController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editStoryController) as! EditStoryViewController
+        editStoryController.storyId = storyId
+        editStoryController.editStoryCompletion = editStoryCompletion
+        self.navigationController?.pushViewController(editStoryController, animated: true)
     }
     
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {

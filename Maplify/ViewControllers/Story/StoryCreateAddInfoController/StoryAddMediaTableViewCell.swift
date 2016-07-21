@@ -180,6 +180,6 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     
     // MARK: - UITextViewDelegate
     func textViewDidChange(textView: UITextView) {
-        self.draft?.storyPointdescription = textView.text
+        self.draft?.storyPointDescription = textView.text
     }
 }

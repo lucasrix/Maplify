@@ -20,6 +20,8 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     
     var storyId: Int = 0
     var story: Story! = nil
+    var storyPoints = [StoryPoint]()
+    var storyPointDrafts = [StoryPointDraft]()
     var editStoryCompletion: editStoryClosure! = nil
     
     // MARK: - view controller life cycle
@@ -67,6 +69,17 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     
     func loadData() {
         self.story = StoryManager.find(self.storyId)
+        self.storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+        for storyPoint in self.storyPoints {
+            let storyPointDraft = StoryPointDraft()
+            storyPointDraft.id = storyPoint.id
+            storyPointDraft.attachmentUrl = storyPoint.attachment.file_url
+            storyPointDraft.coordinate = CLLocationCoordinate2D(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
+            storyPointDraft.address = storyPoint.location.address
+            storyPointDraft.storyPointDescription = storyPoint.text
+            storyPointDraft.storyPointKind = storyPoint.kind
+            self.storyPointDrafts.append(storyPointDraft)
+        }
     }
     
     func setupDataSource() {
@@ -76,9 +89,7 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     
     func populateTableView() {
         self.storyActiveModel.removeData()
-        let story = StoryManager.find(self.storyId)
-        let storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
-        self.storyActiveModel.addItems(storyPoints, cellIdentifier: String(EditStoryTableViewCell), sectionTitle: nil, delegate: self)
+        self.storyActiveModel.addItems(self.storyPointDrafts, cellIdentifier: String(EditStoryTableViewCell), sectionTitle: nil, delegate: self)
         self.storyDataSource.reloadTable()
     }
     
@@ -104,8 +115,8 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     }
     
     // MARK: - EditStoryTableViewCellDelegate
-    func getIndexOfObject(storyPoint: StoryPoint, completion: ((index: Int, count: Int) -> ())!) {
-        let index = self.storyActiveModel.indexPathOfModel(storyPoint)
+    func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!) {
+        let index = self.storyActiveModel.indexPathOfModel(draft)
         completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
     }
     

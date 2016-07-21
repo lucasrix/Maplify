@@ -16,11 +16,14 @@ enum DownloadState: Int {
 }
 
 class StoryPointDraft: NSObject {
+    var id: Int = 0
     var asset: PHAsset! = nil
     var coordinate: CLLocationCoordinate2D! = nil
     var address = String()
-    var storyPointdescription = String()
+    var storyPointDescription = String()
     var downloadState: DownloadState = .Default
+    var attachmentUrl = String()
+    var storyPointKind = String()
     
     func readyToCreate() -> Bool {
         return (self.coordinate != nil) && (self.address.characters.count > 0)

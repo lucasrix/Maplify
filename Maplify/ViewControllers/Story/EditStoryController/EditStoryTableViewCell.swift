@@ -13,7 +13,7 @@ import UIKit
 let kTextStoryPointImageViewHeight: CGFloat = 56
 
 protocol EditStoryTableViewCellDelegate {
-    func getIndexOfObject(storyPoint: StoryPoint, completion: ((index: Int, count: Int) -> ())!)
+    func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func changeLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
@@ -28,11 +28,11 @@ class EditStoryTableViewCell: CSTableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
 
-    var storyPoint: StoryPoint! = nil
+    var draft: StoryPointDraft! = nil
     var delegate: EditStoryTableViewCellDelegate! = nil
     
     override func configure(cellData: CSCellData) {
-        self.storyPoint = cellData.model as! StoryPoint
+        self.draft = cellData.model as! StoryPointDraft
         self.delegate = cellData.delegate as! EditStoryTableViewCellDelegate
         
         self.setupViews()
@@ -43,14 +43,13 @@ class EditStoryTableViewCell: CSTableViewCell {
     }
     
     func setupViews() {
-//        self.kindImageViewHeightConstraint.constant = EditStoryTableViewCell.imageViewHeight(self.storyPoint).kindImageHeight
         let stateViewCornerRadius = CGRectGetHeight(self.orderView.frame) / 2
         self.orderView?.layer.cornerRadius = stateViewCornerRadius
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
     }
     
     func populateOrder() {
-        self.delegate?.getIndexOfObject(self.storyPoint, completion: { [weak self] (index, count) in
+        self.delegate?.getIndexOfObject(self.draft, completion: { [weak self] (index, count) in
             let order = index + 1
             let text = String(format: NSLocalizedString("Label.StoryAddInfoPostsOrder", comment: String()), order, count)
             self?.orderLabel?.text = text
@@ -60,29 +59,29 @@ class EditStoryTableViewCell: CSTableViewCell {
     func populateImage() {
         var attachmentUrl: NSURL! = nil
         var placeholderImage = UIImage(named: PlaceholderImages.discoverPlaceholder)
-        if storyPoint.kind == StoryPointKind.Photo.rawValue {
-            attachmentUrl = storyPoint.attachment.file_url.url
-        } else if (storyPoint.kind == StoryPointKind.Video.rawValue) || (storyPoint.kind == StoryPointKind.Audio.rawValue) {
-            attachmentUrl = StaticMap.staticMapUrl(storyPoint.location.latitude, longitude: storyPoint.location.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
+        if self.draft.storyPointKind == StoryPointKind.Photo.rawValue {
+            attachmentUrl = self.draft.attachmentUrl.url
+        } else if (self.draft.storyPointKind == StoryPointKind.Video.rawValue) || (self.draft.storyPointKind == StoryPointKind.Audio.rawValue) {
+            attachmentUrl = StaticMap.staticMapUrl(self.draft.coordinate.latitude, longitude: self.draft.coordinate.longitude, sizeWidth: StaticMapSize.widthLarge, showWholeWorld: false)
         } else {
             placeholderImage = nil
         }
-        self.colorView?.hidden = self.storyPoint.kind != StoryPointKind.Audio.rawValue
+        self.colorView?.hidden = self.draft.storyPointKind != StoryPointKind.Audio.rawValue
         self.attachmentImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (result) in
             self?.kindImageView?.image = self?.kindImageForStoryPoint()
         }
     }
     
     func populateLocation() {
-        self.locationLabel?.text = self.storyPoint?.location.address
+        self.locationLabel?.text = self.draft?.address
     }
     
     func populateDescription() {
-        self.descriptionTextView?.text = self.storyPoint?.text
+        self.descriptionTextView?.text = self.draft?.storyPointDescription
     }
     
     func kindImageForStoryPoint() -> UIImage! {
-        switch self.storyPoint.kind {
+        switch self.draft.storyPointKind {
         case StoryPointKind.Audio.rawValue:
             return UIImage(named: CellImages.discoverStoryPointDetailIconAudio)
             
@@ -97,17 +96,19 @@ class EditStoryTableViewCell: CSTableViewCell {
     // MARK: - actions
     @IBAction func changeLocationTapped(sender: UIButton) {
         self.delegate?.changeLocationDidTap({ [weak self] (location, address) in
-            self?.locationLabel?.text = address
+            self?.draft?.address = address
+            self?.draft?.coordinate = location
+            self?.populateLocation()
         })
     }
     
-    class func imageViewHeight(storyPoint: StoryPoint) -> CGFloat {
-        return storyPoint.kind == StoryPointKind.Text.rawValue ? kTextStoryPointImageViewHeight : UIScreen().screenWidth()
+    class func imageViewHeight(draft: StoryPointDraft) -> CGFloat {
+        return draft.storyPointKind == StoryPointKind.Text.rawValue ? kTextStoryPointImageViewHeight : UIScreen().screenWidth()
     }
     
     class func contentHeight(cellData: CSCellData) -> CGFloat {
-        let storyPoint = cellData.model as! StoryPoint
-        let imageViewHeight = EditStoryTableViewCell.imageViewHeight(storyPoint)
+        let draft = cellData.model as! StoryPointDraft
+        let imageViewHeight = EditStoryTableViewCell.imageViewHeight(draft)
         return kCellTopMargin + imageViewHeight + kCellLocationViewHeight + kCellDescriptionViewHeight
     }
 }

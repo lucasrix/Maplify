@@ -103,7 +103,7 @@ class StoryCreateManager: NSObject {
     private func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
         let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
         let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
-                                                   "text":draft.storyPointdescription,
+                                                   "text":draft.storyPointDescription,
                                                    "location":locationDict,
                                                    "attachment_id":attachmentId,
                                                    "story_ids":[storyId]]
@@ -135,7 +135,7 @@ class StoryCreateManager: NSObject {
         if draft.readyToCreate() {
             let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
             let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
-                                                       "text":draft.storyPointdescription,
+                                                       "text":draft.storyPointDescription,
                                                        "location":locationDict,
                                                        "attachment_id":attachmentId,
                                                        "story_ids":[storyId]]

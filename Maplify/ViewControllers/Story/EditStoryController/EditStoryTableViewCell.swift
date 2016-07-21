@@ -7,21 +7,23 @@
 //
 
 import KMPlaceholderTextView
+import CoreLocation
 import UIKit
 
 let kTextStoryPointImageViewHeight: CGFloat = 56
 
 protocol EditStoryTableViewCellDelegate {
     func getIndexOfObject(storyPoint: StoryPoint, completion: ((index: Int, count: Int) -> ())!)
+    func changeLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
 class EditStoryTableViewCell: CSTableViewCell {
     @IBOutlet weak var attachmentImageView: UIImageView!
-    @IBOutlet weak var attachmentImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var kindImageView: UIImageView!
+    @IBOutlet weak var kindImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var changeAddressButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
@@ -41,7 +43,7 @@ class EditStoryTableViewCell: CSTableViewCell {
     }
     
     func setupViews() {
-        self.attachmentImageViewHeightConstraint.constant = EditStoryTableViewCell.imageViewHeight(self.storyPoint)
+//        self.kindImageViewHeightConstraint.constant = EditStoryTableViewCell.imageViewHeight(self.storyPoint).kindImageHeight
         let stateViewCornerRadius = CGRectGetHeight(self.orderView.frame) / 2
         self.orderView?.layer.cornerRadius = stateViewCornerRadius
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
@@ -90,6 +92,13 @@ class EditStoryTableViewCell: CSTableViewCell {
         default:
             return nil
         }
+    }
+    
+    // MARK: - actions
+    @IBAction func changeLocationTapped(sender: UIButton) {
+        self.delegate?.changeLocationDidTap({ [weak self] (location, address) in
+            self?.locationLabel?.text = address
+        })
     }
     
     class func imageViewHeight(storyPoint: StoryPoint) -> CGFloat {

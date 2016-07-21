@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
 
 typealias editStoryClosure = ((storyId: Int, cancelled: Bool) -> ())
@@ -106,6 +107,13 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
     func getIndexOfObject(storyPoint: StoryPoint, completion: ((index: Int, count: Int) -> ())!) {
         let index = self.storyActiveModel.indexPathOfModel(storyPoint)
         completion?(index: index.row, count: self.storyActiveModel.numberOfItems(0))
+    }
+    
+    func changeLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!) {
+        self.routesOpenStoryCreateAddLocationController { [weak self] (place) in
+            completion(location: place.coordinate, address: place.name)
+            self?.navigationController?.popToViewController(self!, animated: true)
+        }
     }
     
     override func rightBarButtonItemDidTap() {

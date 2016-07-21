@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import KMPlaceholderTextView
 import UIKit
 
 let kTextStoryPointImageViewHeight: CGFloat = 56
@@ -21,6 +22,9 @@ class EditStoryTableViewCell: CSTableViewCell {
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var kindImageView: UIImageView!
+    @IBOutlet weak var changeAddressButton: UIButton!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
 
     var storyPoint: StoryPoint! = nil
     var delegate: EditStoryTableViewCellDelegate! = nil
@@ -32,12 +36,15 @@ class EditStoryTableViewCell: CSTableViewCell {
         self.setupViews()
         self.populateOrder()
         self.populateImage()
+        self.populateLocation()
+        self.populateDescription()
     }
     
     func setupViews() {
         self.attachmentImageViewHeightConstraint.constant = EditStoryTableViewCell.imageViewHeight(self.storyPoint)
         let stateViewCornerRadius = CGRectGetHeight(self.orderView.frame) / 2
         self.orderView?.layer.cornerRadius = stateViewCornerRadius
+        self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
     }
     
     func populateOrder() {
@@ -62,6 +69,14 @@ class EditStoryTableViewCell: CSTableViewCell {
         self.attachmentImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (result) in
             self?.kindImageView?.image = self?.kindImageForStoryPoint()
         }
+    }
+    
+    func populateLocation() {
+        self.locationLabel?.text = self.storyPoint?.location.address
+    }
+    
+    func populateDescription() {
+        self.descriptionTextView?.text = self.storyPoint?.text
     }
     
     func kindImageForStoryPoint() -> UIImage! {

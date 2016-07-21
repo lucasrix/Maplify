@@ -124,11 +124,6 @@ extension UIViewController {
     }
     
     func routesOpenStoryEditController(storyId: Int, editStoryCompletion: editStoryClosure!) {
-        /*
-        let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
-        storyEditViewController.storyId = storyId
-        self.navigationController?.pushViewController(storyEditViewController, animated: true)*/
-        
         let editStoryController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editStoryController) as! EditStoryViewController
         editStoryController.storyId = storyId
         editStoryController.editStoryCompletion = editStoryCompletion

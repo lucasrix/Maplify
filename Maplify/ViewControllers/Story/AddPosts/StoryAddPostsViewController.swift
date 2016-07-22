@@ -15,7 +15,7 @@ let kPlaceholderImageTopConstantScreenGreater3_5: CGFloat = 56
 let kCreateButtonTopConstantScreen3_5: CGFloat = 20
 let kCreateButtonTopConstantScreenGreater3_5: CGFloat = 37
 
-typealias createStoryClosure = ((storyId: Int) -> ())
+typealias createStoryClosure = ((storyId: Int, cancelled: Bool) -> ())
 
 class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -164,7 +164,7 @@ class StoryAddPostsViewController: ViewController, StoryAddPostsDelegate {
             self?.hideProgressHUD()
             let story = response as! Story
             StoryManager.saveStory(story)
-            self?.createStoryCompletion?(storyId: story.id)
+            self?.createStoryCompletion?(storyId: story.id, cancelled: false)
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)

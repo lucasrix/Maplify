@@ -34,7 +34,15 @@ extension UIScreen {
         return UIScreen.mainScreen().bounds.width
     }
     
+    func screenWidthScaled() -> CGFloat {
+        return self.screenWidth() * self.screenScale()
+    }
+    
     func smallerThanIPhoneSixSize() -> Bool {
         return UIScreen.mainScreen().bounds.size.height < iPhoneScreenSizeHeight4_7
+    }
+    
+    func screenScale() -> CGFloat {
+        return UIScreen.mainScreen().scale
     }
 }

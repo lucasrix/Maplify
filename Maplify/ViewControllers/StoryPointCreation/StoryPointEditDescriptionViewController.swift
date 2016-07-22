@@ -109,11 +109,7 @@ class StoryPointEditDescriptionViewController: ViewController, UITextViewDelegat
         }
         
         ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) -> () in
-            let realm = try! Realm()
-            try! realm.write {
-                realm.add(response as! StoryPoint, update: true)
-            }
-            
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
             let storyPointId = (response as! StoryPoint).id
             self?.retrieveUserStories(storyPointId)
         }) { [weak self] (statusCode, errors, localDescription, messages) -> () in

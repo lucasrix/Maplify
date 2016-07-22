@@ -27,6 +27,9 @@
 "Text.Placeholder.AddPostsHighlited" = "Looks like you don't have anything to add just yet.";
 "Text.Placeholder.AddPostsDefault" = "So... you can come back to it later, but better yet how about we jump in and create your first post?";
 "Text.Placeholder.Profile" = "You don’t have any posts yet";
+"Text.Placeholder.StoryAddMediaTitle" = "What's this story called?";
+"Text.Placeholder.StoryAddMediaDescription" = "Add story description";
+"Text.Placeholder.AddDescription" = "Add description";
 
 // Input fields description
 "InputField.Description.Email" = "We will not share your email";
@@ -113,6 +116,10 @@
 "Label.Account" = "Account";
 "Label.Information" = "Information";
 "Label.SoftwareVersion" = "Software version %@\nCopyright © 2016 MaplifyApp";
+"Label.CameraRollAddUpCount" = "Add up to %i moments";
+"Label.CameraRollSelectedOfCount" = "Selected %i of %i";
+"Label.LocationRequired" = "Location is required";
+"Label.StoryAddInfoPostsOrder" = "%i of %i";
 
 //Subsrtings
 "Substring.Of" = "of";
@@ -123,7 +130,12 @@
 //Buttons
 "Button.Ok" = "OK";
 "Button.Yes" = "Yes";
+"Button.YesDelete" = "Yes, delete";
+"Button.YesRetry" = "Yes, retry";
+"Button.YesRemoveAndDelete" = "Yes, remove and delete";
+"Button.YesExit" = "Yes, exit";
 "Button.No" = "No";
+"Button.NoThanks" = "No, thanks";
 "Button.Next" = "Next";
 "Button.Done" = "Done";
 "Button.FacebookLogin" = "Continue with Facebook";
@@ -139,6 +151,7 @@
 "Button.Text" = "Text";
 "Button.Post" = "Post";
 "Button.AddToStory" = "Add to Story >";
+"Button.PlusAddToStory" = "Add to story";
 "Button.Delete" = "Delete";
 "Button.ChangeStory" = "Change Story";
 "Button.Add" = "Add";
@@ -174,6 +187,9 @@
 "Button.TermsOfService" = "Terms of Service";
 "Button.LogOut" = "Log out";
 "Button.CreateFirstPost" = "Create your 1st post";
+"Button.Change" = "Change";
+"Button.AddLocation" = "Add location";
+"Button.Retry" = "Retry";
 
 //Alerts
 "Alert.SetPhoto" = "Set your profile photo";
@@ -200,6 +216,11 @@
 "Alert.PasswordChangedSuccessfully" = "Password has been changed successfully!";
 "Alert.LoginAndReopenLink" = "Please log in first, and then re-open your shared link";
 "Alert.CheckConnectionNetwork" = "Can't connect. Please check your internet connection";
+"Alert.StoryCreateCancel" = "Are you sure you want to delete your new story?";
+"Alert.StoryPointDraftDeletionLast" = "Removing the last moment will delete this story. Are you sure you want to continue?";
+"Alert.StoryProblemSavingSomeMoments" = "We saved your story, but there was a problem saving some of your moments. Would you like to retry?";
+"Alert.StoryPointDraftDeletion" = "Are you sure you want to remove this moment?";
+"Alert.StoryEditExit" = "Are you sure you want to exit? All changes will be discarded";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

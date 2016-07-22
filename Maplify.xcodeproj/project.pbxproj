@@ -34,7 +34,6 @@
 		1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
 		1FC781181CA2D6B900C50C23 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
 		1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
-		4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */; };
 		850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */; };
 		850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */; };
 		850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */; };
@@ -162,8 +161,21 @@
 		CD1DB2431CFF114400D62944 /* CaptureSetupUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */; };
 		CD1DB2451CFF269E00D62944 /* CaptureSearchPlaceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */; };
 		CD1DB2471CFF34FC00D62944 /* StoryLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */; };
+		CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */; };
+		CD28F8321D2E8485001CF185 /* CameraRollMultipleSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */; };
+		CD28F8341D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */; };
+		CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */; };
+		CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */; };
+		CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */; };
+		CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */; };
 		CD340CFA1CBD200A00461015 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
 		CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
+		CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
+		CD34F7221D2D51CA00CC4EBE /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */; };
+		CD3E0CEB1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */; };
+		CD3E0CED1D33D1460047BC55 /* StoryAddMediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */; };
+		CD3E0CF21D33D2E00047BC55 /* StoryAddMediaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */; };
+		CD3E0CF41D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */; };
 		CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
 		CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
 		CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
@@ -178,6 +190,14 @@
 		CD451B6A1CAD530400EBCC7A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
 		CD45672B1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */; };
 		CD45672E1CCA74E700961A7A /* StoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */; };
+		CD4FE4EC1D3E768E006EC5F1 /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */; };
+		CD4FE4ED1D3E7A03006EC5F1 /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */; };
+		CD4FE4F01D40D7EB006EC5F1 /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */; };
+		CD4FE4F21D40F0EA006EC5F1 /* EditStoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */; };
+		CD4FE4F51D40F17B006EC5F1 /* EditStoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */; };
+		CD4FE4F71D40F195006EC5F1 /* EditStoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */; };
+		CD4FE4F91D40F52B006EC5F1 /* EditStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */; };
+		CD4FE4FB1D4210E2006EC5F1 /* StoryUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */; };
 		CD64564B1CD3B43500D5B54A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */; };
 		CD7F28D91CDB53C100534211 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		CD7F28DA1CDB540B00534211 /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
@@ -206,12 +226,18 @@
 		CDF164F01CCF625A00E38C7A /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
 		CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
 		CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
+		CDF564A81D3517570052B997 /* StoryAddMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */; };
+		CDF564AA1D35228D0052B997 /* GeocoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A91D35228D0052B997 /* GeocoderHelper.swift */; };
+		CDF564AD1D368FC30052B997 /* StoryCreateAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */; };
+		CDF564B01D379FBA0052B997 /* StoryPointDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */; };
+		CDF564B21D37B9220052B997 /* StoryCreateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564B11D37B9220052B997 /* StoryCreateManager.swift */; };
 		CDF6D8971CD26007001387EC /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
 		CDF6D89A1CD28489001387EC /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
 		CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
 		CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
+		D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -236,6 +262,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
 		1F2E33791C80652E00D3B446 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		1F2E337A1C80652E00D3B446 /* InputTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextField.xib; sourceTree = "<group>"; };
 		1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
@@ -258,8 +285,7 @@
 		1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationOrNil.swift; sourceTree = "<group>"; };
 		1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddAudioController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
-		306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.debug.xcconfig"; sourceTree = "<group>"; };
+		7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupGetCityViewController.swift; sourceTree = "<group>"; };
 		850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryPointInfoView.xib; sourceTree = "<group>"; };
 		850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryInfoView.xib; sourceTree = "<group>"; };
@@ -372,7 +398,6 @@
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
-		ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 		CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
@@ -387,8 +412,21 @@
 		CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSetupUIExtension.swift; sourceTree = "<group>"; };
 		CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSearchPlaceExtension.swift; sourceTree = "<group>"; };
 		CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLinkManager.swift; sourceTree = "<group>"; };
+		CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueManager.swift; sourceTree = "<group>"; };
+		CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollMultipleSelectionController.swift; sourceTree = "<group>"; };
+		CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollMultipleSelectionView.xib; sourceTree = "<group>"; };
+		CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateCameraRollViewController.swift; sourceTree = "<group>"; };
+		CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollItemViewCell.swift; sourceTree = "<group>"; };
+		CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraRollItemViewCell.xib; sourceTree = "<group>"; };
+		CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetRetrievingManager.swift; sourceTree = "<group>"; };
 		CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItemManager.swift; sourceTree = "<group>"; };
 		CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverItem.swift; sourceTree = "<group>"; };
+		CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateAddInfoViewController.swift; sourceTree = "<group>"; };
+		CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaDataSource.swift; sourceTree = "<group>"; };
+		CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaHeaderView.swift; sourceTree = "<group>"; };
+		CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryAddMediaHeaderView.xib; sourceTree = "<group>"; };
 		CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
 		CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
@@ -402,6 +440,13 @@
 		CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
 		CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverChangeLocationPopupViewController.swift; sourceTree = "<group>"; };
 		CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditViewController.swift; sourceTree = "<group>"; };
+		CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataManager.swift; sourceTree = "<group>"; };
+		CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryViewController.swift; sourceTree = "<group>"; };
+		CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryDataSource.swift; sourceTree = "<group>"; };
+		CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryHeaderView.swift; sourceTree = "<group>"; };
+		CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditStoryHeaderView.xib; sourceTree = "<group>"; };
+		CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryTableViewCell.swift; sourceTree = "<group>"; };
+		CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryUpdateManager.swift; sourceTree = "<group>"; };
 		CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		CD7F28DC1CDB7C1E00534211 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDetailCell.swift; sourceTree = "<group>"; };
@@ -426,12 +471,18 @@
 		CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsViewController.swift; sourceTree = "<group>"; };
 		CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddPostsTableViewCell.swift; sourceTree = "<group>"; };
 		CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateViewController.swift; sourceTree = "<group>"; };
+		CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAddMediaTableViewCell.swift; sourceTree = "<group>"; };
+		CDF564A91D35228D0052B997 /* GeocoderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderHelper.swift; sourceTree = "<group>"; };
+		CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateAddLocationViewController.swift; sourceTree = "<group>"; };
+		CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDraft.swift; sourceTree = "<group>"; };
+		CDF564B11D37B9220052B997 /* StoryCreateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCreateManager.swift; sourceTree = "<group>"; };
 		CDF6D8961CD26007001387EC /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryPointViewController.swift; sourceTree = "<group>"; };
 		CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareStoryViewController.swift; sourceTree = "<group>"; };
 		CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareHelper.swift; sourceTree = "<group>"; };
 		CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditPointCell.swift; sourceTree = "<group>"; };
 		CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryEditTableDataSource.swift; sourceTree = "<group>"; };
+		D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maplify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maplify/Pods-Maplify.release.xcconfig"; sourceTree = "<group>"; };
 		F01A89511CA74C8E008B8702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		F01A89541CA753E3008B8702 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryDetailViewController.swift; path = Maplify/ViewControllers/Content/Discover/StoryDetailViewController/StoryDetailViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -449,7 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52E09981C8D8C2E00706F9C /* Accounts.framework in Frameworks */,
-				4667046935C25494436491AF /* Pods_Maplify.framework in Frameworks */,
+				D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +514,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08DAFED8B0BB2421C03CDB85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */,
+				D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		1F2E33711C8055FC00D3B446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +530,7 @@
 				CDC817171CF2FCE60072DAE5 /* CapturePopUpView */,
 				850A64B61CEB4F87008FA969 /* PostDetailView */,
 				CD451B101CAAD90100EBCC7A /* CameraRollController */,
+				CD28F8301D2E8445001CF185 /* CameraRollMultipleSelectionController */,
 				CD451B5B1CABFEAC00EBCC7A /* PhotoController */,
 				CD451B651CAD449500EBCC7A /* VideoController */,
 				CDC26E531CEDD39A00D3EDEE /* AmbientController */,
@@ -555,21 +616,16 @@
 		1FE6D5AF1CA57B470052B412 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */,
+				CD3E0CE91D33C7290047BC55 /* StoryCreateAddInfoController */,
+				CDF564AB1D368FA10052B997 /* StoryCreateAddLocationController */,
+				CD4FE4EE1D40D7C2006EC5F1 /* EditStoryController */,
 				CDF164F31CD0E74500E38C7A /* StoryCreate */,
 				CDF164EE1CCF623E00E38C7A /* AddPosts */,
 				CD45672C1CCA74D500961A7A /* StoryEdit */,
 				F0419C1C1CA611CB00AB83C0 /* StoryQuickCreation */,
 			);
 			path = Story;
-			sourceTree = "<group>";
-		};
-		4069C54AB44294CF30EEEA95 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */,
-				ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		850A64B61CEB4F87008FA969 /* PostDetailView */ = {
@@ -660,6 +716,8 @@
 				A5081E5A1C807AD2006FBA52 /* ApiError.swift */,
 				A5A0E9941C8738F90094FC04 /* RequestConfig.swift */,
 				A5D7AAEF1C9C3C6400A94C4F /* ModelManager.swift */,
+				CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */,
+				CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -703,8 +761,8 @@
 				A58A52791C7F0A2900443C06 /* Maplify */,
 				A58A528E1C7F0A2900443C06 /* MaplifyTests */,
 				A58A52781C7F0A2800443C06 /* Products */,
-				4069C54AB44294CF30EEEA95 /* Pods */,
 				C60D303F351EBEB7C2F52374 /* Frameworks */,
+				08DAFED8B0BB2421C03CDB85 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -858,6 +916,12 @@
 				85FB7E591CCF57B900439761 /* UserRequestHelper.swift */,
 				CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */,
 				CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */,
+				CDF564A91D35228D0052B997 /* GeocoderHelper.swift */,
+				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
+				CDF564B11D37B9220052B997 /* StoryCreateManager.swift */,
+				CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */,
+				CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */,
+				CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -900,6 +964,7 @@
 		A5A0E98D1C86FA290094FC04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CDF564AE1D379FA10052B997 /* StoryPointDraft */,
 				CDC26E461CE9D8CE00D3EDEE /* Notification */,
 				CD340CF81CBD1FE000461015 /* DiscoverList */,
 				1FC781031CA151DB00C50C23 /* Attachment */,
@@ -991,7 +1056,7 @@
 			isa = PBXGroup;
 			children = (
 				A52E09971C8D8C2E00706F9C /* Accounts.framework */,
-				306A20C37F5D91F241D01DA2 /* Pods_Maplify.framework */,
+				7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1061,6 +1126,25 @@
 			path = CaptureExtensions;
 			sourceTree = "<group>";
 		};
+		CD28F8301D2E8445001CF185 /* CameraRollMultipleSelectionController */ = {
+			isa = PBXGroup;
+			children = (
+				CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */,
+				CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */,
+				CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */,
+				CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */,
+			);
+			path = CameraRollMultipleSelectionController;
+			sourceTree = "<group>";
+		};
+		CD28F8351D2E86AF001CF185 /* StoryCreateCameraRollController */ = {
+			isa = PBXGroup;
+			children = (
+				CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */,
+			);
+			path = StoryCreateCameraRollController;
+			sourceTree = "<group>";
+		};
 		CD340CF81CBD1FE000461015 /* DiscoverList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1152,26 @@
 				CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */,
 			);
 			path = DiscoverList;
+			sourceTree = "<group>";
+		};
+		CD3E0CE91D33C7290047BC55 /* StoryCreateAddInfoController */ = {
+			isa = PBXGroup;
+			children = (
+				CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */,
+				CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */,
+				CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */,
+				CD3E0CF01D33D2C80047BC55 /* StoryAddMediaHeaderView */,
+			);
+			path = StoryCreateAddInfoController;
+			sourceTree = "<group>";
+		};
+		CD3E0CF01D33D2C80047BC55 /* StoryAddMediaHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */,
+				CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */,
+			);
+			path = StoryAddMediaHeaderView;
 			sourceTree = "<group>";
 		};
 		CD451B101CAAD90100EBCC7A /* CameraRollController */ = {
@@ -1116,6 +1220,26 @@
 				CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */,
 			);
 			path = StoryEdit;
+			sourceTree = "<group>";
+		};
+		CD4FE4EE1D40D7C2006EC5F1 /* EditStoryController */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */,
+				CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */,
+				CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */,
+				CD4FE4F31D40F14C006EC5F1 /* EditStoryHeaderView */,
+			);
+			path = EditStoryController;
+			sourceTree = "<group>";
+		};
+		CD4FE4F31D40F14C006EC5F1 /* EditStoryHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */,
+				CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */,
+			);
+			path = EditStoryHeaderView;
 			sourceTree = "<group>";
 		};
 		CD7F28DB1CDB7C1E00534211 /* AppDelegate */ = {
@@ -1205,6 +1329,22 @@
 			path = StoryCreate;
 			sourceTree = "<group>";
 		};
+		CDF564AB1D368FA10052B997 /* StoryCreateAddLocationController */ = {
+			isa = PBXGroup;
+			children = (
+				CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */,
+			);
+			path = StoryCreateAddLocationController;
+			sourceTree = "<group>";
+		};
+		CDF564AE1D379FA10052B997 /* StoryPointDraft */ = {
+			isa = PBXGroup;
+			children = (
+				CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */,
+			);
+			path = StoryPointDraft;
+			sourceTree = "<group>";
+		};
 		CDF6D8981CD2846C001387EC /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -1249,13 +1389,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "Maplify" */;
 			buildPhases = (
-				369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */,
+				C6C6600AC233A4FC410C4866 /* [CP] Check Pods Manifest.lock */,
 				A58A52731C7F0A2800443C06 /* Sources */,
 				A58A52741C7F0A2800443C06 /* Frameworks */,
 				A58A52751C7F0A2800443C06 /* Resources */,
-				DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */,
-				9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */,
 				A58A52DF1C7F1DD200443C06 /* ShellScript */,
+				37E12923BABD2641101458EB /* [CP] Embed Pods Frameworks */,
+				D32C9B392E312C4595A743C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1339,6 +1479,7 @@
 				A59A7E7B1C9AC32400399A38 /* Main.storyboard in Resources */,
 				8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */,
 				CDC26E571CEDD3D600D3EDEE /* AmbientViewController.xib in Resources */,
+				CD28F8341D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib in Resources */,
 				CDC817191CF2FD040072DAE5 /* CapturePopUpView.xib in Resources */,
 				85E9159B1CBE8BF00041182F /* PublicStatsView.xib in Resources */,
 				85FD8C221CFC3A4A008956CE /* DetailStoryNumberCell.xib in Resources */,
@@ -1346,9 +1487,11 @@
 				850A64B81CEB4F97008FA969 /* StoryPointInfoView.xib in Resources */,
 				CD451B181CAAD90100EBCC7A /* CameraRollView.xib in Resources */,
 				A58A52851C7F0A2900443C06 /* LaunchScreen.storyboard in Resources */,
+				CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
 				850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */,
+				CD3E0CF41D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
 				85E9159D1CBE8D710041182F /* PrivateStatsView.xib in Resources */,
 				CD451B171CAAD90100EBCC7A /* AlbumViewCell.xib in Resources */,
@@ -1357,6 +1500,7 @@
 				A5C584BF1C90770E0036064A /* config_staging.plist in Resources */,
 				F0419C221CA6147600AB83C0 /* Assets.xcassets in Resources */,
 				85FB7E581CCE4C7600439761 /* ProfileView.xib in Resources */,
+				CD4FE4F71D40F195006EC5F1 /* EditStoryHeaderView.xib in Resources */,
 				A58A52801C7F0A2900443C06 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1373,34 +1517,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		369777F0D10A8B76C8441629 /* Check Pods Manifest.lock */ = {
+		37E12923BABD2641101458EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9BF28F7A48E6DD04161D45BC /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A58A52DF1C7F1DD200443C06 /* ShellScript */ = {
@@ -1416,19 +1545,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1be821fed07b6c7a86373f911acbc3c03d375f60 d0ef49d435d745ce847f8957558f8fcf56b27a284f9f95784d0fd9c8901a0fc1";
 		};
-		DF5E76EB62AC44EEC0271746 /* Embed Pods Frameworks */ = {
+		C6C6600AC233A4FC410C4866 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D32C9B392E312C4595A743C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1445,6 +1589,7 @@
 				CD451AC11CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift in Sources */,
 				CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */,
 				CDE2D4C91CF61C3400949D87 /* OurStoryViewController.swift in Sources */,
+				CD34F7201D2D50CA00CC4EBE /* NetworkOperation.swift in Sources */,
 				8C3575DC1CB3FB240039828A /* FacebookHelper.swift in Sources */,
 				A5D7AAF01C9C3C6400A94C4F /* ModelManager.swift in Sources */,
 				CDF0EADC1CB7C96500F93C66 /* StaticMap.swift in Sources */,
@@ -1458,12 +1603,14 @@
 				F03507F51CBAF9B800CFAA05 /* StoryDetailViewController.swift in Sources */,
 				A5D7AAF71C9C437F00A94C4F /* Profile.swift in Sources */,
 				8C9094D11CAD362F002F26A9 /* ArrayStoryManager.swift in Sources */,
+				CD3E0CF21D33D2E00047BC55 /* StoryAddMediaHeaderView.swift in Sources */,
 				A5CE2EF21C92F54900DCA2A7 /* ErrorHandlingProtocol.swift in Sources */,
 				1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */,
 				1FCDBF2E1C85AFCC00A3D010 /* ImageConstants.swift in Sources */,
 				8C3575D71CB3C6690039828A /* SessionHelper.swift in Sources */,
 				853A41AE1CDA07C400922D94 /* ResetPasswordViewController.swift in Sources */,
 				A58A52CB1C7F132A00443C06 /* CSBaseTableDataSource.swift in Sources */,
+				CD3E0CED1D33D1460047BC55 /* StoryAddMediaDataSource.swift in Sources */,
 				8CEA34FE1CFB2D9000874AD4 /* StoryLink.swift in Sources */,
 				A58A52DC1C7F192100443C06 /* AlertController.swift in Sources */,
 				CDE2D4C71CF5C2B200949D87 /* ReportSuccessViewController.swift in Sources */,
@@ -1478,6 +1625,8 @@
 				A5728A341C89C33F00C6DA7E /* ViewConstants.swift in Sources */,
 				CD451B671CAD44AE00EBCC7A /* VideoViewController.swift in Sources */,
 				A58A52CE1C7F132A00443C06 /* CSTableViewCell.swift in Sources */,
+				CDF564AD1D368FC30052B997 /* StoryCreateAddLocationViewController.swift in Sources */,
+				CD4FE4EC1D3E768E006EC5F1 /* FileDataManager.swift in Sources */,
 				A58A52CD1C7F132A00443C06 /* CSCollectionViewCell.swift in Sources */,
 				A58A52CC1C7F132A00443C06 /* CSCellData.swift in Sources */,
 				CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */,
@@ -1487,25 +1636,33 @@
 				CD7F28DD1CDB7C1E00534211 /* AppDelegate.swift in Sources */,
 				85AC3C591CF5D1F6007D9A76 /* InfiniteScrollView.swift in Sources */,
 				A59A7E851C9AD33F00399A38 /* MCMapService.swift in Sources */,
+				CDF564A81D3517570052B997 /* StoryAddMediaTableViewCell.swift in Sources */,
 				1FC7810D1CA1C4F200C50C23 /* AttachmentManager.swift in Sources */,
 				CD451B5E1CABFEDC00EBCC7A /* PhotoViewController.swift in Sources */,
+				CD4FE4F51D40F17B006EC5F1 /* EditStoryHeaderView.swift in Sources */,
+				CDF564AA1D35228D0052B997 /* GeocoderHelper.swift in Sources */,
 				1FB705BC1C9C79BC00FC3496 /* OnboardViewController.swift in Sources */,
 				A59A7E8C1C9ADBB800399A38 /* ContentViewController.swift in Sources */,
+				CDF564B01D379FBA0052B997 /* StoryPointDraft.swift in Sources */,
 				1FB705BA1C9C693100FC3496 /* OnboardCaptureController.swift in Sources */,
 				A5081E511C805857006FBA52 /* ApiClient.swift in Sources */,
 				CD451B161CAAD90100EBCC7A /* AlbumViewCell.swift in Sources */,
 				850A649B1CE9F44A008FA969 /* SignupGetCityViewController.swift in Sources */,
+				CD4FE4F01D40D7EB006EC5F1 /* EditStoryViewController.swift in Sources */,
 				A5FC35C91CA4258C00DFEE38 /* MCMapActiveModel.swift in Sources */,
 				CD340CFC1CBE5D3C00461015 /* DiscoverItem.swift in Sources */,
 				8595DF2A1CBBB69000F98F80 /* KeyboardAvoiding.swift in Sources */,
+				CD2B4ADE1D3920E600E30A96 /* AssetRetrievingManager.swift in Sources */,
 				853A41B31CDB4CC900922D94 /* ChangePasswordViewController.swift in Sources */,
 				85AC3C561CF31250007D9A76 /* StoryInfoView.swift in Sources */,
 				A58A52A21C7F103000443C06 /* ViewController.swift in Sources */,
 				F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */,
 				CD451B1A1CAAD90100EBCC7A /* ImageCropView.swift in Sources */,
 				1FC781021CA14C2600C50C23 /* Location.swift in Sources */,
+				CD28F82F1D2E4CEF001CF185 /* OperationQueueManager.swift in Sources */,
 				F0DF274C1CE7D0F900763C31 /* FollowingAlertController.swift in Sources */,
 				CDC26E451CE9D28700D3EDEE /* NotificationsViewController.swift in Sources */,
+				CD28F8371D2E884B001CF185 /* StoryCreateCameraRollViewController.swift in Sources */,
 				1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */,
 				A58A52DE1C7F192100443C06 /* StringUtils.swift in Sources */,
 				A5081E561C806D35006FBA52 /* Constants.swift in Sources */,
@@ -1530,6 +1687,7 @@
 				A59A7E921C9AFA0300399A38 /* MCMapItemsGroup.swift in Sources */,
 				A5D7AAFD1C9C45D800A94C4F /* ProfileManager.swift in Sources */,
 				A5081E5B1C807AD2006FBA52 /* ApiError.swift in Sources */,
+				CD34F7221D2D51CA00CC4EBE /* ConcurrentOperation.swift in Sources */,
 				A5D7AAF81C9C437F00A94C4F /* User.swift in Sources */,
 				1FC780FD1CA055E100C50C23 /* StoryPointEditInfoViewController.swift in Sources */,
 				A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */,
@@ -1551,6 +1709,8 @@
 				8C9094D41CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift in Sources */,
 				85FB7E561CCE4C6B00439761 /* ProfileView.swift in Sources */,
 				F0419C1E1CA611E400AB83C0 /* AddStoryViewController.swift in Sources */,
+				CDF564B21D37B9220052B997 /* StoryCreateManager.swift in Sources */,
+				CD28F8321D2E8485001CF185 /* CameraRollMultipleSelectionController.swift in Sources */,
 				A58A52C91C7F132A00443C06 /* CSActiveModel.swift in Sources */,
 				CDC26E481CE9D8DD00D3EDEE /* Notification.swift in Sources */,
 				CDF6D89C1CD28761001387EC /* ShareStoryViewController.swift in Sources */,
@@ -1566,10 +1726,13 @@
 				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
+				CD4FE4FB1D4210E2006EC5F1 /* StoryUpdateManager.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
 				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,
+				CD4FE4F21D40F0EA006EC5F1 /* EditStoryDataSource.swift in Sources */,
 				CD0BB2AD1CB2860600E3E66B /* DiscoverStoryPointCell.swift in Sources */,
+				CD4FE4F91D40F52B006EC5F1 /* EditStoryTableViewCell.swift in Sources */,
 				1FB705B81C9C68C400FC3496 /* OnboardDiscoverController.swift in Sources */,
 				8C130A251C8C9D0F0005DF12 /* StoryboardHelper.swift in Sources */,
 				CDF164F51CD0E76F00E38C7A /* StoryCreateViewController.swift in Sources */,
@@ -1592,10 +1755,12 @@
 				A59A7E7D1C9AC73F00399A38 /* RootViewController.swift in Sources */,
 				85E915A11CBE93BA0041182F /* PrivateStatsView.swift in Sources */,
 				CDC8171B1CF2FD2F0072DAE5 /* CapturePopUpView.swift in Sources */,
+				CD3E0CEB1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift in Sources */,
 				85E915951CBD22540041182F /* AutocompleteTextField.swift in Sources */,
 				1FC780F51CA01DB000C50C23 /* Story.swift in Sources */,
 				CD451B191CAAD90100EBCC7A /* CameraRollViewController.swift in Sources */,
 				A5FD364E1CAAA9EA00281574 /* StoryManager.swift in Sources */,
+				CD28F83A1D2E8DAD001CF185 /* CameraRollItemViewCell.swift in Sources */,
 				A59A7E8E1C9AE12A00399A38 /* GoogleMapService.swift in Sources */,
 				85FB7E5A1CCF57B900439761 /* UserRequestHelper.swift in Sources */,
 				F03507F71CBB01B600CFAA05 /* StoryDetailItemViewController.swift in Sources */,
@@ -1626,6 +1791,7 @@
 				A58A52D01C7F133C00443C06 /* CSBaseCollectionDataSource.swift in Sources */,
 				CD7F28D91CDB53C100534211 /* ImageConstants.swift in Sources */,
 				A58A52D21C7F133C00443C06 /* CSCellData.swift in Sources */,
+				CD4FE4ED1D3E7A03006EC5F1 /* FileDataManager.swift in Sources */,
 				F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */,
 				CD8A10A81CB66AA700B58396 /* StoryPointDetailCell.swift in Sources */,
 				A58A52D11C7F133C00443C06 /* CSBaseTableDataSource.swift in Sources */,
@@ -1756,7 +1922,7 @@
 		};
 		A58A52951C7F0A2900443C06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F55247D8C7FAE2982E414CE /* Pods-Maplify.debug.xcconfig */;
+			baseConfigurationReference = 0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1775,7 +1941,7 @@
 		};
 		A58A52961C7F0A2900443C06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABF2113716C93986BB656CC1 /* Pods-Maplify.release.xcconfig */;
+			baseConfigurationReference = D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

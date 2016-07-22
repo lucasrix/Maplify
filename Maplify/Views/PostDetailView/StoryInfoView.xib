@@ -26,7 +26,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My new murals at TG’s place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8h-uh-BtR">
-                            <rect key="frame" x="67" y="9" width="267" height="21"/>
+                            <rect key="frame" x="67" y="8" width="267" height="21"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="oPh-75-pSC"/>
@@ -38,9 +38,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="Z8h-uh-BtR" firstAttribute="centerY" secondItem="fS2-ue-uq8" secondAttribute="centerY" id="2HR-HB-InF"/>
                         <constraint firstItem="fS2-ue-uq8" firstAttribute="leading" secondItem="6zg-9F-aXa" secondAttribute="leading" constant="13" id="E4m-1G-oQH"/>
                         <constraint firstAttribute="trailing" secondItem="Z8h-uh-BtR" secondAttribute="trailing" constant="8" id="EBW-aT-MtZ"/>
-                        <constraint firstItem="Z8h-uh-BtR" firstAttribute="top" secondItem="6zg-9F-aXa" secondAttribute="top" constant="9" id="P7D-BN-VvY"/>
                         <constraint firstItem="fS2-ue-uq8" firstAttribute="top" secondItem="6zg-9F-aXa" secondAttribute="top" constant="8" id="PPG-8O-N3M"/>
                         <constraint firstItem="Z8h-uh-BtR" firstAttribute="leading" secondItem="fS2-ue-uq8" secondAttribute="trailing" constant="8" id="gKm-a2-Mzy"/>
                         <constraint firstAttribute="height" constant="42" id="la1-w2-RCM"/>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EditStoryHeaderView" customModule="Maplify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="479" height="215"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3WB-Vw-rHi" userLabel="Title View">
+                    <rect key="frame" x="0.0" y="4" width="479" height="36"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oea-NY-FmG">
+                            <rect key="frame" x="12" y="0.0" width="455" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="pCd-gM-tbG"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="textFieldChangedText:" destination="iN0-l3-epB" eventType="editingChanged" id="DQG-ES-Skm"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="9Vz-M9-qhw"/>
+                        <constraint firstAttribute="trailing" secondItem="oea-NY-FmG" secondAttribute="trailing" constant="12" id="DrP-Pi-4Kr"/>
+                        <constraint firstItem="oea-NY-FmG" firstAttribute="leading" secondItem="3WB-Vw-rHi" secondAttribute="leading" constant="12" id="J8R-iF-3Ab"/>
+                        <constraint firstAttribute="bottom" secondItem="oea-NY-FmG" secondAttribute="bottom" id="fG3-7i-WgM"/>
+                        <constraint firstItem="oea-NY-FmG" firstAttribute="top" secondItem="3WB-Vw-rHi" secondAttribute="top" id="khC-vF-3ME"/>
+                    </constraints>
+                </view>
+                <view alpha="0.05000000074505806" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-Lh-ILJ" userLabel="Title Separator View">
+                    <rect key="frame" x="0.0" y="40" width="479" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="EsH-K4-I9Z"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-c3-chW" userLabel="Description View">
+                    <rect key="frame" x="0.0" y="44" width="479" height="133"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2EZ-uh-mhA" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                            <rect key="frame" x="12" y="0.0" width="455" height="133"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Add story description"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2EZ-uh-mhA" firstAttribute="leading" secondItem="D7C-c3-chW" secondAttribute="leading" constant="12" id="48d-gi-JnJ"/>
+                        <constraint firstItem="2EZ-uh-mhA" firstAttribute="top" secondItem="D7C-c3-chW" secondAttribute="top" id="UIE-fc-1N9"/>
+                        <constraint firstAttribute="bottom" secondItem="2EZ-uh-mhA" secondAttribute="bottom" id="pUo-aX-VmR"/>
+                        <constraint firstAttribute="trailing" secondItem="2EZ-uh-mhA" secondAttribute="trailing" constant="12" id="wte-nl-BRK"/>
+                    </constraints>
+                </view>
+                <view alpha="0.05000000074505806" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-4V-T4X" userLabel="Description Separator View">
+                    <rect key="frame" x="0.0" y="177" width="479" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8n9-Yk-A11"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqN-Zm-73S">
+                    <rect key="frame" x="0.0" y="178" width="150" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="kK5-jl-a5u"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="add to story" image="AddToStoryPlus">
+                        <color key="titleColor" red="0.20784313725490194" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addToStoryTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="94W-j9-TmE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="kDh-Lh-ILJ" firstAttribute="top" secondItem="3WB-Vw-rHi" secondAttribute="bottom" id="23U-ng-UyG"/>
+                <constraint firstItem="jX8-4V-T4X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3wL-bI-grI"/>
+                <constraint firstItem="jX8-4V-T4X" firstAttribute="top" secondItem="D7C-c3-chW" secondAttribute="bottom" id="4tN-Tg-QMa"/>
+                <constraint firstAttribute="trailing" secondItem="D7C-c3-chW" secondAttribute="trailing" id="8bf-a3-kBf"/>
+                <constraint firstAttribute="bottom" secondItem="eqN-Zm-73S" secondAttribute="bottom" id="9id-eB-MrM"/>
+                <constraint firstItem="D7C-c3-chW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Agp-IH-23f"/>
+                <constraint firstItem="D7C-c3-chW" firstAttribute="top" secondItem="3WB-Vw-rHi" secondAttribute="bottom" constant="4" id="HvX-pc-Upi"/>
+                <constraint firstItem="eqN-Zm-73S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KcM-qz-Ikk"/>
+                <constraint firstItem="3WB-Vw-rHi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SJe-Ih-V9J"/>
+                <constraint firstAttribute="bottom" secondItem="D7C-c3-chW" secondAttribute="bottom" constant="38" id="T73-74-v5E"/>
+                <constraint firstAttribute="trailing" secondItem="3WB-Vw-rHi" secondAttribute="trailing" id="ZCs-3y-Jwh"/>
+                <constraint firstAttribute="trailing" secondItem="kDh-Lh-ILJ" secondAttribute="trailing" id="aca-U6-vGn"/>
+                <constraint firstItem="kDh-Lh-ILJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bUK-CH-zow"/>
+                <constraint firstItem="3WB-Vw-rHi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="gh4-ZD-NBP"/>
+                <constraint firstItem="eqN-Zm-73S" firstAttribute="top" secondItem="jX8-4V-T4X" secondAttribute="bottom" id="hkf-Wg-9yu"/>
+                <constraint firstAttribute="trailing" secondItem="jX8-4V-T4X" secondAttribute="trailing" id="pI0-6Q-nUS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addToStoryButton" destination="eqN-Zm-73S" id="cmE-mC-yMN"/>
+                <outlet property="descriptionTextView" destination="2EZ-uh-mhA" id="KT9-CJ-ec3"/>
+                <outlet property="titleTextField" destination="oea-NY-FmG" id="dw4-4y-cUU"/>
+                <outlet property="titleView" destination="3WB-Vw-rHi" id="YrO-GK-cMO"/>
+            </connections>
+            <point key="canvasLocation" x="205.5" y="180.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AddToStoryPlus" width="14" height="15"/>
+    </resources>
+</document>

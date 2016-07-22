@@ -37,3 +37,7 @@ struct NavigationBar {
 struct SearchBar {
     static let defaultHeight: CGFloat = 45
 }
+
+struct Sizes {
+    static let assetsTargetSizeDefault = CGSizeMake(UIScreen().screenWidthScaled(), UIScreen().screenWidthScaled())
+}

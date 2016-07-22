@@ -265,7 +265,9 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         if story.user.profile.id == SessionManager.currentUser().profile.id {
             self.showEditStoryContentActionSheet({ [weak self] (selectedIndex) in
                 if selectedIndex == StoryEditContentOption.EditStory.rawValue {
-                    self?.routesOpenStoryEditController(storyId, storyUpdateHandler: nil)
+                    self?.routesOpenStoryEditController(storyId, editStoryCompletion: { (storyId, cancelled) in
+                        self?.navigationController?.popToViewController(self!, animated: true)
+                    })
                 } else if selectedIndex == StoryEditContentOption.DeleteStory.rawValue {
                     self?.deleteStory(storyId)
                 } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {

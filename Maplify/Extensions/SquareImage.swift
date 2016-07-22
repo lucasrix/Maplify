@@ -9,7 +9,7 @@
 import Foundation
 
 extension UIImage {
-    func cropToSquare() -> UIImage {
+    func cropToSquareImage() -> UIImage {
         let resizeByWidth: Bool = self.size.width < self.size.height
         var cropRect = CGRectZero
         if resizeByWidth {

@@ -6,6 +6,7 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
+import Photos
 import Foundation
 
 extension UIViewController {
@@ -21,6 +22,7 @@ extension UIViewController {
     func routesSetContentController() {
         let captureViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.captureController)
         let navigationController = NavigationViewController(rootViewController: captureViewController)
+        navigationController.navigationType = .Main
         let window = ((UIApplication.sharedApplication().delegate?.window)!)! as UIWindow
         window.rootViewController = navigationController
     }
@@ -80,6 +82,25 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyCreateController, animated: true)
     }
     
+    func routesOpenStoryCreateCameraRollController(createStoryCompletion: createStoryClosure!) {
+        let storyCreateCameraRollController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateCameraRollController) as! StoryCreateCameraRollViewController
+        storyCreateCameraRollController.createStoryCompletion = createStoryCompletion
+        self.navigationController?.pushViewController(storyCreateCameraRollController, animated: true)
+    }
+    
+    func routesOpenStoryCreateAddInfoController(selectedDrafts: [StoryPointDraft], createStoryCompletion: createStoryClosure!) {
+        let storyCreateAddInfoController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddInfoController) as! StoryCreateAddInfoViewController
+        storyCreateAddInfoController.selectedDrafts = selectedDrafts
+        storyCreateAddInfoController.createStoryCompletion = createStoryCompletion
+        self.navigationController?.pushViewController(storyCreateAddInfoController, animated: true)
+    }
+    
+    func routesOpenStoryCreateAddLocationController(searchLocationClosure: SearchLocationClosure!) {
+        let storyCreateAddLocationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyCreateAddLocationController) as! StoryCreateAddLocationViewController
+        storyCreateAddLocationController.searchLocationClosure = searchLocationClosure
+        self.navigationController?.pushViewController(storyCreateAddLocationController, animated: true)
+    }
+    
     func routesOpenDiscoverController(userProfileId: Int, supportUserProfile: Bool, stackSupport: Bool) {
         let discoverViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.discoverController) as! DiscoverViewController
         discoverViewController.userProfileId = userProfileId
@@ -102,10 +123,11 @@ extension UIViewController {
         self.navigationController?.pushViewController(storyPointEditViewController, animated: true)
     }
     
-    func routesOpenStoryEditController(storyId: Int, storyUpdateHandler: (() -> ())!) {
-        let storyEditViewController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.storyEditController) as! StoryEditViewController
-        storyEditViewController.storyId = storyId
-        self.navigationController?.pushViewController(storyEditViewController, animated: true)
+    func routesOpenStoryEditController(storyId: Int, editStoryCompletion: editStoryClosure!) {
+        let editStoryController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier(Controllers.editStoryController) as! EditStoryViewController
+        editStoryController.storyId = storyId
+        editStoryController.editStoryCompletion = editStoryCompletion
+        self.navigationController?.pushViewController(editStoryController, animated: true)
     }
     
     func routesOpenViewController(storyboard: UIStoryboard, identifier: String) {

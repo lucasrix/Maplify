@@ -16,6 +16,7 @@ let kDescriptionMaxCharactersCount: Int = 1500
 protocol EditStoryTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func changeLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
+    func deleteStoryPointDidTap(draft: StoryPointDraft)
 }
 
 class EditStoryTableViewCell: CSTableViewCell, UITextViewDelegate {
@@ -102,6 +103,10 @@ class EditStoryTableViewCell: CSTableViewCell, UITextViewDelegate {
             self?.draft?.coordinate = location
             self?.populateLocation()
         })
+    }
+    
+    @IBAction func deletePostTapped(sender: UIButton) {
+        self.delegate?.deleteStoryPointDidTap(self.draft)
     }
     
     class func imageViewHeight(draft: StoryPointDraft) -> CGFloat {

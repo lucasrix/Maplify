@@ -11,7 +11,7 @@ import UIKit
 
 typealias editStoryClosure = ((storyId: Int, cancelled: Bool) -> ())
 
-class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
+class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, StoryUpdateManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: EditStoryDataSource! = nil
@@ -116,6 +116,18 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
         }
     }
     
+    override func rightBarButtonItemDidTap() {
+        print("right tapped")
+        self.updateStory()
+    }
+    
+    private func updateStory() {
+        self.showProgressHUD()
+        let storyUpdateManager = StoryUpdateManager.sharedManager
+        storyUpdateManager.delegate = self
+        storyUpdateManager.updateStory(self.storyId, storyName: (self.headerView?.titleTextField?.text)!, storyDescription: (self.headerView?.descriptionTextView?.text)!, storyPointDrafts: self.storyPointDrafts)
+    }
+    
     // MARK: - EditStoryTableViewCellDelegate
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!) {
         let index = self.storyActiveModel.indexPathOfModel(draft)
@@ -129,7 +141,36 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
         }
     }
     
-    override func rightBarButtonItemDidTap() {
-        print("right tapped")
+    // MARK: - StoryUpdateManagerDelegate
+    func updatingStoryDidSuccess(storyId: Int) {
+        self.hideProgressHUD()
+    }
+    
+    func updatingStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        self.hideProgressHUD()
+        self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+    }
+    
+    func updatingStoryPointDidStartCreating(draft: StoryPointDraft) {
+        // TODO:
+    }
+    
+    func updatingStoryPointDidSuccess(draft: StoryPointDraft) {
+        // TODO:
+    }
+    
+    func updatingStoryPointDidFail(draft: StoryPointDraft) {
+        // TODO:
+    }
+    
+    func allOperationsCompleted(storyId: Int) {
+        // TODO:
+    }
+    
+    // MARK: - ErrorHandlingProtocol
+    func handleErrors(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
+        let title = NSLocalizedString("Alert.Error", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(title, message: String.formattedErrorMessage(messages), cancel: cancel)
     }
 }

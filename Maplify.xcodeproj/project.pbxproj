@@ -197,6 +197,7 @@
 		CD4FE4F51D40F17B006EC5F1 /* EditStoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */; };
 		CD4FE4F71D40F195006EC5F1 /* EditStoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */; };
 		CD4FE4F91D40F52B006EC5F1 /* EditStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */; };
+		CD4FE4FB1D4210E2006EC5F1 /* StoryUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */; };
 		CD64564B1CD3B43500D5B54A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */; };
 		CD7F28D91CDB53C100534211 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
 		CD7F28DA1CDB540B00534211 /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
@@ -445,6 +446,7 @@
 		CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryHeaderView.swift; sourceTree = "<group>"; };
 		CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditStoryHeaderView.xib; sourceTree = "<group>"; };
 		CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryTableViewCell.swift; sourceTree = "<group>"; };
+		CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryUpdateManager.swift; sourceTree = "<group>"; };
 		CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		CD7F28DC1CDB7C1E00534211 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDetailCell.swift; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 				CDF564A91D35228D0052B997 /* GeocoderHelper.swift */,
 				CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */,
 				CDF564B11D37B9220052B997 /* StoryCreateManager.swift */,
+				CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */,
 				CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */,
 				CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */,
 			);
@@ -1723,6 +1726,7 @@
 				CDF164F21CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift in Sources */,
 				A508F4311C902634007131C9 /* ProgressHUD.swift in Sources */,
 				CD8A10AF1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift in Sources */,
+				CD4FE4FB1D4210E2006EC5F1 /* StoryUpdateManager.swift in Sources */,
 				1FC7810F1CA2A62900C50C23 /* RelationOrNil.swift in Sources */,
 				1FB705B41C9C212C00FC3496 /* PageViewController.swift in Sources */,
 				CDC26E521CEA405500D3EDEE /* NotificationsTableViewCell.swift in Sources */,

@@ -73,11 +73,13 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate {
         for storyPoint in self.storyPoints {
             let storyPointDraft = StoryPointDraft()
             storyPointDraft.id = storyPoint.id
-            storyPointDraft.attachmentUrl = storyPoint.attachment.file_url
             storyPointDraft.coordinate = CLLocationCoordinate2D(latitude: storyPoint.location.latitude, longitude: storyPoint.location.longitude)
             storyPointDraft.address = storyPoint.location.address
             storyPointDraft.storyPointDescription = storyPoint.text
             storyPointDraft.storyPointKind = storyPoint.kind
+            if let attachment = storyPoint.attachment {
+                storyPointDraft.attachmentUrl = attachment.file_url
+            }
             self.storyPointDrafts.append(storyPointDraft)
         }
     }

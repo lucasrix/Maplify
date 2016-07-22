@@ -1672,7 +1672,7 @@
                                             <outlet property="changeAddressButton" destination="BHF-BC-Hck" id="ar8-D6-YJg"/>
                                             <outlet property="cropButton" destination="Vwe-bf-ipN" id="uka-ao-iOo"/>
                                             <outlet property="deleteButton" destination="0tb-b5-U54" id="nJK-sv-3XA"/>
-                                            <outlet property="descriptionTextView" destination="JPM-Ix-VaT" id="nNN-6M-cb5"/>
+                                            <outlet property="descriptionTextView" destination="JPM-Ix-VaT" id="40D-95-OYc"/>
                                             <outlet property="imageViewHeightConstraint" destination="s8J-jP-oVx" id="zhd-IO-x5E"/>
                                             <outlet property="isVideoImageView" destination="Skh-hI-CnM" id="KuC-Hq-AfI"/>
                                             <outlet property="locationView" destination="OMy-y4-3ll" id="mwK-ZN-JcR"/>

@@ -11,13 +11,14 @@ import CoreLocation
 import UIKit
 
 let kTextStoryPointImageViewHeight: CGFloat = 56
+let kDescriptionMaxCharactersCount: Int = 1500
 
 protocol EditStoryTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)
     func changeLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
 }
 
-class EditStoryTableViewCell: CSTableViewCell {
+class EditStoryTableViewCell: CSTableViewCell, UITextViewDelegate {
     @IBOutlet weak var attachmentImageView: UIImageView!
     @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var orderLabel: UILabel!
@@ -46,6 +47,7 @@ class EditStoryTableViewCell: CSTableViewCell {
         let stateViewCornerRadius = CGRectGetHeight(self.orderView.frame) / 2
         self.orderView?.layer.cornerRadius = stateViewCornerRadius
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
+        self.descriptionTextView.delegate = self
     }
     
     func populateOrder() {
@@ -110,5 +112,15 @@ class EditStoryTableViewCell: CSTableViewCell {
         let draft = cellData.model as! StoryPointDraft
         let imageViewHeight = EditStoryTableViewCell.imageViewHeight(draft)
         return kCellTopMargin + imageViewHeight + kCellLocationViewHeight + kCellDescriptionViewHeight
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultText = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        if resultText.characters.count <= kDescriptionMaxCharactersCount {
+            self.draft?.storyPointDescription = resultText
+            return true
+        }
+        return false
     }
 }

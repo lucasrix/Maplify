@@ -11,7 +11,7 @@ import UIKit
 
 typealias editStoryClosure = ((storyId: Int, cancelled: Bool) -> ())
 
-class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, StoryUpdateManagerDelegate {
+class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, StoryUpdateManagerDelegate, EditStoryHeaderViewDelegate, AddPostsDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var storyDataSource: EditStoryDataSource! = nil
@@ -29,9 +29,9 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
         super.viewDidLoad()
         
         self.setup()
-        self.loadData()
+        self.prepareData()
         self.populateHeaderView()
-        self.populateTableView()
+        self.updateData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,7 +58,12 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     
     func setupHeaderView() {
         self.headerView = NSBundle.mainBundle().loadNibNamed(String(EditStoryHeaderView), owner: nil, options: nil).last as! EditStoryHeaderView
-        self.headerView.setup()
+        self.headerView.setup(delegate: self)
+    }
+    
+    func updateData() {
+        self.loadData()
+        self.populateTableView()
     }
     
     func populateHeaderView() {
@@ -67,9 +72,13 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
         }
     }
     
-    func loadData() {
+    func prepareData() {
         self.story = StoryManager.find(self.storyId)
         self.storyPoints = Converter.listToArray(story.storyPoints, type: StoryPoint.self)
+    }
+    
+    func loadData() {
+        self.storyPointDrafts.removeAll()
         for storyPoint in self.storyPoints {
             let storyPointDraft = StoryPointDraft()
             storyPointDraft.id = storyPoint.id
@@ -82,6 +91,9 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
             }
             let storyLinks = Converter.listToArray(storyPoint.storiesLinks, type: StoryLink.self)
             storyPointDraft.storiesIds = storyLinks.map({$0.id})
+            if storyPointDraft.storiesIds.contains(self.storyId) == false {
+                storyPointDraft.storiesIds.append(self.storyId)
+            }
             self.storyPointDrafts.append(storyPointDraft)
         }
     }
@@ -166,6 +178,17 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     func allOperationsCompleted(storyId: Int) {
         self.hideProgressHUD()
         self.editStoryCompletion?(storyId: storyId, cancelled: false)
+    }
+    
+    // MARK: - EditStoryHeaderViewDelegate
+    func addToStoryDidTap() {
+        self.routesOpenStoryAddPostsViewController(self.storyPoints, delegate: self, storyModeCreation: false, storyName: String(), storyDescription: String(), createStoryCompletion: nil)
+    }
+    
+    // MARK: - AddPostsDelegate
+    func didSelectStoryPoints(storyPoints: [StoryPoint]) {
+        self.storyPoints = storyPoints
+        self.updateData()
     }
     
     // MARK: - ErrorHandlingProtocol

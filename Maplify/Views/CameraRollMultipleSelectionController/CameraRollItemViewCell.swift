@@ -16,9 +16,7 @@ class CameraRollItemViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var isVideoImageView: UIImageView!
     @IBOutlet weak var checkedImageView: UIImageView!
-    
-    var imageManager = PHCachingImageManager()
-    
+        
     func configure(asset: PHAsset, targetSize: CGSize, selected: Bool) {
         self.updateSelection(selected)
         self.populateImage(asset, targetSize: targetSize)
@@ -32,7 +30,9 @@ class CameraRollItemViewCell: UICollectionViewCell {
     
     func populateImage(asset: PHAsset, targetSize: CGSize) {
         AssetRetrievingManager.retrieveImage(asset, targetSize: targetSize, synchronous: false) { [weak self] (result, info) in
-            self?.imageView.image = result
+            if result != nil {
+                self?.imageView.image = result
+            }
             self?.isVideoImageView.hidden = asset.mediaType == .Image
             self?.timeLabel.hidden = asset.mediaType == .Image
         }

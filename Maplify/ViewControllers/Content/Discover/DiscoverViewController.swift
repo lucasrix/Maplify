@@ -447,9 +447,12 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
         if story.user.profile.id == SessionManager.currentUser().profile.id {
             self.showEditStoryContentActionSheet({ [weak self] (selectedIndex) in
                 if selectedIndex == StoryEditContentOption.EditStory.rawValue {
-                    self?.routesOpenStoryEditController(storyId, storyUpdateHandler: { [weak self] in
-                        self?.storyDataSource.reloadTable()
-                        })
+                    self?.routesOpenStoryEditController(storyId, editStoryCompletion: { [weak self] (storyId, cancelled) in
+                        self?.navigationController?.popToViewController(self!, animated: true)
+                        if cancelled == true {
+                            self?.storyDataSource.reloadTable()
+                        }
+                    })
                 } else if selectedIndex == StoryEditContentOption.DeleteStory.rawValue {
                     self?.deleteStory(storyId)
                 } else if selectedIndex == StoryEditContentOption.ShareStory.rawValue {

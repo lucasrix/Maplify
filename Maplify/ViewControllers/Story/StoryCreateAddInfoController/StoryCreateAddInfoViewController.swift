@@ -160,9 +160,9 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     func deleteStoryPointDidTap(draft: StoryPointDraft) {
         if self.selectedDrafts.count == 1 {
-            self.showDraftDeletionAlert()
+            self.showLastDraftDeletionAlert()
         } else {
-            self.removeDraft(draft)
+            self.showDraftDelationAlert(draft)
         }
     }
     
@@ -173,10 +173,22 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
             let indexPath = NSIndexPath(forRow: index!, inSection: 0)
             self.storyDataSource.removeRow(indexPath)
             self.storyDataSource.reloadTable()
+            self.populateTitle()
         }
     }
     
-    private func showDraftDeletionAlert() {
+    private func showDraftDelationAlert(draft: StoryPointDraft) {
+        let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletion", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.removeDraft(draft)
+            }
+        }
+    }
+    
+    private func showLastDraftDeletionAlert() {
         let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletionLast", comment: String())
         let yesButton = NSLocalizedString("Button.YesRemoveAndDelete", comment: String())
         let noButton = NSLocalizedString("Button.No", comment: String())
@@ -234,7 +246,7 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         let noButton = NSLocalizedString("Button.NoThanks", comment: String())
         self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
             if buttonIndex == AlertButtonIndexes.Cancel.rawValue {
-                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+                self?.createStoryCompletion?(storyId: (self?.storyId)!, cancelled: false)
             }
         }
     }

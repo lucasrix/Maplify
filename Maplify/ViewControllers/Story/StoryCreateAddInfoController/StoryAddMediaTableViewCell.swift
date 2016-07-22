@@ -57,6 +57,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.populateOrder()
         self.populateImage()
         self.manageLocation()
+        self.populateDescription()
     }
     
     func setupViews() {
@@ -143,6 +144,10 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.addLocationButton.hidden = false
     }
     
+    func populateDescription() {
+        self.descriptionTextView.text = self.draft?.storyPointDescription
+    }
+    
     // MARK: - actions
     @IBAction func addLocationTapped(sender: UIButton) {
         self.delegate?.addLocationDidTap({ [weak self] (location, address) in
@@ -179,7 +184,12 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     }
     
     // MARK: - UITextViewDelegate
-    func textViewDidChange(textView: UITextView) {
-        self.draft?.storyPointdescription = textView.text
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultText = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        if resultText.characters.count <= 10 {
+            self.draft?.storyPointDescription = resultText
+            return true
+        }
+        return false
     }
 }

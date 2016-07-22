@@ -29,7 +29,7 @@ struct Network {
     static let isUserLogin = "isUserLogin"
     static let successStatusCodes = [200, 201]
     static let failureStatusCode500: Int = 500
-    static let failureStatusCode401: Int = 401
+    static let failureStatusCode403: Int = 403
     static let simpleAuthCancelCode = 100
     static let mapRequestTimeOut: NSTimeInterval = 10
     static let routingPrefix = "maplify:"
@@ -85,6 +85,7 @@ struct Controllers {
     static let storyCreateCameraRollController = "StoryCreateCameraRollViewController"
     static let storyCreateAddInfoController = "StoryCreateAddInfoViewController"
     static let storyCreateAddLocationController = "StoryCreateAddLocationViewController"
+    static let editStoryController = "EditStoryViewController"
 }
 
 struct AppIDs {

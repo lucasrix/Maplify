@@ -101,21 +101,35 @@ class StoryCreateManager: NSObject {
     }
     
     private func remotePostStoryPoint(draft: StoryPointDraft, kind: StoryPointKind, storyId: Int, attachmentId: Int, operation: NetworkOperation) {
-        let locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
-        let storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
-                                                   "text":draft.storyPointDescription,
-                                                   "location":locationDict,
-                                                   "attachment_id":attachmentId,
-                                                   "story_ids":[storyId]]
-        
-        ApiClient.sharedClient.createStoryPoint(storyPointDict, success: { [weak self] (response) in
-            StoryPointManager.saveStoryPoint(response as! StoryPoint)
-            self?.delegate.creationStoryPointDidSuccess(draft)
-            operation.completeOperation()
-            
+        self.paramsForDraft(draft, kind: kind, attachmentId: attachmentId, storyId: storyId) { (params) in
+            ApiClient.sharedClient.createStoryPoint(params, success: { [weak self] (response) in
+                StoryPointManager.saveStoryPoint(response as! StoryPoint)
+                self?.delegate.creationStoryPointDidSuccess(draft)
+                operation.completeOperation()
+                
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.delegate?.creationStoryPointDidFail(draft)
                 operation.completeOperation()
+            }
+        }
+    }
+    
+    private func paramsForDraft(draft: StoryPointDraft, kind: StoryPointKind, attachmentId: Int, storyId: Int, completion: ((params: [String: AnyObject]) -> ())) {
+        var locationDict: [String: AnyObject] = ["latitude":draft.coordinate.latitude, "longitude":draft.coordinate.longitude, "address": draft.address]
+        var storyPointDict: [String: AnyObject] = ["kind":kind.rawValue,
+                                                   "text":draft.storyPointDescription,
+                                                   "attachment_id":attachmentId,
+                                                   "story_ids":[storyId]]
+        if draft.address.characters.count > 0 {
+            locationDict["address"] =  draft.address
+            storyPointDict["location"] = locationDict
+            completion(params: storyPointDict)
+        } else {
+            GeocoderHelper.placeFromCoordinate(draft.coordinate, completion: { (addressString) in
+                locationDict["address"] =  addressString
+                storyPointDict["location"] = locationDict
+                completion(params: storyPointDict)
+            })
         }
     }
     

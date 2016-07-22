@@ -47,6 +47,7 @@ class CapturePopUpView: UIView {
             let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             GeocoderHelper.placeFromCoordinate(coordinate) { [weak self] (addressString) in
                 self?.addressLabel.text = addressString
+                completion?(locationString: addressString)
             }
         }
     }

@@ -154,6 +154,28 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
         }
     }
     
+    func deleteStoryPointDidTap(draft: StoryPointDraft) {
+        let alertMessage = NSLocalizedString("Alert.StoryPointDraftDeletion", comment: String())
+        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+        let noButton = NSLocalizedString("Button.No", comment: String())
+        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                self?.removePost(draft)
+            }
+        }
+    }
+    
+    func removePost(draft: StoryPointDraft) {
+        let index = self.storyPointDrafts.indexOf(draft)
+        if (index != nil) && (index != NSNotFound) {
+            self.storyPointDrafts.removeAtIndex(index!)
+            self.storyPoints.removeAtIndex(index!)
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+            self.storyDataSource.removeRow(indexPath)
+            self.storyDataSource.reloadTable()
+        }
+    }
+    
     // MARK: - StoryUpdateManagerDelegate
     func updatingStoryDidSuccess(storyId: Int) {
         // TODO:

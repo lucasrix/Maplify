@@ -80,6 +80,8 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
             if let attachment = storyPoint.attachment {
                 storyPointDraft.attachmentUrl = attachment.file_url
             }
+            let storyLinks = Converter.listToArray(storyPoint.storiesLinks, type: StoryLink.self)
+            storyPointDraft.storiesIds = storyLinks.map({$0.id})
             self.storyPointDrafts.append(storyPointDraft)
         }
     }
@@ -117,7 +119,6 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     }
     
     override func rightBarButtonItemDidTap() {
-        print("right tapped")
         self.updateStory()
     }
     
@@ -143,11 +144,10 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     
     // MARK: - StoryUpdateManagerDelegate
     func updatingStoryDidSuccess(storyId: Int) {
-        self.hideProgressHUD()
+        // TODO:
     }
     
     func updatingStoryDidFail(statusCode: Int, errors: [ApiError]!, localDescription: String!, messages: [String]!) {
-        self.hideProgressHUD()
         self.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
     }
     
@@ -164,7 +164,8 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     }
     
     func allOperationsCompleted(storyId: Int) {
-        // TODO:
+        self.hideProgressHUD()
+        self.editStoryCompletion?(storyId: storyId, cancelled: false)
     }
     
     // MARK: - ErrorHandlingProtocol

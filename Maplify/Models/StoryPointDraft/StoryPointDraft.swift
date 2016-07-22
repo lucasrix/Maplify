@@ -24,6 +24,7 @@ class StoryPointDraft: NSObject {
     var downloadState: DownloadState = .Default
     var attachmentUrl = String()
     var storyPointKind = String()
+    var storiesIds = [Int]()
     
     func readyToCreate() -> Bool {
         return (self.coordinate != nil) && (self.address.characters.count > 0)

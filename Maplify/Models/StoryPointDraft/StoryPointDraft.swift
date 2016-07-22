@@ -27,6 +27,6 @@ class StoryPointDraft: NSObject {
     var storiesIds = [Int]()
     
     func readyToCreate() -> Bool {
-        return (self.coordinate != nil) && (self.address.characters.count > 0)
+        return self.coordinate != nil
     }
 }

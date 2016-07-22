@@ -11,18 +11,25 @@ import UIKit
 
 let kEditStoryBottomMargin: CGFloat = 38
 
+protocol EditStoryHeaderViewDelegate {
+    func addToStoryDidTap()
+}
+
 class EditStoryHeaderView: UIView {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     @IBOutlet weak var addToStoryButton: UIButton!
     
+    var delegate: EditStoryHeaderViewDelegate! = nil
+    
     func viewHeight() -> CGFloat {
         let headerHeight = kTopMargin + kStoryTitleTextFieldHeight + kMidMargin + kStoryDescriptionTextViewHeight + kEditStoryBottomMargin
         return headerHeight
     }
     
-    func setup() {
+    func setup(delegate delegate: EditStoryHeaderViewDelegate!) {
+        self.delegate = delegate
         let titlePlaceholder = self.storyNamePlaceholderText()
         self.titleTextField.attributedPlaceholder = NSAttributedString(string:titlePlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(kTitlePlaceholderTextAlpha)])
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.StoryAddMediaDescription", comment: String())
@@ -54,6 +61,10 @@ class EditStoryHeaderView: UIView {
         } else {
             self.setStoryNameDefaultState()
         }
+    }
+    
+    @IBAction func addToStoryTapped(sender: UIButton) {
+        self.delegate?.addToStoryDidTap()
     }
     
     // MARK: - private

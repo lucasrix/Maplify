@@ -84,6 +84,9 @@
                     <state key="normal" title="add to story" image="AddToStoryPlus">
                         <color key="titleColor" red="0.20784313725490194" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="addToStoryTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="94W-j9-TmE"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>

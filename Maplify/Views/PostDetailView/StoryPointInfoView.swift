@@ -148,7 +148,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         
         self.storyPointImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage, completion: { [weak self] (result) in
             if result.error == nil {
-                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.colorView?.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
             }
             self?.populateKindImage(storyPoint)
         })

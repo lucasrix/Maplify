@@ -116,11 +116,25 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
     
     func updateProfileRemote(user: User!) {
         ApiClient.sharedClient.updateProfile(user.profile, location: nil, success: { [weak self] (response) in
-            self?.hideProgressHUD()
-            self?.routesOpenSignupGetCityViewController(user)
+            self?.updateProfile(user.profile, completion: { [weak self] (profile) in
+                if profile != nil {
+                    user.profile = profile
+                    SessionManager.saveCurrentUser(user)
+                }
+                self?.hideProgressHUD()
+                self?.routesOpenSignupGetCityViewController(user)
+            })
             }) { [weak self] (statusCode, errors, localDescription, messages) in
                 self?.hideProgressHUD()
                 self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+        }
+    }
+    
+    private func updateProfile(profile: Profile!, completion: ((profile: Profile!) -> ())!) {
+        ApiClient.sharedClient.updateProfile(profile, location: nil, success: { (response) in
+            completion?(profile: response as! Profile)
+            }) { (statusCode, errors, localDescription, messages) in
+                completion?(profile: nil)
         }
     }
     

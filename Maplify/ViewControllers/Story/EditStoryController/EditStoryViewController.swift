@@ -131,7 +131,13 @@ class EditStoryViewController: ViewController, EditStoryTableViewCellDelegate, S
     }
     
     override func rightBarButtonItemDidTap() {
-        self.updateStory()
+        if self.headerView.readyToEdit() {
+            self.headerView?.titleTextField?.resignFirstResponder()
+            self.updateStory()
+        } else {
+            self.tableView?.setContentOffset(CGPointZero, animated:true)
+            self.headerView?.titleTextField?.becomeFirstResponder()
+        }
     }
     
     private func updateStory() {

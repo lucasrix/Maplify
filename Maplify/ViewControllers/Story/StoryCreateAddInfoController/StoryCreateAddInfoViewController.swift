@@ -124,14 +124,21 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         if self.headerView?.readyToCreate() == false {
             self.headerView?.setStoryNameErrorState()
             self.tableView?.setContentOffset(CGPointZero, animated:true)
-            self.headerView?.titleTextField.becomeFirstResponder()
+            self.headerView?.titleTextField?.becomeFirstResponder()
         } else {
+            self.headerView?.titleTextField?.resignFirstResponder()
             self.showStoryPointLocationErrorIfNeeded()
         }
     }
     
     private func showStoryPointLocationErrorIfNeeded() {
-        
+        for draft in self.selectedDrafts {
+            if draft.readyToCreate() == false {
+                let index = self.storyActiveModel.indexPathOfModel(draft)
+                self.tableView.scrollToRowAtIndexPath(index, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                break
+            }
+        }
     }
     
     func postStory(storyName: String) {

@@ -109,6 +109,13 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         }
     }
     
+    func updateCurrentStoryPointIfNeeded() {
+        if self.contentType == .Default {
+            let index = self.infiniteScrollView.currentPageIndex
+            self.infiniteScrollView.moveAndShowCell(index, animated: false)
+        }
+    }
+    
     func storyPointMenuButtonTapped(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
         if (storyPoint != nil) && (storyPoint.user.profile.id == SessionManager.currentUser().profile.id) {

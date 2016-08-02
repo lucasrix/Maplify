@@ -11,7 +11,7 @@ import CoreLocation
 import UIKit
 
 let kTextStoryPointImageViewHeight: CGFloat = 56
-let kDescriptionMaxCharactersCount: Int = 1500
+let kDescriptionMaxCharactersCount: Int = 1000
 
 protocol EditStoryTableViewCellDelegate {
     func getIndexOfObject(draft: StoryPointDraft, completion: ((index: Int, count: Int) -> ())!)

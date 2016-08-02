@@ -185,7 +185,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     // MARK: - UITextViewDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let resultText = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
-        if resultText.characters.count <= 10 {
+        if resultText.characters.count <= kDescriptionMaxCharactersCount {
             self.draft?.storyPointDescription = resultText
             return true
         }

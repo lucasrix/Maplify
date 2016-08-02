@@ -100,12 +100,14 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     // MARK: - actions
     func cancelButtonTapped() {
-        let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
-        let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
-        let noButton = NSLocalizedString("Button.No", comment: String())
-        self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
-            if buttonIndex == AlertButtonIndexes.Submit.rawValue {
-                self?.createStoryCompletion?(storyId: 0, cancelled: true)
+        if self.networkState == .Ready {
+            let alertMessage = NSLocalizedString("Alert.StoryCreateCancel", comment: String())
+            let yesButton = NSLocalizedString("Button.YesDelete", comment: String())
+            let noButton = NSLocalizedString("Button.No", comment: String())
+            self.showAlert(nil, message: alertMessage, cancel: noButton, buttons: [yesButton]) { [weak self] (buttonIndex) in
+                if buttonIndex == AlertButtonIndexes.Submit.rawValue {
+                    self?.createStoryCompletion?(storyId: 0, cancelled: true)
+                }
             }
         }
     }
@@ -158,9 +160,11 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!) {
-        self.routesOpenStoryCreateAddLocationController { [weak self] (place) in
-            completion(location: place.coordinate, address: place.name)
-            self?.navigationController?.popToViewController(self!, animated: true)
+        if self.networkState == .Ready {
+            self.routesOpenStoryCreateAddLocationController { [weak self] (place) in
+                completion(location: place.coordinate, address: place.name)
+                self?.navigationController?.popToViewController(self!, animated: true)
+            }
         }
     }
     
@@ -174,6 +178,12 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func deleteStoryPointDidTap(draft: StoryPointDraft) {
+        if self.networkState == .Ready {
+            self.manageStoryPointDraftDeletion(draft)
+        }
+    }
+    
+    private func manageStoryPointDraftDeletion(draft: StoryPointDraft) {
         if self.selectedDrafts.count == 1 {
             self.showLastDraftDeletionAlert()
         } else {

@@ -122,8 +122,16 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     private func showStoryNameErrorIfNedded() {
         if self.headerView?.readyToCreate() == false {
-            self.headerView.setStoryNameErrorState()
+            self.headerView?.setStoryNameErrorState()
+            self.tableView?.setContentOffset(CGPointZero, animated:true)
+            self.headerView?.titleTextField.becomeFirstResponder()
+        } else {
+            self.showStoryPointLocationErrorIfNeeded()
         }
+    }
+    
+    private func showStoryPointLocationErrorIfNeeded() {
+        
     }
     
     func postStory(storyName: String) {

@@ -77,6 +77,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         if SessionHelper.sharedHelper.isSessionTokenExists() {
             self.loadData()
             self.retrieveNotifications()
+            self.updateCurrentStoryPointIfNeeded()
         } else {
             self.setupDefaultCaptureNavigationBar()
             self.setupDefaultTitle()

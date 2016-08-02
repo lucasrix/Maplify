@@ -81,11 +81,9 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        self.showProgressHUDIfNeeded()
         FacebookHelper.facebookAuthorize(self, success: { [weak self] (token) in
             ApiClient.sharedClient.facebookAuth(token,
                 success: { (response) -> () in
-                    self?.hideProgressHUDIfNeeded()
                     let user = response as! User
                     
                     if user.profile.city.length > 0 {
@@ -96,35 +94,14 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
                     }
                 },
                 failure: { (statusCode, errors, localDescription, messages) -> () in
-                    self?.hideProgressHUDIfNeeded()
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 }
             )
             }) { [weak self] (error) in
-                self?.hideProgressHUDIfNeeded()
                 if error != nil {
                      self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
                 }
         }
-    }
-    
-    private func showProgressHUDIfNeeded() {
-        if self.needShowHud() {
-            self.showProgressHUD()
-        }
-    }
-    
-    private func hideProgressHUDIfNeeded() {
-        if self.needShowHud() {
-            self.hideProgressHUD()
-        }
-    }
-    
-    private func needShowHud() -> Bool {
-        if #available(iOS 9.0, *) {
-            return false
-        }
-        return true
     }
 
     @IBAction func emailButtonDidTap(sender: AnyObject) {

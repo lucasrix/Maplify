@@ -81,11 +81,9 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
     
     // MARK: - Actions
     @IBAction func facebookButtonDidTap(sender: AnyObject) {
-        self.showProgressHUD()
-        FacebookHelper.facebookAuthorize({ [weak self] (token) in
+        FacebookHelper.facebookAuthorize(self, success: { [weak self] (token) in
             ApiClient.sharedClient.facebookAuth(token,
                 success: { (response) -> () in
-                    self?.hideProgressHUD()
                     let user = response as! User
                     
                     if user.profile.city.length > 0 {
@@ -96,12 +94,10 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
                     }
                 },
                 failure: { (statusCode, errors, localDescription, messages) -> () in
-                    self?.hideProgressHUD()
                     self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
                 }
             )
             }) { [weak self] (error) in
-                self?.hideProgressHUD()
                 if error != nil {
                      self?.showMessageAlert(NSLocalizedString("Alert.Error", comment: String()), message: error.description, cancel: NSLocalizedString("Button.Ok", comment: String()))
                 }

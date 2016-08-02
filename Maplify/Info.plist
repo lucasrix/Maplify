@@ -50,10 +50,10 @@
 	<string>Maplify</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>fbauth</string>
 		<string>fbauth2</string>
 		<string>fbapi</string>
-		<string>fbapi20130214</string>
+		<string>fb-messenger-api</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

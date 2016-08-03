@@ -55,6 +55,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     var previewPlaceItem: MCMapItem! = nil
     var popTip: AMPopTip! = nil
     var locationString = String()
+    var storyPointPopupCanCreate: Bool = true
     
     var contentType: ContentType = .Default
     var currentStory: Story! = nil
@@ -89,7 +90,6 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
         super.viewDidAppear(animated)
         
         self.removePreviewItem()
-        self.selectedStoryPointId = 0
     }
     
     // MARK: - setup
@@ -143,7 +143,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     func updateData() {
         switch self.contentType {
         case .StoryPoint:
-            self.loadRemoteStoryPont(self.selectedStoryPointId, completion: { [weak self] (success) in
+            self.loadRemoteStoryPoint(self.selectedStoryPointId, completion: { [weak self] (success) in
                 if success {
                     self?.loadData()
                 }
@@ -157,8 +157,8 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
             })
             
         default:
-            self.loadLocalAllStoryPonts()
-            self.loadRemoteAllStoryPonts({ [weak self] (success) in
+            self.loadLocalAllStoryPoints()
+            self.loadRemoteAllStoryPoints({ [weak self] (success) in
                 if success {
                     self?.loadData()
                 }
@@ -175,7 +175,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
             self.loadLocalCurrentStory(self.selectedStoryId)
             
         default:
-            self.loadLocalAllStoryPonts()
+            self.loadLocalAllStoryPoints()
         }
     }
     

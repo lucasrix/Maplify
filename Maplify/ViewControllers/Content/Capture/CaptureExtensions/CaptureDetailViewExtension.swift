@@ -103,11 +103,22 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
         if self.contentType == .Story {
             self.infiniteScrollView.moveAndShowCell(0, animated: false)
         }
+        if self.captureActiveModel.hasData() == false {
+            self.infiniteScrollView.clearData()
+            self.infiniteScrollView.hidden = true
+        }
+    }
+    
+    func updateCurrentStoryPointIfNeeded() {
+        if self.contentType == .Default {
+            let index = self.infiniteScrollView.currentPageIndex
+            self.infiniteScrollView.moveAndShowCell(index, animated: false)
+        }
     }
     
     func storyPointMenuButtonTapped(storyPointId: Int) {
         let storyPoint = StoryPointManager.find(storyPointId)
-        if storyPoint.user.profile.id == SessionManager.currentUser().profile.id {
+        if (storyPoint != nil) && (storyPoint.user.profile.id == SessionManager.currentUser().profile.id) {
             
             self.showStoryPointEditContentActionSheet( { [weak self] (selectedIndex) -> () in
                 if selectedIndex == StoryPointEditContentOption.EditPost.rawValue {
@@ -130,7 +141,6 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
     }
     
     func deleteStoryPoint(storyPointId: Int) {
-        let storyPoint = StoryPointManager.find(storyPointId)
         let alertMessage = NSLocalizedString("Alert.DeleteStoryPoint", comment: String())
         let yesButton = NSLocalizedString("Button.Yes", comment: String())
         let noButton = NSLocalizedString("Button.No", comment: String())
@@ -140,11 +150,13 @@ extension CaptureViewController: InfiniteScrollViewDelegate, StoryPointInfoViewD
                 ApiClient.sharedClient.deleteStoryPoint(storyPointId,
                                                         success: { [weak self] (response) in
                                                             StoryPointManager.saveStoryPoint(response as! StoryPoint)
-                                                            StoryPointManager.delete(storyPoint)
+                                                            StoryPointManager.delete(response as! StoryPoint)
                                                             self?.hideProgressHUD()
                                                             if self?.contentType == .Default {
                                                                 self?.infiniteScrollView.deleteCurrentView()
                                                                 self?.loadData()
+                                                                 let index = self?.infiniteScrollView.currentPageIndex
+                                                                self?.infiniteScrollView.moveAndShowCell(index!, animated: false)
                                                             } else if self?.contentType == .StoryPoint {
                                                                 self?.popController()
                                                             } else if self?.contentType == .Story {

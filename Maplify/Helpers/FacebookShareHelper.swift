@@ -43,14 +43,13 @@ class FacebookShareHelper: NSObject {
     }
     
     private func post(controller: UIViewController, title: String, description: String, imageUrl: NSURL!, contentUrl: String) {
-        
         let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
         content.contentTitle = title
         content.contentDescription = description
         content.contentURL = NSURL(string: kSharingLinkPrefix + contentUrl)
-        
         content.imageURL = imageUrl
+        
         FBSDKShareDialog.showFromViewController(controller, withContent: content, delegate: nil)
-        self.callback(success: true)
+        self.callback?(success: true)
     }
 }

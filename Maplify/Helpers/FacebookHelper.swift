@@ -30,11 +30,11 @@ class FacebookHelper {
         FBSDKAppEvents.activateApp()
     }
 
-    class func loginByFacebookSDK(success: successFbAuth, failure: failureFbAuth) {
+    class func loginByFacebookSDK(controller: UIViewController, success: successFbAuth, failure: failureFbAuth) {
             let facebookReadPermissions = ["public_profile", "email", "user_friends"]
             FBSDKLoginManager().logOut()
         
-            FBSDKLoginManager().logInWithReadPermissions(facebookReadPermissions, fromViewController: nil, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+            FBSDKLoginManager().logInWithReadPermissions(facebookReadPermissions, fromViewController: controller, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
                 if error != nil {
                     FBSDKLoginManager().logOut()
                     failure(error: error)
@@ -60,7 +60,7 @@ class FacebookHelper {
             })
         }
     
-    class func facebookAuthorize(success: successFbAuth, failure: failureFbAuth) {
+    class func facebookAuthorize(controller: UIViewController, success: successFbAuth, failure: failureFbAuth) {
         let permissions = ["email"]
         let accountOptions = ["ACFacebookAppIdKey": AppIDs.facebookAppID, ACFacebookPermissionsKey: permissions, ACFacebookAudienceKey: ACFacebookAudienceEveryone]
         
@@ -70,7 +70,7 @@ class FacebookHelper {
                     completion: { (granted, error) -> () in
                         if (error != nil) {
                             dispatch_async(dispatch_get_main_queue(), {
-                                FacebookHelper.loginByFacebookSDK(success, failure: failure)
+                                FacebookHelper.loginByFacebookSDK(controller, success: success, failure: failure)
                             })
                         } else {
                             let accountExist = Bool(accountStore.accountsWithAccountType(accountType).count)
@@ -80,7 +80,7 @@ class FacebookHelper {
                                 success(token: fbToken)
                             } else {
                                 dispatch_async(dispatch_get_main_queue(), {
-                                    FacebookHelper.loginByFacebookSDK(success, failure: failure)
+                                    FacebookHelper.loginByFacebookSDK(controller, success: success, failure: failure)
                                 })
                             }
                         }

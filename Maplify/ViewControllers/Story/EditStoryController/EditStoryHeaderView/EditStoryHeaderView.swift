@@ -15,7 +15,7 @@ protocol EditStoryHeaderViewDelegate {
     func addToStoryDidTap()
 }
 
-class EditStoryHeaderView: UIView {
+class EditStoryHeaderView: UIView, UITextFieldDelegate {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
@@ -32,6 +32,7 @@ class EditStoryHeaderView: UIView {
         self.delegate = delegate
         let titlePlaceholder = self.storyNamePlaceholderText()
         self.titleTextField.attributedPlaceholder = NSAttributedString(string:titlePlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(kTitlePlaceholderTextAlpha)])
+        self.titleTextField.delegate = self
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.StoryAddMediaDescription", comment: String())
         self.addToStoryButton.setTitle(NSLocalizedString("Button.PlusAddToStory", comment: String()).uppercaseString, forState: .Normal)
     }
@@ -70,5 +71,11 @@ class EditStoryHeaderView: UIView {
     // MARK: - private
     func storyNamePlaceholderText() -> String {
         return NSLocalizedString("Text.Placeholder.StoryAddMediaTitle", comment: String())
+    }
+    
+    // MARK: - UITextFieldDelegate
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let resultText = (self.titleTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        return resultText.characters.count <= kHeaderViewTitleMaxLenght
     }
 }

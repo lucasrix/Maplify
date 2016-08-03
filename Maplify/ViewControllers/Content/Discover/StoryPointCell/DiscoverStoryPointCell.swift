@@ -51,15 +51,18 @@ class DiscoverStoryPointCell: CSTableViewCell {
         let item = cellData.model as! DiscoverItem
         let storyPoint = item.storyPoint
         self.discoverItemId = item.id
-        self.storyPointId = storyPoint!.id
         
-        self.addShadow()
-        self.populateUserViews(storyPoint!)
-        self.populateStoryPointInfoViews(storyPoint!)
-        self.populateAttachment(storyPoint!)
-        self.populateDescriptionLabel(cellData)
-        self.populateLikeButton()
-        self.setupGestures()
+        if storyPoint != nil {
+            self.storyPointId = storyPoint!.id
+            
+            self.addShadow()
+            self.populateUserViews(storyPoint!)
+            self.populateStoryPointInfoViews(storyPoint!)
+            self.populateAttachment(storyPoint!)
+            self.populateDescriptionLabel(cellData)
+            self.populateLikeButton()
+            self.setupGestures()
+        }
     }
     
     func addShadow() {
@@ -105,7 +108,7 @@ class DiscoverStoryPointCell: CSTableViewCell {
         }
         self.attachmentImageView.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (image, error, cacheType, url) in
             if error == nil {
-                self?.colorView.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
+                self?.colorView?.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
             }
             self?.populateKindImage(storyPoint)
         }

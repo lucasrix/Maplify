@@ -3,12 +3,12 @@ PODS:
   - Alamofire (3.4.1)
   - ALThreeCircleSpinner (1.0.2)
   - AMPopTip (1.0.3)
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
+  - Bolts/Tasks (1.8.4)
   - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - EZAudio (1.1.4):
@@ -18,11 +18,11 @@ PODS:
     - EZAudio/Core
     - TPCircularBuffer (= 1.1)
   - Fabric (1.6.7)
-  - FBSDKCoreKit (4.13.1):
+  - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.13.1):
+  - FBSDKLoginKit (4.14.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.13.1):
+  - FBSDKShareKit (4.14.0):
     - FBSDKCoreKit
   - FLAnimatedImage (1.0.12)
   - GoogleMaps (1.13.2)
@@ -73,9 +73,9 @@ DEPENDENCIES:
   - Crashlytics (~> 3.7)
   - EZAudio (from `https://github.com/rzehan/EZAudio.git`, commit `df349f2729139bfb2410644e05bb2945af6f57c3`)
   - Fabric (~> 1.6)
-  - FBSDKCoreKit (~> 4.13)
-  - FBSDKLoginKit (~> 4.13)
-  - FBSDKShareKit (~> 4.13)
+  - FBSDKCoreKit (~> 4.14)
+  - FBSDKLoginKit (~> 4.14)
+  - FBSDKShareKit (~> 4.14)
   - GoogleMaps (~> 1.13)
   - GooglePlaces (~> 1.0)
   - INSPullToRefresh (~> 1.1)
@@ -110,13 +110,13 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   ALThreeCircleSpinner: 8bdd4e0d3d8a715b6fec50022911189bb63323af
   AMPopTip: 42ab801c5d4519093908d14134c8c9d7ffc435b4
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   EZAudio: 8e684b2b81b0437fe45faa7e2725fe99f69c84b6
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
-  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  FBSDKShareKit: c9438df7573b33780ac8c3451201c5ebb260ffca
+  FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
+  FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
+  FBSDKShareKit: e8e5d4ccef69b41132fe33acda26db1e33143e33
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   GooglePlaces: 9c56b4f59929d995a5023a6d6e0969b5ed233a9c
@@ -143,6 +143,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
-PODFILE CHECKSUM: 5dd5cbe7009de5e8dc449bd37c407d30b5bf969a
+PODFILE CHECKSUM: 9fd08ce0bea96a5cb2b72b9b3ce38de9906d8a32
 
 COCOAPODS: 1.0.1

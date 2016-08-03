@@ -11,7 +11,7 @@ let kCaptureStorypointsFetchLimit: Int = 180
 extension CaptureViewController {
     
     // MARK: - database
-    func loadLocalAllStoryPonts() {
+    func loadLocalAllStoryPoints() {
         self.currentStoryPoints = StoryPointManager.allStoryPoints(kCaptureStorypointsFetchLimit)
     }
     
@@ -35,7 +35,7 @@ extension CaptureViewController {
     }
     
     // MARK: - remote
-    func loadRemoteAllStoryPonts(completion: ((success: Bool) -> ())!) {
+    func loadRemoteAllStoryPoints(completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getAllStoryPoints({ (response) in
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -51,20 +51,15 @@ extension CaptureViewController {
         })
     }
     
-    func loadRemoteStoryPont(storyPointId: Int, completion: ((success: Bool) -> ())!) {
+    func loadRemoteStoryPoint(storyPointId: Int, completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getStoryPoint(storyPointId, success: { (response) in
+            StoryPointManager.saveStoryPoint(response as! StoryPoint)
+            completion(success: true)
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                StoryPointManager.saveStoryPoint(response as! StoryPoint)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completion(success: true)
-                })
+            }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
+                self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
+                completion(success: false)
             })
-        }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
-            self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
-            completion(success: false)
-        })
     }
     
     func loadRemoteStory(storyId: Int, completion: ((success: Bool) -> ())!) {

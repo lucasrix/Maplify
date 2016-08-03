@@ -75,7 +75,6 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
         self.retryButton.setTitle(NSLocalizedString("Button.Retry", comment: String()), forState: .Normal)
         
         self.isVideoImageView?.hidden = asset?.mediaType == .Image
-        self.cropButton?.hidden = (asset?.mediaType == .Video) || (self.draft?.downloadState == .Success)
         self.deleteButton?.hidden = self.draft?.downloadState == .Success
         self.addressLabel?.text = NSLocalizedString("Label.Loading", comment: String())
         self.changeAddressButton?.setTitle(NSLocalizedString("Button.Change", comment: String()).uppercaseString, forState: .Normal)
@@ -186,7 +185,7 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
     // MARK: - UITextViewDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let resultText = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
-        if resultText.characters.count <= 10 {
+        if resultText.characters.count <= kDescriptionMaxCharactersCount {
             self.draft?.storyPointDescription = resultText
             return true
         }

@@ -67,7 +67,7 @@ class SessionHelper {
     }
     
     func removeSessionData() {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(Network.isUserLogin)
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: Network.isUserLogin)
         do {
             try Locksmith.deleteDataForUserAccount(Config.localUserAccount)
         } catch let error {

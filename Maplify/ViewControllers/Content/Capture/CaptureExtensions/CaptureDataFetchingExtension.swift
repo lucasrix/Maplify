@@ -69,14 +69,9 @@ extension CaptureViewController {
     
     func loadRemoteStory(storyId: Int, completion: ((success: Bool) -> ())!) {
         ApiClient.sharedClient.getStory(storyId, success: { (response) in
+            StoryManager.saveStory(response as! Story)
+            completion(success: true)
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                StoryManager.saveStory(response as! Story)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completion(success: true)
-                })
-            })
         }, failure: { [weak self] (statusCode, errors, localDescription, messages) in
             self?.handleErrors(statusCode, errors: errors, localDescription: localDescription, messages: messages)
             completion(success: false)

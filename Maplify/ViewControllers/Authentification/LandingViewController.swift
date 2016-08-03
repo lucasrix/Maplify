@@ -88,6 +88,7 @@ class LandingViewController: ViewController, TTTAttributedLabelDelegate, ErrorHa
                     
                     if user.profile.city.length > 0 {
                         SessionManager.saveCurrentUser(user)
+                        SessionHelper.sharedHelper.userLogin(true)
                         self?.routesSetContentController()
                     } else {
                         self?.routesOpenSignupGetCityViewController(user)

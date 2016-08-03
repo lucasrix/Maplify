@@ -49,7 +49,6 @@ class SessionHelper {
         sessionDictionary["expiry"] = urlDictionary["expiry"]
         sessionDictionary["uid"] = urlDictionary["uid"]
         
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Network.isUserLogin)
         do {
             try Locksmith.updateData(sessionDictionary, forUserAccount: Config.localUserAccount)
         } catch let error {
@@ -67,12 +66,16 @@ class SessionHelper {
     }
     
     func removeSessionData() {
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: Network.isUserLogin)
+        self.userLogin(false)
         do {
             try Locksmith.deleteDataForUserAccount(Config.localUserAccount)
         } catch let error {
             print(error)
         }
+    }
+    
+    func userLogin(userLogin: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(userLogin, forKey: Network.isUserLogin)
     }
     
     func removeDatabaseData() {

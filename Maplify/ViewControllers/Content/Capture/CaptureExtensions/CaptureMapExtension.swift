@@ -107,10 +107,11 @@ extension CaptureViewController: MCMapServiceDelegate {
     }
     
     func didLongTapMapView(mapView: UIView, latitude: Double, longitude: Double, locationInView: CGPoint) {
-        if self.contentType == .Default {
+        if (self.contentType == .Default) && (self.storyPointPopupCanCreate) {
             self.pressAndHoldLabelHidden = true
             self.pressAndHoldView.hidden = true
             self.pressAndHoldLabel.hidden = true
+            self.storyPointPopupCanCreate = false
             self.placePopUpPin(latitude, longitude: longitude, locationInView: locationInView)
         }
     }

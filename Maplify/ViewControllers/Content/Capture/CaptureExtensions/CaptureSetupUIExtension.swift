@@ -11,7 +11,7 @@ import AMPopTip
 import GoogleMaps
 import CoreLocation
 
-extension CaptureViewController {
+extension CaptureViewController {    
     func setupNavigationBar() {
         if self.contentType == .Story {
             self.setupDataDetailNavigationBar()
@@ -104,6 +104,7 @@ extension CaptureViewController {
         self.popTip.layer.shadowOpacity = kPoptipShadowOpacity
         self.popTip.layer.shadowOffset = CGSizeZero
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
+        self.popTip.appearHandler = { [weak self] () -> () in self?.storyPointPopupCanCreate = true }
         self.popTip.tapHandler = { [weak self] () -> () in
             self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil, creationPostCompletion: { (storyPointId) in
                 self?.selectedStoryPointId = storyPointId
@@ -126,13 +127,16 @@ extension CaptureViewController {
     }
     
     func gpsBarButtonHandler() {
-        self.retrieveCurrentLocation { (location) in
-            if location != nil {
-                let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
-                let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                let locationInView = (self.googleMapService.mapView as! GMSMapView).projection.pointForCoordinate(coordinate)
-                self.placePopUpPin(location.coordinate.latitude, longitude: location.coordinate.longitude, locationInView: locationInView)
+        if self.storyPointPopupCanCreate {
+            self.storyPointPopupCanCreate = false
+            self.retrieveCurrentLocation { (location) in
+                if location != nil {
+                    let region = MCMapRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    self.googleMapService.moveTo(region, zoom: self.googleMapService.currentZoom())
+                    let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    let locationInView = (self.googleMapService.mapView as! GMSMapView).projection.pointForCoordinate(coordinate)
+                    self.placePopUpPin(location.coordinate.latitude, longitude: location.coordinate.longitude, locationInView: locationInView)
+                }
             }
         }
     }

@@ -55,6 +55,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
     var previewPlaceItem: MCMapItem! = nil
     var popTip: AMPopTip! = nil
     var locationString = String()
+    var storyPointPopupCanCreate: Bool = true
     
     var contentType: ContentType = .Default
     var currentStory: Story! = nil

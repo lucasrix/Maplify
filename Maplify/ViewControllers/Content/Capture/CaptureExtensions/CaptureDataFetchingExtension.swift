@@ -21,11 +21,7 @@ extension CaptureViewController {
         if storyPoint != nil {
             self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
         } else {
-            // TODO:
-            let title = "rrrr"
-            let message = "nothing"
-            let cancel = "OK"
-            self.showMessageAlert(title, message: message, cancel: cancel)
+            self.showNotFoundPostError()
         }
     }
     
@@ -38,9 +34,17 @@ extension CaptureViewController {
         if self.currentStory != nil {
             self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
         } else {
-            // TODO:
-            print("fail story")
+            self.showNotFoundPostError()
         }
+    }
+    
+    func showNotFoundPostError() {
+        let message = NSLocalizedString("Alert.PostNotFound", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(nil, message: message, cancel: cancel, handle: { (action) in
+            // TODO:
+            print("tapped")
+        })
     }
     
     // MARK: - remote

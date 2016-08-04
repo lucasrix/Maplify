@@ -31,9 +31,6 @@ class SessionHelper {
         if dictionary != nil {
             do {
                 let sessionDictionary = self.buildDictionary(dictionary)
-                if sessionDictionary["access-token"]!.length > 0 {
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: Network.isUserLogin)
-                }
                 try Locksmith.updateData(sessionDictionary, forUserAccount: Config.localUserAccount)
             } catch let error {
                 print(error)

@@ -286,7 +286,9 @@ class DiscoverViewController: ViewController, CSBaseTableDataSourceDelegate, Dis
                 ApiClient.sharedClient.getUserStories((self?.userProfileId)!, success: { [weak self] (response) in
                     self?.hideProgressHUD()
                     let stories = response as! [Story]
-                    UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
+                    let discoverItems = UserRequestResponseHelper.sortAndMerge(storyPoints, stories: stories)
+                    DiscoverItemManager.deleteNonExisting((self?.userProfileId)!, existingItems: discoverItems)
+                    
                     self?.loadItemsFromDB()
                     },
                 failure: { (statusCode, errors, localDescription, messages) in

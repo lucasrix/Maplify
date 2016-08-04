@@ -114,13 +114,12 @@ class DiscoverItemManager: ModelManager {
         }
     }
     
-    class func deleteNonExisting(userId: Int, existingItems: [DiscoverItem]) {
+    class func deleteNonExisting(userId: Int, existingItemsIds: [Int]) {
         let realm = try! Realm()
         let allItemsIds = realm.objects(DiscoverItem).filter("storyPoint.user.id == \(userId) OR story.user.id == \(userId)").map({$0.id})
-        let existingItemsIds = existingItems.map({$0.id})
-        for index in allItemsIds {
-            if existingItemsIds.contains(index) == false {
-                DiscoverItemManager.delete(index)
+        for itemId in allItemsIds {
+            if existingItemsIds.contains(itemId) == false {
+                DiscoverItemManager.delete(itemId)
             }
         }
     }

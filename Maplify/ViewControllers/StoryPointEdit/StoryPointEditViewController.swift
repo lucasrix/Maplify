@@ -291,13 +291,18 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         if textView === self.desriptionInputTextView {
             self.setupContentHeight(self.descriptionButton.selected)
             self.scrollToDescriptionTextEnd()
-            return true
+            return self.checkAndUpdateTextView(self.desriptionInputTextView, range: range, text: text)
         } else if textView === self.descriptionTextView {
-            let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
-            if resultCharactersCount <= kDescriptionTextViewMaxCharactersCount {
-                self.updateCharactersCountLabel(resultCharactersCount)
-                return true
-            }
+            return self.checkAndUpdateTextView(self.descriptionTextView, range: range, text: text)
+        }
+        return false
+    }
+    
+    private func checkAndUpdateTextView(textView: UITextView, range: NSRange, text: String) -> Bool {
+        let resultCharactersCount = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).length
+        if resultCharactersCount <= kDescriptionTextViewMaxCharactersCount {
+            self.updateCharactersCountLabel(resultCharactersCount)
+            return true
         }
         return false
     }
@@ -336,6 +341,7 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         let substringOf = NSLocalizedString("Substring.Of", comment: String())
         let substringChars = NSLocalizedString("Substring.Chars", comment: String())
         self.charactersCountLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
+        self.charsNumberLabel.text = "\(charactersCount) " + substringOf + " \(kDescriptionTextViewMaxCharactersCount) " + substringChars
     }
     
     // MARK: - keyboard notification

@@ -30,8 +30,10 @@ class MCMapDataSource {
                     let data = self.mapActiveModel.cellData(indexPath)
                     if data.model is StoryPoint {
                         let mapItem = T()
-                        mapItem.configure(data)
-                        self.mapService.placeItem(mapItem)
+                        if data != nil {
+                            mapItem.configure(data)
+                            self.mapService.placeItem(mapItem)
+                        }
                     }
                 }
             }

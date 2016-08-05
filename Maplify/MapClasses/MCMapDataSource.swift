@@ -28,12 +28,10 @@ class MCMapDataSource {
                 for j in 0..<self.mapActiveModel.numberOfItems(i) {
                     let indexPath = NSIndexPath(forRow: j, inSection: i)
                     let data = self.mapActiveModel.cellData(indexPath)
-                    if data.model is StoryPoint {
+                    if (data != nil) && (data.model is StoryPoint) {
                         let mapItem = T()
-                        if data != nil {
-                            mapItem.configure(data)
-                            self.mapService.placeItem(mapItem)
-                        }
+                        mapItem.configure(data)
+                        self.mapService.placeItem(mapItem)
                     }
                 }
             }

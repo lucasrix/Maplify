@@ -15,7 +15,7 @@ protocol EditStoryHeaderViewDelegate {
     func addToStoryDidTap()
 }
 
-class EditStoryHeaderView: UIView, UITextFieldDelegate {
+class EditStoryHeaderView: UIView, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
@@ -34,6 +34,7 @@ class EditStoryHeaderView: UIView, UITextFieldDelegate {
         self.titleTextField.attributedPlaceholder = NSAttributedString(string:titlePlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(kTitlePlaceholderTextAlpha)])
         self.titleTextField.delegate = self
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.StoryAddMediaDescription", comment: String())
+        self.descriptionTextView.delegate = self
         self.addToStoryButton.setTitle(NSLocalizedString("Button.PlusAddToStory", comment: String()).uppercaseString, forState: .Normal)
     }
     
@@ -77,5 +78,11 @@ class EditStoryHeaderView: UIView, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let resultText = (self.titleTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         return resultText.characters.count <= kHeaderViewTitleMaxLenght
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).characters.count
+        return resultCharactersCount <= kDescriptionTextViewMaxCharactersCount
     }
 }

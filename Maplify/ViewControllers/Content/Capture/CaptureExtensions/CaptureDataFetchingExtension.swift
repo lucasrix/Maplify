@@ -20,6 +20,8 @@ extension CaptureViewController {
         let storyPoint = StoryPointManager.find(storyPointId)
         if storyPoint != nil {
             self.currentStoryPoints.append(StoryPointManager.find(storyPointId))
+        } else {
+            self.showNotFoundPostError()
         }
     }
     
@@ -31,7 +33,17 @@ extension CaptureViewController {
         }
         if self.currentStory != nil {
             self.currentStoryPoints.appendContentsOf(Converter.listToArray(self.currentStory.storyPoints, type: StoryPoint.self))
+        } else {
+            self.showNotFoundPostError()
         }
+    }
+    
+    func showNotFoundPostError() {
+        let message = NSLocalizedString("Alert.PostNotFound", comment: String())
+        let cancel = NSLocalizedString("Button.Ok", comment: String())
+        self.showMessageAlert(nil, message: message, cancel: cancel, handle: { (action) in
+            self.cancelButtonTapped()
+        })
     }
     
     // MARK: - remote
@@ -39,7 +51,9 @@ extension CaptureViewController {
         ApiClient.sharedClient.getAllStoryPoints({ (response) in
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                StoryPointManager.saveStoryPoints(response as! [StoryPoint])
+                let storyPoints = response as! [StoryPoint]
+                StoryPointManager.saveStoryPoints(storyPoints)
+                StoryPointManager.deleteNonExisting(storyPoints.map({$0.id}))
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     completion(success: true)

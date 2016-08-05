@@ -1686,11 +1686,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4L-LH-RVl" userLabel="Uploading Count View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VD-mu-AzQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235289999995" green="0.1647058824" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="8VD-mu-AzQ" firstAttribute="leading" secondItem="I4L-LH-RVl" secondAttribute="leading" id="5ZL-N0-deB"/>
+                                    <constraint firstItem="8VD-mu-AzQ" firstAttribute="top" secondItem="I4L-LH-RVl" secondAttribute="top" id="DAG-tq-7ME"/>
+                                    <constraint firstAttribute="trailing" secondItem="8VD-mu-AzQ" secondAttribute="trailing" id="cRb-4P-alL"/>
+                                    <constraint firstAttribute="bottom" secondItem="8VD-mu-AzQ" secondAttribute="bottom" id="dY2-OJ-J1n"/>
+                                    <constraint firstAttribute="height" id="uQz-WH-aoq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EDf-F0-hr6" firstAttribute="top" secondItem="9eG-if-Bat" secondAttribute="top" id="Ab0-ER-bIP"/>
+                            <constraint firstItem="I4L-LH-RVl" firstAttribute="top" secondItem="9eG-if-Bat" secondAttribute="top" id="Bhu-vB-d7f"/>
+                            <constraint firstItem="I4L-LH-RVl" firstAttribute="leading" secondItem="9eG-if-Bat" secondAttribute="leading" id="JVs-Kf-Ch6"/>
                             <constraint firstAttribute="trailing" secondItem="EDf-F0-hr6" secondAttribute="trailing" id="VMp-jT-9Pz"/>
+                            <constraint firstItem="EDf-F0-hr6" firstAttribute="top" secondItem="I4L-LH-RVl" secondAttribute="bottom" id="ces-3c-95p"/>
+                            <constraint firstAttribute="trailing" secondItem="I4L-LH-RVl" secondAttribute="trailing" id="g0E-O0-YaD"/>
                             <constraint firstItem="EDf-F0-hr6" firstAttribute="leading" secondItem="9eG-if-Bat" secondAttribute="leading" id="mS8-Gb-Tym"/>
                             <constraint firstItem="F4a-Mh-kqF" firstAttribute="top" secondItem="EDf-F0-hr6" secondAttribute="bottom" id="tK5-Hv-XQq"/>
                         </constraints>
@@ -1698,6 +1720,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="EDf-F0-hr6" id="3zs-US-ccI"/>
+                        <outlet property="uploadingCountLabel" destination="8VD-mu-AzQ" id="69L-Sv-mqh"/>
+                        <outlet property="uploadingViewHeightConstraint" destination="uQz-WH-aoq" id="ylS-te-M7k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5K-AF-h2c" userLabel="First Responder" sceneMemberID="firstResponder"/>

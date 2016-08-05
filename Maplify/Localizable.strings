@@ -120,6 +120,8 @@
 "Label.CameraRollSelectedOfCount" = "Selected %i of %i";
 "Label.LocationRequired" = "Location is required";
 "Label.StoryAddInfoPostsOrder" = "%i of %i";
+"Label.StoryUploadingCount" = "Uploading %i of %i moments ...";
+"Label.StoryUploadingCompleted" = "Uploaded %i of %i moments";
 
 //Subsrtings
 "Substring.Of" = "of";

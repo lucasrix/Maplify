@@ -60,10 +60,8 @@ extension CaptureViewController {
     }
     
     func setupPressAndHoldViewIfNeeded() {
-        if self.contentType == .Default {
-            self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
-            self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
-        }
+        self.pressAndHoldView.layer.cornerRadius = CGRectGetHeight(self.pressAndHoldView.frame) / 2
+        self.pressAndHoldLabel.text = NSLocalizedString("Label.PressAndHold", comment: String())
     }
     
     func setupTitle() {

@@ -42,8 +42,7 @@ extension CaptureViewController {
         let message = NSLocalizedString("Alert.PostNotFound", comment: String())
         let cancel = NSLocalizedString("Button.Ok", comment: String())
         self.showMessageAlert(nil, message: message, cancel: cancel, handle: { (action) in
-            // TODO:
-            print("tapped")
+            self.cancelButtonTapped()
         })
     }
     

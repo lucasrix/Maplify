@@ -17,7 +17,7 @@ let kBottomMargin: CGFloat = 1
 let kTitlePlaceholderTextAlpha: CGFloat = 0.6
 let kHeaderViewTitleMaxLenght: Int = 25
 
-class StoryAddMediaHeaderView: UIView, UITextFieldDelegate {
+class StoryAddMediaHeaderView: UIView, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     @IBOutlet weak var titleView: UIView!
@@ -33,6 +33,7 @@ class StoryAddMediaHeaderView: UIView, UITextFieldDelegate {
         self.titleTextField.delegate = self
         
         self.descriptionTextView.placeholder = NSLocalizedString("Text.Placeholder.StoryAddMediaDescription", comment: String())
+        self.descriptionTextView.delegate = self
     }
     
     func setStoryNameDefaultState() {
@@ -58,7 +59,7 @@ class StoryAddMediaHeaderView: UIView, UITextFieldDelegate {
     }
     
     // MARK: - private
-    func storyNamePlaceholderText() -> String {
+    private func storyNamePlaceholderText() -> String {
         return NSLocalizedString("Text.Placeholder.StoryAddMediaTitle", comment: String())
     }
     
@@ -66,5 +67,11 @@ class StoryAddMediaHeaderView: UIView, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let resultText = (self.titleTextField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         return resultText.characters.count <= kHeaderViewTitleMaxLenght
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let resultCharactersCount = (self.descriptionTextView.text as NSString).stringByReplacingCharactersInRange(range, withString: text).characters.count
+        return resultCharactersCount <= kDescriptionTextViewMaxCharactersCount
     }
 }

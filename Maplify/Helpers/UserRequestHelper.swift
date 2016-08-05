@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserRequestResponseHelper {
+class UserRequestHelper {
     class func sortAndMerge(storyPoints: [StoryPoint], stories: [Story]) -> [DiscoverItem] {
         var items = [DiscoverItem]()
         

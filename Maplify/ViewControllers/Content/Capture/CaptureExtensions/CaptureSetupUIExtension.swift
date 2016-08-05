@@ -104,7 +104,7 @@ extension CaptureViewController {
         self.popTip.layer.shadowRadius = kPoptipShadowRadius
         self.popTip.appearHandler = { [weak self] () -> () in self?.storyPointPopupCanCreate = true }
         self.popTip.tapHandler = { [weak self] () -> () in
-            self?.routesOpenAddToStoryController([], storypointCreationSupport: true, pickedLocation: coordinate, locationString: (self?.locationString)!, updateStoryHandle: nil, creationPostCompletion: { (storyPointId) in
+            self?.routesOpenPhotoVideoViewController(coordinate, locationString: (self?.locationString)!, selectedStoryIds: [], creationPostCompletion: { (storyPointId) in
                 self?.selectedStoryPointId = storyPointId
             })
         }

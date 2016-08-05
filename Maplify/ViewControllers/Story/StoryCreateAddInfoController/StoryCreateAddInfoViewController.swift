@@ -14,8 +14,12 @@ enum NetworkState: Int {
     case InProgress
 }
 
+let kUploadCountViewHeight: CGFloat = 37
+
 class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCellDelegate, StoryCreateManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var uploadingViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var uploadingCountLabel: UILabel!
     
     var storyDataSource: StoryAddMediaDataSource! = nil
     var storyActiveModel = CSActiveModel()
@@ -23,7 +27,9 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     
     var createStoryCompletion: createStoryClosure! = nil
     var selectedDrafts = [StoryPointDraft]()
+    var succedDrafts = [StoryPointDraft]()
     var failedDrafts = [StoryPointDraft]()
+    var uploadingDraftsCount: Int = 1
     var storyId: Int = 0
     var networkState = NetworkState.Ready
 
@@ -150,6 +156,10 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         let storyManager = StoryCreateManager.sharedManager
         storyManager.delegate = self
         let storyDescription = self.headerView?.descriptionTextView?.text
+        
+        self.updateUploadingCountView(self.uploadingDraftsCount, allItemsCount: self.selectedDrafts.count)
+        self.tableView?.setContentOffset(CGPointZero, animated:true)
+        
         storyManager.postStory(storyName, storyDescription: storyDescription, storyPointDrafts: self.selectedDrafts)
     }
     
@@ -238,16 +248,24 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func creationStoryPointDidStartCreating(draft: StoryPointDraft) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.updateUploadingCountView(self.uploadingDraftsCount, allItemsCount: self.selectedDrafts.count)
+        })
         draft.downloadState = .InProgress
         self.updateCell(draft)
     }
     
     func creationStoryPointDidSuccess(draft: StoryPointDraft) {
+        self.uploadingDraftsCount += 1
+        if self.succedDrafts.contains(draft) == false {
+            self.succedDrafts.append(draft)
+        }
         draft.downloadState = .Success
         self.updateCell(draft)
     }
     
     func creationStoryPointDidFail(draft: StoryPointDraft) {
+        self.uploadingDraftsCount += 1
         if self.failedDrafts.contains(draft) == false {
             self.failedDrafts.append(draft)
         }
@@ -256,6 +274,9 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
     }
     
     func allOperationsCompleted(storyId: Int) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.setCompletedUploading(self.succedDrafts.count, allItemsCount: self.selectedDrafts.count)
+        })
         self.networkState = .Ready
         if self.failedDrafts.count == 0 {
             self.setupReadyState()
@@ -284,6 +305,16 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
                 self.storyDataSource.reloadCell([indexPath])
             })
         }
+    }
+    
+    private func updateUploadingCountView(uploadingItemsCount: Int, allItemsCount: Int) {
+        self.uploadingViewHeightConstraint.constant = kUploadCountViewHeight
+        self.uploadingCountLabel.hidden = false
+        self.uploadingCountLabel.text = String(format: NSLocalizedString("Label.StoryUploadingCount", comment: String()), uploadingItemsCount, allItemsCount)
+    }
+    
+    func setCompletedUploading(uploadingItemsCount: Int, allItemsCount: Int) {
+        self.uploadingCountLabel.text = String(format: NSLocalizedString("Label.StoryUploadingCompleted", comment: String()), uploadingItemsCount, allItemsCount)
     }
     
     // MARK: - ErrorHandlingProtocol

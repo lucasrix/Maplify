@@ -96,4 +96,13 @@ class StoryPointManager: ModelManager {
         let array = StoryPointManager.allStoryPoints()
         return Array(array.prefix(limit))
     }
+    
+    class func deleteNonExisting(existingIds: [Int]) {
+        let allStoryPointsIds = self.allStoryPoints().map({$0.id})
+        for itemId in allStoryPointsIds {
+            if existingIds.contains(itemId) == false {
+                self.delete(itemId)
+            }
+        }
+    }
 }

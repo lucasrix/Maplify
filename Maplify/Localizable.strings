@@ -221,6 +221,7 @@
 "Alert.StoryProblemSavingSomeMoments" = "We saved your story, but there was a problem saving some of your moments. Would you like to retry?";
 "Alert.StoryPointDraftDeletion" = "Are you sure you want to remove this moment?";
 "Alert.StoryEditExit" = "Are you sure you want to exit? All changes will be discarded";
+"Alert.PostNotFound" = "Post not found";
 
 //Errors
 "Error.InvalidEmail" = "Please enter valid email";

@@ -291,11 +291,8 @@ class StoryPointEditViewController: ViewController, UITextViewDelegate, ErrorHan
         if textView === self.desriptionInputTextView {
             self.setupContentHeight(self.descriptionButton.selected)
             self.scrollToDescriptionTextEnd()
-            return self.checkAndUpdateTextView(self.desriptionInputTextView, range: range, text: text)
-        } else if textView === self.descriptionTextView {
-            return self.checkAndUpdateTextView(self.descriptionTextView, range: range, text: text)
         }
-        return false
+        return self.checkAndUpdateTextView(textView, range: range, text: text)
     }
     
     private func checkAndUpdateTextView(textView: UITextView, range: NSRange, text: String) -> Bool {

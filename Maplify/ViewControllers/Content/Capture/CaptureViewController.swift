@@ -229,6 +229,7 @@ class CaptureViewController: ViewController, ErrorHandlingProtocol {
             if (story != nil) && (cancelled == false) {
                 self?.contentType = story.storyPoints.count > 0 ? .Story : .Default
                 self?.selectedStoryId = story.storyPoints.count > 0 ? storyId : 0
+                TrackManager.sharedManager().trackCreateStory(story)
             }
             self?.loadData()
             self?.navigationController?.popToViewController(self!, animated: true)

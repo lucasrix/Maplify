@@ -20,7 +20,9 @@ class AssetRetrievingManager {
         let options = PHVideoRequestOptions()
         options.networkAccessAllowed = false
         PHCachingImageManager().requestAVAssetForVideo(asset, options: options, resultHandler: { (avAsset, audioMix, info) -> () in
-            completion?(avAsset: avAsset, audioMix: audioMix, info: info)
+            dispatch_async(dispatch_get_main_queue(), {
+                completion?(avAsset: avAsset, audioMix: audioMix, info: info)
+            })
         })
     }
     

@@ -229,7 +229,6 @@ internal extension NSIndexSet {
 }
 
 private extension CameraRollViewController {
-    
     func changeItem(item: PHAsset) {
         if item.mediaType == .Video {
             self.cameraRollType = CameraRollType.Video

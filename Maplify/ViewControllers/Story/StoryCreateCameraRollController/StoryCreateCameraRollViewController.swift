@@ -79,9 +79,12 @@ class StoryCreateCameraRollViewController: ViewController, CameraRollMultipleSel
             let storyPointDraft = StoryPointDraft()
             storyPointDraft.asset = asset
             storyPointDraft.coordinate = asset.location?.coordinate
+            if asset.creationDate != nil {
+                storyPointDraft.creationDate = asset.creationDate!
+            }
             drafts.append(storyPointDraft)
         }
-        return drafts
+        return drafts.sort({$0.creationDate < $1.creationDate})
     }
     
     // MARK: - CameraRollMultipleSelectionDelegate

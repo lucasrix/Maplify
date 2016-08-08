@@ -34,6 +34,11 @@ class ConfigHepler {
         return configDictionary.valueForKey("maplify_google_key") as! String
     }
     
+    class func mixpanelToken() -> String {
+        let configDictionary = self.configPlist()
+        return configDictionary.valueForKey("mixpanel_token") as! String
+    }
+    
     // MARK: - screen settings
     class func screenSmallerThanIPhoneSixSize() -> Bool {
         return UIScreen.mainScreen().bounds.size.height < ScreenSize.iPhoneSixScreenPointsHeight

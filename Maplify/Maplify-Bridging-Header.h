@@ -12,3 +12,4 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <PINRemoteImage/PINRemoteImage.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "Mixpanel/Mixpanel.h"

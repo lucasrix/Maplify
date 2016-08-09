@@ -105,6 +105,9 @@ extension CaptureViewController {
         self.popTip.appearHandler = { [weak self] () -> () in self?.storyPointPopupCanCreate = true }
         self.popTip.tapHandler = { [weak self] () -> () in
             self?.routesOpenPhotoVideoViewController(coordinate, locationString: (self?.locationString)!, selectedStoryIds: [], creationPostCompletion: { (storyPointId) in
+                if let storyPoint = StoryPointManager.find(storyPointId) {
+                    TrackManager.sharedManager().trackCreateStorypoint(storyPoint)
+                }
                 self?.selectedStoryPointId = storyPointId
             })
         }

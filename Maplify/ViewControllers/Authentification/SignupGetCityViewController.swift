@@ -91,6 +91,7 @@ class SignupGetCityViewController: ViewController, ErrorHandlingProtocol {
                                                     self?.hideProgressHUD()
                                                     self?.user.profile = response as! Profile
                                                     SessionManager.saveCurrentUser((self?.user)!)
+                                                    TrackManager.sharedManager().trackSignUp((self?.user)!)
                                                     SessionHelper.sharedHelper.userLogin(true)
                                                     let location = CLLocation(latitude: (self?.location.latitude)!, longitude: (self?.location.longitude)!)
                                                     SessionHelper.sharedHelper.updateUserLastLocationIfNeeded(location)

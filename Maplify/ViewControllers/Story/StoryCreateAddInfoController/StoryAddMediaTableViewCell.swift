@@ -23,6 +23,7 @@ protocol StoryAddMediaTableViewCellDelegate {
     func addLocationDidTap(completion: ((location: CLLocationCoordinate2D, address: String) -> ())!)
     func retryPostStoryPointDidTap(draft: StoryPointDraft)
     func deleteStoryPointDidTap(draft: StoryPointDraft)
+    func canEditInfo() -> Bool
 }
 
 class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
@@ -190,5 +191,9 @@ class StoryAddMediaTableViewCell: CSTableViewCell, UITextViewDelegate {
             return true
         }
         return false
+    }
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        return (self.delegate?.canEditInfo())!
     }
 }

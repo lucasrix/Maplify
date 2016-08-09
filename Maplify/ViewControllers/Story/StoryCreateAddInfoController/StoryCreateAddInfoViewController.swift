@@ -193,6 +193,11 @@ class StoryCreateAddInfoViewController: ViewController, StoryAddMediaTableViewCe
         }
     }
     
+    func canEditInfo() -> Bool {
+        return self.networkState == .Ready
+    }
+    
+    // MARK: - private
     private func manageStoryPointDraftDeletion(draft: StoryPointDraft) {
         if self.selectedDrafts.count == 1 {
             self.showLastDraftDeletionAlert()

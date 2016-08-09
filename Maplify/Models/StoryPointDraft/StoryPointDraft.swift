@@ -25,6 +25,7 @@ class StoryPointDraft: NSObject {
     var attachmentUrl = String()
     var storyPointKind = String()
     var storiesIds = [Int]()
+    var creationDate = NSDate()
     
     func readyToCreate() -> Bool {
         return self.coordinate != nil

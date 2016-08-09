@@ -47,9 +47,9 @@ class SessionManager: ModelManager {
         return realm.objectForPrimaryKey(User.self, key: userId)
     }
     
-    class func currentUser() -> CurrentUser {
+    class func currentUser() -> CurrentUser! {
         let realm = try! Realm()
-        return Array(realm.objects(CurrentUser)).last!
+        return Array(realm.objects(CurrentUser)).last
     }
     
     class func removeCurrentUser() {

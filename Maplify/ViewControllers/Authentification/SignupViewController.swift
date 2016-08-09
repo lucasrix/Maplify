@@ -120,6 +120,7 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
                 if profile != nil {
                     user.profile = profile
                     SessionManager.saveCurrentUser(user)
+                    TrackManager.sharedManager().updateUserDataIfNeeded()
                 }
                 SessionHelper.sharedHelper.userLogin(true)
                 self?.hideProgressHUD()

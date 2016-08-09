@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import GoogleMaps
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.setupFabric()
         self.setupGoogleServices()
+        self.setupMixpanel()
         FacebookHelper.setupFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
@@ -62,6 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupGoogleServices() {
         GMSServices.provideAPIKey(ConfigHepler.googleProjectKey())
+    }
+    
+    func setupMixpanel() {
+        let token = ConfigHepler.mixpanelToken()
+        Mixpanel.sharedInstanceWithToken(token)
+        TrackManager.sharedManager().updateUserDataIfNeeded()
     }
 }
 

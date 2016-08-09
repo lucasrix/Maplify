@@ -75,6 +75,7 @@ class LoginViewController: ViewController, ErrorHandlingProtocol {
                 SessionManager.saveCurrentUser(user)
                 SessionHelper.sharedHelper.setupDefaultSettings()
                 SessionHelper.sharedHelper.userLogin(true)
+                TrackManager.sharedManager().updateUserDataIfNeeded()
                 self?.hideProgressHUD()
                 self?.routesSetContentController()
             },

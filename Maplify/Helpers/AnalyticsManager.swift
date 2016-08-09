@@ -15,6 +15,7 @@ protocol AnalyticsManagerProtocol {
     func trackViewStory(story: Story)
     func trackCreateStorypoint(storypoint: StoryPoint)
     func trackCreateStory(story: Story)
+    func updateUserDataIfNeeded()
 }
 
 class AnalyticsManager {

@@ -69,8 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupMixpanel() {
         let token = ConfigHepler.mixpanelToken()
         Mixpanel.sharedInstanceWithToken(token)
-        Mixpanel.sharedInstance().identify(Mixpanel.sharedInstance().distinctId)
-        print("Dist ID - \(Mixpanel.sharedInstance().distinctId)")
+        TrackManager.sharedManager().updateUserDataIfNeeded()
     }
 }
 

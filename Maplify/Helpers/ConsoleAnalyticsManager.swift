@@ -48,4 +48,10 @@ class ConsoleAnalyticsManager: AnalyticsManagerProtocol {
                                                "Created By": story.user.profile.firstName + " " + story.user.profile.lastName]
         print(properties)
     }
+    
+    func updateUserDataIfNeeded() {
+        if (SessionHelper.sharedHelper.isSessionTokenExists()) && (SessionManager.currentUser() != nil) {
+            print("Userdata for user_id \(SessionManager.currentUser().id) did update")
+        }
+    }
 }

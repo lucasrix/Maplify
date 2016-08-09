@@ -18,6 +18,7 @@ class MixpanelAnalyticsManager: AnalyticsManagerProtocol {
                                                "Email": user.email,
                                                "Location": user.profile.location.city]
         Mixpanel.sharedInstance().track("Completed Sign Up", properties: properties)
+        self.updateUserDataIfNeeded()
     }
     
     func trackViewStorypoint(storypoint: StoryPoint) {
@@ -52,5 +53,18 @@ class MixpanelAnalyticsManager: AnalyticsManagerProtocol {
                                                "Created By": story.user.profile.firstName + " " + story.user.profile.lastName]
         Mixpanel.sharedInstance().track("Create story", properties: properties)
         Mixpanel.sharedInstance().people.increment("Total of Create story", by: 1)
+    }
+    
+    func updateUserDataIfNeeded() {
+        if (SessionHelper.sharedHelper.isSessionTokenExists()) && (SessionManager.currentUser() != nil) {
+            let user = SessionManager.currentUser()
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.identify(String(SessionManager.currentUser().id))
+            mixpanel.people.set("User ID", to: user.id)
+            mixpanel.people.set("First Name", to: user.profile.firstName)
+            mixpanel.people.set("Last Name", to: user.profile.lastName)
+            mixpanel.people.set("Email", to: user.email)
+            mixpanel.people.set("City", to: (user.profile.location?.city)!)
+        }
     }
 }

@@ -11,49 +11,46 @@ import Foundation
 
 class MixpanelAnalyticsManager: AnalyticsManagerProtocol {
     func trackSignUp(user: User) {
-        let properties: [String: AnyObject] = ["user_id": user.id,
-                                               "first_name": (user.profile?.firstName)!,
-                                               "last_name": (user.profile?.lastName)!,
-                                               "account_create_date": NSDate(),
-                                               "email": user.email]
-        Mixpanel.sharedInstance().track("User signup test", properties: properties)
+        let properties: [String: AnyObject] = ["User ID": user.id,
+                                               "First Name": (user.profile?.firstName)!,
+                                               "Last Name": (user.profile?.lastName)!,
+                                               "Signup Date": NSDate(),
+                                               "Email": user.email,
+                                               "Location": user.profile.location.city]
+        Mixpanel.sharedInstance().track("Completed Sign Up", properties: properties)
     }
     
-    func trackViewStorypoint(user: User, storypoint: StoryPoint) {
-        let properties: [String: AnyObject] = ["user_id": user.id,
-                                               "first_name": (user.profile?.firstName)!,
-                                               "last_name": (user.profile?.lastName)!,
-                                               "storypoint_id": storypoint.id,
-                                               "storypoint_title": storypoint.caption]
-        Mixpanel.sharedInstance().track("View storypoint test", properties: properties)
+    func trackViewStorypoint(storypoint: StoryPoint) {
+        let properties: [String: AnyObject] = ["Storypoint ID": storypoint.id,
+                                               "Storypoint Title": storypoint.caption,
+                                               "Created By": storypoint.user.profile.firstName + " " + storypoint.user.profile.lastName,
+                                               "Location": storypoint.location.address]
+        Mixpanel.sharedInstance().track("View sP", properties: properties)
+        Mixpanel.sharedInstance().people.increment("Total of View sP", by: 1)
     }
     
-    func trackViewStory(user: User, story: Story) {
-        let properties: [String: AnyObject] = ["user_id": user.id,
-                                               "first_name": (user.profile?.firstName)!,
-                                               "last_name": (user.profile?.lastName)!,
-                                               "story_id": story.id,
-                                               "story_title": story.title]
-        Mixpanel.sharedInstance().track("View story test", properties: properties)
+    func trackViewStory(story: Story) {
+        let properties: [String: AnyObject] = ["Story ID": story.id,
+                                               "Story Title": story.title,
+                                               "Created By": story.user.profile.firstName + " " + story.user.profile.lastName]
+        Mixpanel.sharedInstance().track("View story", properties: properties)
+        Mixpanel.sharedInstance().people.increment("Total of View story", by: 1)
     }
     
     func trackCreateStorypoint(storypoint: StoryPoint) {
-        let properties: [String: AnyObject] = ["user_id": storypoint.user.id,
-                                               "first_name": (storypoint.user.profile?.firstName)!,
-                                               "last_name": (storypoint.user.profile?.lastName)!,
-                                               "storypoint_id": storypoint.id,
-                                               "storypoint_title": storypoint.caption,
-                                               "storypoint_description": storypoint.text]
-        Mixpanel.sharedInstance().track("Create storypoint test", properties: properties)
+        let properties: [String: AnyObject] = ["Storypoint ID": storypoint.id,
+                                               "Storypoint Title": storypoint.caption,
+                                               "Created By": storypoint.user.profile.firstName + " " + storypoint.user.profile.lastName,
+                                               "Media Type": storypoint.kind]
+        Mixpanel.sharedInstance().track("Create sP", properties: properties)
+        Mixpanel.sharedInstance().people.increment("Total of Create sP", by: 1)
     }
     
     func trackCreateStory(story: Story) {
-        let properties: [String: AnyObject] = ["user_id": story.user.id,
-                                               "first_name": (story.user.profile?.firstName)!,
-                                               "last_name": (story.user.profile?.lastName)!,
-                                               "story_id": story.id,
-                                               "story_title": story.title,
-                                               "story_description": story.storyDescription]
-        Mixpanel.sharedInstance().track("Create story test", properties: properties)
+        let properties: [String: AnyObject] = ["Story ID": story.id,
+                                               "Story Title": story.title,
+                                               "Created By": story.user.profile.firstName + " " + story.user.profile.lastName]
+        Mixpanel.sharedInstance().track("Create story", properties: properties)
+        Mixpanel.sharedInstance().people.increment("Total of Create story", by: 1)
     }
 }

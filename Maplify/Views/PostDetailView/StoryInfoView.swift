@@ -48,6 +48,7 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
         self.updateCollectionViewData(story)
         self.populateLikeButton(story)
         self.setupAddressLabel(story)
+        self.sendEvent(story)
     }
     
     deinit {
@@ -156,6 +157,10 @@ class StoryInfoView: UIView, UIScrollViewDelegate, CSBaseCollectionDataSourceDel
     
     func numberOfStoryPointInCollectionView() -> Int {
         return self.collectionView.numberOfItemsInSection(0) - 1
+    }
+    
+    func sendEvent(story: Story) {
+        TrackManager.sharedManager().trackViewStory(story)
     }
     
     // MARK: - actions

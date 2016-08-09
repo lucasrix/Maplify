@@ -59,6 +59,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
     
     // MARK: - setup
     func configure(storyPoint: StoryPoint, delegate: StoryPointInfoViewDelegate) {
+        
         self.clearData()
         self.clearCache()
         
@@ -72,6 +73,7 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         self.populateLikeButton(storyPoint)
         self.setupGestures()
         self.setupContentSize()
+        self.sendEvent(storyPoint)
     }
     
     deinit {
@@ -206,6 +208,10 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         } else {
             self.likeButton.setImage(UIImage(named: ButtonImages.discoverLike), forState: .Normal)
         }
+    }
+    
+    func sendEvent(storyPoint: StoryPoint) {
+        TrackManager.sharedManager().trackViewStorypoint(storyPoint)
     }
     
     // MARK: - actions

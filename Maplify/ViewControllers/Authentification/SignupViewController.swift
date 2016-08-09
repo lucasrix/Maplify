@@ -122,7 +122,6 @@ class SignupViewController: ViewController, ErrorHandlingProtocol {
                     SessionManager.saveCurrentUser(user)
                 }
                 SessionHelper.sharedHelper.userLogin(true)
-                TrackManager.sharedManager().trackSignUp(user)
                 self?.hideProgressHUD()
                 self?.routesOpenSignupGetCityViewController(user)
             })

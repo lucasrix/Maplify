@@ -10,7 +10,7 @@
         <!--Root View Controller-->
         <scene sceneID="XnI-id-uxk">
             <objects>
-                <viewController id="xVD-1K-iUh" customClass="RootViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xVD-1K-iUh" customClass="RootViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JCM-Ai-HkQ"/>
                         <viewControllerLayoutGuide type="bottom" id="0mW-N9-ajf"/>
@@ -29,7 +29,7 @@
         <!--Content View Controller-->
         <scene sceneID="fAl-UB-OdO">
             <objects>
-                <viewController storyboardIdentifier="ContentController" id="AhY-W2-fgV" customClass="ContentViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentController" id="AhY-W2-fgV" customClass="ContentViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sii-Af-a4m"/>
                         <viewControllerLayoutGuide type="bottom" id="ZZV-e0-GVI"/>
@@ -64,7 +64,7 @@
         <!--Capture View Controller-->
         <scene sceneID="F7x-n7-5u5">
             <objects>
-                <viewController storyboardIdentifier="CaptureController" id="Enw-Kv-IQt" customClass="CaptureViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CaptureController" id="Enw-Kv-IQt" customClass="CaptureViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TeE-eq-13O"/>
                         <viewControllerLayoutGuide type="bottom" id="a5q-iA-fzr"/>
@@ -73,7 +73,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-k8-fzr" customClass="MCMapView" customModule="Maplify" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-k8-fzr" customClass="MCMapView" customModule="MaplifyDevelopment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.67450980390000004" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -131,7 +131,7 @@
                                     <action selector="profileTapped:" destination="Enw-Kv-IQt" eventType="touchUpInside" id="ddF-B9-vxc"/>
                                 </connections>
                             </button>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="Maplify" customModuleProvider="target">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-oh-TIo" customClass="InfiniteScrollView" customModule="MaplifyDevelopment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="244" width="375" height="423"/>
                             </scrollView>
                         </subviews>
@@ -178,7 +178,7 @@
         <!--Share Story Point View Controller-->
         <scene sceneID="sIj-83-spM">
             <objects>
-                <viewController storyboardIdentifier="ShareStoryPointViewController" id="FM6-F8-xRd" customClass="ShareStoryPointViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShareStoryPointViewController" id="FM6-F8-xRd" customClass="ShareStoryPointViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gzD-Ev-fNW"/>
                         <viewControllerLayoutGuide type="bottom" id="PiK-g1-kEK"/>
@@ -336,7 +336,7 @@
         <!--Discover View Controller-->
         <scene sceneID="o3c-WA-wRi">
             <objects>
-                <viewController storyboardIdentifier="DiscoverController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="Aar-Mj-88C" customClass="DiscoverViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="Aar-Mj-88C" customClass="DiscoverViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hit-ja-Hef"/>
                         <viewControllerLayoutGuide type="bottom" id="8PV-TE-TWM"/>
@@ -349,7 +349,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryCell" rowHeight="472" id="2su-9Q-baY" customClass="DiscoverStoryCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryCell" rowHeight="472" id="2su-9Q-baY" customClass="DiscoverStoryCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="472"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2su-9Q-baY" id="RTh-xe-Y4B" userLabel="IContent View">
@@ -458,7 +458,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryPointDetailCell" id="ESu-ht-haY" customClass="StoryPointDetailCell" customModule="Maplify" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryPointDetailCell" id="ESu-ht-haY" customClass="StoryPointDetailCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -501,7 +501,7 @@
                                                                         <outlet property="storyPointKindImageView" destination="nk4-6u-yfC" id="9l8-Dn-QSR"/>
                                                                     </connections>
                                                                 </collectionViewCell>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryInfoCell" id="hBx-4x-5GT" customClass="StoryInfoCell" customModule="Maplify" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryInfoCell" id="hBx-4x-5GT" customClass="StoryInfoCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                                                     <rect key="frame" x="225" y="0.0" width="150" height="150"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -719,7 +719,7 @@
                                             <outlet property="userNameLabel" destination="fCD-0Q-Edv" id="Ohi-KJ-vLt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryPointCell" rowHeight="601" id="k3W-Z4-0sj" customClass="DiscoverStoryPointCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverStoryPointCell" rowHeight="601" id="k3W-Z4-0sj" customClass="DiscoverStoryPointCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="522" width="375" height="601"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k3W-Z4-0sj" id="Y4O-Kb-qau">
@@ -993,7 +993,7 @@
                                             <outlet property="usernameLabel" destination="T4f-qU-DZI" id="2Sy-7v-vQu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverPlaceholderCell" rowHeight="250" id="uuc-uO-axC" customClass="DiscoverPlaceholderCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverPlaceholderCell" rowHeight="250" id="uuc-uO-axC" customClass="DiscoverPlaceholderCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1123" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uuc-uO-axC" id="4dh-xb-GbY">
@@ -1063,7 +1063,7 @@
         <!--Discover Change Location Popup View Controller-->
         <scene sceneID="Ir1-ex-WUa">
             <objects>
-                <viewController storyboardIdentifier="DiscoverChangeLocationPopupViewController" id="RPX-q7-fRw" customClass="DiscoverChangeLocationPopupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverChangeLocationPopupViewController" id="RPX-q7-fRw" customClass="DiscoverChangeLocationPopupViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eJq-61-MeJ"/>
                         <viewControllerLayoutGuide type="bottom" id="rBL-ub-ggz"/>
@@ -1128,7 +1128,7 @@
         <!--Share Story View Controller-->
         <scene sceneID="I1a-tW-98b">
             <objects>
-                <viewController storyboardIdentifier="ShareStoryViewController" id="EVr-ia-Z7A" customClass="ShareStoryViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShareStoryViewController" id="EVr-ia-Z7A" customClass="ShareStoryViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7l7-Om-KLJ"/>
                         <viewControllerLayoutGuide type="bottom" id="BQ5-Kn-MGo"/>
@@ -1309,7 +1309,7 @@
         <!--Story Create View Controller-->
         <scene sceneID="xdL-el-SGQ">
             <objects>
-                <viewController storyboardIdentifier="StoryCreateViewController" id="LYJ-ij-Zkk" customClass="StoryCreateViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryCreateViewController" id="LYJ-ij-Zkk" customClass="StoryCreateViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3I6-20-CpY"/>
                         <viewControllerLayoutGuide type="bottom" id="kbD-Uj-ViE"/>
@@ -1407,7 +1407,7 @@
         <!--Story Create Camera Roll View Controller-->
         <scene sceneID="aoV-F1-1KK">
             <objects>
-                <viewController storyboardIdentifier="StoryCreateCameraRollViewController" id="qmt-yd-yDW" customClass="StoryCreateCameraRollViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryCreateCameraRollViewController" id="qmt-yd-yDW" customClass="StoryCreateCameraRollViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eSh-dn-wdf"/>
                         <viewControllerLayoutGuide type="bottom" id="fI8-1m-dbI"/>
@@ -1426,7 +1426,7 @@
         <!--Story Create Add Info View Controller-->
         <scene sceneID="2z0-T8-f5J">
             <objects>
-                <viewController storyboardIdentifier="StoryCreateAddInfoViewController" id="3BS-tu-Sdn" customClass="StoryCreateAddInfoViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryCreateAddInfoViewController" id="3BS-tu-Sdn" customClass="StoryCreateAddInfoViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wll-sP-B9Q"/>
                         <viewControllerLayoutGuide type="bottom" id="F4a-Mh-kqF"/>
@@ -1439,7 +1439,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryAddMediaTableViewCell" rowHeight="500" id="GF7-2X-oGO" customClass="StoryAddMediaTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryAddMediaTableViewCell" rowHeight="500" id="GF7-2X-oGO" customClass="StoryAddMediaTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GF7-2X-oGO" id="Xz8-yV-WGv">
@@ -1731,7 +1731,7 @@
         <!--Story Create Add Location View Controller-->
         <scene sceneID="Su2-eM-G8K">
             <objects>
-                <viewController storyboardIdentifier="StoryCreateAddLocationViewController" id="1kR-Lz-GQG" customClass="StoryCreateAddLocationViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryCreateAddLocationViewController" id="1kR-Lz-GQG" customClass="StoryCreateAddLocationViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fgu-bS-k7l"/>
                         <viewControllerLayoutGuide type="bottom" id="YyF-qP-814"/>
@@ -1750,7 +1750,7 @@
         <!--Story Edit View Controller-->
         <scene sceneID="PQQ-hc-LyZ">
             <objects>
-                <viewController storyboardIdentifier="StoryEditController" id="YOs-xG-3fY" customClass="StoryEditViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryEditController" id="YOs-xG-3fY" customClass="StoryEditViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5iJ-p8-YbE"/>
                         <viewControllerLayoutGuide type="bottom" id="M5e-49-BOe"/>
@@ -1850,7 +1850,7 @@
                                                     <constraint firstAttribute="height" constant="250" id="w1t-Wa-HDF"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoryEditPointCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryEditPointCell" rowHeight="101" id="97v-Xa-GZj" customClass="StoryEditPointCell" customModule="Maplify" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoryEditPointCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryEditPointCell" rowHeight="101" id="97v-Xa-GZj" customClass="StoryEditPointCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1" width="375" height="101"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="97v-Xa-GZj" id="kYt-0Y-oFP">
@@ -2024,7 +2024,7 @@
         <!--Story Add Posts View Controller-->
         <scene sceneID="J2X-Aw-AJh">
             <objects>
-                <viewController storyboardIdentifier="StoryAddPostsViewController" id="3rg-E7-MDg" customClass="StoryAddPostsViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryAddPostsViewController" id="3rg-E7-MDg" customClass="StoryAddPostsViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="twn-Dr-d7e"/>
                         <viewControllerLayoutGuide type="bottom" id="gzA-rx-WRD"/>
@@ -2070,7 +2070,7 @@
                                 <rect key="frame" x="0.0" y="48" width="375" height="619"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryAddPostsTableViewCell" id="aaZ-G2-oFi" customClass="StoryAddPostsTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryAddPostsTableViewCell" id="aaZ-G2-oFi" customClass="StoryAddPostsTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aaZ-G2-oFi" id="Qh1-XQ-FWq">
@@ -2272,7 +2272,7 @@
         <!--Content Following View Controller-->
         <scene sceneID="jCz-IF-4hl">
             <objects>
-                <viewController storyboardIdentifier="ContentFollowingViewController" id="ewr-eJ-A57" customClass="ContentFollowingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentFollowingViewController" id="ewr-eJ-A57" customClass="ContentFollowingViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pnc-6e-f66"/>
                         <viewControllerLayoutGuide type="bottom" id="f3u-wR-5TM"/>
@@ -2324,7 +2324,7 @@
         <!--Followers View Controller-->
         <scene sceneID="jWx-wR-1Y2">
             <objects>
-                <viewController storyboardIdentifier="FollowersViewController" id="hoD-od-s5K" customClass="FollowersViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FollowersViewController" id="hoD-od-s5K" customClass="FollowersViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ee1-Qz-kuj"/>
                         <viewControllerLayoutGuide type="bottom" id="cPo-Jq-hsO"/>
@@ -2343,7 +2343,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingTableViewCell" id="x4a-6Y-qMV" customClass="FollowingTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingTableViewCell" id="x4a-6Y-qMV" customClass="FollowingTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x4a-6Y-qMV" id="jMq-4Q-k69">
@@ -2431,7 +2431,7 @@
         <!--Following View Controller-->
         <scene sceneID="hhL-nw-eso">
             <objects>
-                <viewController storyboardIdentifier="FollowingViewController" id="04j-HN-0Ay" customClass="FollowingViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FollowingViewController" id="04j-HN-0Ay" customClass="FollowingViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nSG-7Q-tkq"/>
                         <viewControllerLayoutGuide type="bottom" id="Mxq-eJ-TZH"/>
@@ -2450,7 +2450,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingTableViewCell" id="oyc-NF-DmE" customClass="FollowingTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingTableViewCell" id="oyc-NF-DmE" customClass="FollowingTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oyc-NF-DmE" id="3Nr-pj-L51">
@@ -2538,7 +2538,7 @@
         <!--Edit Story View Controller-->
         <scene sceneID="nQ6-3r-vZ0">
             <objects>
-                <viewController storyboardIdentifier="EditStoryViewController" id="k5u-9a-T92" customClass="EditStoryViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditStoryViewController" id="k5u-9a-T92" customClass="EditStoryViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ug-Nr-1cw"/>
                         <viewControllerLayoutGuide type="bottom" id="cPF-2G-RUD"/>
@@ -2551,7 +2551,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditStoryTableViewCell" rowHeight="500" id="1CN-9Q-fkA" customClass="EditStoryTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditStoryTableViewCell" rowHeight="500" id="1CN-9Q-fkA" customClass="EditStoryTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1CN-9Q-fkA" id="ASM-lS-fry">
@@ -2746,7 +2746,7 @@
         <!--Story Point Edit View Controller-->
         <scene sceneID="rcc-rR-UfO">
             <objects>
-                <viewController storyboardIdentifier="StoryPointEditController" automaticallyAdjustsScrollViewInsets="NO" id="WQG-Ua-xfA" customClass="StoryPointEditViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointEditController" automaticallyAdjustsScrollViewInsets="NO" id="WQG-Ua-xfA" customClass="StoryPointEditViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="doB-ct-qhD"/>
                         <viewControllerLayoutGuide type="bottom" id="syC-1y-D8y"/>
@@ -2973,7 +2973,7 @@
         <!--Story Detail View Controller-->
         <scene sceneID="AVR-db-SFT">
             <objects>
-                <viewController storyboardIdentifier="StoryDetailViewController" id="Fww-me-186" customClass="StoryDetailViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryDetailViewController" id="Fww-me-186" customClass="StoryDetailViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wU7-7d-bhL"/>
                         <viewControllerLayoutGuide type="bottom" id="Tr9-fk-L2c"/>
@@ -3023,7 +3023,7 @@
         <!--Story Page View Controller-->
         <scene sceneID="Oui-ry-whD">
             <objects>
-                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="StoryPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mnD-HI-4nQ" customClass="StoryPageViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puo-wr-7Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3033,7 +3033,7 @@
         <!--Story Detail Item View Controller-->
         <scene sceneID="n8N-yX-gww">
             <objects>
-                <viewController storyboardIdentifier="StoryDetailItemViewController" id="Oew-o6-10W" customClass="StoryDetailItemViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryDetailItemViewController" id="Oew-o6-10W" customClass="StoryDetailItemViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8lF-Uo-PLg"/>
                         <viewControllerLayoutGuide type="bottom" id="xHB-0U-Afm"/>
@@ -3381,7 +3381,7 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="syU-eT-VwG">
             <objects>
-                <viewController storyboardIdentifier="EditProfileController" automaticallyAdjustsScrollViewInsets="NO" id="Vbw-xM-rxS" customClass="EditProfileViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileController" automaticallyAdjustsScrollViewInsets="NO" id="Vbw-xM-rxS" customClass="EditProfileViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hd5-CN-aec"/>
                         <viewControllerLayoutGuide type="bottom" id="S4v-og-ZLg"/>
@@ -3627,7 +3627,7 @@
         <!--Story Point Creation Popup View Controller-->
         <scene sceneID="jQo-hW-7kB">
             <objects>
-                <viewController storyboardIdentifier="StoryPointCreationPopupController" id="ESY-vW-ls9" customClass="StoryPointCreationPopupViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointCreationPopupController" id="ESY-vW-ls9" customClass="StoryPointCreationPopupViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmn-IV-P1q"/>
                         <viewControllerLayoutGuide type="bottom" id="2D3-dY-EjS"/>
@@ -3756,7 +3756,7 @@
         <!--Story Point Edit Description View Controller-->
         <scene sceneID="g4j-Pz-14H">
             <objects>
-                <viewController storyboardIdentifier="StoryPointEditDescriptionViewController" id="riZ-T8-Hes" customClass="StoryPointEditDescriptionViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointEditDescriptionViewController" id="riZ-T8-Hes" customClass="StoryPointEditDescriptionViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oGr-Mo-zLX"/>
                         <viewControllerLayoutGuide type="bottom" id="0id-VV-gVW"/>
@@ -3815,7 +3815,7 @@
         <!--Story Point Edit Info View Controller-->
         <scene sceneID="sSL-Sq-uun">
             <objects>
-                <viewController storyboardIdentifier="StoryPointEditInfoViewController" id="X8B-wx-2bP" customClass="StoryPointEditInfoViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointEditInfoViewController" id="X8B-wx-2bP" customClass="StoryPointEditInfoViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uhH-hb-sRx"/>
                         <viewControllerLayoutGuide type="bottom" id="ano-zd-SkA"/>
@@ -3834,7 +3834,7 @@
                                             <constraint firstAttribute="height" constant="385" id="Ksz-Vr-b31"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectedStoryCell" id="EZ0-pI-RrJ" customClass="SelectedStoryCell" customModule="Maplify" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectedStoryCell" id="EZ0-pI-RrJ" customClass="SelectedStoryCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EZ0-pI-RrJ" id="Zjo-lQ-jS8">
@@ -3995,7 +3995,7 @@
         <!--Add Story View Controller-->
         <scene sceneID="Ijd-jg-Tbn">
             <objects>
-                <viewController storyboardIdentifier="AddStoryViewController" id="l5s-PH-fNa" customClass="AddStoryViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddStoryViewController" id="l5s-PH-fNa" customClass="AddStoryViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KVr-rq-yKj"/>
                         <viewControllerLayoutGuide type="bottom" id="EpF-Dh-Fu7"/>
@@ -4044,7 +4044,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryQuickCreationCell" rowHeight="47" id="E70-Qg-d7S" customClass="StoryQuickCreationCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryQuickCreationCell" rowHeight="47" id="E70-Qg-d7S" customClass="StoryQuickCreationCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E70-Qg-d7S" id="c1d-j1-fDh">
@@ -4173,7 +4173,7 @@
         <!--Story Point Add Audio Controller-->
         <scene sceneID="Cps-um-JDI">
             <objects>
-                <viewController storyboardIdentifier="StoryPointAddAudioController" id="odW-8k-yjr" customClass="StoryPointAddAudioController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointAddAudioController" id="odW-8k-yjr" customClass="StoryPointAddAudioController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Y3-7F-hBS"/>
                         <viewControllerLayoutGuide type="bottom" id="WSz-gH-AlW"/>
@@ -4267,7 +4267,7 @@
         <!--Notifications View Controller-->
         <scene sceneID="3pw-Xn-hC6">
             <objects>
-                <viewController storyboardIdentifier="NotificationsViewController" id="beN-k0-V04" customClass="NotificationsViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationsViewController" id="beN-k0-V04" customClass="NotificationsViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a0Z-WC-iot"/>
                         <viewControllerLayoutGuide type="bottom" id="oQP-Za-LaM"/>
@@ -4286,7 +4286,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationsTableViewCell" rowHeight="84" id="Vgu-qI-0WA" customClass="NotificationsTableViewCell" customModule="Maplify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationsTableViewCell" rowHeight="84" id="Vgu-qI-0WA" customClass="NotificationsTableViewCell" customModule="MaplifyDevelopment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vgu-qI-0WA" id="Bqm-0n-RdN">
@@ -4410,7 +4410,7 @@
         <!--Story Point Add Photo Video View Controller-->
         <scene sceneID="2Gx-qA-TgH">
             <objects>
-                <viewController storyboardIdentifier="StoryPointAddPhotoVideoViewController" id="UBv-qO-lQd" customClass="StoryPointAddPhotoVideoViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPointAddPhotoVideoViewController" id="UBv-qO-lQd" customClass="StoryPointAddPhotoVideoViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jpt-ut-wNR"/>
                         <viewControllerLayoutGuide type="bottom" id="goT-IZ-Tgg"/>
@@ -4504,7 +4504,7 @@
         <!--Reports View Controller-->
         <scene sceneID="vqm-yq-saW">
             <objects>
-                <viewController storyboardIdentifier="ReportsViewController" id="va1-TG-cLr" customClass="ReportsViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportsViewController" id="va1-TG-cLr" customClass="ReportsViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hp1-HY-Kcg"/>
                         <viewControllerLayoutGuide type="bottom" id="7CB-55-nB5"/>
@@ -4641,7 +4641,7 @@
         <!--Report Success View Controller-->
         <scene sceneID="RCf-HZ-qXb">
             <objects>
-                <viewController storyboardIdentifier="ReportSuccessViewController" id="MiO-jT-2Nc" customClass="ReportSuccessViewController" customModule="Maplify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportSuccessViewController" id="MiO-jT-2Nc" customClass="ReportSuccessViewController" customModule="MaplifyDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rbE-Ll-agS"/>
                         <viewControllerLayoutGuide type="bottom" id="JGg-5n-Vtv"/>

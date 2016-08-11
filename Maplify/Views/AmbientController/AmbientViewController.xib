@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmbientViewController" customModule="Maplify" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmbientViewController" customModule="MaplifyDevelopment" customModuleProvider="target">
             <connections>
                 <outlet property="audioPlot" destination="E93-2Q-ZxR" id="Ggd-e7-TpJ"/>
                 <outlet property="deleteButton" destination="MfM-vM-3PU" id="MhR-FZ-UTd"/>

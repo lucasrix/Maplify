@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraRollMultipleSelectionController" customModule="Maplify" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraRollMultipleSelectionController" customModule="MaplifyDevelopment" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7qj-d1-grA" id="iJD-IO-FJJ"/>
                 <outlet property="selectedItemsCountLabel" destination="FhS-uJ-458" id="jtj-ld-8py"/>

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextField" customModule="Maplify" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextField" customModule="MaplifyDevelopment" customModuleProvider="target">
             <connections>
                 <outlet property="defaultImageWidth" destination="aSG-b8-mgW" id="U7F-uM-JrC"/>
                 <outlet property="descriptionLabel" destination="U7G-fz-nwr" id="lVz-2q-ndg"/>
@@ -54,7 +54,7 @@
                         <constraint firstAttribute="height" constant="37" id="jRT-2A-QZ4"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Py5-Yk-Qp4" customClass="AutocompleteField" customModule="Maplify" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Py5-Yk-Qp4" customClass="AutocompleteField" customModule="MaplifyDevelopment" customModuleProvider="target">
                     <rect key="frame" x="68" y="0.0" width="373" height="37"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>

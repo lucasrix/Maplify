@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextView" customModule="Maplify" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextView" customModule="MaplifyDevelopment" customModuleProvider="target">
             <connections>
                 <outlet property="iconHighlightedImageView" destination="qTx-fe-RQz" id="4H6-d6-gkM"/>
                 <outlet property="iconImageView" destination="95e-oa-UW0" id="vEP-rT-oRx"/>

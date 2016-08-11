@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoViewController" customModule="Maplify" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoViewController" customModule="MaplifyDevelopment" customModuleProvider="target">
             <connections>
                 <outlet property="cameraView" destination="g2c-mM-fBp" id="sex-Dd-Swd"/>
                 <outlet property="deleteButton" destination="3qp-Qd-n07" id="msr-9g-lPu"/>

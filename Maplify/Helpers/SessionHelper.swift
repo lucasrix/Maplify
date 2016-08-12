@@ -9,6 +9,8 @@
 import Locksmith
 import RealmSwift
 import CoreLocation
+import PINCache
+import SDWebImage
 
 class SessionHelper {
     static let sharedHelper = SessionHelper()
@@ -80,6 +82,12 @@ class SessionHelper {
         try! realm.write {
             realm.deleteAll()
         }
+    }
+    
+    func removeImageCacheData() {
+        PINCache.sharedCache().removeAllObjects()
+        SDImageCache.sharedImageCache().clearMemory()
+        SDImageCache.sharedImageCache().clearDisk()
     }
     
     func removeSessionAuthCookies() {

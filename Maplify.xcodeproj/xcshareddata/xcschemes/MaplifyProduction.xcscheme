@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A58A52761C7F0A2800443C06"
-               BuildableName = "Maplify.app"
-               BlueprintName = "Maplify"
+               BuildableName = "MaplifyDevelopment.app"
+               BlueprintName = "MaplifyDevelopment"
                ReferencedContainer = "container:Maplify.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A58A52761C7F0A2800443C06"
-            BuildableName = "Maplify.app"
-            BlueprintName = "Maplify"
+            BlueprintIdentifier = "CD19EC8A1D5CC2EA0064DEE0"
+            BuildableName = "MaplifyProduction.app"
+            BlueprintName = "MaplifyProduction"
             ReferencedContainer = "container:Maplify.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,19 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A58A52761C7F0A2800443C06"
-            BuildableName = "Maplify.app"
-            BlueprintName = "Maplify"
+            BlueprintIdentifier = "CD19EC8A1D5CC2EA0064DEE0"
+            BuildableName = "MaplifyProduction.app"
+            BlueprintName = "MaplifyProduction"
             ReferencedContainer = "container:Maplify.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "PRODUCTION"
-            value = "true"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A58A52761C7F0A2800443C06"
-            BuildableName = "Maplify.app"
-            BlueprintName = "Maplify"
+            BuildableName = "MaplifyDevelopment.app"
+            BlueprintName = "MaplifyDevelopment"
             ReferencedContainer = "container:Maplify.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

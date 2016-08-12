@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10608F2D7EA491D27FEA6E1F /* Pods_MaplifyBase_MaplifyDevelopment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E6466942D0550B6CD3E8EE /* Pods_MaplifyBase_MaplifyDevelopment.framework */; };
 		1F2E337B1C80652E00D3B446 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33791C80652E00D3B446 /* InputTextField.swift */; };
 		1F2E337D1C80652E00D3B446 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		1F2E33801C80877200D3B446 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
@@ -76,6 +77,7 @@
 		8CEA35021CFB322700874AD4 /* StoryLinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */; };
 		8CEA35041CFB339B00874AD4 /* StoryLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */; };
 		8CEA35051CFB33A200874AD4 /* StoryLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */; };
+		9D184500790726106C1C818C /* Pods_MaplifyBase_MaplifyProduction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9885D3908ECB94E717B0EC36 /* Pods_MaplifyBase_MaplifyProduction.framework */; };
 		A503E2801CA2C83B00B2EB27 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
 		A503E2821CA2C9E200B2EB27 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
 		A5081E511C805857006FBA52 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
@@ -155,6 +157,232 @@
 		CD153CC11CE4B6D200F32BDE /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
 		CD153CC31CE4C4E200F32BDE /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
 		CD18DF5A1D0B0A9300538D30 /* ReachabilityNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */; };
+		CD19EC8D1D5CC2EA0064DEE0 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171D1CF5B1460072DAE5 /* ReportsViewController.swift */; };
+		CD19EC8E1D5CC2EA0064DEE0 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5728A1B1C88887400C6DA7E /* NavigationViewController.swift */; };
+		CD19EC8F1D5CC2EA0064DEE0 /* ContentFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CB71CE4904200F32BDE /* ContentFollowingViewController.swift */; };
+		CD19EC901D5CC2EA0064DEE0 /* MCMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E861C9AD36700399A38 /* MCMapItem.swift */; };
+		CD19EC911D5CC2EA0064DEE0 /* StoryPointAddPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451AC01CA992D400EBCC7A /* StoryPointAddPhotoVideoViewController.swift */; };
+		CD19EC921D5CC2EA0064DEE0 /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
+		CD19EC931D5CC2EA0064DEE0 /* OurStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C81CF61C3400949D87 /* OurStoryViewController.swift */; };
+		CD19EC941D5CC2EA0064DEE0 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F71F1D2D50CA00CC4EBE /* NetworkOperation.swift */; };
+		CD19EC951D5CC2EA0064DEE0 /* FacebookHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3575DB1CB3FB240039828A /* FacebookHelper.swift */; };
+		CD19EC961D5CC2EA0064DEE0 /* TrackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FB1031D59067A00776040 /* TrackManager.swift */; };
+		CD19EC971D5CC2EA0064DEE0 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAEF1C9C3C6400A94C4F /* ModelManager.swift */; };
+		CD19EC981D5CC2EA0064DEE0 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EADB1CB7C96500F93C66 /* StaticMap.swift */; };
+		CD19EC991D5CC2EA0064DEE0 /* DiscoverTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */; };
+		CD19EC9A1D5CC2EA0064DEE0 /* AmbientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E541CEDD3BE00D3EDEE /* AmbientViewController.swift */; };
+		CD19EC9B1D5CC2EA0064DEE0 /* PublicStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9159E1CBE93220041182F /* PublicStatsView.swift */; };
+		CD19EC9C1D5CC2EA0064DEE0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EAC1061CC0F38100B65801 /* EditProfileViewController.swift */; };
+		CD19EC9D1D5CC2EA0064DEE0 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF271CB7FEB200F98F80 /* UIBarButtonItem.swift */; };
+		CD19EC9E1D5CC2EA0064DEE0 /* StorypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */; };
+		CD19EC9F1D5CC2EA0064DEE0 /* CaptureSetupUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2421CFF114400D62944 /* CaptureSetupUIExtension.swift */; };
+		CD19ECA01D5CC2EA0064DEE0 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F41CBAF9B800CFAA05 /* StoryDetailViewController.swift */; };
+		CD19ECA11D5CC2EA0064DEE0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAF21C9C437F00A94C4F /* Profile.swift */; };
+		CD19ECA21D5CC2EA0064DEE0 /* ArrayStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D01CAD362F002F26A9 /* ArrayStoryManager.swift */; };
+		CD19ECA31D5CC2EA0064DEE0 /* StoryAddMediaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CF11D33D2E00047BC55 /* StoryAddMediaHeaderView.swift */; };
+		CD19ECA41D5CC2EA0064DEE0 /* ErrorHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE2EF11C92F54900DCA2A7 /* ErrorHandlingProtocol.swift */; };
+		CD19ECA51D5CC2EA0064DEE0 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DA1C7F192100443C06 /* ColorUtils.swift */; };
+		CD19ECA61D5CC2EA0064DEE0 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */; };
+		CD19ECA71D5CC2EA0064DEE0 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3575D61CB3C6690039828A /* SessionHelper.swift */; };
+		CD19ECA81D5CC2EA0064DEE0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41AD1CDA07C400922D94 /* ResetPasswordViewController.swift */; };
+		CD19ECA91D5CC2EA0064DEE0 /* CSBaseTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C51C7F132A00443C06 /* CSBaseTableDataSource.swift */; };
+		CD19ECAA1D5CC2EA0064DEE0 /* StoryAddMediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEC1D33D1460047BC55 /* StoryAddMediaDataSource.swift */; };
+		CD19ECAB1D5CC2EA0064DEE0 /* StoryLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA34FD1CFB2D9000874AD4 /* StoryLink.swift */; };
+		CD19ECAC1D5CC2EA0064DEE0 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52D91C7F192100443C06 /* AlertController.swift */; };
+		CD19ECAD1D5CC2EA0064DEE0 /* ReportSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4C61CF5C2B200949D87 /* ReportSuccessViewController.swift */; };
+		CD19ECAE1D5CC2EA0064DEE0 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855567A31CDCBA180096A561 /* NSURL.swift */; };
+		CD19ECAF1D5CC2EA0064DEE0 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7BBD1CA1666100455E6D /* NSData.swift */; };
+		CD19ECB01D5CC2EA0064DEE0 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB021CA03F6000A94C4F /* CaptureViewController.swift */; };
+		CD19ECB11D5CC2EA0064DEE0 /* ArrayStoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C61CA4170B00DFEE38 /* ArrayStoryPointManager.swift */; };
+		CD19ECB21D5CC2EA0064DEE0 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */; };
+		CD19ECB31D5CC2EA0064DEE0 /* ConfigHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A53191C7F345300443C06 /* ConfigHepler.swift */; };
+		CD19ECB41D5CC2EA0064DEE0 /* DetailStoryPointCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C271CFC3CD5008956CE /* DetailStoryPointCollectionCell.swift */; };
+		CD19ECB51D5CC2EA0064DEE0 /* CaptureDetailViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */; };
+		CD19ECB61D5CC2EA0064DEE0 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5728A331C89C33F00C6DA7E /* ViewConstants.swift */; };
+		CD19ECB71D5CC2EA0064DEE0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B661CAD44AE00EBCC7A /* VideoViewController.swift */; };
+		CD19ECB81D5CC2EA0064DEE0 /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C81C7F132A00443C06 /* CSTableViewCell.swift */; };
+		CD19ECB91D5CC2EA0064DEE0 /* StoryCreateAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AC1D368FC30052B997 /* StoryCreateAddLocationViewController.swift */; };
+		CD19ECBA1D5CC2EA0064DEE0 /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EB1D3E768E006EC5F1 /* FileDataManager.swift */; };
+		CD19ECBB1D5CC2EA0064DEE0 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C71C7F132A00443C06 /* CSCollectionViewCell.swift */; };
+		CD19ECBC1D5CC2EA0064DEE0 /* CSCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C61C7F132A00443C06 /* CSCellData.swift */; };
+		CD19ECBD1D5CC2EA0064DEE0 /* ConsoleAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FB1051D59085100776040 /* ConsoleAnalyticsManager.swift */; };
+		CD19ECBE1D5CC2EA0064DEE0 /* UserListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD153CC21CE4C4E200F32BDE /* UserListManager.swift */; };
+		CD19ECBF1D5CC2EA0064DEE0 /* CaptureSearchPlaceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2441CFF269E00D62944 /* CaptureSearchPlaceExtension.swift */; };
+		CD19ECC01D5CC2EA0064DEE0 /* DiscoverPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2D4CB1CF7183900949D87 /* DiscoverPlaceholderCell.swift */; };
+		CD19ECC11D5CC2EA0064DEE0 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8211CE4DF3400DC8AF6 /* FollowersViewController.swift */; };
+		CD19ECC21D5CC2EA0064DEE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F28DC1CDB7C1E00534211 /* AppDelegate.swift */; };
+		CD19ECC31D5CC2EA0064DEE0 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC3C581CF5D1F6007D9A76 /* InfiniteScrollView.swift */; };
+		CD19ECC41D5CC2EA0064DEE0 /* MCMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E841C9AD33F00399A38 /* MCMapService.swift */; };
+		CD19ECC51D5CC2EA0064DEE0 /* StoryAddMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A71D3517570052B997 /* StoryAddMediaTableViewCell.swift */; };
+		CD19ECC61D5CC2EA0064DEE0 /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810C1CA1C4F200C50C23 /* AttachmentManager.swift */; };
+		CD19ECC71D5CC2EA0064DEE0 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B5C1CABFEDC00EBCC7A /* PhotoViewController.swift */; };
+		CD19ECC81D5CC2EA0064DEE0 /* EditStoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F41D40F17B006EC5F1 /* EditStoryHeaderView.swift */; };
+		CD19ECC91D5CC2EA0064DEE0 /* GeocoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564A91D35228D0052B997 /* GeocoderHelper.swift */; };
+		CD19ECCA1D5CC2EA0064DEE0 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BB1C9C79BC00FC3496 /* OnboardViewController.swift */; };
+		CD19ECCB1D5CC2EA0064DEE0 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E8B1C9ADBB800399A38 /* ContentViewController.swift */; };
+		CD19ECCC1D5CC2EA0064DEE0 /* StoryPointDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564AF1D379FBA0052B997 /* StoryPointDraft.swift */; };
+		CD19ECCD1D5CC2EA0064DEE0 /* OnboardCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B91C9C693100FC3496 /* OnboardCaptureController.swift */; };
+		CD19ECCE1D5CC2EA0064DEE0 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E501C805857006FBA52 /* ApiClient.swift */; };
+		CD19ECCF1D5CC2EA0064DEE0 /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B111CAAD90100EBCC7A /* AlbumViewCell.swift */; };
+		CD19ECD01D5CC2EA0064DEE0 /* SignupGetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */; };
+		CD19ECD11D5CC2EA0064DEE0 /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4EF1D40D7EB006EC5F1 /* EditStoryViewController.swift */; };
+		CD19ECD21D5CC2EA0064DEE0 /* MCMapActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35C81CA4258C00DFEE38 /* MCMapActiveModel.swift */; };
+		CD19ECD31D5CC2EA0064DEE0 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CFB1CBE5D3C00461015 /* DiscoverItem.swift */; };
+		CD19ECD41D5CC2EA0064DEE0 /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF291CBBB69000F98F80 /* KeyboardAvoiding.swift */; };
+		CD19ECD51D5CC2EA0064DEE0 /* AssetRetrievingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B4ADD1D3920E600E30A96 /* AssetRetrievingManager.swift */; };
+		CD19ECD61D5CC2EA0064DEE0 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B21CDB4CC900922D94 /* ChangePasswordViewController.swift */; };
+		CD19ECD71D5CC2EA0064DEE0 /* StoryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC3C551CF31250007D9A76 /* StoryInfoView.swift */; };
+		CD19ECD81D5CC2EA0064DEE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52A11C7F103000443C06 /* ViewController.swift */; };
+		CD19ECD91D5CC2EA0064DEE0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
+		CD19ECDA1D5CC2EA0064DEE0 /* ImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B151CAAD90100EBCC7A /* ImageCropView.swift */; };
+		CD19ECDB1D5CC2EA0064DEE0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781011CA14C2600C50C23 /* Location.swift */; };
+		CD19ECDC1D5CC2EA0064DEE0 /* OperationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F82E1D2E4CEF001CF185 /* OperationQueueManager.swift */; };
+		CD19ECDD1D5CC2EA0064DEE0 /* FollowingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF274B1CE7D0F900763C31 /* FollowingAlertController.swift */; };
+		CD19ECDE1D5CC2EA0064DEE0 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E441CE9D28700D3EDEE /* NotificationsViewController.swift */; };
+		CD19ECDF1D5CC2EA0064DEE0 /* StoryCreateCameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8361D2E884B001CF185 /* StoryCreateCameraRollViewController.swift */; };
+		CD19ECE01D5CC2EA0064DEE0 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33791C80652E00D3B446 /* InputTextField.swift */; };
+		CD19ECE11D5CC2EA0064DEE0 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52DB1C7F192100443C06 /* StringUtils.swift */; };
+		CD19ECE21D5CC2EA0064DEE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E551C806D35006FBA52 /* Constants.swift */; };
+		CD19ECE31D5CC2EA0064DEE0 /* AudioRecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6517161CA418EE00E6C7C2 /* AudioRecorderHelper.swift */; };
+		CD19ECE41D5CC2EA0064DEE0 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A41B01CDA0F4C00922D94 /* PasswordManager.swift */; };
+		CD19ECE51D5CC2EA0064DEE0 /* StoryPointDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10A41CB6646200B58396 /* StoryPointDetailCell.swift */; };
+		CD19ECE61D5CC2EA0064DEE0 /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
+		CD19ECE71D5CC2EA0064DEE0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9901C86FC9B0094FC04 /* Model.swift */; };
+		CD19ECE81D5CC2EA0064DEE0 /* DetailMapItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC3C511CF31051007D9A76 /* DetailMapItemHelper.swift */; };
+		CD19ECE91D5CC2EA0064DEE0 /* AttributedLabelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0AD1C89F1B700765F61 /* AttributedLabelUtils.swift */; };
+		CD19ECEA1D5CC2EA0064DEE0 /* StoryPointEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3575D91CB3D8A40039828A /* StoryPointEditViewController.swift */; };
+		CD19ECEB1D5CC2EA0064DEE0 /* StoryPointAddAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */; };
+		CD19ECEC1D5CC2EA0064DEE0 /* SelectedStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C512F521CAE8C0C0068AE49 /* SelectedStoryCell.swift */; };
+		CD19ECED1D5CC2EA0064DEE0 /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CACDE71CA40871004F1A3D /* Suspender.swift */; };
+		CD19ECEE1D5CC2EA0064DEE0 /* StoryPointCreationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70B311C9DA56700FC3496 /* StoryPointCreationPopupViewController.swift */; };
+		CD19ECEF1D5CC2EA0064DEE0 /* StoryPointInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC3C531CF310F9007D9A76 /* StoryPointInfoView.swift */; };
+		CD19ECF01D5CC2EA0064DEE0 /* DiscoverItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD340CF91CBD200A00461015 /* DiscoverItemManager.swift */; };
+		CD19ECF11D5CC2EA0064DEE0 /* StoryLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */; };
+		CD19ECF21D5CC2EA0064DEE0 /* MCMapRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E8F1C9AE62E00399A38 /* MCMapRegion.swift */; };
+		CD19ECF31D5CC2EA0064DEE0 /* StoryPointMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */; };
+		CD19ECF41D5CC2EA0064DEE0 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3B8231CE4DF4400DC8AF6 /* FollowingViewController.swift */; };
+		CD19ECF51D5CC2EA0064DEE0 /* MCMapItemsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E911C9AFA0300399A38 /* MCMapItemsGroup.swift */; };
+		CD19ECF61D5CC2EA0064DEE0 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAFC1C9C45D800A94C4F /* ProfileManager.swift */; };
+		CD19ECF71D5CC2EA0064DEE0 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5081E5A1C807AD2006FBA52 /* ApiError.swift */; };
+		CD19ECF81D5CC2EA0064DEE0 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34F7211D2D51CA00CC4EBE /* ConcurrentOperation.swift */; };
+		CD19ECF91D5CC2EA0064DEE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAF41C9C437F00A94C4F /* User.swift */; };
+		CD19ECFA1D5CC2EA0064DEE0 /* StoryPointEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FC1CA055E100C50C23 /* StoryPointEditInfoViewController.swift */; };
+		CD19ECFB1D5CC2EA0064DEE0 /* StoryPointDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */; };
+		CD19ECFC1D5CC2EA0064DEE0 /* NavigationBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FA1CA0349E00C50C23 /* NavigationBarItems.swift */; };
+		CD19ECFD1D5CC2EA0064DEE0 /* StoryPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780FE1CA14A0C00C50C23 /* StoryPointManager.swift */; };
+		CD19ECFE1D5CC2EA0064DEE0 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAF61C9C437F00A94C4F /* WebContent.swift */; };
+		CD19ECFF1D5CC2EA0064DEE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A261C8C9E4F0005DF12 /* LoginViewController.swift */; };
+		CD19ED001D5CC2EA0064DEE0 /* ChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B51C9C5D0000FC3496 /* ChildController.swift */; };
+		CD19ED011D5CC2EA0064DEE0 /* DetailStoryNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C251CFC3C10008956CE /* DetailStoryNumberCell.swift */; };
+		CD19ED021D5CC2EA0064DEE0 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC781041CA151E900C50C23 /* Attachment.swift */; };
+		CD19ED031D5CC2EA0064DEE0 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */; };
+		CD19ED041D5CC2EA0064DEE0 /* MixpanelAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FB1011D58E05300776040 /* MixpanelAnalyticsManager.swift */; };
+		CD19ED051D5CC2EA0064DEE0 /* RoutesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A221C8C6CF10005DF12 /* RoutesHelper.swift */; };
+		CD19ED061D5CC2EA0064DEE0 /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */; };
+		CD19ED071D5CC2EA0064DEE0 /* MCMapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E881C9AD38600399A38 /* MCMapDataSource.swift */; };
+		CD19ED081D5CC2EA0064DEE0 /* DetailStoryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FD8C291CFC3FA6008956CE /* DetailStoryItemsDataSource.swift */; };
+		CD19ED091D5CC2EA0064DEE0 /* MCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E821C9AD1F400399A38 /* MCMapView.swift */; };
+		CD19ED0A1D5CC2EA0064DEE0 /* ReachabilityNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */; };
+		CD19ED0B1D5CC2EA0064DEE0 /* CSBaseCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C41C7F132A00443C06 /* CSBaseCollectionDataSource.swift */; };
+		CD19ED0C1D5CC2EA0064DEE0 /* RecommendedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9094D31CAD5BFE002F26A9 /* RecommendedSettingsViewController.swift */; };
+		CD19ED0D1D5CC2EA0064DEE0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E551CCE4C6B00439761 /* ProfileView.swift */; };
+		CD19ED0E1D5CC2EA0064DEE0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1D1CA611E400AB83C0 /* AddStoryViewController.swift */; };
+		CD19ED0F1D5CC2EA0064DEE0 /* StoryCreateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF564B11D37B9220052B997 /* StoryCreateManager.swift */; };
+		CD19ED101D5CC2EA0064DEE0 /* CameraRollMultipleSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8311D2E8485001CF185 /* CameraRollMultipleSelectionController.swift */; };
+		CD19ED111D5CC2EA0064DEE0 /* CSActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A52C31C7F132A00443C06 /* CSActiveModel.swift */; };
+		CD19ED121D5CC2EA0064DEE0 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E471CE9D8DD00D3EDEE /* Notification.swift */; };
+		CD19ED131D5CC2EA0064DEE0 /* ShareStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89B1CD28761001387EC /* ShareStoryViewController.swift */; };
+		CD19ED141D5CC2EA0064DEE0 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C51C91957D0036064A /* InputTextView.swift */; };
+		CD19ED151D5CC2EA0064DEE0 /* SignupUpdateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584C21C917B930036064A /* SignupUpdateProfileController.swift */; };
+		CD19ED161D5CC2EA0064DEE0 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AB041CA03F6B00A94C4F /* DiscoverViewController.swift */; };
+		CD19ED171D5CC2EA0064DEE0 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8961CD26007001387EC /* ShareController.swift */; };
+		CD19ED181D5CC2EA0064DEE0 /* DiscoverStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2BC1CB54A6900E3E66B /* DiscoverStoryCell.swift */; };
+		CD19ED191D5CC2EA0064DEE0 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7BBB1CA1628800455E6D /* UIImage.swift */; };
+		CD19ED1A1D5CC2EA0064DEE0 /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
+		CD19ED1B1D5CC2EA0064DEE0 /* ShareStoryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D8991CD28489001387EC /* ShareStoryPointViewController.swift */; };
+		CD19ED1C1D5CC2EA0064DEE0 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3D0A71C89D1F700765F61 /* LandingViewController.swift */; };
+		CD19ED1D1D5CC2EA0064DEE0 /* StoryAddPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F11CCF838C00E38C7A /* StoryAddPostsTableViewCell.swift */; };
+		CD19ED1E1D5CC2EA0064DEE0 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508F4301C902634007131C9 /* ProgressHUD.swift */; };
+		CD19ED1F1D5CC2EA0064DEE0 /* DiscoverStoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AE1CB69C9400B58396 /* DiscoverStoryCollectionDataSource.swift */; };
+		CD19ED201D5CC2EA0064DEE0 /* StoryUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4FA1D4210E2006EC5F1 /* StoryUpdateManager.swift */; };
+		CD19ED211D5CC2EA0064DEE0 /* RelationOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7810E1CA2A62900C50C23 /* RelationOrNil.swift */; };
+		CD19ED221D5CC2EA0064DEE0 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B31C9C212C00FC3496 /* PageViewController.swift */; };
+		CD19ED231D5CC2EA0064DEE0 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E511CEA405500D3EDEE /* NotificationsTableViewCell.swift */; };
+		CD19ED241D5CC2EA0064DEE0 /* EditStoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F11D40F0EA006EC5F1 /* EditStoryDataSource.swift */; };
+		CD19ED251D5CC2EA0064DEE0 /* DiscoverStoryPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */; };
+		CD19ED261D5CC2EA0064DEE0 /* EditStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FE4F81D40F52B006EC5F1 /* EditStoryTableViewCell.swift */; };
+		CD19ED271D5CC2EA0064DEE0 /* OnboardDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705B71C9C68C400FC3496 /* OnboardDiscoverController.swift */; };
+		CD19ED281D5CC2EA0064DEE0 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A241C8C9D0F0005DF12 /* StoryboardHelper.swift */; };
+		CD19ED291D5CC2EA0064DEE0 /* StoryCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164F41CD0E76F00E38C7A /* StoryCreateViewController.swift */; };
+		CD19ED2A1D5CC2EA0064DEE0 /* SquareImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B631CAC2C8B00EBCC7A /* SquareImage.swift */; };
+		CD19ED2B1D5CC2EA0064DEE0 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC26E4B1CE9DF6B00D3EDEE /* NotificationsManager.swift */; };
+		CD19ED2C1D5CC2EA0064DEE0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAFA1C9C438E00A94C4F /* SessionManager.swift */; };
+		CD19ED2D1D5CC2EA0064DEE0 /* GooglePlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595DF311CBBDD7800F98F80 /* GooglePlaceSearchHelper.swift */; };
+		CD19ED2E1D5CC2EA0064DEE0 /* DiscoverChangeLocationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672A1CC902D100961A7A /* DiscoverChangeLocationPopupViewController.swift */; };
+		CD19ED2F1D5CC2EA0064DEE0 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C130A281C8CD5A10005DF12 /* SignupViewController.swift */; };
+		CD19ED301D5CC2EA0064DEE0 /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52E09991C8D8D6000706F9C /* Integer.swift */; };
+		CD19ED311D5CC2EA0064DEE0 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB705BE1C9D4E9A00FC3496 /* ScreenSize.swift */; };
+		CD19ED321D5CC2EA0064DEE0 /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0E9941C8738F90094FC04 /* RequestConfig.swift */; };
+		CD19ED331D5CC2EA0064DEE0 /* StoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0EAD91CB7A71E00F93C66 /* StoryInfoCell.swift */; };
+		CD19ED341D5CC2EA0064DEE0 /* StoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F61CA01ED500C50C23 /* StoryPoint.swift */; };
+		CD19ED351D5CC2EA0064DEE0 /* SignupPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5728A191C88860100C6DA7E /* SignupPhotoController.swift */; };
+		CD19ED361D5CC2EA0064DEE0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C584BC1C905A720036064A /* RoundedButton.swift */; };
+		CD19ED371D5CC2EA0064DEE0 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A10AC1CB68F5500B58396 /* Converter.swift */; };
+		CD19ED381D5CC2EA0064DEE0 /* StoryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F81CBB044000CFAA05 /* StoryPageViewController.swift */; };
+		CD19ED391D5CC2EA0064DEE0 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FB0FF1D58D07300776040 /* AnalyticsManager.swift */; };
+		CD19ED3A1D5CC2EA0064DEE0 /* StoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45672D1CCA74E700961A7A /* StoryEditViewController.swift */; };
+		CD19ED3B1D5CC2EA0064DEE0 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E7C1C9AC73F00399A38 /* RootViewController.swift */; };
+		CD19ED3C1D5CC2EA0064DEE0 /* PrivateStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915A01CBE93BA0041182F /* PrivateStatsView.swift */; };
+		CD19ED3D1D5CC2EA0064DEE0 /* CapturePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC8171A1CF2FD2F0072DAE5 /* CapturePopUpView.swift */; };
+		CD19ED3E1D5CC2EA0064DEE0 /* StoryCreateAddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E0CEA1D33C7440047BC55 /* StoryCreateAddInfoViewController.swift */; };
+		CD19ED3F1D5CC2EA0064DEE0 /* AutocompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E915941CBD22540041182F /* AutocompleteTextField.swift */; };
+		CD19ED401D5CC2EA0064DEE0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F41CA01DB000C50C23 /* Story.swift */; };
+		CD19ED411D5CC2EA0064DEE0 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD451B141CAAD90100EBCC7A /* CameraRollViewController.swift */; };
+		CD19ED421D5CC2EA0064DEE0 /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD364D1CAAA9EA00281574 /* StoryManager.swift */; };
+		CD19ED431D5CC2EA0064DEE0 /* CameraRollItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28F8381D2E8DAD001CF185 /* CameraRollItemViewCell.swift */; };
+		CD19ED441D5CC2EA0064DEE0 /* GoogleMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E8D1C9AE12A00399A38 /* GoogleMapService.swift */; };
+		CD19ED451D5CC2EA0064DEE0 /* UserRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB7E591CCF57B900439761 /* UserRequestHelper.swift */; };
+		CD19ED461D5CC2EA0064DEE0 /* StoryDetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03507F61CBB01B600CFAA05 /* StoryDetailItemViewController.swift */; };
+		CD19ED471D5CC2EA0064DEE0 /* CaptureDataFetchingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */; };
+		CD19ED481D5CC2EA0064DEE0 /* StoryPointEditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC780F81CA0240400C50C23 /* StoryPointEditDescriptionViewController.swift */; };
+		CD19ED491D5CC2EA0064DEE0 /* StoryAddPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF164EF1CCF625A00E38C7A /* StoryAddPostsViewController.swift */; };
+		CD19ED4A1D5CC2EA0064DEE0 /* StoryQuickCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0419C1F1CA6122300AB83C0 /* StoryQuickCreationCell.swift */; };
+		CD19ED4B1D5CC2EA0064DEE0 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E741C96F48A00399A38 /* TermsViewController.swift */; };
+		CD19ED4C1D5CC2EA0064DEE0 /* WebContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7AAFE1C9C461900A94C4F /* WebContentManager.swift */; };
+		CD19ED4D1D5CC2EA0064DEE0 /* StoryLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2461CFF34FC00D62944 /* StoryLinkManager.swift */; };
+		CD19ED4E1D5CC2EA0064DEE0 /* CaptureMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */; };
+		CD19ED4F1D5CC2EA0064DEE0 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E781C971DF200399A38 /* PolicyViewController.swift */; };
+		CD19ED511D5CC2EA0064DEE0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52E09971C8D8C2E00706F9C /* Accounts.framework */; };
+		CD19ED541D5CC2EA0064DEE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5728A1D1C88945A00C6DA7E /* Localizable.strings */; };
+		CD19ED551D5CC2EA0064DEE0 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
+		CD19ED561D5CC2EA0064DEE0 /* DetailStoryPointCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FD8C231CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib */; };
+		CD19ED571D5CC2EA0064DEE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59A7E7A1C9AC32400399A38 /* Main.storyboard */; };
+		CD19ED581D5CC2EA0064DEE0 /* StoryLinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */; };
+		CD19ED591D5CC2EA0064DEE0 /* AmbientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC26E561CEDD3D600D3EDEE /* AmbientViewController.xib */; };
+		CD19ED5A1D5CC2EA0064DEE0 /* CameraRollMultipleSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8331D2E84B5001CF185 /* CameraRollMultipleSelectionView.xib */; };
+		CD19ED5B1D5CC2EA0064DEE0 /* CapturePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC817181CF2FD040072DAE5 /* CapturePopUpView.xib */; };
+		CD19ED5C1D5CC2EA0064DEE0 /* PublicStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159A1CBE8BF00041182F /* PublicStatsView.xib */; };
+		CD19ED5D1D5CC2EA0064DEE0 /* DetailStoryNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FD8C211CFC3A4A008956CE /* DetailStoryNumberCell.xib */; };
+		CD19ED5E1D5CC2EA0064DEE0 /* InputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C71C919DCB0036064A /* InputTextView.xib */; };
+		CD19ED5F1D5CC2EA0064DEE0 /* StoryPointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */; };
+		CD19ED601D5CC2EA0064DEE0 /* CameraRollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B131CAAD90100EBCC7A /* CameraRollView.xib */; };
+		CD19ED611D5CC2EA0064DEE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A52831C7F0A2900443C06 /* LaunchScreen.storyboard */; };
+		CD19ED621D5CC2EA0064DEE0 /* CameraRollItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28F8391D2E8DAD001CF185 /* CameraRollItemViewCell.xib */; };
+		CD19ED631D5CC2EA0064DEE0 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
+		CD19ED641D5CC2EA0064DEE0 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B681CAD44BB00EBCC7A /* VideoViewController.xib */; };
+		CD19ED651D5CC2EA0064DEE0 /* StoryInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */; };
+		CD19ED661D5CC2EA0064DEE0 /* StoryAddMediaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3E0CF31D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib */; };
+		CD19ED671D5CC2EA0064DEE0 /* config_production.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584C01C90787D0036064A /* config_production.plist */; };
+		CD19ED681D5CC2EA0064DEE0 /* PrivateStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E9159C1CBE8D710041182F /* PrivateStatsView.xib */; };
+		CD19ED691D5CC2EA0064DEE0 /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B121CAAD90100EBCC7A /* AlbumViewCell.xib */; };
+		CD19ED6A1D5CC2EA0064DEE0 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD451B5D1CABFEDC00EBCC7A /* PhotoViewController.xib */; };
+		CD19ED6B1D5CC2EA0064DEE0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */; };
+		CD19ED6C1D5CC2EA0064DEE0 /* config_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5C584BE1C90770E0036064A /* config_staging.plist */; };
+		CD19ED6D1D5CC2EA0064DEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0419C211CA6147600AB83C0 /* Assets.xcassets */; };
+		CD19ED6E1D5CC2EA0064DEE0 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FB7E571CCE4C7600439761 /* ProfileView.xib */; };
+		CD19ED6F1D5CC2EA0064DEE0 /* EditStoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4FE4F61D40F195006EC5F1 /* EditStoryHeaderView.xib */; };
+		CD19ED701D5CC2EA0064DEE0 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A527E1C7F0A2900443C06 /* Auth.storyboard */; };
+		CD19ED7A1D5CC9D10064DEE0 /* ProductionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD19ED791D5CC9D10064DEE0 /* ProductionInfo.plist */; };
 		CD1DB23D1CFEDD9D00D62944 /* CaptureMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */; };
 		CD1DB23F1CFEE05500D62944 /* CaptureDataFetchingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */; };
 		CD1DB2411CFF0F5A00D62944 /* CaptureDetailViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */; };
@@ -241,7 +469,6 @@
 		CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
-		D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -290,6 +517,8 @@
 		1FC781171CA2D6B900C50C23 /* StoryPointAddAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointAddAudioController.swift; sourceTree = "<group>"; };
 		1FCDBF2D1C85AFCC00A3D010 /* ImageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
 		7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79DA11AD83858687EFD2F111 /* Pods-MaplifyBase-MaplifyProduction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaplifyBase-MaplifyProduction.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaplifyBase-MaplifyProduction/Pods-MaplifyBase-MaplifyProduction.release.xcconfig"; sourceTree = "<group>"; };
+		7DF166CF77E01C22898A2928 /* Pods-MaplifyBase-MaplifyDevelopment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaplifyBase-MaplifyDevelopment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaplifyBase-MaplifyDevelopment/Pods-MaplifyBase-MaplifyDevelopment.debug.xcconfig"; sourceTree = "<group>"; };
 		850A649A1CE9F44A008FA969 /* SignupGetCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupGetCityViewController.swift; sourceTree = "<group>"; };
 		850A64B71CEB4F97008FA969 /* StoryPointInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryPointInfoView.xib; sourceTree = "<group>"; };
 		850A64B91CEB4FA3008FA969 /* StoryInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryInfoView.xib; sourceTree = "<group>"; };
@@ -331,6 +560,8 @@
 		8CEA34FD1CFB2D9000874AD4 /* StoryLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLink.swift; sourceTree = "<group>"; };
 		8CEA35011CFB322700874AD4 /* StoryLinkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryLinkCell.xib; sourceTree = "<group>"; };
 		8CEA35031CFB339B00874AD4 /* StoryLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryLinkCell.swift; sourceTree = "<group>"; };
+		8D8B9D36CCA56CE91CE09B9E /* Pods-MaplifyBase-MaplifyProduction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaplifyBase-MaplifyProduction.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaplifyBase-MaplifyProduction/Pods-MaplifyBase-MaplifyProduction.debug.xcconfig"; sourceTree = "<group>"; };
+		9885D3908ECB94E717B0EC36 /* Pods_MaplifyBase_MaplifyProduction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaplifyBase_MaplifyProduction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A503E27F1CA2C83B00B2EB27 /* StorypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorypointCell.swift; sourceTree = "<group>"; };
 		A503E2811CA2C9E200B2EB27 /* StoryPointDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointDataSource.swift; sourceTree = "<group>"; };
 		A5081E501C805857006FBA52 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -344,10 +575,10 @@
 		A5728A1D1C88945A00C6DA7E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A5728A2C1C8999E600C6DA7E /* Maplify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maplify-Bridging-Header.h"; sourceTree = "<group>"; };
 		A5728A331C89C33F00C6DA7E /* ViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
-		A58A52771C7F0A2800443C06 /* Maplify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maplify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58A52771C7F0A2800443C06 /* MaplifyDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaplifyDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A527F1C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		A58A52841C7F0A2900443C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A58A52861C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A58A52861C7F0A2900443C06 /* DevelopmentInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DevelopmentInfo.plist; sourceTree = "<group>"; };
 		A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaplifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A52911C7F0A2900443C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58A52A11C7F103000443C06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +633,8 @@
 		A5FC35CA1CA426E200DFEE38 /* StoryPointMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPointMapItem.swift; sourceTree = "<group>"; };
 		A5FC35CC1CA5556D00DFEE38 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A5FD364D1CAAA9EA00281574 /* StoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
+		A6AEDF50AF4C1824AD8874AC /* Pods-MaplifyBase-MaplifyDevelopment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaplifyBase-MaplifyDevelopment.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaplifyBase-MaplifyDevelopment/Pods-MaplifyBase-MaplifyDevelopment.release.xcconfig"; sourceTree = "<group>"; };
+		A9E6466942D0550B6CD3E8EE /* Pods_MaplifyBase_MaplifyDevelopment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaplifyBase_MaplifyDevelopment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD003E8D1CC7BB7800026B1B /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		CD0BB2AC1CB2860600E3E66B /* DiscoverStoryPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverStoryPointCell.swift; sourceTree = "<group>"; };
 		CD0BB2B01CB2912000E3E66B /* DiscoverTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableDataSource.swift; sourceTree = "<group>"; };
@@ -410,6 +643,8 @@
 		CD153CC01CE4B6D200F32BDE /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		CD153CC21CE4C4E200F32BDE /* UserListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListManager.swift; sourceTree = "<group>"; };
 		CD18DF591D0B0A9300538D30 /* ReachabilityNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityNetwork.swift; sourceTree = "<group>"; };
+		CD19ED771D5CC2EA0064DEE0 /* MaplifyProduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaplifyProduction.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD19ED791D5CC9D10064DEE0 /* ProductionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProductionInfo.plist; sourceTree = "<group>"; };
 		CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureMapExtension.swift; sourceTree = "<group>"; };
 		CD1DB23E1CFEE05500D62944 /* CaptureDataFetchingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDataFetchingExtension.swift; sourceTree = "<group>"; };
 		CD1DB2401CFF0F5A00D62944 /* CaptureDetailViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDetailViewExtension.swift; sourceTree = "<group>"; };
@@ -508,7 +743,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52E09981C8D8C2E00706F9C /* Accounts.framework in Frameworks */,
-				D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */,
+				10608F2D7EA491D27FEA6E1F /* Pods_MaplifyBase_MaplifyDevelopment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +751,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD19ED501D5CC2EA0064DEE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD19ED511D5CC2EA0064DEE0 /* Accounts.framework in Frameworks */,
+				9D184500790726106C1C818C /* Pods_MaplifyBase_MaplifyProduction.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +771,10 @@
 			children = (
 				0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */,
 				D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */,
+				7DF166CF77E01C22898A2928 /* Pods-MaplifyBase-MaplifyDevelopment.debug.xcconfig */,
+				A6AEDF50AF4C1824AD8874AC /* Pods-MaplifyBase-MaplifyDevelopment.release.xcconfig */,
+				8D8B9D36CCA56CE91CE09B9E /* Pods-MaplifyBase-MaplifyProduction.debug.xcconfig */,
+				79DA11AD83858687EFD2F111 /* Pods-MaplifyBase-MaplifyProduction.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -777,8 +1025,9 @@
 		A58A52781C7F0A2800443C06 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A58A52771C7F0A2800443C06 /* Maplify.app */,
+				A58A52771C7F0A2800443C06 /* MaplifyDevelopment.app */,
 				A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */,
+				CD19ED771D5CC2EA0064DEE0 /* MaplifyProduction.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -854,7 +1103,8 @@
 				A5C584BE1C90770E0036064A /* config_staging.plist */,
 				A5C584C01C90787D0036064A /* config_production.plist */,
 				F0419C211CA6147600AB83C0 /* Assets.xcassets */,
-				A58A52861C7F0A2900443C06 /* Info.plist */,
+				A58A52861C7F0A2900443C06 /* DevelopmentInfo.plist */,
+				CD19ED791D5CC9D10064DEE0 /* ProductionInfo.plist */,
 				A5728A1D1C88945A00C6DA7E /* Localizable.strings */,
 				CD64564A1CD3B43500D5B54A /* Localizable.stringsdict */,
 			);
@@ -1069,6 +1319,8 @@
 			children = (
 				A52E09971C8D8C2E00706F9C /* Accounts.framework */,
 				7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */,
+				A9E6466942D0550B6CD3E8EE /* Pods_MaplifyBase_MaplifyDevelopment.framework */,
+				9885D3908ECB94E717B0EC36 /* Pods_MaplifyBase_MaplifyProduction.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1397,9 +1649,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A58A52761C7F0A2800443C06 /* Maplify */ = {
+		A58A52761C7F0A2800443C06 /* MaplifyDevelopment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "Maplify" */;
+			buildConfigurationList = A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "MaplifyDevelopment" */;
 			buildPhases = (
 				C6C6600AC233A4FC410C4866 /* [CP] Check Pods Manifest.lock */,
 				A58A52731C7F0A2800443C06 /* Sources */,
@@ -1413,9 +1665,9 @@
 			);
 			dependencies = (
 			);
-			name = Maplify;
+			name = MaplifyDevelopment;
 			productName = Maplify;
-			productReference = A58A52771C7F0A2800443C06 /* Maplify.app */;
+			productReference = A58A52771C7F0A2800443C06 /* MaplifyDevelopment.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A58A528A1C7F0A2900443C06 /* MaplifyTests */ = {
@@ -1435,6 +1687,27 @@
 			productName = MaplifyTests;
 			productReference = A58A528B1C7F0A2900443C06 /* MaplifyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CD19EC8A1D5CC2EA0064DEE0 /* MaplifyProduction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD19ED741D5CC2EA0064DEE0 /* Build configuration list for PBXNativeTarget "MaplifyProduction" */;
+			buildPhases = (
+				CD19EC8B1D5CC2EA0064DEE0 /* [CP] Check Pods Manifest.lock */,
+				CD19EC8C1D5CC2EA0064DEE0 /* Sources */,
+				CD19ED501D5CC2EA0064DEE0 /* Frameworks */,
+				CD19ED531D5CC2EA0064DEE0 /* Resources */,
+				CD19ED711D5CC2EA0064DEE0 /* ShellScript */,
+				CD19ED721D5CC2EA0064DEE0 /* [CP] Embed Pods Frameworks */,
+				CD19ED731D5CC2EA0064DEE0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MaplifyProduction;
+			productName = Maplify;
+			productReference = CD19ED771D5CC2EA0064DEE0 /* MaplifyProduction.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -1459,6 +1732,9 @@
 						CreatedOnToolsVersion = 7.2.1;
 						TestTargetID = A58A52761C7F0A2800443C06;
 					};
+					CD19EC8A1D5CC2EA0064DEE0 = {
+						DevelopmentTeam = YYG42FLABM;
+					};
 				};
 			};
 			buildConfigurationList = A58A52721C7F0A2800443C06 /* Build configuration list for PBXProject "Maplify" */;
@@ -1474,7 +1750,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A58A52761C7F0A2800443C06 /* Maplify */,
+				A58A52761C7F0A2800443C06 /* MaplifyDevelopment */,
+				CD19EC8A1D5CC2EA0064DEE0 /* MaplifyProduction */,
 				A58A528A1C7F0A2900443C06 /* MaplifyTests */,
 			);
 		};
@@ -1502,6 +1779,7 @@
 				CD28F83B1D2E8DAD001CF185 /* CameraRollItemViewCell.xib in Resources */,
 				F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */,
 				CD451B691CAD44BB00EBCC7A /* VideoViewController.xib in Resources */,
+				CD19ED7A1D5CC9D10064DEE0 /* ProductionInfo.plist in Resources */,
 				850A64BA1CEB4FA3008FA969 /* StoryInfoView.xib in Resources */,
 				CD3E0CF41D33D2FF0047BC55 /* StoryAddMediaHeaderView.xib in Resources */,
 				A5C584C11C90787D0036064A /* config_production.plist in Resources */,
@@ -1526,6 +1804,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD19ED531D5CC2EA0064DEE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD19ED541D5CC2EA0064DEE0 /* Localizable.strings in Resources */,
+				CD19ED551D5CC2EA0064DEE0 /* InputTextField.xib in Resources */,
+				CD19ED561D5CC2EA0064DEE0 /* DetailStoryPointCollectionCell.xib in Resources */,
+				CD19ED571D5CC2EA0064DEE0 /* Main.storyboard in Resources */,
+				CD19ED581D5CC2EA0064DEE0 /* StoryLinkCell.xib in Resources */,
+				CD19ED591D5CC2EA0064DEE0 /* AmbientViewController.xib in Resources */,
+				CD19ED5A1D5CC2EA0064DEE0 /* CameraRollMultipleSelectionView.xib in Resources */,
+				CD19ED5B1D5CC2EA0064DEE0 /* CapturePopUpView.xib in Resources */,
+				CD19ED5C1D5CC2EA0064DEE0 /* PublicStatsView.xib in Resources */,
+				CD19ED5D1D5CC2EA0064DEE0 /* DetailStoryNumberCell.xib in Resources */,
+				CD19ED5E1D5CC2EA0064DEE0 /* InputTextView.xib in Resources */,
+				CD19ED5F1D5CC2EA0064DEE0 /* StoryPointInfoView.xib in Resources */,
+				CD19ED601D5CC2EA0064DEE0 /* CameraRollView.xib in Resources */,
+				CD19ED611D5CC2EA0064DEE0 /* LaunchScreen.storyboard in Resources */,
+				CD19ED621D5CC2EA0064DEE0 /* CameraRollItemViewCell.xib in Resources */,
+				CD19ED631D5CC2EA0064DEE0 /* Menu.storyboard in Resources */,
+				CD19ED641D5CC2EA0064DEE0 /* VideoViewController.xib in Resources */,
+				CD19ED651D5CC2EA0064DEE0 /* StoryInfoView.xib in Resources */,
+				CD19ED661D5CC2EA0064DEE0 /* StoryAddMediaHeaderView.xib in Resources */,
+				CD19ED671D5CC2EA0064DEE0 /* config_production.plist in Resources */,
+				CD19ED681D5CC2EA0064DEE0 /* PrivateStatsView.xib in Resources */,
+				CD19ED691D5CC2EA0064DEE0 /* AlbumViewCell.xib in Resources */,
+				CD19ED6A1D5CC2EA0064DEE0 /* PhotoViewController.xib in Resources */,
+				CD19ED6B1D5CC2EA0064DEE0 /* Localizable.stringsdict in Resources */,
+				CD19ED6C1D5CC2EA0064DEE0 /* config_staging.plist in Resources */,
+				CD19ED6D1D5CC2EA0064DEE0 /* Assets.xcassets in Resources */,
+				CD19ED6E1D5CC2EA0064DEE0 /* ProfileView.xib in Resources */,
+				CD19ED6F1D5CC2EA0064DEE0 /* EditStoryHeaderView.xib in Resources */,
+				CD19ED701D5CC2EA0064DEE0 /* Auth.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1541,7 +1855,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaplifyBase-MaplifyDevelopment/Pods-MaplifyBase-MaplifyDevelopment-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A58A52DF1C7F1DD200443C06 /* ShellScript */ = {
@@ -1572,6 +1886,64 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		CD19EC8B1D5CC2EA0064DEE0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CD19ED711D5CC2EA0064DEE0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1be821fed07b6c7a86373f911acbc3c03d375f60 d0ef49d435d745ce847f8957558f8fcf56b27a284f9f95784d0fd9c8901a0fc1";
+		};
+		CD19ED721D5CC2EA0064DEE0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaplifyBase-MaplifyProduction/Pods-MaplifyBase-MaplifyProduction-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD19ED731D5CC2EA0064DEE0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaplifyBase-MaplifyProduction/Pods-MaplifyBase-MaplifyProduction-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D32C9B392E312C4595A743C2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1584,7 +1956,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Maplify/Pods-Maplify-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaplifyBase-MaplifyDevelopment/Pods-MaplifyBase-MaplifyDevelopment-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1817,12 +2189,214 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD19EC8C1D5CC2EA0064DEE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD19EC8D1D5CC2EA0064DEE0 /* ReportsViewController.swift in Sources */,
+				CD19EC8E1D5CC2EA0064DEE0 /* NavigationViewController.swift in Sources */,
+				CD19EC8F1D5CC2EA0064DEE0 /* ContentFollowingViewController.swift in Sources */,
+				CD19EC901D5CC2EA0064DEE0 /* MCMapItem.swift in Sources */,
+				CD19EC911D5CC2EA0064DEE0 /* StoryPointAddPhotoVideoViewController.swift in Sources */,
+				CD19EC921D5CC2EA0064DEE0 /* StoryEditTableDataSource.swift in Sources */,
+				CD19EC931D5CC2EA0064DEE0 /* OurStoryViewController.swift in Sources */,
+				CD19EC941D5CC2EA0064DEE0 /* NetworkOperation.swift in Sources */,
+				CD19EC951D5CC2EA0064DEE0 /* FacebookHelper.swift in Sources */,
+				CD19EC961D5CC2EA0064DEE0 /* TrackManager.swift in Sources */,
+				CD19EC971D5CC2EA0064DEE0 /* ModelManager.swift in Sources */,
+				CD19EC981D5CC2EA0064DEE0 /* StaticMap.swift in Sources */,
+				CD19EC991D5CC2EA0064DEE0 /* DiscoverTableDataSource.swift in Sources */,
+				CD19EC9A1D5CC2EA0064DEE0 /* AmbientViewController.swift in Sources */,
+				CD19EC9B1D5CC2EA0064DEE0 /* PublicStatsView.swift in Sources */,
+				CD19EC9C1D5CC2EA0064DEE0 /* EditProfileViewController.swift in Sources */,
+				CD19EC9D1D5CC2EA0064DEE0 /* UIBarButtonItem.swift in Sources */,
+				CD19EC9E1D5CC2EA0064DEE0 /* StorypointCell.swift in Sources */,
+				CD19EC9F1D5CC2EA0064DEE0 /* CaptureSetupUIExtension.swift in Sources */,
+				CD19ECA01D5CC2EA0064DEE0 /* StoryDetailViewController.swift in Sources */,
+				CD19ECA11D5CC2EA0064DEE0 /* Profile.swift in Sources */,
+				CD19ECA21D5CC2EA0064DEE0 /* ArrayStoryManager.swift in Sources */,
+				CD19ECA31D5CC2EA0064DEE0 /* StoryAddMediaHeaderView.swift in Sources */,
+				CD19ECA41D5CC2EA0064DEE0 /* ErrorHandlingProtocol.swift in Sources */,
+				CD19ECA51D5CC2EA0064DEE0 /* ColorUtils.swift in Sources */,
+				CD19ECA61D5CC2EA0064DEE0 /* ImageConstants.swift in Sources */,
+				CD19ECA71D5CC2EA0064DEE0 /* SessionHelper.swift in Sources */,
+				CD19ECA81D5CC2EA0064DEE0 /* ResetPasswordViewController.swift in Sources */,
+				CD19ECA91D5CC2EA0064DEE0 /* CSBaseTableDataSource.swift in Sources */,
+				CD19ECAA1D5CC2EA0064DEE0 /* StoryAddMediaDataSource.swift in Sources */,
+				CD19ECAB1D5CC2EA0064DEE0 /* StoryLink.swift in Sources */,
+				CD19ECAC1D5CC2EA0064DEE0 /* AlertController.swift in Sources */,
+				CD19ECAD1D5CC2EA0064DEE0 /* ReportSuccessViewController.swift in Sources */,
+				CD19ECAE1D5CC2EA0064DEE0 /* NSURL.swift in Sources */,
+				CD19ECAF1D5CC2EA0064DEE0 /* NSData.swift in Sources */,
+				CD19ECB01D5CC2EA0064DEE0 /* CaptureViewController.swift in Sources */,
+				CD19ECB11D5CC2EA0064DEE0 /* ArrayStoryPointManager.swift in Sources */,
+				CD19ECB21D5CC2EA0064DEE0 /* FollowingTableViewCell.swift in Sources */,
+				CD19ECB31D5CC2EA0064DEE0 /* ConfigHepler.swift in Sources */,
+				CD19ECB41D5CC2EA0064DEE0 /* DetailStoryPointCollectionCell.swift in Sources */,
+				CD19ECB51D5CC2EA0064DEE0 /* CaptureDetailViewExtension.swift in Sources */,
+				CD19ECB61D5CC2EA0064DEE0 /* ViewConstants.swift in Sources */,
+				CD19ECB71D5CC2EA0064DEE0 /* VideoViewController.swift in Sources */,
+				CD19ECB81D5CC2EA0064DEE0 /* CSTableViewCell.swift in Sources */,
+				CD19ECB91D5CC2EA0064DEE0 /* StoryCreateAddLocationViewController.swift in Sources */,
+				CD19ECBA1D5CC2EA0064DEE0 /* FileDataManager.swift in Sources */,
+				CD19ECBB1D5CC2EA0064DEE0 /* CSCollectionViewCell.swift in Sources */,
+				CD19ECBC1D5CC2EA0064DEE0 /* CSCellData.swift in Sources */,
+				CD19ECBD1D5CC2EA0064DEE0 /* ConsoleAnalyticsManager.swift in Sources */,
+				CD19ECBE1D5CC2EA0064DEE0 /* UserListManager.swift in Sources */,
+				CD19ECBF1D5CC2EA0064DEE0 /* CaptureSearchPlaceExtension.swift in Sources */,
+				CD19ECC01D5CC2EA0064DEE0 /* DiscoverPlaceholderCell.swift in Sources */,
+				CD19ECC11D5CC2EA0064DEE0 /* FollowersViewController.swift in Sources */,
+				CD19ECC21D5CC2EA0064DEE0 /* AppDelegate.swift in Sources */,
+				CD19ECC31D5CC2EA0064DEE0 /* InfiniteScrollView.swift in Sources */,
+				CD19ECC41D5CC2EA0064DEE0 /* MCMapService.swift in Sources */,
+				CD19ECC51D5CC2EA0064DEE0 /* StoryAddMediaTableViewCell.swift in Sources */,
+				CD19ECC61D5CC2EA0064DEE0 /* AttachmentManager.swift in Sources */,
+				CD19ECC71D5CC2EA0064DEE0 /* PhotoViewController.swift in Sources */,
+				CD19ECC81D5CC2EA0064DEE0 /* EditStoryHeaderView.swift in Sources */,
+				CD19ECC91D5CC2EA0064DEE0 /* GeocoderHelper.swift in Sources */,
+				CD19ECCA1D5CC2EA0064DEE0 /* OnboardViewController.swift in Sources */,
+				CD19ECCB1D5CC2EA0064DEE0 /* ContentViewController.swift in Sources */,
+				CD19ECCC1D5CC2EA0064DEE0 /* StoryPointDraft.swift in Sources */,
+				CD19ECCD1D5CC2EA0064DEE0 /* OnboardCaptureController.swift in Sources */,
+				CD19ECCE1D5CC2EA0064DEE0 /* ApiClient.swift in Sources */,
+				CD19ECCF1D5CC2EA0064DEE0 /* AlbumViewCell.swift in Sources */,
+				CD19ECD01D5CC2EA0064DEE0 /* SignupGetCityViewController.swift in Sources */,
+				CD19ECD11D5CC2EA0064DEE0 /* EditStoryViewController.swift in Sources */,
+				CD19ECD21D5CC2EA0064DEE0 /* MCMapActiveModel.swift in Sources */,
+				CD19ECD31D5CC2EA0064DEE0 /* DiscoverItem.swift in Sources */,
+				CD19ECD41D5CC2EA0064DEE0 /* KeyboardAvoiding.swift in Sources */,
+				CD19ECD51D5CC2EA0064DEE0 /* AssetRetrievingManager.swift in Sources */,
+				CD19ECD61D5CC2EA0064DEE0 /* ChangePasswordViewController.swift in Sources */,
+				CD19ECD71D5CC2EA0064DEE0 /* StoryInfoView.swift in Sources */,
+				CD19ECD81D5CC2EA0064DEE0 /* ViewController.swift in Sources */,
+				CD19ECD91D5CC2EA0064DEE0 /* MenuViewController.swift in Sources */,
+				CD19ECDA1D5CC2EA0064DEE0 /* ImageCropView.swift in Sources */,
+				CD19ECDB1D5CC2EA0064DEE0 /* Location.swift in Sources */,
+				CD19ECDC1D5CC2EA0064DEE0 /* OperationQueueManager.swift in Sources */,
+				CD19ECDD1D5CC2EA0064DEE0 /* FollowingAlertController.swift in Sources */,
+				CD19ECDE1D5CC2EA0064DEE0 /* NotificationsViewController.swift in Sources */,
+				CD19ECDF1D5CC2EA0064DEE0 /* StoryCreateCameraRollViewController.swift in Sources */,
+				CD19ECE01D5CC2EA0064DEE0 /* InputTextField.swift in Sources */,
+				CD19ECE11D5CC2EA0064DEE0 /* StringUtils.swift in Sources */,
+				CD19ECE21D5CC2EA0064DEE0 /* Constants.swift in Sources */,
+				CD19ECE31D5CC2EA0064DEE0 /* AudioRecorderHelper.swift in Sources */,
+				CD19ECE41D5CC2EA0064DEE0 /* PasswordManager.swift in Sources */,
+				CD19ECE51D5CC2EA0064DEE0 /* StoryPointDetailCell.swift in Sources */,
+				CD19ECE61D5CC2EA0064DEE0 /* StoryEditPointCell.swift in Sources */,
+				CD19ECE71D5CC2EA0064DEE0 /* Model.swift in Sources */,
+				CD19ECE81D5CC2EA0064DEE0 /* DetailMapItemHelper.swift in Sources */,
+				CD19ECE91D5CC2EA0064DEE0 /* AttributedLabelUtils.swift in Sources */,
+				CD19ECEA1D5CC2EA0064DEE0 /* StoryPointEditViewController.swift in Sources */,
+				CD19ECEB1D5CC2EA0064DEE0 /* StoryPointAddAudioController.swift in Sources */,
+				CD19ECEC1D5CC2EA0064DEE0 /* SelectedStoryCell.swift in Sources */,
+				CD19ECED1D5CC2EA0064DEE0 /* Suspender.swift in Sources */,
+				CD19ECEE1D5CC2EA0064DEE0 /* StoryPointCreationPopupViewController.swift in Sources */,
+				CD19ECEF1D5CC2EA0064DEE0 /* StoryPointInfoView.swift in Sources */,
+				CD19ECF01D5CC2EA0064DEE0 /* DiscoverItemManager.swift in Sources */,
+				CD19ECF11D5CC2EA0064DEE0 /* StoryLinkCell.swift in Sources */,
+				CD19ECF21D5CC2EA0064DEE0 /* MCMapRegion.swift in Sources */,
+				CD19ECF31D5CC2EA0064DEE0 /* StoryPointMapItem.swift in Sources */,
+				CD19ECF41D5CC2EA0064DEE0 /* FollowingViewController.swift in Sources */,
+				CD19ECF51D5CC2EA0064DEE0 /* MCMapItemsGroup.swift in Sources */,
+				CD19ECF61D5CC2EA0064DEE0 /* ProfileManager.swift in Sources */,
+				CD19ECF71D5CC2EA0064DEE0 /* ApiError.swift in Sources */,
+				CD19ECF81D5CC2EA0064DEE0 /* ConcurrentOperation.swift in Sources */,
+				CD19ECF91D5CC2EA0064DEE0 /* User.swift in Sources */,
+				CD19ECFA1D5CC2EA0064DEE0 /* StoryPointEditInfoViewController.swift in Sources */,
+				CD19ECFB1D5CC2EA0064DEE0 /* StoryPointDataSource.swift in Sources */,
+				CD19ECFC1D5CC2EA0064DEE0 /* NavigationBarItems.swift in Sources */,
+				CD19ECFD1D5CC2EA0064DEE0 /* StoryPointManager.swift in Sources */,
+				CD19ECFE1D5CC2EA0064DEE0 /* WebContent.swift in Sources */,
+				CD19ECFF1D5CC2EA0064DEE0 /* LoginViewController.swift in Sources */,
+				CD19ED001D5CC2EA0064DEE0 /* ChildController.swift in Sources */,
+				CD19ED011D5CC2EA0064DEE0 /* DetailStoryNumberCell.swift in Sources */,
+				CD19ED021D5CC2EA0064DEE0 /* Attachment.swift in Sources */,
+				CD19ED031D5CC2EA0064DEE0 /* CurrentUser.swift in Sources */,
+				CD19ED041D5CC2EA0064DEE0 /* MixpanelAnalyticsManager.swift in Sources */,
+				CD19ED051D5CC2EA0064DEE0 /* RoutesHelper.swift in Sources */,
+				CD19ED061D5CC2EA0064DEE0 /* PlayerHelper.swift in Sources */,
+				CD19ED071D5CC2EA0064DEE0 /* MCMapDataSource.swift in Sources */,
+				CD19ED081D5CC2EA0064DEE0 /* DetailStoryItemsDataSource.swift in Sources */,
+				CD19ED091D5CC2EA0064DEE0 /* MCMapView.swift in Sources */,
+				CD19ED0A1D5CC2EA0064DEE0 /* ReachabilityNetwork.swift in Sources */,
+				CD19ED0B1D5CC2EA0064DEE0 /* CSBaseCollectionDataSource.swift in Sources */,
+				CD19ED0C1D5CC2EA0064DEE0 /* RecommendedSettingsViewController.swift in Sources */,
+				CD19ED0D1D5CC2EA0064DEE0 /* ProfileView.swift in Sources */,
+				CD19ED0E1D5CC2EA0064DEE0 /* AddStoryViewController.swift in Sources */,
+				CD19ED0F1D5CC2EA0064DEE0 /* StoryCreateManager.swift in Sources */,
+				CD19ED101D5CC2EA0064DEE0 /* CameraRollMultipleSelectionController.swift in Sources */,
+				CD19ED111D5CC2EA0064DEE0 /* CSActiveModel.swift in Sources */,
+				CD19ED121D5CC2EA0064DEE0 /* Notification.swift in Sources */,
+				CD19ED131D5CC2EA0064DEE0 /* ShareStoryViewController.swift in Sources */,
+				CD19ED141D5CC2EA0064DEE0 /* InputTextView.swift in Sources */,
+				CD19ED151D5CC2EA0064DEE0 /* SignupUpdateProfileController.swift in Sources */,
+				CD19ED161D5CC2EA0064DEE0 /* DiscoverViewController.swift in Sources */,
+				CD19ED171D5CC2EA0064DEE0 /* ShareController.swift in Sources */,
+				CD19ED181D5CC2EA0064DEE0 /* DiscoverStoryCell.swift in Sources */,
+				CD19ED191D5CC2EA0064DEE0 /* UIImage.swift in Sources */,
+				CD19ED1A1D5CC2EA0064DEE0 /* FacebookShareHelper.swift in Sources */,
+				CD19ED1B1D5CC2EA0064DEE0 /* ShareStoryPointViewController.swift in Sources */,
+				CD19ED1C1D5CC2EA0064DEE0 /* LandingViewController.swift in Sources */,
+				CD19ED1D1D5CC2EA0064DEE0 /* StoryAddPostsTableViewCell.swift in Sources */,
+				CD19ED1E1D5CC2EA0064DEE0 /* ProgressHUD.swift in Sources */,
+				CD19ED1F1D5CC2EA0064DEE0 /* DiscoverStoryCollectionDataSource.swift in Sources */,
+				CD19ED201D5CC2EA0064DEE0 /* StoryUpdateManager.swift in Sources */,
+				CD19ED211D5CC2EA0064DEE0 /* RelationOrNil.swift in Sources */,
+				CD19ED221D5CC2EA0064DEE0 /* PageViewController.swift in Sources */,
+				CD19ED231D5CC2EA0064DEE0 /* NotificationsTableViewCell.swift in Sources */,
+				CD19ED241D5CC2EA0064DEE0 /* EditStoryDataSource.swift in Sources */,
+				CD19ED251D5CC2EA0064DEE0 /* DiscoverStoryPointCell.swift in Sources */,
+				CD19ED261D5CC2EA0064DEE0 /* EditStoryTableViewCell.swift in Sources */,
+				CD19ED271D5CC2EA0064DEE0 /* OnboardDiscoverController.swift in Sources */,
+				CD19ED281D5CC2EA0064DEE0 /* StoryboardHelper.swift in Sources */,
+				CD19ED291D5CC2EA0064DEE0 /* StoryCreateViewController.swift in Sources */,
+				CD19ED2A1D5CC2EA0064DEE0 /* SquareImage.swift in Sources */,
+				CD19ED2B1D5CC2EA0064DEE0 /* NotificationsManager.swift in Sources */,
+				CD19ED2C1D5CC2EA0064DEE0 /* SessionManager.swift in Sources */,
+				CD19ED2D1D5CC2EA0064DEE0 /* GooglePlaceSearchHelper.swift in Sources */,
+				CD19ED2E1D5CC2EA0064DEE0 /* DiscoverChangeLocationPopupViewController.swift in Sources */,
+				CD19ED2F1D5CC2EA0064DEE0 /* SignupViewController.swift in Sources */,
+				CD19ED301D5CC2EA0064DEE0 /* Integer.swift in Sources */,
+				CD19ED311D5CC2EA0064DEE0 /* ScreenSize.swift in Sources */,
+				CD19ED321D5CC2EA0064DEE0 /* RequestConfig.swift in Sources */,
+				CD19ED331D5CC2EA0064DEE0 /* StoryInfoCell.swift in Sources */,
+				CD19ED341D5CC2EA0064DEE0 /* StoryPoint.swift in Sources */,
+				CD19ED351D5CC2EA0064DEE0 /* SignupPhotoController.swift in Sources */,
+				CD19ED361D5CC2EA0064DEE0 /* RoundedButton.swift in Sources */,
+				CD19ED371D5CC2EA0064DEE0 /* Converter.swift in Sources */,
+				CD19ED381D5CC2EA0064DEE0 /* StoryPageViewController.swift in Sources */,
+				CD19ED391D5CC2EA0064DEE0 /* AnalyticsManager.swift in Sources */,
+				CD19ED3A1D5CC2EA0064DEE0 /* StoryEditViewController.swift in Sources */,
+				CD19ED3B1D5CC2EA0064DEE0 /* RootViewController.swift in Sources */,
+				CD19ED3C1D5CC2EA0064DEE0 /* PrivateStatsView.swift in Sources */,
+				CD19ED3D1D5CC2EA0064DEE0 /* CapturePopUpView.swift in Sources */,
+				CD19ED3E1D5CC2EA0064DEE0 /* StoryCreateAddInfoViewController.swift in Sources */,
+				CD19ED3F1D5CC2EA0064DEE0 /* AutocompleteTextField.swift in Sources */,
+				CD19ED401D5CC2EA0064DEE0 /* Story.swift in Sources */,
+				CD19ED411D5CC2EA0064DEE0 /* CameraRollViewController.swift in Sources */,
+				CD19ED421D5CC2EA0064DEE0 /* StoryManager.swift in Sources */,
+				CD19ED431D5CC2EA0064DEE0 /* CameraRollItemViewCell.swift in Sources */,
+				CD19ED441D5CC2EA0064DEE0 /* GoogleMapService.swift in Sources */,
+				CD19ED451D5CC2EA0064DEE0 /* UserRequestHelper.swift in Sources */,
+				CD19ED461D5CC2EA0064DEE0 /* StoryDetailItemViewController.swift in Sources */,
+				CD19ED471D5CC2EA0064DEE0 /* CaptureDataFetchingExtension.swift in Sources */,
+				CD19ED481D5CC2EA0064DEE0 /* StoryPointEditDescriptionViewController.swift in Sources */,
+				CD19ED491D5CC2EA0064DEE0 /* StoryAddPostsViewController.swift in Sources */,
+				CD19ED4A1D5CC2EA0064DEE0 /* StoryQuickCreationCell.swift in Sources */,
+				CD19ED4B1D5CC2EA0064DEE0 /* TermsViewController.swift in Sources */,
+				CD19ED4C1D5CC2EA0064DEE0 /* WebContentManager.swift in Sources */,
+				CD19ED4D1D5CC2EA0064DEE0 /* StoryLinkManager.swift in Sources */,
+				CD19ED4E1D5CC2EA0064DEE0 /* CaptureMapExtension.swift in Sources */,
+				CD19ED4F1D5CC2EA0064DEE0 /* PolicyViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		A58A528D1C7F0A2900443C06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A58A52761C7F0A2800443C06 /* Maplify */;
+			target = A58A52761C7F0A2800443C06 /* MaplifyDevelopment */;
 			targetProxy = A58A528C1C7F0A2900443C06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1938,17 +2512,24 @@
 		};
 		A58A52951C7F0A2900443C06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0717A3F21E4C910FF2278F41 /* Pods-Maplify.debug.xcconfig */;
+			baseConfigurationReference = 7DF166CF77E01C22898A2928 /* Pods-MaplifyBase-MaplifyDevelopment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Maplify/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEVELOPMENT=1",
+				);
+				INFOPLIST_FILE = Maplify/DevelopmentInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1957,17 +2538,24 @@
 		};
 		A58A52961C7F0A2900443C06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2BDB32A983C59AC689A979E /* Pods-Maplify.release.xcconfig */;
+			baseConfigurationReference = A6AEDF50AF4C1824AD8874AC /* Pods-MaplifyBase-MaplifyDevelopment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Maplify/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEVELOPMENT=1",
+				);
+				INFOPLIST_FILE = Maplify/DevelopmentInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1998,6 +2586,54 @@
 			};
 			name = Release;
 		};
+		CD19ED751D5CC2EA0064DEE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D8B9D36CCA56CE91CE09B9E /* Pods-MaplifyBase-MaplifyProduction.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEVELOPMENT=0",
+				);
+				INFOPLIST_FILE = Maplify/ProductionInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8ca1d0b6-4ce3-40a2-978e-6cd4e0fc83d1";
+				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CD19ED761D5CC2EA0064DEE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79DA11AD83858687EFD2F111 /* Pods-MaplifyBase-MaplifyProduction.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Maplify Inc (YYG42FLABM)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEVELOPMENT=0",
+				);
+				INFOPLIST_FILE = Maplify/ProductionInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.maplify.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bab10851-d2f4-496e-bf1a-68dc7e2a962c";
+				SWIFT_OBJC_BRIDGING_HEADER = "Maplify/Maplify-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2010,7 +2646,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "Maplify" */ = {
+		A58A52941C7F0A2900443C06 /* Build configuration list for PBXNativeTarget "MaplifyDevelopment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A58A52951C7F0A2900443C06 /* Debug */,
@@ -2024,6 +2660,15 @@
 			buildConfigurations = (
 				A58A52981C7F0A2900443C06 /* Debug */,
 				A58A52991C7F0A2900443C06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD19ED741D5CC2EA0064DEE0 /* Build configuration list for PBXNativeTarget "MaplifyProduction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD19ED751D5CC2EA0064DEE0 /* Debug */,
+				CD19ED761D5CC2EA0064DEE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,7 +7,6 @@
 //  Copyright © 2016 rubygarage. All rights reserved.
 //
 
-import PINRemoteImage
 import SDWebImage
 import UIKit
 
@@ -98,9 +97,6 @@ class MenuViewController: ViewController {
     }
     
     func signOut() {
-        if let manager = PINRemoteImageManager.sharedImageManager().valueForKey("sessionManager") {
-            (manager as! PINURLSessionManager).invalidateSessionAndCancelTasks()
-        }
         SDWebImageManager.sharedManager().cancelAll()
         SessionHelper.sharedHelper.removeSessionData()
         SessionHelper.sharedHelper.removeSessionAuthCookies()

@@ -12,7 +12,11 @@ class ConfigHepler {
     
     // MARK: - Production mode
     class func isProduction() -> Bool {
-        return NSProcessInfo.processInfo().environment[Config.production] == "true"
+        #if DEVELOPMENT
+            return false
+        #else
+            return true
+        #endif
     }
     
     // MARK: - config parameters

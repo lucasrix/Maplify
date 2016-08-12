@@ -58,6 +58,7 @@ class NavigationViewController: UINavigationController {
             SessionHelper.sharedHelper.removeSessionData()
             SessionHelper.sharedHelper.removeSessionAuthCookies()
             SessionHelper.sharedHelper.removeDatabaseData()
+            SessionHelper.sharedHelper.removeImageCacheData()
             RootViewController.navigationController().routesSetLandingController()
         }
     }

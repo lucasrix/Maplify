@@ -150,13 +150,13 @@ class StoryPointInfoView: UIView, UIScrollViewDelegate, CSBaseTableDataSourceDel
         
         self.storyPointImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage, completion: { [weak self] (result) in
             if (self?.storyPointId != nil) && (StoryPointManager.find((self?.storyPointId)!) != nil) {
-                self?.populateImage(result.error)
+                let storyPoint = StoryPointManager.find((self?.storyPointId)!)
+                self?.populateImage(storyPoint, error: result.error)
             }
         })
     }
     
-    func populateImage(error: NSError!) {
-        let storyPoint = StoryPointManager.find(self.storyPointId)
+    func populateImage(storyPoint: StoryPoint, error: NSError!) {
         if error == nil {
             self.colorView?.alpha = storyPoint.kind == StoryPointKind.Photo.rawValue ? 0.0 : kMapImageDownloadCompletedAlpha
         }

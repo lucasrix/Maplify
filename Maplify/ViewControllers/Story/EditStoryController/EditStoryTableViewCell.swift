@@ -70,9 +70,9 @@ class EditStoryTableViewCell: CSTableViewCell, UITextViewDelegate {
             placeholderImage = nil
         }
         self.colorView?.hidden = self.draft.storyPointKind != StoryPointKind.Audio.rawValue
-        self.attachmentImageView.pin_setImageFromURL(attachmentUrl, placeholderImage: placeholderImage) { [weak self] (result) in
+        self.attachmentImageView?.sd_setImageWithURL(attachmentUrl, placeholderImage: placeholderImage, completed: { [weak self] (image, error, type, url) in
             self?.kindImageView?.image = self?.kindImageForStoryPoint()
-        }
+        })
     }
     
     func populateLocation() {

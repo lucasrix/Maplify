@@ -353,7 +353,6 @@
 		CD19ED4E1D5CC2EA0064DEE0 /* CaptureMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1DB23C1CFEDD9D00D62944 /* CaptureMapExtension.swift */; };
 		CD19ED4F1D5CC2EA0064DEE0 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A7E781C971DF200399A38 /* PolicyViewController.swift */; };
 		CD19ED511D5CC2EA0064DEE0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52E09971C8D8C2E00706F9C /* Accounts.framework */; };
-		CD19ED521D5CC2EA0064DEE0 /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */; };
 		CD19ED541D5CC2EA0064DEE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5728A1D1C88945A00C6DA7E /* Localizable.strings */; };
 		CD19ED551D5CC2EA0064DEE0 /* InputTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E337A1C80652E00D3B446 /* InputTextField.xib */; };
 		CD19ED561D5CC2EA0064DEE0 /* DetailStoryPointCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FD8C231CFC3B7E008956CE /* DetailStoryPointCollectionCell.xib */; };
@@ -470,7 +469,6 @@
 		CDF6D89E1CD375CF001387EC /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6D89D1CD375CF001387EC /* FacebookShareHelper.swift */; };
 		CDFDD6961CCE192700CAAEEE /* StoryEditPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6951CCE192700CAAEEE /* StoryEditPointCell.swift */; };
 		CDFDD6981CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDD6971CCE3E3F00CAAEEE /* StoryEditTableDataSource.swift */; };
-		D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7302D9D16F014B31FCC3FF34 /* Pods_Maplify.framework */; };
 		F01A89521CA74C8E008B8702 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01A89501CA74C8E008B8702 /* Menu.storyboard */; };
 		F01A89551CA753E3008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
 		F01A89561CA754BB008B8702 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A89541CA753E3008B8702 /* MenuViewController.swift */; };
@@ -745,7 +743,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52E09981C8D8C2E00706F9C /* Accounts.framework in Frameworks */,
-				D6EFA67626ED9DB21B31C8D5 /* Pods_Maplify.framework in Frameworks */,
 				10608F2D7EA491D27FEA6E1F /* Pods_MaplifyBase_MaplifyDevelopment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,7 +759,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD19ED511D5CC2EA0064DEE0 /* Accounts.framework in Frameworks */,
-				CD19ED521D5CC2EA0064DEE0 /* Pods_Maplify.framework in Frameworks */,
 				9D184500790726106C1C818C /* Pods_MaplifyBase_MaplifyProduction.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
